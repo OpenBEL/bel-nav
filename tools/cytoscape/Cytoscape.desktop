@@ -1,0 +1,7 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Type=Application
+Name=Cytoscape
+Exec=/bin/sh "/home/tony/tools/tmp/cytoscape/Cytoscape"
+Icon=/home/tony/tools/tmp/cytoscape/.install4j/Cytoscape.png
+Categories=Application;

@@ -1,0 +1,940 @@
+[INFO] logger started at Tue Jul 23 09:32:31 EDT 2013
+[INFO] executable name: /home/tony/tools/tmp/Cytoscape_3_0_1_unix.sh
+[INFO] install4j version: 4.2.8 (build 4537)
+[INFO] Properties: 
+-- listing properties --
+java.runtime.name=Java(TM) SE Runtime Environment
+exe4j.moduleName=/home/tony/tools/tmp/Cytoscape_3_0_1_...
+sun.boot.library.path=/usr/lib/jvm/jdk1.7.0_25/jre/lib/amd64
+java.vm.version=23.25-b01
+java.vm.vendor=Oracle Corporation
+java.vendor.url=http://java.oracle.com/
+path.separator=:
+java.vm.name=Java HotSpot(TM) 64-Bit Server VM
+file.encoding.pkg=sun.io
+user.country=US
+sun.java.launcher=SUN_STANDARD
+sun.os.patch.level=unknown
+install4j.exeDir=/home/tony/tools/tmp/
+java.vm.specification.name=Java Virtual Machine Specification
+user.dir=/home/tony/tools/tmp/Cytoscape_3_0_1_...
+java.runtime.version=1.7.0_25-b15
+java.awt.graphicsenv=sun.awt.X11GraphicsEnvironment
+java.endorsed.dirs=/usr/lib/jvm/jdk1.7.0_25/jre/lib/endo...
+os.arch=amd64
+java.io.tmpdir=/tmp
+line.separator=
+
+java.vm.specification.vendor=Oracle Corporation
+os.name=Linux
+exe4j.totalDataLength=83968287
+sun.java2d.noddraw=true
+sun.jnu.encoding=UTF-8
+java.library.path=/usr/java/packages/lib/amd64:/usr/lib...
+sun.awt.enableExtraMouseButtons=true
+java.specification.name=Java Platform API Specification
+java.class.version=51.0
+sun.management.compiler=HotSpot 64-Bit Tiered Compilers
+os.version=3.6.10-4.fc18.x86_64
+user.home=/home/tony
+install4j.cwd=/home/tony/tools/tmp
+user.timezone=America/New_York
+java.awt.printerjob=sun.print.PSPrinterJob
+java.specification.version=1.7
+install4j.jvmDir=/usr/lib/jvm/jdk1.7.0_25
+file.encoding=UTF-8
+user.name=tony
+java.class.path=i4jruntime.jar:user.jar
+java.vm.specification.version=1.7
+sun.arch.data.model=64
+java.home=/usr/lib/jvm/jdk1.7.0_25/jre
+sun.java.command=com.install4j.runtime.Launcher launch...
+java.specification.vendor=Oracle Corporation
+user.language=en
+awt.toolkit=sun.awt.X11.XToolkit
+java.vm.info=mixed mode
+java.version=1.7.0_25
+java.ext.dirs=/usr/lib/jvm/jdk1.7.0_25/jre/lib/ext:...
+sun.boot.class.path=/usr/lib/jvm/jdk1.7.0_25/jre/lib/reso...
+java.vendor=Oracle Corporation
+i4j.vmov=true
+install4j.appDir=/home/tony/tools/tmp/
+file.separator=/
+java.vendor.url.bug=http://bugreport.sun.com/bugreport/
+sun.cpu.endian=little
+sun.io.unicode.encoding=UnicodeLittle
+sun.font.fontmanager=sun.awt.X11FontManager
+sun.cpu.isalist=
+[INFO] com.install4j.runtime.beans.screens.StartupScreen: command: move 1 screens, executing actions, checking condition
+[INFO] com.install4j.runtime.beans.screens.WelcomeScreen: Show screen
+[INFO] com.install4j.runtime.beans.screens.WelcomeScreen: command: move 1 screens, executing actions, checking condition
+[INFO] com.install4j.runtime.beans.screens.LicenseScreen: Show screen
+[INFO] com.install4j.runtime.beans.screens.LicenseScreen: command: move 1 screens, executing actions, checking condition
+[INFO] com.install4j.runtime.beans.screens.InstallationDirectoryScreen: Show screen
+[INFO] com.install4j.runtime.installer.InstallerContextImpl: Variable changed: sys.installationDir=/home/tony/tools/tmp/cytoscape[class java.lang.String]
+[INFO] com.install4j.runtime.beans.screens.InstallationDirectoryScreen: command: move 1 screens, executing actions, checking condition
+[INFO] com.install4j.runtime.beans.screens.InstallationScreen: Show screen
+[INFO] com.install4j.runtime.beans.actions.control.RunScriptAction: Before execute action
+[INFO] com.install4j.runtime.beans.actions.control.RunScriptAction: Property script: I4jScript_Internal_2
+[INFO] com.install4j.runtime.beans.actions.control.RunScriptAction: Property rollbackSupported: false
+[INFO] com.install4j.runtime.beans.actions.control.RunScriptAction: Property rollbackScript: null
+[INFO] com.install4j.runtime.installer.InstallerContextImpl: Variable changed: xmx= -Xmx7538m[class java.lang.String]
+[INFO] com.install4j.runtime.beans.actions.control.RunScriptAction: After execute action
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before execute action
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Property directoryResolverScript: null
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Property fileFilterScript: null
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Property sizeCalculatorScript: null
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Property checkFreeSpace: true
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Property installRuntime: true
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Property showFileNames: true
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Property triggerReboot: true
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Property updateBundledJre: true
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Property validateApplicationId: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Property delay: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Property rollbackSupported: true
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Component Unix Installation Component[235]; Selected: true
+[INFO] com.install4j.runtime.installer.InstallerContextImpl: Variable changed: sys.installationDir=/home/tony/tools/tmp/cytoscape[class java.lang.String]
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: File installation started: total size: 93623456 bytes; file count: 673
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/Cytoscape; size: 10166 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:46:04 EDT 2013, mode: 755, overwriteMode: If newer otherwise ask, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/Cytoscape
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/cytoscape.sh; size: 1909 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/cytoscape.sh
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/bin/karaf; size: 11010 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/bin/karaf
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/bin/karaf.bat; size: 9909 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/bin/karaf.bat
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/cytoscape_logo_512.png; size: 63892 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/cytoscape_logo_512.png
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/CytoscapeSplashScreen.png; size: 58760 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/CytoscapeSplashScreen.png
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/data/tmp/README; size: 847 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/data/tmp/README
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/etc/config.properties; size: 4283 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/etc/config.properties
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/etc/custom.properties; size: 313 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/etc/custom.properties
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/etc/java.util.logging.properties; size: 1121 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/etc/java.util.logging.properties
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/etc/jre.properties; size: 12901 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/etc/jre.properties
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/etc/jre.properties.cxf; size: 12935 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/etc/jre.properties.cxf
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/etc/org.apache.felix.fileinstall-deploy.cfg; size: 207 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/etc/org.apache.felix.fileinstall-deploy.cfg
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/etc/org.apache.karaf.features.cfg; size: 247 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/etc/org.apache.karaf.features.cfg
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/etc/org.apache.karaf.features.obr.cfg; size: 1283 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/etc/org.apache.karaf.features.obr.cfg
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/etc/org.apache.karaf.features.repos.cfg; size: 1401 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/etc/org.apache.karaf.features.repos.cfg
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/etc/org.apache.karaf.jaas.cfg; size: 1665 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/etc/org.apache.karaf.jaas.cfg
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/etc/org.apache.karaf.log.cfg; size: 1663 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/etc/org.apache.karaf.log.cfg
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/etc/org.apache.karaf.management.cfg; size: 1904 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/etc/org.apache.karaf.management.cfg
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/etc/org.apache.karaf.shell.cfg; size: 1782 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/etc/org.apache.karaf.shell.cfg
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/etc/org.ops4j.pax.logging.cfg; size: 1891 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/etc/org.ops4j.pax.logging.cfg
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/etc/org.ops4j.pax.url.mvn.cfg; size: 3956 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/etc/org.ops4j.pax.url.mvn.cfg
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/etc/shell.init.script; size: 2541 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/etc/shell.init.script
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/etc/startup.properties; size: 5064 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/etc/startup.properties
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/etc/system.properties; size: 355 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/etc/system.properties
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/lib/bin/karaf-client.jar; size: 46883 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/lib/bin/karaf-client.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/lib/branding-3.0.1.jar; size: 3868 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/lib/branding-3.0.1.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/lib/endorsed/org.apache.karaf.exception-2.2.9.jar; size: 8648 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/lib/endorsed/org.apache.karaf.exception-2.2.9.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/lib/endorsed/README; size: 1205 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/lib/endorsed/README
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/lib/ext/README; size: 1195 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/lib/ext/README
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/lib/karaf-jaas-boot.jar; size: 10841 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/lib/karaf-jaas-boot.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/lib/karaf-launcher-3.0.1.jar; size: 6010 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/lib/karaf-launcher-3.0.1.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/lib/karaf.jar; size: 156726 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/lib/karaf.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/lib/README; size: 1515 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/lib/README
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/com/googlecode/guava-osgi/guava-osgi/9.0.0/guava-osgi-9.0.0.jar; size: 1163483 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/com/googlecode/guava-osgi/guava-osgi/9.0.0/guava-osgi-9.0.0.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/com/lowagie/text/com.springsource.com.lowagie.text/2.0.8/com.springsource.com.lowagie.text-2.0.8.jar; size: 1179858 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/com/lowagie/text/com.springsource.com.lowagie.text/2.0.8/com.springsource.com.lowagie.text-2.0.8.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/commons-io/commons-io/2.1/commons-io-2.1.jar; size: 163151 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/commons-io/commons-io/2.1/commons-io-2.1.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/cytoscape-sun/jhall/1.0/jhall-1.0.jar; size: 531966 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/cytoscape-sun/jhall/1.0/jhall-1.0.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/cytoscape-temp/collections-generic/4.01/collections-generic-4.01.jar; size: 538542 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/cytoscape-temp/collections-generic/4.01/collections-generic-4.01.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/cytoscape-temp/freehep-graphics-base/2.1.3/freehep-graphics-base-2.1.3.jar; size: 65704 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/cytoscape-temp/freehep-graphics-base/2.1.3/freehep-graphics-base-2.1.3.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/cytoscape-temp/freehep-graphics2d/2.1.3/freehep-graphics2d-2.1.3.jar; size: 125280 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/cytoscape-temp/freehep-graphics2d/2.1.3/freehep-graphics2d-2.1.3.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/cytoscape-temp/freehep-graphicsio/2.1.3/freehep-graphicsio-2.1.3.jar; size: 189492 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/cytoscape-temp/freehep-graphicsio/2.1.3/freehep-graphicsio-2.1.3.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/cytoscape-temp/freehep-graphicsio-ps/2.1.3/freehep-graphicsio-ps-2.1.3.jar; size: 50052 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/cytoscape-temp/freehep-graphicsio-ps/2.1.3/freehep-graphicsio-ps-2.1.3.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/cytoscape-temp/freehep-graphicsio-svg/2.1.3/freehep-graphicsio-svg-2.1.3.jar; size: 23751 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/cytoscape-temp/freehep-graphicsio-svg/2.1.3/freehep-graphicsio-svg-2.1.3.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/cytoscape-temp/freehep-io/2.1/freehep-io-2.1.jar; size: 70843 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/cytoscape-temp/freehep-io/2.1/freehep-io-2.1.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/cytoscape-temp/jfree-jcommon/1.0.15/jfree-jcommon-1.0.15.jar; size: 313641 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/cytoscape-temp/jfree-jcommon/1.0.15/jfree-jcommon-1.0.15.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/cytoscape-temp/jfree-jfreechart/1.0.13/jfree-jfreechart-1.0.13.jar; size: 1438328 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/cytoscape-temp/jfree-jfreechart/1.0.13/jfree-jfreechart-1.0.13.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/cytoscape-temp/jigsaw/2.2.6/jigsaw-2.2.6.jar; size: 1454044 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/cytoscape-temp/jigsaw/2.2.6/jigsaw-2.2.6.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/cytoscape-temp/jsbml/0.8-b1/jsbml-0.8-b1.jar; size: 684346 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/cytoscape-temp/jsbml/0.8-b1/jsbml-0.8-b1.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/cytoscape-temp/l2fprod-common-fontchooser/7.3/l2fprod-common-fontchooser-7.3.jar; size: 39463 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/cytoscape-temp/l2fprod-common-fontchooser/7.3/l2fprod-common-fontchooser-7.3.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/cytoscape-temp/l2fprod-common-shared/7.3/l2fprod-common-shared-7.3.jar; size: 100430 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/cytoscape-temp/l2fprod-common-shared/7.3/l2fprod-common-shared-7.3.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/cytoscape-temp/l2fprod-common-sheet/7.3/l2fprod-common-sheet-7.3.jar; size: 224291 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/cytoscape-temp/l2fprod-common-sheet/7.3/l2fprod-common-sheet-7.3.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/cytoscape-temp/org.apache.lucene/3.0.2/org.apache.lucene-3.0.2.jar; size: 1046791 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/cytoscape-temp/org.apache.lucene/3.0.2/org.apache.lucene-3.0.2.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/cytoscape-temp/org.swinglabs.swing-layout/1.0.3/org.swinglabs.swing-layout-1.0.3.jar; size: 62616 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/cytoscape-temp/org.swinglabs.swing-layout/1.0.3/org.swinglabs.swing-layout-1.0.3.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/cytoscape-temp/org.swinglabs.swingx/1.6.1/org.swinglabs.swingx-1.6.1.jar; size: 1410084 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/cytoscape-temp/org.swinglabs.swingx/1.6.1/org.swinglabs.swingx-1.6.1.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/cytoscape-temp/parallelcolt/0.9.4/parallelcolt-0.9.4.jar; size: 3532229 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/cytoscape-temp/parallelcolt/0.9.4/parallelcolt-0.9.4.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/cytoscape-temp/stax2-api/3.0.1/stax2-api-3.0.1.jar; size: 179952 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/cytoscape-temp/stax2-api/3.0.1/stax2-api-3.0.1.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/cytoscape-temp/staxmate/2.0.0/staxmate-2.0.0.jar; size: 78205 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/cytoscape-temp/staxmate/2.0.0/staxmate-2.0.0.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/cytoscape-temp/uk.ac.ebi.enfin.mi.cluster.micluster/1.6/uk.ac.ebi.enfin.mi.cluster.micluster-1.6.jar; size: 2856666 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/cytoscape-temp/uk.ac.ebi.enfin.mi.cluster.micluster/1.6/uk.ac.ebi.enfin.mi.cluster.micluster-1.6.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/cytoscape-temp/violinstrings/1.0.2/violinstrings-1.0.2.jar; size: 11498 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/cytoscape-temp/violinstrings/1.0.2/violinstrings-1.0.2.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/cytoscape-temp/woodstox-core-lgpl/4.0.5/woodstox-core-lgpl-4.0.5.jar; size: 487827 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/cytoscape-temp/woodstox-core-lgpl/4.0.5/woodstox-core-lgpl-4.0.5.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/cytoscape-temp/xstream/1.3.1/xstream-1.3.1.jar; size: 438532 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/cytoscape-temp/xstream/1.3.1/xstream-1.3.1.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/cytoscape-temp/y-layouts/3.0.4/y-layouts-3.0.4.jar; size: 767481 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/cytoscape-temp/y-layouts/3.0.4/y-layouts-3.0.4.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/javax/activation/com.springsource.javax.activation/1.1.1/com.springsource.javax.activation-1.1.1.jar; size: 70182 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/javax/activation/com.springsource.javax.activation/1.1.1/com.springsource.javax.activation-1.1.1.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/javax/xml/stream/com.springsource.javax.xml.stream/1.0.1/com.springsource.javax.xml.stream-1.0.1.jar; size: 26729 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/javax/xml/stream/com.springsource.javax.xml.stream/1.0.1/com.springsource.javax.xml.stream-1.0.1.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/net/sf/opencsv/opencsv/2.1/opencsv-2.1.jar; size: 16763 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/net/sf/opencsv/opencsv/2.1/opencsv-2.1.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/aries/blueprint/org.apache.aries.blueprint/0.3.2/org.apache.aries.blueprint-0.3.2.jar; size: 378294 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/aries/blueprint/org.apache.aries.blueprint/0.3.2/org.apache.aries.blueprint-0.3.2.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/aries/jmx/org.apache.aries.jmx.api/0.3/org.apache.aries.jmx.api-0.3.jar; size: 23204 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/aries/jmx/org.apache.aries.jmx.api/0.3/org.apache.aries.jmx.api-0.3.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/aries/jmx/org.apache.aries.jmx.blueprint/0.3/org.apache.aries.jmx.blueprint-0.3.jar; size: 68403 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/aries/jmx/org.apache.aries.jmx.blueprint/0.3/org.apache.aries.jmx.blueprint-0.3.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/aries/jmx/org.apache.aries.jmx.core/0.3.1/org.apache.aries.jmx.core-0.3.1.jar; size: 103149 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/aries/jmx/org.apache.aries.jmx.core/0.3.1/org.apache.aries.jmx.core-0.3.1.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/aries/org.apache.aries.util/0.3.1/org.apache.aries.util-0.3.1.jar; size: 45305 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/aries/org.apache.aries.util/0.3.1/org.apache.aries.util-0.3.1.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/aries/proxy/org.apache.aries.proxy/0.3.1/org.apache.aries.proxy-0.3.1.jar; size: 41894 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/aries/proxy/org.apache.aries.proxy/0.3.1/org.apache.aries.proxy-0.3.1.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/commons/com.springsource.org.apache.commons.codec/1.5.0/com.springsource.org.apache.commons.codec-1.5.0.jar; size: 73924 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/commons/com.springsource.org.apache.commons.codec/1.5.0/com.springsource.org.apache.commons.codec-1.5.0.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/commons/com.springsource.org.apache.commons.collections/3.2.1/com.springsource.org.apache.commons.collections-3.2.1.jar; size: 582869 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/commons/com.springsource.org.apache.commons.collections/3.2.1/com.springsource.org.apache.commons.collections-3.2.1.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/commons/com.springsource.org.apache.commons.httpclient/3.1.0/com.springsource.org.apache.commons.httpclient-3.1.0.jar; size: 307965 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/commons/com.springsource.org.apache.commons.httpclient/3.1.0/com.springsource.org.apache.commons.httpclient-3.1.0.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/commons/com.springsource.org.apache.commons.lang/2.4.0/com.springsource.org.apache.commons.lang-2.4.0.jar; size: 263867 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/commons/com.springsource.org.apache.commons.lang/2.4.0/com.springsource.org.apache.commons.lang-2.4.0.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/felix/org.apache.felix.configadmin/1.2.8/org.apache.felix.configadmin-1.2.8.jar; size: 94688 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/felix/org.apache.felix.configadmin/1.2.8/org.apache.felix.configadmin-1.2.8.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/felix/org.apache.felix.eventadmin/1.2.14/org.apache.felix.eventadmin-1.2.14.jar; size: 205242 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/felix/org.apache.felix.eventadmin/1.2.14/org.apache.felix.eventadmin-1.2.14.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/felix/org.apache.felix.fileinstall/3.2.4/org.apache.felix.fileinstall-3.2.4.jar; size: 91101 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/felix/org.apache.felix.fileinstall/3.2.4/org.apache.felix.fileinstall-3.2.4.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/felix/org.apache.felix.framework/3.2.2/org.apache.felix.framework-3.2.2.jar; size: 404211 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/felix/org.apache.felix.framework/3.2.2/org.apache.felix.framework-3.2.2.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/httpcomponents/httpcore-osgi/4.2/httpcore-osgi-4.2.jar; size: 513337 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/httpcomponents/httpcore-osgi/4.2/httpcore-osgi-4.2.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/admin/org.apache.karaf.admin.command/2.2.9/org.apache.karaf.admin.command-2.2.9.jar; size: 28758 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/admin/org.apache.karaf.admin.command/2.2.9/org.apache.karaf.admin.command-2.2.9.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/admin/org.apache.karaf.admin.core/2.2.9/org.apache.karaf.admin.core-2.2.9.jar; size: 63511 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/admin/org.apache.karaf.admin.core/2.2.9/org.apache.karaf.admin.core-2.2.9.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/admin/org.apache.karaf.admin.management/2.2.9/org.apache.karaf.admin.management-2.2.9.jar; size: 17774 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/admin/org.apache.karaf.admin.management/2.2.9/org.apache.karaf.admin.management-2.2.9.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/assemblies/features/enterprise/2.2.9/enterprise-2.2.9-features.xml; size: 5369 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/assemblies/features/enterprise/2.2.9/enterprise-2.2.9-features.xml
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/assemblies/features/standard/2.2.9/standard-2.2.9-features.xml; size: 19971 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/assemblies/features/standard/2.2.9/standard-2.2.9-features.xml
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/deployer/org.apache.karaf.deployer.blueprint/2.2.9/org.apache.karaf.deployer.blueprint-2.2.9.jar; size: 33479 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/deployer/org.apache.karaf.deployer.blueprint/2.2.9/org.apache.karaf.deployer.blueprint-2.2.9.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/deployer/org.apache.karaf.deployer.features/2.2.9/org.apache.karaf.deployer.features-2.2.9.jar; size: 33229 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/deployer/org.apache.karaf.deployer.features/2.2.9/org.apache.karaf.deployer.features-2.2.9.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/deployer/org.apache.karaf.deployer.kar/2.2.9/org.apache.karaf.deployer.kar-2.2.9.jar; size: 19054 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/deployer/org.apache.karaf.deployer.kar/2.2.9/org.apache.karaf.deployer.kar-2.2.9.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/deployer/org.apache.karaf.deployer.spring/2.2.9/org.apache.karaf.deployer.spring-2.2.9.jar; size: 33576 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/deployer/org.apache.karaf.deployer.spring/2.2.9/org.apache.karaf.deployer.spring-2.2.9.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/deployer/org.apache.karaf.deployer.wrap/2.2.9/org.apache.karaf.deployer.wrap-2.2.9.jar; size: 23813 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/deployer/org.apache.karaf.deployer.wrap/2.2.9/org.apache.karaf.deployer.wrap-2.2.9.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/diagnostic/org.apache.karaf.diagnostic.command/2.2.9/org.apache.karaf.diagnostic.command-2.2.9.jar; size: 12633 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/diagnostic/org.apache.karaf.diagnostic.command/2.2.9/org.apache.karaf.diagnostic.command-2.2.9.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/diagnostic/org.apache.karaf.diagnostic.common/2.2.9/org.apache.karaf.diagnostic.common-2.2.9.jar; size: 16626 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/diagnostic/org.apache.karaf.diagnostic.common/2.2.9/org.apache.karaf.diagnostic.common-2.2.9.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/diagnostic/org.apache.karaf.diagnostic.core/2.2.9/org.apache.karaf.diagnostic.core-2.2.9.jar; size: 13453 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/diagnostic/org.apache.karaf.diagnostic.core/2.2.9/org.apache.karaf.diagnostic.core-2.2.9.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/diagnostic/org.apache.karaf.diagnostic.management/2.2.9/org.apache.karaf.diagnostic.management-2.2.9.jar; size: 12493 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/diagnostic/org.apache.karaf.diagnostic.management/2.2.9/org.apache.karaf.diagnostic.management-2.2.9.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/features/org.apache.karaf.features.command/2.2.9/org.apache.karaf.features.command-2.2.9.jar; size: 42778 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/features/org.apache.karaf.features.command/2.2.9/org.apache.karaf.features.command-2.2.9.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/features/org.apache.karaf.features.core/2.2.9/org.apache.karaf.features.core-2.2.9.jar; size: 68003 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/features/org.apache.karaf.features.core/2.2.9/org.apache.karaf.features.core-2.2.9.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/features/org.apache.karaf.features.management/2.2.9/org.apache.karaf.features.management-2.2.9.jar; size: 31272 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/features/org.apache.karaf.features.management/2.2.9/org.apache.karaf.features.management-2.2.9.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/jaas/org.apache.karaf.jaas.command/2.2.9/org.apache.karaf.jaas.command-2.2.9.jar; size: 26244 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/jaas/org.apache.karaf.jaas.command/2.2.9/org.apache.karaf.jaas.command-2.2.9.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/jaas/org.apache.karaf.jaas.config/2.2.9/org.apache.karaf.jaas.config-2.2.9.jar; size: 30112 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/jaas/org.apache.karaf.jaas.config/2.2.9/org.apache.karaf.jaas.config-2.2.9.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/jaas/org.apache.karaf.jaas.modules/2.2.9/org.apache.karaf.jaas.modules-2.2.9.jar; size: 70052 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/jaas/org.apache.karaf.jaas.modules/2.2.9/org.apache.karaf.jaas.modules-2.2.9.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/management/mbeans/org.apache.karaf.management.mbeans.bundles/2.2.9/org.apache.karaf.management.mbeans.bundles-2.2.9.jar; size: 17696 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/management/mbeans/org.apache.karaf.management.mbeans.bundles/2.2.9/org.apache.karaf.management.mbeans.bundles-2.2.9.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/management/mbeans/org.apache.karaf.management.mbeans.config/2.2.9/org.apache.karaf.management.mbeans.config-2.2.9.jar; size: 31551 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/management/mbeans/org.apache.karaf.management.mbeans.config/2.2.9/org.apache.karaf.management.mbeans.config-2.2.9.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/management/mbeans/org.apache.karaf.management.mbeans.dev/2.2.9/org.apache.karaf.management.mbeans.dev-2.2.9.jar; size: 28179 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/management/mbeans/org.apache.karaf.management.mbeans.dev/2.2.9/org.apache.karaf.management.mbeans.dev-2.2.9.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/management/mbeans/org.apache.karaf.management.mbeans.log/2.2.9/org.apache.karaf.management.mbeans.log-2.2.9.jar; size: 14298 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/management/mbeans/org.apache.karaf.management.mbeans.log/2.2.9/org.apache.karaf.management.mbeans.log-2.2.9.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/management/mbeans/org.apache.karaf.management.mbeans.packages/2.2.9/org.apache.karaf.management.mbeans.packages-2.2.9.jar; size: 13081 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/management/mbeans/org.apache.karaf.management.mbeans.packages/2.2.9/org.apache.karaf.management.mbeans.packages-2.2.9.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/management/mbeans/org.apache.karaf.management.mbeans.services/2.2.9/org.apache.karaf.management.mbeans.services-2.2.9.jar; size: 13564 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/management/mbeans/org.apache.karaf.management.mbeans.services/2.2.9/org.apache.karaf.management.mbeans.services-2.2.9.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/management/mbeans/org.apache.karaf.management.mbeans.system/2.2.9/org.apache.karaf.management.mbeans.system-2.2.9.jar; size: 11952 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/management/mbeans/org.apache.karaf.management.mbeans.system/2.2.9/org.apache.karaf.management.mbeans.system-2.2.9.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/management/org.apache.karaf.management.server/2.2.9/org.apache.karaf.management.server-2.2.9.jar; size: 26733 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/management/org.apache.karaf.management.server/2.2.9/org.apache.karaf.management.server-2.2.9.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/shell/org.apache.karaf.shell.commands/2.2.9/org.apache.karaf.shell.commands-2.2.9.jar; size: 72603 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/shell/org.apache.karaf.shell.commands/2.2.9/org.apache.karaf.shell.commands-2.2.9.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/shell/org.apache.karaf.shell.config/2.2.9/org.apache.karaf.shell.config-2.2.9.jar; size: 45896 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/shell/org.apache.karaf.shell.config/2.2.9/org.apache.karaf.shell.config-2.2.9.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/shell/org.apache.karaf.shell.console/2.2.9/org.apache.karaf.shell.console-2.2.9.jar; size: 386772 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/shell/org.apache.karaf.shell.console/2.2.9/org.apache.karaf.shell.console-2.2.9.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/shell/org.apache.karaf.shell.dev/2.2.9/org.apache.karaf.shell.dev-2.2.9.jar; size: 159719 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/shell/org.apache.karaf.shell.dev/2.2.9/org.apache.karaf.shell.dev-2.2.9.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/shell/org.apache.karaf.shell.log/2.2.9/org.apache.karaf.shell.log-2.2.9.jar; size: 45621 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/shell/org.apache.karaf.shell.log/2.2.9/org.apache.karaf.shell.log-2.2.9.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/shell/org.apache.karaf.shell.osgi/2.2.9/org.apache.karaf.shell.osgi-2.2.9.jar; size: 88262 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/shell/org.apache.karaf.shell.osgi/2.2.9/org.apache.karaf.shell.osgi-2.2.9.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/shell/org.apache.karaf.shell.packages/2.2.9/org.apache.karaf.shell.packages-2.2.9.jar; size: 17669 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/shell/org.apache.karaf.shell.packages/2.2.9/org.apache.karaf.shell.packages-2.2.9.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/shell/org.apache.karaf.shell.ssh/2.2.9/org.apache.karaf.shell.ssh-2.2.9.jar; size: 51366 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/shell/org.apache.karaf.shell.ssh/2.2.9/org.apache.karaf.shell.ssh-2.2.9.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/shell/org.apache.karaf.shell.wrapper/2.2.9/org.apache.karaf.shell.wrapper-2.2.9.jar; size: 1132850 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/karaf/shell/org.apache.karaf.shell.wrapper/2.2.9/org.apache.karaf.shell.wrapper-2.2.9.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/mina/mina-core/2.0.1/mina-core-2.0.1.jar; size: 641045 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/mina/mina-core/2.0.1/mina-core-2.0.1.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/servicemix/bundles/org.apache.servicemix.bundles.asm/3.3.1_1/org.apache.servicemix.bundles.asm-3.3.1_1.jar; size: 235672 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/servicemix/bundles/org.apache.servicemix.bundles.asm/3.3.1_1/org.apache.servicemix.bundles.asm-3.3.1_1.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/servicemix/bundles/org.apache.servicemix.bundles.jaxb-impl/2.1.6_1/org.apache.servicemix.bundles.jaxb-impl-2.1.6_1.jar; size: 884596 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/servicemix/bundles/org.apache.servicemix.bundles.jaxb-impl/2.1.6_1/org.apache.servicemix.bundles.jaxb-impl-2.1.6_1.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/servicemix/specs/org.apache.servicemix.specs.jaxb-api-2.1/1.2.0/org.apache.servicemix.specs.jaxb-api-2.1-1.2.0.jar; size: 87927 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/servicemix/specs/org.apache.servicemix.specs.jaxb-api-2.1/1.2.0/org.apache.servicemix.specs.jaxb-api-2.1-1.2.0.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/sshd/sshd-core/0.7.0/sshd-core-0.7.0.jar; size: 350161 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/sshd/sshd-core/0.7.0/sshd-core-0.7.0.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/xmlbeans/xmlbeans/2.3.0/xmlbeans-2.3.0.jar; size: 2666695 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/apache/xmlbeans/xmlbeans/2.3.0/xmlbeans-2.3.0.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/app-api/3.0.1/app-api-3.0.1.jar; size: 6392 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/app-api/3.0.1/app-api-3.0.1.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/app-impl/3.0.1/app-impl-3.0.1.jar; size: 211544 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/app-impl/3.0.1/app-impl-3.0.1.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/application-api/3.0.1/application-api-3.0.1.jar; size: 12564 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/application-api/3.0.1/application-api-3.0.1.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/application-impl/3.0.0/application-impl-3.0.0.jar; size: 13809 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/application-impl/3.0.0/application-impl-3.0.0.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/biopax-impl/3.0.0/biopax-impl-3.0.0.jar; size: 672599 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/biopax-impl/3.0.0/biopax-impl-3.0.0.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/cmdline/3.0.0/cmdline-3.0.0.jar; size: 2664 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/cmdline/3.0.0/cmdline-3.0.0.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/command-executor-api/3.0.1/command-executor-api-3.0.1.jar; size: 3633 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/command-executor-api/3.0.1/command-executor-api-3.0.1.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/command-executor-impl/3.0.0/command-executor-impl-3.0.0.jar; size: 46154 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/command-executor-impl/3.0.0/command-executor-impl-3.0.0.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/core-task-api/3.0.1/core-task-api-3.0.1.jar; size: 42344 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/core-task-api/3.0.1/core-task-api-3.0.1.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/core-task-impl/3.0.1/core-task-impl-3.0.1.jar; size: 1673055 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/core-task-impl/3.0.1/core-task-impl-3.0.1.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/cpath2-impl/3.0.0/cpath2-impl-3.0.0.jar; size: 700190 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/cpath2-impl/3.0.0/cpath2-impl-3.0.0.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/cy-commons-cli/3.0.0/cy-commons-cli-3.0.0.jar; size: 33933 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/cy-commons-cli/3.0.0/cy-commons-cli-3.0.0.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/datasource-api/3.0.1/datasource-api-3.0.1.jar; size: 4789 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/datasource-api/3.0.1/datasource-api-3.0.1.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/datasource-biogrid-impl/3.0.0/datasource-biogrid-impl-3.0.0.jar; size: 22479661 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/datasource-biogrid-impl/3.0.0/datasource-biogrid-impl-3.0.0.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/datasource-impl/3.0.0/datasource-impl-3.0.0.jar; size: 8754 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/datasource-impl/3.0.0/datasource-impl-3.0.0.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/ding-presentation-impl/3.0.1/ding-presentation-impl-3.0.1.jar; size: 1491295 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/ding-presentation-impl/3.0.1/ding-presentation-impl-3.0.1.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/distribution/application-metadata-impl/3.0.1/application-metadata-impl-3.0.1.jar; size: 3009 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/distribution/application-metadata-impl/3.0.1/application-metadata-impl-3.0.1.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/distribution/cmdline-impl/3.0.1/cmdline-impl-3.0.1.jar; size: 4082 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/distribution/cmdline-impl/3.0.1/cmdline-impl-3.0.1.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/distribution/diagnostics-impl/3.0.1/diagnostics-impl-3.0.1.jar; size: 35471 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/distribution/diagnostics-impl/3.0.1/diagnostics-impl-3.0.1.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/distribution/features/3.0.1/features-3.0.1-features.xml; size: 10829 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/distribution/features/3.0.1/features-3.0.1-features.xml
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/edge-bundler-impl/3.0.0/edge-bundler-impl-3.0.0.jar; size: 13850 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/edge-bundler-impl/3.0.0/edge-bundler-impl-3.0.0.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/editor-impl/3.0.0/editor-impl-3.0.0.jar; size: 61642 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/editor-impl/3.0.0/editor-impl-3.0.0.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/equations-api/3.0.1/equations-api-3.0.1.jar; size: 21606 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/equations-api/3.0.1/equations-api-3.0.1.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/equations-impl/3.0.0/equations-impl-3.0.0.jar; size: 123511 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/equations-impl/3.0.0/equations-impl-3.0.0.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/event-api/3.0.1/event-api-3.0.1.jar; size: 6020 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/event-api/3.0.1/event-api-3.0.1.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/event-impl/3.0.0/event-impl-3.0.0.jar; size: 12800 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/event-impl/3.0.0/event-impl-3.0.0.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/filter-impl/3.0.1/filter-impl-3.0.1.jar; size: 222018 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/filter-impl/3.0.1/filter-impl-3.0.1.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/graphml-impl/3.0.0/graphml-impl-3.0.0.jar; size: 20078 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/graphml-impl/3.0.0/graphml-impl-3.0.0.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/group-api/3.0.1/group-api-3.0.1.jar; size: 20036 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/group-api/3.0.1/group-api-3.0.1.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/group-data-impl/3.0.0/group-data-impl-3.0.0.jar; size: 45601 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/group-data-impl/3.0.0/group-data-impl-3.0.0.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/group-impl/3.0.0/group-impl-3.0.0.jar; size: 18268 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/group-impl/3.0.0/group-impl-3.0.0.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/group-view-impl/3.0.0/group-view-impl-3.0.0.jar; size: 16272 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/group-view-impl/3.0.0/group-view-impl-3.0.0.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/gui-cmdline-parser-impl/3.0.0/gui-cmdline-parser-impl-3.0.0.jar; size: 12727 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/gui-cmdline-parser-impl/3.0.0/gui-cmdline-parser-impl-3.0.0.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/io-api/3.0.1/io-api-3.0.1.jar; size: 20134 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/io-api/3.0.1/io-api-3.0.1.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/io-impl/3.0.1/io-impl-3.0.1.jar; size: 418072 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/io-impl/3.0.1/io-impl-3.0.1.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/layout-api/3.0.1/layout-api-3.0.1.jar; size: 31669 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/layout-api/3.0.1/layout-api-3.0.1.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/layout-cytoscape-impl/3.0.0/layout-cytoscape-impl-3.0.0.jar; size: 104169 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/layout-cytoscape-impl/3.0.0/layout-cytoscape-impl-3.0.0.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/layout-impl/3.0.0/layout-impl-3.0.0.jar; size: 9403 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/layout-impl/3.0.0/layout-impl-3.0.0.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/layout-prefuse-impl/3.0.0/layout-prefuse-impl-3.0.0.jar; size: 33217 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/layout-prefuse-impl/3.0.0/layout-prefuse-impl-3.0.0.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/linkout-impl/3.0.0/linkout-impl-3.0.0.jar; size: 23185 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/linkout-impl/3.0.0/linkout-impl-3.0.0.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/log-swing-impl/3.0.1/log-swing-impl-3.0.1.jar; size: 56931 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/log-swing-impl/3.0.1/log-swing-impl-3.0.1.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/manual-layout-impl/3.0.0/manual-layout-impl-3.0.0.jar; size: 82485 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/manual-layout-impl/3.0.0/manual-layout-impl-3.0.0.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/model-api/3.0.1/model-api-3.0.1.jar; size: 41944 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/model-api/3.0.1/model-api-3.0.1.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/model-impl/3.0.1/model-impl-3.0.1.jar; size: 104601 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/model-impl/3.0.1/model-impl-3.0.1.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/network-analyzer-impl/3.0.0/network-analyzer-impl-3.0.0.jar; size: 515261 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/network-analyzer-impl/3.0.0/network-analyzer-impl-3.0.0.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/network-merge-impl/3.0.1/network-merge-impl-3.0.1.jar; size: 176921 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/network-merge-impl/3.0.1/network-merge-impl-3.0.1.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/presentation-api/3.0.1/presentation-api-3.0.1.jar; size: 52390 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/presentation-api/3.0.1/presentation-api-3.0.1.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/presentation-impl/3.0.0/presentation-impl-3.0.0.jar; size: 6998 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/presentation-impl/3.0.0/presentation-impl-3.0.0.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/property-api/3.0.1/property-api-3.0.1.jar; size: 14774 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/property-api/3.0.1/property-api-3.0.1.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/property-impl/3.0.1/property-impl-3.0.1.jar; size: 13713 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/property-impl/3.0.1/property-impl-3.0.1.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/psi-mi-impl/3.0.0/psi-mi-impl-3.0.0.jar; size: 194959 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/psi-mi-impl/3.0.0/psi-mi-impl-3.0.0.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/sbml-impl/3.0.0/sbml-impl-3.0.0.jar; size: 10938 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/sbml-impl/3.0.0/sbml-impl-3.0.0.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/scripting-impl/3.0.0/scripting-impl-3.0.0.jar; size: 13179 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/scripting-impl/3.0.0/scripting-impl-3.0.0.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/search-impl/3.0.0/search-impl-3.0.0.jar; size: 30918 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/search-impl/3.0.0/search-impl-3.0.0.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/service-api/3.0.1/service-api-3.0.1.jar; size: 15157 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/service-api/3.0.1/service-api-3.0.1.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/session-api/3.0.1/session-api-3.0.1.jar; size: 11370 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/session-api/3.0.1/session-api-3.0.1.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/session-impl/3.0.1/session-impl-3.0.1.jar; size: 17898 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/session-impl/3.0.1/session-impl-3.0.1.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/splash-updater-impl/3.0.0/splash-updater-impl-3.0.0.jar; size: 6797 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/splash-updater-impl/3.0.0/splash-updater-impl-3.0.0.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/swing-app-api/3.0.1/swing-app-api-3.0.1.jar; size: 4368 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/swing-app-api/3.0.1/swing-app-api-3.0.1.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/swing-application-api/3.0.1/swing-application-api-3.0.1.jar; size: 26261 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/swing-application-api/3.0.1/swing-application-api-3.0.1.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/swing-application-impl/3.0.1/swing-application-impl-3.0.1.jar; size: 2760225 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/swing-application-impl/3.0.1/swing-application-impl-3.0.1.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/swing-util-api/3.0.1/swing-util-api-3.0.1.jar; size: 117583 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/swing-util-api/3.0.1/swing-util-api-3.0.1.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/swing-util-impl/3.0.0/swing-util-impl-3.0.0.jar; size: 11416 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/swing-util-impl/3.0.0/swing-util-impl-3.0.0.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/table-browser-impl/3.0.1/table-browser-impl-3.0.1.jar; size: 255882 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/table-browser-impl/3.0.1/table-browser-impl-3.0.1.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/table-import-impl/3.0.0/table-import-impl-3.0.0.jar; size: 17253131 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/table-import-impl/3.0.0/table-import-impl-3.0.0.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/viewmodel-api/3.0.1/viewmodel-api-3.0.1.jar; size: 23633 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/viewmodel-api/3.0.1/viewmodel-api-3.0.1.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/viewmodel-impl/3.0.0/viewmodel-impl-3.0.0.jar; size: 6404 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/viewmodel-impl/3.0.0/viewmodel-impl-3.0.0.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/vizmap-api/3.0.1/vizmap-api-3.0.1.jar; size: 20708 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/vizmap-api/3.0.1/vizmap-api-3.0.1.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/vizmap-gui-api/3.0.1/vizmap-gui-api-3.0.1.jar; size: 14361 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/vizmap-gui-api/3.0.1/vizmap-gui-api-3.0.1.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/vizmap-gui-core-impl/3.0.0/vizmap-gui-core-impl-3.0.0.jar; size: 6641 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/vizmap-gui-core-impl/3.0.0/vizmap-gui-core-impl-3.0.0.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/vizmap-gui-impl/3.0.1/vizmap-gui-impl-3.0.1.jar; size: 373783 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/vizmap-gui-impl/3.0.1/vizmap-gui-impl-3.0.1.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/vizmap-impl/3.0.0/vizmap-impl-3.0.0.jar; size: 50096 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/vizmap-impl/3.0.0/vizmap-impl-3.0.0.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/webservice-api/3.0.1/webservice-api-3.0.1.jar; size: 7991 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/webservice-api/3.0.1/webservice-api-3.0.1.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/webservice-biomart-client-impl/3.0.0/webservice-biomart-client-impl-3.0.0.jar; size: 65730 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/webservice-biomart-client-impl/3.0.0/webservice-biomart-client-impl-3.0.0.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/webservice-impl/3.0.1/webservice-impl-3.0.1.jar; size: 90775 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/webservice-impl/3.0.1/webservice-impl-3.0.1.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/webservice-psicquic-client-impl/3.0.0/webservice-psicquic-client-impl-3.0.0.jar; size: 221907 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/webservice-psicquic-client-impl/3.0.0/webservice-psicquic-client-impl-3.0.0.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/webservice-swing-api/3.0.1/webservice-swing-api-3.0.1.jar; size: 4577 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/webservice-swing-api/3.0.1/webservice-swing-api-3.0.1.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/welcome-impl/3.0.1/welcome-impl-3.0.1.jar; size: 177235 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/welcome-impl/3.0.1/welcome-impl-3.0.1.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/work-api/3.0.1/work-api-3.0.1.jar; size: 33786 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/work-api/3.0.1/work-api-3.0.1.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/work-impl/3.0.0/work-impl-3.0.0.jar; size: 14814 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/work-impl/3.0.0/work-impl-3.0.0.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/work-swing-api/3.0.1/work-swing-api-3.0.1.jar; size: 9690 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/work-swing-api/3.0.1/work-swing-api-3.0.1.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/work-swing-impl/3.0.1/work-swing-impl-3.0.1.jar; size: 118439 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/cytoscape/work-swing-impl/3.0.1/work-swing-impl-3.0.1.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/dom4j/com.springsource.org.dom4j/1.6.1/com.springsource.org.dom4j-1.6.1.jar; size: 314490 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/dom4j/com.springsource.org.dom4j/1.6.1/com.springsource.org.dom4j-1.6.1.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/eclipse/osgi/3.6.2.R36x_v20110210/osgi-3.6.2.R36x_v20110210.jar; size: 1148372 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/eclipse/osgi/3.6.2.R36x_v20110210/osgi-3.6.2.R36x_v20110210.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/jdom/com.springsource.org.jdom/1.1.0/com.springsource.org.jdom-1.1.0.jar; size: 153319 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/jdom/com.springsource.org.jdom/1.1.0/com.springsource.org.jdom-1.1.0.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/json/org.json/chargebee-1.0/org.json-chargebee-1.0.jar; size: 40683 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/json/org.json/chargebee-1.0/org.json-chargebee-1.0.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/ops4j/pax/logging/pax-logging-api/1.6.9/pax-logging-api-1.6.9.jar; size: 97298 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/ops4j/pax/logging/pax-logging-api/1.6.9/pax-logging-api-1.6.9.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/ops4j/pax/logging/pax-logging-service/1.6.9/pax-logging-service-1.6.9.jar; size: 550699 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/ops4j/pax/logging/pax-logging-service/1.6.9/pax-logging-service-1.6.9.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/ops4j/pax/url/pax-url-mvn/1.2.8/pax-url-mvn-1.2.8.jar; size: 112784 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/ops4j/pax/url/pax-url-mvn/1.2.8/pax-url-mvn-1.2.8.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/org/ops4j/pax/url/pax-url-wrap/1.2.8/pax-url-wrap-1.2.8.jar; size: 339965 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/org/ops4j/pax/url/pax-url-wrap/1.2.8/pax-url-wrap-1.2.8.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/psidev/psi/mi/psi25-xml/1.7.10/psi25-xml-1.7.10.jar; size: 455572 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/psidev/psi/mi/psi25-xml/1.7.10/psi25-xml-1.7.10.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/framework/system/psidev/psi/tools/xxindex/0.11/xxindex-0.11.jar; size: 574022 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/framework/system/psidev/psi/tools/xxindex/0.11/xxindex-0.11.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/gen_vmoptions.sh; size: 1248 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/gen_vmoptions.sh
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/sampleData/BINDhuman.sif; size: 965836 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/sampleData/BINDhuman.sif
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/sampleData/BINDyeast.sif; size: 1491425 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/sampleData/BINDyeast.sif
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/sampleData/BIOGRID-ORGANISM-Rattus_norvegicus-3.1.92.mitab; size: 983879 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/sampleData/BIOGRID-ORGANISM-Rattus_norvegicus-3.1.92.mitab
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/sampleData/DNA_Damage_Bypass_Reactome_73893.owl; size: 94463 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/sampleData/DNA_Damage_Bypass_Reactome_73893.owl
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/sampleData/galExpData.csv; size: 415864 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/sampleData/galExpData.csv
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/sampleData/galFiltered.csv; size: 16274 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/sampleData/galFiltered.csv
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/sampleData/galFiltered.cys; size: 68579 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/sampleData/galFiltered.cys
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/sampleData/galFiltered.edgeAttrs.txt; size: 8846 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/sampleData/galFiltered.edgeAttrs.txt
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/sampleData/galFiltered.gml; size: 100899 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/sampleData/galFiltered.gml
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/sampleData/galFiltered.graphml; size: 1257662 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/sampleData/galFiltered.graphml
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/sampleData/galFiltered.nodeAttrs.txt; size: 3956 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/sampleData/galFiltered.nodeAttrs.txt
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/sampleData/galFiltered.nodeAttrTable.xlsx; size: 46655 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/sampleData/galFiltered.nodeAttrTable.xlsx
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/sampleData/galFiltered.sif; size: 6861 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/sampleData/galFiltered.sif
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/sampleData/galFiltered.xgmml; size: 1671627 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/sampleData/galFiltered.xgmml
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/sampleData/galFiltered.xls; size: 59392 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/sampleData/galFiltered.xls
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/sampleData/galFilteredintAttr.xls; size: 38912 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/sampleData/galFilteredintAttr.xls
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/sampleData/nestedNetworks.nnf; size: 4213 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/sampleData/nestedNetworks.nnf
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/sampleData/README.txt; size: 3928 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/sampleData/README.txt
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/sampleData/sampleStyles.xml; size: 47177 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/sampleData/sampleStyles.xml
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/sampleData/yeastHighQuality.sif; size: 131294 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:45:58 EDT 2013, mode: 755, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/sampleData/yeastHighQuality.sif
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/.install4j/Cytoscape.png; size: 3183 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:46:04 EDT 2013, mode: 644, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/.install4j/Cytoscape.png
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/.install4j/CytoscapeSplashScreen.png; size: 58760 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:46:04 EDT 2013, mode: 644, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/.install4j/CytoscapeSplashScreen.png
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/.install4j/uninstall.png; size: 2813 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:46:04 EDT 2013, mode: 644, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/.install4j/uninstall.png
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/uninstall; size: 10110 bytes; exists: false
+[INFO] fileTime: Thu Apr 18 16:46:04 EDT 2013, mode: 700, overwriteMode: If newer otherwise ask, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/uninstall
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/.install4j/inst_jre.cfg; size: 29 bytes; exists: false
+[INFO] fileTime: Tue Jul 23 09:32:46 EDT 2013, mode: 644, overwriteMode: Always, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/.install4j/inst_jre.cfg
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/.install4j/i4jruntime.jar; size: 944475 bytes; exists: false
+[INFO] fileTime: Tue Jul 23 09:32:46 EDT 2013, mode: 644, overwriteMode: Always, shared: false, uninstallMode: Always, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/.install4j/i4jruntime.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/.install4j/MessagesDefault; size: 28605 bytes; exists: false
+[INFO] fileTime: Tue Jul 23 09:32:46 EDT 2013, mode: 644, overwriteMode: Always, shared: false, uninstallMode: Always, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/.install4j/MessagesDefault
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/.install4j/i4jparams.conf; size: 133196 bytes; exists: false
+[INFO] fileTime: Tue Jul 23 09:32:46 EDT 2013, mode: 644, overwriteMode: Always, shared: false, uninstallMode: Always, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/.install4j/i4jparams.conf
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/.install4j/user.jar; size: 1343 bytes; exists: false
+[INFO] fileTime: Tue Jul 23 09:32:46 EDT 2013, mode: 644, overwriteMode: Always, shared: false, uninstallMode: Always, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/.install4j/user.jar
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/.install4j/i4j_extf_2_1yh2kyd_1xn12x.ico; size: 82726 bytes; exists: false
+[INFO] fileTime: Tue Jul 23 09:32:46 EDT 2013, mode: 644, overwriteMode: Always, shared: false, uninstallMode: Always, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/.install4j/i4j_extf_2_1yh2kyd_1xn12x.ico
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/.install4j/i4j_extf_0_1yh2kyd.utf8; size: 28605 bytes; exists: false
+[INFO] fileTime: Tue Jul 23 09:32:46 EDT 2013, mode: 644, overwriteMode: Always, shared: false, uninstallMode: Always, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/.install4j/i4j_extf_0_1yh2kyd.utf8
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/.install4j/i4j_extf_3_1yh2kyd.xsl; size: 559 bytes; exists: false
+[INFO] fileTime: Tue Jul 23 09:32:46 EDT 2013, mode: 644, overwriteMode: Always, shared: false, uninstallMode: Always, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/.install4j/i4j_extf_3_1yh2kyd.xsl
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: Before install file: /home/tony/tools/tmp/cytoscape/.install4j/i4j_extf_1_1yh2kyd_16etjkk.icns; size: 36984 bytes; exists: false
+[INFO] fileTime: Tue Jul 23 09:32:46 EDT 2013, mode: 644, overwriteMode: Always, shared: false, uninstallMode: Always, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After install file: /home/tony/tools/tmp/cytoscape/.install4j/i4j_extf_1_1yh2kyd_16etjkk.icns
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction: After execute action
+[INFO] com.install4j.runtime.beans.actions.misc.AddVmOptionsAction: Before execute action
+[INFO] com.install4j.runtime.beans.actions.misc.AddVmOptionsAction: Property vmOptions: [ -Xmx7538m]
+[INFO] com.install4j.runtime.beans.actions.misc.AddVmOptionsAction: Property launcherId: 3
+[INFO] com.install4j.runtime.beans.actions.misc.AddVmOptionsAction: Property rollbackSupported: true
+[INFO] com.install4j.runtime.beans.actions.misc.AddVmOptionsAction: After execute action
+[INFO] com.install4j.runtime.beans.actions.desktop.CreateProgramGroupAction: Before execute action
+[INFO] com.install4j.runtime.beans.actions.desktop.CreateProgramGroupAction: Property enabled: true
+[INFO] com.install4j.runtime.beans.actions.desktop.CreateProgramGroupAction: Property categories: Application
+[INFO] com.install4j.runtime.beans.actions.desktop.CreateProgramGroupAction: Property linkDirectory: /usr/local/bin
+[INFO] com.install4j.runtime.beans.actions.desktop.CreateProgramGroupAction: Property programGroupEntryConfigs: []
+[INFO] com.install4j.runtime.beans.actions.desktop.CreateProgramGroupAction: Property programGroupName: Cytoscape_3.0.1
+[INFO] com.install4j.runtime.beans.actions.desktop.CreateProgramGroupAction: Property addDefaultLauncherLinks: true
+[INFO] com.install4j.runtime.beans.actions.desktop.CreateProgramGroupAction: Property addUninstaller: true
+[INFO] com.install4j.runtime.beans.actions.desktop.CreateProgramGroupAction: Property allUsers: true
+[INFO] com.install4j.runtime.beans.actions.desktop.CreateProgramGroupAction: Property failForSymlinksNotCreated: false
+[INFO] com.install4j.runtime.beans.actions.desktop.CreateProgramGroupAction: Property unixMenuEntries: true
+[INFO] com.install4j.runtime.beans.actions.desktop.CreateProgramGroupAction: Property unixSymlinks: true
+[INFO] com.install4j.runtime.beans.actions.desktop.CreateProgramGroupAction: Property rollbackSupported: true
+[INFO] com.install4j.runtime.beans.actions.desktop.CreateProgramGroupAction: Before install file: /home/tony/tools/tmp/cytoscape/Cytoscape.desktop; size: 213 bytes; exists: false
+[INFO] fileTime: Tue Jul 23 09:32:47 EDT 2013, mode: 755, overwriteMode: Always, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.desktop.CreateProgramGroupAction: After install file: /home/tony/tools/tmp/cytoscape/Cytoscape.desktop
+[INFO] com.install4j.runtime.beans.actions.desktop.CreateProgramGroupAction: Before install file: /home/tony/.local/share/applications/Cytoscape-3.desktop; size: 213 bytes; exists: false
+[INFO] fileTime: Tue Jul 23 09:32:47 EDT 2013, mode: 644, overwriteMode: Always, shared: false, uninstallMode: If created, delayIfNecessary: false
+[INFO] com.install4j.runtime.beans.actions.desktop.CreateProgramGroupAction: After install file: /home/tony/.local/share/applications/Cytoscape-3.desktop
+[INFO] com.install4j.runtime.beans.actions.desktop.CreateProgramGroupAction: After execute action
+[INFO] com.install4j.runtime.beans.actions.desktop.RegisterAddRemoveAction: Before execute action
+[INFO] com.install4j.runtime.beans.actions.desktop.RegisterAddRemoveAction: Property icon: null
+[INFO] com.install4j.runtime.beans.actions.desktop.RegisterAddRemoveAction: Property itemName: Cytoscape 3.0.1
+[INFO] com.install4j.runtime.beans.actions.desktop.RegisterAddRemoveAction: Property persistentProperties: {}
+[INFO] com.install4j.runtime.beans.actions.desktop.RegisterAddRemoveAction: Property rollbackSupported: true
+[INFO] com.install4j.runtime.beans.actions.desktop.RegisterAddRemoveAction: After execute action
+[INFO] com.install4j.runtime.beans.actions.desktop.CreateFileAssociationAction: Before execute action
+[INFO] com.install4j.runtime.beans.actions.desktop.CreateFileAssociationAction: Property extension: cys
+[INFO] com.install4j.runtime.beans.actions.desktop.CreateFileAssociationAction: Property windows: true
+[INFO] com.install4j.runtime.beans.actions.desktop.CreateFileAssociationAction: Property description: Cytoscape Session File
+[INFO] com.install4j.runtime.beans.actions.desktop.CreateFileAssociationAction: Property selected: true
+[INFO] com.install4j.runtime.beans.actions.desktop.CreateFileAssociationAction: Property launcherId: 3
+[INFO] com.install4j.runtime.beans.actions.desktop.CreateFileAssociationAction: Property windowsIconFile: i4j_extf_2_1yh2kyd_1xn12x.ico
+[INFO] com.install4j.runtime.beans.actions.desktop.CreateFileAssociationAction: Property mac: true
+[INFO] com.install4j.runtime.beans.actions.desktop.CreateFileAssociationAction: Property restartFinder: false
+[INFO] com.install4j.runtime.beans.actions.desktop.CreateFileAssociationAction: Property macIconFile: i4j_extf_1_1yh2kyd_16etjkk.icns
+[INFO] com.install4j.runtime.beans.actions.desktop.CreateFileAssociationAction: Property macRole: Viewer
+[INFO] com.install4j.runtime.beans.actions.desktop.CreateFileAssociationAction: Property winAdditionalParameters: null
+[INFO] com.install4j.runtime.beans.actions.desktop.CreateFileAssociationAction: Property persistentProperties: {}
+[INFO] com.install4j.runtime.beans.actions.desktop.CreateFileAssociationAction: Property rollbackSupported: true
+[INFO] com.install4j.runtime.beans.actions.desktop.CreateFileAssociationAction: After execute action
+[INFO] com.install4j.runtime.beans.actions.xml.XsltAction: Before execute action
+[INFO] com.install4j.runtime.beans.actions.xml.XsltAction: Property xlstFile: i4j_extf_3_1yh2kyd.xsl
+[INFO] com.install4j.runtime.beans.actions.xml.XsltAction: Property sourceFile: Cytoscape.app/Contents/Info.plist
+[INFO] com.install4j.runtime.beans.actions.xml.XsltAction: Property downloadExternalEntities: false
+[INFO] com.install4j.runtime.beans.actions.xml.XsltAction: Property validating: false
+[INFO] com.install4j.runtime.beans.actions.xml.XsltAction: Property file: Cytoscape.app/Contents/Info.plist
+[INFO] com.install4j.runtime.beans.actions.xml.XsltAction: Property rollbackSupported: true
+[ERROR] java.io.FileNotFoundException: /home/tony/tools/tmp/cytoscape/Cytoscape.app/Contents/Info.plist (No such file or directory)
+java.io.FileNotFoundException: /home/tony/tools/tmp/cytoscape/Cytoscape.app/Contents/Info.plist (No such file or directory)
+	at java.io.FileInputStream.open(Native Method)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:97)
+	at sun.net.www.protocol.file.FileURLConnection.connect(FileURLConnection.java:90)
+	at sun.net.www.protocol.file.FileURLConnection.getInputStream(FileURLConnection.java:188)
+	at com.sun.org.apache.xerces.internal.impl.XMLEntityManager.setupCurrentEntity(XMLEntityManager.java:609)
+	at com.sun.org.apache.xerces.internal.impl.XMLVersionDetector.determineDocVersion(XMLVersionDetector.java:189)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:799)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:764)
+	at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:123)
+	at com.sun.org.apache.xerces.internal.parsers.DOMParser.parse(DOMParser.java:237)
+	at com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:300)
+	at javax.xml.parsers.DocumentBuilder.parse(DocumentBuilder.java:205)
+	at com.install4j.runtime.beans.actions.xml.AbstractModifyXmlFileAction.parseFile(Unknown Source)
+	at com.install4j.runtime.beans.actions.xml.XsltAction.modifyFile(Unknown Source)
+	at com.install4j.runtime.beans.actions.files.AbstractModifyFileAction.execute(Unknown Source)
+	at com.install4j.runtime.beans.actions.SystemInstallOrUninstallAction.install(Unknown Source)
+	at com.install4j.runtime.installer.InstallerContextImpl.performActionInt(Unknown Source)
+	at com.install4j.runtime.installer.ContextImpl.performAction(Unknown Source)
+	at com.install4j.runtime.installer.controller.Controller.executeActions(Unknown Source)
+	at com.install4j.runtime.installer.controller.Controller.handleCommand(Unknown Source)
+	at com.install4j.runtime.installer.controller.Controller.start(Unknown Source)
+	at com.install4j.runtime.installer.Installer.main(Unknown Source)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at com.exe4j.runtime.LauncherEngine.launch(Unknown Source)
+	at com.install4j.runtime.Launcher.main(Unknown Source)
+[ERROR] com.install4j.runtime.beans.actions.xml.XsltAction: Execute action not successful
+[INFO] com.install4j.runtime.beans.screens.InstallationScreen: Rollback barrier reached
+[INFO] com.install4j.runtime.beans.screens.InstallationScreen: command: move 1 screens, executing actions, checking condition
+[INFO] com.install4j.runtime.beans.screens.FinishedScreen: Show screen
+[INFO] com.install4j.runtime.beans.screens.FinishedScreen: command: finish
+[INFO] com.install4j.runtime.installer.InstallerContextImpl: Finishing
+[INFO] cleaning up
+[INFO] com.install4j.runtime.installer.InstallerContextImpl: Finished

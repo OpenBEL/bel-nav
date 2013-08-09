@@ -1,0 +1,94 @@
+2013-07-30 21:10:49,673 [FelixStartLevel] INFO  org.apache.felix.fileinstall - Installed /home/tony/work/cy3_groovy/cytoscape/framework/etc/org.apache.karaf.features.cfg
+2013-07-30 21:10:49,676 [FelixStartLevel] INFO  org.apache.felix.fileinstall - Installed /home/tony/work/cy3_groovy/cytoscape/framework/etc/org.apache.felix.fileinstall-deploy.cfg
+2013-07-30 21:10:49,757 [FelixStartLevel] INFO  org.apache.aries.blueprint.container.BlueprintExtender - No quiesce support is available, so blueprint components will not participate in quiesce operations
+2013-07-30 21:10:49,885 [FelixStartLevel] INFO  org.apache.aries.jmx.core - Starting JMX OSGi agent
+2013-07-30 21:10:49,898 [FelixStartLevel] INFO  org.apache.aries.jmx.core - Registering MBean with ObjectName [osgi.compendium:service=cm,version=1.3] for service with service.id [10]
+2013-07-30 21:10:49,901 [JMX OSGi Agent] WARN  org.apache.aries.jmx.core - There are no MBean servers registred, can't register MBeans
+2013-07-30 21:10:49,953 [Blueprint Extender: 2] INFO  org.apache.aries.blueprint.container.BlueprintContainerImpl - Bundle org.apache.karaf.admin.management is waiting for dependencies [(objectClass=javax.management.MBeanServer), (objectClass=org.apache.karaf.admin.AdminService)]
+2013-07-30 21:10:49,961 [Blueprint Extender: 3] INFO  org.apache.aries.blueprint.container.BlueprintContainerImpl - Bundle org.apache.karaf.shell.dev is waiting for namespace handlers [http://karaf.apache.org/xmlns/shell/v1.0.0]
+2013-07-30 21:10:49,985 [Blueprint Extender: 1] INFO  org.apache.aries.blueprint.container.BlueprintContainerImpl - Bundle org.apache.karaf.diagnostic.management is waiting for dependencies [(objectClass=javax.management.MBeanServer)]
+2013-07-30 21:10:49,990 [Blueprint Extender: 1] INFO  org.apache.aries.blueprint.container.BlueprintContainerImpl - Bundle org.apache.karaf.jaas.command is waiting for namespace handlers [http://karaf.apache.org/xmlns/shell/v1.0.0]
+2013-07-30 21:10:50,110 [JMX OSGi Agent] INFO  org.apache.aries.jmx.core - Registering org.osgi.jmx.framework.PackageStateMBean to MBeanServer com.sun.jmx.mbeanserver.JmxMBeanServer@b96dcb4 with name osgi.core:type=packageState,version=1.5
+2013-07-30 21:10:50,110 [JMX OSGi Agent] INFO  org.apache.aries.jmx.core - Registering org.osgi.jmx.framework.FrameworkMBean to MBeanServer com.sun.jmx.mbeanserver.JmxMBeanServer@b96dcb4 with name osgi.core:type=framework,version=1.5
+2013-07-30 21:10:50,110 [JMX OSGi Agent] INFO  org.apache.aries.jmx.core - Registering org.osgi.jmx.framework.BundleStateMBean to MBeanServer com.sun.jmx.mbeanserver.JmxMBeanServer@b96dcb4 with name osgi.core:type=bundleState,version=1.5
+2013-07-30 21:10:50,112 [JMX OSGi Agent] INFO  org.apache.aries.jmx.core - Registering org.osgi.jmx.service.cm.ConfigurationAdminMBean to MBeanServer com.sun.jmx.mbeanserver.JmxMBeanServer@b96dcb4 with name osgi.compendium:service=cm,version=1.3
+2013-07-30 21:10:50,112 [JMX OSGi Agent] INFO  org.apache.aries.jmx.core - Registering org.osgi.jmx.framework.ServiceStateMBean to MBeanServer com.sun.jmx.mbeanserver.JmxMBeanServer@b96dcb4 with name osgi.core:type=serviceState,version=1.5
+2013-07-30 21:10:50,249 [Blueprint Extender: 1] INFO  org.apache.aries.blueprint.container.BlueprintContainerImpl - Bundle org.apache.karaf.admin.command is waiting for dependencies [(objectClass=org.apache.karaf.admin.AdminService)]
+2013-07-30 21:10:50,319 [Blueprint Extender: 1] INFO  org.apache.karaf.deployer.kar.KarArtifactInstaller - Karaf archives will be extracted to /home/tony/work/cy3_groovy/cytoscape/framework/system
+2013-07-30 21:10:50,319 [Blueprint Extender: 1] INFO  org.apache.karaf.deployer.kar.KarArtifactInstaller - Timestamps for Karaf archives will be extracted to /home/tony/work/cy3_groovy/cytoscape/framework/system/.timestamps
+2013-07-30 21:10:53,276 [FelixStartLevel] INFO  org.cytoscape.view.vizmap.internal.VisualStyleImpl - New Visual Style Created: Style Name = default
+2013-07-30 21:10:53,422 [FelixStartLevel] INFO  org.cytoscape.application.internal.CyApplicationConfigurationImpl - Setting file directory = /home/tony/CytoscapeConfiguration
+2013-07-30 21:10:57,434 [Task Thread] INFO  org.cytoscape.ding.customgraphicsmgr.internal.RestoreImageTask - Custom Graphics Metadata was not found. (This is normal for the first time.)
+2013-07-30 21:10:57,532 [Task Thread] INFO  org.cytoscape.ding.customgraphicsmgr.internal.RestoreImageTask - Image saving process finished in 0.099 sec.
+2013-07-30 21:10:57,858 [FelixStartLevel] INFO  org.cytoscape.io.internal.write.AbstractWriterManager - adding IO taskFactory 
+2013-07-30 21:10:57,860 [FelixStartLevel] INFO  org.cytoscape.io.internal.write.AbstractWriterManager - adding IO taskFactory 
+2013-07-30 21:10:57,861 [FelixStartLevel] INFO  org.cytoscape.io.internal.write.AbstractWriterManager - adding IO taskFactory 
+2013-07-30 21:10:57,862 [FelixStartLevel] INFO  org.cytoscape.io.internal.write.AbstractWriterManager - adding IO taskFactory 
+2013-07-30 21:10:57,863 [FelixStartLevel] INFO  org.cytoscape.io.internal.write.AbstractWriterManager - adding IO taskFactory 
+2013-07-30 21:10:57,864 [FelixStartLevel] INFO  org.cytoscape.io.internal.write.AbstractWriterManager - adding IO taskFactory 
+2013-07-30 21:10:57,865 [FelixStartLevel] INFO  org.cytoscape.io.internal.write.AbstractWriterManager - adding IO taskFactory 
+2013-07-30 21:10:57,865 [FelixStartLevel] INFO  org.cytoscape.io.internal.write.AbstractWriterManager - adding IO taskFactory 
+2013-07-30 21:10:57,866 [FelixStartLevel] INFO  org.cytoscape.io.internal.write.AbstractWriterManager - adding IO taskFactory 
+2013-07-30 21:10:57,867 [FelixStartLevel] INFO  org.cytoscape.io.internal.write.AbstractWriterManager - adding IO taskFactory 
+2013-07-30 21:10:57,868 [FelixStartLevel] INFO  org.cytoscape.io.internal.write.AbstractWriterManager - adding IO taskFactory 
+2013-07-30 21:10:57,869 [FelixStartLevel] INFO  org.cytoscape.io.internal.write.AbstractWriterManager - adding IO taskFactory 
+2013-07-30 21:10:57,870 [FelixStartLevel] INFO  org.cytoscape.io.internal.write.AbstractWriterManager - adding IO taskFactory 
+2013-07-30 21:10:57,871 [FelixStartLevel] INFO  org.cytoscape.io.internal.write.AbstractWriterManager - adding IO taskFactory 
+2013-07-30 21:10:57,872 [FelixStartLevel] INFO  org.cytoscape.io.internal.write.AbstractWriterManager - adding IO taskFactory 
+2013-07-30 21:10:58,582 [FelixStartLevel] INFO  org.cytoscape.internal.view.NetworkViewManager - Adding New Rendering Engine Factory...
+2013-07-30 21:10:58,583 [FelixStartLevel] INFO  org.cytoscape.internal.view.NetworkViewManager - New Rendering Engine is Available: dingNavigation
+2013-07-30 21:10:58,583 [FelixStartLevel] INFO  org.cytoscape.internal.view.NetworkViewManager - Adding New Rendering Engine Factory...
+2013-07-30 21:10:58,583 [FelixStartLevel] INFO  org.cytoscape.internal.view.NetworkViewManager - ding is registered as the default rendering engine.
+2013-07-30 21:10:58,583 [FelixStartLevel] INFO  org.cytoscape.internal.view.NetworkViewManager - New Rendering Engine is Available: ding
+2013-07-30 21:10:59,556 [FelixStartLevel] INFO  org.cytoscape.model.internal.CyNetworkFactoryImpl - CyNetwork w/ private tables created: ID = 2
+2013-07-30 21:10:59,557 [FelixStartLevel] INFO  org.cytoscape.model.internal.CyNetworkFactoryImpl - CyNetwork w/ private tables created: Base Graph ID = 18
+2013-07-30 21:10:59,635 [FelixStartLevel] INFO  org.cytoscape.ding.impl.DingRenderingEngineFactory - %%%%%%% This view is DGV.
+2013-07-30 21:10:59,635 [FelixStartLevel] INFO  org.cytoscape.ding.impl.DingRenderingEngineFactory - DGraphView created as a presentation for view model: 31
+2013-07-30 21:10:59,756 [FelixStartLevel] INFO  org.cytoscape.view.vizmap.gui.internal.VizMapperMainPanel - Adding VS: default
+2013-07-30 21:10:59,776 [Task Thread] INFO  org.cytoscape.io.internal.read.GenericReaderManager - 4 ### Current Filter = Vizmap Java Properties files (*.properties, *.props)
+2013-07-30 21:10:59,776 [Task Thread] INFO  org.cytoscape.io.internal.read.GenericReaderManager - 4 ### Current Filter = Vizmap XML files (*.xml)
+2013-07-30 21:10:59,777 [Task Thread] INFO  org.cytoscape.io.internal.read.GenericReaderManager - Successfully found matched factory org.cytoscape.io.internal.read.vizmap.VizmapXMLReaderFactory@285586d0
+2013-07-30 21:10:59,850 [Task Thread] INFO  org.cytoscape.view.vizmap.internal.VisualStyleImpl - New Visual Style Created: Style Name = Minimal
+2013-07-30 21:10:59,855 [Task Thread] INFO  org.cytoscape.view.vizmap.internal.VisualStyleImpl - New Visual Style Created: Style Name = Ripple
+2013-07-30 21:10:59,857 [Task Thread] INFO  org.cytoscape.view.vizmap.internal.VisualStyleImpl - New Visual Style Created: Style Name = default
+2013-07-30 21:10:59,860 [Task Thread] INFO  org.cytoscape.view.vizmap.internal.VisualStyleImpl - New Visual Style Created: Style Name = Solid
+2013-07-30 21:10:59,863 [Task Thread] INFO  org.cytoscape.view.vizmap.internal.VisualStyleImpl - New Visual Style Created: Style Name = Sample1
+2013-07-30 21:10:59,866 [Task Thread] INFO  org.cytoscape.view.vizmap.internal.VisualStyleImpl - New Visual Style Created: Style Name = Directed
+2013-07-30 21:10:59,869 [Task Thread] INFO  org.cytoscape.view.vizmap.internal.VisualStyleImpl - New Visual Style Created: Style Name = Universe
+2013-07-30 21:10:59,873 [Task Thread] INFO  org.cytoscape.view.vizmap.internal.VisualStyleImpl - New Visual Style Created: Style Name = Big Labels
+2013-07-30 21:10:59,876 [Task Thread] INFO  org.cytoscape.view.vizmap.internal.VisualStyleImpl - New Visual Style Created: Style Name = Nested Network Style
+2013-07-30 21:10:59,878 [Task Thread] INFO  org.cytoscape.view.vizmap.internal.VisualMappingManagerImpl - New visual Style registered to VMM: Sample1
+2013-07-30 21:10:59,878 [Task Thread] INFO  org.cytoscape.view.vizmap.internal.VisualMappingManagerImpl - Total Number of VS in VMM = 2
+2013-07-30 21:10:59,882 [Task Thread] INFO  org.cytoscape.view.vizmap.internal.VisualMappingManagerImpl - New visual Style registered to VMM: Big Labels
+2013-07-30 21:10:59,882 [Task Thread] INFO  org.cytoscape.view.vizmap.internal.VisualMappingManagerImpl - Total Number of VS in VMM = 3
+2013-07-30 21:10:59,882 [Task Thread] INFO  org.cytoscape.view.vizmap.internal.VisualMappingManagerImpl - New visual Style registered to VMM: Ripple
+2013-07-30 21:10:59,882 [Task Thread] INFO  org.cytoscape.view.vizmap.internal.VisualMappingManagerImpl - Total Number of VS in VMM = 4
+2013-07-30 21:10:59,883 [Task Thread] INFO  org.cytoscape.view.vizmap.internal.VisualMappingManagerImpl - New visual Style registered to VMM: Minimal
+2013-07-30 21:10:59,883 [Task Thread] INFO  org.cytoscape.view.vizmap.internal.VisualMappingManagerImpl - Total Number of VS in VMM = 5
+2013-07-30 21:10:59,883 [Task Thread] INFO  org.cytoscape.view.vizmap.internal.VisualMappingManagerImpl - New visual Style registered to VMM: Universe
+2013-07-30 21:10:59,883 [Task Thread] INFO  org.cytoscape.view.vizmap.internal.VisualMappingManagerImpl - Total Number of VS in VMM = 6
+2013-07-30 21:10:59,883 [Task Thread] INFO  org.cytoscape.view.vizmap.internal.VisualMappingManagerImpl - New visual Style registered to VMM: Nested Network Style
+2013-07-30 21:10:59,883 [Task Thread] INFO  org.cytoscape.view.vizmap.internal.VisualMappingManagerImpl - Total Number of VS in VMM = 7
+2013-07-30 21:10:59,883 [Task Thread] INFO  org.cytoscape.view.vizmap.internal.VisualMappingManagerImpl - New visual Style registered to VMM: Directed
+2013-07-30 21:10:59,883 [Task Thread] INFO  org.cytoscape.view.vizmap.internal.VisualMappingManagerImpl - Total Number of VS in VMM = 8
+2013-07-30 21:10:59,883 [Task Thread] INFO  org.cytoscape.view.vizmap.internal.VisualMappingManagerImpl - New visual Style registered to VMM: Solid
+2013-07-30 21:10:59,883 [Task Thread] INFO  org.cytoscape.view.vizmap.internal.VisualMappingManagerImpl - Total Number of VS in VMM = 9
+2013-07-30 21:11:00,107 [FelixStartLevel] INFO  org.cytoscape.io.internal.write.AbstractWriterManager - adding IO taskFactory 
+2013-07-30 21:11:00,107 [FelixStartLevel] INFO  org.cytoscape.io.internal.write.AbstractWriterManager - adding IO taskFactory 
+2013-07-30 21:11:00,378 [FelixStartLevel] INFO  org.cytoscape.webservice.internal.ui.WebServiceImportDialog - New network import client registered: Interaction Database Universal Client
+2013-07-30 21:11:00,403 [FelixStartLevel] INFO  org.cytoscape.webservice.internal.ui.WebServiceImportDialog - New network import client registered: BioMart Client
+2013-07-30 21:11:00,512 [FelixStartLevel] INFO  org.cytoscape.webservice.internal.ui.WebServiceImportDialog - New network import client registered: Pathway Commons Web Service Client
+2013-07-30 21:11:00,565 [pool-25-thread-1] INFO  org.cytoscape.app.internal.net.server.CyHttpdImpl - Server socket started on 127.0.0.1:2607
+2013-07-30 21:11:56,253 [fileinstall-/home/tony/work/cy3_groovy/cytoscape/work/bundles] INFO  org.apache.felix.fileinstall - Installed /home/tony/work/cy3_groovy/cytoscape/work/bundles/groovy-all-2.1.6.jar
+2013-07-30 21:11:56,255 [fileinstall-/home/tony/work/cy3_groovy/cytoscape/work/bundles] INFO  org.apache.felix.fileinstall - Installed /home/tony/work/cy3_groovy/cytoscape/work/bundles/cy3_groovy.jar
+2013-07-30 21:11:56,316 [FelixPackageAdmin] INFO  org.cytoscape.webservice.internal.ui.WebServiceImportDialog - New network import client registered: Interaction Database Universal Client
+2013-07-30 21:11:56,333 [fileinstall-/home/tony/work/cy3_groovy/cytoscape/work/bundles] INFO  org.apache.felix.fileinstall - Started bundle: file:/home/tony/work/cy3_groovy/cytoscape/work/bundles/groovy-all-2.1.6.jar
+2013-07-30 21:11:56,636 [fileinstall-/home/tony/work/cy3_groovy/cytoscape/work/bundles] INFO  org.apache.felix.fileinstall - Started bundle: file:/home/tony/work/cy3_groovy/cytoscape/work/bundles/cy3_groovy.jar
+2013-07-30 21:12:04,708 [fileinstall-/home/tony/work/cy3_groovy/cytoscape/work/bundles] INFO  org.apache.felix.fileinstall - Uninstalled /home/tony/work/cy3_groovy/cytoscape/work/bundles/groovy-all-2.1.6.jar
+2013-07-30 21:12:04,713 [fileinstall-/home/tony/work/cy3_groovy/cytoscape/work/bundles] INFO  org.apache.felix.fileinstall - Uninstalled /home/tony/work/cy3_groovy/cytoscape/work/bundles/cy3_groovy.jar
+2013-07-30 21:12:04,760 [FelixPackageAdmin] INFO  org.cytoscape.webservice.internal.ui.WebServiceImportDialog - New network import client registered: Interaction Database Universal Client
+2013-07-30 21:12:13,853 [fileinstall-/home/tony/work/cy3_groovy/cytoscape/work/bundles] INFO  org.apache.felix.fileinstall - Installed /home/tony/work/cy3_groovy/cytoscape/work/bundles/groovy-all-2.1.6.jar
+2013-07-30 21:12:13,855 [fileinstall-/home/tony/work/cy3_groovy/cytoscape/work/bundles] INFO  org.apache.felix.fileinstall - Installed /home/tony/work/cy3_groovy/cytoscape/work/bundles/cy3_groovy.jar
+2013-07-30 21:12:13,904 [FelixPackageAdmin] INFO  org.cytoscape.webservice.internal.ui.WebServiceImportDialog - New network import client registered: Interaction Database Universal Client
+2013-07-30 21:12:14,154 [fileinstall-/home/tony/work/cy3_groovy/cytoscape/work/bundles] INFO  org.apache.felix.fileinstall - Started bundle: file:/home/tony/work/cy3_groovy/cytoscape/work/bundles/cy3_groovy.jar
+2013-07-30 21:12:14,157 [fileinstall-/home/tony/work/cy3_groovy/cytoscape/work/bundles] INFO  org.apache.felix.fileinstall - Started bundle: file:/home/tony/work/cy3_groovy/cytoscape/work/bundles/groovy-all-2.1.6.jar
