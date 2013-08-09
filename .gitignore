@@ -5,4 +5,7 @@
 build
 tools/cytoscape/framework/instances/instance.properties
 tools/cytoscape/work/bundles/*
+tools/cytoscape/work/cytoscape.log*
 tools/cytoscape/work/data/cache
+tools/cytoscape/work/data/log/*
+tools/cytoscape/work/data/port
