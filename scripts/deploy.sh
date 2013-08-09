@@ -4,7 +4,7 @@ cd "${DIR}" || exit 1
 . env.sh || exit 1
 
 # copy plugin dependencies
-for lib in `find $PLUGIN_LIBS_DIR -name *\.jar`; do
+for lib in `find $PLUGIN_LIBS_DIR -name *\.jar -not -path "*/test/*"`; do
     cp "$lib" "$PLUGIN_CY3_BUNDLE_DIR"
 done
 # copy plugin
