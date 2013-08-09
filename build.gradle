@@ -46,13 +46,11 @@ subprojects {
 project('modules/core') {
   dependencies {
     compile files(
-      "$rootDir/libs/groovy-all-2.1.6.jar")
+      "$rootDir/libs/compile/groovy-all-2.1.6.jar",
+      "$rootDir/libs/compile/slf4j-api-1.7.5.jar")
     provided files(
-      "$rootDir/libs/service-api-3.0.1.jar",
-      "$rootDir/libs/swing-application-api-3.0.1.jar",
-      "$rootDir/libs/org.osgi.core-4.2.0.jar",
-      "$rootDir/libs/org.osgi.enterprise-4.2.0.jar",
-      "$rootDir/libs/slf4j-api-1.7.5.jar")
+      "$rootDir/libs/provided/org.osgi.core-4.2.0.jar",
+      "$rootDir/libs/provided/org.osgi.enterprise-4.2.0.jar")
     testCompile files(
       "$rootDir/libs/test/junit-4.11.jar")
   }
@@ -81,13 +79,13 @@ project('modules/core') {
 project('modules/main') {
   dependencies {
     compile files(
-      "$rootDir/libs/groovy-all-2.1.6.jar")
+      "$rootDir/libs/compile/groovy-all-2.1.6.jar",
+      "$rootDir/libs/compile/slf4j-api-1.7.5.jar")
     provided files(
-      "$rootDir/libs/service-api-3.0.1.jar",
-      "$rootDir/libs/swing-application-api-3.0.1.jar",
-      "$rootDir/libs/org.osgi.core-4.2.0.jar",
-      "$rootDir/libs/org.osgi.enterprise-4.2.0.jar",
-      "$rootDir/libs/slf4j-api-1.7.5.jar")
+      "$rootDir/libs/provided/service-api-3.0.1.jar",
+      "$rootDir/libs/provided/swing-application-api-3.0.1.jar",
+      "$rootDir/libs/provided/org.osgi.core-4.2.0.jar",
+      "$rootDir/libs/provided/org.osgi.enterprise-4.2.0.jar")
     testCompile files(
       "$rootDir/libs/test/junit-4.11.jar")
   }
@@ -130,13 +128,13 @@ project('modules/main') {
 project('modules/ui') {
   dependencies {
     compile files(
-      "$rootDir/libs/groovy-all-2.1.6.jar")
+      "$rootDir/libs/compile/groovy-all-2.1.6.jar",
+      "$rootDir/libs/compile/slf4j-api-1.7.5.jar")
     provided files(
-      "$rootDir/libs/service-api-3.0.1.jar",
-      "$rootDir/libs/swing-application-api-3.0.1.jar",
-      "$rootDir/libs/org.osgi.core-4.2.0.jar",
-      "$rootDir/libs/org.osgi.enterprise-4.2.0.jar",
-      "$rootDir/libs/slf4j-api-1.7.5.jar")
+      "$rootDir/libs/provided/service-api-3.0.1.jar",
+      "$rootDir/libs/provided/swing-application-api-3.0.1.jar",
+      "$rootDir/libs/provided/org.osgi.core-4.2.0.jar",
+      "$rootDir/libs/provided/org.osgi.enterprise-4.2.0.jar")
     testCompile files(
       "$rootDir/libs/test/junit-4.11.jar")
   }
@@ -176,15 +174,13 @@ project('modules/ui') {
 project('modules/webapi') {
   dependencies {
     compile files(
-      "$rootDir/libs/groovy-all-2.1.6.jar",
-      "$rootDir/libs/groovy-wslite-0.8.0.jar",
-      "$rootDir/libs/gbench-0.4.2-groovy-2.1.jar")
+      "$rootDir/libs/compile/groovy-all-2.1.6.jar",
+      "$rootDir/libs/compile/groovy-wslite-0.8.0.jar",
+      "$rootDir/libs/compile/slf4j-api-1.7.5.jar")
     provided files(
-      "$rootDir/libs/service-api-3.0.1.jar",
-      "$rootDir/libs/swing-application-api-3.0.1.jar",
-      "$rootDir/libs/org.osgi.core-4.2.0.jar",
-      "$rootDir/libs/org.osgi.enterprise-4.2.0.jar",
-      "$rootDir/libs/slf4j-api-1.7.5.jar")
+      "$rootDir/libs/provided/service-api-3.0.1.jar",
+      "$rootDir/libs/provided/org.osgi.core-4.2.0.jar",
+      "$rootDir/libs/provided/org.osgi.enterprise-4.2.0.jar")
     testCompile files(
       "$rootDir/libs/test/junit-4.11.jar")
   }
