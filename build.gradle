@@ -66,9 +66,14 @@ project('modules/core') {
       version = '1.0.0'
       name = 'OpenBEL KamNav - Core'
       symbolicName = 'org.openbel.kamnav.core'
-      instruction 'Import-Package', '*, groovy.lang, sun.reflect'
-      instruction 'Bundle-Activator', 'org.openbel.plugin.Activator'
-      instruction 'Export-Package', ''
+      instruction 'Import-Package', '''
+        groovy.lang;version="[2.1,3)",
+        org.codehaus.groovy.reflection;version="[2.1,3)",
+        org.codehaus.groovy.runtime;version="[2.1,3)",
+        org.codehaus.groovy.runtime.callsite;version="[2.1,3)",
+        sun.reflect
+      '''
+      instruction 'Export-Package', 'org.openbel.kamnav.core'
     }
   }
 }
@@ -96,8 +101,27 @@ project('modules/main') {
       version = '1.0.0'
       name = 'OpenBEL KamNav - Main'
       symbolicName = 'org.openbel.kamnav.main'
-      instruction 'Import-Package', '*, groovy.lang, sun.reflect'
-      instruction 'Bundle-Activator', 'org.openbel.plugin.Activator'
+      instruction 'Import-Package', '''
+        groovy.lang;version="[2.1,3)",
+        groovy.swing;version="[2.1,3)",
+        groovy.util;version="[2.1,3)",
+        javax.accessibility,
+        javax.swing,
+        javax.swing.border,
+        javax.swing.event,
+        javax.swing.plaf,
+        org.codehaus.groovy.reflection;version="[2.1,3)",
+        org.codehaus.groovy.runtime;version="[2.1,3)",
+        org.codehaus.groovy.runtime.callsite;version="[2.1,3)",
+        org.codehaus.groovy.runtime.wrappers;version="[2.1,3)",
+        org.cytoscape.application.swing;version="[3,4)",
+        org.cytoscape.service.util;version="[3,4)",
+        org.osgi.framework,
+        sun.awt,
+        sun.java2d.pipe,
+        sun.reflect
+      '''
+      instruction 'Bundle-Activator', 'org.openbel.kamnav.main.Activator'
       instruction 'Export-Package', ''
     }
   }
@@ -126,9 +150,25 @@ project('modules/ui') {
       version = '1.0.0'
       name = 'OpenBEL KamNav - UI'
       symbolicName = 'org.openbel.kamnav.ui'
-      instruction 'Import-Package', '*, groovy.lang, sun.reflect'
-      instruction 'Bundle-Activator', 'org.openbel.plugin.Activator'
-      instruction 'Export-Package', ''
+      instruction 'Import-Package', '''
+        groovy.lang;version="[2.1,3)",
+        groovy.swing;version="[2.1,3)",
+        groovy.util;version="[2.1,3)",
+        javax.accessibility,
+        javax.swing,
+        javax.swing.border,
+        javax.swing.event,
+        javax.swing.plaf,
+        org.codehaus.groovy.reflection;version="[2.1,3)",
+        org.codehaus.groovy.runtime;version="[2.1,3)",
+        org.codehaus.groovy.runtime.callsite;version="[2.1,3)",
+        org.codehaus.groovy.runtime.wrappers;version="[2.1,3)",
+        org.cytoscape.application.swing;version="[3,4)",
+        sun.awt,
+        sun.java2d.pipe,
+        sun.reflect
+      '''
+      instruction 'Export-Package', 'org.openbel.kamnav.ui'
     }
   }
 }
@@ -158,7 +198,15 @@ project('modules/webapi') {
       version = '1.0.0'
       name = 'OpenBEL KamNav - Ws'
       symbolicName = 'org.openbel.kamnav.ws'
-      instruction 'Import-Package', '*, wslite.soap, groovy.lang, sun.reflect'
+      instruction 'Import-Package', '''
+        groovy.lang;version="[2.1,3)",
+        org.codehaus.groovy.reflection;version="[2.1,3)",
+        org.codehaus.groovy.runtime;version="[2.1,3)",
+        org.codehaus.groovy.runtime.callsite;version="[2.1,3)",
+        org.openbel.ws.api,
+        wslite.soap,
+        sun.reflect
+      '''
       instruction 'Export-Package', 'org.openbel.ws.api'
     }
   }

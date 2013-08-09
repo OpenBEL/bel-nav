@@ -1,6 +1,7 @@
-package org.openbel.plugin
+package org.openbel.kamnav.main
 
 import groovy.swing.SwingBuilder
+import groovy.util.AbstractFactory
 
 import org.cytoscape.application.swing.CytoPanelComponent
 import org.cytoscape.application.swing.CytoPanelName
@@ -21,8 +22,8 @@ class Activator extends AbstractCyActivator {
             newInstance: {
                 builder, name, value, attrs ->
                     new CyPanel()
-             }
-        ] as Factory)
+            }
+        ] as AbstractFactory)
 
         swing.registerBeanFactory('cypanel', CyPanel.class)
         registerService(ctx, swing.cypanel(), CytoPanelComponent.class, new Properties())
