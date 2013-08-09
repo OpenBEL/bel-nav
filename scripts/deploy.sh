@@ -8,6 +8,6 @@ for lib in `find $PLUGIN_LIBS_DIR -name *\.jar -not -path "*/test/*"`; do
     cp "$lib" "$PLUGIN_CY3_BUNDLE_DIR"
 done
 # copy plugin
-for lib in `find $PLUGIN_BUILD_LIBS_DIR -name *\.jar`; do
+for lib in `find $PLUGIN_MODULES_DIR -path "*/build/libs/*.jar"`; do
     cp "$lib" "$PLUGIN_CY3_BUNDLE_DIR"
 done
