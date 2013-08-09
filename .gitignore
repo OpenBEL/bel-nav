@@ -3,4 +3,6 @@
 *.iws
 .gradle
 build
+tools/cytoscape/framework/instances/instance.properties
 tools/cytoscape/work/bundles/*
+tools/cytoscape/work/data/cache
