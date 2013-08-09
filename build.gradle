@@ -1,16 +1,15 @@
 // vim: ts=2 sw=2:
 apply plugin: 'idea'
-defaultTasks 'clean', 'compileGroovy', 'jar'
+defaultTasks 'compileGroovy', 'jar'
 
 subprojects {
   apply plugin: 'groovy'
   apply plugin: 'osgi'
   apply plugin: 'idea'
   project.ext {
-    ENV       = System.env
-    sourceDir = ENV['PLUGIN_SOURCE_DIR'] ?: 'src'
-    testDir   = ENV['PLUGIN_TEST_DIR']   ?: 'test'
-    buildDir  = ENV['PLUGIN_BUILD_DIR']   ?: 'build'
+    sourceDir = 'src'
+    testDir   = 'test'
+    buildDir  = 'build'
   }
   repositories {
     mavenCentral()
@@ -44,7 +43,91 @@ subprojects {
   }
 }
 
-project('module_web_api') {
+project('modules/core') {
+  dependencies {
+    compile files(
+      "$rootDir/libs/groovy-all-2.1.6.jar")
+    provided files(
+      "$rootDir/libs/service-api-3.0.1.jar",
+      "$rootDir/libs/swing-application-api-3.0.1.jar",
+      "$rootDir/libs/org.osgi.core-4.2.0.jar",
+      "$rootDir/libs/org.osgi.enterprise-4.2.0.jar",
+      "$rootDir/libs/slf4j-api-1.7.5.jar")
+    testCompile files(
+      "$rootDir/libs/test/junit-4.11.jar")
+  }
+
+  jar {
+    manifest {
+      classesDir = sourceSets.main.output.classesDir
+      classpath = sourceSets.main.runtimeClasspath
+      version = '1.0.0'
+      name = 'OpenBEL KamNav - Core'
+      symbolicName = 'org.openbel.kamnav.core'
+      instruction 'Import-Package', '*, groovy.lang, sun.reflect'
+      instruction 'Bundle-Activator', 'org.openbel.plugin.Activator'
+      instruction 'Export-Package', ''
+    }
+  }
+}
+
+project('modules/main') {
+  dependencies {
+    compile files(
+      "$rootDir/libs/groovy-all-2.1.6.jar")
+    provided files(
+      "$rootDir/libs/service-api-3.0.1.jar",
+      "$rootDir/libs/swing-application-api-3.0.1.jar",
+      "$rootDir/libs/org.osgi.core-4.2.0.jar",
+      "$rootDir/libs/org.osgi.enterprise-4.2.0.jar",
+      "$rootDir/libs/slf4j-api-1.7.5.jar")
+    testCompile files(
+      "$rootDir/libs/test/junit-4.11.jar")
+  }
+
+  jar {
+    manifest {
+      classesDir = sourceSets.main.output.classesDir
+      classpath = sourceSets.main.runtimeClasspath
+      version = '1.0.0'
+      name = 'OpenBEL KamNav - Main'
+      symbolicName = 'org.openbel.kamnav.main'
+      instruction 'Import-Package', '*, groovy.lang, sun.reflect'
+      instruction 'Bundle-Activator', 'org.openbel.plugin.Activator'
+      instruction 'Export-Package', ''
+    }
+  }
+}
+
+project('modules/ui') {
+  dependencies {
+    compile files(
+      "$rootDir/libs/groovy-all-2.1.6.jar")
+    provided files(
+      "$rootDir/libs/service-api-3.0.1.jar",
+      "$rootDir/libs/swing-application-api-3.0.1.jar",
+      "$rootDir/libs/org.osgi.core-4.2.0.jar",
+      "$rootDir/libs/org.osgi.enterprise-4.2.0.jar",
+      "$rootDir/libs/slf4j-api-1.7.5.jar")
+    testCompile files(
+      "$rootDir/libs/test/junit-4.11.jar")
+  }
+
+  jar {
+    manifest {
+      classesDir = sourceSets.main.output.classesDir
+      classpath = sourceSets.main.runtimeClasspath
+      version = '1.0.0'
+      name = 'OpenBEL KamNav - UI'
+      symbolicName = 'org.openbel.kamnav.ui'
+      instruction 'Import-Package', '*, groovy.lang, sun.reflect'
+      instruction 'Bundle-Activator', 'org.openbel.plugin.Activator'
+      instruction 'Export-Package', ''
+    }
+  }
+}
+
+project('modules/webapi') {
   dependencies {
     compile files(
       "$rootDir/libs/groovy-all-2.1.6.jar",
@@ -57,7 +140,7 @@ project('module_web_api') {
       "$rootDir/libs/org.osgi.enterprise-4.2.0.jar",
       "$rootDir/libs/slf4j-api-1.7.5.jar")
     testCompile files(
-      "$rootDir/libs/junit-4.11.jar")
+      "$rootDir/libs/test/junit-4.11.jar")
   }
 
   jar {
@@ -65,38 +148,10 @@ project('module_web_api') {
       classesDir = sourceSets.main.output.classesDir
       classpath = sourceSets.main.runtimeClasspath
       version = '1.0.0'
-      name = 'OpenBEL Ws Client'
-      symbolicName = 'org.openbel.ws'
+      name = 'OpenBEL KamNav - Ws'
+      symbolicName = 'org.openbel.kamnav.ws'
       instruction 'Import-Package', '*, wslite.soap, groovy.lang, sun.reflect'
       instruction 'Export-Package', 'org.openbel.ws.api'
-    }
-  }
-}
-
-project('module_main') {
-  dependencies {
-    compile files(
-      "$rootDir/libs/groovy-all-2.1.6.jar")
-    provided files(
-      "$rootDir/libs/service-api-3.0.1.jar",
-      "$rootDir/libs/swing-application-api-3.0.1.jar",
-      "$rootDir/libs/org.osgi.core-4.2.0.jar",
-      "$rootDir/libs/org.osgi.enterprise-4.2.0.jar",
-      "$rootDir/libs/slf4j-api-1.7.5.jar")
-    testCompile files(
-      "$rootDir/libs/junit-4.11.jar")
-  }
-
-  jar {
-    manifest {
-      classesDir = sourceSets.main.output.classesDir
-      classpath = sourceSets.main.runtimeClasspath
-      version = '1.0.0'
-      name = 'OpenBEL Plugin'
-      symbolicName = 'org.openbel.plugin'
-      instruction 'Import-Package', '*, groovy.lang, sun.reflect'
-      instruction 'Bundle-Activator', 'org.openbel.plugin.Activator'
-      instruction 'Export-Package', ''
     }
   }
 }
