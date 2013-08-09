@@ -58,6 +58,8 @@ project('modules/core') {
   }
 
   jar {
+    baseName = 'kamnav-core'
+    version = '1.0.0'
     manifest {
       classesDir = sourceSets.main.output.classesDir
       classpath = sourceSets.main.runtimeClasspath
@@ -86,6 +88,8 @@ project('modules/main') {
   }
 
   jar {
+    baseName = 'kamnav-main'
+    version = '1.0.0'
     manifest {
       classesDir = sourceSets.main.output.classesDir
       classpath = sourceSets.main.runtimeClasspath
@@ -114,6 +118,8 @@ project('modules/ui') {
   }
 
   jar {
+    baseName = 'kamnav-ui'
+    version = '1.0.0'
     manifest {
       classesDir = sourceSets.main.output.classesDir
       classpath = sourceSets.main.runtimeClasspath
@@ -144,6 +150,8 @@ project('modules/webapi') {
   }
 
   jar {
+    baseName = 'kamnav-webapi'
+    version = '1.0.0'
     manifest {
       classesDir = sourceSets.main.output.classesDir
       classpath = sourceSets.main.runtimeClasspath
