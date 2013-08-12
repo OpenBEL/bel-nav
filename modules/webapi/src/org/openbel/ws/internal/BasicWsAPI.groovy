@@ -7,8 +7,7 @@ class BasicWsAPI implements WsAPI {
 
     @Override
     Map loadKnowledgeNetwork(name) {
-        //def client = new SOAPClient('http://demo.openbel.org/openbel-ws/belframework')
-        def client = new SOAPClient('http://localhost:10000/openbel-ws/belframework')
+        def client = new SOAPClient('http://demo.openbel.org/openbel-ws/belframework')
         def loadMap = [name: name]
         def response = client.send {
             body {
@@ -50,8 +49,7 @@ class BasicWsAPI implements WsAPI {
     }
 
     @Override Map knowledgeNetworks() {
-        def client = new SOAPClient('http://localhost:10000/openbel-ws/belframework')
-        //def client = new SOAPClient('http://demo.openbel.org/openbel-ws/belframework')
+        def client = new SOAPClient('http://demo.openbel.org/openbel-ws/belframework')
         def response = client.send {
             body {
                 GetCatalogRequest('xmlns': 'http://belframework.org/ws/schemas')
