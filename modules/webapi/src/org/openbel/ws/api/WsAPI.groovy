@@ -8,12 +8,14 @@ interface WsAPI {
     Map loadKnowledgeNetwork(name)
 
     /**
-     * Returns the provided knowledge networks.
+     * Returns the provided knowledge networks as a {@link Map} where the
+     * unique knowledge network name is the key and the knowledge network
+     * properties is the value.
      *
-     * @return {@link Map Map[]} of knowledge network properties; the returned
-     * {@link Map Map[]} can be empty, never {@code null}
+     * @return {@link Map} of knowledge network; the returned {@link Map} can
+     * be empty, never {@code null}
      */
-    Map[] knowledgeNetworks()
+    Map knowledgeNetworks()
 
     Map[] adjacentEdges(node)
 
