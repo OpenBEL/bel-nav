@@ -1,7 +1,6 @@
 package org.openbel.kamnav.main
 
 import groovy.swing.SwingBuilder
-import groovy.util.AbstractFactory
 
 import org.cytoscape.application.swing.CytoPanelComponent
 import org.cytoscape.application.swing.CytoPanelName
