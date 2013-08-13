@@ -13,9 +13,7 @@ import java.awt.Component
 
 class Activator extends AbstractCyActivator {
 
-    void start(BundleContext ctx) {
-        println "[START] plugin"
-
+    void start(BundleContext bc) {
         def swing = new SwingBuilder()
         swing.registerFactory('cypanel', [
             newInstance: {
@@ -25,7 +23,7 @@ class Activator extends AbstractCyActivator {
         ] as AbstractFactory)
 
         swing.registerBeanFactory('cypanel', CyPanel.class)
-        registerService(ctx, swing.cypanel(), CytoPanelComponent.class, new Properties())
+        registerService(bc, swing.cypanel(), CytoPanelComponent.class, new Properties())
     }
 
     class CyPanel extends JPanel implements CytoPanelComponent {

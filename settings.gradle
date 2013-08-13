@@ -1,1 +1,1 @@
-include 'modules/common', 'modules/core', 'modules/main', 'modules/ui', 'modules/webapi'
+include 'modules/common', 'modules/core', 'modules/main', 'modules/ui', 'modules/ws'
