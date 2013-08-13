@@ -363,7 +363,7 @@ if [ "W$vmov_5" = "W" ]; then
   vmov_5="-Di4j.vmov=true"
 fi
 
-"$app_java_home/bin/java" -Dinstall4j.jvmDir="$app_java_home" -Dexe4j.moduleName="$prg_dir/$progname" "$vmov_1" "$vmov_2" "$vmov_3" "$vmov_4" "$vmov_5" $INSTALL4J_ADD_VM_PARAMS -classpath "$local_classpath" com.install4j.runtime.Launcher launch com.install4j.runtime.installer.Uninstaller true false "" "" true true false "" true true 0 0 "" 20 20 "Arial" "0,0,0" 8 500 "version 3.0.1" 20 40 "Arial" "0,0,0" 8 500 -1  "$@"
+"$app_java_home/bin/java" -Dinstall4j.jvmDir="$app_java_home" -Dexe4j.moduleName="$prg_dir/$progname" "$vmov_1" "$vmov_2" "$vmov_3" "$vmov_4" "$vmov_5" $INSTALL4J_ADD_VM_PARAMS -classpath "$local_classpath" com.install4j.runtime.Launcher launch com.install4j.runtime.installer.Uninstaller true false "" "" true true false "" true true 0 0 "" 20 20 "Arial" "0,0,0" 8 500 "version 3.0.2" 20 40 "Arial" "0,0,0" 8 500 -1  "$@"
 
 
 exit $?

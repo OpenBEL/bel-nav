@@ -319,7 +319,7 @@ do
   add_class_path "$app_home/./$i"
 done
 add_class_path "$app_home/lib"
-add_class_path "$app_home/./framework/lib/karaf-launcher-3.0.1.jar"
+add_class_path "$app_home/./framework/lib/karaf-launcher-3.0.2.jar"
 add_class_path "$app_home/./framework/lib/karaf.jar"
 add_class_path "$app_home/./framework/lib/karaf-jaas-boot.jar"
 
@@ -343,7 +343,7 @@ if [ "W$vmov_5" = "W" ]; then
   vmov_5="-Di4j.vmov=true"
 fi
 
-"$app_java_home/bin/java" "-splash:$app_home/.install4j/CytoscapeSplashScreen.png" -Dinstall4j.jvmDir="$app_java_home" -Dexe4j.moduleName="$prg_dir/$progname" "-Xms128M" "-Dcom.sun.management.jmxremote" "-Dkaraf.instances=$prg_dir//framework/instances" "-Dkaraf.home=$prg_dir//framework" "-Dkaraf.base=$prg_dir//framework" "-Djava.util.logging.config.file=$prg_dir//framework/etc/java.util.logging.properties" "-Dkaraf.startLocalConsole=false" "-Dkaraf.startRemoteShell=false" "$vmov_1" "$vmov_2" "$vmov_3" "$vmov_4" "$vmov_5" $INSTALL4J_ADD_VM_PARAMS -classpath "$local_classpath" com.install4j.runtime.Launcher launch org.cytoscape.launcher.internal.Launcher true false "$prg_dir/output.log" "$prg_dir/output.log" true true false "CytoscapeSplashScreen.png" true true 820 340 "" 20 20 "Arial" "0,0,0" 8 500 "version 3.0.1" 20 40 "Arial" "0,0,0" 8 500 -1  "$@"
+"$app_java_home/bin/java" "-splash:$app_home/.install4j/CytoscapeSplashScreen.png" -Dinstall4j.jvmDir="$app_java_home" -Dexe4j.moduleName="$prg_dir/$progname" "-Xms128M" "-Dcom.sun.management.jmxremote" "-Dkaraf.instances=$prg_dir//framework/instances" "-Dkaraf.home=$prg_dir//framework" "-Dkaraf.base=$prg_dir//framework" "-Djava.util.logging.config.file=$prg_dir//framework/etc/java.util.logging.properties" "-Dkaraf.startLocalConsole=false" "-Dkaraf.startRemoteShell=false" "$vmov_1" "$vmov_2" "$vmov_3" "$vmov_4" "$vmov_5" $INSTALL4J_ADD_VM_PARAMS -classpath "$local_classpath" com.install4j.runtime.Launcher launch org.cytoscape.launcher.internal.Launcher true false "$prg_dir/output.log" "$prg_dir/output.log" true true false "CytoscapeSplashScreen.png" true true 820 340 "" 20 20 "Arial" "0,0,0" 8 500 "version 3.0.2" 20 40 "Arial" "0,0,0" 8 500 -1  "$@"
 
 
 exit $?

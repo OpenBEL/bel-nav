@@ -33,7 +33,7 @@ export JAVA_OPTS="$JAVA_OPTS -Dplugin.cy3.work.dir=$PLUGIN_CY3_WORK_DIR"
 export JAVA_OPTS="$JAVA_OPTS -Dplugin.cy3.bundle.dir=$PLUGIN_CY3_BUNDLE_DIR"
 export JAVA_OPTS="$JAVA_OPTS -Dplugin.cy3.log.file=$PLUGIN_CY3_LOG_FILE"
 if [ -r $vm_options_path/Cytoscape.vmoptions ]; then
-		JAVA_OPTS="$JAVA_OPTS `cat $vm_options_path/Cytoscape.vmoptions`"
+    JAVA_OPTS="$JAVA_OPTS `cat $vm_options_path/Cytoscape.vmoptions`"
 fi
 
 # The Cytoscape home directory contains the "framework" directory

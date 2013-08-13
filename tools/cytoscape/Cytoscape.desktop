@@ -2,6 +2,6 @@
 [Desktop Entry]
 Type=Application
 Name=Cytoscape
-Exec=/bin/sh "/home/tony/tools/tmp/cytoscape/Cytoscape"
-Icon=/home/tony/tools/tmp/cytoscape/.install4j/Cytoscape.png
+Exec=/bin/sh "/home/tony/tools/cytoscape_302/Cytoscape"
+Icon=/home/tony/tools/cytoscape_302/.install4j/Cytoscape.png
 Categories=Application;
