@@ -29,19 +29,17 @@ class BasicWsAPI implements WsAPI {
             def resMap = response.LoadKamResponse[0].flatMap()
             loadMap.status = resMap.LoadKamResponse._children.find { it.loadStatus }.loadStatus._text
             while (loadMap.status == 'IN_PROCESS') {
-                new Timer().runAfter(1000, {
-                    response = client.send {
-                        body {
-                            LoadKamRequest('xmlns': 'http://belframework.org/ws/schemas') {
-                                kam {
-                                    mkp.yieldUnescaped "<name>${name}</name>"
-                                }
+                response = client.send {
+                    body {
+                        LoadKamRequest('xmlns': 'http://belframework.org/ws/schemas') {
+                            kam {
+                                mkp.yieldUnescaped "<name>${name}</name>"
                             }
                         }
                     }
-                    resMap = response.LoadKamResponse[0].flatMap()
-                    loadMap.status = resMap.LoadKamResponse._children.find { it.loadStatus }.loadStatus._text
-                })
+                }
+                resMap = response.LoadKamResponse[0].flatMap()
+                loadMap.status = resMap.LoadKamResponse._children.find { it.loadStatus }.loadStatus._text
                 sleep(1000)
             }
 
