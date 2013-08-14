@@ -5,6 +5,7 @@ import org.cytoscape.view.model.CyNetworkView
 import org.cytoscape.work.AbstractTask
 import org.cytoscape.work.TaskMonitor
 import org.cytoscape.work.Tunable
+import org.cytoscape.work.util.ListSingleSelection
 import org.openbel.ws.api.WsAPI
 
 class LinkKnowledgeNetwork extends AbstractTask {
@@ -13,14 +14,24 @@ class LinkKnowledgeNetwork extends AbstractTask {
     private final WsAPI wsAPI
     private final CyNetworkView cyNv
 
-    @Tunable(description = "Knowledge network name")
-    public String knName;
+    // tunable state
+    private String knName
 
     private LinkKnowledgeNetwork(final CyApplicationManager appMgr,
             final WsAPI wsAPI, final CyNetworkView cyNv) {
         this.appMgr = appMgr
         this.wsAPI = wsAPI
         this.cyNv = cyNv
+    }
+
+    @Tunable(description = "Knowledge network")
+    public ListSingleSelection<String> getKnName() {
+        String[] names = wsAPI.knowledgeNetworks().keySet() as String[]
+        return new ListSingleSelection<String>(names)
+    }
+
+    public void setKnName(ListSingleSelection<String> lsel) {
+        this.knName = lsel.selectedValue
     }
 
     /**
