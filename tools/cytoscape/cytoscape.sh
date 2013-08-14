@@ -28,7 +28,7 @@ fi
 if [ -z "$PLUGIN_DIR" ]; then
     . ../env.sh
 fi
-export JAVA_OPTS="-Xmx1550M"
+export JAVA_OPTS="-Xmx1550M -XX:MaxPermSize=512M"
 export JAVA_OPTS="$JAVA_OPTS -Dplugin.cy3.work.dir=$PLUGIN_CY3_WORK_DIR"
 export JAVA_OPTS="$JAVA_OPTS -Dplugin.cy3.bundle.dir=$PLUGIN_CY3_BUNDLE_DIR"
 export JAVA_OPTS="$JAVA_OPTS -Dplugin.cy3.log.file=$PLUGIN_CY3_LOG_FILE"
