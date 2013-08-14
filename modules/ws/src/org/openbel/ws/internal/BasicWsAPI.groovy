@@ -1,5 +1,8 @@
 package org.openbel.ws.internal
 
+import groovy.inspect.Inspector
+import org.openbel.kamnav.common.model.Node
+import org.openbel.kamnav.common.model.Edge
 import org.openbel.ws.api.WsAPI
 import wslite.soap.*
 
@@ -26,8 +29,7 @@ class BasicWsAPI implements WsAPI {
                     }
                 }
             }
-            def resMap = response.LoadKamResponse[0].flatMap()
-            loadMap.status = resMap.LoadKamResponse._children.find { it.loadStatus }.loadStatus._text
+            loadMap.status = response.LoadKamResponse.loadStatus
             while (loadMap.status == 'IN_PROCESS') {
                 response = client.send {
                     body {
@@ -38,15 +40,14 @@ class BasicWsAPI implements WsAPI {
                         }
                     }
                 }
-                resMap = response.LoadKamResponse[0].flatMap()
-                loadMap.status = resMap.LoadKamResponse._children.find { it.loadStatus }.loadStatus._text
+                loadMap.status = response.LoadKamResponse.loadStatus
                 sleep(1000)
             }
 
             if (loadMap.status == 'FAILED') {
-                loadMap.message = resMap.LoadKamResponse._children.find { it.message }.message._text
+                loadMap.message = response.LoadKamResponse.message
             } else if (loadMap.status == 'COMPLETE') {
-                loadMap.handle = resMap.LoadKamResponse._children.find { it.handle }.handle._children[0].handle._text
+                loadMap.handle = response.LoadKamResponse.handle
                 loadMap.message = "${name} was loaded successfully."
             } else if (loadMap.status == 'IN_PROCESS') {
                 loadMap.message = "${name} is in the process of loading."
@@ -66,10 +67,18 @@ class BasicWsAPI implements WsAPI {
                 GetCatalogRequest('xmlns': 'http://belframework.org/ws/schemas')
             }
         }
+//        println response.GetCatalogResponse.kams[0].dump()
+//        println new Inspector(response.GetCatalogResponse.kams[0]).methods
+//        println new Inspector(response.GetCatalogResponse.kams[0]).metaMethods
+
         response.GetCatalogResponse.kams.
-            collect { it.flatMap() }.
-            collect { it.kams }.
-            groupBy { it._children.find({it.name}).name._text }.
+            collect {[
+                id: it.id,
+                name: it.name,
+                description: it.description,
+                lastCompiled: it.lastCompiled
+            ]}.
+            groupBy { it.name }.
             collectEntries { k, v -> [(k): v.first()]}
     }
 
@@ -77,7 +86,7 @@ class BasicWsAPI implements WsAPI {
      * {@inheritDoc}
      */
     @Override
-    Map[] adjacentEdges(node) {
+    Map[] adjacentEdges(Node node) {
         return new Map[0]
     }
 
@@ -85,15 +94,39 @@ class BasicWsAPI implements WsAPI {
      * {@inheritDoc}
      */
     @Override
-    Map[] resolveNodes(name, nodes) {
-        return new Map[0]
+    Map[] resolveNodes(String name, Node[] nodes) {
+        def client = new SOAPClient('http://demo.openbel.org/openbel-ws/belframework')
+        def loadMap = [:]
+        loadKnowledgeNetwork(name) {
+            loadMap << it
+
+            def resolveMap = [handle: loadMap.handle]
+
+            def response = client.send {
+                body {
+                    ResolveNodesRequest('xmlns': 'http://belframework.org/ws/schemas') {
+
+                    }
+                }
+            }
+            response.GetCatalogResponse.kams.
+                    collect {[
+                            id: it.id,
+                            name: it.name,
+                            description: it.description,
+                            lastCompiled: it.lastCompiled
+                    ]}.
+                    groupBy { it.name }.
+                    collectEntries { k, v -> [(k): v.first()]}
+            return new Map[0]
+        }
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    Map[] resolveEdges(name, edges) {
+    Map[] resolveEdges(String name, Edge[] edges) {
         return new Map[0]
     }
 
@@ -102,11 +135,11 @@ class BasicWsAPI implements WsAPI {
 
         println "GetCatalog...Hash keyed by knowledge network name"
         def kams = api.knowledgeNetworks()
-        println "returned map, keys: ${kams.keySet()}"
+        println "returned, map keys: ${kams.keySet()}, map: $kams"
         println()
 
         if (kams) {
-            String name = kams.take(1).values().first()._children.find({it.name}).name._text
+            String name = kams.take(1).values().first().name
             println "LoadKam...Grab first one ($name)"
             api.loadKnowledgeNetwork(name) { println it }
         }

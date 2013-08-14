@@ -1,5 +1,8 @@
 package org.openbel.ws.api
 
+import org.openbel.kamnav.common.model.Node
+import org.openbel.kamnav.common.model.Edge
+
 /**
  * WsAPI defines an API to interact with knowledge networks through the web.
  */
@@ -48,10 +51,10 @@ interface WsAPI {
      */
     Map knowledgeNetworks()
 
-    Map[] adjacentEdges(node)
+    Map[] adjacentEdges(Node node)
 
-    Map[] resolveNodes(name, nodes)
+    Map[] resolveNodes(String name, Node[] nodes)
 
-    Map[] resolveEdges(name, edges)
+    Map[] resolveEdges(String name, Edge[] edges)
 
 }

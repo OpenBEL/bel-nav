@@ -63,12 +63,20 @@ project('modules/common') {
       symbolicName = 'org.openbel.kamnav.common'
       instruction 'Import-Package', '''
         groovy.lang;version="[2.1,3)",
+        groovy.transform;version="[2.1,3)",
+        groovy.util.slurpersupport;version="[2.1,3)",
         org.codehaus.groovy.reflection;version="[2.1,3)",
         org.codehaus.groovy.runtime;version="[2.1,3)",
         org.codehaus.groovy.runtime.callsite;version="[2.1,3)",
+        org.codehaus.groovy.runtime.typehandling;version="[2.1,3)",
+        org.slf4j;version="[1,2)",
         sun.reflect
       '''
-      instruction 'Export-Package', 'org.openbel.kamnav.common'
+      instruction 'Export-Package', '''
+        org.openbel.kamnav.common,
+        org.openbel.kamnav.common.extensions,
+        org.openbel.kamnav.common.model
+      '''
     }
   }
 }
@@ -111,8 +119,10 @@ project('modules/core') {
         org.cytoscape.task;version="[3,4)",
         org.cytoscape.view.model;version="[3,4)",
         org.cytoscape.work;version="[3,4)",
+        org.cytoscape.work.util;version="[3,4)",
         org.openbel.ws.api,
         org.osgi.framework,
+        org.slf4j;version="[1,2)",
         sun.reflect
       '''
       instruction 'Bundle-Activator', 'org.openbel.kamnav.core.Activator'
@@ -160,6 +170,7 @@ project('modules/main') {
         org.cytoscape.application.swing;version="[3,4)",
         org.cytoscape.service.util;version="[3,4)",
         org.osgi.framework,
+        org.slf4j;version="[1,2)",
         sun.awt,
         sun.java2d.pipe,
         sun.reflect
@@ -207,6 +218,7 @@ project('modules/ui') {
         org.codehaus.groovy.runtime.callsite;version="[2.1,3)",
         org.codehaus.groovy.runtime.wrappers;version="[2.1,3)",
         org.cytoscape.application.swing;version="[3,4)",
+        org.slf4j;version="[1,2)",
         sun.awt,
         sun.java2d.pipe,
         sun.reflect
@@ -247,8 +259,10 @@ project('modules/ws') {
         org.codehaus.groovy.runtime;version="[2.1,3)",
         org.codehaus.groovy.runtime.callsite;version="[2.1,3)",
         org.cytoscape.service.util;version="[3,4)",
+        org.openbel.kamnav.common.model,
         org.openbel.ws.api,
         org.osgi.framework,
+        org.slf4j;version="[1,2)",
         wslite.soap,
         sun.reflect
       '''
