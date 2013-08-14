@@ -1,6 +1,5 @@
 package org.openbel.ws.internal
 
-import groovy.inspect.Inspector
 import org.openbel.kamnav.common.model.Node
 import org.openbel.kamnav.common.model.Edge
 import org.openbel.ws.api.WsAPI
@@ -67,16 +66,13 @@ class BasicWsAPI implements WsAPI {
                 GetCatalogRequest('xmlns': 'http://belframework.org/ws/schemas')
             }
         }
-//        println response.GetCatalogResponse.kams[0].dump()
-//        println new Inspector(response.GetCatalogResponse.kams[0]).methods
-//        println new Inspector(response.GetCatalogResponse.kams[0]).metaMethods
 
         response.GetCatalogResponse.kams.
             collect {[
-                id: it.id,
-                name: it.name,
-                description: it.description,
-                lastCompiled: it.lastCompiled
+                id: it.id.toString(),
+                name: it.name.toString(),
+                description: it.description.toString(),
+                lastCompiled: it.lastCompiled.toString()
             ]}.
             groupBy { it.name }.
             collectEntries { k, v -> [(k): v.first()]}
