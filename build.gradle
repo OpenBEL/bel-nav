@@ -48,6 +48,12 @@ subprojects {
 }
 
 project('modules/common') {
+  idea {
+    module {
+      name = 'common'
+    }
+  }
+
   dependencies {
     compile files(
       "$rootDir/libs/compile/groovy-all-2.1.6.jar",
@@ -86,6 +92,12 @@ project('modules/common') {
 }
 
 project('modules/core') {
+  idea {
+    module {
+      name = 'core'
+    }
+  }
+
   dependencies {
     compile project(':modules/ws')
     compile files(
@@ -130,6 +142,12 @@ project('modules/core') {
 }
 
 project('modules/main') {
+  idea {
+    module {
+      name = 'main'
+    }
+  }
+
   dependencies {
     compile files(
       "$rootDir/libs/compile/groovy-all-2.1.6.jar",
@@ -175,6 +193,12 @@ project('modules/main') {
 }
 
 project('modules/ui') {
+  idea {
+    module {
+      name = 'ui'
+    }
+  }
+
   dependencies {
     compile files(
       "$rootDir/libs/compile/groovy-all-2.1.6.jar",
@@ -217,6 +241,12 @@ project('modules/ui') {
 }
 
 project('modules/ws') {
+  idea {
+    module {
+      name = 'ws'
+    }
+  }
+
   dependencies {
     compile project(':modules/common')
     compile files(
