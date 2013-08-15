@@ -41,6 +41,10 @@ subprojects {
       output.classesDir = "$project.ext.buildDir/test-classes"
     }
   }
+  dependencies {
+    provided fileTree(dir: "$System.env.PLUGIN_CY3_LIBS_DIR/org/cytoscape", include: '**/*.jar')
+    provided fileTree(dir: "$System.env.PLUGIN_CY3_LIBS_DIR/org/eclipse/osgi", include: '**/*.jar')
+  }
 }
 
 project('modules/common') {
@@ -87,15 +91,6 @@ project('modules/core') {
     compile files(
       "$rootDir/libs/compile/groovy-all-2.1.6.jar",
       "$rootDir/libs/compile/slf4j-api-1.7.5.jar")
-    provided files(
-      "$rootDir/libs/provided/application-api-3.0.1.jar",
-      "$rootDir/libs/provided/core-task-api-3.0.1.jar",
-      "$rootDir/libs/provided/model-api-3.0.1.jar",
-      "$rootDir/libs/provided/service-api-3.0.1.jar",
-      "$rootDir/libs/provided/viewmodel-api-3.0.1.jar",
-      "$rootDir/libs/provided/work-api-3.0.1.jar",
-      "$rootDir/libs/provided/org.osgi.core-4.2.0.jar",
-      "$rootDir/libs/provided/org.osgi.enterprise-4.2.0.jar")
     testCompile files(
       "$rootDir/libs/test/junit-4.11.jar")
   }
@@ -139,11 +134,6 @@ project('modules/main') {
     compile files(
       "$rootDir/libs/compile/groovy-all-2.1.6.jar",
       "$rootDir/libs/compile/slf4j-api-1.7.5.jar")
-    provided files(
-      "$rootDir/libs/provided/service-api-3.0.1.jar",
-      "$rootDir/libs/provided/swing-application-api-3.0.1.jar",
-      "$rootDir/libs/provided/org.osgi.core-4.2.0.jar",
-      "$rootDir/libs/provided/org.osgi.enterprise-4.2.0.jar")
     testCompile files(
       "$rootDir/libs/test/junit-4.11.jar")
   }
@@ -189,11 +179,6 @@ project('modules/ui') {
     compile files(
       "$rootDir/libs/compile/groovy-all-2.1.6.jar",
       "$rootDir/libs/compile/slf4j-api-1.7.5.jar")
-    provided files(
-      "$rootDir/libs/provided/service-api-3.0.1.jar",
-      "$rootDir/libs/provided/swing-application-api-3.0.1.jar",
-      "$rootDir/libs/provided/org.osgi.core-4.2.0.jar",
-      "$rootDir/libs/provided/org.osgi.enterprise-4.2.0.jar")
     testCompile files(
       "$rootDir/libs/test/junit-4.11.jar")
   }
@@ -239,10 +224,6 @@ project('modules/ws') {
       "$rootDir/libs/compile/groovy-common-extensions-0.5.jar",
       "$rootDir/libs/compile/groovy-wslite-0.8.0.jar",
       "$rootDir/libs/compile/slf4j-api-1.7.5.jar")
-    provided files(
-      "$rootDir/libs/provided/service-api-3.0.1.jar",
-      "$rootDir/libs/provided/org.osgi.core-4.2.0.jar",
-      "$rootDir/libs/provided/org.osgi.enterprise-4.2.0.jar")
     testCompile files(
       "$rootDir/libs/test/junit-4.11.jar")
   }
