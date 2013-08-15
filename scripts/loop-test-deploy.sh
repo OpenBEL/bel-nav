@@ -8,7 +8,7 @@ cd "${DIR}" || exit 1
 
 # loop
 while inotifywait -qq -r -e modify "$PLUGIN_SOURCE_DIR" -e modify "$PLUGIN_TEST_DIR"; do
-    gradle -q --daemon test jar
+    gradle -q test jar
     if [ "$?" != "0" ]; then 
         notify-send -t 3000 "Failed compilation.\n\n$RESULT"
         echo "$RESULT" 2>&1

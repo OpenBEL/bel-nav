@@ -5,6 +5,7 @@ DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 export PLUGIN_DIR="${PLUGIN_DIR:=$DIR}"
 export PLUGIN_LIBS_DIR="${PLUGIN_LIBS_DIR:=$PLUGIN_DIR/libs}"
 export PLUGIN_MODULES_DIR="${PLUGIN_MODULES_DIR:=$PLUGIN_DIR/modules}"
+export PLUGIN_SCRIPTS_DIR="${PLUGIN_SCRIPTS_DIR:=$PLUGIN_DIR/scripts}"
 export PLUGIN_TOOLS_DIR="${PLUGIN_TOOLS_DIR:=$PLUGIN_DIR/tools}"
 export PLUGIN_TOOLS_GROOVY_DIR="${PLUGIN_TOOLS_GROOVY_DIR:=$PLUGIN_TOOLS_DIR/groovy}"
 export PLUGIN_CY3_DIR="${PLUGIN_CY3_DIR:=$PLUGIN_TOOLS_DIR/cytoscape}"
@@ -15,3 +16,6 @@ export PLUGIN_CY3_DATA_DIR="${PLUGIN_CY3_DATA_DIR:=$PLUGIN_CY3_WORK_DIR/data}"
 
 # -- Files --
 export PLUGIN_CY3_LOG_FILE="${PLUGIN_CY3_LOG_FILE:=$PLUGIN_CY3_WORK_DIR/cytoscape.log}"
+
+# -- Aliases --
+alias do_gradle="${PLUGIN_SCRIPTS_DIR}/gradlew --daemon"
