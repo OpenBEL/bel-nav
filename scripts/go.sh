@@ -15,8 +15,9 @@ WHITE=$'\e[38;5;255m'
 GREY=$'\e[38;5;243m'
 NONE=$'\e[0m'
 RED=$'\e[38;5;196m'
-GROUP1=$'\e[38;5;245m'
-GROUP2=$'\e[38;5;239m'
+ACTIONS=$'\e[38;5;110m'
+LIFECYCLE=$'\e[38;5;190m'
+TOOLS=$'\e[38;5;112m'
 CHOICE=$'\e[38;5;159m'
 PROMPT="
 ${GO}go${WHITE}:${NONE} "
@@ -99,20 +100,27 @@ function _12 {
     script "stop.sh" || return $?
 }
 
+function _13 {
+    echo "Groovy shell..."
+    echo
+    script "groovy-shell.sh" || return $?
+}
+
 # Each menu option should stand alone on its own line.
 # Menu options correspond to functions above.
-CHOICES=("${GROUP1}clean${NONE}" \
-         "${GROUP1}build${NONE}" \
-         "${GROUP1}test${NONE}" \
-         "${GROUP1}deploy${NONE}" \
-         "${GROUP1}undeploy${NONE}" \
-         "${GROUP2}loop (compile)${NONE}" \
-         "${GROUP2}loop (compile/test)${NONE}" \
-         "${GROUP2}loop (compile/deploy)${NONE}" \
-         "${GROUP2}loop (compile/test/deploy)${NONE}" \
-         "${GROUP2}start${NONE}" \
-         "${GROUP2}debug${NONE}" \
-         "${GROUP2}stop${NONE}")
+CHOICES=("${ACTIONS}clean${NONE}" \
+         "${ACTIONS}build${NONE}" \
+         "${ACTIONS}test${NONE}" \
+         "${ACTIONS}deploy${NONE}" \
+         "${ACTIONS}undeploy${NONE}" \
+         "${ACTIONS}loop (compile)${NONE}" \
+         "${ACTIONS}loop (compile/test)${NONE}" \
+         "${ACTIONS}loop (compile/deploy)${NONE}" \
+         "${ACTIONS}loop (compile/test/deploy)${NONE}" \
+         "${LIFECYCLE}start${NONE}" \
+         "${LIFECYCLE}debug${NONE}" \
+         "${LIFECYCLE}stop${NONE}" \
+         "${TOOLS}groovy shell${NONE}")
 
 if [ $# -gt 0 ]; then
     echo
@@ -139,6 +147,7 @@ function menu() {
     done
     echo
     tabs -8
+    echo "${ACTIONS}dev${NONE} / ${LIFECYCLE}lifecycle${NONE} / ${TOOLS}tools${NONE}"
 }
 
 menu
