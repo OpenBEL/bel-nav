@@ -101,6 +101,12 @@ function _12 {
 }
 
 function _13 {
+    echo "Cytoscape log..."
+    echo
+    script "cytoscape-log.sh" || return $?
+}
+
+function _14 {
     echo "Groovy shell..."
     echo
     script "groovy-shell.sh" || return $?
@@ -120,6 +126,7 @@ CHOICES=("${ACTIONS}clean${NONE}" \
          "${LIFECYCLE}start${NONE}" \
          "${LIFECYCLE}debug${NONE}" \
          "${LIFECYCLE}stop${NONE}" \
+         "${TOOLS}cytoscape log${NONE}" \
          "${TOOLS}groovy shell${NONE}")
 
 if [ $# -gt 0 ]; then
