@@ -1,9 +1,14 @@
 package org.openbel.ws.internal
 
+import org.openbel.framework.common.enums.FunctionEnum
+import org.openbel.framework.common.enums.RelationshipType
+import org.openbel.framework.ws.model.FunctionType
 import org.openbel.kamnav.common.model.Node
 import org.openbel.kamnav.common.model.Edge
 import org.openbel.ws.api.WsAPI
 import wslite.soap.*
+
+import java.util.regex.Pattern
 
 /**
  * {@link WsAPI} implementation using groovy-wslite (soap xml builders).
@@ -14,11 +19,11 @@ class BasicWsAPI implements WsAPI {
      * {@inheritDoc}
      */
     @Override
-    void loadKnowledgeNetwork(String name, Closure closure = null) {
+    Map loadKnowledgeNetwork(String name) {
         def client = new SOAPClient('http://demo.openbel.org/openbel-ws/belframework')
         def loadMap = [name: name]
 
-        Thread.start {
+        Thread load = Thread.start {
             def response = client.send {
                 body {
                     LoadKamRequest('xmlns': 'http://belframework.org/ws/schemas') {
@@ -51,9 +56,10 @@ class BasicWsAPI implements WsAPI {
             } else if (loadMap.status == 'IN_PROCESS') {
                 loadMap.message = "${name} is in the process of loading."
             }
-
-            if (closure) closure.call(loadMap)
         }
+
+        load.join()
+        loadMap
     }
 
     /**
@@ -82,39 +88,48 @@ class BasicWsAPI implements WsAPI {
      * {@inheritDoc}
      */
     @Override
-    Map[] adjacentEdges(Node node) {
-        return new Map[0]
+    Node[] findNodes(Pattern labelPattern, FunctionEnum... functions) {
+        return new Node[0]
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    Map[] resolveNodes(String name, Node[] nodes) {
+    Edge[] adjacentEdges(Node node) {
+        return new Edge[0]
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    Node[] resolveNodes(String name, Node[] nodelist) {
         def client = new SOAPClient('http://demo.openbel.org/openbel-ws/belframework')
-        def loadMap = [:]
-        loadKnowledgeNetwork(name) {
-            loadMap << it
+        def loadMap = loadKnowledgeNetwork(name)
+        if (!loadMap.handle) return null
 
-            def resolveMap = [handle: loadMap.handle]
-
-            def response = client.send {
-                body {
-                    ResolveNodesRequest('xmlns': 'http://belframework.org/ws/schemas') {
-
+        def response = client.send {
+            body {
+                ResolveNodesRequest('xmlns': 'http://belframework.org/ws/schemas') {
+                    handle {
+                        handle(loadMap.handle)
+                    }
+                    nodelist.collect { n ->
+                        nodes {
+                            function(toWS(n.fx))
+                            label(n.label)
+                        }
                     }
                 }
             }
-            response.GetCatalogResponse.kams.
-                    collect {[
-                            id: it.id,
-                            name: it.name,
-                            description: it.description,
-                            lastCompiled: it.lastCompiled
-                    ]}.
-                    groupBy { it.name }.
-                    collectEntries { k, v -> [(k): v.first()]}
-            return new Map[0]
+        }
+
+        response.ResolveNodesResponse.kamNodes.collect {
+            String id = it.id.toString()
+            String fx = FunctionType.valueOf(it.function.toString()).displayValue
+            String label = it.label.toString()
+            new Node(id, FunctionEnum.fromString(fx), label)
         }
     }
 
@@ -122,12 +137,82 @@ class BasicWsAPI implements WsAPI {
      * {@inheritDoc}
      */
     @Override
-    Map[] resolveEdges(String name, Edge[] edges) {
-        return new Map[0]
+    Edge[] resolveEdges(String name, Edge[] edgelist) {
+        def client = new SOAPClient('http://demo.openbel.org/openbel-ws/belframework')
+        def loadMap = loadKnowledgeNetwork(name)
+        if (!loadMap.handle) return null
+
+        def response = client.send {
+            body {
+                ResolveEdgesRequest('xmlns': 'http://belframework.org/ws/schemas') {
+                    handle {
+                        handle(loadMap.handle)
+                    }
+                    edgelist.collect { e ->
+                        edges {
+                            source {
+                                function(toWS(e.source.fx))
+                                label(e.source.label)
+                            }
+                            relationship(toWS(e.relationship))
+                            target {
+                                function(toWS(e.target.fx))
+                                label(e.target.label)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        response.ResolveEdgesResponse.kamEdges.findAll {
+            !it.attributes()['{http://www.w3.org/2001/XMLSchema-instance}nil']
+        }.
+        collect {
+            Node source = new Node(
+                    it.source.id.toString(),
+                    FunctionEnum.fromString(FunctionType.valueOf(it.source.function.toString()).displayValue),
+                    it.source.label.toString())
+            Node target = new Node(
+                    it.target.id.toString(),
+                    FunctionEnum.fromString(FunctionType.valueOf(it.target.function.toString()).displayValue),
+                    it.target.label.toString())
+            new Edge(source, it.relationship.toString(), target)
+        }
+    }
+
+    private def toWS(type) {
+        switch (type) {
+            case FunctionEnum:
+                FunctionType.fromValue(type.displayValue)
+                break;
+            case RelationshipType:
+                org.openbel.framework.ws.model.RelationshipType.fromValue(type.displayValue)
+                break;
+            case String:
+                FunctionEnum fx = FunctionEnum.fromString(type)
+                if (fx)
+                    FunctionType.fromValue(fx.displayValue)
+                else {
+                    RelationshipType r = [
+                        RelationshipType.fromString(type),
+                        RelationshipType.fromAbbreviation(type)
+                    ].find()
+                    if (r)
+                        org.openbel.framework.ws.model.RelationshipType.fromValue(r.displayValue)
+                }
+                break;
+        }
     }
 
     static void main(args) {
         def api = new BasicWsAPI()
+        println api.toWS(FunctionEnum.ABUNDANCE)
+        println api.toWS(RelationshipType.CAUSES_NO_CHANGE)
+        println api.toWS("transcriptionalActivity")
+        println api.toWS("tscript")
+        println api.toWS("=|")
+        println api.toWS("directlyDecreases")
 
         println "GetCatalog...Hash keyed by knowledge network name"
         def kams = api.knowledgeNetworks()
@@ -137,9 +222,15 @@ class BasicWsAPI implements WsAPI {
         if (kams) {
             String name = kams.take(1).values().first().name
             println "LoadKam...Grab first one ($name)"
-            api.loadKnowledgeNetwork(name) { println it }
+            println api.loadKnowledgeNetwork(name)
+
+            Node source = new Node(null, FunctionEnum.KINASE_ACTIVITY, 'kin(p(HGNC:AKT1))')
+            Node target = new Node(null, FunctionEnum.PROTEIN_ABUNDANCE, 'p(HGNC:CDKN1A)')
+            Edge edge = new Edge(source, RelationshipType.CAUSES_NO_CHANGE, target)
+            println api.resolveNodes(name, [source, target] as Node[])
+            println api.resolveEdges(name, [edge] as Edge[])
         }
         println "LoadKam...Does not exist"
-        api.loadKnowledgeNetwork('Does not exist') { println it }
+        println api.loadKnowledgeNetwork('Does not exist')
     }
 }

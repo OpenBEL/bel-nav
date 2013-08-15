@@ -1,7 +1,10 @@
 package org.openbel.ws.api
 
+import org.openbel.framework.common.enums.FunctionEnum
 import org.openbel.kamnav.common.model.Node
 import org.openbel.kamnav.common.model.Edge
+
+import java.util.regex.Pattern
 
 /**
  * WsAPI defines an API to interact with knowledge networks through the web.
@@ -9,11 +12,8 @@ import org.openbel.kamnav.common.model.Edge
 interface WsAPI {
 
     /**
-     * Load a knowledge network using the unique name.
-     * <br/>
-     * This method is non-blocking.  When the knowledge network load finishes the
-     * {@code callback} closure is called, with the load data {@link Map}, if
-     * provided.
+     * Load a knowledge network using the unique name.  Return a {@link Map}
+     * containing load results.
      * <br/>
      * The map will contain:
      * <ul>
@@ -36,10 +36,9 @@ interface WsAPI {
      * </ul>
      *
      * @param name {@link String} knowledge network name; may not be {@code null}
-     * @param callback {@link Closure} optional callback called when the load finishes
      * @throws NullPointerException when {@code name} is {@code null}
      */
-    void loadKnowledgeNetwork(String name, Closure callback)
+    Map loadKnowledgeNetwork(String name)
 
     /**
      * Returns the provided knowledge networks as a {@link Map} where the
@@ -51,10 +50,11 @@ interface WsAPI {
      */
     Map knowledgeNetworks()
 
-    Map[] adjacentEdges(Node node)
+    Node[] findNodes(Pattern labelPattern, FunctionEnum... functions)
 
-    Map[] resolveNodes(String name, Node[] nodes)
+    Edge[] adjacentEdges(Node node)
 
-    Map[] resolveEdges(String name, Edge[] edges)
+    Node[] resolveNodes(String name, Node[] nodes)
 
+    Edge[] resolveEdges(String name, Edge[] edges)
 }
