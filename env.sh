@@ -18,4 +18,4 @@ export PLUGIN_CY3_DATA_DIR="${PLUGIN_CY3_DATA_DIR:=$PLUGIN_CY3_WORK_DIR/data}"
 export PLUGIN_CY3_LOG_FILE="${PLUGIN_CY3_LOG_FILE:=$PLUGIN_CY3_WORK_DIR/cytoscape.log}"
 
 # -- Aliases --
-alias do_gradle="${PLUGIN_SCRIPTS_DIR}/gradlew --daemon"
+alias gradle="${PLUGIN_SCRIPTS_DIR}/gradlew --daemon"
