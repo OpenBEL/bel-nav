@@ -31,12 +31,14 @@ class LinkKnowledgeNetwork extends AbstractTask {
         this.cyNv = cyNv
     }
 
+    // Called by cytoscape
     @Tunable(description = "Knowledge network")
     public ListSingleSelection<String> getKnName() {
         String[] names = wsAPI.knowledgeNetworks().keySet() as String[]
         return new ListSingleSelection<String>(names)
     }
 
+    // Called by cytoscape
     public void setKnName(ListSingleSelection<String> lsel) {
         this.knName = lsel.selectedValue
     }

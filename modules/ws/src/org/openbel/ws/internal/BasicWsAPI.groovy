@@ -155,8 +155,39 @@ class BasicWsAPI implements WsAPI {
      * {@inheritDoc}
      */
     @Override
-    Node[] findNodes(Pattern labelPattern, FunctionEnum... functions) {
-        return new Node[0]
+    Node[] findNodes(String name, Pattern labelPattern, FunctionEnum... functions) {
+        def client = new SOAPClient('http://localhost:10000/openbel-ws/belframework')
+        def loadMap = loadKnowledgeNetwork(name)
+        if (!loadMap.handle) return null
+
+        def response = client.send {
+            body {
+                FindKamNodesByPatternsRequest('xmlns': 'http://belframework.org/ws/schemas') {
+                    handle {
+                        handle(loadMap.handle)
+                    }
+                    patterns(labelPattern.toString())
+                    filter {
+                        functionTypeCriteria {
+                            functions.collect {
+                                valueSet(toWS(it))
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        response.FindKamNodesByPatternsResponse.kamNodes.
+                findAll {
+                    !it.attributes()['{http://www.w3.org/2001/XMLSchema-instance}nil']
+                }.
+                collect {
+                    String id = it.id.toString()
+                    String fx = FunctionType.valueOf(it.function.toString()).displayValue
+                    String label = it.label.toString()
+                    new Node(id, FunctionEnum.fromString(fx), label)
+                }
     }
 
     /**

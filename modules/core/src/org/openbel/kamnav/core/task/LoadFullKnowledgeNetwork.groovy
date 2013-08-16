@@ -1,20 +1,15 @@
 package org.openbel.kamnav.core.task
 
-import org.cytoscape.model.CyEdge
-import org.cytoscape.work.Tunable
-import org.cytoscape.work.util.ListSingleSelection
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
+import org.cytoscape.application.CyApplicationManager
+import org.cytoscape.view.model.CyNetworkView
+import org.openbel.framework.common.enums.FunctionEnum
+import org.openbel.framework.ws.model.FunctionType
 
-import static java.lang.String.format
+import static org.openbel.framework.common.enums.FunctionEnum.fromString
+import static org.openbel.kamnav.common.util.NodeUtil.*
+import static org.openbel.kamnav.common.util.EdgeUtil.*
 import static org.cytoscape.model.CyNetwork.NAME;
 import groovy.transform.TupleConstructor
-import org.cytoscape.model.CyNetwork
-import org.cytoscape.model.CyNetworkFactory
-import org.cytoscape.model.CyNetworkManager
-import org.cytoscape.model.CyNode
-import org.cytoscape.view.model.CyNetworkViewFactory
-import org.cytoscape.view.model.CyNetworkViewManager
 import org.cytoscape.work.AbstractTask
 import org.cytoscape.work.TaskMonitor
 import org.openbel.ws.api.WsAPI
@@ -22,41 +17,40 @@ import org.openbel.ws.api.WsAPI
 @TupleConstructor
 class LoadFullKnowledgeNetwork extends AbstractTask {
 
-    private static final Logger log = LoggerFactory.getLogger(getClass())
-    final CyNetworkFactory cynFac
-    final CyNetworkViewFactory cynvFac
-    final CyNetworkManager cynMgr
-    final CyNetworkViewManager cynvMgr
+    final CyApplicationManager appMgr
     final WsAPI wsAPI
-
-    // tunable
-    private ListSingleSelection<String> knName
-
-    @Tunable(description = "Knowledge network")
-    ListSingleSelection<String> getKnName() {
-        knName = knName ?: new ListSingleSelection<String>(wsAPI.knowledgeNetworks().keySet().sort())
-    }
-
-    void setKnName(ListSingleSelection<String> lsel) {
-        this.knName = lsel
-    }
 
     /**
      * {@inheritDoc}
      */
     @Override
     void run(TaskMonitor monitor) throws Exception {
-        CyNetwork network = cynFac.createNetwork()
-        network.getRow(network).set(NAME, knName.selectedValue)
-        CyNode a = network.addNode()
-        CyNode b = network.addNode()
-        network.getRow(a).set(NAME, "p(HGNC:AKT1)")
-        network.getRow(b).set(NAME, "p(HGNC:TNF)")
+        def cyN = appMgr.currentNetwork
+        def knName = cyN.getRow(cyN).get(NAME, String.class)
+        monitor.title = "Load nodes and edge from ${knName}".toString()
 
-        CyEdge a_b = network.addEdge(a, b, true)
-        network.getRow(a_b).set(NAME, "increases")
+        FunctionType.values().each {
+            FunctionEnum fx = fromString(it.displayValue)
+            if (!fx) return
+            monitor.statusMessage = "Adding ${fx.displayValue} functions".toString()
+            wsAPI.findNodes(knName, ~/.*/, fx).
+                each { node ->
+                    def n = findNode(cyN, node.label)
+                    if (!n) {
+                        n = makeNode(cyN, node.id, node.fx.displayValue, node.label)
 
-        cynMgr.addNetwork(network)
-        cynvMgr.addNetworkView(cynvFac.createNetworkView(network))
+                        wsAPI.adjacentEdges(toNode.call(cyN, n)).each { edge ->
+                            def s = edge.source
+                            def t = edge.target
+                            def cySource = findNode.call(cyN, s.label) ?:
+                                makeNode.call(cyN, s.id, s.fx.displayValue, s.label)
+                            def cyTarget =
+                                findNode.call(cyN, t.label) ?:
+                                    makeNode.call(cyN, t.id, t.fx.displayValue, t.label)
+                            makeEdge.call(cyN, cySource, cyTarget, edge.id, edge.relationship.displayValue)
+                        }
+                    }
+                }
+        }
     }
 }

@@ -53,7 +53,7 @@ interface WsAPI {
 
     void link(CyNetwork cyn, String name, Closure closure)
 
-    Node[] findNodes(Pattern labelPattern, FunctionEnum... functions)
+    Node[] findNodes(String name, Pattern labelPattern, FunctionEnum... functions)
 
     Edge[] adjacentEdges(Node node, String direction)
 

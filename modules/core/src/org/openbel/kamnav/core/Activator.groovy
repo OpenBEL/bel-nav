@@ -16,12 +16,9 @@ import org.openbel.kamnav.core.task.LinkKnowledgeNetworkFactory
 import org.openbel.kamnav.core.task.LoadFullKnowledgeNetworkFactory
 import org.openbel.ws.api.WsAPI
 import org.osgi.framework.BundleContext
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
 
 class Activator extends AbstractCyActivator {
 
-    private static Logger log = LoggerFactory.getLogger(getClass())
     private static final String STYLE_PATH = '/style.props'
     private static final String[] STYLE_NAMES =
         ['KAM Association', 'KAM Visualization', 'KAM Visualization Minimal']
@@ -40,6 +37,13 @@ class Activator extends AbstractCyActivator {
 
         // register tasks
         registerService(bc,
+            new ExpandNodeFactory(wsAPI),
+            NodeViewTaskFactory.class, [
+                preferredMenu: 'Apps.KamNav',
+                menuGravity: 11.0,
+                title: "Expand Node"
+            ].asType(Properties.class))
+        registerService(bc,
             new LinkKnowledgeNetworkFactory(appMgr, wsAPI),
             NetworkViewTaskFactory.class, [
                 preferredMenu: 'Apps.KamNav',
@@ -47,18 +51,11 @@ class Activator extends AbstractCyActivator {
                 title: "Link to Knowledge Network"
             ].asType(Properties.class))
         registerService(bc,
-                new LoadFullKnowledgeNetworkFactory(cynFac, cynvFac, cynMgr, cynvMgr, wsAPI),
+                new LoadFullKnowledgeNetworkFactory(appMgr, cynFac, cynvFac, cynMgr, cynvMgr, wsAPI),
                 TaskFactory.class, [
                 preferredMenu: 'Apps.KamNav',
                 menuGravity: 11.0,
                 title: "Create Network from Knowledge Network"
-        ].asType(Properties.class))
-        registerService(bc,
-                new ExpandNodeFactory(wsAPI),
-                NodeViewTaskFactory.class, [
-                preferredMenu: 'Apps.KamNav',
-                menuGravity: 11.0,
-                title: "Expand Node"
         ].asType(Properties.class))
 
         // delete/add knowledge network styles (idempotent)

@@ -1,6 +1,7 @@
 package org.openbel.kamnav.core.task
 
 import groovy.transform.TupleConstructor
+import org.cytoscape.application.CyApplicationManager
 import org.cytoscape.model.CyNetworkFactory
 import org.cytoscape.model.CyNetworkManager
 import org.cytoscape.view.model.CyNetworkViewFactory
@@ -15,6 +16,7 @@ import org.slf4j.LoggerFactory
 class LoadFullKnowledgeNetworkFactory extends AbstractTaskFactory {
 
     private static final Logger log = LoggerFactory.getLogger(getClass())
+    final CyApplicationManager appMgr
     final CyNetworkFactory cynFac
     final CyNetworkViewFactory cynvFac
     final CyNetworkManager cynMgr
@@ -27,7 +29,9 @@ class LoadFullKnowledgeNetworkFactory extends AbstractTaskFactory {
     @Override
     TaskIterator createTaskIterator() {
         log.info("Create new LoadFullKnowledgeNetwork task.")
+
         return new TaskIterator(
-                new LoadFullKnowledgeNetwork(cynFac, cynvFac, cynMgr, cynvMgr, wsAPI))
+            new CreateCyNetwork(appMgr, cynFac, cynvFac, cynMgr, cynvMgr, wsAPI),
+            new LoadFullKnowledgeNetwork(appMgr, wsAPI))
     }
 }
