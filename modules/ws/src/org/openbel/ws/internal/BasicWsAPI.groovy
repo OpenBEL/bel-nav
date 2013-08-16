@@ -1,5 +1,13 @@
 package org.openbel.ws.internal
 
+import org.openbel.framework.common.InvalidArgument
+import org.openbel.framework.common.model.Term
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
+
+import static org.openbel.framework.common.bel.parser.BELParser.parseTerm
+import static org.cytoscape.model.CyNetwork.NAME
+import org.cytoscape.model.CyNetwork
 import org.openbel.framework.common.enums.FunctionEnum
 import org.openbel.framework.common.enums.RelationshipType
 import org.openbel.framework.ws.model.FunctionType
@@ -14,6 +22,8 @@ import java.util.regex.Pattern
  * {@link WsAPI} implementation using groovy-wslite (soap xml builders).
  */
 class BasicWsAPI implements WsAPI {
+
+    private static Logger log = LoggerFactory.getLogger(getClass())
 
     /**
      * {@inheritDoc}
@@ -88,6 +98,63 @@ class BasicWsAPI implements WsAPI {
      * {@inheritDoc}
      */
     @Override
+    void link(CyNetwork cyn, String name, Closure closure = null) {
+        def client = new SOAPClient('http://demo.openbel.org/openbel-ws/belframework')
+        def loadMap = loadKnowledgeNetwork(name)
+
+        cyn.nodeList.each { node ->
+            String lbl = cyn.getRow(node).get(NAME, String.class)
+            Term t
+            try {
+                t = parseTerm(lbl)
+            } catch (InvalidArgument e) {
+                // parse failure; cannot resolve so return
+                if (closure) closure.call(node, null)
+                return
+            }
+
+            def response = client.send {
+                body {
+                    ResolveNodesRequest('xmlns': 'http://belframework.org/ws/schemas') {
+                        handle {
+                            handle(loadMap.handle)
+                        }
+                        nodes {
+                            function(toWS(t.functionEnum))
+                            label(lbl)
+                        }
+                    }
+                }
+            }
+            def ret = response.ResolveNodesResponse.kamNodes.find {
+                !it.attributes()['{http://www.w3.org/2001/XMLSchema-instance}nil']
+            }
+            if (ret) {
+                String id = ret.id.toString()
+                String fx = FunctionType.valueOf(ret.function.toString()).displayValue
+                lbl = ret.label.toString()
+
+                if (!cyn.defaultNodeTable.getColumn('bel.function'))
+                    cyn.defaultNodeTable.createColumn('bel.function', String.class, false)
+                if (!cyn.defaultNodeTable.getColumn('kam.id'))
+                    cyn.defaultNodeTable.createColumn('kam.id', String.class, false)
+                cyn.getRow(node).set(NAME, lbl)
+                cyn.getRow(node).set("bel.function",
+                        FunctionEnum.fromString(fx).displayValue)
+                cyn.getRow(node).set("kam.id", id)
+
+                if (closure) closure.call(node, [id: id, fx: fx, lbl: lbl])
+            } else {
+                if (closure) closure.call(node, [:])
+            }
+
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     Node[] findNodes(Pattern labelPattern, FunctionEnum... functions) {
         return new Node[0]
     }
@@ -125,7 +192,11 @@ class BasicWsAPI implements WsAPI {
             }
         }
 
-        response.ResolveNodesResponse.kamNodes.collect {
+        response.ResolveNodesResponse.kamNodes.
+        findAll {
+            !it.attributes()['{http://www.w3.org/2001/XMLSchema-instance}nil']
+        }.
+        collect {
             String id = it.id.toString()
             String fx = FunctionType.valueOf(it.function.toString()).displayValue
             String label = it.label.toString()

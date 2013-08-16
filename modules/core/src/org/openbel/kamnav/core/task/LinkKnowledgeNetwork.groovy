@@ -1,5 +1,6 @@
 package org.openbel.kamnav.core.task
 
+import static org.cytoscape.model.CyNetwork.NAME
 import org.cytoscape.application.CyApplicationManager
 import org.cytoscape.view.model.CyNetworkView
 import org.cytoscape.work.AbstractTask
@@ -7,8 +8,14 @@ import org.cytoscape.work.TaskMonitor
 import org.cytoscape.work.Tunable
 import org.cytoscape.work.util.ListSingleSelection
 import org.openbel.ws.api.WsAPI
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
+
+import static java.lang.String.format
 
 class LinkKnowledgeNetwork extends AbstractTask {
+
+    private static Logger log = LoggerFactory.getLogger(getClass())
 
     private final CyApplicationManager appMgr
     private final WsAPI wsAPI
@@ -39,5 +46,15 @@ class LinkKnowledgeNetwork extends AbstractTask {
      */
     @Override
     void run(TaskMonitor monitor) throws Exception {
+        monitor.title = format("Link Current Network to %s", knName)
+
+        monitor.statusMessage = format("Resolving nodes to %s", knName)
+        def count = cyNv.model.nodeCount
+        def chunk = 1d / count
+        wsAPI.link(cyNv.model, knName) { node, mapping ->
+            String name = cyNv.model.getRow(node).get(NAME, String.class)
+            log.info("resolved ${name} to $mapping".toString())
+            monitor.progress += chunk
+        }
     }
 }

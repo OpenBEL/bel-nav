@@ -1,5 +1,6 @@
 package org.openbel.ws.api
 
+import org.cytoscape.model.CyNetwork
 import org.openbel.framework.common.enums.FunctionEnum
 import org.openbel.kamnav.common.model.Node
 import org.openbel.kamnav.common.model.Edge
@@ -49,6 +50,8 @@ interface WsAPI {
      * be empty, never {@code null}
      */
     Map knowledgeNetworks()
+
+    void link(CyNetwork cyn, String name, Closure closure)
 
     Node[] findNodes(Pattern labelPattern, FunctionEnum... functions)
 

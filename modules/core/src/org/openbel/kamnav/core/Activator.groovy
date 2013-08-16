@@ -8,6 +8,7 @@ import org.cytoscape.task.NetworkViewTaskFactory
 import org.cytoscape.view.model.CyNetworkViewFactory
 import org.cytoscape.view.model.CyNetworkViewManager
 import org.cytoscape.work.TaskFactory
+import org.cytoscape.work.swing.DialogTaskManager
 import org.openbel.kamnav.core.task.LinkKnowledgeNetworkFactory
 import org.openbel.kamnav.core.task.LoadFullKnowledgeNetworkFactory
 import org.openbel.ws.api.WsAPI
