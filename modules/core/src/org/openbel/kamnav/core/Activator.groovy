@@ -6,17 +6,25 @@ import org.cytoscape.model.CyNetworkManager
 import org.cytoscape.service.util.AbstractCyActivator
 import org.cytoscape.task.NetworkViewTaskFactory
 import org.cytoscape.task.NodeViewTaskFactory
+import org.cytoscape.task.read.LoadVizmapFileTaskFactory
 import org.cytoscape.view.model.CyNetworkViewFactory
 import org.cytoscape.view.model.CyNetworkViewManager
+import org.cytoscape.view.vizmap.VisualMappingManager
 import org.cytoscape.work.TaskFactory
-import org.cytoscape.work.swing.DialogTaskManager
 import org.openbel.kamnav.core.task.ExpandNodeFactory
 import org.openbel.kamnav.core.task.LinkKnowledgeNetworkFactory
 import org.openbel.kamnav.core.task.LoadFullKnowledgeNetworkFactory
 import org.openbel.ws.api.WsAPI
 import org.osgi.framework.BundleContext
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 
 class Activator extends AbstractCyActivator {
+
+    private static Logger log = LoggerFactory.getLogger(getClass())
+    private static final String STYLE_PATH = '/style.props'
+    private static final String[] STYLE_NAMES =
+        ['KAM Association', 'KAM Visualization', 'KAM Visualization Minimal']
 
     /**
      * {@inheritDoc}
@@ -30,6 +38,7 @@ class Activator extends AbstractCyActivator {
         CyNetworkViewManager cynvMgr = getService(bc, CyNetworkViewManager.class)
         WsAPI wsAPI = getService(bc, WsAPI.class)
 
+        // register tasks
         registerService(bc,
             new LinkKnowledgeNetworkFactory(appMgr, wsAPI),
             NetworkViewTaskFactory.class, [
@@ -51,5 +60,11 @@ class Activator extends AbstractCyActivator {
                 menuGravity: 11.0,
                 title: "Expand Node"
         ].asType(Properties.class))
+
+        // delete/add knowledge network styles (idempotent)
+        VisualMappingManager vm = getService(bc,VisualMappingManager.class);
+        LoadVizmapFileTaskFactory vf =  getService(bc,LoadVizmapFileTaskFactory.class)
+        vm.allVisualStyles.findAll { it.title in STYLE_NAMES }.each(vm.&removeVisualStyle)
+        vf.loadStyles(getClass().getResourceAsStream(STYLE_PATH))
     }
 }
