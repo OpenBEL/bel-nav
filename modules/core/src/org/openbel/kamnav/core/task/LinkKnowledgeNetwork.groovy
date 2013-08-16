@@ -48,9 +48,11 @@ class LinkKnowledgeNetwork extends AbstractTask {
     void run(TaskMonitor monitor) throws Exception {
         monitor.title = format("Link Current Network to %s", knName)
 
+        monitor.statusMessage = format("Loading %s.", knName)
+        wsAPI.loadKnowledgeNetwork(knName)
+
         monitor.statusMessage = format("Resolving nodes to %s", knName)
-        def count = cyNv.model.nodeCount
-        def chunk = 1d / count
+        def chunk = 1d / cyNv.model.nodeCount
         wsAPI.link(cyNv.model, knName) { node, mapping ->
             String name = cyNv.model.getRow(node).get(NAME, String.class)
             log.info("resolved ${name} to $mapping".toString())

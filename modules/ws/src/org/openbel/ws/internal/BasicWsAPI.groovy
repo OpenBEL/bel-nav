@@ -30,7 +30,7 @@ class BasicWsAPI implements WsAPI {
      */
     @Override
     Map loadKnowledgeNetwork(String name) {
-        def client = new SOAPClient('http://demo.openbel.org/openbel-ws/belframework')
+        def client = new SOAPClient('http://localhost:10000/openbel-ws/belframework')
         def loadMap = [name: name]
 
         Thread load = Thread.start {
@@ -76,7 +76,7 @@ class BasicWsAPI implements WsAPI {
      * {@inheritDoc}
      */
     @Override Map knowledgeNetworks() {
-        def client = new SOAPClient('http://demo.openbel.org/openbel-ws/belframework')
+        def client = new SOAPClient('http://localhost:10000/openbel-ws/belframework')
         def response = client.send {
             body {
                 GetCatalogRequest('xmlns': 'http://belframework.org/ws/schemas')
@@ -99,7 +99,7 @@ class BasicWsAPI implements WsAPI {
      */
     @Override
     void link(CyNetwork cyn, String name, Closure closure = null) {
-        def client = new SOAPClient('http://demo.openbel.org/openbel-ws/belframework')
+        def client = new SOAPClient('http://localhost:10000/openbel-ws/belframework')
         def loadMap = loadKnowledgeNetwork(name)
 
         cyn.nodeList.each { node ->
@@ -163,8 +163,35 @@ class BasicWsAPI implements WsAPI {
      * {@inheritDoc}
      */
     @Override
-    Edge[] adjacentEdges(Node node) {
-        return new Edge[0]
+    Edge[] adjacentEdges(Node node, String dir = 'BOTH') {
+        def client = new SOAPClient('http://localhost:10000/openbel-ws/belframework')
+
+        def response = client.send {
+            body {
+                GetAdjacentKamEdgesRequest('xmlns': 'http://belframework.org/ws/schemas') {
+                    kamNode {
+                        id(node.id)
+                        function(toWS(node.fx))
+                        label(node.label)
+                    }
+                    direction(dir)
+                }
+            }
+        }
+
+        response.GetAdjacentKamEdgesResponse.kamEdges.findAll {
+            !it.attributes()['{http://www.w3.org/2001/XMLSchema-instance}nil']
+        }.
+        collect {
+            new Edge(it.id.toString(),
+                new Node(it.source.id.toString(),
+                    FunctionEnum.fromString(FunctionType.valueOf(it.source.function.toString()).displayValue),
+                    it.source.label.toString()),
+                RelationshipType.fromString(org.openbel.framework.ws.model.RelationshipType.valueOf(it.relationship.toString()).displayValue),
+                new Node(it.target.id.toString(),
+                    FunctionEnum.fromString(FunctionType.valueOf(it.target.function.toString()).displayValue),
+                    it.target.label.toString()))
+        }
     }
 
     /**
@@ -172,7 +199,7 @@ class BasicWsAPI implements WsAPI {
      */
     @Override
     Node[] resolveNodes(String name, Node[] nodelist) {
-        def client = new SOAPClient('http://demo.openbel.org/openbel-ws/belframework')
+        def client = new SOAPClient('http://localhost:10000/openbel-ws/belframework')
         def loadMap = loadKnowledgeNetwork(name)
         if (!loadMap.handle) return null
 
@@ -209,7 +236,7 @@ class BasicWsAPI implements WsAPI {
      */
     @Override
     Edge[] resolveEdges(String name, Edge[] edgelist) {
-        def client = new SOAPClient('http://demo.openbel.org/openbel-ws/belframework')
+        def client = new SOAPClient('http://localhost:10000/openbel-ws/belframework')
         def loadMap = loadKnowledgeNetwork(name)
         if (!loadMap.handle) return null
 
@@ -244,11 +271,12 @@ class BasicWsAPI implements WsAPI {
                     it.source.id.toString(),
                     FunctionEnum.fromString(FunctionType.valueOf(it.source.function.toString()).displayValue),
                     it.source.label.toString())
+            def rel = RelationshipType.fromString(org.openbel.framework.ws.model.RelationshipType.valueOf(it.relationship.toString()).displayValue)
             Node target = new Node(
                     it.target.id.toString(),
                     FunctionEnum.fromString(FunctionType.valueOf(it.target.function.toString()).displayValue),
                     it.target.label.toString())
-            new Edge(source, it.relationship.toString(), target)
+            new Edge(null, source, rel, target)
         }
     }
 
@@ -297,7 +325,7 @@ class BasicWsAPI implements WsAPI {
 
             Node source = new Node(null, FunctionEnum.KINASE_ACTIVITY, 'kin(p(HGNC:AKT1))')
             Node target = new Node(null, FunctionEnum.PROTEIN_ABUNDANCE, 'p(HGNC:CDKN1A)')
-            Edge edge = new Edge(source, RelationshipType.CAUSES_NO_CHANGE, target)
+            Edge edge = new Edge(null, source, RelationshipType.CAUSES_NO_CHANGE, target)
             println api.resolveNodes(name, [source, target] as Node[])
             println api.resolveEdges(name, [edge] as Edge[])
         }

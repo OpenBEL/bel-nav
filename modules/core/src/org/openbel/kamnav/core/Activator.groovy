@@ -5,10 +5,12 @@ import org.cytoscape.model.CyNetworkFactory
 import org.cytoscape.model.CyNetworkManager
 import org.cytoscape.service.util.AbstractCyActivator
 import org.cytoscape.task.NetworkViewTaskFactory
+import org.cytoscape.task.NodeViewTaskFactory
 import org.cytoscape.view.model.CyNetworkViewFactory
 import org.cytoscape.view.model.CyNetworkViewManager
 import org.cytoscape.work.TaskFactory
 import org.cytoscape.work.swing.DialogTaskManager
+import org.openbel.kamnav.core.task.ExpandNodeFactory
 import org.openbel.kamnav.core.task.LinkKnowledgeNetworkFactory
 import org.openbel.kamnav.core.task.LoadFullKnowledgeNetworkFactory
 import org.openbel.ws.api.WsAPI
@@ -41,6 +43,13 @@ class Activator extends AbstractCyActivator {
                 preferredMenu: 'Apps.KamNav',
                 menuGravity: 11.0,
                 title: "Create Network from Knowledge Network"
+        ].asType(Properties.class))
+        registerService(bc,
+                new ExpandNodeFactory(wsAPI),
+                NodeViewTaskFactory.class, [
+                preferredMenu: 'Apps.KamNav',
+                menuGravity: 11.0,
+                title: "Expand Node"
         ].asType(Properties.class))
     }
 }

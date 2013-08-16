@@ -55,7 +55,7 @@ interface WsAPI {
 
     Node[] findNodes(Pattern labelPattern, FunctionEnum... functions)
 
-    Edge[] adjacentEdges(Node node)
+    Edge[] adjacentEdges(Node node, String direction)
 
     Node[] resolveNodes(String name, Node[] nodes)
 

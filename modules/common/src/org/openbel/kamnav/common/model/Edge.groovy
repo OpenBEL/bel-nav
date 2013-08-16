@@ -5,6 +5,7 @@ import org.openbel.framework.common.enums.RelationshipType
 
 @TupleConstructor
 class Edge {
+    final String id
     final Node source
     final RelationshipType relationship
     final Node target

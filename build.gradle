@@ -81,6 +81,7 @@ project('modules/common') {
         org.codehaus.groovy.runtime;version="[2.1,3)",
         org.codehaus.groovy.runtime.callsite;version="[2.1,3)",
         org.codehaus.groovy.runtime.typehandling;version="[2.1,3)",
+        org.openbel.framework.common.enums;version="[3,4)",
         org.slf4j;version="[1,2)",
         sun.reflect
       '''
@@ -132,6 +133,8 @@ project('modules/core') {
         org.cytoscape.view.model;version="[3,4)",
         org.cytoscape.work;version="[3,4)",
         org.cytoscape.work.util;version="[3,4)",
+        org.openbel.framework.common.enums;version="[3,4)",
+        org.openbel.kamnav.common.model,
         org.openbel.ws.api,
         org.osgi.framework,
         org.slf4j;version="[1,2)",
