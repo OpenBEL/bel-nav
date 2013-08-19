@@ -1,6 +1,5 @@
 package org.openbel.kamnav.core.task
 
-import static org.cytoscape.model.CyNetwork.NAME
 import org.cytoscape.application.CyApplicationManager
 import org.cytoscape.view.model.CyNetworkView
 import org.cytoscape.work.AbstractTask
@@ -24,6 +23,7 @@ class LinkKnowledgeNetwork extends AbstractTask {
 
     // tunable state
     private String knName
+    private ListSingleSelection<String> knNameSelection
 
     private LinkKnowledgeNetwork(final CyApplicationManager appMgr,
             final WsAPI wsAPI, final CyNetworkView cyNv) {
@@ -35,8 +35,8 @@ class LinkKnowledgeNetwork extends AbstractTask {
     // Called by cytoscape
     @Tunable(description = "Knowledge network")
     public ListSingleSelection<String> getKnName() {
-        String[] names = wsAPI.knowledgeNetworks().keySet() as String[]
-        return new ListSingleSelection<String>(names)
+        knNameSelection = knNameSelection ?:
+            new ListSingleSelection<String>(wsAPI.knowledgeNetworks().keySet() as String[])
     }
 
     // Called by cytoscape
@@ -47,24 +47,20 @@ class LinkKnowledgeNetwork extends AbstractTask {
     /**
      * {@inheritDoc}
      */
-    @Override
-    void run(TaskMonitor monitor) throws Exception {
+    @Override void run(TaskMonitor monitor) throws Exception {
         def cyN = cyNv.model
         if (!cyN.nodeCount) {
             msg.error("0 nodes in network.")
             return
         }
-        monitor.title = format("Link Current Network to %s", knName)
+        monitor.title = "Link Current Network to $knName"
 
-        monitor.statusMessage = format("Loading %s.", knName)
+        monitor.statusMessage = "Loading $knName."
         wsAPI.loadKnowledgeNetwork(knName)
 
-        monitor.statusMessage = format("Resolving nodes to %s", knName)
-        def chunk = 1d / cyNv.model.nodeCount
-        wsAPI.link(cyNv.model, knName) { node, mapping ->
-            String name = cyNv.model.getRow(node).get(NAME, String.class)
-            log.info("resolved ${name} to $mapping".toString())
-            monitor.progress += chunk
-        }
+        monitor.statusMessage = "Resolving nodes to $knName"
+        def nodeCount = wsAPI.linkNodes(cyNv.model, knName).count {it}
+        def edgeCount = wsAPI.linkEdges(cyNv.model, knName).count {it}
+        msg.info("Linked ${nodeCount} nodes and ${edgeCount} edges.")
     }
 }

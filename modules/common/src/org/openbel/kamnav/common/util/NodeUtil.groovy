@@ -12,6 +12,13 @@ import org.openbel.kamnav.common.model.Node
 
 class NodeUtil {
 
+    static def createNodeColumns(CyNetwork cyN) {
+        cyN.defaultNodeTable.getColumn('bel.function') ?:
+            cyN.defaultNodeTable.createColumn('bel.function', String.class, false)
+        cyN.defaultNodeTable.getColumn('kam.id') ?:
+            cyN.defaultNodeTable.createColumn('kam.id', String.class, false)
+    }
+
     static def toNode = { CyNetwork cyNetwork, CyNode cyNode ->
         if (!cyNetwork || !cyNode) return null
         def row = cyNetwork.getRow(cyNode)
@@ -46,15 +53,15 @@ class NodeUtil {
         n
     }
 
-    static def props = { CyNetwork cyN, CyNode node ->
+    static def toBEL(CyNetwork cyN, CyNode node) {
         def label = cyN.getRow(node).get(NAME, String.class)
         try {
             Term term = parseTerm(label)
-            if (!term) return []
-            return [term.functionEnum, label]
+            if (!term) return [:]
+            return [fx: term.functionEnum, lbl: label]
         } catch (InvalidArgument e) {
             // parse failure; cannot resolve so return
-            return []
+            return [:]
         }
     }
 }

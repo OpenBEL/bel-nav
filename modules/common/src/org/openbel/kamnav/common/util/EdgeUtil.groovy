@@ -14,6 +14,11 @@ import org.openbel.kamnav.common.model.Edge
 
 class EdgeUtil {
 
+    static def createEdgeColumns(CyNetwork cyN) {
+        cyN.defaultEdgeTable.getColumn('kam.id') ?:
+            cyN.defaultEdgeTable.createColumn('kam.id', String.class, false)
+    }
+
     static def toEdge = { CyNetwork cyNetwork, CyEdge cyEdge ->
         if (!cyNetwork || !cyEdge) return null
         def row = cyNetwork.getRow(cyEdge)

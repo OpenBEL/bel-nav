@@ -51,13 +51,11 @@ interface WsAPI {
      */
     Map knowledgeNetworks()
 
-    void link(CyNetwork cyn, String name, Closure closure)
+    List linkNodes(CyNetwork cyn, String name)
+
+    List linkEdges(CyNetwork cyn, String name)
 
     Node[] findNodes(String name, Pattern labelPattern, FunctionEnum... functions)
 
     Edge[] adjacentEdges(Node node, String direction)
-
-    Node[] resolveNodes(String name, Node[] nodes)
-
-    Edge[] resolveEdges(String name, Edge[] edges)
 }
