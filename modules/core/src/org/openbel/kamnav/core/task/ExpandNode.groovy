@@ -1,9 +1,9 @@
 package org.openbel.kamnav.core.task
 
+import org.cytoscape.event.CyEventHelper
+import org.cytoscape.view.vizmap.VisualMappingManager
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-
-import javax.swing.JOptionPane
 
 import static org.openbel.kamnav.common.util.NodeUtil.*
 import static org.openbel.kamnav.common.util.EdgeUtil.*
@@ -22,6 +22,8 @@ class ExpandNode extends AbstractTask {
     private static final Logger msg = LoggerFactory.getLogger("CyUserMessages");
     final CyNetworkView cyNv
     final View<CyNode> nodeView
+    final CyEventHelper evtHelper
+    final VisualMappingManager visMgr
     final WsAPI wsAPI
 
     /**
@@ -51,5 +53,9 @@ class ExpandNode extends AbstractTask {
 
             monitor.progress += chunk
         }
+
+        evtHelper.flushPayloadEvents()
+        visMgr.getCurrentVisualStyle().apply(cyNv)
+        cyNv.updateView()
     }
 }

@@ -1,12 +1,14 @@
 package org.openbel.kamnav.core
 
 import org.cytoscape.application.CyApplicationManager
+import org.cytoscape.event.CyEventHelper
 import org.cytoscape.model.CyNetworkFactory
 import org.cytoscape.model.CyNetworkManager
 import org.cytoscape.service.util.AbstractCyActivator
 import org.cytoscape.task.NetworkViewTaskFactory
 import org.cytoscape.task.NodeViewTaskFactory
 import org.cytoscape.task.read.LoadVizmapFileTaskFactory
+import org.cytoscape.task.visualize.ApplyPreferredLayoutTaskFactory
 import org.cytoscape.view.model.CyNetworkViewFactory
 import org.cytoscape.view.model.CyNetworkViewManager
 import org.cytoscape.view.vizmap.VisualMappingManager
@@ -33,11 +35,14 @@ class Activator extends AbstractCyActivator {
         CyNetworkManager cynMgr = getService(bc, CyNetworkManager.class)
         CyNetworkViewFactory cynvFac = getService(bc, CyNetworkViewFactory.class)
         CyNetworkViewManager cynvMgr = getService(bc, CyNetworkViewManager.class)
+        VisualMappingManager visMgr = getService(bc, VisualMappingManager.class)
+        CyEventHelper evtHelper = getService(bc, CyEventHelper.class)
+        ApplyPreferredLayoutTaskFactory aplFac = getService(bc, ApplyPreferredLayoutTaskFactory.class)
         WsAPI wsAPI = getService(bc, WsAPI.class)
 
         // register tasks
         registerService(bc,
-            new ExpandNodeFactory(wsAPI),
+            new ExpandNodeFactory(aplFac, evtHelper, visMgr, wsAPI),
             NodeViewTaskFactory.class, [
                 preferredMenu: 'Apps.KamNav',
                 menuGravity: 11.0,
@@ -59,9 +64,8 @@ class Activator extends AbstractCyActivator {
         ].asType(Properties.class))
 
         // delete/add knowledge network styles (idempotent)
-        VisualMappingManager vm = getService(bc,VisualMappingManager.class);
         LoadVizmapFileTaskFactory vf =  getService(bc,LoadVizmapFileTaskFactory.class)
-        vm.allVisualStyles.findAll { it.title in STYLE_NAMES }.each(vm.&removeVisualStyle)
+        visMgr.allVisualStyles.findAll { it.title in STYLE_NAMES }.each(visMgr.&removeVisualStyle)
         vf.loadStyles(getClass().getResourceAsStream(STYLE_PATH))
     }
 }
