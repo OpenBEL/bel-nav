@@ -15,6 +15,7 @@ import static java.lang.String.format
 
 class LinkKnowledgeNetwork extends AbstractTask {
 
+    private static final Logger msg = LoggerFactory.getLogger("CyUserMessages");
     private static Logger log = LoggerFactory.getLogger(getClass())
 
     private final CyApplicationManager appMgr
@@ -48,6 +49,11 @@ class LinkKnowledgeNetwork extends AbstractTask {
      */
     @Override
     void run(TaskMonitor monitor) throws Exception {
+        def cyN = cyNv.model
+        if (!cyN.nodeCount) {
+            msg.error("0 nodes in network.")
+            return
+        }
         monitor.title = format("Link Current Network to %s", knName)
 
         monitor.statusMessage = format("Loading %s.", knName)
