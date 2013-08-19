@@ -120,8 +120,8 @@ class BasicWsAPI implements WsAPI {
 
         response.ResolveNodesResponse.kamNodes.eachWithIndex { n, idx ->
             def isNil = n.attributes()['{http://www.w3.org/2001/XMLSchema-instance}nil']
+            def cyNode = cyn.nodeList[idx]
             if (!isNil) {
-                def cyNode = cyn.nodeList[idx]
                 def id = n.id.toString()
                 def fx = FunctionType.valueOf(n.function.toString()).displayValue
                 def lbl = n.label.toString()
