@@ -1,12 +1,9 @@
 package org.openbel.ws.internal
 
-import org.openbel.framework.common.InvalidArgument
-import org.openbel.framework.common.model.Term
+import static org.cytoscape.model.CyNetwork.NAME
+import static org.openbel.kamnav.common.util.NodeUtil.props
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-
-import static org.openbel.framework.common.bel.parser.BELParser.parseTerm
-import static org.cytoscape.model.CyNetwork.NAME
 import org.cytoscape.model.CyNetwork
 import org.openbel.framework.common.enums.FunctionEnum
 import org.openbel.framework.common.enums.RelationshipType
@@ -30,7 +27,7 @@ class BasicWsAPI implements WsAPI {
      */
     @Override
     Map loadKnowledgeNetwork(String name) {
-        def client = new SOAPClient('http://localhost:10000/openbel-ws/belframework')
+        def client = new SOAPClient('http://demo.openbel.org/openbel-ws/belframework')
         def loadMap = [name: name]
 
         Thread load = Thread.start {
@@ -76,7 +73,7 @@ class BasicWsAPI implements WsAPI {
      * {@inheritDoc}
      */
     @Override Map knowledgeNetworks() {
-        def client = new SOAPClient('http://localhost:10000/openbel-ws/belframework')
+        def client = new SOAPClient('http://demo.openbel.org/openbel-ws/belframework')
         def response = client.send {
             body {
                 GetCatalogRequest('xmlns': 'http://belframework.org/ws/schemas')
@@ -99,55 +96,50 @@ class BasicWsAPI implements WsAPI {
      */
     @Override
     void link(CyNetwork cyn, String name, Closure closure = null) {
-        def client = new SOAPClient('http://localhost:10000/openbel-ws/belframework')
+        def client = new SOAPClient('http://demo.openbel.org/openbel-ws/belframework')
         def loadMap = loadKnowledgeNetwork(name)
 
-        cyn.nodeList.each { node ->
-            String lbl = cyn.getRow(node).get(NAME, String.class)
-            Term t
-            try {
-                t = parseTerm(lbl)
-            } catch (InvalidArgument e) {
-                // parse failure; cannot resolve so return
-                if (closure) closure.call(node, null)
-                return
-            }
-
-            def response = client.send {
-                body {
-                    ResolveNodesRequest('xmlns': 'http://belframework.org/ws/schemas') {
-                        handle {
-                            handle(loadMap.handle)
-                        }
-                        nodes {
-                            function(toWS(t.functionEnum))
-                            label(lbl)
+        def response = client.send {
+            body {
+                ResolveNodesRequest('xmlns': 'http://belframework.org/ws/schemas') {
+                    handle {
+                        handle(loadMap.handle)
+                    }
+                    cyn.nodeList.collect { n ->
+                        def (fx, lbl) = props.call(cyn, n)
+                        if (fx && lbl) {
+                            nodes {
+                                function(toWS(fx))
+                                label(lbl)
+                            }
                         }
                     }
                 }
             }
-            def ret = response.ResolveNodesResponse.kamNodes.find {
-                !it.attributes()['{http://www.w3.org/2001/XMLSchema-instance}nil']
-            }
-            if (ret) {
-                String id = ret.id.toString()
-                String fx = FunctionType.valueOf(ret.function.toString()).displayValue
-                lbl = ret.label.toString()
+        }
+
+        response.ResolveNodesResponse.kamNodes.eachWithIndex { n, idx ->
+            def isNil = n.attributes()['{http://www.w3.org/2001/XMLSchema-instance}nil']
+            if (!isNil) {
+                def cyNode = cyn.nodeList[idx]
+                def id = n.id.toString()
+                def fx = FunctionType.valueOf(n.function.toString()).displayValue
+                def lbl = n.label.toString()
 
                 if (!cyn.defaultNodeTable.getColumn('bel.function'))
                     cyn.defaultNodeTable.createColumn('bel.function', String.class, false)
                 if (!cyn.defaultNodeTable.getColumn('kam.id'))
                     cyn.defaultNodeTable.createColumn('kam.id', String.class, false)
-                cyn.getRow(node).set(NAME, lbl)
-                cyn.getRow(node).set("bel.function",
+
+                cyn.getRow(cyNode).set(NAME, lbl)
+                cyn.getRow(cyNode).set("bel.function",
                         FunctionEnum.fromString(fx).displayValue)
-                cyn.getRow(node).set("kam.id", id)
+                cyn.getRow(cyNode).set("kam.id", id)
 
-                if (closure) closure.call(node, [id: id, fx: fx, lbl: lbl])
+                if (closure) closure.call(cyNode, [id: id, fx: fx, lbl: lbl])
             } else {
-                if (closure) closure.call(node, [:])
+                if (closure) closure.call(cyNode, [:])
             }
-
         }
     }
 
@@ -156,7 +148,7 @@ class BasicWsAPI implements WsAPI {
      */
     @Override
     Node[] findNodes(String name, Pattern labelPattern, FunctionEnum... functions) {
-        def client = new SOAPClient('http://localhost:10000/openbel-ws/belframework')
+        def client = new SOAPClient('http://demo.openbel.org/openbel-ws/belframework')
         def loadMap = loadKnowledgeNetwork(name)
         if (!loadMap.handle) return null
 
@@ -195,7 +187,7 @@ class BasicWsAPI implements WsAPI {
      */
     @Override
     Edge[] adjacentEdges(Node node, String dir = 'BOTH') {
-        def client = new SOAPClient('http://localhost:10000/openbel-ws/belframework')
+        def client = new SOAPClient('http://demo.openbel.org/openbel-ws/belframework')
 
         def response = client.send {
             body {
@@ -230,7 +222,7 @@ class BasicWsAPI implements WsAPI {
      */
     @Override
     Node[] resolveNodes(String name, Node[] nodelist) {
-        def client = new SOAPClient('http://localhost:10000/openbel-ws/belframework')
+        def client = new SOAPClient('http://demo.openbel.org/openbel-ws/belframework')
         def loadMap = loadKnowledgeNetwork(name)
         if (!loadMap.handle) return null
 
@@ -267,7 +259,7 @@ class BasicWsAPI implements WsAPI {
      */
     @Override
     Edge[] resolveEdges(String name, Edge[] edgelist) {
-        def client = new SOAPClient('http://localhost:10000/openbel-ws/belframework')
+        def client = new SOAPClient('http://demo.openbel.org/openbel-ws/belframework')
         def loadMap = loadKnowledgeNetwork(name)
         if (!loadMap.handle) return null
 

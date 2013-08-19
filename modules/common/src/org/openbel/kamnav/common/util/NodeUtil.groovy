@@ -1,7 +1,11 @@
 package org.openbel.kamnav.common.util
 
+import org.openbel.framework.common.InvalidArgument
+import org.openbel.framework.common.model.Term
+
 import static org.cytoscape.model.CyNetwork.NAME
 import static org.openbel.framework.common.enums.FunctionEnum.fromString
+import static org.openbel.framework.common.bel.parser.BELParser.parseTerm
 import org.cytoscape.model.CyNetwork
 import org.cytoscape.model.CyNode
 import org.openbel.kamnav.common.model.Node
@@ -14,20 +18,20 @@ class NodeUtil {
         if (!row) return null
 
         new Node(
-                row.get("kam.id", String.class),
-                fromString(row.get("bel.function", String.class)),
-                row.get(NAME, String.class)
+            row.get("kam.id", String.class),
+            fromString(row.get("bel.function", String.class)),
+            row.get(NAME, String.class)
         )
     }
 
     static def findNode = { CyNetwork cyNetwork, String label ->
         def table = cyNetwork.defaultNodeTable
         table.getMatchingRows(NAME, label).
-                collect { row ->
-                    long id = row.get(table.primaryKey.name, Long.class)
-                    if (!id) return null
-                    cyNetwork.getNode(id)
-                }.find()
+            collect { row ->
+                long id = row.get(table.primaryKey.name, Long.class)
+                if (!id) return null
+                cyNetwork.getNode(id)
+            }.find()
     }
 
     static def makeNode = { CyNetwork cyN, String id, String fx, String label ->
@@ -40,5 +44,17 @@ class NodeUtil {
         cyN.getRow(n).set("bel.function", fx)
         cyN.getRow(n).set(NAME, label)
         n
+    }
+
+    static def props = { CyNetwork cyN, CyNode node ->
+        def label = cyN.getRow(node).get(NAME, String.class)
+        try {
+            Term term = parseTerm(label)
+            if (!term) return []
+            return [term.functionEnum, label]
+        } catch (InvalidArgument e) {
+            // parse failure; cannot resolve so return
+            return []
+        }
     }
 }

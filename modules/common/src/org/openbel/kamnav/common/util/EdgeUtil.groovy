@@ -46,7 +46,7 @@ class EdgeUtil {
         def table = cyN.defaultEdgeTable
         table.getColumn('kam.id') ?: table.createColumn('kam.id', String.class, false)
         CyEdge e = cyN.addEdge(s, t, true)
-        cyN.getRow(e).set('kam.id', rel)
+        cyN.getRow(e).set('kam.id', id)
         cyN.getRow(e).set(INTERACTION, rel)
         e
     }
