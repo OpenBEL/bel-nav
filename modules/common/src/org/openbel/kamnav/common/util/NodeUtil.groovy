@@ -17,21 +17,23 @@ class NodeUtil {
             cyN.defaultNodeTable.createColumn('bel.function', String.class, false)
         cyN.defaultNodeTable.getColumn('kam.id') ?:
             cyN.defaultNodeTable.createColumn('kam.id', String.class, false)
+        cyN.defaultNodeTable.getColumn('linked') ?:
+            cyN.defaultNodeTable.createColumn('linked', Boolean.class, false)
     }
 
-    static def toNode = { CyNetwork cyNetwork, CyNode cyNode ->
+    static def toNode(CyNetwork cyNetwork, CyNode cyNode) {
         if (!cyNetwork || !cyNode) return null
         def row = cyNetwork.getRow(cyNode)
         if (!row) return null
 
         new Node(
-            row.get("kam.id", String.class),
-            fromString(row.get("bel.function", String.class)),
+            row.get('kam.id', String.class),
+            fromString(row.get('bel.function', String.class)),
             row.get(NAME, String.class)
         )
     }
 
-    static def findNode = { CyNetwork cyNetwork, String label ->
+    static def findNode(CyNetwork cyNetwork, String label) {
         def table = cyNetwork.defaultNodeTable
         table.getMatchingRows(NAME, label).
             collect { row ->
@@ -41,14 +43,13 @@ class NodeUtil {
             }.find()
     }
 
-    static def makeNode = { CyNetwork cyN, String id, String fx, String label ->
+    static def makeNode(CyNetwork cyN, String id, String fx, String label) {
         def n = cyN.addNode()
-        def table = cyN.defaultNodeTable
-        table.getColumn('bel.function') ?: table.createColumn('bel.function', String.class, false)
-        table.getColumn('kam.id') ?: table.createColumn('kam.id', String.class, false)
+        createNodeColumns(cyN)
 
-        cyN.getRow(n).set("kam.id", id)
-        cyN.getRow(n).set("bel.function", fx)
+        cyN.getRow(n).set('linked', true)
+        cyN.getRow(n).set('kam.id', id)
+        cyN.getRow(n).set('bel.function', fx)
         cyN.getRow(n).set(NAME, label)
         n
     }

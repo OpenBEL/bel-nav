@@ -25,13 +25,14 @@ class ExpandNodeFactory extends AbstractNodeViewTaskFactory {
 
     @Override
     boolean isReady(View<CyNode> nodeView, CyNetworkView networkView) {
-        def node = toNode.call(networkView.model, nodeView.model)
+        def node = toNode(networkView.model, nodeView.model)
         if (!node.id) {
             msg.warn("${node.label} is not linked to a Knowledge Network.")
         }
         node.id
     }
-/**
+
+    /**
      * {@inheritDoc}
      */
     @Override

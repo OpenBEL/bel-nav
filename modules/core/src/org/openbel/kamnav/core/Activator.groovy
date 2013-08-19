@@ -21,7 +21,7 @@ import org.osgi.framework.BundleContext
 
 class Activator extends AbstractCyActivator {
 
-    private static final String STYLE_PATH = '/style.props'
+    private static final String STYLE_PATH = '/style.xml'
     private static final String[] STYLE_NAMES =
         ['KAM Association', 'KAM Visualization', 'KAM Visualization Minimal']
 

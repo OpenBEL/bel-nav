@@ -19,7 +19,7 @@ import org.openbel.ws.api.WsAPI
 @TupleConstructor
 class ExpandNode extends AbstractTask {
 
-    private static final Logger msg = LoggerFactory.getLogger("CyUserMessages");
+    private static final Logger msg = LoggerFactory.getLogger('CyUserMessages');
     final CyNetworkView cyNv
     final View<CyNode> nodeView
     final CyEventHelper evtHelper
@@ -31,7 +31,7 @@ class ExpandNode extends AbstractTask {
      */
     @Override
     void run(TaskMonitor monitor) throws Exception {
-        def node = toNode.call(cyNv.model, nodeView.model)
+        def node = toNode(cyNv.model, nodeView.model)
         monitor.title = 'Expand Node'
         monitor.statusMessage = "Expanding ${node.label}"
 
@@ -41,13 +41,13 @@ class ExpandNode extends AbstractTask {
             def s = edge.source
             def t = edge.target
             def rel = edge.relationship.displayValue
-            def cySource = findNode.call(cyNv.model, s.label) ?:
-                makeNode.call(cyNv.model, s.id, s.fx.displayValue, s.label)
+            def cySource = findNode(cyNv.model, s.label) ?:
+                makeNode(cyNv.model, s.id, s.fx.displayValue, s.label)
             def cyTarget =
-                findNode.call(cyNv.model, t.label) ?:
-                makeNode.call(cyNv.model, t.id, t.fx.displayValue, t.label)
-            findEdge.call(cyNv.model, s.label, rel, t.label) ?:
-                makeEdge.call(cyNv.model, cySource, cyTarget, edge.id, rel)
+                findNode(cyNv.model, t.label) ?:
+                makeNode(cyNv.model, t.id, t.fx.displayValue, t.label)
+            findEdge(cyNv.model, s.label, rel, t.label) ?:
+                makeEdge(cyNv.model, cySource, cyTarget, edge.id, rel)
             monitor.progress += chunk
         }
 

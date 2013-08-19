@@ -43,17 +43,17 @@ class LoadFullKnowledgeNetwork extends AbstractTask {
                 })
         }
         nodes.each { n ->
-            wsAPI.adjacentEdges(toNode.call(cyN, n)).each { edge ->
+            wsAPI.adjacentEdges(toNode(cyN, n)).each { edge ->
                 def s = edge.source
                 def t = edge.target
                 def r = edge.relationship.displayValue
-                def cySource = findNode.call(cyN, s.label) ?:
-                    makeNode.call(cyN, s.id, s.fx.displayValue, s.label)
+                def cySource = findNode(cyN, s.label) ?:
+                    makeNode(cyN, s.id, s.fx.displayValue, s.label)
                 def cyTarget =
-                    findNode.call(cyN, t.label) ?:
-                        makeNode.call(cyN, t.id, t.fx.displayValue, t.label)
-                findEdge.call(cyN, s.label, r, t.label) ?:
-                    makeEdge.call(cyN, cySource, cyTarget, edge.id, r)
+                    findNode(cyN, t.label) ?:
+                        makeNode(cyN, t.id, t.fx.displayValue, t.label)
+                findEdge(cyN, s.label, r, t.label) ?:
+                    makeEdge(cyN, cySource, cyTarget, edge.id, r)
             }
         }
     }

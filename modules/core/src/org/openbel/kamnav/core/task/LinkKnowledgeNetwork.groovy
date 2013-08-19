@@ -1,5 +1,6 @@
 package org.openbel.kamnav.core.task
 
+import static org.cytoscape.model.CyNetwork.NAME
 import org.cytoscape.application.CyApplicationManager
 import org.cytoscape.view.model.CyNetworkView
 import org.cytoscape.work.AbstractTask
@@ -9,8 +10,6 @@ import org.cytoscape.work.util.ListSingleSelection
 import org.openbel.ws.api.WsAPI
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-
-import static java.lang.String.format
 
 class LinkKnowledgeNetwork extends AbstractTask {
 
@@ -53,13 +52,15 @@ class LinkKnowledgeNetwork extends AbstractTask {
             msg.error("0 nodes in network.")
             return
         }
-        monitor.title = "Link Current Network to $knName"
+        def name = cyN.getRow(cyN).get(NAME, String.class)
+        monitor.title = "Link $name (Network) to $knName (Knowledge Network)"
 
         monitor.statusMessage = "Loading $knName."
         wsAPI.loadKnowledgeNetwork(knName)
 
         monitor.statusMessage = "Resolving nodes to $knName"
         def nodeCount = wsAPI.linkNodes(cyNv.model, knName).count {it}
+        monitor.statusMessage = "Resolving edges to $knName"
         def edgeCount = wsAPI.linkEdges(cyNv.model, knName).count {it}
         msg.info("Linked ${nodeCount} nodes and ${edgeCount} edges.")
     }

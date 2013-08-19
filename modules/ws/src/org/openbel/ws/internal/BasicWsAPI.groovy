@@ -100,6 +100,7 @@ class BasicWsAPI implements WsAPI {
 
         createNodeColumns(cyN)
         cyN.nodeList.each {
+            cyN.getRow(it).set('linked', false)
             cyN.getRow(it).set('kam.id', null)
             cyN.getRow(it).set('bel.function', null)
         }
@@ -135,6 +136,7 @@ class BasicWsAPI implements WsAPI {
             def fx = FunctionType.valueOf(wsNode.function.toString()).displayValue
             def lbl = wsNode.label.toString()
 
+            cyN.getRow(n).set('linked', true)
             cyN.getRow(n).set("kam.id", id)
             cyN.getRow(n).set("bel.function", FunctionEnum.fromString(fx).displayValue)
             cyN.getRow(n).set(NAME, lbl)
@@ -154,6 +156,7 @@ class BasicWsAPI implements WsAPI {
 
         createEdgeColumns(cyN)
         cyN.edgeList.each {
+            cyN.getRow(it).set('linked', false)
             cyN.getRow(it).set('kam.id', null)
         }
 
@@ -199,6 +202,7 @@ class BasicWsAPI implements WsAPI {
             def isNil = wsEdge.attributes()['{http://www.w3.org/2001/XMLSchema-instance}nil']
             if (isNil) return null
 
+            cyN.getRow(e).set('linked', true)
             cyN.getRow(e).set("kam.id", wsEdge.id.toString())
             [
                 id: wsEdge.id.toString(),
