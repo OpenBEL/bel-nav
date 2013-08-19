@@ -144,6 +144,7 @@ project('modules/core') {
         org.openbel.ws.api,
         org.osgi.framework,
         org.slf4j;version="[1,2)",
+        javax.swing,
         sun.reflect
       '''
       instruction 'Bundle-Activator', 'org.openbel.kamnav.core.Activator'
