@@ -34,7 +34,7 @@ class ExpandNode extends AbstractTask {
         def node = toNode.call(cyNv.model, nodeView.model)
         monitor.title = format("Expand %s node", node.label)
         if (!node.id) {
-            msg.warn('The node is not linked to a Knowledge Network.')
+            msg.warn("${node.label} is not linked to a Knowledge Network.")
             return
         }
         monitor.statusMessage = 'Expanding node'
@@ -44,18 +44,21 @@ class ExpandNode extends AbstractTask {
         wsAPI.adjacentEdges(node).each { edge ->
             def s = edge.source
             def t = edge.target
+            def rel = edge.relationship.displayValue
             def cySource = findNode.call(cyNv.model, s.label) ?:
                 makeNode.call(cyNv.model, s.id, s.fx.displayValue, s.label)
             def cyTarget =
                 findNode.call(cyNv.model, t.label) ?:
                 makeNode.call(cyNv.model, t.id, t.fx.displayValue, t.label)
-            makeEdge.call(cyNv.model, cySource, cyTarget, edge.id, edge.relationship.displayValue)
-
+            findEdge.call(cyNv.model, s.label, rel, t.label) ?:
+                makeEdge.call(cyNv.model, cySource, cyTarget, edge.id, rel)
             monitor.progress += chunk
         }
 
         evtHelper.flushPayloadEvents()
         visMgr.getCurrentVisualStyle().apply(cyNv)
         cyNv.updateView()
+
+        msg.info("Expanded ${node.label}")
     }
 }
