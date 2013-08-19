@@ -32,12 +32,8 @@ class ExpandNode extends AbstractTask {
     @Override
     void run(TaskMonitor monitor) throws Exception {
         def node = toNode.call(cyNv.model, nodeView.model)
-        monitor.title = format("Expand %s node", node.label)
-        if (!node.id) {
-            msg.warn("${node.label} is not linked to a Knowledge Network.")
-            return
-        }
-        monitor.statusMessage = 'Expanding node'
+        monitor.title = 'Expand Node'
+        monitor.statusMessage = "Expanding ${node.label}"
 
         def edges = wsAPI.adjacentEdges(node)
         def chunk = 1.0d / edges.length
