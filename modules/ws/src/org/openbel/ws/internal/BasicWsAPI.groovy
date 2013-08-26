@@ -102,7 +102,6 @@ class BasicWsAPI implements WsAPI {
         cyN.nodeList.each {
             cyN.getRow(it).set('linked', false)
             cyN.getRow(it).set('kam.id', null)
-            cyN.getRow(it).set('bel.function', null)
         }
 
         def response = client.send {
