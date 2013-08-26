@@ -2,10 +2,15 @@ package org.openbel.kamnav.core.task
 
 import groovy.transform.TupleConstructor
 import org.cytoscape.application.CyApplicationManager
+import org.cytoscape.event.CyEventHelper
 import org.cytoscape.model.CyNetworkFactory
 import org.cytoscape.model.CyNetworkManager
+import org.cytoscape.property.CyProperty
+import org.cytoscape.task.visualize.ApplyPreferredLayoutTaskFactory
+import org.cytoscape.view.layout.CyLayoutAlgorithmManager
 import org.cytoscape.view.model.CyNetworkViewFactory
 import org.cytoscape.view.model.CyNetworkViewManager
+import org.cytoscape.view.vizmap.VisualMappingManager
 import org.cytoscape.work.AbstractTaskFactory
 import org.cytoscape.work.TaskIterator
 import org.openbel.ws.api.WsAPI
@@ -21,6 +26,10 @@ class LoadFullKnowledgeNetworkFactory extends AbstractTaskFactory {
     final CyNetworkViewFactory cynvFac
     final CyNetworkManager cynMgr
     final CyNetworkViewManager cynvMgr
+    final CyLayoutAlgorithmManager cylMgr
+    final CyProperty<Properties> cyProp
+    final CyEventHelper evtHelper
+    final VisualMappingManager visMgr
     final WsAPI wsAPI
 
     /**
@@ -30,8 +39,10 @@ class LoadFullKnowledgeNetworkFactory extends AbstractTaskFactory {
     TaskIterator createTaskIterator() {
         log.info("Create new LoadFullKnowledgeNetwork task.")
 
-        return new TaskIterator(
+        new TaskIterator(
             new CreateCyNetwork(appMgr, cynFac, cynvFac, cynMgr, cynvMgr, wsAPI),
-            new LoadFullKnowledgeNetwork(appMgr, wsAPI))
+            new LoadFullKnowledgeNetwork(appMgr, wsAPI),
+            new ApplyPreferredStyleToCurrent(appMgr, evtHelper, visMgr),
+            new ApplyPreferredLayoutToCurrent(appMgr, cylMgr, cyProp.properties))
     }
 }

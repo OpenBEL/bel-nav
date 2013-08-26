@@ -26,13 +26,16 @@ class LoadFullKnowledgeNetwork extends AbstractTask {
     void run(TaskMonitor monitor) throws Exception {
         def cyN = appMgr.currentNetwork
         def knName = cyN.getRow(cyN).get(NAME, String.class)
-        monitor.title = "Load nodes and edge from ${knName}".toString()
+        monitor.title = "Load network for ${knName}"
+        def progress = 0.0d
+        monitor.progress = progress
 
         def nodes = []
+        def chunk = 0.5d / FunctionType.values().length
         FunctionType.values().each {
             FunctionEnum fx = fromString(it.displayValue)
             if (!fx) return
-            monitor.statusMessage = "Adding ${fx.displayValue} functions".toString()
+            monitor.statusMessage = "Adding ${fx.displayValue} functions"
             nodes.addAll(wsAPI.findNodes(knName, ~/.*/, fx).
                 collect { node ->
                     def n = findNode(cyN, node.label)
@@ -41,7 +44,12 @@ class LoadFullKnowledgeNetwork extends AbstractTask {
                     }
                     n
                 })
+            monitor.progress = (progress += chunk)
         }
+        monitor.progress = (progress = 0.5d)
+
+        chunk = 0.5d / nodes.size()
+        monitor.statusMessage = 'Adding adjacent edges'
         nodes.each { n ->
             wsAPI.adjacentEdges(toNode(cyN, n)).each { edge ->
                 def s = edge.source
@@ -55,6 +63,7 @@ class LoadFullKnowledgeNetwork extends AbstractTask {
                 findEdge(cyN, s.label, r, t.label) ?:
                     makeEdge(cyN, cySource, cyTarget, edge.id, r)
             }
+            monitor.progress = (progress += chunk)
         }
     }
 }

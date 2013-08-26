@@ -18,6 +18,7 @@ import org.openbel.ws.api.WsAPI
 
 @TupleConstructor
 class CreateCyNetwork extends AbstractTask {
+
     final CyApplicationManager appMgr
     final CyNetworkFactory cynFac
     final CyNetworkViewFactory cynvFac
