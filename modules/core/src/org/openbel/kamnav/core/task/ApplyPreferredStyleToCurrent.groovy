@@ -27,6 +27,7 @@ public class ApplyPreferredStyleToCurrent extends AbstractTask {
         VisualStyle vs = visMgr.allVisualStyles.groupBy {
             it.title
         }[NAV_VIS].first()
+        visMgr.setVisualStyle(vs, view)
         vs.apply(view)
         view.updateView()
 	}
