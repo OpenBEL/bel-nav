@@ -13,8 +13,7 @@ import org.slf4j.LoggerFactory
 
 class LinkKnowledgeNetwork extends AbstractTask {
 
-    private static final Logger msg = LoggerFactory.getLogger("CyUserMessages");
-    private static Logger log = LoggerFactory.getLogger(getClass())
+    private static final Logger msg = LoggerFactory.getLogger("CyUserMessages")
 
     private final CyApplicationManager appMgr
     private final WsAPI wsAPI
