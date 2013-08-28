@@ -51,7 +51,6 @@ class CreateCyNetwork extends AbstractTask {
         Map load = wsAPI.loadKnowledgeNetwork(knName.selectedValue)
         if (!load.handle) {
             monitor.statusMessage = load.message
-            cancel()
             return
         }
 
