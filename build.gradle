@@ -137,6 +137,7 @@ project('modules/core') {
         org.cytoscape.model;version="[3,4)",
         org.cytoscape.property;version="[3,4)",
         org.cytoscape.service.util;version="[3,4)",
+        org.cytoscape.session.events;version="[3,4)",
         org.cytoscape.task;version="[3,4)",
         org.cytoscape.task.read;version="[3,4)",
         org.cytoscape.task.visualize;version="[3,4)",

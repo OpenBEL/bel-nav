@@ -1,8 +1,10 @@
 package org.openbel.kamnav.core
 
+import org.cytoscape.session.events.SessionLoadedListener
+import org.openbel.kamnav.core.event.SessionLoadListener
 import org.openbel.kamnav.core.task.AddBelColumnsToCurrentFactoryImpl
 
-import static org.openbel.kamnav.core.Constant.*
+import static org.openbel.kamnav.core.Util.*
 import org.cytoscape.application.CyApplicationManager
 import org.cytoscape.event.CyEventHelper
 import org.cytoscape.model.CyNetworkFactory
@@ -43,6 +45,12 @@ class Activator extends AbstractCyActivator {
         CyProperty<Properties> cyProp = getService(bc,CyProperty.class,"(cyPropertyName=cytoscape3.props)");
         WsAPI wsAPI = getService(bc, WsAPI.class)
 
+        // register listeners
+        LoadVizmapFileTaskFactory vf =  getService(bc,LoadVizmapFileTaskFactory.class)
+        registerService(bc,
+            new SessionLoadListener(visMgr, vf),
+            SessionLoadedListener.class, [:] as Properties)
+
         // register tasks
         registerService(bc,
             new AddBelColumnsToCurrentFactoryImpl(appMgr, evtHelper, visMgr),
@@ -76,9 +84,7 @@ class Activator extends AbstractCyActivator {
                 title: 'From Knowledge Network'
             ] as Properties)
 
-        // delete/add knowledge network styles (idempotent)
-        LoadVizmapFileTaskFactory vf =  getService(bc,LoadVizmapFileTaskFactory.class)
-        visMgr.allVisualStyles.findAll { it.title in STYLE_NAMES }.each(visMgr.&removeVisualStyle)
-        vf.loadStyles(getClass().getResourceAsStream(STYLE_PATH))
+        // initialization
+        contributeVisualStyles(visMgr, vf)
     }
 }
