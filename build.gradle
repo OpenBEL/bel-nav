@@ -91,10 +91,10 @@ project('modules/common') {
         sun.reflect
       '''
       instruction 'Export-Package', '''
-        org.openbel.kamnav.common,
-        org.openbel.kamnav.common.extensions,
-        org.openbel.kamnav.common.model,
-        org.openbel.kamnav.common.util
+        org.openbel.kamnav.common;version="1.0.0",
+        org.openbel.kamnav.common.extensions;version="1.0.0",
+        org.openbel.kamnav.common.model;version="1.0.0",
+        org.openbel.kamnav.common.util;version="1.0.0"
       '''
     }
   }
@@ -159,7 +159,7 @@ project('modules/core') {
         sun.reflect
       '''
       instruction 'Bundle-Activator', 'org.openbel.kamnav.core.Activator'
-      instruction 'Export-Package', 'org.openbel.kamnav.core'
+      instruction 'Export-Package', 'org.openbel.kamnav.core;version="1.0.0"'
     }
   }
 }
@@ -258,7 +258,7 @@ project('modules/ui') {
         sun.java2d.pipe,
         sun.reflect
       '''
-      instruction 'Export-Package', 'org.openbel.kamnav.ui'
+      instruction 'Export-Package', 'org.openbel.kamnav.ui;version="1.0.0"'
     }
   }
 }
@@ -312,7 +312,7 @@ project('modules/ws') {
         sun.reflect
       '''
       instruction 'Bundle-Activator', 'org.openbel.ws.Activator'
-      instruction 'Export-Package', 'org.openbel.ws.api'
+      instruction 'Export-Package', 'org.openbel.ws.api;version="1.0.0"'
     }
   }
 }
