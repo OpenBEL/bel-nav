@@ -1,7 +1,6 @@
 package org.openbel.kamnav.core
 
-import org.cytoscape.model.events.AddedNodesListener
-import org.openbel.kamnav.core.task.AddBelColumnsToCurrentFactory
+import org.openbel.kamnav.core.task.AddBelColumnsToCurrentFactoryImpl
 
 import static org.openbel.kamnav.core.Constant.*
 import org.cytoscape.application.CyApplicationManager
@@ -46,8 +45,8 @@ class Activator extends AbstractCyActivator {
 
         // register tasks
         registerService(bc,
-            new AddBelColumnsToCurrentFactory(appMgr, evtHelper, visMgr),
-            TaskFactory.class, [
+            new AddBelColumnsToCurrentFactoryImpl(appMgr, evtHelper, visMgr),
+            AddBelColumnsToCurrentFactory.class, [
                 preferredMenu: 'Apps.KamNav',
                 menuGravity: 11.0,
                 title: "Add Data Columns"

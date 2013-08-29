@@ -6,9 +6,11 @@ import org.cytoscape.event.CyEventHelper
 import org.cytoscape.view.vizmap.VisualMappingManager
 import org.cytoscape.work.AbstractTaskFactory
 import org.cytoscape.work.TaskIterator
+import org.openbel.kamnav.core.AddBelColumnsToCurrentFactory
 
 @TupleConstructor
-class AddBelColumnsToCurrentFactory extends AbstractTaskFactory {
+class AddBelColumnsToCurrentFactoryImpl extends AbstractTaskFactory
+    implements AddBelColumnsToCurrentFactory {
 
     final CyApplicationManager appMgr
     final CyEventHelper evtHelper
