@@ -1,5 +1,6 @@
 package org.openbel.kamnav.core.task
 
+import static org.cytoscape.model.CyTableUtil.getNodesInState
 import static org.openbel.kamnav.common.util.NodeUtil.toNode
 import groovy.transform.TupleConstructor
 import org.cytoscape.event.CyEventHelper
@@ -38,6 +39,10 @@ class ExpandNodeFactory extends AbstractNodeViewTaskFactory {
     @Override
     TaskIterator createTaskIterator(View<CyNode> nodeView, CyNetworkView cyNv) {
         TaskIterator tasks = new TaskIterator(new ExpandNode(cyNv, nodeView, evtHelper, visMgr, wsAPI))
+        getNodesInState(cyNv.model, 'selected', true).collect {
+            def nodeV = cyNv.getNodeView(it)
+            new TaskIterator(new ExpandNode(cyNv, nodeV, evtHelper, visMgr, wsAPI))
+        }.each(tasks.&append)
         tasks.append(aplFac.createTaskIterator([cyNv]))
         return tasks
     }
