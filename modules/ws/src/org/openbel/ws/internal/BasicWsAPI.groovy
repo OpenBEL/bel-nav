@@ -1,5 +1,7 @@
 package org.openbel.ws.internal
 
+import javax.net.ssl.SSLContext
+
 import static org.cytoscape.model.CyNetwork.NAME
 import static org.cytoscape.model.CyEdge.INTERACTION
 import static org.openbel.kamnav.common.util.EdgeUtil.createEdgeColumns
@@ -21,12 +23,18 @@ import java.util.regex.Pattern
  */
 class BasicWsAPI implements WsAPI {
 
+    static final String URL = 'https://janssen-sdp.selventa.com/openbel-ws/belframework'
+
+    BasicWsAPI() {
+        SSLContext.default = SSL.context
+    }
+
     /**
      * {@inheritDoc}
      */
     @Override
     Map loadKnowledgeNetwork(String name) {
-        def client = new SOAPClient('http://demo.openbel.org/openbel-ws/belframework')
+        def client = new SOAPClient(URL)
         def loadMap = [name: name]
 
         Thread load = Thread.start {
@@ -72,7 +80,7 @@ class BasicWsAPI implements WsAPI {
      * {@inheritDoc}
      */
     @Override Map knowledgeNetworks() {
-        def client = new SOAPClient('http://demo.openbel.org/openbel-ws/belframework')
+        def client = new SOAPClient(URL)
         def response = client.send {
             body {
                 GetCatalogRequest('xmlns': 'http://belframework.org/ws/schemas')
@@ -95,7 +103,7 @@ class BasicWsAPI implements WsAPI {
      */
     @Override
     List linkNodes(CyNetwork cyN, String name) {
-        def client = new SOAPClient('http://demo.openbel.org/openbel-ws/belframework')
+        def client = new SOAPClient(URL)
         def loadMap = loadKnowledgeNetwork(name)
 
         createNodeColumns(cyN)
@@ -124,6 +132,8 @@ class BasicWsAPI implements WsAPI {
 
         def resNodes = response.ResolveNodesResponse.kamNodes.iterator()
         cyN.nodeList.collect { n ->
+            if (!resNodes.hasNext()) return null
+
             def wsNode = resNodes.next()
 
             if (!toBEL(cyN, n)) return null
@@ -149,7 +159,7 @@ class BasicWsAPI implements WsAPI {
      */
     @Override
     List linkEdges(CyNetwork cyN, String name) {
-        def client = new SOAPClient('http://demo.openbel.org/openbel-ws/belframework')
+        def client = new SOAPClient(URL)
         def loadMap = loadKnowledgeNetwork(name)
         if (!loadMap.handle) return null
 
@@ -169,6 +179,7 @@ class BasicWsAPI implements WsAPI {
                         def src = toBEL(cyN, e.source)
                         def tgt = toBEL(cyN, e.target)
                         def r = cyN.getRow(e).get(INTERACTION, String.class)
+                        if (!r || !toWS(r)) return null
                         if (!src || !tgt) return null
 
                         edges {
@@ -223,7 +234,7 @@ class BasicWsAPI implements WsAPI {
      */
     @Override
     Node[] findNodes(String name, Pattern labelPattern, FunctionEnum... functions) {
-        def client = new SOAPClient('http://demo.openbel.org/openbel-ws/belframework')
+        def client = new SOAPClient(URL)
         def loadMap = loadKnowledgeNetwork(name)
         if (!loadMap.handle) return null
 
@@ -262,7 +273,7 @@ class BasicWsAPI implements WsAPI {
      */
     @Override
     Edge[] adjacentEdges(Node node, String dir = 'BOTH') {
-        def client = new SOAPClient('http://demo.openbel.org/openbel-ws/belframework')
+        def client = new SOAPClient(URL)
 
         def response = client.send {
             body {
