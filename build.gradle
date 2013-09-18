@@ -58,7 +58,7 @@ project('modules/common') {
   dependencies {
     compile files(
       "$rootDir/libs/compile/antlr-runtime-3.3.jar",
-      "$rootDir/libs/compile/groovy-all-2.1.6.jar",
+      "$rootDir/libs/compile/groovy-all-2.1.7.jar",
       "$rootDir/libs/compile/slf4j-api-1.7.5.jar",
       "$rootDir/libs/compile/org.openbel.framework.common-3.0.0.jar")
     testCompile files(
@@ -87,8 +87,7 @@ project('modules/common') {
         org.openbel.framework.common.bel.parser;version="[3,4)",
         org.openbel.framework.common.enums;version="[3,4)",
         org.openbel.framework.common.model;version="[3,4)",
-        org.slf4j;version="[1,2)",
-        sun.reflect
+        org.slf4j;version="[1,2)"
       '''
       instruction 'Export-Package', '''
         org.openbel.kamnav.common;version="1.0.0",
@@ -110,7 +109,7 @@ project('modules/core') {
   dependencies {
     compile project(':modules/ws')
     compile files(
-      "$rootDir/libs/compile/groovy-all-2.1.6.jar",
+      "$rootDir/libs/compile/groovy-all-2.1.7.jar",
       "$rootDir/libs/compile/slf4j-api-1.7.5.jar")
     testCompile files(
       "$rootDir/libs/test/junit-4.11.jar")
@@ -156,8 +155,7 @@ project('modules/core') {
         org.openbel.ws.api,
         org.osgi.framework,
         org.slf4j;version="[1,2)",
-        javax.swing,
-        sun.reflect
+        javax.swing
       '''
       instruction 'Bundle-Activator', 'org.openbel.kamnav.core.Activator'
       instruction 'Export-Package', 'org.openbel.kamnav.core;version="1.0.0"'
@@ -174,7 +172,7 @@ project('modules/main') {
 
   dependencies {
     compile files(
-      "$rootDir/libs/compile/groovy-all-2.1.6.jar",
+      "$rootDir/libs/compile/groovy-all-2.1.7.jar",
       "$rootDir/libs/compile/slf4j-api-1.7.5.jar")
     testCompile files(
       "$rootDir/libs/test/junit-4.11.jar")
@@ -205,10 +203,7 @@ project('modules/main') {
         org.cytoscape.application.swing;version="[3,4)",
         org.cytoscape.service.util;version="[3,4)",
         org.osgi.framework,
-        org.slf4j;version="[1,2)",
-        sun.awt,
-        sun.java2d.pipe,
-        sun.reflect
+        org.slf4j;version="[1,2)"
       '''
       instruction 'Bundle-Activator', 'org.openbel.kamnav.main.Activator'
       instruction 'Export-Package', ''
@@ -225,7 +220,7 @@ project('modules/ui') {
 
   dependencies {
     compile files(
-      "$rootDir/libs/compile/groovy-all-2.1.6.jar",
+      "$rootDir/libs/compile/groovy-all-2.1.7.jar",
       "$rootDir/libs/compile/slf4j-api-1.7.5.jar")
     testCompile files(
       "$rootDir/libs/test/junit-4.11.jar")
@@ -254,10 +249,7 @@ project('modules/ui') {
         org.codehaus.groovy.runtime.callsite;version="[2.1,3)",
         org.codehaus.groovy.runtime.wrappers;version="[2.1,3)",
         org.cytoscape.application.swing;version="[3,4)",
-        org.slf4j;version="[1,2)",
-        sun.awt,
-        sun.java2d.pipe,
-        sun.reflect
+        org.slf4j;version="[1,2)"
       '''
       instruction 'Export-Package', 'org.openbel.kamnav.ui;version="1.0.0"'
     }
@@ -275,7 +267,7 @@ project('modules/ws') {
     compile project(':modules/common')
     compile files(
       "$rootDir/libs/compile/antlr-runtime-3.3.jar",
-      "$rootDir/libs/compile/groovy-all-2.1.6.jar",
+      "$rootDir/libs/compile/groovy-all-2.1.7.jar",
       "$rootDir/libs/compile/groovy-common-extensions-0.5.jar",
       "$rootDir/libs/compile/groovy-wslite-0.8.0.jar",
       "$rootDir/libs/compile/slf4j-api-1.7.5.jar",
@@ -309,8 +301,7 @@ project('modules/ws') {
         org.openbel.ws.api,
         org.osgi.framework,
         org.slf4j;version="[1,2)",
-        wslite.soap,
-        sun.reflect
+        wslite.soap
       '''
       instruction 'Bundle-Activator', 'org.openbel.ws.Activator'
       instruction 'Export-Package', 'org.openbel.ws.api;version="1.0.0"'
