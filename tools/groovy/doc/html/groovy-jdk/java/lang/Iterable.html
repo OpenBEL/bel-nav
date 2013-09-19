@@ -1,0 +1,707 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<HTML>
+<HEAD>
+<TITLE>Iterable (Groovy JDK)</TITLE>
+
+
+<LINK REL ="stylesheet" TYPE="text/css" HREF="../../stylesheet.css" TITLE="Style">
+
+<SCRIPT type="text/javascript">
+function windowTitle()
+{
+    parent.document.title = document.title;
+}
+</SCRIPT>
+
+</HEAD>
+
+<BODY BGCOLOR="white" onload="windowTitle();">
+
+<!-- ========== START OF NAVBAR ========== -->
+<A NAME="navbar_top"><!-- --></A>
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0">
+    <TR>
+        <TD COLSPAN=3 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+            <A NAME="navbar_top_firstrow"><!-- --></A>
+            <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3">
+                <TR ALIGN="center" VALIGN="top">
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../overview-summary.html"><SPAN CLASS="NavBarFont1"><B>Overview</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Package</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Class</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Tree</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Deprecated</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../index-all.html"><SPAN CLASS="NavBarFont1"><B>Index</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Help</SPAN>&nbsp;</TD>
+                </TR>
+            </TABLE>
+        </TD>
+        <TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+            <b>Groovy JDK</b></EM>
+        </TD>
+    </TR>
+</TABLE>
+<!-- =========== END OF NAVBAR =========== -->
+
+<!-- ======== START OF CLASS DATA ======== -->
+<H2>
+<SPAN style="font-size:12px;">
+java.lang</SPAN>
+<BR>
+Class Iterable</H2>
+
+<!-- ========== METHOD SUMMARY =========== -->
+
+<A NAME="method_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><SPAN style="font-size:24px;">
+<B>Method Summary</B></SPAN></TH>
+</TR>
+
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#collectEntries(groovy.lang.Closure)">collectEntries</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> transform)</CODE>
+<BR>
+A variant of collectEntries for Iterables.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#collectEntries()">collectEntries</A></B>()</CODE>
+<BR>
+A variant of collectEntries for Iterables using the identity closure as the transform.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#collectEntries(java.util.Map, groovy.lang.Closure)">collectEntries</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> collector, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> transform)</CODE>
+<BR>
+A variant of collectEntries for Iterables using a supplied map as the destination of transformed entries.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#collectEntries(java.util.Map)">collectEntries</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> collector)</CODE>
+<BR>
+A variant of collectEntries for Iterables using the identity closure as the
+transform and a supplied map as the destination of transformed entries.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#drop(int)">drop</A></B>(int num)</CODE>
+<BR>
+Drops the given number of elements from the head of this Iterable.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#dropWhile(groovy.lang.Closure)">dropWhile</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> condition)</CODE>
+<BR>
+Returns a suffix of this Iterable where elements are dropped from the front
+while the given closure evaluates to true.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#first()">first</A></B>()</CODE>
+<BR>
+Returns the first item from the Iterable.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#getAt(int)">getAt</A></B>(int idx)</CODE>
+<BR>
+Support the subscript operator for an Iterable. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#last()">last</A></B>()</CODE>
+<BR>
+Returns the last item from the Iterable.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#take(int)">take</A></B>(int num)</CODE>
+<BR>
+Returns the first <code>num</code> elements from the head of this Iterable.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#takeWhile(groovy.lang.Closure)">takeWhile</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> condition)</CODE>
+<BR>
+Returns a List containing the longest prefix of the elements from this Iterable
+where each element passed to the given closure evaluates to true.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#toList()">toList</A></B>()</CODE>
+<BR>
+Convert an Iterable to a List. 
+</TD>
+</TR>
+
+</TABLE>
+&nbsp;
+
+
+<!-- ============ METHOD DETAIL ========== -->
+
+<A NAME="method_detail"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="1"><SPAN style="font-size:24px;">
+<B>Method Detail</B></SPAN></TH>
+</TR>
+</TABLE>
+
+
+
+<A name="collectEntries(groovy.lang.Closure)"><!-- --></A><H3>collectEntries</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> <B>collectEntries</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> transform)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>A variant of collectEntries for Iterables.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>transform
+</CODE> -  the closure used for transforming, which has an item from self as the parameter and
+                 should return a Map.Entry, a Map or a two-element list containing the resulting key and value.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a Map of the transformed entries</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.7</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>Iterator#collectEntries(Closure).</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="collectEntries()"><!-- --></A><H3>collectEntries</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> <B>collectEntries</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>A variant of collectEntries for Iterables using the identity closure as the transform.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>a Map of the transformed entries</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.7</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>Iterator#collectEntries().</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="collectEntries(java.util.Map, groovy.lang.Closure)"><!-- --></A><H3>collectEntries</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> <B>collectEntries</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> collector, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> transform)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>A variant of collectEntries for Iterables using a supplied map as the destination of transformed entries.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>collector</CODE> -  the Map into which the transformed entries are put.</DD>
+
+		<DD><CODE>transform
+</CODE> -  the closure used for transforming, which has an item from self as the parameter and
+                 should return a Map.Entry, a Map or a two-element list containing the resulting key and value.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the collector with all transformed values added to it</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.7</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>Iterator#collectEntries(Map, Closure).</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="collectEntries(java.util.Map)"><!-- --></A><H3>collectEntries</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> <B>collectEntries</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> collector)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>A variant of collectEntries for Iterables using the identity closure as the
+transform and a supplied map as the destination of transformed entries.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>collector</CODE> -  the Map into which the transformed entries are put.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the collector with all transformed values added to it</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.7</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>Iterator#collectEntries(Map).</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="drop(int)"><!-- --></A><H3>drop</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>drop</B>(int num)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Drops the given number of elements from the head of this Iterable.
+<pre class="groovyTestCase">
+class AbcIterable implements Iterable<String> {
+    Iterator<String> iterator() { "abc".iterator() }
+}
+def abc = new AbcIterable()
+assert abc.drop(0) == ['a', 'b', 'c']
+assert abc.drop(1) == ['b', 'c']
+assert abc.drop(3) == []
+assert abc.drop(5) == []
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>num</CODE> -   the number of elements to drop from this Iterable.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a List consisting of all the elements of this Iterable minus the first <code>num</code> elements,
+        or an empty list if it has less then <code>num</code> elements.</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.7</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="dropWhile(groovy.lang.Closure)"><!-- --></A><H3>dropWhile</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>dropWhile</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> condition)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Returns a suffix of this Iterable where elements are dropped from the front
+while the given closure evaluates to true.
+<pre class="groovyTestCase">
+class AbcIterable implements Iterable<String> {
+    Iterator<String> iterator() { "abc".iterator() }
+}
+def abc = new AbcIterable()
+assert abc.dropWhile{ it < 'b' } == ['b', 'c']
+assert abc.dropWhile{ it <= 'b' } == ['c']
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>condition</CODE> -  the closure that must evaluate to true to continue dropping elements.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the shortest suffix of the given Iterable such that the given closure condition
+        evaluates to true for each element dropped from the front of the Iterable</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.7</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="first()"><!-- --></A><H3>first</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>first</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Returns the first item from the Iterable.
+<pre class="groovyTestCase">
+def set = [3, 4, 2] as LinkedHashSet
+assert set.first() == 3
+// check original is unaltered
+assert set == [3, 4, 2] as Set
+</pre>
+The first element returned by the Iterable's iterator is returned.
+If the Iterable doesn't guarantee a defined order it may appear like
+a random element is returned.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>the first item from the Iterable</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.7</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="getAt(int)"><!-- --></A><H3>getAt</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>getAt</B>(int idx)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Support the subscript operator for an Iterable. Typical usage:
+<pre class="groovyTestCase">
+// custom Iterable example:
+class MyIterable implements Iterable {
+  Iterator iterator() { [1, 2, 3].iterator() }
+}
+def myIterable = new MyIterable()
+assert myIterable[1] == 2
+
+// Set example:
+def set = [1,2,3] as LinkedHashSet
+assert set[1] == 2
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>idx</CODE> -   an index value (-self.size() <= idx < self.size()) but using -ve index values will be inefficient.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the value at the given index (after normalisation) or null if no corresponding value was found</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>2.1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="last()"><!-- --></A><H3>last</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>last</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Returns the last item from the Iterable.
+<pre class="groovyTestCase">
+def set = [3, 4, 2] as LinkedHashSet
+assert set.last() == 2
+// check original unaltered
+assert set == [3, 4, 2] as Set
+</pre>
+The first element returned by the Iterable's iterator is returned.
+If the Iterable doesn't guarantee a defined order it may appear like
+a random element is returned.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>the first item from the Iterable</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.7</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="take(int)"><!-- --></A><H3>take</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>take</B>(int num)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Returns the first <code>num</code> elements from the head of this Iterable.
+<pre class="groovyTestCase">
+class AbcIterable implements Iterable<String> {
+    Iterator<String> iterator() { "abc".iterator() }
+}
+def abc = new AbcIterable()
+assert abc.take(0) == []
+assert abc.take(1) == ['a']
+assert abc.take(3) == ['a', 'b', 'c']
+assert abc.take(5) == ['a', 'b', 'c']
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>num</CODE> -   the number of elements to take from this Iterable.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a List consisting of the first <code>num</code> elements from this Iterable,
+        or else all the elements from the Iterable if it has less then <code>num</code> elements.</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.7</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="takeWhile(groovy.lang.Closure)"><!-- --></A><H3>takeWhile</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>takeWhile</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> condition)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Returns a List containing the longest prefix of the elements from this Iterable
+where each element passed to the given closure evaluates to true.
+<pre class="groovyTestCase">
+class AbcIterable implements Iterable<String> {
+    Iterator<String> iterator() { "abc".iterator() }
+}
+def abc = new AbcIterable()
+assert abc.takeWhile{ it < 'b' } == ['a']
+assert abc.takeWhile{ it <= 'b' } == ['a', 'b']
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>condition
+</CODE> -  the closure that must evaluate to true to
+                 continue taking elements.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a List containing a prefix of the elements from the given Iterable where
+        each element passed to the given closure evaluates to true</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.7</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="toList()"><!-- --></A><H3>toList</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>toList</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Convert an Iterable to a List. The Iterable's iterator will
+become exhausted of elements after making this conversion.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>a List</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.7</DD>
+</dl>
+
+
+
+
+<HR>
+
+<!-- ========= END OF CLASS DATA ========= -->
+
+ <!-- ======= START OF BOTTOM NAVBAR ====== -->
+<A NAME="navbar_bottom"><!-- --></A>
+<A HREF="#skip-navbar_bottom" title="Skip navigation links"></A>
+
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0">
+    <TR>
+        <TD COLSPAN=3 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+            <A NAME="navbar_top_firstrow"><!-- --></A>
+            <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3">
+                <TR ALIGN="center" VALIGN="top">
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../overview-summary.html"><SPAN CLASS="NavBarFont1"><B>Overview</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Package</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Class</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Tree</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Deprecated</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../index-all.html"><SPAN CLASS="NavBarFont1"><B>Index</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Help</SPAN>&nbsp;</TD>
+                </TR>
+            </TABLE>
+        </TD>
+        <TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+            <b>Groovy JDK</b></EM>
+        </TD>
+    </TR>
+</TABLE>
+<!-- =========== END OF NAVBAR =========== -->
+
+</BODY>
+</HTML>

@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<HTML>
+<HEAD>
+<TITLE>Timer (Groovy JDK)</TITLE>
+
+
+<LINK REL ="stylesheet" TYPE="text/css" HREF="../../stylesheet.css" TITLE="Style">
+
+<SCRIPT type="text/javascript">
+function windowTitle()
+{
+    parent.document.title = document.title;
+}
+</SCRIPT>
+
+</HEAD>
+
+<BODY BGCOLOR="white" onload="windowTitle();">
+
+<!-- ========== START OF NAVBAR ========== -->
+<A NAME="navbar_top"><!-- --></A>
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0">
+    <TR>
+        <TD COLSPAN=3 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+            <A NAME="navbar_top_firstrow"><!-- --></A>
+            <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3">
+                <TR ALIGN="center" VALIGN="top">
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../overview-summary.html"><SPAN CLASS="NavBarFont1"><B>Overview</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Package</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Class</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Tree</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Deprecated</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../index-all.html"><SPAN CLASS="NavBarFont1"><B>Index</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Help</SPAN>&nbsp;</TD>
+                </TR>
+            </TABLE>
+        </TD>
+        <TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+            <b>Groovy JDK</b></EM>
+        </TD>
+    </TR>
+</TABLE>
+<!-- =========== END OF NAVBAR =========== -->
+
+<!-- ======== START OF CLASS DATA ======== -->
+<H2>
+<SPAN style="font-size:12px;">
+java.util</SPAN>
+<BR>
+Class Timer</H2>
+
+<!-- ========== METHOD SUMMARY =========== -->
+
+<A NAME="method_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><SPAN style="font-size:24px;">
+<B>Method Summary</B></SPAN></TH>
+</TR>
+
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/TimerTask.html' title='JDK class in java.util'>TimerTask</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#runAfter(int, groovy.lang.Closure)">runAfter</A></B>(int delay, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Allows a simple syntax for using timers.  
+</TD>
+</TR>
+
+</TABLE>
+&nbsp;
+
+
+<!-- ============ METHOD DETAIL ========== -->
+
+<A NAME="method_detail"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="1"><SPAN style="font-size:24px;">
+<B>Method Detail</B></SPAN></TH>
+</TR>
+</TABLE>
+
+
+
+<A name="runAfter(int, groovy.lang.Closure)"><!-- --></A><H3>runAfter</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/TimerTask.html' title='JDK class in java.util'>TimerTask</a> <B>runAfter</B>(int delay, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Allows a simple syntax for using timers.  This timer will execute the
+given closure after the given delay.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>delay</CODE> -    the delay in milliseconds before running the closure code.</DD>
+
+		<DD><CODE>closure</CODE> -  the closure to invoke.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>The timer task which has been scheduled.</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+<!-- ========= END OF CLASS DATA ========= -->
+
+ <!-- ======= START OF BOTTOM NAVBAR ====== -->
+<A NAME="navbar_bottom"><!-- --></A>
+<A HREF="#skip-navbar_bottom" title="Skip navigation links"></A>
+
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0">
+    <TR>
+        <TD COLSPAN=3 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+            <A NAME="navbar_top_firstrow"><!-- --></A>
+            <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3">
+                <TR ALIGN="center" VALIGN="top">
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../overview-summary.html"><SPAN CLASS="NavBarFont1"><B>Overview</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Package</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Class</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Tree</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Deprecated</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../index-all.html"><SPAN CLASS="NavBarFont1"><B>Index</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Help</SPAN>&nbsp;</TD>
+                </TR>
+            </TABLE>
+        </TD>
+        <TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+            <b>Groovy JDK</b></EM>
+        </TD>
+    </TR>
+</TABLE>
+<!-- =========== END OF NAVBAR =========== -->
+
+</BODY>
+</HTML>

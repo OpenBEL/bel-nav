@@ -20,6 +20,12 @@ subprojects {
   }
   configurations {
     provided
+    compileGroovy.sourceCompatibility = 1.7
+    compileGroovy.targetCompatibility = 1.7
+    compileGroovy.groovyOptions.optimizationOptions.indy = true
+    compileTestGroovy.sourceCompatibility = 1.7
+    compileTestGroovy.targetCompatibility = 1.7
+    compileTestGroovy.groovyOptions.optimizationOptions.indy = true
   }
   sourceSets {
     main { compileClasspath += configurations.provided }
@@ -58,7 +64,7 @@ project('modules/common') {
   dependencies {
     compile files(
       "$rootDir/libs/compile/antlr-runtime-3.3.jar",
-      "$rootDir/libs/compile/groovy-all-2.1.7.jar",
+      "$rootDir/libs/compile/groovy-all-2.1.7-indy.jar",
       "$rootDir/libs/compile/slf4j-api-1.7.5.jar",
       "$rootDir/libs/compile/org.openbel.framework.common-3.0.0.jar")
     testCompile files(
@@ -77,11 +83,14 @@ project('modules/common') {
       instruction 'Import-Package', '''
         groovy.lang;version="[2.1,3)",
         groovy.transform;version="[2.1,3)",
+        groovy.util;version="[2.1,3)",
         groovy.util.slurpersupport;version="[2.1,3)",
         org.codehaus.groovy.reflection;version="[2.1,3)",
         org.codehaus.groovy.runtime;version="[2.1,3)",
         org.codehaus.groovy.runtime.callsite;version="[2.1,3)",
         org.codehaus.groovy.runtime.typehandling;version="[2.1,3)",
+        org.codehaus.groovy.runtime.wrappers;version="[2.1,3)",
+        org.codehaus.groovy.vmplugin.v7;version="[2.1,3)",
         org.cytoscape.model;version="[3,4)",
         org.openbel.framework.common;version="[3,4)",
         org.openbel.framework.common.bel.parser;version="[3,4)",
@@ -109,7 +118,7 @@ project('modules/core') {
   dependencies {
     compile project(':modules/ws')
     compile files(
-      "$rootDir/libs/compile/groovy-all-2.1.7.jar",
+      "$rootDir/libs/compile/groovy-all-2.1.7-indy.jar",
       "$rootDir/libs/compile/slf4j-api-1.7.5.jar")
     testCompile files(
       "$rootDir/libs/test/junit-4.11.jar")
@@ -127,10 +136,13 @@ project('modules/core') {
       instruction 'Import-Package', '''
         groovy.lang;version="[2.1,3)",
         groovy.transform;version="[2.1,3)",
+        groovy.util;version="[2.1,3)",
         org.codehaus.groovy.reflection;version="[2.1,3)",
         org.codehaus.groovy.runtime;version="[2.1,3)",
         org.codehaus.groovy.runtime.callsite;version="[2.1,3)",
         org.codehaus.groovy.runtime.typehandling;version="[2.1,3)",
+        org.codehaus.groovy.runtime.wrappers;version="[2.1,3)",
+        org.codehaus.groovy.vmplugin.v7;version="[2.1,3)",
         org.cytoscape.application;version="[3,4)",
         org.cytoscape.event;version="[3,4)",
         org.cytoscape.model;version="[3,4)",
@@ -172,7 +184,7 @@ project('modules/main') {
 
   dependencies {
     compile files(
-      "$rootDir/libs/compile/groovy-all-2.1.7.jar",
+      "$rootDir/libs/compile/groovy-all-2.1.7-indy.jar",
       "$rootDir/libs/compile/slf4j-api-1.7.5.jar")
     testCompile files(
       "$rootDir/libs/test/junit-4.11.jar")
@@ -195,6 +207,7 @@ project('modules/main') {
         org.codehaus.groovy.runtime;version="[2.1,3)",
         org.codehaus.groovy.runtime.callsite;version="[2.1,3)",
         org.codehaus.groovy.runtime.wrappers;version="[2.1,3)",
+        org.codehaus.groovy.vmplugin.v7;version="[2.1,3)",
         org.cytoscape.service.util;version="[3,4)",
         org.osgi.framework,
         org.slf4j;version="[1,2)"
@@ -214,7 +227,7 @@ project('modules/ui') {
 
   dependencies {
     compile files(
-      "$rootDir/libs/compile/groovy-all-2.1.7.jar",
+      "$rootDir/libs/compile/groovy-all-2.1.7-indy.jar",
       "$rootDir/libs/compile/slf4j-api-1.7.5.jar")
     testCompile files(
       "$rootDir/libs/test/junit-4.11.jar")
@@ -242,6 +255,7 @@ project('modules/ui') {
         org.codehaus.groovy.runtime;version="[2.1,3)",
         org.codehaus.groovy.runtime.callsite;version="[2.1,3)",
         org.codehaus.groovy.runtime.wrappers;version="[2.1,3)",
+        org.codehaus.groovy.vmplugin.v7;version="[2.1,3)",
         org.cytoscape.application.swing;version="[3,4)",
         org.slf4j;version="[1,2)"
       '''
@@ -261,7 +275,7 @@ project('modules/ws') {
     compile project(':modules/common')
     compile files(
       "$rootDir/libs/compile/antlr-runtime-3.3.jar",
-      "$rootDir/libs/compile/groovy-all-2.1.7.jar",
+      "$rootDir/libs/compile/groovy-all-2.1.7-indy.jar",
       "$rootDir/libs/compile/groovy-common-extensions-0.5.jar",
       "$rootDir/libs/compile/groovy-wslite-0.8.0.jar",
       "$rootDir/libs/compile/slf4j-api-1.7.5.jar",
@@ -282,10 +296,13 @@ project('modules/ws') {
       symbolicName = 'org.openbel.kamnav.ws'
       instruction 'Import-Package', '''
         groovy.lang;version="[2.1,3)",
+        groovy.util;version="[2.1,3)",
         org.codehaus.groovy.reflection;version="[2.1,3)",
         org.codehaus.groovy.runtime;version="[2.1,3)",
         org.codehaus.groovy.runtime.callsite;version="[2.1,3)",
         org.codehaus.groovy.runtime.typehandling;version="[2.1,3)",
+        org.codehaus.groovy.runtime.wrappers;version="[2.1,3)",
+        org.codehaus.groovy.vmplugin.v7;version="[2.1,3)",
         org.cytoscape.model;version="[3,4)",
         org.cytoscape.service.util;version="[3,4)",
         org.openbel.framework.common.enums;version="[3,4)",

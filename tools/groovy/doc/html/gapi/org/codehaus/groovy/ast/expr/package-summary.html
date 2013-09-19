@@ -1,0 +1,335 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+<title>org.codehaus.groovy.ast.expr (groovy 2.1.7 API)</title>
+<META NAME="keywords" CONTENT="org.codehaus.groovy.ast.expr package">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<LINK REL ="stylesheet" TYPE="text/css" HREF="../../../../../stylesheet.css" TITLE="Style">
+<link href="../../../../../groovy.ico" type="image/x-icon" rel="shortcut icon">
+<link href="../../../../../groovy.ico" type="image/x-icon" rel="icon">
+<SCRIPT type="text/javascript">
+function windowTitle()
+{
+    parent.document.title="org.codehaus.groovy.ast.expr (groovy 2.1.7 API)";
+}
+</SCRIPT>
+<NOSCRIPT>
+</NOSCRIPT>
+
+</head>
+
+<body BGCOLOR="white" onload="windowTitle();">
+<hr>
+
+<!-- ========= START OF TOP NAVBAR ======= -->
+<a name="navbar_top"><!-- --></a>
+<table summary="" width="100%" border="0" cellpadding="1" cellspacing="0">
+<tbody><tr>
+<td colspan="2" class="NavBarCell1" bgcolor="#eeeeff">
+<a name="navbar_top_firstrow"><!-- --></a>
+<table summary="" border="0" cellpadding="0" cellspacing="3">
+  <tbody><tr valign="top" align="center">
+  <td class="NavBarCell1" bgcolor="#eeeeff">    <a href="../../../../../overview-summary.html"><font class="NavBarFont1"><b>Overview</b></font></a>&nbsp;</td>
+  <td class="NavBarCell1Rev" bgcolor="#ffffff"> &nbsp;<font class="NavBarFont1Rev"><b>Package</b></font>&nbsp;</td>
+  <td class="NavBarCell1" bgcolor="#eeeeff">    <font class="NavBarFont1">Class</font>&nbsp;</td>
+  <!--
+  <td class="NavBarCell1" bgcolor="#eeeeff">    <a href="overview-tree.html"><font class="NavBarFont1"><b>Tree</b></font></a>&nbsp;</td>
+  -->
+  <td class="NavBarCell1" bgcolor="#eeeeff">    <a href="../../../../../deprecated-list.html"><font class="NavBarFont1"><b>Deprecated</b></font></a>&nbsp;</td>
+  <td class="NavBarCell1" bgcolor="#eeeeff">    <a href="../../../../../index-all.html"><font class="NavBarFont1"><b>Index</b></font></a>&nbsp;</td>
+  <td class="NavBarCell1" bgcolor="#eeeeff">    <a href="../../../../../help-doc.html"><font class="NavBarFont1"><b>Help</b></font></a>&nbsp;</td>
+  </tr>
+</tbody></table>
+</td>
+<td rowspan="3" valign="top" align="right"><em>
+    <b>Groovy 2.1.7</b>
+</em>
+</td>
+</tr>
+
+<tr>
+<td class="NavBarCell2" bgcolor="white"><font size="-2">
+&nbsp;PREV&nbsp;
+&nbsp;NEXT</font></td>
+<td class="NavBarCell2" bgcolor="white"><font size="-2">
+  <a href="../../../../../index.html?org/codehaus/groovy/ast/expr/package-summary.html" target="_top"><b>FRAMES</b></a>  &nbsp;
+&nbsp;<a href="package-summary.html" target="_top"><b>NO FRAMES</b></a>  &nbsp;
+&nbsp;<script type="text/javascript">
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="../../../../../allclasses-frame.html"><B>All Classes</B></A>');
+  }
+  //-->
+</script>
+<noscript>
+  <A HREF="../../../../../allclasses-frame.html"><B>All Classes</B></A>
+</noscript>
+
+
+</font></td>
+</tr>
+</tbody></table>
+<!-- ========= END OF TOP NAVBAR ========= -->
+
+
+<HR>
+<H2>
+Package org.codehaus.groovy.ast.expr
+</H2>
+
+
+
+<P>&nbsp;</P>
+
+
+
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+    <TR BGCOLOR="#90DDF7" CLASS="TableHeadingColor">
+    <TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+    <B>Interface Summary</B></FONT></TH>
+    </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ExpressionTransformer.html" title="class in org/codehaus/groovy/ast/expr">ExpressionTransformer</A></B></TD>
+        <TD>Provides a way to transform expressions</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="MethodCall.html" title="class in org/codehaus/groovy/ast/expr">MethodCall</A></B></TD>
+        <TD>Interface defining common methods for method calls.</TD>
+        </TR>
+
+</TABLE>
+&nbsp;
+<P>
+<DL>
+</DL>
+<hr>
+    
+
+
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+    <TR BGCOLOR="#90DDF7" CLASS="TableHeadingColor">
+    <TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+    <B>Class Summary</B></FONT></TH>
+    </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="AnnotationConstantExpression.html" title="class in org/codehaus/groovy/ast/expr">AnnotationConstantExpression</A></B></TD>
+        <TD>Represents an annotation "constant" that may appear in annotation attributes
+ (mainly used as a marker).</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ArgumentListExpression.html" title="class in org/codehaus/groovy/ast/expr">ArgumentListExpression</A></B></TD>
+        <TD>Represents one or more arguments being passed into a method</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ArrayExpression.html" title="class in org/codehaus/groovy/ast/expr">ArrayExpression</A></B></TD>
+        <TD>Represents an array object construction either using a fixed size
+ or an initializer expression</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="AttributeExpression.html" title="class in org/codehaus/groovy/ast/expr">AttributeExpression</A></B></TD>
+        <TD>Represents an attribute access (accessing the field of a class) such as the expression "foo.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="BinaryExpression.html" title="class in org/codehaus/groovy/ast/expr">BinaryExpression</A></B></TD>
+        <TD>Represents two expressions and an operation</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="BitwiseNegationExpression.html" title="class in org/codehaus/groovy/ast/expr">BitwiseNegationExpression</A></B></TD>
+        <TD>@author phk</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="BooleanExpression.html" title="class in org/codehaus/groovy/ast/expr">BooleanExpression</A></B></TD>
+        <TD>Represents a boolean expression</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="CastExpression.html" title="class in org/codehaus/groovy/ast/expr">CastExpression</A></B></TD>
+        <TD>Represents a type cast expression</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ClassExpression.html" title="class in org/codehaus/groovy/ast/expr">ClassExpression</A></B></TD>
+        <TD>Represents access to a Java/Groovy class in an expression, such
+ as when invoking a static method or accessing a static type</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ClosureExpression.html" title="class in org/codehaus/groovy/ast/expr">ClosureExpression</A></B></TD>
+        <TD>Represents a closure expression such as { statement }
+ or { i -> statement } or { i, x, String y ->  statement }</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ClosureListExpression.html" title="class in org/codehaus/groovy/ast/expr">ClosureListExpression</A></B></TD>
+        <TD>This class represents a list of expressions used to
+ create closures. </TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ConstantExpression.html" title="class in org/codehaus/groovy/ast/expr">ConstantExpression</A></B></TD>
+        <TD>Represents a constant expression such as null, true, false</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ConstructorCallExpression.html" title="class in org/codehaus/groovy/ast/expr">ConstructorCallExpression</A></B></TD>
+        <TD>A constructor call</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="DeclarationExpression.html" title="class in org/codehaus/groovy/ast/expr">DeclarationExpression</A></B></TD>
+        <TD>Represents one or more local variables. </TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ElvisOperatorExpression.html" title="class in org/codehaus/groovy/ast/expr">ElvisOperatorExpression</A></B></TD>
+        <TD>Represents a short ternary expression x ?</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="EmptyExpression.html" title="class in org/codehaus/groovy/ast/expr">EmptyExpression</A></B></TD>
+        <TD>This class is a place holder for an empty expression. 
+ </TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="Expression.html" title="class in org/codehaus/groovy/ast/expr">Expression</A></B></TD>
+        <TD>Represents a base class for expressions which evaluate as an object</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="FieldExpression.html" title="class in org/codehaus/groovy/ast/expr">FieldExpression</A></B></TD>
+        <TD>Represents a field access such as the expression "this.foo".</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="GStringExpression.html" title="class in org/codehaus/groovy/ast/expr">GStringExpression</A></B></TD>
+        <TD>Represents a String expression which contains embedded values inside
+ it such as "hello there ${user} how are you" which is expanded lazily</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ListExpression.html" title="class in org/codehaus/groovy/ast/expr">ListExpression</A></B></TD>
+        <TD>Represents a list expression [1, 2, 3] which creates a mutable List</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="MapEntryExpression.html" title="class in org/codehaus/groovy/ast/expr">MapEntryExpression</A></B></TD>
+        <TD>Represents an entry inside a map expression such as 1 : 2.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="MapExpression.html" title="class in org/codehaus/groovy/ast/expr">MapExpression</A></B></TD>
+        <TD>Represents a map expression [1 : 2, "a" : "b", x : y] which creates a mutable Map</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="MethodCallExpression.html" title="class in org/codehaus/groovy/ast/expr">MethodCallExpression</A></B></TD>
+        <TD>A method call on an object or class</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="MethodPointerExpression.html" title="class in org/codehaus/groovy/ast/expr">MethodPointerExpression</A></B></TD>
+        <TD>Represents a method pointer on an object such as
+ foo.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="NamedArgumentListExpression.html" title="class in org/codehaus/groovy/ast/expr">NamedArgumentListExpression</A></B></TD>
+        <TD>Represents one or more arguments being passed into a method by name</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="NotExpression.html" title="class in org/codehaus/groovy/ast/expr">NotExpression</A></B></TD>
+        <TD>@author sam</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="PostfixExpression.html" title="class in org/codehaus/groovy/ast/expr">PostfixExpression</A></B></TD>
+        <TD>Represents a postfix expression like foo++ or bar++</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="PrefixExpression.html" title="class in org/codehaus/groovy/ast/expr">PrefixExpression</A></B></TD>
+        <TD>Represents a prefix expression like ++foo or --bar</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="PropertyExpression.html" title="class in org/codehaus/groovy/ast/expr">PropertyExpression</A></B></TD>
+        <TD>Represents a property access such as the expression "foo.bar".</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="RangeExpression.html" title="class in org/codehaus/groovy/ast/expr">RangeExpression</A></B></TD>
+        <TD>Represents a range expression such as for iterating.
+ </TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="SpreadExpression.html" title="class in org/codehaus/groovy/ast/expr">SpreadExpression</A></B></TD>
+        <TD>Represents a spread expression *x in the list expression [1, *x, 2].</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="SpreadMapExpression.html" title="class in org/codehaus/groovy/ast/expr">SpreadMapExpression</A></B></TD>
+        <TD>Represents a spread map expression *:m
+ in the map expression [1, *:m, 2, "c":100]
+ or in the method invoke expression func(1, *:m, 2, "c":100).</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="StaticMethodCallExpression.html" title="class in org/codehaus/groovy/ast/expr">StaticMethodCallExpression</A></B></TD>
+        <TD>A static method call on a class</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="TernaryExpression.html" title="class in org/codehaus/groovy/ast/expr">TernaryExpression</A></B></TD>
+        <TD>Represents a ternary expression (booleanExpression) ? </TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="TupleExpression.html" title="class in org/codehaus/groovy/ast/expr">TupleExpression</A></B></TD>
+        <TD>Represents a tuple expression {1, 2, 3} which creates an immutable List</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="UnaryMinusExpression.html" title="class in org/codehaus/groovy/ast/expr">UnaryMinusExpression</A></B></TD>
+        <TD>@author sam</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="UnaryPlusExpression.html" title="class in org/codehaus/groovy/ast/expr">UnaryPlusExpression</A></B></TD>
+        <TD>@author Paul King</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="VariableExpression.html" title="class in org/codehaus/groovy/ast/expr">VariableExpression</A></B></TD>
+        <TD>Represents a local variable name, the simplest form of expression. e.g.&#160;"foo".</TD>
+        </TR>
+
+</TABLE>
+&nbsp;
+<P>
+<DL>
+</DL>
+<hr>
+    
+
+
+
+
+
+
+<p>Copyright &amp;copy; 2003-2013 The Codehaus. All rights reserved.</p>
+<hr>
+</body>
+</html>

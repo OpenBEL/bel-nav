@@ -1,0 +1,3998 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<HTML>
+<HEAD>
+<TITLE>File (Groovy JDK)</TITLE>
+
+
+<LINK REL ="stylesheet" TYPE="text/css" HREF="../../stylesheet.css" TITLE="Style">
+
+<SCRIPT type="text/javascript">
+function windowTitle()
+{
+    parent.document.title = document.title;
+}
+</SCRIPT>
+
+</HEAD>
+
+<BODY BGCOLOR="white" onload="windowTitle();">
+
+<!-- ========== START OF NAVBAR ========== -->
+<A NAME="navbar_top"><!-- --></A>
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0">
+    <TR>
+        <TD COLSPAN=3 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+            <A NAME="navbar_top_firstrow"><!-- --></A>
+            <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3">
+                <TR ALIGN="center" VALIGN="top">
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../overview-summary.html"><SPAN CLASS="NavBarFont1"><B>Overview</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Package</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Class</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Tree</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Deprecated</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../index-all.html"><SPAN CLASS="NavBarFont1"><B>Index</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Help</SPAN>&nbsp;</TD>
+                </TR>
+            </TABLE>
+        </TD>
+        <TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+            <b>Groovy JDK</b></EM>
+        </TD>
+    </TR>
+</TABLE>
+<!-- =========== END OF NAVBAR =========== -->
+
+<!-- ======== START OF CLASS DATA ======== -->
+<H2>
+<SPAN style="font-size:12px;">
+java.io</SPAN>
+<BR>
+Class File</H2>
+
+<!-- ========== METHOD SUMMARY =========== -->
+
+<A NAME="method_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><SPAN style="font-size:24px;">
+<B>Method Summary</B></SPAN></TH>
+</TR>
+
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>void</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#append(java.lang.Object)">append</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> text)</CODE>
+<BR>
+Append the text at the end of the File.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>void</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#append(byte[])">append</A></B>(byte[] bytes)</CODE>
+<BR>
+Append bytes to the end of a File.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>void</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#append(java.io.InputStream)">append</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/InputStream.html' title='JDK class in java.io'>InputStream</a> stream)</CODE>
+<BR>
+Append binary data to the file.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>void</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#append(java.lang.Object, java.lang.String)">append</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> text, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> charset)</CODE>
+<BR>
+Append the text at the end of the File, using a specified encoding.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#asType(java.lang.Class)">asType</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Class.html' title='JDK class in java.lang'>Class</a> c)</CODE>
+<BR>
+Converts this File to a <a href='http://groovy.codehaus.org/api/groovy/lang/Writable.html' title='Groovy class in groovy.lang'>Writable</a> or delegates to default
+<a href='http://java.sun.com/j2se/1.5.0/docs/api/DefaultGroovyMethods.html#asType(java.lang.Object, java.lang.Class)' title='JDK class in DefaultPackage'>DefaultGroovyMethods#asType</a>.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/File.html' title='JDK class in java.io'>File</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#asWritable()">asWritable</A></B>()</CODE>
+<BR>
+Converts this File to a <a href='http://groovy.codehaus.org/api/groovy/lang/Writable.html' title='Groovy class in groovy.lang'>Writable</a>.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/File.html' title='JDK class in java.io'>File</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#asWritable(java.lang.String)">asWritable</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> encoding)</CODE>
+<BR>
+Allows a file to return a Writable implementation that can output itself
+to a Writer stream.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>static <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/File.html' title='JDK class in java.io'>File</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#createTempDir()">createTempDir</A></B>()</CODE>
+<BR>
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>static <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/File.html' title='JDK class in java.io'>File</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#createTempDir(java.lang.String, java.lang.String)">createTempDir</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> prefix, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> suffix)</CODE>
+<BR>
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>boolean</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#deleteDir()">deleteDir</A></B>()</CODE>
+<BR>
+Deletes a directory with all contained files and subdirectories.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>long</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#directorySize()">directorySize</A></B>()</CODE>
+<BR>
+Calculates directory size as total size of all its files, recursively.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>void</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#eachByte(groovy.lang.Closure)">eachByte</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Traverse through each byte of this File
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>void</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#eachByte(int, groovy.lang.Closure)">eachByte</A></B>(int bufferLen, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Traverse through the bytes of this File, bufferLen bytes at a time.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>void</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#eachDir(groovy.lang.Closure)">eachDir</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Invokes the closure for each subdirectory in this directory,
+ignoring regular files.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>void</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#eachDirMatch(java.lang.Object, groovy.lang.Closure)">eachDirMatch</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> nameFilter, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Invokes the closure for each subdirectory whose name (dir.name) matches the given nameFilter in the given directory
+- calling the <a href='http://java.sun.com/j2se/1.5.0/docs/api/DefaultGroovyMethods.html#isCase(java.lang.Object, java.lang.Object)' title='JDK class in DefaultPackage'>DefaultGroovyMethods#isCase</a> method to determine if a match occurs.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>void</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#eachDirRecurse(groovy.lang.Closure)">eachDirRecurse</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Invokes the closure for each descendant directory of this directory.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>void</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#eachFile(groovy.io.FileType, groovy.lang.Closure)">eachFile</A></B>(<a href='http://groovy.codehaus.org/api/groovy/io/FileType.html' title='Groovy class in groovy.io'>FileType</a> fileType, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Invokes the closure for each 'child' file in this 'parent' folder/directory.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>void</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#eachFile(groovy.lang.Closure)">eachFile</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Invokes the closure for each 'child' file in this 'parent' folder/directory.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>void</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#eachFileMatch(groovy.io.FileType, java.lang.Object, groovy.lang.Closure)">eachFileMatch</A></B>(<a href='http://groovy.codehaus.org/api/groovy/io/FileType.html' title='Groovy class in groovy.io'>FileType</a> fileType, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> nameFilter, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Invokes the closure for each file whose name (file.name) matches the given nameFilter in the given directory
+- calling the <a href='http://java.sun.com/j2se/1.5.0/docs/api/DefaultGroovyMethods.html#isCase(java.lang.Object, java.lang.Object)' title='JDK class in DefaultPackage'>DefaultGroovyMethods#isCase</a> method to determine if a match occurs.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>void</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#eachFileMatch(java.lang.Object, groovy.lang.Closure)">eachFileMatch</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> nameFilter, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Invokes the closure for each file whose name (file.name) matches the given nameFilter in the given directory
+- calling the <a href='http://java.sun.com/j2se/1.5.0/docs/api/DefaultGroovyMethods.html#isCase(java.lang.Object, java.lang.Object)' title='JDK class in DefaultPackage'>DefaultGroovyMethods#isCase</a> method to determine if a match occurs.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>void</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#eachFileRecurse(groovy.io.FileType, groovy.lang.Closure)">eachFileRecurse</A></B>(<a href='http://groovy.codehaus.org/api/groovy/io/FileType.html' title='Groovy class in groovy.io'>FileType</a> fileType, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Invokes the closure for each descendant file in this directory.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>void</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#eachFileRecurse(groovy.lang.Closure)">eachFileRecurse</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Invokes the closure for each descendant file in this directory.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#eachLine(groovy.lang.Closure)">eachLine</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Iterates through this file line by line.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#eachLine(java.lang.String, groovy.lang.Closure)">eachLine</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> charset, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Iterates through this file line by line.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#eachLine(int, groovy.lang.Closure)">eachLine</A></B>(int firstLine, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Iterates through this file line by line.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#eachLine(java.lang.String, int, groovy.lang.Closure)">eachLine</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> charset, int firstLine, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Iterates through this file line by line.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>void</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#eachObject(groovy.lang.Closure)">eachObject</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Iterates through the given file object by object.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://groovy.codehaus.org/api/groovy/lang/Writable.html' title='Groovy class in groovy.lang'>Writable</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#filterLine(groovy.lang.Closure)">filterLine</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Filters the lines of a File and creates a Writable in return to
+stream the filtered lines.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://groovy.codehaus.org/api/groovy/lang/Writable.html' title='Groovy class in groovy.lang'>Writable</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#filterLine(java.lang.String, groovy.lang.Closure)">filterLine</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> charset, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Filters the lines of a File and creates a Writable in return to
+stream the filtered lines.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>void</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#filterLine(java.io.Writer, groovy.lang.Closure)">filterLine</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/Writer.html' title='JDK class in java.io'>Writer</a> writer, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Filter the lines from this File, and write them to the given writer based
+on the given closure predicate.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>void</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#filterLine(java.io.Writer, java.lang.String, groovy.lang.Closure)">filterLine</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/Writer.html' title='JDK class in java.io'>Writer</a> writer, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> charset, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Filter the lines from this File, and write them to the given writer based
+on the given closure predicate.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>byte[]</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#getBytes()">getBytes</A></B>()</CODE>
+<BR>
+Read the content of the File and returns it as a byte[].
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#getText(java.lang.String)">getText</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> charset)</CODE>
+<BR>
+Read the content of the File using the specified encoding and return it
+as a String.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#getText()">getText</A></B>()</CODE>
+<BR>
+Read the content of the File and returns it as a String.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/File.html' title='JDK class in java.io'>File</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#leftShift(java.lang.Object)">leftShift</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> text)</CODE>
+<BR>
+Write the text to the File.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/File.html' title='JDK class in java.io'>File</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#leftShift(byte[])">leftShift</A></B>(byte[] bytes)</CODE>
+<BR>
+Write bytes to a File.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/File.html' title='JDK class in java.io'>File</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#leftShift(java.io.InputStream)">leftShift</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/InputStream.html' title='JDK class in java.io'>InputStream</a> data)</CODE>
+<BR>
+Append binary data to the file.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/DataInputStream.html' title='JDK class in java.io'>DataInputStream</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#newDataInputStream()">newDataInputStream</A></B>()</CODE>
+<BR>
+Create a data input stream for this file
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/DataOutputStream.html' title='JDK class in java.io'>DataOutputStream</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#newDataOutputStream()">newDataOutputStream</A></B>()</CODE>
+<BR>
+Creates a new data output stream for this file.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/BufferedInputStream.html' title='JDK class in java.io'>BufferedInputStream</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#newInputStream()">newInputStream</A></B>()</CODE>
+<BR>
+Creates a buffered input stream for this file.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/ObjectInputStream.html' title='JDK class in java.io'>ObjectInputStream</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#newObjectInputStream()">newObjectInputStream</A></B>()</CODE>
+<BR>
+Create an object input stream for this file.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/ObjectInputStream.html' title='JDK class in java.io'>ObjectInputStream</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#newObjectInputStream(java.lang.ClassLoader)">newObjectInputStream</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/ClassLoader.html' title='JDK class in java.lang'>ClassLoader</a> classLoader)</CODE>
+<BR>
+Create an object input stream for this file using the given class loader.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/ObjectOutputStream.html' title='JDK class in java.io'>ObjectOutputStream</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#newObjectOutputStream()">newObjectOutputStream</A></B>()</CODE>
+<BR>
+Create an object output stream for this file.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/BufferedOutputStream.html' title='JDK class in java.io'>BufferedOutputStream</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#newOutputStream()">newOutputStream</A></B>()</CODE>
+<BR>
+Create a buffered output stream for this file.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/PrintWriter.html' title='JDK class in java.io'>PrintWriter</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#newPrintWriter()">newPrintWriter</A></B>()</CODE>
+<BR>
+Create a new PrintWriter for this file.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/PrintWriter.html' title='JDK class in java.io'>PrintWriter</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#newPrintWriter(java.lang.String)">newPrintWriter</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> charset)</CODE>
+<BR>
+Create a new PrintWriter for this file, using specified
+charset.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/BufferedReader.html' title='JDK class in java.io'>BufferedReader</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#newReader()">newReader</A></B>()</CODE>
+<BR>
+Create a buffered reader for this file.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/BufferedReader.html' title='JDK class in java.io'>BufferedReader</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#newReader(java.lang.String)">newReader</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> charset)</CODE>
+<BR>
+Create a buffered reader for this file, using the specified
+charset as the encoding.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/BufferedWriter.html' title='JDK class in java.io'>BufferedWriter</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#newWriter()">newWriter</A></B>()</CODE>
+<BR>
+Create a buffered writer for this file.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/BufferedWriter.html' title='JDK class in java.io'>BufferedWriter</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#newWriter(boolean)">newWriter</A></B>(boolean append)</CODE>
+<BR>
+Creates a buffered writer for this file, optionally appending to the
+existing file content.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/BufferedWriter.html' title='JDK class in java.io'>BufferedWriter</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#newWriter(java.lang.String, boolean)">newWriter</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> charset, boolean append)</CODE>
+<BR>
+Helper method to create a buffered writer for a file.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/BufferedWriter.html' title='JDK class in java.io'>BufferedWriter</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#newWriter(java.lang.String)">newWriter</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> charset)</CODE>
+<BR>
+Creates a buffered writer for this file, writing data using the given
+encoding.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>byte[]</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#readBytes()">readBytes</A></B>()</CODE>
+<BR>
+Reads the content of the file into a byte array.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#readLines()">readLines</A></B>()</CODE>
+<BR>
+Reads the file into a list of Strings, with one item for each line.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#readLines(java.lang.String)">readLines</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> charset)</CODE>
+<BR>
+Reads the file into a list of Strings, with one item for each line.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>boolean</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#renameTo(java.lang.String)">renameTo</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> newPathName)</CODE>
+<BR>
+Renames the file. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>void</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#setBytes(byte[])">setBytes</A></B>(byte[] bytes)</CODE>
+<BR>
+Write the bytes from the byte array to the File.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>void</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#setText(java.lang.String)">setText</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> text)</CODE>
+<BR>
+Synonym for write(text) allowing file.text = 'foo'.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>void</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#setText(java.lang.String, java.lang.String)">setText</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> text, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> charset)</CODE>
+<BR>
+Synonym for write(text, charset) allowing:
+<pre>
+myFile.setText('some text', charset)
+</pre>
+or with some help from <code>ExpandoMetaClass</code>, you could do something like:
+<pre>
+myFile.metaClass.setText = { String s -> delegate.setText(s, 'UTF-8') }
+myfile.text = 'some text'
+</pre>
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>long</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#size()">size</A></B>()</CODE>
+<BR>
+Provide the standard Groovy <code>size()</code> method for <code>File</code>.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#splitEachLine(java.lang.String, groovy.lang.Closure)">splitEachLine</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> regex, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Iterates through this file line by line, splitting each line using
+the given regex separator. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#splitEachLine(java.util.regex.Pattern, groovy.lang.Closure)">splitEachLine</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/regex/Pattern.html' title='JDK class in java.util.regex'>Pattern</a> pattern, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Iterates through this file line by line, splitting each line using
+the given separator Pattern. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#splitEachLine(java.lang.String, java.lang.String, groovy.lang.Closure)">splitEachLine</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> regex, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> charset, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Iterates through this file line by line, splitting each line using
+the given regex separator. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#splitEachLine(java.util.regex.Pattern, java.lang.String, groovy.lang.Closure)">splitEachLine</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/regex/Pattern.html' title='JDK class in java.util.regex'>Pattern</a> pattern, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> charset, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Iterates through this file line by line, splitting each line using
+the given regex separator Pattern. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>void</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#traverse(java.util.Map, groovy.lang.Closure)">traverse</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> options, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Invokes <code>closure</code> for each descendant file in this directory tree.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>void</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#traverse(groovy.lang.Closure)">traverse</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Invokes the closure for each descendant file in this directory tree.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>void</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#traverse(java.util.Map)">traverse</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> options)</CODE>
+<BR>
+Invokes the closure specified with key 'visit' in the options Map
+for each descendant file in this directory tree. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#withDataInputStream(groovy.lang.Closure)">withDataInputStream</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Create a new DataInputStream for this file and passes it into the closure.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#withDataOutputStream(groovy.lang.Closure)">withDataOutputStream</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Create a new DataOutputStream for this file and passes it into the closure.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#withInputStream(groovy.lang.Closure)">withInputStream</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Create a new InputStream for this file and passes it into the closure.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#withObjectInputStream(groovy.lang.Closure)">withObjectInputStream</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Create a new ObjectInputStream for this file and pass it to the closure.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#withObjectInputStream(java.lang.ClassLoader, groovy.lang.Closure)">withObjectInputStream</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/ClassLoader.html' title='JDK class in java.lang'>ClassLoader</a> classLoader, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Create a new ObjectInputStream for this file associated with the given class loader and pass it to the closure.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#withObjectOutputStream(groovy.lang.Closure)">withObjectOutputStream</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Create a new ObjectOutputStream for this file and then pass it to the
+closure.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#withOutputStream(groovy.lang.Closure)">withOutputStream</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Creates a new OutputStream for this file and passes it into the closure.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#withPrintWriter(groovy.lang.Closure)">withPrintWriter</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Create a new PrintWriter for this file which is then
+passed it into the given closure.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#withPrintWriter(java.lang.String, groovy.lang.Closure)">withPrintWriter</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> charset, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Create a new PrintWriter with a specified charset for
+this file.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#withReader(groovy.lang.Closure)">withReader</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Create a new BufferedReader for this file and then
+passes it into the closure, ensuring the reader is closed after the
+closure returns.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#withReader(java.lang.String, groovy.lang.Closure)">withReader</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> charset, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Create a new BufferedReader for this file using the specified charset and then
+passes it into the closure, ensuring the reader is closed after the
+closure returns.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#withWriter(groovy.lang.Closure)">withWriter</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Creates a new BufferedWriter for this file, passes it to the closure, and
+ensures the stream is flushed and closed after the closure returns.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#withWriter(java.lang.String, groovy.lang.Closure)">withWriter</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> charset, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Creates a new BufferedWriter for this file, passes it to the closure, and
+ensures the stream is flushed and closed after the closure returns.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#withWriterAppend(java.lang.String, groovy.lang.Closure)">withWriterAppend</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> charset, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Create a new BufferedWriter which will append to this
+file.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#withWriterAppend(groovy.lang.Closure)">withWriterAppend</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Create a new BufferedWriter for this file in append mode.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>void</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#write(java.lang.String)">write</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> text)</CODE>
+<BR>
+Write the text to the File.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>void</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#write(java.lang.String, java.lang.String)">write</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> text, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> charset)</CODE>
+<BR>
+Write the text to the File, using the specified encoding.
+</TD>
+</TR>
+
+</TABLE>
+&nbsp;
+
+
+<!-- ============ METHOD DETAIL ========== -->
+
+<A NAME="method_detail"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="1"><SPAN style="font-size:24px;">
+<B>Method Detail</B></SPAN></TH>
+</TR>
+</TABLE>
+
+
+
+<A name="append(java.lang.Object)"><!-- --></A><H3>append</H3>
+<PRE>public void <B>append</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> text)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Append the text at the end of the File.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>text</CODE> -  the text to append at the end of the File.</DD>
+
+    </dl>
+    
+
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="append(byte[])"><!-- --></A><H3>append</H3>
+<PRE>public void <B>append</B>(byte[] bytes)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Append bytes to the end of a File.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>bytes</CODE> -  the byte array to append to the end of the File.</DD>
+
+    </dl>
+    
+
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.1</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="append(java.io.InputStream)"><!-- --></A><H3>append</H3>
+<PRE>public void <B>append</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/InputStream.html' title='JDK class in java.io'>InputStream</a> stream)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Append binary data to the file.  It <strong>will not</strong> be
+interpreted as text.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>stream</CODE> -  stream to read data from..</DD>
+
+    </dl>
+    
+
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="append(java.lang.Object, java.lang.String)"><!-- --></A><H3>append</H3>
+<PRE>public void <B>append</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> text, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> charset)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Append the text at the end of the File, using a specified encoding.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>text</CODE> -     the text to append at the end of the File.</DD>
+
+		<DD><CODE>charset</CODE> -  the charset used.</DD>
+
+    </dl>
+    
+
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="asType(java.lang.Class)"><!-- --></A><H3>asType</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>asType</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Class.html' title='JDK class in java.lang'>Class</a> c)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Converts this File to a <a href='http://groovy.codehaus.org/api/groovy/lang/Writable.html' title='Groovy class in groovy.lang'>Writable</a> or delegates to default
+<a href='http://java.sun.com/j2se/1.5.0/docs/api/DefaultGroovyMethods.html#asType(java.lang.Object, java.lang.Class)' title='JDK class in DefaultPackage'>DefaultGroovyMethods#asType</a>.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>c</CODE> -  the desired class.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the converted object</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="asWritable()"><!-- --></A><H3>asWritable</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/File.html' title='JDK class in java.io'>File</a> <B>asWritable</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Converts this File to a <a href='http://groovy.codehaus.org/api/groovy/lang/Writable.html' title='Groovy class in groovy.lang'>Writable</a>.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>a File which wraps the input file and which implements Writable</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="asWritable(java.lang.String)"><!-- --></A><H3>asWritable</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/File.html' title='JDK class in java.io'>File</a> <B>asWritable</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> encoding)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Allows a file to return a Writable implementation that can output itself
+to a Writer stream.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>encoding</CODE> -  the encoding to be used when reading the file's contents.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>File which wraps the input file and which implements Writable</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="createTempDir()"><!-- --></A><H3>createTempDir</H3>
+<PRE>public static <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/File.html' title='JDK class in java.io'>File</a> <B>createTempDir</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD></DD>
+</DL>
+
+
+
+
+
+
+
+
+<HR>
+
+
+<A name="createTempDir(java.lang.String, java.lang.String)"><!-- --></A><H3>createTempDir</H3>
+<PRE>public static <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/File.html' title='JDK class in java.io'>File</a> <B>createTempDir</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> prefix, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> suffix)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+    </dl>
+    
+
+
+
+
+
+
+
+<HR>
+
+
+<A name="deleteDir()"><!-- --></A><H3>deleteDir</H3>
+<PRE>public boolean <B>deleteDir</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Deletes a directory with all contained files and subdirectories.
+<p>The method returns
+<ul>
+<li>true, when deletion was successful</li>
+<li>true, when it is called for a non existing directory</li>
+<li>false, when it is called for a file which isn't a directory</li>
+<li>false, when directory couldn't be deleted</li>
+</ul></DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>true if the file doesn't exist or deletion was successful</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.6.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="directorySize()"><!-- --></A><H3>directorySize</H3>
+<PRE>public long <B>directorySize</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Calculates directory size as total size of all its files, recursively.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>directory size (length)</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>2.1</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="eachByte(groovy.lang.Closure)"><!-- --></A><H3>eachByte</H3>
+<PRE>public void <B>eachByte</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Traverse through each byte of this File</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  a closure.</DD>
+
+    </dl>
+    
+
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://java.sun.com/j2se/1.5.0/docs/api/IOGroovyMethods.html#eachByte(java.io.InputStream, groovy.lang.Closure)' title='JDK class in DefaultPackage'>IOGroovyMethods#eachByte</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="eachByte(int, groovy.lang.Closure)"><!-- --></A><H3>eachByte</H3>
+<PRE>public void <B>eachByte</B>(int bufferLen, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Traverse through the bytes of this File, bufferLen bytes at a time.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>bufferLen</CODE> -  the length of the buffer to use..</DD>
+
+		<DD><CODE>closure</CODE> -    a 2 parameter closure which is passed the byte[] and a number of bytes successfully read..</DD>
+
+    </dl>
+    
+
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.4</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://java.sun.com/j2se/1.5.0/docs/api/IOGroovyMethods.html#eachByte(java.io.InputStream, int, groovy.lang.Closure)' title='JDK class in DefaultPackage'>IOGroovyMethods#eachByte</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="eachDir(groovy.lang.Closure)"><!-- --></A><H3>eachDir</H3>
+<PRE>public void <B>eachDir</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Invokes the closure for each subdirectory in this directory,
+ignoring regular files.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  a closure (first parameter is the subdirectory file).</DD>
+
+    </dl>
+    
+
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/File.html#listFiles()' title='JDK class in java.io'>File#listFiles</a>.</DD>
+
+    <DD><a href='../../java/io/File.html#eachFile(groovy.io.FileType, groovy.lang.Closure)' title='GDK enhancement for java.io.File'>File#eachFile</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="eachDirMatch(java.lang.Object, groovy.lang.Closure)"><!-- --></A><H3>eachDirMatch</H3>
+<PRE>public void <B>eachDirMatch</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> nameFilter, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Invokes the closure for each subdirectory whose name (dir.name) matches the given nameFilter in the given directory
+- calling the <a href='http://java.sun.com/j2se/1.5.0/docs/api/DefaultGroovyMethods.html#isCase(java.lang.Object, java.lang.Object)' title='JDK class in DefaultPackage'>DefaultGroovyMethods#isCase</a> method to determine if a match occurs.  This method can be used
+with different kinds of filters like regular expressions, classes, ranges etc.
+Only subdirectories are matched; regular files are ignored.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>nameFilter</CODE> -  the nameFilter to perform on the name of the directory (using the <a href='http://java.sun.com/j2se/1.5.0/docs/api/DefaultGroovyMethods.html#isCase(java.lang.Object, java.lang.Object)' title='JDK class in DefaultPackage'>DefaultGroovyMethods#isCase</a> method).</DD>
+
+		<DD><CODE>closure</CODE> -     the closure to invoke.</DD>
+
+    </dl>
+    
+
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.0</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='../../java/io/File.html#eachFileMatch(groovy.io.FileType, java.lang.Object, groovy.lang.Closure)' title='GDK enhancement for java.io.File'>File#eachFileMatch</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="eachDirRecurse(groovy.lang.Closure)"><!-- --></A><H3>eachDirRecurse</H3>
+<PRE>public void <B>eachDirRecurse</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Invokes the closure for each descendant directory of this directory.
+Sub-directories are recursively searched in a depth-first fashion.
+Only subdirectories are passed to the closure; regular files are ignored.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  a closure.</DD>
+
+    </dl>
+    
+
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.0</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='../../java/io/File.html#eachFileRecurse(groovy.io.FileType, groovy.lang.Closure)' title='GDK enhancement for java.io.File'>File#eachFileRecurse</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="eachFile(groovy.io.FileType, groovy.lang.Closure)"><!-- --></A><H3>eachFile</H3>
+<PRE>public void <B>eachFile</B>(<a href='http://groovy.codehaus.org/api/groovy/io/FileType.html' title='Groovy class in groovy.io'>FileType</a> fileType, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Invokes the closure for each 'child' file in this 'parent' folder/directory.
+Both regular files and subfolders/subdirectories can be processed depending
+on the fileType enum value.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>fileType</CODE> -  if normal files or directories or both should be processed.</DD>
+
+		<DD><CODE>closure</CODE> -   the closure to invoke.</DD>
+
+    </dl>
+    
+
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.1</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="eachFile(groovy.lang.Closure)"><!-- --></A><H3>eachFile</H3>
+<PRE>public void <B>eachFile</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Invokes the closure for each 'child' file in this 'parent' folder/directory.
+Both regular files and subfolders/subdirectories are processed.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  a closure (first parameter is the 'child' file).</DD>
+
+    </dl>
+    
+
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.0</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/File.html#listFiles()' title='JDK class in java.io'>File#listFiles</a>.</DD>
+
+    <DD><a href='../../java/io/File.html#eachFile(groovy.io.FileType, groovy.lang.Closure)' title='GDK enhancement for java.io.File'>File#eachFile</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="eachFileMatch(groovy.io.FileType, java.lang.Object, groovy.lang.Closure)"><!-- --></A><H3>eachFileMatch</H3>
+<PRE>public void <B>eachFileMatch</B>(<a href='http://groovy.codehaus.org/api/groovy/io/FileType.html' title='Groovy class in groovy.io'>FileType</a> fileType, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> nameFilter, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Invokes the closure for each file whose name (file.name) matches the given nameFilter in the given directory
+- calling the <a href='http://java.sun.com/j2se/1.5.0/docs/api/DefaultGroovyMethods.html#isCase(java.lang.Object, java.lang.Object)' title='JDK class in DefaultPackage'>DefaultGroovyMethods#isCase</a> method to determine if a match occurs.  This method can be used
+with different kinds of filters like regular expressions, classes, ranges etc.
+Both regular files and subdirectories may be candidates for matching depending
+on the value of fileType.
+<pre>
+// collect names of files in baseDir matching supplied regex pattern
+import static groovy.io.FileType.*
+def names = []
+baseDir.eachFileMatch FILES, ~/foo\d\.txt/, { names << it.name }
+assert names == ['foo1.txt', 'foo2.txt']
+
+// remove all *.bak files in baseDir
+baseDir.eachFileMatch FILES, ~/.*\.bak/, { File bak -> bak.delete() }
+
+// print out files > 4K in size from baseDir
+baseDir.eachFileMatch FILES, { new File(baseDir, it).size() > 4096 }, { println "$it.name ${it.size()}" }
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>fileType</CODE> -    whether normal files or directories or both should be processed.</DD>
+
+		<DD><CODE>nameFilter</CODE> -  the filter to perform on the name of the file/directory (using the <a href='http://java.sun.com/j2se/1.5.0/docs/api/DefaultGroovyMethods.html#isCase(java.lang.Object, java.lang.Object)' title='JDK class in DefaultPackage'>DefaultGroovyMethods#isCase</a> method).</DD>
+
+		<DD><CODE>closure</CODE> -     the closure to invoke.</DD>
+
+    </dl>
+    
+
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.1</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="eachFileMatch(java.lang.Object, groovy.lang.Closure)"><!-- --></A><H3>eachFileMatch</H3>
+<PRE>public void <B>eachFileMatch</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> nameFilter, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Invokes the closure for each file whose name (file.name) matches the given nameFilter in the given directory
+- calling the <a href='http://java.sun.com/j2se/1.5.0/docs/api/DefaultGroovyMethods.html#isCase(java.lang.Object, java.lang.Object)' title='JDK class in DefaultPackage'>DefaultGroovyMethods#isCase</a> method to determine if a match occurs.  This method can be used
+with different kinds of filters like regular expressions, classes, ranges etc.
+Both regular files and subdirectories are matched.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>nameFilter</CODE> -  the nameFilter to perform on the name of the file (using the <a href='http://java.sun.com/j2se/1.5.0/docs/api/DefaultGroovyMethods.html#isCase(java.lang.Object, java.lang.Object)' title='JDK class in DefaultPackage'>DefaultGroovyMethods#isCase</a> method).</DD>
+
+		<DD><CODE>closure</CODE> -     the closure to invoke.</DD>
+
+    </dl>
+    
+
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.0</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='../../java/io/File.html#eachFileMatch(groovy.io.FileType, java.lang.Object, groovy.lang.Closure)' title='GDK enhancement for java.io.File'>File#eachFileMatch</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="eachFileRecurse(groovy.io.FileType, groovy.lang.Closure)"><!-- --></A><H3>eachFileRecurse</H3>
+<PRE>public void <B>eachFileRecurse</B>(<a href='http://groovy.codehaus.org/api/groovy/io/FileType.html' title='Groovy class in groovy.io'>FileType</a> fileType, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Invokes the closure for each descendant file in this directory.
+Sub-directories are recursively searched in a depth-first fashion.
+Both regular files and subdirectories may be passed to the closure
+depending on the value of fileType.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>fileType</CODE> -  if normal files or directories or both should be processed.</DD>
+
+		<DD><CODE>closure</CODE> -   the closure to invoke on each file.</DD>
+
+    </dl>
+    
+
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.1</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="eachFileRecurse(groovy.lang.Closure)"><!-- --></A><H3>eachFileRecurse</H3>
+<PRE>public void <B>eachFileRecurse</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Invokes the closure for each descendant file in this directory.
+Sub-directories are recursively searched in a depth-first fashion.
+Both regular files and subdirectories are passed to the closure.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  a closure.</DD>
+
+    </dl>
+    
+
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='../../java/io/File.html#eachFileRecurse(groovy.io.FileType, groovy.lang.Closure)' title='GDK enhancement for java.io.File'>File#eachFileRecurse</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="eachLine(groovy.lang.Closure)"><!-- --></A><H3>eachLine</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>eachLine</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates through this file line by line.  Each line is passed to the
+given 1 or 2 arg closure.  The file is read using a reader which
+is closed before this method returns.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  a closure (arg 1 is line, optional arg 2 is line number starting at line 1).</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the last value returned by the closure</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.5</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='../../java/io/File.html#eachLine(int, groovy.lang.Closure)' title='GDK enhancement for java.io.File'>File#eachLine</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="eachLine(java.lang.String, groovy.lang.Closure)"><!-- --></A><H3>eachLine</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>eachLine</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> charset, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates through this file line by line.  Each line is passed to the
+given 1 or 2 arg closure.  The file is read using a reader which
+is closed before this method returns.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>charset</CODE> -  opens the file with a specified charset.</DD>
+
+		<DD><CODE>closure</CODE> -  a closure (arg 1 is line, optional arg 2 is line number starting at line 1).</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the last value returned by the closure</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.6.8</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='../../java/io/File.html#eachLine(java.lang.String, int, groovy.lang.Closure)' title='GDK enhancement for java.io.File'>File#eachLine</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="eachLine(int, groovy.lang.Closure)"><!-- --></A><H3>eachLine</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>eachLine</B>(int firstLine, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates through this file line by line.  Each line is passed
+to the given 1 or 2 arg closure.  The file is read using a reader
+which is closed before this method returns.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>firstLine</CODE> -  the line number value used for the first line (default is 1, set to 0 to start counting from 0).</DD>
+
+		<DD><CODE>closure</CODE> -    a closure (arg 1 is line, optional arg 2 is line number).</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the last value returned by the closure</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.7</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://java.sun.com/j2se/1.5.0/docs/api/IOGroovyMethods.html#eachLine(java.io.Reader, int, groovy.lang.Closure)' title='JDK class in DefaultPackage'>IOGroovyMethods#eachLine</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="eachLine(java.lang.String, int, groovy.lang.Closure)"><!-- --></A><H3>eachLine</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>eachLine</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> charset, int firstLine, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates through this file line by line.  Each line is passed
+to the given 1 or 2 arg closure.  The file is read using a reader
+which is closed before this method returns.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>charset</CODE> -    opens the file with a specified charset.</DD>
+
+		<DD><CODE>firstLine</CODE> -  the line number value used for the first line (default is 1, set to 0 to start counting from 0).</DD>
+
+		<DD><CODE>closure</CODE> -    a closure (arg 1 is line, optional arg 2 is line number).</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the last value returned by the closure</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.6.8</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://java.sun.com/j2se/1.5.0/docs/api/IOGroovyMethods.html#eachLine(java.io.Reader, int, groovy.lang.Closure)' title='JDK class in DefaultPackage'>IOGroovyMethods#eachLine</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="eachObject(groovy.lang.Closure)"><!-- --></A><H3>eachObject</H3>
+<PRE>public void <B>eachObject</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates through the given file object by object.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  a closure.</DD>
+
+    </dl>
+    
+
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://java.sun.com/j2se/1.5.0/docs/api/IOGroovyMethods.html#eachObject(java.io.ObjectInputStream, groovy.lang.Closure)' title='JDK class in DefaultPackage'>IOGroovyMethods#eachObject</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="filterLine(groovy.lang.Closure)"><!-- --></A><H3>filterLine</H3>
+<PRE>public <a href='http://groovy.codehaus.org/api/groovy/lang/Writable.html' title='Groovy class in groovy.lang'>Writable</a> <B>filterLine</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Filters the lines of a File and creates a Writable in return to
+stream the filtered lines.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure
+</CODE> -  a closure which returns a boolean indicating to filter
+               the line or not.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a Writable closure</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://java.sun.com/j2se/1.5.0/docs/api/IOGroovyMethods.html#filterLine(java.io.Reader, groovy.lang.Closure)' title='JDK class in DefaultPackage'>IOGroovyMethods#filterLine</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="filterLine(java.lang.String, groovy.lang.Closure)"><!-- --></A><H3>filterLine</H3>
+<PRE>public <a href='http://groovy.codehaus.org/api/groovy/lang/Writable.html' title='Groovy class in groovy.lang'>Writable</a> <B>filterLine</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> charset, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Filters the lines of a File and creates a Writable in return to
+stream the filtered lines.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>charset</CODE> -  opens the file with a specified charset.</DD>
+
+		<DD><CODE>closure
+</CODE> -  a closure which returns a boolean indicating to filter
+               the line or not.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a Writable closure</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.6.8</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://java.sun.com/j2se/1.5.0/docs/api/IOGroovyMethods.html#filterLine(java.io.Reader, groovy.lang.Closure)' title='JDK class in DefaultPackage'>IOGroovyMethods#filterLine</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="filterLine(java.io.Writer, groovy.lang.Closure)"><!-- --></A><H3>filterLine</H3>
+<PRE>public void <B>filterLine</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/Writer.html' title='JDK class in java.io'>Writer</a> writer, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Filter the lines from this File, and write them to the given writer based
+on the given closure predicate.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>writer</CODE> -   a writer destination to write filtered lines to.</DD>
+
+		<DD><CODE>closure
+</CODE> -  a closure which takes each line as a parameter and returns
+               <code>true</code> if the line should be written to this writer..</DD>
+
+    </dl>
+    
+
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://java.sun.com/j2se/1.5.0/docs/api/IOGroovyMethods.html#filterLine(java.io.Reader, java.io.Writer, groovy.lang.Closure)' title='JDK class in DefaultPackage'>IOGroovyMethods#filterLine</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="filterLine(java.io.Writer, java.lang.String, groovy.lang.Closure)"><!-- --></A><H3>filterLine</H3>
+<PRE>public void <B>filterLine</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/Writer.html' title='JDK class in java.io'>Writer</a> writer, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> charset, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Filter the lines from this File, and write them to the given writer based
+on the given closure predicate.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>writer</CODE> -   a writer destination to write filtered lines to.</DD>
+
+		<DD><CODE>charset</CODE> -  opens the file with a specified charset.</DD>
+
+		<DD><CODE>closure
+</CODE> -  a closure which takes each line as a parameter and returns
+               <code>true</code> if the line should be written to this writer..</DD>
+
+    </dl>
+    
+
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.6.8</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://java.sun.com/j2se/1.5.0/docs/api/IOGroovyMethods.html#filterLine(java.io.Reader, java.io.Writer, groovy.lang.Closure)' title='JDK class in DefaultPackage'>IOGroovyMethods#filterLine</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="getBytes()"><!-- --></A><H3>getBytes</H3>
+<PRE>public byte[] <B>getBytes</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Read the content of the File and returns it as a byte[].</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>a String containing the content of the file</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.1</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="getText(java.lang.String)"><!-- --></A><H3>getText</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> <B>getText</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> charset)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Read the content of the File using the specified encoding and return it
+as a String.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>charset</CODE> -  the charset used to read the content of the file.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a String containing the content of the file</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="getText()"><!-- --></A><H3>getText</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> <B>getText</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Read the content of the File and returns it as a String.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>a String containing the content of the file</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="leftShift(java.lang.Object)"><!-- --></A><H3>leftShift</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/File.html' title='JDK class in java.io'>File</a> <B>leftShift</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> text)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Write the text to the File.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>text</CODE> -  the text to write to the File.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the original file</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="leftShift(byte[])"><!-- --></A><H3>leftShift</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/File.html' title='JDK class in java.io'>File</a> <B>leftShift</B>(byte[] bytes)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Write bytes to a File.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>bytes</CODE> -  the byte array to append to the end of the File.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the original file</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="leftShift(java.io.InputStream)"><!-- --></A><H3>leftShift</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/File.html' title='JDK class in java.io'>File</a> <B>leftShift</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/InputStream.html' title='JDK class in java.io'>InputStream</a> data)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Append binary data to the file.  See <a href='../../java/io/File.html#append(java.io.InputStream)' title='GDK enhancement for java.io.File'>File#append</a></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>data</CODE> -  an InputStream of data to write to the file.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the file</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="newDataInputStream()"><!-- --></A><H3>newDataInputStream</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/DataInputStream.html' title='JDK class in java.io'>DataInputStream</a> <B>newDataInputStream</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Create a data input stream for this file</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>a DataInputStream of the file</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="newDataOutputStream()"><!-- --></A><H3>newDataOutputStream</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/DataOutputStream.html' title='JDK class in java.io'>DataOutputStream</a> <B>newDataOutputStream</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Creates a new data output stream for this file.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>the created DataOutputStream</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="newInputStream()"><!-- --></A><H3>newInputStream</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/BufferedInputStream.html' title='JDK class in java.io'>BufferedInputStream</a> <B>newInputStream</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Creates a buffered input stream for this file.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>a BufferedInputStream of the file</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="newObjectInputStream()"><!-- --></A><H3>newObjectInputStream</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/ObjectInputStream.html' title='JDK class in java.io'>ObjectInputStream</a> <B>newObjectInputStream</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Create an object input stream for this file.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>an object input stream</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="newObjectInputStream(java.lang.ClassLoader)"><!-- --></A><H3>newObjectInputStream</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/ObjectInputStream.html' title='JDK class in java.io'>ObjectInputStream</a> <B>newObjectInputStream</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/ClassLoader.html' title='JDK class in java.lang'>ClassLoader</a> classLoader)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Create an object input stream for this file using the given class loader.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>classLoader</CODE> -  the class loader to use when loading the class.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>an object input stream</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="newObjectOutputStream()"><!-- --></A><H3>newObjectOutputStream</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/ObjectOutputStream.html' title='JDK class in java.io'>ObjectOutputStream</a> <B>newObjectOutputStream</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Create an object output stream for this file.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>an object output stream</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="newOutputStream()"><!-- --></A><H3>newOutputStream</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/BufferedOutputStream.html' title='JDK class in java.io'>BufferedOutputStream</a> <B>newOutputStream</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Create a buffered output stream for this file.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>the created OutputStream</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="newPrintWriter()"><!-- --></A><H3>newPrintWriter</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/PrintWriter.html' title='JDK class in java.io'>PrintWriter</a> <B>newPrintWriter</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Create a new PrintWriter for this file.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>the created PrintWriter</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="newPrintWriter(java.lang.String)"><!-- --></A><H3>newPrintWriter</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/PrintWriter.html' title='JDK class in java.io'>PrintWriter</a> <B>newPrintWriter</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> charset)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Create a new PrintWriter for this file, using specified
+charset.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>charset</CODE> -  the charset.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a PrintWriter</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="newReader()"><!-- --></A><H3>newReader</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/BufferedReader.html' title='JDK class in java.io'>BufferedReader</a> <B>newReader</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Create a buffered reader for this file.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>a BufferedReader</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="newReader(java.lang.String)"><!-- --></A><H3>newReader</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/BufferedReader.html' title='JDK class in java.io'>BufferedReader</a> <B>newReader</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> charset)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Create a buffered reader for this file, using the specified
+charset as the encoding.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>charset</CODE> -  the charset for this File.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a BufferedReader</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="newWriter()"><!-- --></A><H3>newWriter</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/BufferedWriter.html' title='JDK class in java.io'>BufferedWriter</a> <B>newWriter</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Create a buffered writer for this file.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>a BufferedWriter</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="newWriter(boolean)"><!-- --></A><H3>newWriter</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/BufferedWriter.html' title='JDK class in java.io'>BufferedWriter</a> <B>newWriter</B>(boolean append)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Creates a buffered writer for this file, optionally appending to the
+existing file content.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>append</CODE> -  true if data should be appended to the file.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a BufferedWriter</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="newWriter(java.lang.String, boolean)"><!-- --></A><H3>newWriter</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/BufferedWriter.html' title='JDK class in java.io'>BufferedWriter</a> <B>newWriter</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> charset, boolean append)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Helper method to create a buffered writer for a file.  If the given
+charset is "UTF-16BE" or "UTF-16LE", the requisite byte order mark is
+written to the stream before the writer is returned.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>charset</CODE> -  the name of the encoding used to write in this file.</DD>
+
+		<DD><CODE>append</CODE> -   true if in append mode.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a BufferedWriter</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="newWriter(java.lang.String)"><!-- --></A><H3>newWriter</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/BufferedWriter.html' title='JDK class in java.io'>BufferedWriter</a> <B>newWriter</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> charset)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Creates a buffered writer for this file, writing data using the given
+encoding.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>charset</CODE> -  the name of the encoding used to write in this file.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a BufferedWriter</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="readBytes()"><!-- --></A><H3>readBytes</H3>
+<PRE>public byte[] <B>readBytes</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Reads the content of the file into a byte array.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>a byte array with the contents of the file.</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="readLines()"><!-- --></A><H3>readLines</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>readLines</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Reads the file into a list of Strings, with one item for each line.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>a List of lines</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://java.sun.com/j2se/1.5.0/docs/api/IOGroovyMethods.html#readLines(java.io.Reader)' title='JDK class in DefaultPackage'>IOGroovyMethods#readLines</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="readLines(java.lang.String)"><!-- --></A><H3>readLines</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>readLines</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> charset)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Reads the file into a list of Strings, with one item for each line.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>charset</CODE> -  opens the file with a specified charset.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a List of lines</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.6.8</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://java.sun.com/j2se/1.5.0/docs/api/IOGroovyMethods.html#readLines(java.io.Reader)' title='JDK class in DefaultPackage'>IOGroovyMethods#readLines</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="renameTo(java.lang.String)"><!-- --></A><H3>renameTo</H3>
+<PRE>public boolean <B>renameTo</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> newPathName)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Renames the file. It's a shortcut for <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/File.html#renameTo(File)' title='JDK class in java.io'>File#renameTo</a></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>newPathName</CODE> -  The new pathname for the named file.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD><code>true</code> if and only if the renaming succeeded;
+        <code>false</code> otherwise</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.4</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="setBytes(byte[])"><!-- --></A><H3>setBytes</H3>
+<PRE>public void <B>setBytes</B>(byte[] bytes)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Write the bytes from the byte array to the File.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>bytes</CODE> -  the byte[] to write to the file.</DD>
+
+    </dl>
+    
+
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.1</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="setText(java.lang.String)"><!-- --></A><H3>setText</H3>
+<PRE>public void <B>setText</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> text)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Synonym for write(text) allowing file.text = 'foo'.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>text</CODE> -  the text to write to the File.</DD>
+
+    </dl>
+    
+
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.1</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='../../java/io/File.html#write(java.lang.String)' title='GDK enhancement for java.io.File'>File#write</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="setText(java.lang.String, java.lang.String)"><!-- --></A><H3>setText</H3>
+<PRE>public void <B>setText</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> text, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> charset)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Synonym for write(text, charset) allowing:
+<pre>
+myFile.setText('some text', charset)
+</pre>
+or with some help from <code>ExpandoMetaClass</code>, you could do something like:
+<pre>
+myFile.metaClass.setText = { String s -> delegate.setText(s, 'UTF-8') }
+myfile.text = 'some text'
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>charset</CODE> -  The charset used when writing to the file.</DD>
+
+		<DD><CODE>text</CODE> -     The text to write to the File.</DD>
+
+    </dl>
+    
+
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.3</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='../../java/io/File.html#write(java.lang.String, java.lang.String)' title='GDK enhancement for java.io.File'>File#write</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="size()"><!-- --></A><H3>size</H3>
+<PRE>public long <B>size</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Provide the standard Groovy <code>size()</code> method for <code>File</code>.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>the file's size (length)</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="splitEachLine(java.lang.String, groovy.lang.Closure)"><!-- --></A><H3>splitEachLine</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>splitEachLine</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> regex, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates through this file line by line, splitting each line using
+the given regex separator. For each line, the given closure is called with
+a single parameter being the list of strings computed by splitting the line
+around matches of the given regular expression.
+Finally the resources used for processing the file are closed.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>regex</CODE> -    the delimiting regular expression.</DD>
+
+		<DD><CODE>closure</CODE> -  a closure.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the last value returned by the closure</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.5</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://java.sun.com/j2se/1.5.0/docs/api/IOGroovyMethods.html#splitEachLine(java.io.Reader, java.lang.String, groovy.lang.Closure)' title='JDK class in DefaultPackage'>IOGroovyMethods#splitEachLine</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="splitEachLine(java.util.regex.Pattern, groovy.lang.Closure)"><!-- --></A><H3>splitEachLine</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>splitEachLine</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/regex/Pattern.html' title='JDK class in java.util.regex'>Pattern</a> pattern, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates through this file line by line, splitting each line using
+the given separator Pattern. For each line, the given closure is called with
+a single parameter being the list of strings computed by splitting the line
+around matches of the given regular expression Pattern.
+Finally the resources used for processing the file are closed.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>pattern</CODE> -  the regular expression Pattern for the delimiter.</DD>
+
+		<DD><CODE>closure</CODE> -  a closure.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the last value returned by the closure</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.6.8</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://java.sun.com/j2se/1.5.0/docs/api/IOGroovyMethods.html#splitEachLine(java.io.Reader, java.util.regex.Pattern, groovy.lang.Closure)' title='JDK class in DefaultPackage'>IOGroovyMethods#splitEachLine</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="splitEachLine(java.lang.String, java.lang.String, groovy.lang.Closure)"><!-- --></A><H3>splitEachLine</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>splitEachLine</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> regex, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> charset, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates through this file line by line, splitting each line using
+the given regex separator. For each line, the given closure is called with
+a single parameter being the list of strings computed by splitting the line
+around matches of the given regular expression.
+Finally the resources used for processing the file are closed.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>regex</CODE> -    the delimiting regular expression.</DD>
+
+		<DD><CODE>charset</CODE> -  opens the file with a specified charset.</DD>
+
+		<DD><CODE>closure</CODE> -  a closure.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the last value returned by the closure</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.6.8</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://java.sun.com/j2se/1.5.0/docs/api/IOGroovyMethods.html#splitEachLine(java.io.Reader, java.lang.String, groovy.lang.Closure)' title='JDK class in DefaultPackage'>IOGroovyMethods#splitEachLine</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="splitEachLine(java.util.regex.Pattern, java.lang.String, groovy.lang.Closure)"><!-- --></A><H3>splitEachLine</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>splitEachLine</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/regex/Pattern.html' title='JDK class in java.util.regex'>Pattern</a> pattern, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> charset, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates through this file line by line, splitting each line using
+the given regex separator Pattern. For each line, the given closure is called with
+a single parameter being the list of strings computed by splitting the line
+around matches of the given regular expression.
+Finally the resources used for processing the file are closed.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>pattern</CODE> -  the regular expression Pattern for the delimiter.</DD>
+
+		<DD><CODE>charset</CODE> -  opens the file with a specified charset.</DD>
+
+		<DD><CODE>closure</CODE> -  a closure.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the last value returned by the closure</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.6.8</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://java.sun.com/j2se/1.5.0/docs/api/IOGroovyMethods.html#splitEachLine(java.io.Reader, java.util.regex.Pattern, groovy.lang.Closure)' title='JDK class in DefaultPackage'>IOGroovyMethods#splitEachLine</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="traverse(java.util.Map, groovy.lang.Closure)"><!-- --></A><H3>traverse</H3>
+<PRE>public void <B>traverse</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> options, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Invokes <code>closure</code> for each descendant file in this directory tree.
+Sub-directories are recursively traversed as found.
+The traversal can be adapted by providing various options in the <code>options</code> Map according
+to the following keys:<dl>
+<dt>type</dt><dd>A <a href='http://groovy.codehaus.org/api/groovy/io/FileType.html' title='Groovy class in groovy.io'>FileType</a> enum to determine if normal files or directories or both are processed</dd>
+<dt>preDir</dt><dd>A <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> run before each directory is processed and optionally returning a <a href='http://groovy.codehaus.org/api/groovy/io/FileVisitResult.html' title='Groovy class in groovy.io'>FileVisitResult</a> value
+which can be used to control subsequent processing.</dd>
+<dt>preRoot</dt><dd>A boolean indicating that the 'preDir' closure should be applied at the root level</dd>
+<dt>postDir</dt><dd>A <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> run after each directory is processed and optionally returning a <a href='http://groovy.codehaus.org/api/groovy/io/FileVisitResult.html' title='Groovy class in groovy.io'>FileVisitResult</a> value
+which can be used to control subsequent processing.</dd>
+<dt>postRoot</dt><dd>A boolean indicating that the 'postDir' closure should be applied at the root level</dd>
+<dt>visitRoot</dt><dd>A boolean indicating that the given closure should be applied for the root dir
+(not applicable if the 'type' is set to <a href='http://groovy.codehaus.org/api/groovy/io/FileType.html#FILES' title='Groovy class in groovy.io'>FileType#FILES</a>)</dd>
+<dt>maxDepth</dt><dd>The maximum number of directory levels when recursing
+(default is -1 which means infinite, set to 0 for no recursion)</dd>
+<dt>filter</dt><dd>A filter to perform on traversed files/directories (using the <a href='http://java.sun.com/j2se/1.5.0/docs/api/DefaultGroovyMethods.html#isCase(java.lang.Object, java.lang.Object)' title='JDK class in DefaultPackage'>DefaultGroovyMethods#isCase</a> method). If set,
+only files/dirs which match are candidates for visiting.</dd>
+<dt>nameFilter</dt><dd>A filter to perform on the name of traversed files/directories (using the <a href='http://java.sun.com/j2se/1.5.0/docs/api/DefaultGroovyMethods.html#isCase(java.lang.Object, java.lang.Object)' title='JDK class in DefaultPackage'>DefaultGroovyMethods#isCase</a> method). If set,
+only files/dirs which match are candidates for visiting. (Must not be set if 'filter' is set)</dd>
+<dt>excludeFilter</dt><dd>A filter to perform on traversed files/directories (using the <a href='http://java.sun.com/j2se/1.5.0/docs/api/DefaultGroovyMethods.html#isCase(java.lang.Object, java.lang.Object)' title='JDK class in DefaultPackage'>DefaultGroovyMethods#isCase</a> method).
+If set, any candidates which match won't be visited.</dd>
+<dt>excludeNameFilter</dt><dd>A filter to perform on the names of traversed files/directories (using the <a href='http://java.sun.com/j2se/1.5.0/docs/api/DefaultGroovyMethods.html#isCase(java.lang.Object, java.lang.Object)' title='JDK class in DefaultPackage'>DefaultGroovyMethods#isCase</a> method).
+If set, any candidates which match won't be visited. (Must not be set if 'excludeFilter' is set)</dd>
+<dt>sort</dt><dd>A <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> which if set causes the files and subdirectories for each directory to be processed in sorted order.
+Note that even when processing only files, the order of visited subdirectories will be affected by this parameter.</dd>
+</dl>
+This example prints out file counts and size aggregates for groovy source files within a directory tree:
+<pre>
+def totalSize = 0
+def count = 0
+def sortByTypeThenName = { a, b ->
+    a.isFile() != b.isFile() ? a.isFile() <=> b.isFile() : a.name <=> b.name
+}
+rootDir.traverse(
+        type         : FILES,
+        nameFilter   : ~/.*\.groovy/,
+        preDir       : { if (it.name == '.svn') return SKIP_SUBTREE },
+        postDir      : { println "Found $count files in $it.name totalling $totalSize bytes"
+                        totalSize = 0; count = 0 },
+        postRoot     : true
+        sort         : sortByTypeThenName
+) {it -> totalSize += it.size(); count++ }
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>options</CODE> -  a Map of options to alter the traversal behavior.</DD>
+
+		<DD><CODE>closure
+</CODE> -  the Closure to invoke on each file/directory and optionally returning a <a href='http://groovy.codehaus.org/api/groovy/io/FileVisitResult.html' title='Groovy class in groovy.io'>FileVisitResult</a> value
+               which can be used to control subsequent processing.</DD>
+
+    </dl>
+    
+
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.1</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://java.sun.com/j2se/1.5.0/docs/api/DefaultGroovyMethods.html#sort(java.util.Collection, groovy.lang.Closure)' title='JDK class in DefaultPackage'>DefaultGroovyMethods#sort</a>.</DD>
+
+    <DD><a href='http://groovy.codehaus.org/api/groovy/io/FileVisitResult.html' title='Groovy class in groovy.io'>FileVisitResult</a>.</DD>
+
+    <DD><a href='http://groovy.codehaus.org/api/groovy/io/FileType.html' title='Groovy class in groovy.io'>FileType</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="traverse(groovy.lang.Closure)"><!-- --></A><H3>traverse</H3>
+<PRE>public void <B>traverse</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Invokes the closure for each descendant file in this directory tree.
+Sub-directories are recursively traversed in a depth-first fashion.
+Convenience method for <a href='../../java/io/File.html#traverse(java.util.Map, groovy.lang.Closure)' title='GDK enhancement for java.io.File'>File#traverse</a> when
+no options to alter the traversal behavior are required.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure
+</CODE> -  the Closure to invoke on each file/directory and optionally returning a <a href='http://groovy.codehaus.org/api/groovy/io/FileVisitResult.html' title='Groovy class in groovy.io'>FileVisitResult</a> value
+               which can be used to control subsequent processing.</DD>
+
+    </dl>
+    
+
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.1</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='../../java/io/File.html#traverse(java.util.Map, groovy.lang.Closure)' title='GDK enhancement for java.io.File'>File#traverse</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="traverse(java.util.Map)"><!-- --></A><H3>traverse</H3>
+<PRE>public void <B>traverse</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> options)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Invokes the closure specified with key 'visit' in the options Map
+for each descendant file in this directory tree. Convenience method
+for <a href='../../java/io/File.html#traverse(java.util.Map, groovy.lang.Closure)' title='GDK enhancement for java.io.File'>File#traverse</a> allowing the 'visit' closure
+to be included in the options Map rather than as a parameter.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>options</CODE> -  a Map of options to alter the traversal behavior.</DD>
+
+    </dl>
+    
+
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.1</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='../../java/io/File.html#traverse(java.util.Map, groovy.lang.Closure)' title='GDK enhancement for java.io.File'>File#traverse</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="withDataInputStream(groovy.lang.Closure)"><!-- --></A><H3>withDataInputStream</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>withDataInputStream</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Create a new DataInputStream for this file and passes it into the closure.
+This method ensures the stream is closed after the closure returns.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  a closure.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the value returned by the closure</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://java.sun.com/j2se/1.5.0/docs/api/IOGroovyMethods.html#withStream(java.io.InputStream, groovy.lang.Closure)' title='JDK class in DefaultPackage'>IOGroovyMethods#withStream</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="withDataOutputStream(groovy.lang.Closure)"><!-- --></A><H3>withDataOutputStream</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>withDataOutputStream</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Create a new DataOutputStream for this file and passes it into the closure.
+This method ensures the stream is closed after the closure returns.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  a closure.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the value returned by the closure</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://java.sun.com/j2se/1.5.0/docs/api/IOGroovyMethods.html#withStream(java.io.OutputStream, groovy.lang.Closure)' title='JDK class in DefaultPackage'>IOGroovyMethods#withStream</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="withInputStream(groovy.lang.Closure)"><!-- --></A><H3>withInputStream</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>withInputStream</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Create a new InputStream for this file and passes it into the closure.
+This method ensures the stream is closed after the closure returns.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  a closure.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the value returned by the closure</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://java.sun.com/j2se/1.5.0/docs/api/IOGroovyMethods.html#withStream(java.io.InputStream, groovy.lang.Closure)' title='JDK class in DefaultPackage'>IOGroovyMethods#withStream</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="withObjectInputStream(groovy.lang.Closure)"><!-- --></A><H3>withObjectInputStream</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>withObjectInputStream</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Create a new ObjectInputStream for this file and pass it to the closure.
+This method ensures the stream is closed after the closure returns.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  a closure.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the value returned by the closure</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://java.sun.com/j2se/1.5.0/docs/api/IOGroovyMethods.html#withStream(java.io.InputStream, groovy.lang.Closure)' title='JDK class in DefaultPackage'>IOGroovyMethods#withStream</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="withObjectInputStream(java.lang.ClassLoader, groovy.lang.Closure)"><!-- --></A><H3>withObjectInputStream</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>withObjectInputStream</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/ClassLoader.html' title='JDK class in java.lang'>ClassLoader</a> classLoader, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Create a new ObjectInputStream for this file associated with the given class loader and pass it to the closure.
+This method ensures the stream is closed after the closure returns.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>classLoader</CODE> -  the class loader to use when loading the class.</DD>
+
+		<DD><CODE>closure</CODE> -      a closure.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the value returned by the closure</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://java.sun.com/j2se/1.5.0/docs/api/IOGroovyMethods.html#withStream(java.io.InputStream, groovy.lang.Closure)' title='JDK class in DefaultPackage'>IOGroovyMethods#withStream</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="withObjectOutputStream(groovy.lang.Closure)"><!-- --></A><H3>withObjectOutputStream</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>withObjectOutputStream</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Create a new ObjectOutputStream for this file and then pass it to the
+closure.  This method ensures the stream is closed after the closure
+returns.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  a closure.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the value returned by the closure</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.0</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://java.sun.com/j2se/1.5.0/docs/api/IOGroovyMethods.html#withStream(java.io.OutputStream, groovy.lang.Closure)' title='JDK class in DefaultPackage'>IOGroovyMethods#withStream</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="withOutputStream(groovy.lang.Closure)"><!-- --></A><H3>withOutputStream</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>withOutputStream</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Creates a new OutputStream for this file and passes it into the closure.
+This method ensures the stream is closed after the closure returns.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  a closure.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the value returned by the closure</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://java.sun.com/j2se/1.5.0/docs/api/IOGroovyMethods.html#withStream(java.io.OutputStream, groovy.lang.Closure)' title='JDK class in DefaultPackage'>IOGroovyMethods#withStream</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="withPrintWriter(groovy.lang.Closure)"><!-- --></A><H3>withPrintWriter</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>withPrintWriter</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Create a new PrintWriter for this file which is then
+passed it into the given closure.  This method ensures its the writer
+is closed after the closure returns.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  the closure to invoke with the PrintWriter.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the value returned by the closure</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.2</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="withPrintWriter(java.lang.String, groovy.lang.Closure)"><!-- --></A><H3>withPrintWriter</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>withPrintWriter</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> charset, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Create a new PrintWriter with a specified charset for
+this file.  The writer is passed to the closure, and will be closed
+before this method returns.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>charset</CODE> -  the charset.</DD>
+
+		<DD><CODE>closure</CODE> -  the closure to invoke with the PrintWriter.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the value returned by the closure</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.2</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="withReader(groovy.lang.Closure)"><!-- --></A><H3>withReader</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>withReader</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Create a new BufferedReader for this file and then
+passes it into the closure, ensuring the reader is closed after the
+closure returns.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  a closure.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the value returned by the closure</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.2</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="withReader(java.lang.String, groovy.lang.Closure)"><!-- --></A><H3>withReader</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>withReader</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> charset, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Create a new BufferedReader for this file using the specified charset and then
+passes it into the closure, ensuring the reader is closed after the
+closure returns.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>charset</CODE> -  the charset for this input stream.</DD>
+
+		<DD><CODE>closure</CODE> -  a closure.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the value returned by the closure</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.6.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="withWriter(groovy.lang.Closure)"><!-- --></A><H3>withWriter</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>withWriter</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Creates a new BufferedWriter for this file, passes it to the closure, and
+ensures the stream is flushed and closed after the closure returns.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  a closure.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the value returned by the closure</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.2</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="withWriter(java.lang.String, groovy.lang.Closure)"><!-- --></A><H3>withWriter</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>withWriter</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> charset, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Creates a new BufferedWriter for this file, passes it to the closure, and
+ensures the stream is flushed and closed after the closure returns.
+The writer will use the given charset encoding.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>charset</CODE> -  the charset used.</DD>
+
+		<DD><CODE>closure</CODE> -  a closure.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the value returned by the closure</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.2</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="withWriterAppend(java.lang.String, groovy.lang.Closure)"><!-- --></A><H3>withWriterAppend</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>withWriterAppend</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> charset, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Create a new BufferedWriter which will append to this
+file.  The writer is passed to the closure and will be closed before
+this method returns.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>charset</CODE> -  the charset used.</DD>
+
+		<DD><CODE>closure</CODE> -  a closure.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the value returned by the closure</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.2</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="withWriterAppend(groovy.lang.Closure)"><!-- --></A><H3>withWriterAppend</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>withWriterAppend</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Create a new BufferedWriter for this file in append mode.  The writer
+is passed to the closure and is closed after the closure returns.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  a closure.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the value returned by the closure</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.2</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="write(java.lang.String)"><!-- --></A><H3>write</H3>
+<PRE>public void <B>write</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> text)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Write the text to the File.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>text</CODE> -  the text to write to the File.</DD>
+
+    </dl>
+    
+
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="write(java.lang.String, java.lang.String)"><!-- --></A><H3>write</H3>
+<PRE>public void <B>write</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> text, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> charset)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Write the text to the File, using the specified encoding.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>text</CODE> -     the text to write to the File.</DD>
+
+		<DD><CODE>charset</CODE> -  the charset used.</DD>
+
+    </dl>
+    
+
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+<!-- ========= END OF CLASS DATA ========= -->
+
+ <!-- ======= START OF BOTTOM NAVBAR ====== -->
+<A NAME="navbar_bottom"><!-- --></A>
+<A HREF="#skip-navbar_bottom" title="Skip navigation links"></A>
+
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0">
+    <TR>
+        <TD COLSPAN=3 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+            <A NAME="navbar_top_firstrow"><!-- --></A>
+            <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3">
+                <TR ALIGN="center" VALIGN="top">
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../overview-summary.html"><SPAN CLASS="NavBarFont1"><B>Overview</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Package</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Class</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Tree</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Deprecated</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../index-all.html"><SPAN CLASS="NavBarFont1"><B>Index</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Help</SPAN>&nbsp;</TD>
+                </TR>
+            </TABLE>
+        </TD>
+        <TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+            <b>Groovy JDK</b></EM>
+        </TD>
+    </TR>
+</TABLE>
+<!-- =========== END OF NAVBAR =========== -->
+
+</BODY>
+</HTML>

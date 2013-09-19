@@ -1,0 +1,3225 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<HTML>
+<HEAD>
+<TITLE>Object[] (Groovy JDK)</TITLE>
+
+
+<LINK REL ="stylesheet" TYPE="text/css" HREF="../../stylesheet.css" TITLE="Style">
+
+<SCRIPT type="text/javascript">
+function windowTitle()
+{
+    parent.document.title = document.title;
+}
+</SCRIPT>
+
+</HEAD>
+
+<BODY BGCOLOR="white" onload="windowTitle();">
+
+<!-- ========== START OF NAVBAR ========== -->
+<A NAME="navbar_top"><!-- --></A>
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0">
+    <TR>
+        <TD COLSPAN=3 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+            <A NAME="navbar_top_firstrow"><!-- --></A>
+            <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3">
+                <TR ALIGN="center" VALIGN="top">
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../overview-summary.html"><SPAN CLASS="NavBarFont1"><B>Overview</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Package</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Class</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Tree</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Deprecated</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../index-all.html"><SPAN CLASS="NavBarFont1"><B>Index</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Help</SPAN>&nbsp;</TD>
+                </TR>
+            </TABLE>
+        </TD>
+        <TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+            <b>Groovy JDK</b></EM>
+        </TD>
+    </TR>
+</TABLE>
+<!-- =========== END OF NAVBAR =========== -->
+
+<!-- ======== START OF CLASS DATA ======== -->
+<H2>
+<SPAN style="font-size:12px;">
+java.lang</SPAN>
+<BR>
+Class Object[]</H2>
+
+<!-- ========== METHOD SUMMARY =========== -->
+
+<A NAME="method_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><SPAN style="font-size:24px;">
+<B>Method Summary</B></SPAN></TH>
+</TR>
+
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>boolean</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#asBoolean()">asBoolean</A></B>()</CODE>
+<BR>
+Coerce an Object array to a boolean value.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#asType(java.lang.Class)">asType</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Class.html' title='JDK class in java.lang'>Class</a> clazz)</CODE>
+<BR>
+Converts the given array to either a List, Set, or
+SortedSet.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#collectEntries(java.util.Map, groovy.lang.Closure)">collectEntries</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> collector, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> transform)</CODE>
+<BR>
+Iterates through this array transforming each item using the <code>transform</code> closure
+and returning a map of the resulting transformed entries.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#collectEntries(java.util.Map)">collectEntries</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> collector)</CODE>
+<BR>
+A variant of collectEntries using the identity closure as the transform.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#collectEntries(groovy.lang.Closure)">collectEntries</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> transform)</CODE>
+<BR>
+Iterates through this array transforming each item using the <code>transform</code> closure
+and returning a map of the resulting transformed entries.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#collectEntries()">collectEntries</A></B>()</CODE>
+<BR>
+A variant of collectEntries using the identity closure as the transform.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#collectMany(groovy.lang.Closure)">collectMany</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> projection)</CODE>
+<BR>
+Projects each item from a source array to a collection and concatenates (flattens) the resulting collections into a single list.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>boolean</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#contains(java.lang.Object)">contains</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> value)</CODE>
+<BR>
+Checks whether the array contains the given value.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#count(java.lang.Object)">count</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> value)</CODE>
+<BR>
+Counts the number of occurrences of the given value inside this array.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#count(groovy.lang.Closure)">count</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Counts the number of occurrences which satisfy the given closure from inside this array.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#countBy(groovy.lang.Closure)">countBy</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Sorts all array members into groups determined by the supplied mapping
+closure and counts the group size.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object[].html' title='JDK class in java.lang'>Object[]</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#drop(int)">drop</A></B>(int num)</CODE>
+<BR>
+Drops the given number of elements from the head of this array
+if they are available.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object[].html' title='JDK class in java.lang'>Object[]</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#dropWhile(groovy.lang.Closure)">dropWhile</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> condition)</CODE>
+<BR>
+Create a suffix of the given array by dropping as many elements as possible from the
+front of the original array such that calling the given closure condition evaluates to
+true when passed each of the dropped elements.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>boolean</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#equals(java.util.List)">equals</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> right)</CODE>
+<BR>
+Determines if the contents of this array are equal to the
+contents of the given list, in the same order.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#find(groovy.lang.Closure)">find</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> condition)</CODE>
+<BR>
+Finds the first element in the array that matches the given closure condition.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#findAll(groovy.lang.Closure)">findAll</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> condition)</CODE>
+<BR>
+Finds all elements of the array matching the given Closure condition.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#findAll()">findAll</A></B>()</CODE>
+<BR>
+Finds the elements of the array matching the IDENTITY Closure (i.e.&#160;matching Groovy truth).
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#first()">first</A></B>()</CODE>
+<BR>
+Returns the first item from the array.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#flatten()">flatten</A></B>()</CODE>
+<BR>
+Flatten an array.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#getAt(java.util.Collection)">getAt</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> indices)</CODE>
+<BR>
+Select a List of items from an Object array using a Collection to
+identify the indices to be selected.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#getAt(groovy.lang.Range)">getAt</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Range.html' title='Groovy class in groovy.lang'>Range</a> range)</CODE>
+<BR>
+Support the range subscript operator for an Array
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#getAt(groovy.lang.IntRange)">getAt</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/IntRange.html' title='Groovy class in groovy.lang'>IntRange</a> range)</CODE>
+<BR>
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#getAt(groovy.lang.EmptyRange)">getAt</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/EmptyRange.html' title='Groovy class in groovy.lang'>EmptyRange</a> range)</CODE>
+<BR>
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#getAt(groovy.lang.ObjectRange)">getAt</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/ObjectRange.html' title='Groovy class in groovy.lang'>ObjectRange</a> range)</CODE>
+<BR>
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#grep(java.lang.Object)">grep</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> filter)</CODE>
+<BR>
+Iterates over the array of items and returns a collection of items that match
+the given filter - calling the <code><a href='../../java/lang/Object.html#isCase(java.lang.Object)' title='GDK enhancement for java.lang.Object'>Object#isCase</a></code>
+method used by switch statements. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#grep()">grep</A></B>()</CODE>
+<BR>
+Iterates over the array returning each element that matches
+using the IDENTITY Closure as a filter - effectively returning all elements which satisfy Groovy truth.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#head()">head</A></B>()</CODE>
+<BR>
+Returns the first item from the Object array.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#inject(groovy.lang.Closure)">inject</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Iterates through the given array as with inject(Object[],initialValue,closure), but
+using the first element of the array as the initialValue, and then iterating
+the remaining elements of the array.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#inject(U, groovy.lang.Closure)">inject</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> initialValue, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Iterates through the given array, passing in the initial value to
+the closure along with the first item. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Iterator.html' title='JDK class in java.util'>Iterator</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#iterator()">iterator</A></B>()</CODE>
+<BR>
+Attempts to create an Iterator for the given object by first
+converting it to a Collection.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#join(java.lang.String)">join</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> separator)</CODE>
+<BR>
+Concatenates the <code>toString()</code> representation of each
+items in this array, with the given String as a separator between each
+item.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#last()">last</A></B>()</CODE>
+<BR>
+Returns the last item from the array.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#max()">max</A></B>()</CODE>
+<BR>
+Adds max() method to Object arrays.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#max(groovy.lang.Closure)">max</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Selects the maximum value found from the Object array
+using the closure to determine the correct ordering.
+
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#max(java.util.Comparator)">max</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Comparator.html' title='JDK class in java.util'>Comparator</a> comparator)</CODE>
+<BR>
+Selects the maximum value found from the Object array using the given comparator.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#min()">min</A></B>()</CODE>
+<BR>
+Adds min() method to Object arrays.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#min(java.util.Comparator)">min</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Comparator.html' title='JDK class in java.util'>Comparator</a> comparator)</CODE>
+<BR>
+Selects the minimum value found from the Object array using the given comparator.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#min(groovy.lang.Closure)">min</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Selects the minimum value found from the Object array
+using the closure to determine the correct ordering.
+
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object[].html' title='JDK class in java.lang'>Object[]</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#minus(java.lang.Iterable)">minus</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Iterable.html' title='JDK class in java.lang'>Iterable</a> removeMe)</CODE>
+<BR>
+Create an array composed of the elements of the first array minus the
+elements of the given Iterable.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object[].html' title='JDK class in java.lang'>Object[]</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#minus(java.lang.Object[])">minus</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object[].html' title='JDK class in java.lang'>Object[]</a> removeMe)</CODE>
+<BR>
+Create an array composed of the elements of the first array minus the
+elements of the given array.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object[].html' title='JDK class in java.lang'>Object[]</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#minus(java.lang.Object)">minus</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> removeMe)</CODE>
+<BR>
+Create a new object array composed of the elements of the first array
+minus the element to remove.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object[].html' title='JDK class in java.lang'>Object[]</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#plus(T[])">plus</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object[].html' title='JDK class in java.lang'>Object[]</a> right)</CODE>
+<BR>
+Create an array as a union of two arrays.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object[].html' title='JDK class in java.lang'>Object[]</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#plus(T)">plus</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> right)</CODE>
+<BR>
+Create an array containing elements from an original array plus an additional appended element.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object[].html' title='JDK class in java.lang'>Object[]</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#plus(java.util.Collection)">plus</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> right)</CODE>
+<BR>
+Create an array containing elements from an original array plus those from a Collection.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object[].html' title='JDK class in java.lang'>Object[]</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#plus(java.lang.Iterable)">plus</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Iterable.html' title='JDK class in java.lang'>Iterable</a> right)</CODE>
+<BR>
+Create an array containing elements from an original array plus those from an Iterable.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object[].html' title='JDK class in java.lang'>Object[]</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#reverse()">reverse</A></B>()</CODE>
+<BR>
+Creates a new array containing items which are the same as this array but in reverse order.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object[].html' title='JDK class in java.lang'>Object[]</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#reverse(boolean)">reverse</A></B>(boolean mutate)</CODE>
+<BR>
+Reverse the items in an array. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object[].html' title='JDK class in java.lang'>Object[]</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#reverseEach(groovy.lang.Closure)">reverseEach</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Iterate over each element of the array in the reverse order.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>int</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#size()">size</A></B>()</CODE>
+<BR>
+Provide the standard Groovy <code>size()</code> method for an array.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object[].html' title='JDK class in java.lang'>Object[]</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#sort()">sort</A></B>()</CODE>
+<BR>
+Modifies this array so that its elements are in sorted order.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object[].html' title='JDK class in java.lang'>Object[]</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#sort(boolean)">sort</A></B>(boolean mutate)</CODE>
+<BR>
+Sorts the given array into sorted order.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object[].html' title='JDK class in java.lang'>Object[]</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#sort(java.util.Comparator)">sort</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Comparator.html' title='JDK class in java.util'>Comparator</a> comparator)</CODE>
+<BR>
+Sorts the given array into sorted order using the given comparator.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object[].html' title='JDK class in java.lang'>Object[]</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#sort(boolean, java.util.Comparator)">sort</A></B>(boolean mutate, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Comparator.html' title='JDK class in java.util'>Comparator</a> comparator)</CODE>
+<BR>
+Modifies this array so that its elements are in sorted order as determined by the given comparator.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object[].html' title='JDK class in java.lang'>Object[]</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#sort(groovy.lang.Closure)">sort</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Sorts the elements from this array into a newly created array using
+the Closure to determine the correct ordering.
+
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object[].html' title='JDK class in java.lang'>Object[]</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#sort(boolean, groovy.lang.Closure)">sort</A></B>(boolean mutate, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Modifies this array so that its elements are in sorted order using the Closure to determine the correct ordering.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#sum()">sum</A></B>()</CODE>
+<BR>
+Sums the items in an array.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#sum(java.lang.Object)">sum</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> initialValue)</CODE>
+<BR>
+Sums the items in an array, adding the result to some initial value.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#sum(groovy.lang.Closure)">sum</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Sums the result of apply a closure to each item of an array.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#sum(java.lang.Object, groovy.lang.Closure)">sum</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> initialValue, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Sums the result of applying a closure to each item of an array to some initial value.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object[].html' title='JDK class in java.lang'>Object[]</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#tail()">tail</A></B>()</CODE>
+<BR>
+Returns the items from the Object array excluding the first item.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object[].html' title='JDK class in java.lang'>Object[]</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#take(int)">take</A></B>(int num)</CODE>
+<BR>
+Returns the first <code>num</code> elements from the head of this array.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object[].html' title='JDK class in java.lang'>Object[]</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#takeWhile(groovy.lang.Closure)">takeWhile</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> condition)</CODE>
+<BR>
+Returns the longest prefix of this array where each element
+passed to the given closure evaluates to true.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#toArrayString()">toArrayString</A></B>()</CODE>
+<BR>
+Returns the string representation of the given array.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#toList()">toList</A></B>()</CODE>
+<BR>
+Allows conversion of arrays into a mutable List.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://groovy.codehaus.org/api/groovy/lang/SpreadMap.html' title='Groovy class in groovy.lang'>SpreadMap</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#toSpreadMap()">toSpreadMap</A></B>()</CODE>
+<BR>
+Creates a spreadable map from this array.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#toString()">toString</A></B>()</CODE>
+<BR>
+Returns the string representation of this array's contents.
+</TD>
+</TR>
+
+</TABLE>
+&nbsp;
+
+
+<!-- ============ METHOD DETAIL ========== -->
+
+<A NAME="method_detail"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="1"><SPAN style="font-size:24px;">
+<B>Method Detail</B></SPAN></TH>
+</TR>
+</TABLE>
+
+
+
+<A name="asBoolean()"><!-- --></A><H3>asBoolean</H3>
+<PRE>public boolean <B>asBoolean</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Coerce an Object array to a boolean value.
+An Object array is false if the array is of length 0.
+and to true otherwise</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>the boolean value</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="asType(java.lang.Class)"><!-- --></A><H3>asType</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>asType</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Class.html' title='JDK class in java.lang'>Class</a> clazz)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Converts the given array to either a List, Set, or
+SortedSet.  If the given class is something else, the
+call is deferred to {link #asType(Object,Class)}.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>clazz</CODE> -  the desired class.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the object resulting from this type conversion</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.1</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='../../java/lang/Object.html#asType(java.lang.Class)' title='GDK enhancement for java.lang.Object'>Object#asType</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="collectEntries(java.util.Map, groovy.lang.Closure)"><!-- --></A><H3>collectEntries</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> <B>collectEntries</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> collector, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> transform)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates through this array transforming each item using the <code>transform</code> closure
+and returning a map of the resulting transformed entries.
+<pre class="groovyTestCase">
+def letters = "abc"
+def nums = [0, 1, 2] as Integer[]
+// collect letters with index
+assert nums.collectEntries( [:] ) { index -> [index, letters[index]] } == [0:'a', 1:'b', 2:'c']
+assert nums.collectEntries( [4:'d'] ) { index ->
+    [(index+1): letters[index]] } == [1:'a', 2:'b', 3:'c', 4:'d']
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>collector</CODE> -  the Map into which the transformed entries are put.</DD>
+
+		<DD><CODE>transform
+</CODE> -  the closure used for transforming, which has an item from self as the parameter and
+                 should return a Map.Entry, a Map or a two-element list containing the resulting key and value.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the collector with all transformed values added to it</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.9</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>Map#collect(Collection, Closure).</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="collectEntries(java.util.Map)"><!-- --></A><H3>collectEntries</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> <B>collectEntries</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> collector)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>A variant of collectEntries using the identity closure as the transform.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>collector</CODE> -  the Map into which the transformed entries are put.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the collector with all transformed values added to it</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.5</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>Object[]#collectEntries(Map, Closure).</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="collectEntries(groovy.lang.Closure)"><!-- --></A><H3>collectEntries</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> <B>collectEntries</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> transform)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates through this array transforming each item using the <code>transform</code> closure
+and returning a map of the resulting transformed entries.
+<pre class="groovyTestCase">
+def letters = "abc"
+def nums = [0, 1, 2] as Integer[]
+// collect letters with index using list style
+assert nums.collectEntries { index -> [index, letters[index]] } == [0:'a', 1:'b', 2:'c']
+// collect letters with index using map style
+assert nums.collectEntries { index -> [(index): letters[index]] } == [0:'a', 1:'b', 2:'c']
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>transform
+</CODE> -  the closure used for transforming, which has an item from self as the parameter and
+                 should return a Map.Entry, a Map or a two-element list containing the resulting key and value.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a Map of the transformed entries</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.9</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>Collection#collectEntries(Map, Closure).</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="collectEntries()"><!-- --></A><H3>collectEntries</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> <B>collectEntries</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>A variant of collectEntries using the identity closure as the transform.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>the collector with all transformed values added to it</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.5</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>Object[]#collectEntries(Closure).</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="collectMany(groovy.lang.Closure)"><!-- --></A><H3>collectMany</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>collectMany</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> projection)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Projects each item from a source array to a collection and concatenates (flattens) the resulting collections into a single list.
+<p>
+<pre class="groovyTestCase">
+def nums = [1, 2, 3, 4, 5, 6] as Object[]
+def squaresAndCubesOfEvens = nums.collectMany{ it % 2 ? [] : [it**2, it**3] }
+assert squaresAndCubesOfEvens == [4, 8, 16, 64, 36, 216]
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>projection</CODE> -  a projecting Closure returning a collection of items.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a list created from the projected collections concatenated (flattened) together</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.1</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='../../Object[].html#sum(groovy.lang.Closure)' title='GDK enhancement for Object[]'>Object[]#sum</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="contains(java.lang.Object)"><!-- --></A><H3>contains</H3>
+<PRE>public boolean <B>contains</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> value)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Checks whether the array contains the given value.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>value</CODE> -  the value being searched for.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>true if the array contains the value</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.6</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="count(java.lang.Object)"><!-- --></A><H3>count</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> <B>count</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> value)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Counts the number of occurrences of the given value inside this array.
+Comparison is done using Groovy's == operator (using
+<code>compareTo(value) == 0</code> or <code>equals(value)</code> ).</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>value</CODE> -  the value being searched for.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the number of occurrences</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.6.4</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="count(groovy.lang.Closure)"><!-- --></A><H3>count</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> <B>count</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Counts the number of occurrences which satisfy the given closure from inside this array.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  a closure condition.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the number of occurrences</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="countBy(groovy.lang.Closure)"><!-- --></A><H3>countBy</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> <B>countBy</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Sorts all array members into groups determined by the supplied mapping
+closure and counts the group size.  The closure should return the key that each
+item should be grouped by.  The returned Map will have an entry for each
+distinct key returned from the closure, with each value being the frequency of
+items occurring for that group.
+<p>
+Example usage:
+<pre class="groovyTestCase">assert ([1,2,2,2,3] as Object[]).countBy{ it % 2 } == [1:2, 0:3]</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  a closure mapping items to the frequency keys.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a new Map grouped by keys with frequency counts</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.0</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>Collection#countBy(Closure).</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="drop(int)"><!-- --></A><H3>drop</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object[].html' title='JDK class in java.lang'>Object[]</a> <B>drop</B>(int num)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Drops the given number of elements from the head of this array
+if they are available.
+<pre class="groovyTestCase">
+String[] strings = [ 'a', 'b', 'c' ]
+assert strings.drop( 0 ) == [ 'a', 'b', 'c' ] as String[]
+assert strings.drop( 2 ) == [ 'c' ] as String[]
+assert strings.drop( 5 ) == [] as String[]
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>num</CODE> -   the number of elements to drop from this array.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>an array consisting of all elements of this array except the
+        first <code>num</code> ones, or else the empty array, if this
+        array has less than <code>num</code> elements.</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.1</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="dropWhile(groovy.lang.Closure)"><!-- --></A><H3>dropWhile</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object[].html' title='JDK class in java.lang'>Object[]</a> <B>dropWhile</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> condition)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Create a suffix of the given array by dropping as many elements as possible from the
+front of the original array such that calling the given closure condition evaluates to
+true when passed each of the dropped elements.
+<pre class="groovyTestCase">
+def nums = [ 1, 3, 2 ] as Integer[]
+assert nums.dropWhile{ it <= 3 } == [ ] as Integer[]
+assert nums.dropWhile{ it < 3 } == [ 3, 2 ] as Integer[]
+assert nums.dropWhile{ it != 2 } == [ 2 ] as Integer[]
+assert nums.dropWhile{ it == 0 } == [ 1, 3, 2 ] as Integer[]
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>condition
+</CODE> -  the closure that must evaluate to true to
+                 continue dropping elements.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the shortest suffix of the given array such that the given closure condition
+        evaluates to true for each element dropped from the front of the array</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.7</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="equals(java.util.List)"><!-- --></A><H3>equals</H3>
+<PRE>public boolean <B>equals</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> right)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Determines if the contents of this array are equal to the
+contents of the given list, in the same order.  This returns
+<code>false</code> if either collection is <code>null</code>.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>right</CODE> -  the List being compared.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>true if the contents of both collections are equal</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="find(groovy.lang.Closure)"><!-- --></A><H3>find</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>find</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> condition)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Finds the first element in the array that matches the given closure condition.
+Example:
+<pre class="groovyTestCase">
+def list = [1,2,3] as Integer[]
+assert 2 == list.find { it > 1 }
+assert null == list.find { it > 5 }
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>condition</CODE> -  a closure condition.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the first element from the array that matches the condition or null if no element matches</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>2.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="findAll(groovy.lang.Closure)"><!-- --></A><H3>findAll</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> <B>findAll</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> condition)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Finds all elements of the array matching the given Closure condition.
+<pre class="groovyTestCase">
+def items = [1,2,3,4] as Integer[]
+assert [2,4] == items.findAll { it % 2 == 0 }
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>condition</CODE> -  a closure condition.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a list of matching values</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>2.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="findAll()"><!-- --></A><H3>findAll</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> <B>findAll</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Finds the elements of the array matching the IDENTITY Closure (i.e.&#160;matching Groovy truth).
+<p>
+Example:
+<pre class="groovyTestCase">
+def items = [1, 2, 0, false, true, '', 'foo', [], [4, 5], null] as Object[]
+assert items.findAll() == [1, 2, true, 'foo', [4, 5]]
+</pre></DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>a collection of the elements found</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>2.0</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>Closure#IDENTITY.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="first()"><!-- --></A><H3>first</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>first</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Returns the first item from the array.
+<pre class="groovyTestCase">
+def array = [3, 4, 2].toArray()
+assert array.first() == 3
+</pre></DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>the first item from the array</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.3</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="flatten()"><!-- --></A><H3>flatten</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> <B>flatten</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Flatten an array.  This array and any nested arrays or
+collections have their contents (recursively) added to the new collection.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>a flattened Collection</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.6.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="getAt(java.util.Collection)"><!-- --></A><H3>getAt</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>getAt</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> indices)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Select a List of items from an Object array using a Collection to
+identify the indices to be selected.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>indices</CODE> -  a Collection of indices.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a new list of the values at the given indices</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="getAt(groovy.lang.Range)"><!-- --></A><H3>getAt</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>getAt</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Range.html' title='Groovy class in groovy.lang'>Range</a> range)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Support the range subscript operator for an Array</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>range</CODE> -  a Range.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a range of a list from the range's from index up to but not
+        including the range's to value</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="getAt(groovy.lang.IntRange)"><!-- --></A><H3>getAt</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>getAt</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/IntRange.html' title='Groovy class in groovy.lang'>IntRange</a> range)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>range</CODE> -  an IntRange.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a range of a list from the range's from index up to but not
+        including the range's to value</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="getAt(groovy.lang.EmptyRange)"><!-- --></A><H3>getAt</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>getAt</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/EmptyRange.html' title='Groovy class in groovy.lang'>EmptyRange</a> range)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>range</CODE> -  an EmptyRange.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>an empty Range</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="getAt(groovy.lang.ObjectRange)"><!-- --></A><H3>getAt</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>getAt</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/ObjectRange.html' title='Groovy class in groovy.lang'>ObjectRange</a> range)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>range</CODE> -  an ObjectRange.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a range of a list from the range's from index up to but not
+        including the range's to value</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="grep(java.lang.Object)"><!-- --></A><H3>grep</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> <B>grep</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> filter)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates over the array of items and returns a collection of items that match
+the given filter - calling the <code><a href='../../java/lang/Object.html#isCase(java.lang.Object)' title='GDK enhancement for java.lang.Object'>Object#isCase</a></code>
+method used by switch statements. This method can be used with different
+kinds of filters like regular expressions, classes, ranges etc.
+Example:
+<pre class="groovyTestCase">
+def list = ['a', 'b', 'aa', 'bc', 3, 4.5] as Object[]
+assert list.grep( ~/a+/ )  == ['a', 'aa']
+assert list.grep( ~/../ )  == ['aa', 'bc']
+assert list.grep( Number ) == [ 3, 4.5 ]
+assert list.grep{ it.toString().size() == 1 } == [ 'a', 'b', 3 ]
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>filter</CODE> -  the filter to perform on each element of the array (using the <a href='../../java/lang/Object.html#isCase(java.lang.Object)' title='GDK enhancement for java.lang.Object'>Object#isCase</a> method).</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a collection of objects which match the filter</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>2.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="grep()"><!-- --></A><H3>grep</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> <B>grep</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates over the array returning each element that matches
+using the IDENTITY Closure as a filter - effectively returning all elements which satisfy Groovy truth.
+<p>
+Example:
+<pre class="groovyTestCase">
+def items = [1, 2, 0, false, true, '', 'foo', [], [4, 5], null] as Object[]
+assert items.grep() == [1, 2, true, 'foo', [4, 5]]
+</pre></DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>a collection of elements which satisfy Groovy truth</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>2.0</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>Closure#IDENTITY.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="head()"><!-- --></A><H3>head</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>head</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Returns the first item from the Object array.
+<pre class="groovyTestCase">def array = [3, 4, 2].toArray()
+assert array.head() == 3</pre></DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>the first item from the Object array</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.3</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="inject(groovy.lang.Closure)"><!-- --></A><H3>inject</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>inject</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates through the given array as with inject(Object[],initialValue,closure), but
+using the first element of the array as the initialValue, and then iterating
+the remaining elements of the array.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -       a closure.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the result of the last closure call</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.7</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>Object[]#inject(Object, Closure).</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="inject(U, groovy.lang.Closure)"><!-- --></A><H3>inject</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>inject</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> initialValue, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates through the given array, passing in the initial value to
+the closure along with the first item. The result is passed back (injected) into
+the closure along with the second item. The new result is injected back into
+the closure along with the third item and so on until all elements of the array
+have been used. Also known as foldLeft in functional parlance.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>initialValue</CODE> -  some initial value.</DD>
+
+		<DD><CODE>closure</CODE> -       a closure.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the result of the last closure call</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.0</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>Collection#inject(Object, Closure).</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="iterator()"><!-- --></A><H3>iterator</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Iterator.html' title='JDK class in java.util'>Iterator</a> <B>iterator</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Attempts to create an Iterator for the given object by first
+converting it to a Collection.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>an Iterator for the given Array.</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.6.4</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://groovy.codehaus.org/api/org/codehaus/groovy/runtime/typehandling/DefaultTypeTransformation.html#asCollection(java.lang.Object[])' title='Groovy class in org.codehaus.groovy.runtime.typehandling'>DefaultTypeTransformation#asCollection</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="join(java.lang.String)"><!-- --></A><H3>join</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> <B>join</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> separator)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Concatenates the <code>toString()</code> representation of each
+items in this array, with the given String as a separator between each
+item.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>separator</CODE> -  a String separator.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the joined String</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="last()"><!-- --></A><H3>last</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>last</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Returns the last item from the array.
+<pre class="groovyTestCase">
+def array = [3, 4, 2].toArray()
+assert array.last() == 2
+</pre></DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>the last item from the array</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.3</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="max()"><!-- --></A><H3>max</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>max</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Adds max() method to Object arrays.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>the maximum value</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.5</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='../../java/util/Collection.html#max()' title='GDK enhancement for java.util.Collection'>Collection#max</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="max(groovy.lang.Closure)"><!-- --></A><H3>max</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>max</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Selects the maximum value found from the Object array
+using the closure to determine the correct ordering.
+
+If the closure has two parameters
+it is used like a traditional Comparator. I.e. it should compare
+its two parameters for order, returning a negative integer,
+zero, or a positive integer when the first parameter is less than,
+equal to, or greater than the second respectively. Otherwise,
+the Closure is assumed to take a single parameter and return a
+Comparable (typically an Integer) which is then used for
+further comparison.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  a Closure used to determine the correct ordering.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the maximum value</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.5</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='../../java/util/Collection.html#max(groovy.lang.Closure)' title='GDK enhancement for java.util.Collection'>Collection#max</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="max(java.util.Comparator)"><!-- --></A><H3>max</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>max</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Comparator.html' title='JDK class in java.util'>Comparator</a> comparator)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Selects the maximum value found from the Object array using the given comparator.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>comparator</CODE> -  a Comparator.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the maximum value</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.5</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="min()"><!-- --></A><H3>min</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>min</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Adds min() method to Object arrays.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>the minimum value</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.5</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='../../java/util/Collection.html#min()' title='GDK enhancement for java.util.Collection'>Collection#min</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="min(java.util.Comparator)"><!-- --></A><H3>min</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>min</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Comparator.html' title='JDK class in java.util'>Comparator</a> comparator)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Selects the minimum value found from the Object array using the given comparator.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>comparator</CODE> -  a Comparator.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the minimum value</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.5</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='../../java/util/Collection.html#min(java.util.Comparator)' title='GDK enhancement for java.util.Collection'>Collection#min</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="min(groovy.lang.Closure)"><!-- --></A><H3>min</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>min</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Selects the minimum value found from the Object array
+using the closure to determine the correct ordering.
+
+If the closure has two parameters
+it is used like a traditional Comparator. I.e. it should compare
+its two parameters for order, returning a negative integer,
+zero, or a positive integer when the first parameter is less than,
+equal to, or greater than the second respectively. Otherwise,
+the Closure is assumed to take a single parameter and return a
+Comparable (typically an Integer) which is then used for
+further comparison.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  a Closure used to determine the correct ordering.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the minimum value</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.5</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='../../java/util/Collection.html#min(groovy.lang.Closure)' title='GDK enhancement for java.util.Collection'>Collection#min</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="minus(java.lang.Iterable)"><!-- --></A><H3>minus</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object[].html' title='JDK class in java.lang'>Object[]</a> <B>minus</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Iterable.html' title='JDK class in java.lang'>Iterable</a> removeMe)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Create an array composed of the elements of the first array minus the
+elements of the given Iterable.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>removeMe</CODE> -  a Collection of elements to remove.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>an array with the supplied elements removed</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.5</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="minus(java.lang.Object[])"><!-- --></A><H3>minus</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object[].html' title='JDK class in java.lang'>Object[]</a> <B>minus</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object[].html' title='JDK class in java.lang'>Object[]</a> removeMe)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Create an array composed of the elements of the first array minus the
+elements of the given array.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>removeMe</CODE> -  an array of elements to remove.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>an array with the supplied elements removed</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.5</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="minus(java.lang.Object)"><!-- --></A><H3>minus</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object[].html' title='JDK class in java.lang'>Object[]</a> <B>minus</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> removeMe)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Create a new object array composed of the elements of the first array
+minus the element to remove.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>removeMe</CODE> -  an element to remove from the array.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a new array with the operand removed</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.5</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="plus(T[])"><!-- --></A><H3>plus</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object[].html' title='JDK class in java.lang'>Object[]</a> <B>plus</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object[].html' title='JDK class in java.lang'>Object[]</a> right)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Create an array as a union of two arrays.
+<pre class="groovyTestCase">
+Integer[] a = [1, 2, 3]
+Integer[] b = [4, 5, 6]
+assert a + b == [1, 2, 3, 4, 5, 6] as Integer[]
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>right</CODE> -  the right Array.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>A new array containing right appended to left.</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.7</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="plus(T)"><!-- --></A><H3>plus</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object[].html' title='JDK class in java.lang'>Object[]</a> <B>plus</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> right)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Create an array containing elements from an original array plus an additional appended element.
+<pre class="groovyTestCase">
+Integer[] a = [1, 2, 3]
+Integer[] result = a + 4
+assert result == [1, 2, 3, 4] as Integer[]
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>right</CODE> -  the value to append.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>A new array containing left with right appended to it.</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.7</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="plus(java.util.Collection)"><!-- --></A><H3>plus</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object[].html' title='JDK class in java.lang'>Object[]</a> <B>plus</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> right)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Create an array containing elements from an original array plus those from a Collection.
+<pre class="groovyTestCase">
+Integer[] a = [1, 2, 3]
+def additions = [7, 8]
+assert a + additions == [1, 2, 3, 7, 8] as Integer[]
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>right</CODE> -  a Collection to be appended.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>A new array containing left with right appended to it.</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.7</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="plus(java.lang.Iterable)"><!-- --></A><H3>plus</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object[].html' title='JDK class in java.lang'>Object[]</a> <B>plus</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Iterable.html' title='JDK class in java.lang'>Iterable</a> right)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Create an array containing elements from an original array plus those from an Iterable.
+<pre class="groovyTestCase">
+class AbcIterable implements Iterable<String> {
+    Iterator<String> iterator() { "abc".iterator() }
+}
+String[] letters = ['x', 'y', 'z']
+def result = letters + new AbcIterable()
+assert result == ['x', 'y', 'z', 'a', 'b', 'c'] as String[]
+assert result.class.array
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>right</CODE> -  an Iterable to be appended.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>A new array containing elements from left with those from right appended.</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.7</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="reverse()"><!-- --></A><H3>reverse</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object[].html' title='JDK class in java.lang'>Object[]</a> <B>reverse</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Creates a new array containing items which are the same as this array but in reverse order.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>an array containing the reversed items</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.5</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>Object[]#reverse(boolean).</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="reverse(boolean)"><!-- --></A><H3>reverse</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object[].html' title='JDK class in java.lang'>Object[]</a> <B>reverse</B>(boolean mutate)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Reverse the items in an array. If mutate is true, the original array is modified in place and returned.
+Otherwise, a new array containing the reversed items is produced.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>mutate</CODE> -  true if the array itself should be reversed in place and returned, false if a new array should be created.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>an array containing the reversed items</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.1</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="reverseEach(groovy.lang.Closure)"><!-- --></A><H3>reverseEach</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object[].html' title='JDK class in java.lang'>Object[]</a> <B>reverseEach</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterate over each element of the array in the reverse order.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  a closure to which each item is passed.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the original array</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.2</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="size()"><!-- --></A><H3>size</H3>
+<PRE>public int <B>size</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Provide the standard Groovy <code>size()</code> method for an array.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>the size (length) of the Array</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="sort()"><!-- --></A><H3>sort</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object[].html' title='JDK class in java.lang'>Object[]</a> <B>sort</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Modifies this array so that its elements are in sorted order.
+The array items are assumed to be comparable.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>the sorted array</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.5</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="sort(boolean)"><!-- --></A><H3>sort</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object[].html' title='JDK class in java.lang'>Object[]</a> <B>sort</B>(boolean mutate)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Sorts the given array into sorted order.
+The array items are assumed to be comparable.
+If mutate is true, the array is sorted in place and returned. Otherwise, a new sorted
+array is returned and the original array remains unchanged.
+<pre class="groovyTestCase">
+def orig = ["hello","hi","Hey"] as String[]
+def sorted = orig.sort(false)
+assert orig == ["hello","hi","Hey"] as String[]
+assert sorted == ["Hey","hello","hi"] as String[]
+orig.sort(true)
+assert orig == ["Hey","hello","hi"] as String[]
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>mutate</CODE> -  false will always cause a new array to be created, true will mutate the array in place.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the sorted array</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.1</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="sort(java.util.Comparator)"><!-- --></A><H3>sort</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object[].html' title='JDK class in java.lang'>Object[]</a> <B>sort</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Comparator.html' title='JDK class in java.util'>Comparator</a> comparator)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Sorts the given array into sorted order using the given comparator.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>comparator</CODE> -  a Comparator used for the comparison.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the sorted array</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.5</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="sort(boolean, java.util.Comparator)"><!-- --></A><H3>sort</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object[].html' title='JDK class in java.lang'>Object[]</a> <B>sort</B>(boolean mutate, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Comparator.html' title='JDK class in java.util'>Comparator</a> comparator)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Modifies this array so that its elements are in sorted order as determined by the given comparator.
+If mutate is true, the array is sorted in place and returned. Otherwise, a new sorted
+array is returned and the original array remains unchanged.
+<pre class="groovyTestCase">
+def orig = ["hello","hi","Hey"] as String[]
+def sorted = orig.sort(false, String.CASE_INSENSITIVE_ORDER)
+assert orig == ["hello","hi","Hey"] as String[]
+assert sorted == ["hello","Hey","hi"] as String[]
+orig.sort(true, String.CASE_INSENSITIVE_ORDER)
+assert orig == ["hello","Hey","hi"] as String[]
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>mutate</CODE> -      false will always cause a new array to be created, true will mutate arrays in place.</DD>
+
+		<DD><CODE>comparator</CODE> -  a Comparator used for the comparison.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a sorted array</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.1</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="sort(groovy.lang.Closure)"><!-- --></A><H3>sort</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object[].html' title='JDK class in java.lang'>Object[]</a> <B>sort</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Sorts the elements from this array into a newly created array using
+the Closure to determine the correct ordering.
+
+If the closure has two parameters it is used like a traditional Comparator. I.e. it should compare
+its two parameters for order, returning a negative integer, zero, or a positive integer when the
+first parameter is less than, equal to, or greater than the second respectively. Otherwise,
+the Closure is assumed to take a single parameter and return a Comparable (typically an Integer)
+which is then used for further comparison.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  a Closure used to determine the correct ordering.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the sorted array</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.5</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="sort(boolean, groovy.lang.Closure)"><!-- --></A><H3>sort</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object[].html' title='JDK class in java.lang'>Object[]</a> <B>sort</B>(boolean mutate, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Modifies this array so that its elements are in sorted order using the Closure to determine the correct ordering.
+If mutate is false, a new array is returned and the original array remains unchanged.
+Otherwise, the original array is sorted in place and returned.
+
+If the closure has two parameters it is used like a traditional Comparator. I.e. it should compare
+its two parameters for order, returning a negative integer, zero, or a positive integer when the
+first parameter is less than, equal to, or greater than the second respectively. Otherwise,
+the Closure is assumed to take a single parameter and return a Comparable (typically an Integer)
+which is then used for further comparison.
+<pre class="groovyTestCase">
+def orig = ["hello","hi","Hey"] as String[]
+def sorted = orig.sort(false) { it.size() }
+assert orig == ["hello","hi","Hey"] as String[]
+assert sorted == ["hi","Hey","hello"] as String[]
+orig.sort(true) { it.size() }
+assert orig == ["hi","Hey","hello"] as String[]
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>mutate</CODE> -   false will always cause a new array to be created, true will mutate arrays in place.</DD>
+
+		<DD><CODE>closure</CODE> -  a Closure used to determine the correct ordering.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the sorted array</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.1</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="sum()"><!-- --></A><H3>sum</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>sum</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Sums the items in an array.  This is equivalent to invoking the
+"plus" method on all items in the array.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>The sum of all of the items</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.1</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='../../java/util/Collection.html#sum()' title='GDK enhancement for java.util.Collection'>Collection#sum</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="sum(java.lang.Object)"><!-- --></A><H3>sum</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>sum</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> initialValue)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Sums the items in an array, adding the result to some initial value.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>initialValue</CODE> -  the items in the array will be summed to this initial value.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>The sum of all of the items.</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.1</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="sum(groovy.lang.Closure)"><!-- --></A><H3>sum</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>sum</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Sums the result of apply a closure to each item of an array.
+<code>array.sum(closure)</code> is equivalent to:
+<code>array.collect(closure).sum()</code>.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  a single parameter closure that returns a numeric value..</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>The sum of the values returned by applying the closure to each
+        item of the array.</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.1</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="sum(java.lang.Object, groovy.lang.Closure)"><!-- --></A><H3>sum</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>sum</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> initialValue, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Sums the result of applying a closure to each item of an array to some initial value.
+<code>array.sum(initVal, closure)</code> is equivalent to:
+<code>array.collect(closure).sum(initVal)</code>.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -       a single parameter closure that returns a numeric value..</DD>
+
+		<DD><CODE>initialValue</CODE> -  the closure results will be summed to this initial value.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>The sum of the values returned by applying the closure to each
+        item of the array.</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.1</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="tail()"><!-- --></A><H3>tail</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object[].html' title='JDK class in java.lang'>Object[]</a> <B>tail</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Returns the items from the Object array excluding the first item.
+<pre class="groovyTestCase">
+    String[] strings = ["a", "b", "c"]
+    def result = strings.tail()
+    assert strings.class.componentType == String
+</pre></DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>an Object array without its first element</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.3</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="take(int)"><!-- --></A><H3>take</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object[].html' title='JDK class in java.lang'>Object[]</a> <B>take</B>(int num)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Returns the first <code>num</code> elements from the head of this array.
+<pre class="groovyTestCase">
+String[] strings = [ 'a', 'b', 'c' ]
+assert strings.take( 0 ) == [] as String[]
+assert strings.take( 2 ) == [ 'a', 'b' ] as String[]
+assert strings.take( 5 ) == [ 'a', 'b', 'c' ] as String[]
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>num</CODE> -   the number of elements to take from this array.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>an array consisting of the first <code>num</code> elements of this array,
+        or else the whole array if it has less then <code>num</code> elements.</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.1</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="takeWhile(groovy.lang.Closure)"><!-- --></A><H3>takeWhile</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object[].html' title='JDK class in java.lang'>Object[]</a> <B>takeWhile</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> condition)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Returns the longest prefix of this array where each element
+passed to the given closure evaluates to true.
+<pre class="groovyTestCase">
+def nums = [ 1, 3, 2 ] as Integer[]
+assert nums.takeWhile{ it < 1 } == [] as Integer[]
+assert nums.takeWhile{ it < 3 } == [ 1 ] as Integer[]
+assert nums.takeWhile{ it < 4 } == [ 1, 3, 2 ] as Integer[]
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>condition
+</CODE> -  the closure that must evaluate to true to
+                 continue taking elements.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a prefix of the given array where each element passed to
+        the given closure evaluates to true</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.7</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="toArrayString()"><!-- --></A><H3>toArrayString</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> <B>toArrayString</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Returns the string representation of the given array.  The string
+displays the contents of the array, similar to an array literal, i.e.
+<code>{1, 2, "a"}</code>.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>the string representation</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="toList()"><!-- --></A><H3>toList</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>toList</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Allows conversion of arrays into a mutable List.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>the array as a List</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="toSpreadMap()"><!-- --></A><H3>toSpreadMap</H3>
+<PRE>public <a href='http://groovy.codehaus.org/api/groovy/lang/SpreadMap.html' title='Groovy class in groovy.lang'>SpreadMap</a> <B>toSpreadMap</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Creates a spreadable map from this array.
+<p></DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>a newly created SpreadMap</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://groovy.codehaus.org/api/groovy/lang/SpreadMap.html#SpreadMap(java.lang.Object[])' title='Groovy class in groovy.lang'>SpreadMap#SpreadMap</a>.</DD>
+
+    <DD><a href='../../java/util/Map.html#toSpreadMap()' title='GDK enhancement for java.util.Map'>Map#toSpreadMap</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="toString()"><!-- --></A><H3>toString</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> <B>toString</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Returns the string representation of this array's contents.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>the string representation</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='../../java/lang/Object[].html#toArrayString()' title='GDK enhancement for java.lang.Object[]'>Object[]#toArrayString</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+<!-- ========= END OF CLASS DATA ========= -->
+
+ <!-- ======= START OF BOTTOM NAVBAR ====== -->
+<A NAME="navbar_bottom"><!-- --></A>
+<A HREF="#skip-navbar_bottom" title="Skip navigation links"></A>
+
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0">
+    <TR>
+        <TD COLSPAN=3 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+            <A NAME="navbar_top_firstrow"><!-- --></A>
+            <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3">
+                <TR ALIGN="center" VALIGN="top">
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../overview-summary.html"><SPAN CLASS="NavBarFont1"><B>Overview</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Package</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Class</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Tree</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Deprecated</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../index-all.html"><SPAN CLASS="NavBarFont1"><B>Index</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Help</SPAN>&nbsp;</TD>
+                </TR>
+            </TABLE>
+        </TD>
+        <TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+            <b>Groovy JDK</b></EM>
+        </TD>
+    </TR>
+</TABLE>
+<!-- =========== END OF NAVBAR =========== -->
+
+</BODY>
+</HTML>

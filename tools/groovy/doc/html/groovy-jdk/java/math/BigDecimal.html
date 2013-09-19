@@ -1,0 +1,344 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<HTML>
+<HEAD>
+<TITLE>BigDecimal (Groovy JDK)</TITLE>
+
+
+<LINK REL ="stylesheet" TYPE="text/css" HREF="../../stylesheet.css" TITLE="Style">
+
+<SCRIPT type="text/javascript">
+function windowTitle()
+{
+    parent.document.title = document.title;
+}
+</SCRIPT>
+
+</HEAD>
+
+<BODY BGCOLOR="white" onload="windowTitle();">
+
+<!-- ========== START OF NAVBAR ========== -->
+<A NAME="navbar_top"><!-- --></A>
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0">
+    <TR>
+        <TD COLSPAN=3 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+            <A NAME="navbar_top_firstrow"><!-- --></A>
+            <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3">
+                <TR ALIGN="center" VALIGN="top">
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../overview-summary.html"><SPAN CLASS="NavBarFont1"><B>Overview</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Package</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Class</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Tree</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Deprecated</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../index-all.html"><SPAN CLASS="NavBarFont1"><B>Index</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Help</SPAN>&nbsp;</TD>
+                </TR>
+            </TABLE>
+        </TD>
+        <TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+            <b>Groovy JDK</b></EM>
+        </TD>
+    </TR>
+</TABLE>
+<!-- =========== END OF NAVBAR =========== -->
+
+<!-- ======== START OF CLASS DATA ======== -->
+<H2>
+<SPAN style="font-size:12px;">
+java.math</SPAN>
+<BR>
+Class BigDecimal</H2>
+
+<!-- ========== METHOD SUMMARY =========== -->
+
+<A NAME="method_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><SPAN style="font-size:24px;">
+<B>Method Summary</B></SPAN></TH>
+</TR>
+
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>void</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#downto(java.lang.Number, groovy.lang.Closure)">downto</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> to, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Iterates from this number down to the given number, inclusive,
+decrementing by one each time.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#multiply(java.lang.Double)">multiply</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Double.html' title='JDK class in java.lang'>Double</a> right)</CODE>
+<BR>
+Multiply a BigDecimal and a Double.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#multiply(java.math.BigInteger)">multiply</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/math/BigInteger.html' title='JDK class in java.math'>BigInteger</a> right)</CODE>
+<BR>
+Multiply a BigDecimal and a BigInteger.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#power(java.lang.Integer)">power</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Integer.html' title='JDK class in java.lang'>Integer</a> exponent)</CODE>
+<BR>
+Power of a BigDecimal to an integer certain exponent.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>void</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#upto(java.lang.Number, groovy.lang.Closure)">upto</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> to, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Iterates from this number up to the given number, inclusive,
+incrementing by one each time.
+
+</TD>
+</TR>
+
+</TABLE>
+&nbsp;
+
+
+<!-- ============ METHOD DETAIL ========== -->
+
+<A NAME="method_detail"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="1"><SPAN style="font-size:24px;">
+<B>Method Detail</B></SPAN></TH>
+</TR>
+</TABLE>
+
+
+
+<A name="downto(java.lang.Number, groovy.lang.Closure)"><!-- --></A><H3>downto</H3>
+<PRE>public void <B>downto</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> to, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates from this number down to the given number, inclusive,
+decrementing by one each time.  Each number is passed to the closure.
+Example:
+<pre>10.5.downto(0) {
+  println it
+}</pre>
+Prints numbers 10.5, 9.5 ... to 0.5.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>to</CODE> -  the end number.</DD>
+
+		<DD><CODE>closure</CODE> -  the code to execute for each number.</DD>
+
+    </dl>
+    
+
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="multiply(java.lang.Double)"><!-- --></A><H3>multiply</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> <B>multiply</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Double.html' title='JDK class in java.lang'>Double</a> right)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Multiply a BigDecimal and a Double.
+Note: This method was added to enforce the Groovy rule of
+BigDecimal*Double == Double. Without this method, the
+multiply(BigDecimal) method in BigDecimal would respond
+and return a BigDecimal instead. Since BigDecimal is preferred
+over Number, the Number*Number method is not chosen as in older
+versions of Groovy.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>right</CODE> -  a Double.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the multiplication of left by right</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="multiply(java.math.BigInteger)"><!-- --></A><H3>multiply</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> <B>multiply</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/math/BigInteger.html' title='JDK class in java.math'>BigInteger</a> right)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Multiply a BigDecimal and a BigInteger.
+Note: This method was added to enforce the Groovy rule of
+BigDecimal*long == long. Without this method, the
+multiply(BigDecimal) method in BigDecimal would respond
+and return a BigDecimal instead. Since BigDecimal is preferred
+over Number, the Number*Number method is not chosen as in older
+versions of Groovy. BigInteger is the fallback for all integer
+types in Groovy</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>right</CODE> -  a BigInteger.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the multiplication of left by right</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="power(java.lang.Integer)"><!-- --></A><H3>power</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> <B>power</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Integer.html' title='JDK class in java.lang'>Integer</a> exponent)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Power of a BigDecimal to an integer certain exponent.  If the
+exponent is positive, call the BigDecimal.pow(int) method to
+maintain precision. Called by the '**' operator.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>exponent</CODE> -  an Integer exponent.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a Number to the power of a the exponent</DD></dl>
+
+
+
+
+
+
+<HR>
+
+
+<A name="upto(java.lang.Number, groovy.lang.Closure)"><!-- --></A><H3>upto</H3>
+<PRE>public void <B>upto</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> to, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates from this number up to the given number, inclusive,
+incrementing by one each time.
+<pre>0.1.upto( 10 ) {
+  println it
+}</pre>
+Prints numbers 0.1, 1.1, 2.1... to 9.1</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>to</CODE> -  the end number.</DD>
+
+		<DD><CODE>closure</CODE> -  the code to execute for each number.</DD>
+
+    </dl>
+    
+
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+<!-- ========= END OF CLASS DATA ========= -->
+
+ <!-- ======= START OF BOTTOM NAVBAR ====== -->
+<A NAME="navbar_bottom"><!-- --></A>
+<A HREF="#skip-navbar_bottom" title="Skip navigation links"></A>
+
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0">
+    <TR>
+        <TD COLSPAN=3 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+            <A NAME="navbar_top_firstrow"><!-- --></A>
+            <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3">
+                <TR ALIGN="center" VALIGN="top">
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../overview-summary.html"><SPAN CLASS="NavBarFont1"><B>Overview</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Package</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Class</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Tree</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Deprecated</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../index-all.html"><SPAN CLASS="NavBarFont1"><B>Index</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Help</SPAN>&nbsp;</TD>
+                </TR>
+            </TABLE>
+        </TD>
+        <TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+            <b>Groovy JDK</b></EM>
+        </TD>
+    </TR>
+</TABLE>
+<!-- =========== END OF NAVBAR =========== -->
+
+</BODY>
+</HTML>

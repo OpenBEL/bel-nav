@@ -1,0 +1,612 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+<title>groovy.util (groovy 2.1.7 API)</title>
+<META NAME="keywords" CONTENT="groovy.util package">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<LINK REL ="stylesheet" TYPE="text/css" HREF="../../stylesheet.css" TITLE="Style">
+<link href="../../groovy.ico" type="image/x-icon" rel="shortcut icon">
+<link href="../../groovy.ico" type="image/x-icon" rel="icon">
+<SCRIPT type="text/javascript">
+function windowTitle()
+{
+    parent.document.title="groovy.util (groovy 2.1.7 API)";
+}
+</SCRIPT>
+<NOSCRIPT>
+</NOSCRIPT>
+
+</head>
+
+<body BGCOLOR="white" onload="windowTitle();">
+<hr>
+
+<!-- ========= START OF TOP NAVBAR ======= -->
+<a name="navbar_top"><!-- --></a>
+<table summary="" width="100%" border="0" cellpadding="1" cellspacing="0">
+<tbody><tr>
+<td colspan="2" class="NavBarCell1" bgcolor="#eeeeff">
+<a name="navbar_top_firstrow"><!-- --></a>
+<table summary="" border="0" cellpadding="0" cellspacing="3">
+  <tbody><tr valign="top" align="center">
+  <td class="NavBarCell1" bgcolor="#eeeeff">    <a href="../../overview-summary.html"><font class="NavBarFont1"><b>Overview</b></font></a>&nbsp;</td>
+  <td class="NavBarCell1Rev" bgcolor="#ffffff"> &nbsp;<font class="NavBarFont1Rev"><b>Package</b></font>&nbsp;</td>
+  <td class="NavBarCell1" bgcolor="#eeeeff">    <font class="NavBarFont1">Class</font>&nbsp;</td>
+  <!--
+  <td class="NavBarCell1" bgcolor="#eeeeff">    <a href="overview-tree.html"><font class="NavBarFont1"><b>Tree</b></font></a>&nbsp;</td>
+  -->
+  <td class="NavBarCell1" bgcolor="#eeeeff">    <a href="../../deprecated-list.html"><font class="NavBarFont1"><b>Deprecated</b></font></a>&nbsp;</td>
+  <td class="NavBarCell1" bgcolor="#eeeeff">    <a href="../../index-all.html"><font class="NavBarFont1"><b>Index</b></font></a>&nbsp;</td>
+  <td class="NavBarCell1" bgcolor="#eeeeff">    <a href="../../help-doc.html"><font class="NavBarFont1"><b>Help</b></font></a>&nbsp;</td>
+  </tr>
+</tbody></table>
+</td>
+<td rowspan="3" valign="top" align="right"><em>
+    <b>Groovy 2.1.7</b>
+</em>
+</td>
+</tr>
+
+<tr>
+<td class="NavBarCell2" bgcolor="white"><font size="-2">
+&nbsp;PREV&nbsp;
+&nbsp;NEXT</font></td>
+<td class="NavBarCell2" bgcolor="white"><font size="-2">
+  <a href="../../index.html?groovy/util/package-summary.html" target="_top"><b>FRAMES</b></a>  &nbsp;
+&nbsp;<a href="package-summary.html" target="_top"><b>NO FRAMES</b></a>  &nbsp;
+&nbsp;<script type="text/javascript">
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="../../allclasses-frame.html"><B>All Classes</B></A>');
+  }
+  //-->
+</script>
+<noscript>
+  <A HREF="../../allclasses-frame.html"><B>All Classes</B></A>
+</noscript>
+
+
+</font></td>
+</tr>
+</tbody></table>
+<!-- ========= END OF TOP NAVBAR ========= -->
+
+
+<HR>
+<H2>
+Package groovy.util
+</H2>
+
+
+
+<P>&nbsp;</P>
+
+
+
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+    <TR BGCOLOR="#90DDF7" CLASS="TableHeadingColor">
+    <TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+    <B>Interface Summary</B></FONT></TH>
+    </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="Factory.html" title="class in groovy/util">Factory</A></B></TD>
+        <TD>@author <a href="mailto:aalmiray@users.sourceforge.com">Andres Almiray</a></TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="IFileNameFinder.html" title="class in groovy/util">IFileNameFinder</A></B></TD>
+        <TD></TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ObjectGraphBuilder.ChildPropertySetter.html" title="class in groovy/util">ObjectGraphBuilder.ChildPropertySetter</A></B></TD>
+        <TD>Strategy for setting a child node on its parent.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ObjectGraphBuilder.ClassNameResolver.html" title="class in groovy/util">ObjectGraphBuilder.ClassNameResolver</A></B></TD>
+        <TD>Strategy for resolving a classname.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ObjectGraphBuilder.IdentifierResolver.html" title="class in groovy/util">ObjectGraphBuilder.IdentifierResolver</A></B></TD>
+        <TD>Strategy for picking the correct synthetic identifier.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ObjectGraphBuilder.NewInstanceResolver.html" title="class in groovy/util">ObjectGraphBuilder.NewInstanceResolver</A></B></TD>
+        <TD>Strategy for creating new instances of a class.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ObjectGraphBuilder.ReferenceResolver.html" title="class in groovy/util">ObjectGraphBuilder.ReferenceResolver</A></B></TD>
+        <TD>Strategy for picking the correct synthetic reference identifier.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ObjectGraphBuilder.RelationNameResolver.html" title="class in groovy/util">ObjectGraphBuilder.RelationNameResolver</A></B></TD>
+        <TD>Strategy for resolving a relationship property name.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ResourceConnector.html" title="class in groovy/util">ResourceConnector</A></B></TD>
+        <TD>Base interface for customizing where resources can be found for the <code>GroovyScriptEngine</code>.</TD>
+        </TR>
+
+</TABLE>
+&nbsp;
+<P>
+<DL>
+</DL>
+<hr>
+    
+
+
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+    <TR BGCOLOR="#90DDF7" CLASS="TableHeadingColor">
+    <TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+    <B>Class Summary</B></FONT></TH>
+    </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="AbstractFactory.html" title="class in groovy/util">AbstractFactory</A></B></TD>
+        <TD>@author <a href="mailto:aalmiray@users.sourceforge.com">Andres Almiray</a></TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="AllTestSuite.html" title="class in groovy/util">AllTestSuite</A></B></TD>
+        <TD>AllTestSuite can be used in extension of GroovyTestSuite to execute TestCases written in Groovy
+ from inside a Java IDE.
+ </TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="AntBuilder.html" title="class in groovy/util">AntBuilder</A></B></TD>
+        <TD>Allows <a href="http://ant.apache.org/manual/coretasklist.html">Ant tasks</a> to
+ be used with a Groovy builder-style markup. </TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="BuilderSupport.html" title="class in groovy/util">BuilderSupport</A></B></TD>
+        <TD>An abstract base class for creating arbitrary nested trees of objects
+ or events</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="CharsetToolkit.html" title="class in groovy/util">CharsetToolkit</A></B></TD>
+        <TD>Utility class to guess the encoding of a given text file.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="CliBuilder.html" title="class in groovy/util">CliBuilder</A></B></TD>
+        <TD>Provides a builder to assist the processing of command line arguments.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ClosureComparator.html" title="class in groovy/util">ClosureComparator</A></B></TD>
+        <TD>A Comparator which uses a closure to compare 2 values being equal</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ConfigBinding.html" title="class in groovy/util">ConfigBinding</A></B></TD>
+        <TD>Since Groovy Script don't support overriding setProperty, we have to using a trick with the Binding to provide this
+ functionality</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ConfigObject.html" title="class in groovy/util">ConfigObject</A></B></TD>
+        <TD>A ConfigObject at a simple level is a Map that creates configuration entries (other ConfigObjects) when referencing them.
+ </TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ConfigSlurper.html" title="class in groovy/util">ConfigSlurper</A></B></TD>
+        <TD></TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="Eval.html" title="class in groovy/util">Eval</A></B></TD>
+        <TD>Allow easy integration from Groovy into Java through convenience methods.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="Expando.html" title="class in groovy/util">Expando</A></B></TD>
+        <TD>Represents a dynamically expandable bean.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="FactoryBuilderSupport.html" title="class in groovy/util">FactoryBuilderSupport</A></B></TD>
+        <TD>Mix of BuilderSupport and SwingBuilder's factory support.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="FileNameByRegexFinder.html" title="class in groovy/util">FileNameByRegexFinder</A></B></TD>
+        <TD>Find files according to a base directory and an includes and excludes pattern.
+ </TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="FileNameFinder.html" title="class in groovy/util">FileNameFinder</A></B></TD>
+        <TD>Find files according to a base directory and an includes and excludes pattern.
+ </TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="GroovyAssert.html" title="class in groovy/util">GroovyAssert</A></B></TD>
+        <TD></TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="GroovyCollections.html" title="class in groovy/util">GroovyCollections</A></B></TD>
+        <TD>A Collections utility class</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="GroovyMBean.html" title="class in groovy/util">GroovyMBean</A></B></TD>
+        <TD>A GroovyObject facade for an underlying MBean which acts like a normal
+ groovy object but which is actually implemented via
+ an underlying JMX MBean.
+ </TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="GroovyScriptEngine.html" title="class in groovy/util">GroovyScriptEngine</A></B></TD>
+        <TD>Specific script engine able to reload modified scripts as well as dealing properly
+ with dependent scripts.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="GroovyShellTestCase.html" title="class in groovy/util">GroovyShellTestCase</A></B></TD>
+        <TD>Groovy test case, which recreates internal GroovyShell in each setUp ()</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="GroovyTestCase.html" title="class in groovy/util">GroovyTestCase</A></B></TD>
+        <TD>A default JUnit TestCase in Groovy. </TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="GroovyTestSuite.html" title="class in groovy/util">GroovyTestSuite</A></B></TD>
+        <TD>A TestSuite which will run a Groovy unit test case inside any Java IDE
+ either as a unit test case or as an application.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="IndentPrinter.html" title="class in groovy/util">IndentPrinter</A></B></TD>
+        <TD>A helper class for printing indented text. </TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="JavadocAssertionTestBuilder.html" title="class in groovy/util">JavadocAssertionTestBuilder</A></B></TD>
+        <TD><code>JavadocAssertionTestBuilder</code> will dynamically create a test cases from Groovy assertions placed within
+ the Javadoc comments of a source file. </TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="JavadocAssertionTestSuite.html" title="class in groovy/util">JavadocAssertionTestSuite</A></B></TD>
+        <TD><code>JavadocAssertionTestSuite</code> will dynamically create test cases from Groovy assertions placed within
+ Javadoc comments. </TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="MapEntry.html" title="class in groovy/util">MapEntry</A></B></TD>
+        <TD>A Map.Entry implementation.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="Node.html" title="class in groovy/util">Node</A></B></TD>
+        <TD>Represents an arbitrary tree node which can be used for structured metadata or any arbitrary XML-like tree.
+ </TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="NodeBuilder.html" title="class in groovy/util">NodeBuilder</A></B></TD>
+        <TD>A helper class for creating nested trees of Node objects for 
+ handling arbitrary data</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="NodeList.html" title="class in groovy/util">NodeList</A></B></TD>
+        <TD>A List implementation which is returned by queries on a <a href='../../groovy/util/Node.html' title='Node'>Node</a>
+ which provides some XPath like helper methods for GPath.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="NodePrinter.html" title="class in groovy/util">NodePrinter</A></B></TD>
+        <TD>A helper class for creating nested trees of data</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ObjectGraphBuilder.html" title="class in groovy/util">ObjectGraphBuilder</A></B></TD>
+        <TD>A builder for creating object graphs.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ObjectGraphBuilder.DefaultChildPropertySetter.html" title="class in groovy/util">ObjectGraphBuilder.DefaultChildPropertySetter</A></B></TD>
+        <TD>Default impl that calls parent.propertyName = child<br>
+ If parent.propertyName is a Collection it will try to add child to the
+ collection.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ObjectGraphBuilder.DefaultClassNameResolver.html" title="class in groovy/util">ObjectGraphBuilder.DefaultClassNameResolver</A></B></TD>
+        <TD>Default impl that capitalizes the classname.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ObjectGraphBuilder.DefaultIdentifierResolver.html" title="class in groovy/util">ObjectGraphBuilder.DefaultIdentifierResolver</A></B></TD>
+        <TD>Default impl, always returns 'id'</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ObjectGraphBuilder.DefaultNewInstanceResolver.html" title="class in groovy/util">ObjectGraphBuilder.DefaultNewInstanceResolver</A></B></TD>
+        <TD>Default impl that calls Class.newInstance()</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ObjectGraphBuilder.DefaultReferenceResolver.html" title="class in groovy/util">ObjectGraphBuilder.DefaultReferenceResolver</A></B></TD>
+        <TD>Default impl, always returns 'refId'</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ObjectGraphBuilder.DefaultRelationNameResolver.html" title="class in groovy/util">ObjectGraphBuilder.DefaultRelationNameResolver</A></B></TD>
+        <TD>Default impl that returns parentName and childName accordingly.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ObjectGraphBuilder.ReflectionClassNameResolver.html" title="class in groovy/util">ObjectGraphBuilder.ReflectionClassNameResolver</A></B></TD>
+        <TD>Build objects using reflection to resolve class names.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ObservableList.html" title="class in groovy/util">ObservableList</A></B></TD>
+        <TD>List decorator that will trigger PropertyChangeEvents when a value changes.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ObservableList.ElementAddedEvent.html" title="class in groovy/util">ObservableList.ElementAddedEvent</A></B></TD>
+        <TD></TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ObservableList.ElementClearedEvent.html" title="class in groovy/util">ObservableList.ElementClearedEvent</A></B></TD>
+        <TD></TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ObservableList.ElementEvent.html" title="class in groovy/util">ObservableList.ElementEvent</A></B></TD>
+        <TD></TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ObservableList.ElementRemovedEvent.html" title="class in groovy/util">ObservableList.ElementRemovedEvent</A></B></TD>
+        <TD></TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ObservableList.ElementUpdatedEvent.html" title="class in groovy/util">ObservableList.ElementUpdatedEvent</A></B></TD>
+        <TD></TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ObservableList.MultiElementAddedEvent.html" title="class in groovy/util">ObservableList.MultiElementAddedEvent</A></B></TD>
+        <TD></TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ObservableList.MultiElementRemovedEvent.html" title="class in groovy/util">ObservableList.MultiElementRemovedEvent</A></B></TD>
+        <TD></TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ObservableList.ObservableIterator.html" title="class in groovy/util">ObservableList.ObservableIterator</A></B></TD>
+        <TD></TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ObservableList.ObservableListIterator.html" title="class in groovy/util">ObservableList.ObservableListIterator</A></B></TD>
+        <TD></TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ObservableMap.html" title="class in groovy/util">ObservableMap</A></B></TD>
+        <TD>Map decorator that will trigger PropertyChangeEvents when a value changes.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ObservableMap.MultiPropertyEvent.html" title="class in groovy/util">ObservableMap.MultiPropertyEvent</A></B></TD>
+        <TD></TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ObservableMap.PropertyAddedEvent.html" title="class in groovy/util">ObservableMap.PropertyAddedEvent</A></B></TD>
+        <TD></TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ObservableMap.PropertyClearedEvent.html" title="class in groovy/util">ObservableMap.PropertyClearedEvent</A></B></TD>
+        <TD></TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ObservableMap.PropertyEvent.html" title="class in groovy/util">ObservableMap.PropertyEvent</A></B></TD>
+        <TD></TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ObservableMap.PropertyRemovedEvent.html" title="class in groovy/util">ObservableMap.PropertyRemovedEvent</A></B></TD>
+        <TD></TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ObservableMap.PropertyUpdatedEvent.html" title="class in groovy/util">ObservableMap.PropertyUpdatedEvent</A></B></TD>
+        <TD></TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ObservableSet.html" title="class in groovy/util">ObservableSet</A></B></TD>
+        <TD>Set decorator that will trigger PropertyChangeEvents when a value changes.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ObservableSet.ElementAddedEvent.html" title="class in groovy/util">ObservableSet.ElementAddedEvent</A></B></TD>
+        <TD></TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ObservableSet.ElementClearedEvent.html" title="class in groovy/util">ObservableSet.ElementClearedEvent</A></B></TD>
+        <TD></TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ObservableSet.ElementEvent.html" title="class in groovy/util">ObservableSet.ElementEvent</A></B></TD>
+        <TD></TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ObservableSet.ElementRemovedEvent.html" title="class in groovy/util">ObservableSet.ElementRemovedEvent</A></B></TD>
+        <TD></TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ObservableSet.MultiElementAddedEvent.html" title="class in groovy/util">ObservableSet.MultiElementAddedEvent</A></B></TD>
+        <TD></TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ObservableSet.MultiElementRemovedEvent.html" title="class in groovy/util">ObservableSet.MultiElementRemovedEvent</A></B></TD>
+        <TD></TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ObservableSet.ObservableIterator.html" title="class in groovy/util">ObservableSet.ObservableIterator</A></B></TD>
+        <TD></TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="OptionAccessor.html" title="class in groovy/util">OptionAccessor</A></B></TD>
+        <TD></TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="OrderBy.html" title="class in groovy/util">OrderBy</A></B></TD>
+        <TD>A helper class for sorting objects via a closure to return the field
+ or operation on which to sort.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="PermutationGenerator.html" title="class in groovy/util">PermutationGenerator</A></B></TD>
+        <TD>Systematically generate permutations.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="Proxy.html" title="class in groovy/util">Proxy</A></B></TD>
+        <TD>Dynamic groovy proxy for another object.  </TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ProxyGenerator.html" title="class in groovy/util">ProxyGenerator</A></B></TD>
+        <TD>Classes to generate 'Proxy' objects which implement interfaces,
+ maps of closures and/or extend classes/delegates.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="StringTestUtil.html" title="class in groovy/util">StringTestUtil</A></B></TD>
+        <TD></TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="XmlNodePrinter.html" title="class in groovy/util">XmlNodePrinter</A></B></TD>
+        <TD>Prints a <code>groovy.util.Node</code> (as used with <code>XmlParser</code>) including all children in XML format.
+ </TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="XmlNodePrinter.NamespaceContext.html" title="class in groovy/util">XmlNodePrinter.NamespaceContext</A></B></TD>
+        <TD></TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="XmlParser.html" title="class in groovy/util">XmlParser</A></B></TD>
+        <TD>A helper class for parsing XML into a tree of Node instances for a
+ simple way of processing XML. </TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="XmlSlurper.html" title="class in groovy/util">XmlSlurper</A></B></TD>
+        <TD>Parse XML into a document tree that may be traversed similar to XPath
+ expressions.  </TD>
+        </TR>
+
+</TABLE>
+&nbsp;
+<P>
+<DL>
+</DL>
+<hr>
+    
+
+
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+    <TR BGCOLOR="#90DDF7" CLASS="TableHeadingColor">
+    <TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+    <B>Enum Summary</B></FONT></TH>
+    </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ObservableList.ChangeType.html" title="class in groovy/util">ObservableList.ChangeType</A></B></TD>
+        <TD></TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ObservableMap.ChangeType.html" title="class in groovy/util">ObservableMap.ChangeType</A></B></TD>
+        <TD></TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ObservableSet.ChangeType.html" title="class in groovy/util">ObservableSet.ChangeType</A></B></TD>
+        <TD></TD>
+        </TR>
+
+</TABLE>
+&nbsp;
+<P>
+<DL>
+</DL>
+<hr>
+    
+
+
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+    <TR BGCOLOR="#90DDF7" CLASS="TableHeadingColor">
+    <TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+    <B>Exception Summary</B></FONT></TH>
+    </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ResourceException.html" title="class in groovy/util">ResourceException</A></B></TD>
+        <TD>@author sam</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ScriptException.html" title="class in groovy/util">ScriptException</A></B></TD>
+        <TD>@author sam</TD>
+        </TR>
+
+</TABLE>
+&nbsp;
+<P>
+<DL>
+</DL>
+<hr>
+    
+
+
+
+
+<p>Copyright &amp;copy; 2003-2013 The Codehaus. All rights reserved.</p>
+<hr>
+</body>
+</html>

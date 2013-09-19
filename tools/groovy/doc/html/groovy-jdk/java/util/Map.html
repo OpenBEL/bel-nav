@@ -1,0 +1,2911 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<HTML>
+<HEAD>
+<TITLE>Map (Groovy JDK)</TITLE>
+
+
+<LINK REL ="stylesheet" TYPE="text/css" HREF="../../stylesheet.css" TITLE="Style">
+
+<SCRIPT type="text/javascript">
+function windowTitle()
+{
+    parent.document.title = document.title;
+}
+</SCRIPT>
+
+</HEAD>
+
+<BODY BGCOLOR="white" onload="windowTitle();">
+
+<!-- ========== START OF NAVBAR ========== -->
+<A NAME="navbar_top"><!-- --></A>
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0">
+    <TR>
+        <TD COLSPAN=3 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+            <A NAME="navbar_top_firstrow"><!-- --></A>
+            <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3">
+                <TR ALIGN="center" VALIGN="top">
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../overview-summary.html"><SPAN CLASS="NavBarFont1"><B>Overview</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Package</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Class</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Tree</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Deprecated</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../index-all.html"><SPAN CLASS="NavBarFont1"><B>Index</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Help</SPAN>&nbsp;</TD>
+                </TR>
+            </TABLE>
+        </TD>
+        <TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+            <b>Groovy JDK</b></EM>
+        </TD>
+    </TR>
+</TABLE>
+<!-- =========== END OF NAVBAR =========== -->
+
+<!-- ======== START OF CLASS DATA ======== -->
+<H2>
+<SPAN style="font-size:12px;">
+java.util</SPAN>
+<BR>
+Class Map</H2>
+
+<!-- ========== METHOD SUMMARY =========== -->
+
+<A NAME="method_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><SPAN style="font-size:24px;">
+<B>Method Summary</B></SPAN></TH>
+</TR>
+
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>boolean</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#any(groovy.lang.Closure)">any</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Iterates over the entries of a map, and checks whether a predicate is
+valid for at least one entry. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>boolean</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#asBoolean()">asBoolean</A></B>()</CODE>
+<BR>
+Coerce a map instance to a boolean value.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#asImmutable()">asImmutable</A></B>()</CODE>
+<BR>
+A convenience method for creating an immutable map.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#asSynchronized()">asSynchronized</A></B>()</CODE>
+<BR>
+A convenience method for creating a synchronized Map.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#asType(java.lang.Class)">asType</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Class.html' title='JDK class in java.lang'>Class</a> clazz)</CODE>
+<BR>
+Coerces this map to the given type, using the map's keys as the public
+method names, and values as the implementation.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#collect(java.util.Collection, groovy.lang.Closure)">collect</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> collector, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> transform)</CODE>
+<BR>
+Iterates through this Map transforming each map entry into a new value using the <code>transform</code> closure
+returning the <code>collector</code> with all transformed values added to it.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#collect(groovy.lang.Closure)">collect</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> transform)</CODE>
+<BR>
+Iterates through this Map transforming each map entry into a new value using the <code>transform</code> closure
+returning a list of transformed values.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#collectEntries(java.util.Map, groovy.lang.Closure)">collectEntries</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> collector, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> transform)</CODE>
+<BR>
+Iterates through this Map transforming each map entry using the <code>transform</code> closure
+returning a map of the transformed entries.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#collectEntries(groovy.lang.Closure)">collectEntries</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> transform)</CODE>
+<BR>
+Iterates through this Map transforming each entry using the <code>transform</code> closure
+and returning a map of the transformed entries.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#collectMany(java.util.Collection, groovy.lang.Closure)">collectMany</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> collector, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> projection)</CODE>
+<BR>
+Projects each item from a source map to a result collection and concatenates (flattens) the resulting
+collections adding them into the <code>collector</code>.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#collectMany(groovy.lang.Closure)">collectMany</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> projection)</CODE>
+<BR>
+Projects each item from a source map to a result collection and concatenates (flattens) the resulting
+collections adding them into a collection.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#count(groovy.lang.Closure)">count</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Counts the number of occurrences which satisfy the given closure from inside this map.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#countBy(groovy.lang.Closure)">countBy</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Groups the members of a map into groups determined by the
+supplied mapping closure and counts the frequency of the created groups.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#drop(int)">drop</A></B>(int num)</CODE>
+<BR>
+Drops the given number of key/value pairs from the head of this map if they are available.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#dropWhile(groovy.lang.Closure)">dropWhile</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> condition)</CODE>
+<BR>
+Create a suffix of the given Map by dropping as many entries as possible from the
+front of the original Map such that calling the given closure condition evaluates to
+true when passed each of the dropped entries (or key/value pairs).
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#each(groovy.lang.Closure)">each</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Allows a Map to be iterated through using a closure. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#eachWithIndex(groovy.lang.Closure)">eachWithIndex</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Allows a Map to be iterated through using a closure. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>boolean</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#equals(java.util.Map)">equals</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> other)</CODE>
+<BR>
+Compares two Maps treating coerced numerical values as identical.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>boolean</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#every(groovy.lang.Closure)">every</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Iterates over the entries of a map, and checks whether a predicate is
+valid for all entries. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map/Entry.html' title='JDK class in java.util.Map'>Entry</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#find(groovy.lang.Closure)">find</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Finds the first entry matching the closure condition.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#findAll(groovy.lang.Closure)">findAll</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Finds all entries matching the closure condition. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#findResult(U, groovy.lang.Closure)">findResult</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> defaultResult, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Returns the first non-null closure result found by passing each map entry to the closure, otherwise the defaultResult is returned.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#findResult(groovy.lang.Closure)">findResult</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Returns the first non-null closure result found by passing each map entry to the closure, otherwise null is returned.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#findResults(groovy.lang.Closure)">findResults</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> filteringTransform)</CODE>
+<BR>
+Iterates through the map transforming items using the supplied closure
+and collecting any non-null results.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#get(K, V)">get</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> key, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> defaultValue)</CODE>
+<BR>
+Looks up an item in a Map for the given key and returns the value - unless
+there is no entry for the given key in which case add the default value
+to the map and return that.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#getAt(K)">getAt</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> key)</CODE>
+<BR>
+Support the subscript operator for a Map.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#groupBy(groovy.lang.Closure)">groupBy</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Groups the members of a map into sub maps determined by the
+supplied mapping closure. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#groupBy(java.lang.Object)">groupBy</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> closures)</CODE>
+<BR>
+Groups the members of a map into sub maps determined by the supplied
+mapping closures. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#groupBy(java.util.List)">groupBy</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> closures)</CODE>
+<BR>
+Groups the members of a map into sub maps determined by the supplied
+mapping closures. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#groupEntriesBy(groovy.lang.Closure)">groupEntriesBy</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Groups all map entries into groups determined by the
+supplied mapping closure. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#inject(U, groovy.lang.Closure)">inject</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> initialValue, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Iterates through the given Map, passing in the initial value to
+the 2-arg Closure along with the first item (or 3-arg Closure along with the first key and value).
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#intersect(java.util.Map)">intersect</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> right)</CODE>
+<BR>
+Create a Map composed of the intersection of both maps.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>boolean</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#isCase(java.lang.Object)">isCase</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> switchValue)</CODE>
+<BR>
+'Case' implementation for maps which tests the groovy truth
+value obtained using the 'switch' operand as key.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#leftShift(java.util.Map.Entry)">leftShift</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map/Entry.html' title='JDK class in java.util.Map'>Entry</a> entry)</CODE>
+<BR>
+Overloads the left shift operator to provide an easy way to append
+Map.Entry values to a Map.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#leftShift(java.util.Map)">leftShift</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> other)</CODE>
+<BR>
+Overloads the left shift operator to provide an easy way to put
+one maps entries into another map. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map/Entry.html' title='JDK class in java.util.Map'>Entry</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#max(groovy.lang.Closure)">max</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Selects an entry in the map having the maximum
+calculated value as determined by the supplied closure.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map/Entry.html' title='JDK class in java.util.Map'>Entry</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#min(groovy.lang.Closure)">min</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Selects an entry in the map having the minimum
+calculated value as determined by the supplied closure.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#minus(java.util.Map)">minus</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> removeMe)</CODE>
+<BR>
+Create a Map composed of the entries of the first map minus the
+entries of the given map.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#plus(java.util.Map)">plus</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> right)</CODE>
+<BR>
+Returns a new <code>Map</code> containing all entries from <code>left</code> and <code>right</code>,
+giving precedence to <code>right</code>.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#plus(java.util.Collection)">plus</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> entries)</CODE>
+<BR>
+Returns a new <code>Map</code> containing all entries from <code>self</code> and <code>entries</code>,
+giving precedence to <code>entries</code>.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#putAll(java.util.Collection)">putAll</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> entries)</CODE>
+<BR>
+Provides an easy way to append multiple Map.Entry values to a Map.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#putAt(K, V)">putAt</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> key, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> value)</CODE>
+<BR>
+A helper method to allow maps to work with subscript operators
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#reverseEach(groovy.lang.Closure)">reverseEach</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Allows a Map to be iterated through in reverse order using a closure.
+
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#sort(groovy.lang.Closure)">sort</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Sorts the elements from the given map into a new ordered map using
+the closure as a comparator to determine the ordering.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#sort(java.util.Comparator)">sort</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Comparator.html' title='JDK class in java.util'>Comparator</a> comparator)</CODE>
+<BR>
+Sorts the elements from the given map into a new ordered Map using
+the specified key comparator to determine the ordering.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#sort()">sort</A></B>()</CODE>
+<BR>
+Sorts the elements from the given map into a new ordered Map using
+the natural ordering of the keys to determine the ordering.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://groovy.codehaus.org/api/groovy/lang/SpreadMap.html' title='Groovy class in groovy.lang'>SpreadMap</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#spread()">spread</A></B>()</CODE>
+<BR>
+Synonym for <a href='../../java/util/Map.html#toSpreadMap()' title='GDK enhancement for java.util.Map'>Map#toSpreadMap</a>.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#subMap(java.util.Collection)">subMap</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> keys)</CODE>
+<BR>
+Creates a sub-Map containing the given keys. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#subMap(K[])">subMap</A></B>(K[] keys)</CODE>
+<BR>
+Creates a sub-Map containing the given keys. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#take(int)">take</A></B>(int num)</CODE>
+<BR>
+Returns a new map containing the first <code>num</code> elements from the head of this map.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#takeWhile(groovy.lang.Closure)">takeWhile</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> condition)</CODE>
+<BR>
+Returns the longest prefix of this Map where each entry (or key/value pair) when
+passed to the given closure evaluates to true.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#toMapString()">toMapString</A></B>()</CODE>
+<BR>
+Returns the string representation of this map.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#toMapString(int)">toMapString</A></B>(int maxSize)</CODE>
+<BR>
+Returns the string representation of this map.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://groovy.codehaus.org/api/groovy/lang/SpreadMap.html' title='Groovy class in groovy.lang'>SpreadMap</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#toSpreadMap()">toSpreadMap</A></B>()</CODE>
+<BR>
+Returns a new <code>SpreadMap</code> from this map.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#withDefault(groovy.lang.Closure)">withDefault</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> init)</CODE>
+<BR>
+Wraps a map using the decorator pattern with a wrapper that intercepts all calls
+to <code>get(key)</code>. 
+</TD>
+</TR>
+
+</TABLE>
+&nbsp;
+
+
+<!-- ============ METHOD DETAIL ========== -->
+
+<A NAME="method_detail"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="1"><SPAN style="font-size:24px;">
+<B>Method Detail</B></SPAN></TH>
+</TR>
+</TABLE>
+
+
+
+<A name="any(groovy.lang.Closure)"><!-- --></A><H3>any</H3>
+<PRE>public boolean <B>any</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates over the entries of a map, and checks whether a predicate is
+valid for at least one entry. If the
+closure takes one parameter then it will be passed the Map.Entry
+otherwise if the closure takes two parameters then it will be
+passed the key and the value.
+<pre class="groovyTestCase">
+assert [2:3, 4:5, 5:10].any { key, value -> key * 2 == value }
+assert ![2:3, 4:5, 5:10].any { entry -> entry.key == entry.value * 2 }
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  the 1 or 2 arg closure predicate used for matching.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>true if any entry in the map matches the closure predicate</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="asBoolean()"><!-- --></A><H3>asBoolean</H3>
+<PRE>public boolean <B>asBoolean</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Coerce a map instance to a boolean value.
+A map is coerced to false if it's empty, and to true otherwise.
+<pre class="groovyTestCase">assert [:] as Boolean == false
+assert [a:2] as Boolean == true</pre></DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>the boolean value</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="asImmutable()"><!-- --></A><H3>asImmutable</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> <B>asImmutable</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>A convenience method for creating an immutable map.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>an immutable Map</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collections.html#unmodifiableMap(java.util.Map)' title='JDK class in java.util'>Collections#unmodifiableMap</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="asSynchronized()"><!-- --></A><H3>asSynchronized</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> <B>asSynchronized</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>A convenience method for creating a synchronized Map.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>a synchronized Map</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collections.html#synchronizedMap(java.util.Map)' title='JDK class in java.util'>Collections#synchronizedMap</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="asType(java.lang.Class)"><!-- --></A><H3>asType</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>asType</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Class.html' title='JDK class in java.lang'>Class</a> clazz)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Coerces this map to the given type, using the map's keys as the public
+method names, and values as the implementation.  Typically the value
+would be a closure which behaves like the method implementation.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>clazz</CODE> -  the target type.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a Proxy of the given type, which defers calls to this map's elements.</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="collect(java.util.Collection, groovy.lang.Closure)"><!-- --></A><H3>collect</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> <B>collect</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> collector, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> transform)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates through this Map transforming each map entry into a new value using the <code>transform</code> closure
+returning the <code>collector</code> with all transformed values added to it.
+<pre class="groovyTestCase">assert [a:1, b:2].collect( [] as HashSet ) { key, value -> key*value } == ["a", "bb"] as Set
+assert [3:20, 2:30].collect( [] as HashSet ) { entry -> entry.key * entry.value } == [60] as Set</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>collector</CODE> -  the Collection to which transformed values are added.</DD>
+
+		<DD><CODE>transform</CODE> -  the transformation closure which can take one (Map.Entry) or two (key, value) parameters.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the collector with all transformed values added to it</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="collect(groovy.lang.Closure)"><!-- --></A><H3>collect</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>collect</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> transform)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates through this Map transforming each map entry into a new value using the <code>transform</code> closure
+returning a list of transformed values.
+<pre class="groovyTestCase">assert [a:1, b:2].collect { key, value -> key*value } == ["a", "bb"]
+assert [3:20, 2:30].collect { entry -> entry.key * entry.value } == [60, 60]</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>transform</CODE> -  the transformation closure which can take one (Map.Entry) or two (key, value) parameters.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the resultant list of transformed values</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="collectEntries(java.util.Map, groovy.lang.Closure)"><!-- --></A><H3>collectEntries</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> <B>collectEntries</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> collector, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> transform)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates through this Map transforming each map entry using the <code>transform</code> closure
+returning a map of the transformed entries.
+<pre class="groovyTestCase">
+assert [a:1, b:2].collectEntries( [:] ) { k, v -> [v, k] } == [1:'a', 2:'b']
+assert [a:1, b:2].collectEntries( [30:'C'] ) { key, value ->
+    [(value*10): key.toUpperCase()] } == [10:'A', 20:'B', 30:'C']
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>collector</CODE> -  the Map into which the transformed entries are put.</DD>
+
+		<DD><CODE>transform
+</CODE> -  the closure used for transforming, which can take one (Map.Entry) or two (key, value) parameters and
+                 should return a Map.Entry, a Map or a two-element list containing the resulting key and value.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the collector with all transformed values added to it</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.9</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>Map#collect(Collection, Closure).</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="collectEntries(groovy.lang.Closure)"><!-- --></A><H3>collectEntries</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> <B>collectEntries</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> transform)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates through this Map transforming each entry using the <code>transform</code> closure
+and returning a map of the transformed entries.
+<pre class="groovyTestCase">
+assert [a:1, b:2].collectEntries { key, value -> [value, key] } == [1:'a', 2:'b']
+assert [a:1, b:2].collectEntries { key, value ->
+    [(value*10): key.toUpperCase()] } == [10:'A', 20:'B']
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>transform
+</CODE> -  the closure used for transforming, which can take one (Map.Entry) or two (key, value) parameters and
+                 should return a Map.Entry, a Map or a two-element list containing the resulting key and value.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a Map of the transformed entries</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.9</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>Map#collect(Collection, Closure).</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="collectMany(java.util.Collection, groovy.lang.Closure)"><!-- --></A><H3>collectMany</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> <B>collectMany</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> collector, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> projection)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Projects each item from a source map to a result collection and concatenates (flattens) the resulting
+collections adding them into the <code>collector</code>.
+<p>
+<pre class="groovyTestCase">
+def map = [bread:3, milk:5, butter:2]
+def result = map.collectMany(['x']){ k, v -> k.startsWith('b') ? k.toList() : [] }
+assert result == ['x', 'b', 'r', 'e', 'a', 'd', 'b', 'u', 't', 't', 'e', 'r']
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>collector</CODE> -   an initial collection to add the projected items to.</DD>
+
+		<DD><CODE>projection</CODE> -  a projecting Closure returning a collection of items.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the collector with the projected collections concatenated (flattened) to it</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.8</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="collectMany(groovy.lang.Closure)"><!-- --></A><H3>collectMany</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> <B>collectMany</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> projection)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Projects each item from a source map to a result collection and concatenates (flattens) the resulting
+collections adding them into a collection.
+<p>
+<pre class="groovyTestCase">
+def map = [bread:3, milk:5, butter:2]
+def result = map.collectMany{ k, v -> k.startsWith('b') ? k.toList() : [] }
+assert result == ['b', 'r', 'e', 'a', 'd', 'b', 'u', 't', 't', 'e', 'r']
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>projection</CODE> -  a projecting Closure returning a collection of items.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the collector with the projected collections concatenated (flattened) to it</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.8</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="count(groovy.lang.Closure)"><!-- --></A><H3>count</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> <B>count</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Counts the number of occurrences which satisfy the given closure from inside this map.
+If the closure takes one parameter then it will be passed the Map.Entry.
+Otherwise, the closure should take two parameters and will be passed the key and value.
+<p>
+Example usage:
+<pre class="groovyTestCase">assert [a:1, b:1, c:2, d:2].count{ k,v -> k == 'a' || v == 2 } == 3</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  a 1 or 2 arg Closure condition applying on the entries.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the number of occurrences</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="countBy(groovy.lang.Closure)"><!-- --></A><H3>countBy</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> <B>countBy</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Groups the members of a map into groups determined by the
+supplied mapping closure and counts the frequency of the created groups.
+The closure will be passed a Map.Entry or
+key and value (depending on the number of parameters the closure accepts)
+and should return the key that each item should be grouped under.  The
+resulting map will have an entry for each 'group' key returned by the
+closure, with values being the frequency counts for that 'group'.
+<p>
+<pre class="groovyTestCase">def result = [a:1,b:2,c:3,d:4,e:5].countBy { it.value % 2 }
+assert result == [0:2, 1:3]</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  a closure mapping entries to frequency count keys.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a new Map grouped by keys with frequency counts</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="drop(int)"><!-- --></A><H3>drop</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> <B>drop</B>(int num)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Drops the given number of key/value pairs from the head of this map if they are available.
+<pre class="groovyTestCase">
+def strings = [ 'a':10, 'b':20, 'c':30 ]
+assert strings.drop( 0 ) == [ 'a':10, 'b':20, 'c':30 ]
+assert strings.drop( 2 ) == [ 'c':30 ]
+assert strings.drop( 5 ) == [:]
+</pre>
+If the map instance does not have ordered keys, then this function could drop a random <code>num</code>
+entries. Groovy by default uses LinkedHashMap, so this shouldn't be an issue in the main.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>num</CODE> -   the number of elements to drop from this map.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a map consisting of all key/value pairs of this map except the first
+        <code>num</code> ones, or else the empty map, if this map has
+        less than <code>num</code> elements.</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.1</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="dropWhile(groovy.lang.Closure)"><!-- --></A><H3>dropWhile</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> <B>dropWhile</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> condition)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Create a suffix of the given Map by dropping as many entries as possible from the
+front of the original Map such that calling the given closure condition evaluates to
+true when passed each of the dropped entries (or key/value pairs).
+<pre class="groovyTestCase">
+def shopping = [milk:1, bread:2, chocolate:3]
+assert shopping.takeWhile{ it.key.size() < 6 } == [milk:1, bread:2]
+assert shopping.takeWhile{ it.value % 2 } == [milk:1]
+assert shopping.takeWhile{ k, v -> k.size() + v <= 7 } == [milk:1, bread:2]
+</pre>
+If the map instance does not have ordered keys, then this function could appear to drop random
+entries. Groovy by default uses LinkedHashMap, so this shouldn't be an issue in the main.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>condition
+</CODE> -  a 1 (or 2) arg Closure that must evaluate to true for the
+                 entry (or key and value) to continue dropping elements.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the shortest suffix of the given Map such that the given closure condition
+        evaluates to true for each element dropped from the front of the Map</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.7</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="each(groovy.lang.Closure)"><!-- --></A><H3>each</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> <B>each</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Allows a Map to be iterated through using a closure. If the
+closure takes one parameter then it will be passed the Map.Entry
+otherwise if the closure takes two parameters then it will be
+passed the key and the value.
+<pre class="groovyTestCase">def result = ""
+[a:1, b:3].each { key, value -> result += "$key$value" }
+assert result == "a1b3"</pre>
+<pre class="groovyTestCase">def result = ""
+[a:1, b:3].each { entry -> result += entry }
+assert result == "a=1b=3"</pre>
+
+In general, the order in which the map contents are processed
+cannot be guaranteed. In practise, specialized forms of Map,
+e.g. a TreeMap will have its contents processed according to
+the natural ordering of the map.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  the 1 or 2 arg closure applied on each entry of the map.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>returns the self parameter</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="eachWithIndex(groovy.lang.Closure)"><!-- --></A><H3>eachWithIndex</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> <B>eachWithIndex</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Allows a Map to be iterated through using a closure. If the
+closure takes two parameters then it will be passed the Map.Entry and
+the item's index (a counter starting at zero) otherwise if the closure
+takes three parameters then it will be passed the key, the value, and
+the index.
+<pre class="groovyTestCase">def result = ""
+[a:1, b:3].eachWithIndex { key, value, index -> result += "$index($key$value)" }
+assert result == "0(a1)1(b3)"</pre>
+<pre class="groovyTestCase">def result = ""
+[a:1, b:3].eachWithIndex { entry, index -> result += "$index($entry)" }
+assert result == "0(a=1)1(b=3)"</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  a 2 or 3 arg Closure to operate on each item.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the self Object</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="equals(java.util.Map)"><!-- --></A><H3>equals</H3>
+<PRE>public boolean <B>equals</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> other)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Compares two Maps treating coerced numerical values as identical.
+<p>
+Example usage:
+<pre class="groovyTestCase">assert [a:2, b:3] == [a:2L, b:3.0]</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>other</CODE> -  the Map being compared to.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD><tt>true</tt> if the contents of both maps are identical</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="every(groovy.lang.Closure)"><!-- --></A><H3>every</H3>
+<PRE>public boolean <B>every</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates over the entries of a map, and checks whether a predicate is
+valid for all entries. If the
+closure takes one parameter then it will be passed the Map.Entry
+otherwise if the closure takes two parameters then it will be
+passed the key and the value.
+<pre class="groovyTestCase">def map = [a:1, b:2.0, c:2L]
+assert !map.every { key, value -> value instanceof Integer }
+assert map.every { entry -> entry.value instanceof Number }</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  the 1 or 2 arg Closure predicate used for matching.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>true if every entry of the map matches the closure predicate</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="find(groovy.lang.Closure)"><!-- --></A><H3>find</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map/Entry.html' title='JDK class in java.util.Map'>Entry</a> <B>find</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Finds the first entry matching the closure condition.
+If the closure takes two parameters, the entry key and value are passed.
+If the closure takes one parameter, the Map.Entry object is passed.
+<pre class="groovyTestCase">assert [a:1, b:3].find { it.value == 3 }.key == "b"</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  a 1 or 2 arg Closure condition.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the first Object found</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="findAll(groovy.lang.Closure)"><!-- --></A><H3>findAll</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> <B>findAll</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Finds all entries matching the closure condition. If the
+closure takes one parameter then it will be passed the Map.Entry.
+Otherwise if the closure should take two parameters, which will be
+the key and the value.
+<p>
+If the <code>self</code> map is one of TreeMap, LinkedHashMap, Hashtable
+or Properties, the returned Map will preserve that type, otherwise a HashMap will
+be returned.
+<p>
+Example usage:
+<pre class="groovyTestCase">def result = [a:1, b:2, c:4, d:5].findAll { it.value % 2 == 0 }
+assert result.every { it instanceof Map.Entry }
+assert result*.key == ["b", "c"]
+assert result*.value == [2, 4]</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  a 1 or 2 arg Closure condition applying on the entries.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a new subMap</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="findResult(U, groovy.lang.Closure)"><!-- --></A><H3>findResult</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>findResult</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> defaultResult, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Returns the first non-null closure result found by passing each map entry to the closure, otherwise the defaultResult is returned.
+If the closure takes two parameters, the entry key and value are passed.
+If the closure takes one parameter, the Map.Entry object is passed.
+<pre class="groovyTestCase">
+assert "Found b:3" == [a:1, b:3].findResult("default") { if (it.value == 3) return "Found ${it.key}:${it.value}" }
+assert "default" == [a:1, b:3].findResult("default") { if (it.value == 9) return "Found ${it.key}:${it.value}" }
+assert "Found a:1" == [a:1, b:3].findResult("default") { k, v -> if (k.size() + v == 2) return "Found $k:$v" }
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>defaultResult</CODE> -  an Object that should be returned if all closure results are null.</DD>
+
+		<DD><CODE>closure</CODE> -  a 1 or 2 arg Closure that returns a non-null value when processing should stop and a value should be returned.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the first non-null result collected by calling the closure, or the defaultResult if no such result was found</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.5</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="findResult(groovy.lang.Closure)"><!-- --></A><H3>findResult</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>findResult</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Returns the first non-null closure result found by passing each map entry to the closure, otherwise null is returned.
+If the closure takes two parameters, the entry key and value are passed.
+If the closure takes one parameter, the Map.Entry object is passed.
+<pre class="groovyTestCase">
+assert "Found b:3" == [a:1, b:3].findResult { if (it.value == 3) return "Found ${it.key}:${it.value}" }
+assert null == [a:1, b:3].findResult { if (it.value == 9) return "Found ${it.key}:${it.value}" }
+assert "Found a:1" == [a:1, b:3].findResult { k, v -> if (k.size() + v == 2) return "Found $k:$v" }
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  a 1 or 2 arg Closure that returns a non-null value when processing should stop and a value should be returned.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the first non-null result collected by calling the closure, or null if no such result was found</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.5</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="findResults(groovy.lang.Closure)"><!-- --></A><H3>findResults</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> <B>findResults</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> filteringTransform)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates through the map transforming items using the supplied closure
+and collecting any non-null results.
+If the closure takes two parameters, the entry key and value are passed.
+If the closure takes one parameter, the Map.Entry object is passed.
+<p>
+Example:
+<pre class="groovyTestCase">
+def map = [a:1, b:2, hi:2, cat:3, dog:2]
+def result = map.findResults { k, v -> k.size() == v ? "Found $k:$v" : null }
+assert result == ["Found a:1", "Found hi:2", "Found cat:3"]
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>filteringTransform</CODE> -  a 1 or 2 arg Closure that should return either a non-null transformed value or null for items which should be discarded.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the list of non-null transformed values</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.1</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="get(K, V)"><!-- --></A><H3>get</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>get</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> key, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> defaultValue)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Looks up an item in a Map for the given key and returns the value - unless
+there is no entry for the given key in which case add the default value
+to the map and return that.
+<pre class="groovyTestCase">def map=[:]
+map.get("a", []) << 5
+assert map == [a:[5]]</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>key</CODE> -           the key to lookup the value of.</DD>
+
+		<DD><CODE>defaultValue
+</CODE> -  the value to return and add to the map for this key if
+                    there is no entry for the given key.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the value of the given key or the default value, added to the map if the
+        key did not exist</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="getAt(K)"><!-- --></A><H3>getAt</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>getAt</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> key)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Support the subscript operator for a Map.
+<pre class="groovyTestCase">def map = [a:10]
+assert map["a"] == 10</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>key</CODE> -   an Object as a key for the map.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the value corresponding to the given key</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="groupBy(groovy.lang.Closure)"><!-- --></A><H3>groupBy</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> <B>groupBy</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Groups the members of a map into sub maps determined by the
+supplied mapping closure. The closure will be passed a Map.Entry or
+key and value (depending on the number of parameters the closure accepts)
+and should return the key that each item should be grouped under.  The
+resulting map will have an entry for each 'group' key returned by the
+closure, with values being the map members from the original map that
+belong to each group. (If instead of a map, you want a list of map entries
+use {code}groupEntriesBy{code}.)
+<p>
+If the <code>self</code> map is one of TreeMap, Hashtable or Properties,
+the returned Map will preserve that type, otherwise a LinkedHashMap will
+be returned.
+<pre class="groovyTestCase">def result = [a:1,b:2,c:3,d:4,e:5,f:6].groupBy { it.value % 2 }
+assert result == [0:[b:2, d:4, f:6], 1:[a:1, c:3, e:5]]</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  a closure mapping entries on keys.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a new Map grouped by keys</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="groupBy(java.lang.Object)"><!-- --></A><H3>groupBy</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> <B>groupBy</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> closures)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Groups the members of a map into sub maps determined by the supplied
+mapping closures. Each closure will be passed a Map.Entry or key and
+value (depending on the number of parameters the closure accepts) and
+should return the key that each item should be grouped under. The
+resulting map will have an entry for each 'group path' returned by all
+closures, with values being the map members from the original map that
+belong to each such 'group path'. <p>
+
+If the <code>self</code> map is one of TreeMap, Hashtable, or Properties,
+the returned Map will preserve that type, otherwise a LinkedHashMap will
+be returned.
+
+<pre class="groovyTestCase">def result = [a:1,b:2,c:3,d:4,e:5,f:6].groupBy({ it.value % 2 }, { it.key.next() })
+assert result == [1:[b:[a:1], d:[c:3], f:[e:5]], 0:[c:[b:2], e:[d:4], g:[f:6]]]</pre>
+If an empty array of closures is supplied the IDENTITY Closure will be used.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closures</CODE> -  an array of closures that map entries on keys.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a new map grouped by keys on each criterion</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.1</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>Closure#IDENTITY.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="groupBy(java.util.List)"><!-- --></A><H3>groupBy</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> <B>groupBy</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> closures)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Groups the members of a map into sub maps determined by the supplied
+mapping closures. Each closure will be passed a Map.Entry or key and
+value (depending on the number of parameters the closure accepts) and
+should return the key that each item should be grouped under. The
+resulting map will have an entry for each 'group path' returned by all
+closures, with values being the map members from the original map that
+belong to each such 'group path'. <p>
+
+If the <code>self</code> map is one of TreeMap, Hashtable, or Properties,
+the returned Map will preserve that type, otherwise a LinkedHashMap will
+be returned.
+
+<pre class="groovyTestCase">def result = [a:1,b:2,c:3,d:4,e:5,f:6].groupBy([{ it.value % 2 }, { it.key.next() }])
+assert result == [1:[b:[a:1], d:[c:3], f:[e:5]], 0:[c:[b:2], e:[d:4], g:[f:6]]]</pre>
+If an empty list of closures is supplied the IDENTITY Closure will be used.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closures</CODE> -  a list of closures that map entries on keys.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a new map grouped by keys on each criterion</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.1</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>Closure#IDENTITY.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="groupEntriesBy(groovy.lang.Closure)"><!-- --></A><H3>groupEntriesBy</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> <B>groupEntriesBy</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Groups all map entries into groups determined by the
+supplied mapping closure. The closure will be passed a Map.Entry or
+key and value (depending on the number of parameters the closure accepts)
+and should return the key that each item should be grouped under.  The
+resulting map will have an entry for each 'group' key returned by the
+closure, with values being the list of map entries that belong to each
+group. (If instead of a list of map entries, you want an actual map
+use {code}groupBy{code}.)
+<pre class="groovyTestCase">def result = [a:1,b:2,c:3,d:4,e:5,f:6].groupEntriesBy { it.value % 2 }
+assert result[0]*.key == ["b", "d", "f"]
+assert result[1]*.value == [1, 3, 5]</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  a 1 or 2 arg Closure mapping entries on keys.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a new Map grouped by keys</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.2</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="inject(U, groovy.lang.Closure)"><!-- --></A><H3>inject</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>inject</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> initialValue, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates through the given Map, passing in the initial value to
+the 2-arg Closure along with the first item (or 3-arg Closure along with the first key and value).
+The result is passed back (injected) into
+the closure along with the second item. The new result is injected back into
+the closure along with the third item and so on until the entire collection
+has been used. Also known as <tt>foldLeft</tt> or <tt>reduce</tt> in functional parlance.
+
+Examples:
+<pre class="groovyTestCase">
+def map = [a:1, b:2, c:3]
+assert map.inject([]) { list, k, v ->
+  list + [k] * v
+} == ['a', 'b', 'b', 'c', 'c', 'c']
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>initialValue</CODE> -  some initial value.</DD>
+
+		<DD><CODE>closure</CODE> -       a 2 or 3 arg Closure.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the result of the last closure call</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.1</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="intersect(java.util.Map)"><!-- --></A><H3>intersect</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> <B>intersect</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> right)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Create a Map composed of the intersection of both maps.
+Any entries that exist in both maps are added to the resultant map.
+<pre class="groovyTestCase">assert [4:4,5:5] == [1:1,2:2,3:3,4:4,5:5].intersect([4:4,5:5,6:6,7:7,8:8])</pre>
+<pre class="groovyTestCase">assert [1: 1, 2: 2, 3: 3, 4: 4].intersect( [1: 1.0, 2: 2, 5: 5] ) == [1:1, 2:2]</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>right</CODE> -     a map.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a Map as an intersection of both maps</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.4</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="isCase(java.lang.Object)"><!-- --></A><H3>isCase</H3>
+<PRE>public boolean <B>isCase</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> switchValue)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>'Case' implementation for maps which tests the groovy truth
+value obtained using the 'switch' operand as key.
+For example:
+<pre class="groovyTestCase">switch( 'foo' ) {
+  case [foo:true, bar:false]:
+    assert true
+    break
+  default:
+    assert false
+}</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>switchValue</CODE> -  the switch value.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the groovy truth value from caseValue corresponding to the switchValue key</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.6</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="leftShift(java.util.Map.Entry)"><!-- --></A><H3>leftShift</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> <B>leftShift</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map/Entry.html' title='JDK class in java.util.Map'>Entry</a> entry)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Overloads the left shift operator to provide an easy way to append
+Map.Entry values to a Map.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>entry</CODE> -  a Map.Entry to be added to the Map..</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>same map, after the value has been added to it.</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.6.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="leftShift(java.util.Map)"><!-- --></A><H3>leftShift</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> <B>leftShift</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> other)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Overloads the left shift operator to provide an easy way to put
+one maps entries into another map. This allows the compact syntax
+<code>map1 << map2</code>; otherwise it's just a synonym for
+<code>putAll</code> though it returns the original map rather than
+being a <code>void</code> method. Example usage:
+<pre class="groovyTestCase">def map = [a:1, b:2]
+map << [c:3, d:4]
+assert map == [a:1, b:2, c:3, d:4]</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>other</CODE> -  another Map whose entries should be added to the original Map..</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>same map, after the values have been added to it.</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.2</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="max(groovy.lang.Closure)"><!-- --></A><H3>max</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map/Entry.html' title='JDK class in java.util.Map'>Entry</a> <B>max</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Selects an entry in the map having the maximum
+calculated value as determined by the supplied closure.
+If more than one entry has the maximum value,
+an arbitrary choice is made between the entries having the maximum value.
+
+If the closure has two parameters
+it is used like a traditional Comparator. I.e. it should compare
+its two parameters for order, returning a negative integer,
+zero, or a positive integer when the first parameter is less than,
+equal to, or greater than the second respectively. Otherwise,
+the Closure is assumed to take a single parameter and return a
+Comparable (typically an Integer) which is then used for
+further comparison. An example:
+<pre class="groovyTestCase">
+def zoo = [monkeys:6, lions:5, tigers:7]
+def mostCommonEntry = zoo.max{ it.value }
+assert mostCommonEntry.value == 7
+def leastCommonEntry = zoo.max{ a, b -> b.value <=> a.value } // double negative!
+assert leastCommonEntry.value == 5
+</pre>
+Edge case for multiple max values:
+<pre class="groovyTestCase">
+def zoo = [monkeys:6, lions:5, tigers:7]
+def lengthOfNamePlusNumber = { e -> e.key.size() + e.value }
+def ans = zoo.max(lengthOfNamePlusNumber) // one of [monkeys:6, tigers:7]
+assert lengthOfNamePlusNumber(ans) == 13
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  a 1 or 2 arg Closure used to determine the correct ordering.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the Map.Entry having the maximum value as determined by the closure</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.6</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="min(groovy.lang.Closure)"><!-- --></A><H3>min</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map/Entry.html' title='JDK class in java.util.Map'>Entry</a> <B>min</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Selects an entry in the map having the minimum
+calculated value as determined by the supplied closure.
+If more than one entry has the minimum value,
+an arbitrary choice is made between the entries having the minimum value.
+
+If the closure has two parameters
+it is used like a traditional Comparator. I.e. it should compare
+its two parameters for order, returning a negative integer,
+zero, or a positive integer when the first parameter is less than,
+equal to, or greater than the second respectively. Otherwise,
+the Closure is assumed to take a single parameter and return a
+Comparable (typically an Integer) which is then used for
+further comparison.
+<pre class="groovyTestCase">
+def zoo = [monkeys:6, lions:5, tigers:7]
+def leastCommonEntry = zoo.min{ it.value }
+assert leastCommonEntry.value == 5
+def mostCommonEntry = zoo.min{ a, b -> b.value <=> a.value } // double negative!
+assert mostCommonEntry.value == 7
+</pre>
+Edge case for multiple min values:
+<pre class="groovyTestCase">
+def zoo = [monkeys:6, lions:5, tigers:7]
+def lastCharOfName = { e -> e.key[-1] }
+def ans = zoo.min(lastCharOfName) // some random entry
+assert lastCharOfName(ans) == 's'
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  a 1 or 2 arg Closure used to determine the correct ordering.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the Map.Entry having the minimum value as determined by the closure</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.6</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="minus(java.util.Map)"><!-- --></A><H3>minus</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> <B>minus</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> removeMe)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Create a Map composed of the entries of the first map minus the
+entries of the given map.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>removeMe</CODE> -  the entries to remove from the map.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the resulting map</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.4</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="plus(java.util.Map)"><!-- --></A><H3>plus</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> <B>plus</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> right)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Returns a new <code>Map</code> containing all entries from <code>left</code> and <code>right</code>,
+giving precedence to <code>right</code>.  Any keys appearing in both Maps
+will appear in the resultant map with values from the <code>right</code>
+operand. If the <code>left</code> map is one of TreeMap, LinkedHashMap, Hashtable
+or Properties, the returned Map will preserve that type, otherwise a HashMap will
+be returned.
+
+<p>
+Roughly equivalent to <code>Map m = new HashMap(); m.putAll(left); m.putAll(right); return m;</code>
+but with some additional logic to preserve the <code>left</code> Map type for common cases as
+described above.
+
+<pre class="groovyTestCase">assert [a:10, b:20] + [a:5, c:7] == [a:5, b:20, c:7]</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>right</CODE> -  a Map.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a new Map containing all entries from left and right</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="plus(java.util.Collection)"><!-- --></A><H3>plus</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> <B>plus</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> entries)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Returns a new <code>Map</code> containing all entries from <code>self</code> and <code>entries</code>,
+giving precedence to <code>entries</code>.  Any keys appearing in both Maps
+will appear in the resultant map with values from the <code>entries</code>
+operand. If <code>self</code> map is one of TreeMap, LinkedHashMap, Hashtable
+or Properties, the returned Map will preserve that type, otherwise a HashMap will
+be returned.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>entries</CODE> -  a Collection of Map.Entry items to be added to the Map..</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a new Map containing all key, value pairs from self and entries</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.6.1</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="putAll(java.util.Collection)"><!-- --></A><H3>putAll</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> <B>putAll</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> entries)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Provides an easy way to append multiple Map.Entry values to a Map.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>entries</CODE> -  a Collection of Map.Entry items to be added to the Map..</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the same map, after the items have been added to it.</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.6.1</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="putAt(K, V)"><!-- --></A><H3>putAt</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>putAt</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> key, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> value)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>A helper method to allow maps to work with subscript operators</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>key</CODE> -    an Object as a key for the map.</DD>
+
+		<DD><CODE>value</CODE> -  the value to put into the map.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the value corresponding to the given key</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="reverseEach(groovy.lang.Closure)"><!-- --></A><H3>reverseEach</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> <B>reverseEach</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Allows a Map to be iterated through in reverse order using a closure.
+
+In general, the order in which the map contents are processed
+cannot be guaranteed. In practise, specialized forms of Map,
+e.g. a TreeMap will have its contents processed according to the
+reverse of the natural ordering of the map.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  the 1 or 2 arg closure applied on each entry of the map.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>returns the self parameter</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>Map#each(Closure).</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="sort(groovy.lang.Closure)"><!-- --></A><H3>sort</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> <B>sort</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Sorts the elements from the given map into a new ordered map using
+the closure as a comparator to determine the ordering.
+The original map is unchanged.
+<pre class="groovyTestCase">def map = [a:5, b:3, c:6, d:4].sort { a, b -> a.value <=> b.value }
+assert map == [b:3, d:4, a:5, c:6]</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  a Closure used as a comparator.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the sorted map</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.6.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="sort(java.util.Comparator)"><!-- --></A><H3>sort</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> <B>sort</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Comparator.html' title='JDK class in java.util'>Comparator</a> comparator)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Sorts the elements from the given map into a new ordered Map using
+the specified key comparator to determine the ordering.
+The original map is unchanged.
+<pre class="groovyTestCase">def map = [ba:3, cz:6, ab:5].sort({ a, b -> a[-1] <=> b[-1] } as Comparator)
+assert map*.value == [3, 5, 6]</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>comparator</CODE> -  a Comparator.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the sorted map</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.2</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="sort()"><!-- --></A><H3>sort</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> <B>sort</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Sorts the elements from the given map into a new ordered Map using
+the natural ordering of the keys to determine the ordering.
+The original map is unchanged.
+<pre class="groovyTestCase">map = [ba:3, cz:6, ab:5].sort()
+assert map*.value == [5, 3, 6]
+</pre></DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>the sorted map</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.2</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="spread()"><!-- --></A><H3>spread</H3>
+<PRE>public <a href='http://groovy.codehaus.org/api/groovy/lang/SpreadMap.html' title='Groovy class in groovy.lang'>SpreadMap</a> <B>spread</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Synonym for <a href='../../java/util/Map.html#toSpreadMap()' title='GDK enhancement for java.util.Map'>Map#toSpreadMap</a>.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>a newly created SpreadMap</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="subMap(java.util.Collection)"><!-- --></A><H3>subMap</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> <B>subMap</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> keys)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Creates a sub-Map containing the given keys. This method is similar to
+List.subList() but uses keys rather than index ranges.
+<pre class="groovyTestCase">assert [1:10, 2:20, 4:40].subMap( [2, 4] ) == [2:20, 4:40]</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>keys</CODE> -  a Collection of keys.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a new Map containing the given keys</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="subMap(K[])"><!-- --></A><H3>subMap</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> <B>subMap</B>(K[] keys)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Creates a sub-Map containing the given keys. This method is similar to
+List.subList() but uses keys rather than index ranges. The original
+map is unaltered.
+<pre class="groovyTestCase">
+def orig = [1:10, 2:20, 3:30, 4:40]
+assert orig.subMap([1, 3] as int[]) == [1:10, 3:30]
+assert orig.subMap([2, 4] as Integer[]) == [2:20, 4:40]
+assert orig.size() == 4
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>keys</CODE> -  an array of keys.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a new Map containing the given keys</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>2.1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="take(int)"><!-- --></A><H3>take</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> <B>take</B>(int num)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Returns a new map containing the first <code>num</code> elements from the head of this map.
+If the map instance does not have ordered keys, then this function could return a random <code>num</code>
+entries. Groovy by default uses LinkedHashMap, so this shouldn't be an issue in the main.
+<pre class="groovyTestCase">
+def strings = [ 'a':10, 'b':20, 'c':30 ]
+assert strings.take( 0 ) == [:]
+assert strings.take( 2 ) == [ 'a':10, 'b':20 ]
+assert strings.take( 5 ) == [ 'a':10, 'b':20, 'c':30 ]
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>num</CODE> -   the number of elements to take from this map.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a new map consisting of the first <code>num</code> elements of this map,
+        or else the whole map if it has less then <code>num</code> elements.</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.1</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="takeWhile(groovy.lang.Closure)"><!-- --></A><H3>takeWhile</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> <B>takeWhile</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> condition)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Returns the longest prefix of this Map where each entry (or key/value pair) when
+passed to the given closure evaluates to true.
+<pre class="groovyTestCase">
+def shopping = [milk:1, bread:2, chocolate:3]
+assert shopping.takeWhile{ it.key.size() < 6 } == [milk:1, bread:2]
+assert shopping.takeWhile{ it.value % 2 } == [milk:1]
+assert shopping.takeWhile{ k, v -> k.size() + v <= 7 } == [milk:1, bread:2]
+</pre>
+If the map instance does not have ordered keys, then this function could appear to take random
+entries. Groovy by default uses LinkedHashMap, so this shouldn't be an issue in the main.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>condition
+</CODE> -  a 1 (or 2) arg Closure that must evaluate to true for the
+                 entry (or key and value) to continue taking elements.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a prefix of the given Map where each entry (or key/value pair) passed to
+        the given closure evaluates to true</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.7</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="toMapString()"><!-- --></A><H3>toMapString</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> <B>toMapString</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Returns the string representation of this map.  The string displays the
+contents of the map, i.e. <code>[one:1, two:2, three:3]</code>.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>the string representation</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="toMapString(int)"><!-- --></A><H3>toMapString</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> <B>toMapString</B>(int maxSize)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Returns the string representation of this map.  The string displays the
+contents of the map, i.e. <code>[one:1, two:2, three:3]</code>.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>maxSize</CODE> -  stop after approximately this many characters and append '...'.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the string representation</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="toSpreadMap()"><!-- --></A><H3>toSpreadMap</H3>
+<PRE>public <a href='http://groovy.codehaus.org/api/groovy/lang/SpreadMap.html' title='Groovy class in groovy.lang'>SpreadMap</a> <B>toSpreadMap</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Returns a new <code>SpreadMap</code> from this map.
+<p>
+The example below shows the various possible use cases:
+<pre class="groovyTestCase">
+def fn(Map m) { return m.a + m.b + m.c + m.d }
+
+assert fn(a:1, b:2, c:3, d:4) == 10
+assert fn(a:1, *:[b:2, c:3], d:4) == 10
+assert fn([a:1, b:2, c:3, d:4].toSpreadMap()) == 10
+assert fn((['a', 1, 'b', 2, 'c', 3, 'd', 4] as Object[]).toSpreadMap()) == 10
+assert fn(['a', 1, 'b', 2, 'c', 3, 'd', 4].toSpreadMap()) == 10
+assert fn(['abcd'.toList(), 1..4].transpose().flatten().toSpreadMap()) == 10
+</pre>
+Note that toSpreadMap() is not normally used explicitly but under the covers by Groovy.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>a newly created SpreadMap if this map is not null and its size is positive.</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://groovy.codehaus.org/api/groovy/lang/SpreadMap.html#SpreadMap(java.util.Map)' title='Groovy class in groovy.lang'>SpreadMap#SpreadMap</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="withDefault(groovy.lang.Closure)"><!-- --></A><H3>withDefault</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> <B>withDefault</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> init)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Wraps a map using the decorator pattern with a wrapper that intercepts all calls
+to <code>get(key)</code>. If an unknown key is found, a default value will be
+stored into the Map before being returned. The default value stored will be the
+result of calling the supplied Closure with the key as the parameter to the Closure.
+Example usage:
+<pre class="groovyTestCase">
+def map = [a:1, b:2].withDefault{ k -> k.toCharacter().isLowerCase() ? 10 : -10 }
+def expected = [a:1, b:2, c:10, D:-10]
+assert expected.every{ e -> e.value == map[e.key] }
+
+def constMap = [:].withDefault{ 42 }
+assert constMap.foo == 42
+assert constMap.size() == 1
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>init</CODE> -  a Closure which is passed the unknown key.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the wrapped Map</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.1</DD>
+</dl>
+
+
+
+
+<HR>
+
+<!-- ========= END OF CLASS DATA ========= -->
+
+ <!-- ======= START OF BOTTOM NAVBAR ====== -->
+<A NAME="navbar_bottom"><!-- --></A>
+<A HREF="#skip-navbar_bottom" title="Skip navigation links"></A>
+
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0">
+    <TR>
+        <TD COLSPAN=3 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+            <A NAME="navbar_top_firstrow"><!-- --></A>
+            <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3">
+                <TR ALIGN="center" VALIGN="top">
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../overview-summary.html"><SPAN CLASS="NavBarFont1"><B>Overview</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Package</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Class</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Tree</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Deprecated</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../index-all.html"><SPAN CLASS="NavBarFont1"><B>Index</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Help</SPAN>&nbsp;</TD>
+                </TR>
+            </TABLE>
+        </TD>
+        <TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+            <b>Groovy JDK</b></EM>
+        </TD>
+    </TR>
+</TABLE>
+<!-- =========== END OF NAVBAR =========== -->
+
+</BODY>
+</HTML>

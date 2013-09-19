@@ -1,0 +1,1031 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<HTML>
+<HEAD>
+<TITLE>Date (Groovy JDK)</TITLE>
+
+
+<LINK REL ="stylesheet" TYPE="text/css" HREF="../../stylesheet.css" TITLE="Style">
+
+<SCRIPT type="text/javascript">
+function windowTitle()
+{
+    parent.document.title = document.title;
+}
+</SCRIPT>
+
+</HEAD>
+
+<BODY BGCOLOR="white" onload="windowTitle();">
+
+<!-- ========== START OF NAVBAR ========== -->
+<A NAME="navbar_top"><!-- --></A>
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0">
+    <TR>
+        <TD COLSPAN=3 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+            <A NAME="navbar_top_firstrow"><!-- --></A>
+            <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3">
+                <TR ALIGN="center" VALIGN="top">
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../overview-summary.html"><SPAN CLASS="NavBarFont1"><B>Overview</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Package</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Class</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Tree</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Deprecated</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../index-all.html"><SPAN CLASS="NavBarFont1"><B>Index</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Help</SPAN>&nbsp;</TD>
+                </TR>
+            </TABLE>
+        </TD>
+        <TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+            <b>Groovy JDK</b></EM>
+        </TD>
+    </TR>
+</TABLE>
+<!-- =========== END OF NAVBAR =========== -->
+
+<!-- ======== START OF CLASS DATA ======== -->
+<H2>
+<SPAN style="font-size:12px;">
+java.util</SPAN>
+<BR>
+Class Date</H2>
+
+<!-- ========== METHOD SUMMARY =========== -->
+
+<A NAME="method_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><SPAN style="font-size:24px;">
+<B>Method Summary</B></SPAN></TH>
+</TR>
+
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Date.html' title='JDK class in java.util'>Date</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#clearTime()">clearTime</A></B>()</CODE>
+<BR>
+Clears the time portion of this Date instance; useful utility where
+it makes sense to compare month/day/year only portions of a Date.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#format(java.lang.String)">format</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> format)</CODE>
+<BR>
+<p>Create a String representation of this date according to the given
+format pattern.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#format(java.lang.String, java.util.TimeZone)">format</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> format, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/TimeZone.html' title='JDK class in java.util'>TimeZone</a> tz)</CODE>
+<BR>
+<p>Create a String representation of this date according to the given
+format pattern and timezone.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>int</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#getAt(int)">getAt</A></B>(int field)</CODE>
+<BR>
+Support the subscript operator for a Date.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#getDateString()">getDateString</A></B>()</CODE>
+<BR>
+<p>Return a string representation of the 'day' portion of this date
+according to the locale-specific <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/text/DateFormat.html#SHORT' title='JDK class in java.text'>DateFormat#SHORT</a> default format.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#getDateTimeString()">getDateTimeString</A></B>()</CODE>
+<BR>
+<p>Return a string representation of the date and time time portion of
+this Date instance, according to the locale-specific format used by
+<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/text/DateFormat.html' title='JDK class in java.text'>DateFormat</a>.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#getTimeString()">getTimeString</A></B>()</CODE>
+<BR>
+<p>Return a string representation of the time portion of this date
+according to the locale-specific <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/text/DateFormat.html#MEDIUM' title='JDK class in java.text'>DateFormat#MEDIUM</a> default format.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Date.html' title='JDK class in java.util'>Date</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#minus(int)">minus</A></B>(int days)</CODE>
+<BR>
+Subtract a number of days from this date and returns the new date.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>int</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#minus(java.util.Date)">minus</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Date.html' title='JDK class in java.util'>Date</a> then)</CODE>
+<BR>
+Subtract another Date from this one and return the number of days of the difference.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Date.html' title='JDK class in java.util'>Date</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#next()">next</A></B>()</CODE>
+<BR>
+Increment a Date by one day.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>static <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Date.html' title='JDK class in java.util'>Date</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#parse(java.lang.String, java.lang.String)">parse</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> format, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> input)</CODE>
+<BR>
+Parse a String into a Date instance using the given pattern.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>static <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Date.html' title='JDK class in java.util'>Date</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#parseToStringDate(java.lang.String)">parseToStringDate</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> dateToString)</CODE>
+<BR>
+Parse a String matching the pattern EEE MMM dd HH:mm:ss zzz yyyy
+containing US-locale-constants only (e.g. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Date.html' title='JDK class in java.util'>Date</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#plus(int)">plus</A></B>(int days)</CODE>
+<BR>
+Add a number of days to this date and returns the new date.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Date.html' title='JDK class in java.util'>Date</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#previous()">previous</A></B>()</CODE>
+<BR>
+Decrement a Date by one day.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>void</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#putAt(int, int)">putAt</A></B>(int field, int value)</CODE>
+<BR>
+Support the subscript operator for mutating a Date.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>void</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#set(java.util.Map)">set</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> updates)</CODE>
+<BR>
+Support mutating a Date with a Map.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Calendar.html' title='JDK class in java.util'>Calendar</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#toCalendar()">toCalendar</A></B>()</CODE>
+<BR>
+Convert a Date to a Calendar.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/sql/Timestamp.html' title='JDK class in java.sql'>Timestamp</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#toTimestamp()">toTimestamp</A></B>()</CODE>
+<BR>
+Return a java.sql.Timestamp given a java.util.Date.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Date.html' title='JDK class in java.util'>Date</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#updated(java.util.Map)">updated</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> updates)</CODE>
+<BR>
+Support creating a new Date having similar properties to
+an existing Date (which remains unaltered) but with
+some fields updated according to a Map of changes.
+
+</TD>
+</TR>
+
+</TABLE>
+&nbsp;
+
+
+<!-- ============ METHOD DETAIL ========== -->
+
+<A NAME="method_detail"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="1"><SPAN style="font-size:24px;">
+<B>Method Detail</B></SPAN></TH>
+</TR>
+</TABLE>
+
+
+
+<A name="clearTime()"><!-- --></A><H3>clearTime</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Date.html' title='JDK class in java.util'>Date</a> <B>clearTime</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Clears the time portion of this Date instance; useful utility where
+it makes sense to compare month/day/year only portions of a Date.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>the Date but with the time portion cleared</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.6.7</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="format(java.lang.String)"><!-- --></A><H3>format</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> <B>format</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> format)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD><p>Create a String representation of this date according to the given
+format pattern.
+<p>
+<p>For example, if the system timezone is GMT,
+<code>new Date(0).format('MM/dd/yy')</code> would return the string
+<code>"01/01/70"</code>. See documentation for <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/text/SimpleDateFormat.html' title='JDK class in java.text'>SimpleDateFormat</a>
+for format pattern use.
+<p>
+<p>Note that a new DateFormat instance is created for every
+invocation of this method (for thread safety).</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>format</CODE> -  the format pattern to use according to <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/text/SimpleDateFormat.html' title='JDK class in java.text'>SimpleDateFormat</a>.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a string representation of this date.</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.7</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/text/SimpleDateFormat.html' title='JDK class in java.text'>SimpleDateFormat</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="format(java.lang.String, java.util.TimeZone)"><!-- --></A><H3>format</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> <B>format</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> format, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/TimeZone.html' title='JDK class in java.util'>TimeZone</a> tz)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD><p>Create a String representation of this date according to the given
+format pattern and timezone.
+<p>
+<p>For example:
+<code>
+def d = new Date(0)
+def tz = TimeZone.getTimeZone('GMT')
+println d.format('dd/MMM/yyyy', tz)
+</code> would return the string
+<code>"01/Jan/1970"</code>. See documentation for <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/text/SimpleDateFormat.html' title='JDK class in java.text'>SimpleDateFormat</a>
+for format pattern use.
+<p>
+<p>Note that a new DateFormat instance is created for every
+invocation of this method (for thread safety).</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>format</CODE> -  the format pattern to use according to <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/text/SimpleDateFormat.html' title='JDK class in java.text'>SimpleDateFormat</a>.</DD>
+
+		<DD><CODE>tz</CODE> -      the TimeZone to use.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a string representation of this date.</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.3</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/text/SimpleDateFormat.html' title='JDK class in java.text'>SimpleDateFormat</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="getAt(int)"><!-- --></A><H3>getAt</H3>
+<PRE>public int <B>getAt</B>(int field)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Support the subscript operator for a Date.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>field</CODE> -  a Calendar field, e.g. MONTH.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the value for the given field, e.g. FEBRUARY</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.5</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Calendar.html' title='JDK class in java.util'>Calendar</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="getDateString()"><!-- --></A><H3>getDateString</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> <B>getDateString</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD><p>Return a string representation of the 'day' portion of this date
+according to the locale-specific <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/text/DateFormat.html#SHORT' title='JDK class in java.text'>DateFormat#SHORT</a> default format.
+For an "en_UK" system locale, this would be <code>dd/MM/yy</code>.
+<p>
+<p>Note that a new DateFormat instance is created for every
+invocation of this method (for thread safety).</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>a string representation of this date</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.7</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/text/DateFormat.html#getDateInstance(int)' title='JDK class in java.text'>DateFormat#getDateInstance</a>.</DD>
+
+    <DD><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/text/DateFormat.html#SHORT' title='JDK class in java.text'>DateFormat#SHORT</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="getDateTimeString()"><!-- --></A><H3>getDateTimeString</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> <B>getDateTimeString</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD><p>Return a string representation of the date and time time portion of
+this Date instance, according to the locale-specific format used by
+<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/text/DateFormat.html' title='JDK class in java.text'>DateFormat</a>.  This method uses the <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/text/DateFormat.html#SHORT' title='JDK class in java.text'>DateFormat#SHORT</a>
+preset for the day portion and <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/text/DateFormat.html#MEDIUM' title='JDK class in java.text'>DateFormat#MEDIUM</a> for the time
+portion of the output string.
+<p>
+<p>Note that a new DateFormat instance is created for every
+invocation of this method (for thread safety).</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>a string representation of this date and time</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.7</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/text/DateFormat.html#getDateTimeInstance(int, int)' title='JDK class in java.text'>DateFormat#getDateTimeInstance</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="getTimeString()"><!-- --></A><H3>getTimeString</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> <B>getTimeString</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD><p>Return a string representation of the time portion of this date
+according to the locale-specific <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/text/DateFormat.html#MEDIUM' title='JDK class in java.text'>DateFormat#MEDIUM</a> default format.
+For an "en_UK" system locale, this would be <code>HH:MM:ss</code>.
+<p>
+<p>Note that a new DateFormat instance is created for every
+invocation of this method (for thread safety).</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>a string representing the time portion of this date</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.7</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/text/DateFormat.html#getTimeInstance(int)' title='JDK class in java.text'>DateFormat#getTimeInstance</a>.</DD>
+
+    <DD><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/text/DateFormat.html#MEDIUM' title='JDK class in java.text'>DateFormat#MEDIUM</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="minus(int)"><!-- --></A><H3>minus</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Date.html' title='JDK class in java.util'>Date</a> <B>minus</B>(int days)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Subtract a number of days from this date and returns the new date.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>days</CODE> -  the number of days to subtract.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the new date</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="minus(java.util.Date)"><!-- --></A><H3>minus</H3>
+<PRE>public int <B>minus</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Date.html' title='JDK class in java.util'>Date</a> then)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Subtract another Date from this one and return the number of days of the difference.
+<p>
+Date self = Date then + (Date self - Date then)
+<p>
+IOW, if self is before then the result is a negative value.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>then</CODE> -  another Date.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>number of days</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.6.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="next()"><!-- --></A><H3>next</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Date.html' title='JDK class in java.util'>Date</a> <B>next</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Increment a Date by one day.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>the next days date</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="parse(java.lang.String, java.lang.String)"><!-- --></A><H3>parse</H3>
+<PRE>public static <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Date.html' title='JDK class in java.util'>Date</a> <B>parse</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> format, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> input)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Parse a String into a Date instance using the given pattern.
+This convenience method acts as a wrapper for <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/text/SimpleDateFormat.html' title='JDK class in java.text'>SimpleDateFormat</a>.
+<p>
+Note that a new SimpleDateFormat instance is created for every
+invocation of this method (for thread safety).</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>format</CODE> -  pattern used to parse the input string..</DD>
+
+		<DD><CODE>input</CODE> -   String to be parsed to create the date instance.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a new Date instance representing the parsed input string</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.7</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/text/SimpleDateFormat.html#parse(java.lang.String)' title='JDK class in java.text'>SimpleDateFormat#parse</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="parseToStringDate(java.lang.String)"><!-- --></A><H3>parseToStringDate</H3>
+<PRE>public static <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Date.html' title='JDK class in java.util'>Date</a> <B>parseToStringDate</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> dateToString)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Parse a String matching the pattern EEE MMM dd HH:mm:ss zzz yyyy
+containing US-locale-constants only (e.g. Sat for Saturdays).
+Such a string is generated by the toString method of <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Date.html' title='JDK class in java.util'>Date</a>
+<p>
+Note that a new SimpleDateFormat instance is created for every
+invocation of this method (for thread safety).</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>dateToString</CODE> -   String to be parsed to create the date instance. Must match the pattern EEE MMM dd HH:mm:ss zzz yyyy with US-locale symbols.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a new Date instance representing the parsed input string</DD></dl>
+
+
+
+
+
+
+<HR>
+
+
+<A name="plus(int)"><!-- --></A><H3>plus</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Date.html' title='JDK class in java.util'>Date</a> <B>plus</B>(int days)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Add a number of days to this date and returns the new date.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>days</CODE> -  the number of days to increase.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the new date</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="previous()"><!-- --></A><H3>previous</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Date.html' title='JDK class in java.util'>Date</a> <B>previous</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Decrement a Date by one day.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>the previous days date</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="putAt(int, int)"><!-- --></A><H3>putAt</H3>
+<PRE>public void <B>putAt</B>(int field, int value)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Support the subscript operator for mutating a Date.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>field</CODE> -  A Calendar field, e.g. MONTH.</DD>
+
+		<DD><CODE>value</CODE> -  The value for the given field, e.g. FEBRUARY.</DD>
+
+    </dl>
+    
+
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.3</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='../../java/util/Calendar.html#putAt(int, int)' title='GDK enhancement for java.util.Calendar'>Calendar#putAt</a>.</DD>
+
+    <DD><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Calendar.html#set(int, int)' title='JDK class in java.util'>Calendar#set</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="set(java.util.Map)"><!-- --></A><H3>set</H3>
+<PRE>public void <B>set</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> updates)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Support mutating a Date with a Map.
+<p>
+Example usage:
+<pre>
+import static java.util.Calendar.YEAR
+def date = new Date()
+def nextYear = date[YEAR] + 1
+date.set(year: nextYear)
+println date
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>updates</CODE> -  A Map of Calendar keys and values.</DD>
+
+    </dl>
+    
+
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.3</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Calendar.html#set(int, int)' title='JDK class in java.util'>Calendar#set</a>.</DD>
+
+    <DD><a href='../../java/util/Calendar.html#set(java.util.Map)' title='GDK enhancement for java.util.Calendar'>Calendar#set</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="toCalendar()"><!-- --></A><H3>toCalendar</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Calendar.html' title='JDK class in java.util'>Calendar</a> <B>toCalendar</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Convert a Date to a Calendar.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>a Calendar corresponding to the given Date</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.6</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="toTimestamp()"><!-- --></A><H3>toTimestamp</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/sql/Timestamp.html' title='JDK class in java.sql'>Timestamp</a> <B>toTimestamp</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Return a java.sql.Timestamp given a java.util.Date.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>the date wrapped as a Timestamp</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.6.6</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="updated(java.util.Map)"><!-- --></A><H3>updated</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Date.html' title='JDK class in java.util'>Date</a> <B>updated</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> updates)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Support creating a new Date having similar properties to
+an existing Date (which remains unaltered) but with
+some fields updated according to a Map of changes.
+<p>
+Example usage:
+<pre>
+import static java.util.Calendar.YEAR
+def today = new Date()
+def nextYear = today[YEAR] + 1
+def oneYearFromNow = today.updated(year: nextYear)
+println today
+println oneYearFromNow
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>updates</CODE> -  A Map of Calendar keys and values.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>The newly created Date</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.3</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Calendar.html#set(int, int)' title='JDK class in java.util'>Calendar#set</a>.</DD>
+
+    <DD><a href='../../java/util/Date.html#set(java.util.Map)' title='GDK enhancement for java.util.Date'>Date#set</a>.</DD>
+
+    <DD><a href='../../java/util/Calendar.html#set(java.util.Map)' title='GDK enhancement for java.util.Calendar'>Calendar#set</a>.</DD>
+
+    <DD><a href='../../java/util/Calendar.html#updated(java.util.Map)' title='GDK enhancement for java.util.Calendar'>Calendar#updated</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+<!-- ========= END OF CLASS DATA ========= -->
+
+ <!-- ======= START OF BOTTOM NAVBAR ====== -->
+<A NAME="navbar_bottom"><!-- --></A>
+<A HREF="#skip-navbar_bottom" title="Skip navigation links"></A>
+
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0">
+    <TR>
+        <TD COLSPAN=3 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+            <A NAME="navbar_top_firstrow"><!-- --></A>
+            <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3">
+                <TR ALIGN="center" VALIGN="top">
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../overview-summary.html"><SPAN CLASS="NavBarFont1"><B>Overview</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Package</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Class</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Tree</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Deprecated</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../index-all.html"><SPAN CLASS="NavBarFont1"><B>Index</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Help</SPAN>&nbsp;</TD>
+                </TR>
+            </TABLE>
+        </TD>
+        <TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+            <b>Groovy JDK</b></EM>
+        </TD>
+    </TR>
+</TABLE>
+<!-- =========== END OF NAVBAR =========== -->
+
+</BODY>
+</HTML>

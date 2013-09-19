@@ -1,0 +1,292 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+<title>groovy.transform (groovy 2.1.7 API)</title>
+<META NAME="keywords" CONTENT="groovy.transform package">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<LINK REL ="stylesheet" TYPE="text/css" HREF="../../stylesheet.css" TITLE="Style">
+<link href="../../groovy.ico" type="image/x-icon" rel="shortcut icon">
+<link href="../../groovy.ico" type="image/x-icon" rel="icon">
+<SCRIPT type="text/javascript">
+function windowTitle()
+{
+    parent.document.title="groovy.transform (groovy 2.1.7 API)";
+}
+</SCRIPT>
+<NOSCRIPT>
+</NOSCRIPT>
+
+</head>
+
+<body BGCOLOR="white" onload="windowTitle();">
+<hr>
+
+<!-- ========= START OF TOP NAVBAR ======= -->
+<a name="navbar_top"><!-- --></a>
+<table summary="" width="100%" border="0" cellpadding="1" cellspacing="0">
+<tbody><tr>
+<td colspan="2" class="NavBarCell1" bgcolor="#eeeeff">
+<a name="navbar_top_firstrow"><!-- --></a>
+<table summary="" border="0" cellpadding="0" cellspacing="3">
+  <tbody><tr valign="top" align="center">
+  <td class="NavBarCell1" bgcolor="#eeeeff">    <a href="../../overview-summary.html"><font class="NavBarFont1"><b>Overview</b></font></a>&nbsp;</td>
+  <td class="NavBarCell1Rev" bgcolor="#ffffff"> &nbsp;<font class="NavBarFont1Rev"><b>Package</b></font>&nbsp;</td>
+  <td class="NavBarCell1" bgcolor="#eeeeff">    <font class="NavBarFont1">Class</font>&nbsp;</td>
+  <!--
+  <td class="NavBarCell1" bgcolor="#eeeeff">    <a href="overview-tree.html"><font class="NavBarFont1"><b>Tree</b></font></a>&nbsp;</td>
+  -->
+  <td class="NavBarCell1" bgcolor="#eeeeff">    <a href="../../deprecated-list.html"><font class="NavBarFont1"><b>Deprecated</b></font></a>&nbsp;</td>
+  <td class="NavBarCell1" bgcolor="#eeeeff">    <a href="../../index-all.html"><font class="NavBarFont1"><b>Index</b></font></a>&nbsp;</td>
+  <td class="NavBarCell1" bgcolor="#eeeeff">    <a href="../../help-doc.html"><font class="NavBarFont1"><b>Help</b></font></a>&nbsp;</td>
+  </tr>
+</tbody></table>
+</td>
+<td rowspan="3" valign="top" align="right"><em>
+    <b>Groovy 2.1.7</b>
+</em>
+</td>
+</tr>
+
+<tr>
+<td class="NavBarCell2" bgcolor="white"><font size="-2">
+&nbsp;PREV&nbsp;
+&nbsp;NEXT</font></td>
+<td class="NavBarCell2" bgcolor="white"><font size="-2">
+  <a href="../../index.html?groovy/transform/package-summary.html" target="_top"><b>FRAMES</b></a>  &nbsp;
+&nbsp;<a href="package-summary.html" target="_top"><b>NO FRAMES</b></a>  &nbsp;
+&nbsp;<script type="text/javascript">
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="../../allclasses-frame.html"><B>All Classes</B></A>');
+  }
+  //-->
+</script>
+<noscript>
+  <A HREF="../../allclasses-frame.html"><B>All Classes</B></A>
+</noscript>
+
+
+</font></td>
+</tr>
+</tbody></table>
+<!-- ========= END OF TOP NAVBAR ========= -->
+
+
+<HR>
+<H2>
+Package groovy.transform
+</H2>
+
+
+
+<P>&nbsp;</P>
+
+
+
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+    <TR BGCOLOR="#90DDF7" CLASS="TableHeadingColor">
+    <TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+    <B>Interface Summary</B></FONT></TH>
+    </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="CompilationUnitAware.html" title="class in groovy/transform">CompilationUnitAware</A></B></TD>
+        <TD>Created by IntelliJ IDEA.
+ </TD>
+        </TR>
+
+</TABLE>
+&nbsp;
+<P>
+<DL>
+</DL>
+<hr>
+    
+
+
+
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+    <TR BGCOLOR="#90DDF7" CLASS="TableHeadingColor">
+    <TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+    <B>Enum Summary</B></FONT></TH>
+    </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="AutoCloneStyle.html" title="class in groovy/transform">AutoCloneStyle</A></B></TD>
+        <TD>Intended style to use for cloning when using the <CODE>@</CODE>AutoClone annotation.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="PackageScopeTarget.html" title="class in groovy/transform">PackageScopeTarget</A></B></TD>
+        <TD>Intended target when <CODE>@</CODE>PackageScope is placed at the class level.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="TypeCheckingMode.html" title="class in groovy/transform">TypeCheckingMode</A></B></TD>
+        <TD>This enumeration can be used whenever it is preferred to annotate a class as
+ <a href='../../groovy/transform/TypeChecked.html' title='TypeChecked'>TypeChecked</a> in general, but where only one or more methods are "dynamic". </TD>
+        </TR>
+
+</TABLE>
+&nbsp;
+<P>
+<DL>
+</DL>
+<hr>
+    
+
+
+
+
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+    <TR BGCOLOR="#90DDF7" CLASS="TableHeadingColor">
+    <TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+    <B>Annotation Type Summary</B></FONT></TH>
+    </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ASTTest.html" title="class in groovy/transform">ASTTest</A></B></TD>
+        <TD>This AST transformation aims at helping in debugging other AST transformations. </TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="AnnotationCollector.html" title="class in groovy/transform">AnnotationCollector</A></B></TD>
+        <TD>The AnnotationCollector can be used to define aliases for groups of 
+ annotations. </TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="AutoClone.html" title="class in groovy/transform">AutoClone</A></B></TD>
+        <TD>Note: This annotation is currently experimental! </TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="AutoExternalize.html" title="class in groovy/transform">AutoExternalize</A></B></TD>
+        <TD>Note: This annotation is currently experimental! </TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="Canonical.html" title="class in groovy/transform">Canonical</A></B></TD>
+        <TD>Class annotation used to assist in the creation of mutable classes.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="CompileDynamic.html" title="class in groovy/transform">CompileDynamic</A></B></TD>
+        <TD>An annotation which is just a shortcut for @CompileStatic(TypeCheckingMode.SKIP).
+ </TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="CompileStatic.html" title="class in groovy/transform">CompileStatic</A></B></TD>
+        <TD>This will let the Groovy compiler use compile time checks in the style of Java
+ then perform static compilation, thus bypassing the Groovy meta object protocol.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ConditionalInterrupt.html" title="class in groovy/transform">ConditionalInterrupt</A></B></TD>
+        <TD>Allows "interrupt-safe" executions of scripts by adding a custom check for interruption
+ on loops (for, while, do), the first statement of closures, and the first statement of methods.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="EqualsAndHashCode.html" title="class in groovy/transform">EqualsAndHashCode</A></B></TD>
+        <TD>Class annotation used to assist in creating appropriate <CODE>equals()</CODE> and <CODE>hashCode()</CODE> methods.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="Field.html" title="class in groovy/transform">Field</A></B></TD>
+        <TD>Variable annotation used for changing the scope of a variable within a script from
+ being within the run method of the script to being at the class level for the script.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="Immutable.html" title="class in groovy/transform">Immutable</A></B></TD>
+        <TD>Class annotation used to assist in the creation of immutable classes.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="IndexedProperty.html" title="class in groovy/transform">IndexedProperty</A></B></TD>
+        <TD>Field annotation used with properties to provide an indexed getter and setter for the property.
+ </TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="InheritConstructors.html" title="class in groovy/transform">InheritConstructors</A></B></TD>
+        <TD>Class annotation to make constructors from a super class available in a sub class.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="NotYetImplemented.html" title="class in groovy/transform">NotYetImplemented</A></B></TD>
+        <TD>Method annotation used to invert test case results. </TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="PackageScope.html" title="class in groovy/transform">PackageScope</A></B></TD>
+        <TD>Class, method or field annotation used for turning off Groovy's auto
+ visibility conventions. </TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="Synchronized.html" title="class in groovy/transform">Synchronized</A></B></TD>
+        <TD>Method annotation to make a method call synchronized for concurrency handling
+ with some useful baked-in conventions.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ThreadInterrupt.html" title="class in groovy/transform">ThreadInterrupt</A></B></TD>
+        <TD>Allows "interrupt-safe" executions of scripts by adding Thread.currentThread().isInterrupted()
+ checks on loops (for, while, do), the first statement of closures, and the first statement of methods.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="TimedInterrupt.html" title="class in groovy/transform">TimedInterrupt</A></B></TD>
+        <TD>Allows safe timed executions of scripts by adding elapsed time checks on loops (for, while, do), the first statement
+ of closures, and the first statement of methods.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ToString.html" title="class in groovy/transform">ToString</A></B></TD>
+        <TD>Class annotation used to assist in the creation of <CODE>toString()</CODE> methods in classes.
+ </TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="TupleConstructor.html" title="class in groovy/transform">TupleConstructor</A></B></TD>
+        <TD>Class annotation used to assist in the creation of tuple constructors in classes.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="TypeChecked.html" title="class in groovy/transform">TypeChecked</A></B></TD>
+        <TD>This will let the Groovy compiler use compile time checks in the style of Java.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="TypeChecked.TypeCheckingInfo.html" title="class in groovy/transform">TypeChecked.TypeCheckingInfo</A></B></TD>
+        <TD>This annotation is added by<DL><DT><B>TypeChecked:</B></DT><DD>on methods which have type checking turned on.</DD></DL>
+ </TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="WithReadLock.html" title="class in groovy/transform">WithReadLock</A></B></TD>
+        <TD>This annotation is used in conjunction with <a href='../../groovy/transform/WithWriteLock.html' title='WithWriteLock'>WithWriteLock</a> to support read and write synchronization on a method.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="WithWriteLock.html" title="class in groovy/transform">WithWriteLock</A></B></TD>
+        <TD>This annotation is used in conjunction with <a href='../../groovy/transform/WithReadLock.html' title='WithReadLock'>WithReadLock</a> to support read and write synchronization on a method.</TD>
+        </TR>
+
+</TABLE>
+&nbsp;
+<P>
+<DL>
+</DL>
+<hr>
+    
+
+
+<p>Copyright &amp;copy; 2003-2013 The Codehaus. All rights reserved.</p>
+<hr>
+</body>
+</html>

@@ -20,17 +20,10 @@ import org.slf4j.LoggerFactory
 @TupleConstructor
 class LoadFullKnowledgeNetworkFactory extends AbstractTaskFactory {
 
-    private static final Logger log = LoggerFactory.getLogger(getClass())
-    final CyApplicationManager appMgr
-    final CyNetworkFactory cynFac
-    final CyNetworkViewFactory cynvFac
-    final CyNetworkManager cynMgr
-    final CyNetworkViewManager cynvMgr
-    final CyLayoutAlgorithmManager cylMgr
+    final Expando cyr
     final CyProperty<Properties> cyProp
-    final CyEventHelper evtHelper
-    final VisualMappingManager visMgr
-    final WsAPI wsAPI
+
+    private static final Logger log = LoggerFactory.getLogger(getClass())
 
     /**
      * {@inheritDoc}
@@ -40,9 +33,11 @@ class LoadFullKnowledgeNetworkFactory extends AbstractTaskFactory {
         log.info("Create new LoadFullKnowledgeNetwork task.")
 
         new TaskIterator(
-            new CreateCyNetwork(appMgr, cynFac, cynvFac, cynMgr, cynvMgr, wsAPI),
-            new LoadFullKnowledgeNetwork(appMgr, wsAPI),
-            new ApplyPreferredStyleToCurrent(appMgr, evtHelper, visMgr),
-            new ApplyPreferredLayoutToCurrent(appMgr, cylMgr, cyProp.properties))
+            new CreateCyNetwork(cyr.cyApplicationManager, cyr.cyNetworkFactory,
+                                cyr.cyNetworkViewFactory, cyr.cyNetworkManager,
+                                cyr.cyNetworkViewManager, cyr.wsAPI),
+            new LoadFullKnowledgeNetwork(cyr.cyApplicationManager, cyr.wsAPI),
+            new ApplyPreferredStyleToCurrent(cyr.cyApplicationManager, cyr.cyEventHelper, cyr.visualMappingManager),
+            new ApplyPreferredLayoutToCurrent(cyr.cyApplicationManager, cyr.cyLayoutAlgorithmManager, cyProp.properties))
     }
 }

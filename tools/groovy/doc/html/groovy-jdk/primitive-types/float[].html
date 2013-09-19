@@ -1,0 +1,594 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<HTML>
+<HEAD>
+<TITLE>float[] (Groovy JDK)</TITLE>
+
+
+<LINK REL ="stylesheet" TYPE="text/css" HREF="../stylesheet.css" TITLE="Style">
+
+<SCRIPT type="text/javascript">
+function windowTitle()
+{
+    parent.document.title = document.title;
+}
+</SCRIPT>
+
+</HEAD>
+
+<BODY BGCOLOR="white" onload="windowTitle();">
+
+<!-- ========== START OF NAVBAR ========== -->
+<A NAME="navbar_top"><!-- --></A>
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0">
+    <TR>
+        <TD COLSPAN=3 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+            <A NAME="navbar_top_firstrow"><!-- --></A>
+            <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3">
+                <TR ALIGN="center" VALIGN="top">
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../overview-summary.html"><SPAN CLASS="NavBarFont1"><B>Overview</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Package</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Class</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Tree</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Deprecated</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../index-all.html"><SPAN CLASS="NavBarFont1"><B>Index</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Help</SPAN>&nbsp;</TD>
+                </TR>
+            </TABLE>
+        </TD>
+        <TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+            <b>Groovy JDK</b></EM>
+        </TD>
+    </TR>
+</TABLE>
+<!-- =========== END OF NAVBAR =========== -->
+
+<!-- ======== START OF CLASS DATA ======== -->
+<H2>
+<SPAN style="font-size:12px;">
+primitive-types</SPAN>
+<BR>
+Class float[]</H2>
+
+<!-- ========== METHOD SUMMARY =========== -->
+
+<A NAME="method_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><SPAN style="font-size:24px;">
+<B>Method Summary</B></SPAN></TH>
+</TR>
+
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>boolean</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#asBoolean()">asBoolean</A></B>()</CODE>
+<BR>
+Coerces a float array to a boolean value.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>boolean</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#contains(java.lang.Object)">contains</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> value)</CODE>
+<BR>
+Checks whether the array contains the given value.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#count(java.lang.Object)">count</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> value)</CODE>
+<BR>
+Counts the number of occurrences of the given value inside this array.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#flatten()">flatten</A></B>()</CODE>
+<BR>
+Flatten an array.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#getAt(groovy.lang.Range)">getAt</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Range.html' title='Groovy class in groovy.lang'>Range</a> range)</CODE>
+<BR>
+Support the subscript operator with a range for a float array
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#getAt(groovy.lang.IntRange)">getAt</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/IntRange.html' title='Groovy class in groovy.lang'>IntRange</a> range)</CODE>
+<BR>
+Support the subscript operator with an IntRange for a float array
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#getAt(groovy.lang.ObjectRange)">getAt</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/ObjectRange.html' title='Groovy class in groovy.lang'>ObjectRange</a> range)</CODE>
+<BR>
+Support the subscript operator with an ObjectRange for a float array
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#getAt(java.util.Collection)">getAt</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> indices)</CODE>
+<BR>
+Support the subscript operator with a collection for a float array
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>int</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#size()">size</A></B>()</CODE>
+<BR>
+Allows arrays to behave similar to collections.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#toList()">toList</A></B>()</CODE>
+<BR>
+Converts this array to a List of the same size, with each element
+added to the list.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Set.html' title='JDK class in java.util'>Set</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#toSet()">toSet</A></B>()</CODE>
+<BR>
+Converts this array to a Set, with each unique element
+added to the set.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#toString()">toString</A></B>()</CODE>
+<BR>
+Returns the string representation of the given array.
+</TD>
+</TR>
+
+</TABLE>
+&nbsp;
+
+
+<!-- ============ METHOD DETAIL ========== -->
+
+<A NAME="method_detail"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="1"><SPAN style="font-size:24px;">
+<B>Method Detail</B></SPAN></TH>
+</TR>
+</TABLE>
+
+
+
+<A name="asBoolean()"><!-- --></A><H3>asBoolean</H3>
+<PRE>public boolean <B>asBoolean</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Coerces a float array to a boolean value.
+A float array is false if the array is of length 0,
+and true otherwise.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>the array's boolean value</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.4</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="contains(java.lang.Object)"><!-- --></A><H3>contains</H3>
+<PRE>public boolean <B>contains</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> value)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Checks whether the array contains the given value.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>value</CODE> -  the value being searched for.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>true if the array contains the value</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.6</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="count(java.lang.Object)"><!-- --></A><H3>count</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> <B>count</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> value)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Counts the number of occurrences of the given value inside this array.
+Comparison is done using Groovy's == operator (using
+<code>compareTo(value) == 0</code> or <code>equals(value)</code> ).</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>value</CODE> -  the value being searched for.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the number of occurrences</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.6.4</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="flatten()"><!-- --></A><H3>flatten</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> <B>flatten</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Flatten an array.  This array and any nested arrays or
+collections have their contents (recursively) added to the new collection.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>a flattened Collection</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.6.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="getAt(groovy.lang.Range)"><!-- --></A><H3>getAt</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>getAt</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Range.html' title='Groovy class in groovy.lang'>Range</a> range)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Support the subscript operator with a range for a float array</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>range</CODE> -  a range indicating the indices for the items to retrieve.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>list of the retrieved floats</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="getAt(groovy.lang.IntRange)"><!-- --></A><H3>getAt</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>getAt</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/IntRange.html' title='Groovy class in groovy.lang'>IntRange</a> range)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Support the subscript operator with an IntRange for a float array</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>range</CODE> -  an IntRange indicating the indices for the items to retrieve.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>list of the retrieved floats</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="getAt(groovy.lang.ObjectRange)"><!-- --></A><H3>getAt</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>getAt</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/ObjectRange.html' title='Groovy class in groovy.lang'>ObjectRange</a> range)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Support the subscript operator with an ObjectRange for a float array</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>range</CODE> -  an ObjectRange indicating the indices for the items to retrieve.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>list of the retrieved floats</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="getAt(java.util.Collection)"><!-- --></A><H3>getAt</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>getAt</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> indices)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Support the subscript operator with a collection for a float array</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>indices</CODE> -  a collection of indices for the items to retrieve.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>list of the floats at the given indices</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="size()"><!-- --></A><H3>size</H3>
+<PRE>public int <B>size</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Allows arrays to behave similar to collections.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>the length of the array</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/reflect/Array.html#getLength(java.lang.Object)' title='JDK class in java.lang.reflect'>Array#getLength</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="toList()"><!-- --></A><H3>toList</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>toList</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Converts this array to a List of the same size, with each element
+added to the list.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>a list containing the contents of this array.</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="toSet()"><!-- --></A><H3>toSet</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Set.html' title='JDK class in java.util'>Set</a> <B>toSet</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Converts this array to a Set, with each unique element
+added to the set.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>a set containing the unique contents of this array.</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="toString()"><!-- --></A><H3>toString</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> <B>toString</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Returns the string representation of the given array.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>the string representation</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.6.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+<!-- ========= END OF CLASS DATA ========= -->
+
+ <!-- ======= START OF BOTTOM NAVBAR ====== -->
+<A NAME="navbar_bottom"><!-- --></A>
+<A HREF="#skip-navbar_bottom" title="Skip navigation links"></A>
+
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0">
+    <TR>
+        <TD COLSPAN=3 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+            <A NAME="navbar_top_firstrow"><!-- --></A>
+            <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3">
+                <TR ALIGN="center" VALIGN="top">
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../overview-summary.html"><SPAN CLASS="NavBarFont1"><B>Overview</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Package</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Class</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Tree</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Deprecated</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../index-all.html"><SPAN CLASS="NavBarFont1"><B>Index</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Help</SPAN>&nbsp;</TD>
+                </TR>
+            </TABLE>
+        </TD>
+        <TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+            <b>Groovy JDK</b></EM>
+        </TD>
+    </TR>
+</TABLE>
+<!-- =========== END OF NAVBAR =========== -->
+
+</BODY>
+</HTML>

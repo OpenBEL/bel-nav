@@ -1,0 +1,385 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<HTML>
+<HEAD>
+<TITLE>Set (Groovy JDK)</TITLE>
+
+
+<LINK REL ="stylesheet" TYPE="text/css" HREF="../../stylesheet.css" TITLE="Style">
+
+<SCRIPT type="text/javascript">
+function windowTitle()
+{
+    parent.document.title = document.title;
+}
+</SCRIPT>
+
+</HEAD>
+
+<BODY BGCOLOR="white" onload="windowTitle();">
+
+<!-- ========== START OF NAVBAR ========== -->
+<A NAME="navbar_top"><!-- --></A>
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0">
+    <TR>
+        <TD COLSPAN=3 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+            <A NAME="navbar_top_firstrow"><!-- --></A>
+            <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3">
+                <TR ALIGN="center" VALIGN="top">
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../overview-summary.html"><SPAN CLASS="NavBarFont1"><B>Overview</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Package</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Class</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Tree</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Deprecated</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../index-all.html"><SPAN CLASS="NavBarFont1"><B>Index</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Help</SPAN>&nbsp;</TD>
+                </TR>
+            </TABLE>
+        </TD>
+        <TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+            <b>Groovy JDK</b></EM>
+        </TD>
+    </TR>
+</TABLE>
+<!-- =========== END OF NAVBAR =========== -->
+
+<!-- ======== START OF CLASS DATA ======== -->
+<H2>
+<SPAN style="font-size:12px;">
+java.util</SPAN>
+<BR>
+Class Set</H2>
+
+<!-- ========== METHOD SUMMARY =========== -->
+
+<A NAME="method_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><SPAN style="font-size:24px;">
+<B>Method Summary</B></SPAN></TH>
+</TR>
+
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Set.html' title='JDK class in java.util'>Set</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#asImmutable()">asImmutable</A></B>()</CODE>
+<BR>
+A convenience method for creating an immutable list.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Set.html' title='JDK class in java.util'>Set</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#asSynchronized()">asSynchronized</A></B>()</CODE>
+<BR>
+A convenience method for creating a synchronized Set.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>boolean</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#equals(java.util.Set)">equals</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Set.html' title='JDK class in java.util'>Set</a> other)</CODE>
+<BR>
+Compare the contents of two Sets for equality using Groovy's coercion rules.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Set.html' title='JDK class in java.util'>Set</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#minus(java.util.Collection)">minus</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> removeMe)</CODE>
+<BR>
+Create a Set composed of the elements of the first Set minus the
+elements of the given Collection.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Set.html' title='JDK class in java.util'>Set</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#minus(java.lang.Iterable)">minus</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Iterable.html' title='JDK class in java.lang'>Iterable</a> removeMe)</CODE>
+<BR>
+Create a Set composed of the elements of the first Set minus the
+elements from the given Iterable.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Set.html' title='JDK class in java.util'>Set</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#minus(java.lang.Object)">minus</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> removeMe)</CODE>
+<BR>
+Create a Set composed of the elements of the first Set minus the given element.
+</TD>
+</TR>
+
+</TABLE>
+&nbsp;
+
+
+<!-- ============ METHOD DETAIL ========== -->
+
+<A NAME="method_detail"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="1"><SPAN style="font-size:24px;">
+<B>Method Detail</B></SPAN></TH>
+</TR>
+</TABLE>
+
+
+
+<A name="asImmutable()"><!-- --></A><H3>asImmutable</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Set.html' title='JDK class in java.util'>Set</a> <B>asImmutable</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>A convenience method for creating an immutable list.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>an immutable Set</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collections.html#unmodifiableSet(java.util.Set)' title='JDK class in java.util'>Collections#unmodifiableSet</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="asSynchronized()"><!-- --></A><H3>asSynchronized</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Set.html' title='JDK class in java.util'>Set</a> <B>asSynchronized</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>A convenience method for creating a synchronized Set.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>a synchronized Set</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collections.html#synchronizedSet(java.util.Set)' title='JDK class in java.util'>Collections#synchronizedSet</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="equals(java.util.Set)"><!-- --></A><H3>equals</H3>
+<PRE>public boolean <B>equals</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Set.html' title='JDK class in java.util'>Set</a> other)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Compare the contents of two Sets for equality using Groovy's coercion rules.
+<p>
+Returns <tt>true</tt> if the two sets have the same size, and every member
+of the specified set is contained in this set (or equivalently, every member
+of this set is contained in the specified set).
+If numbers exist in the sets, then they are compared as numbers,
+for example 2 == 2L.  If both sets are <code>null</code>, the result
+is true; otherwise if either set is <code>null</code>, the result
+is <code>false</code>. Example usage:
+<pre class="groovyTestCase">
+Set s1 = ["a", 2]
+def s2 = [2, 'a'] as Set
+Set s3 = [3, 'a']
+def s4 = [2.0, 'a'] as Set
+def s5 = [2L, 'a'] as Set
+assert s1.equals(s2)
+assert !s1.equals(s3)
+assert s1.equals(s4)
+assert s1.equals(s5)</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>other</CODE> -  the Set being compared to.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD><tt>true</tt> if the contents of both sets are identical</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="minus(java.util.Collection)"><!-- --></A><H3>minus</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Set.html' title='JDK class in java.util'>Set</a> <B>minus</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> removeMe)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Create a Set composed of the elements of the first Set minus the
+elements of the given Collection.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>removeMe</CODE> -  the items to remove from the Set.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the resulting Set</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="minus(java.lang.Iterable)"><!-- --></A><H3>minus</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Set.html' title='JDK class in java.util'>Set</a> <B>minus</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Iterable.html' title='JDK class in java.lang'>Iterable</a> removeMe)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Create a Set composed of the elements of the first Set minus the
+elements from the given Iterable.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>removeMe</CODE> -  the items to remove from the Set.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the resulting Set</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.7</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="minus(java.lang.Object)"><!-- --></A><H3>minus</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Set.html' title='JDK class in java.util'>Set</a> <B>minus</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> removeMe)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Create a Set composed of the elements of the first Set minus the given element.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>removeMe</CODE> -  the element to remove from the Set.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the resulting Set</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+<!-- ========= END OF CLASS DATA ========= -->
+
+ <!-- ======= START OF BOTTOM NAVBAR ====== -->
+<A NAME="navbar_bottom"><!-- --></A>
+<A HREF="#skip-navbar_bottom" title="Skip navigation links"></A>
+
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0">
+    <TR>
+        <TD COLSPAN=3 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+            <A NAME="navbar_top_firstrow"><!-- --></A>
+            <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3">
+                <TR ALIGN="center" VALIGN="top">
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../overview-summary.html"><SPAN CLASS="NavBarFont1"><B>Overview</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Package</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Class</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Tree</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Deprecated</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../index-all.html"><SPAN CLASS="NavBarFont1"><B>Index</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Help</SPAN>&nbsp;</TD>
+                </TR>
+            </TABLE>
+        </TD>
+        <TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+            <b>Groovy JDK</b></EM>
+        </TD>
+    </TR>
+</TABLE>
+<!-- =========== END OF NAVBAR =========== -->
+
+</BODY>
+</HTML>

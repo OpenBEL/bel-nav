@@ -1,0 +1,605 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+<title>groovy.lang (groovy 2.1.7 API)</title>
+<META NAME="keywords" CONTENT="groovy.lang package">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<LINK REL ="stylesheet" TYPE="text/css" HREF="../../stylesheet.css" TITLE="Style">
+<link href="../../groovy.ico" type="image/x-icon" rel="shortcut icon">
+<link href="../../groovy.ico" type="image/x-icon" rel="icon">
+<SCRIPT type="text/javascript">
+function windowTitle()
+{
+    parent.document.title="groovy.lang (groovy 2.1.7 API)";
+}
+</SCRIPT>
+<NOSCRIPT>
+</NOSCRIPT>
+
+</head>
+
+<body BGCOLOR="white" onload="windowTitle();">
+<hr>
+
+<!-- ========= START OF TOP NAVBAR ======= -->
+<a name="navbar_top"><!-- --></a>
+<table summary="" width="100%" border="0" cellpadding="1" cellspacing="0">
+<tbody><tr>
+<td colspan="2" class="NavBarCell1" bgcolor="#eeeeff">
+<a name="navbar_top_firstrow"><!-- --></a>
+<table summary="" border="0" cellpadding="0" cellspacing="3">
+  <tbody><tr valign="top" align="center">
+  <td class="NavBarCell1" bgcolor="#eeeeff">    <a href="../../overview-summary.html"><font class="NavBarFont1"><b>Overview</b></font></a>&nbsp;</td>
+  <td class="NavBarCell1Rev" bgcolor="#ffffff"> &nbsp;<font class="NavBarFont1Rev"><b>Package</b></font>&nbsp;</td>
+  <td class="NavBarCell1" bgcolor="#eeeeff">    <font class="NavBarFont1">Class</font>&nbsp;</td>
+  <!--
+  <td class="NavBarCell1" bgcolor="#eeeeff">    <a href="overview-tree.html"><font class="NavBarFont1"><b>Tree</b></font></a>&nbsp;</td>
+  -->
+  <td class="NavBarCell1" bgcolor="#eeeeff">    <a href="../../deprecated-list.html"><font class="NavBarFont1"><b>Deprecated</b></font></a>&nbsp;</td>
+  <td class="NavBarCell1" bgcolor="#eeeeff">    <a href="../../index-all.html"><font class="NavBarFont1"><b>Index</b></font></a>&nbsp;</td>
+  <td class="NavBarCell1" bgcolor="#eeeeff">    <a href="../../help-doc.html"><font class="NavBarFont1"><b>Help</b></font></a>&nbsp;</td>
+  </tr>
+</tbody></table>
+</td>
+<td rowspan="3" valign="top" align="right"><em>
+    <b>Groovy 2.1.7</b>
+</em>
+</td>
+</tr>
+
+<tr>
+<td class="NavBarCell2" bgcolor="white"><font size="-2">
+&nbsp;PREV&nbsp;
+&nbsp;NEXT</font></td>
+<td class="NavBarCell2" bgcolor="white"><font size="-2">
+  <a href="../../index.html?groovy/lang/package-summary.html" target="_top"><b>FRAMES</b></a>  &nbsp;
+&nbsp;<a href="package-summary.html" target="_top"><b>NO FRAMES</b></a>  &nbsp;
+&nbsp;<script type="text/javascript">
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="../../allclasses-frame.html"><B>All Classes</B></A>');
+  }
+  //-->
+</script>
+<noscript>
+  <A HREF="../../allclasses-frame.html"><B>All Classes</B></A>
+</noscript>
+
+
+</font></td>
+</tr>
+</tbody></table>
+<!-- ========= END OF TOP NAVBAR ========= -->
+
+
+<HR>
+<H2>
+Package groovy.lang
+</H2>
+
+
+
+<P>&nbsp;</P>
+
+
+
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+    <TR BGCOLOR="#90DDF7" CLASS="TableHeadingColor">
+    <TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+    <B>Interface Summary</B></FONT></TH>
+    </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="AdaptingMetaClass.html" title="class in groovy/lang">AdaptingMetaClass</A></B></TD>
+        <TD>An interface for MetaClass instances that "adapt" other MetaClass instances such as a proxy or
+ delegating MetaClass.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="Buildable.html" title="class in groovy/lang">Buildable</A></B></TD>
+        <TD></TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ClosureInvokingMethod.html" title="class in groovy/lang">ClosureInvokingMethod</A></B></TD>
+        <TD>An interface for MetaMethods that invoke closures to implements. </TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="GroovyCallable.html" title="class in groovy/lang">GroovyCallable</A></B></TD>
+        <TD>A special "marker" style interface allowing Groovy classes to implement both
+ Runnable and Callable yet give preference to Runnable (for backwards compatibility)
+ for APIs having both Runnable and Callable methods. </TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="GroovyInterceptable.html" title="class in groovy/lang">GroovyInterceptable</A></B></TD>
+        <TD>Marker interface used to notify that all methods should be intercepted through the <code>invokeMethod</code> mechanism
+ of <code>GroovyObject</code>.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="GroovyObject.html" title="class in groovy/lang">GroovyObject</A></B></TD>
+        <TD>The interface implemented by all Groovy objects.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="GroovyResourceLoader.html" title="class in groovy/lang">GroovyResourceLoader</A></B></TD>
+        <TD>Allows frameworks that integrate with Groovy to determine how Groovy files are resolved.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="Interceptor.html" title="class in groovy/lang">Interceptor</A></B></TD>
+        <TD>Implementers of this interface can be registered in the ProxyMetaClass for
+ notifications about method calls for objects managed by the ProxyMetaClass.
+ </TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="MetaClass.html" title="class in groovy/lang">MetaClass</A></B></TD>
+        <TD>A MetaClass within Groovy defines the behaviour of any given Groovy or Java class. </TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="MetaClassRegistry.html" title="class in groovy/lang">MetaClassRegistry</A></B></TD>
+        <TD>A MetaClassRegistry is an object that is responsible for managing the a cache of MetaClass instances. </TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="MetaClassRegistryChangeEventListener.html" title="class in groovy/lang">MetaClassRegistryChangeEventListener</A></B></TD>
+        <TD>A listener called whenever a constant MetaClass is set, removed or replaced.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="MetaObjectProtocol.html" title="class in groovy/lang">MetaObjectProtocol</A></B></TD>
+        <TD></TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="MutableMetaClass.html" title="class in groovy/lang">MutableMetaClass</A></B></TD>
+        <TD>An interface that defines methods that implementers of mutable Meta classes should specify. </TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="PropertyAccessInterceptor.html" title="class in groovy/lang">PropertyAccessInterceptor</A></B></TD>
+        <TD></TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="Range.html" title="class in groovy/lang">Range</A></B></TD>
+        <TD>A Range represents the list of all items obtained by starting from a
+ <code>from</code> value and calling <code>next()</code> successively
+ until you reach the <code>to</code> value. </TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="Writable.html" title="class in groovy/lang">Writable</A></B></TD>
+        <TD>Represents an object which is capable of writing itself to a text stream
+ in a more efficient format than just creating a toString() representation
+ of itself. </TD>
+        </TR>
+
+</TABLE>
+&nbsp;
+<P>
+<DL>
+</DL>
+<hr>
+    
+
+
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+    <TR BGCOLOR="#90DDF7" CLASS="TableHeadingColor">
+    <TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+    <B>Class Summary</B></FONT></TH>
+    </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="BenchmarkInterceptor.html" title="class in groovy/lang">BenchmarkInterceptor</A></B></TD>
+        <TD>Interceptor that registers the timestamp of each method call
+ before and after invocation. </TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="Binding.html" title="class in groovy/lang">Binding</A></B></TD>
+        <TD>Represents the variable bindings of a script which can be altered
+ from outside the script object or created outside of a script and passed
+ into it.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="Closure.html" title="class in groovy/lang">Closure</A></B></TD>
+        <TD>Represents any closure object in Groovy.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="DelegatingMetaClass.html" title="class in groovy/lang">DelegatingMetaClass</A></B></TD>
+        <TD>@author John Wilson</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="EmptyRange.html" title="class in groovy/lang">EmptyRange</A></B></TD>
+        <TD>Constructing Ranges like 0..<0</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ExpandoMetaClass.html" title="class in groovy/lang">ExpandoMetaClass</A></B></TD>
+        <TD>ExpandoMetaClass is a MetaClass that behaves like an Expando, allowing the addition or replacement
+ of methods, properties and constructors on the fly.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ExpandoMetaClass.ExpandoMetaConstructor.html" title="class in groovy/lang">ExpandoMetaClass.ExpandoMetaConstructor</A></B></TD>
+        <TD>Handles the ability to use the left shift operator to append new constructors</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ExpandoMetaClass.ExpandoMetaProperty.html" title="class in groovy/lang">ExpandoMetaClass.ExpandoMetaProperty</A></B></TD>
+        <TD>Instances of this class are returned when using the << left shift operator.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ExpandoMetaClassCreationHandle.html" title="class in groovy/lang">ExpandoMetaClassCreationHandle</A></B></TD>
+        <TD></TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="GString.html" title="class in groovy/lang">GString</A></B></TD>
+        <TD>Represents a String which contains embedded values such as "hello there
+ ${user} how are you?" </TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="GroovyClassLoader.html" title="class in groovy/lang">GroovyClassLoader</A></B></TD>
+        <TD>A ClassLoader which can load Groovy classes. </TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="GroovyClassLoader.ClassCollector.html" title="class in groovy/lang">GroovyClassLoader.ClassCollector</A></B></TD>
+        <TD></TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="GroovyClassLoader.InnerLoader.html" title="class in groovy/lang">GroovyClassLoader.InnerLoader</A></B></TD>
+        <TD></TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="GroovyCodeSource.html" title="class in groovy/lang">GroovyCodeSource</A></B></TD>
+        <TD>CodeSource wrapper class that allows specific security policies to be associated with a class
+ compiled from groovy source.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="GroovyLogTestCase.html" title="class in groovy/lang">GroovyLogTestCase</A></B></TD>
+        <TD>Helper class to spoof log entries as produced by calling arbitrary code.
+</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="GroovyObjectSupport.html" title="class in groovy/lang">GroovyObjectSupport</A></B></TD>
+        <TD>A useful base class for Java objects wishing to be Groovy objects</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="GroovyShell.html" title="class in groovy/lang">GroovyShell</A></B></TD>
+        <TD>Represents a groovy shell capable of running arbitrary groovy scripts</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="GroovySystem.html" title="class in groovy/lang">GroovySystem</A></B></TD>
+        <TD></TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="IntRange.html" title="class in groovy/lang">IntRange</A></B></TD>
+        <TD>Represents a list of Integer objects from a specified int up (or down) to and including
+ a given to.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ListWithDefault.html" title="class in groovy/lang">ListWithDefault</A></B></TD>
+        <TD>A wrapper for <a href='http://docs.oracle.com/javase/7/docs/api/java/util/List.html' title='List'>List</a> which automatically grows the list when either <a href='#get(int)'>get(int)</a> or
+ <a href='#getAt(int)'>getAt(int)</a> is called with an index greater than or equal to <CODE>size()</CODE>.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="MapWithDefault.html" title="class in groovy/lang">MapWithDefault</A></B></TD>
+        <TD>A wrapper for Map which allows a default value to be specified.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="MetaArrayLengthProperty.html" title="class in groovy/lang">MetaArrayLengthProperty</A></B></TD>
+        <TD>Represents a property on a bean which may have a getter and/or a setter</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="MetaBeanProperty.html" title="class in groovy/lang">MetaBeanProperty</A></B></TD>
+        <TD>Represents a property on a bean which may have a getter and/or a setter</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="MetaClassImpl.html" title="class in groovy/lang">MetaClassImpl</A></B></TD>
+        <TD>Allows methods to be dynamically added to existing classes at runtime</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="MetaClassImpl.Index.html" title="class in groovy/lang">MetaClassImpl.Index</A></B></TD>
+        <TD></TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="MetaClassImpl.MetaConstructor.html" title="class in groovy/lang">MetaClassImpl.MetaConstructor</A></B></TD>
+        <TD>This is a helper method added in Groovy 2.1.0, which is used only by indy.
+ </TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="MetaClassRegistry.MetaClassCreationHandle.html" title="class in groovy/lang">MetaClassRegistry.MetaClassCreationHandle</A></B></TD>
+        <TD>Class used as base for the creation of MetaClass implementations.
+ </TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="MetaClassRegistryChangeEvent.html" title="class in groovy/lang">MetaClassRegistryChangeEvent</A></B></TD>
+        <TD>An event used to propagate meta class updates</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="MetaExpandoProperty.html" title="class in groovy/lang">MetaExpandoProperty</A></B></TD>
+        <TD>Represents a property in an Expando object</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="MetaMethod.html" title="class in groovy/lang">MetaMethod</A></B></TD>
+        <TD>Represents a Method on a Java object a little like <a href='http://docs.oracle.com/javase/7/docs/api/java/lang/reflect/Method.html' title='Method'>Method</a>
+ except without using reflection to invoke the method</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="MetaProperty.html" title="class in groovy/lang">MetaProperty</A></B></TD>
+        <TD>Represents a property on a bean which may have a getter and/or a setter</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="NonEmptySequence.html" title="class in groovy/lang">NonEmptySequence</A></B></TD>
+        <TD>Represents a sequence of objects which represents one or many instances of
+ of objects of a given type. </TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ObjectRange.html" title="class in groovy/lang">ObjectRange</A></B></TD>
+        <TD>Represents an inclusive list of objects from a value to a value using
+ comparators.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ParameterArray.html" title="class in groovy/lang">ParameterArray</A></B></TD>
+        <TD>Distinguish a parameter array from Object[].</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="PropertyValue.html" title="class in groovy/lang">PropertyValue</A></B></TD>
+        <TD></TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ProxyMetaClass.html" title="class in groovy/lang">ProxyMetaClass</A></B></TD>
+        <TD>As subclass of MetaClass, ProxyMetaClass manages calls from Groovy Objects to POJOs.
+ </TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="Reference.html" title="class in groovy/lang">Reference</A></B></TD>
+        <TD>Represents a reference to a value</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="Script.html" title="class in groovy/lang">Script</A></B></TD>
+        <TD>This object represents a Groovy script</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="Sequence.html" title="class in groovy/lang">Sequence</A></B></TD>
+        <TD>Represents a sequence of objects which represents zero or many instances of
+ of objects of a given type. </TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="SpreadMap.html" title="class in groovy/lang">SpreadMap</A></B></TD>
+        <TD>Represents a spreadable map which extends java.util.HashMap.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="TracingInterceptor.html" title="class in groovy/lang">TracingInterceptor</A></B></TD>
+        <TD></TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="Tuple.html" title="class in groovy/lang">Tuple</A></B></TD>
+        <TD>Represents a list of Integer objects from a specified int up to but not including
+ a given and to.</TD>
+        </TR>
+
+</TABLE>
+&nbsp;
+<P>
+<DL>
+</DL>
+<hr>
+    
+
+
+
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+    <TR BGCOLOR="#90DDF7" CLASS="TableHeadingColor">
+    <TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+    <B>Exception Summary</B></FONT></TH>
+    </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ClosureException.html" title="class in groovy/lang">ClosureException</A></B></TD>
+        <TD>An exception thrown by a closure invocation</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="DeprecationException.html" title="class in groovy/lang">DeprecationException</A></B></TD>
+        <TD>Use this exception to mark a method implementation as being deprecated.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="GroovyRuntimeException.html" title="class in groovy/lang">GroovyRuntimeException</A></B></TD>
+        <TD>An exception thrown by the interpreter</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="IllegalPropertyAccessException.html" title="class in groovy/lang">IllegalPropertyAccessException</A></B></TD>
+        <TD>An exception occurred if a dynamic property dispatch fails with a 
+ field not accessible.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="IncorrectClosureArgumentsException.html" title="class in groovy/lang">IncorrectClosureArgumentsException</A></B></TD>
+        <TD>An exception occurred when invoking a Closure with the wrong number and/or
+ types of arguments</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="MissingClassException.html" title="class in groovy/lang">MissingClassException</A></B></TD>
+        <TD>An exception occurred if a dynamic method dispatch fails with an unknown class.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="MissingFieldException.html" title="class in groovy/lang">MissingFieldException</A></B></TD>
+        <TD>An exception occurred if a dynamic field dispatch fails with an unknown field.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="MissingMethodException.html" title="class in groovy/lang">MissingMethodException</A></B></TD>
+        <TD>An exception occurred if a dynamic method dispatch fails with an unknown method.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="MissingPropertyException.html" title="class in groovy/lang">MissingPropertyException</A></B></TD>
+        <TD>An exception occurred if a dynamic property dispatch fails with an unknown property.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="ReadOnlyPropertyException.html" title="class in groovy/lang">ReadOnlyPropertyException</A></B></TD>
+        <TD>This exception is thrown if an attempt is made to set a read only property</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="SpreadListEvaluatingException.html" title="class in groovy/lang">SpreadListEvaluatingException</A></B></TD>
+        <TD></TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="SpreadMapEvaluatingException.html" title="class in groovy/lang">SpreadMapEvaluatingException</A></B></TD>
+        <TD></TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="StringWriterIOException.html" title="class in groovy/lang">StringWriterIOException</A></B></TD>
+        <TD>An IO exception occurred trying to append to a StringWriter which should never happen.</TD>
+        </TR>
+
+</TABLE>
+&nbsp;
+<P>
+<DL>
+</DL>
+<hr>
+    
+
+
+
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+    <TR BGCOLOR="#90DDF7" CLASS="TableHeadingColor">
+    <TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+    <B>Annotation Type Summary</B></FONT></TH>
+    </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="Category.html" title="class in groovy/lang">Category</A></B></TD>
+        <TD>Transforms an instance-style Groovy class or interface to become a static-style
+ conventional Groovy category.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="Delegate.html" title="class in groovy/lang">Delegate</A></B></TD>
+        <TD>Field annotation to automatically delegate part of the functionality of an owner class to the annotated field.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="DelegatesTo.html" title="class in groovy/lang">DelegatesTo</A></B></TD>
+        <TD>This annotation can be used by API or DSL writers to document parameters which accept a closure.
+ </TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="DelegatesTo.Target.html" title="class in groovy/lang">DelegatesTo.Target</A></B></TD>
+        <TD></TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="Grab.html" title="class in groovy/lang">Grab</A></B></TD>
+        <TD>Used to grab the referenced artifact and its dependencies and make it available on the Classpath.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="GrabConfig.html" title="class in groovy/lang">GrabConfig</A></B></TD>
+        <TD>Used to modify the grape configuration for grab requests.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="GrabExclude.html" title="class in groovy/lang">GrabExclude</A></B></TD>
+        <TD>Used to exclude an indirectly referenced artifact from the classpath.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="GrabResolver.html" title="class in groovy/lang">GrabResolver</A></B></TD>
+        <TD>Used to add a repository for resolving Grape dependencies.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="Grapes.html" title="class in groovy/lang">Grapes</A></B></TD>
+        <TD>Sometimes we will need more than one grab per class, but we can only add
+ one annotation type per annotatable node.  </TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="Lazy.html" title="class in groovy/lang">Lazy</A></B></TD>
+        <TD>Field annotation to simplify lazy initialization.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="Mixin.html" title="class in groovy/lang">Mixin</A></B></TD>
+        <TD>Provides a mechanism for mixing in methods into a class.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="Newify.html" title="class in groovy/lang">Newify</A></B></TD>
+        <TD>Annotation that supports writing constructor call expressions without the 'new'
+ keyword. </TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="Singleton.html" title="class in groovy/lang">Singleton</A></B></TD>
+        <TD>Class annotation to make class singleton.</TD>
+        </TR>
+
+</TABLE>
+&nbsp;
+<P>
+<DL>
+</DL>
+<hr>
+    
+
+
+<p>Copyright &amp;copy; 2003-2013 The Codehaus. All rights reserved.</p>
+<hr>
+</body>
+</html>

@@ -1,0 +1,551 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<HTML>
+<HEAD>
+<TITLE>Matcher (Groovy JDK)</TITLE>
+
+
+<LINK REL ="stylesheet" TYPE="text/css" HREF="../../../stylesheet.css" TITLE="Style">
+
+<SCRIPT type="text/javascript">
+function windowTitle()
+{
+    parent.document.title = document.title;
+}
+</SCRIPT>
+
+</HEAD>
+
+<BODY BGCOLOR="white" onload="windowTitle();">
+
+<!-- ========== START OF NAVBAR ========== -->
+<A NAME="navbar_top"><!-- --></A>
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0">
+    <TR>
+        <TD COLSPAN=3 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+            <A NAME="navbar_top_firstrow"><!-- --></A>
+            <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3">
+                <TR ALIGN="center" VALIGN="top">
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../overview-summary.html"><SPAN CLASS="NavBarFont1"><B>Overview</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Package</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Class</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Tree</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Deprecated</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../index-all.html"><SPAN CLASS="NavBarFont1"><B>Index</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Help</SPAN>&nbsp;</TD>
+                </TR>
+            </TABLE>
+        </TD>
+        <TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+            <b>Groovy JDK</b></EM>
+        </TD>
+    </TR>
+</TABLE>
+<!-- =========== END OF NAVBAR =========== -->
+
+<!-- ======== START OF CLASS DATA ======== -->
+<H2>
+<SPAN style="font-size:12px;">
+java.util.regex</SPAN>
+<BR>
+Class Matcher</H2>
+
+<!-- ========== METHOD SUMMARY =========== -->
+
+<A NAME="method_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><SPAN style="font-size:24px;">
+<B>Method Summary</B></SPAN></TH>
+</TR>
+
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>boolean</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#asBoolean()">asBoolean</A></B>()</CODE>
+<BR>
+Coerce a Matcher instance to a boolean value.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#getAt(java.util.Collection)">getAt</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> indices)</CODE>
+<BR>
+Select a List of values from a Matcher using a Collection
+to identify the indices to be selected.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#getAt(int)">getAt</A></B>(int idx)</CODE>
+<BR>
+Support the subscript operator, e.g.&#160;matcher[index], for a regex Matcher.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>int</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#getCount()">getCount</A></B>()</CODE>
+<BR>
+Find the number of Strings matched to the given Matcher.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>static <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/regex/Matcher.html' title='JDK class in java.util.regex'>Matcher</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#getLastMatcher()">getLastMatcher</A></B>()</CODE>
+<BR>
+Get the last hidden matcher that the system used to do a match.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>boolean</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#hasGroup()">hasGroup</A></B>()</CODE>
+<BR>
+Check whether a Matcher contains a group or not.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Iterator.html' title='JDK class in java.util'>Iterator</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#iterator()">iterator</A></B>()</CODE>
+<BR>
+Returns an <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Iterator.html' title='JDK class in java.util'>Iterator</a> which traverses each match.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>boolean</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#matchesPartially()">matchesPartially</A></B>()</CODE>
+<BR>
+Given a matcher that matches a string against a pattern,
+this method returns true when the string matches the pattern or if a longer string, could match the pattern.
+
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>void</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#setIndex(int)">setIndex</A></B>(int idx)</CODE>
+<BR>
+Set the position of the given Matcher to the given index.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>long</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#size()">size</A></B>()</CODE>
+<BR>
+Provide the standard Groovy <code>size()</code> method for <code>Matcher</code>.
+</TD>
+</TR>
+
+</TABLE>
+&nbsp;
+
+
+<!-- ============ METHOD DETAIL ========== -->
+
+<A NAME="method_detail"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="1"><SPAN style="font-size:24px;">
+<B>Method Detail</B></SPAN></TH>
+</TR>
+</TABLE>
+
+
+
+<A name="asBoolean()"><!-- --></A><H3>asBoolean</H3>
+<PRE>public boolean <B>asBoolean</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Coerce a Matcher instance to a boolean value.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>the boolean value</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="getAt(java.util.Collection)"><!-- --></A><H3>getAt</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>getAt</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> indices)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Select a List of values from a Matcher using a Collection
+to identify the indices to be selected.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>indices</CODE> -  a Collection of indices.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a String of the values at the given indices</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.6.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="getAt(int)"><!-- --></A><H3>getAt</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>getAt</B>(int idx)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Support the subscript operator, e.g.&#160;matcher[index], for a regex Matcher.
+<p>
+For an example using no group match,
+<pre>
+   def p = /ab[d|f]/
+   def m = "abcabdabeabf" =~ p
+   assert 2 == m.count
+   assert 2 == m.size() // synonym for m.getCount()
+   assert ! m.hasGroup()
+   assert 0 == m.groupCount()
+   def matches = ["abd", "abf"]
+   for (i in 0..&lt;m.count) {
+   &#160;&#160;assert m[i] == matches[i]
+   }
+</pre>
+<p>
+For an example using group matches,
+<pre>
+   def p = /(?:ab([c|d|e|f]))/
+   def m = "abcabdabeabf" =~ p
+   assert 4 == m.count
+   assert m.hasGroup()
+   assert 1 == m.groupCount()
+   def matches = [["abc", "c"], ["abd", "d"], ["abe", "e"], ["abf", "f"]]
+   for (i in 0..&lt;m.count) {
+   &#160;&#160;assert m[i] == matches[i]
+   }
+</pre>
+<p>
+For another example using group matches,
+<pre>
+   def m = "abcabdabeabfabxyzabx" =~ /(?:ab([d|x-z]+))/
+   assert 3 == m.count
+   assert m.hasGroup()
+   assert 1 == m.groupCount()
+   def matches = [["abd", "d"], ["abxyz", "xyz"], ["abx", "x"]]
+   for (i in 0..&lt;m.count) {
+   &#160;&#160;assert m[i] == matches[i]
+   }
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>idx</CODE> -      an index.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>object a matched String if no groups matched, list of matched groups otherwise.</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="getCount()"><!-- --></A><H3>getCount</H3>
+<PRE>public int <B>getCount</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Find the number of Strings matched to the given Matcher.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>int  the number of Strings matched to the given matcher.</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="getLastMatcher()"><!-- --></A><H3>getLastMatcher</H3>
+<PRE>public static <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/regex/Matcher.html' title='JDK class in java.util.regex'>Matcher</a> <B>getLastMatcher</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Get the last hidden matcher that the system used to do a match.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>the last regex matcher</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="hasGroup()"><!-- --></A><H3>hasGroup</H3>
+<PRE>public boolean <B>hasGroup</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Check whether a Matcher contains a group or not.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>boolean  <code>true</code> if matcher contains at least one group.</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="iterator()"><!-- --></A><H3>iterator</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Iterator.html' title='JDK class in java.util'>Iterator</a> <B>iterator</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Returns an <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Iterator.html' title='JDK class in java.util'>Iterator</a> which traverses each match.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>an Iterator for a Matcher</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/regex/Matcher.html#group()' title='JDK class in java.util.regex'>Matcher#group</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="matchesPartially()"><!-- --></A><H3>matchesPartially</H3>
+<PRE>public boolean <B>matchesPartially</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Given a matcher that matches a string against a pattern,
+this method returns true when the string matches the pattern or if a longer string, could match the pattern.
+
+For example:
+<pre class="groovyTestCase">
+    def emailPattern = /\w+@\w+\.\w{2,}/
+
+    def matcher = "john@doe" =~ emailPattern
+    assert matcher.matchesPartially()
+
+    matcher = "john@doe.com" =~ emailPattern
+    assert matcher.matchesPartially()
+
+    matcher = "john@@" =~ emailPattern
+    assert !matcher.matchesPartially()
+</pre></DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>true if more input to the String could make the matcher match the associated pattern, false otherwise.</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>2.0.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="setIndex(int)"><!-- --></A><H3>setIndex</H3>
+<PRE>public void <B>setIndex</B>(int idx)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Set the position of the given Matcher to the given index.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>idx</CODE> -      the index number.</DD>
+
+    </dl>
+    
+
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="size()"><!-- --></A><H3>size</H3>
+<PRE>public long <B>size</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Provide the standard Groovy <code>size()</code> method for <code>Matcher</code>.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>the matcher's size (count)</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+<!-- ========= END OF CLASS DATA ========= -->
+
+ <!-- ======= START OF BOTTOM NAVBAR ====== -->
+<A NAME="navbar_bottom"><!-- --></A>
+<A HREF="#skip-navbar_bottom" title="Skip navigation links"></A>
+
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0">
+    <TR>
+        <TD COLSPAN=3 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+            <A NAME="navbar_top_firstrow"><!-- --></A>
+            <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3">
+                <TR ALIGN="center" VALIGN="top">
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../overview-summary.html"><SPAN CLASS="NavBarFont1"><B>Overview</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Package</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Class</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Tree</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Deprecated</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../index-all.html"><SPAN CLASS="NavBarFont1"><B>Index</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Help</SPAN>&nbsp;</TD>
+                </TR>
+            </TABLE>
+        </TD>
+        <TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+            <b>Groovy JDK</b></EM>
+        </TD>
+    </TR>
+</TABLE>
+<!-- =========== END OF NAVBAR =========== -->
+
+</BODY>
+</HTML>

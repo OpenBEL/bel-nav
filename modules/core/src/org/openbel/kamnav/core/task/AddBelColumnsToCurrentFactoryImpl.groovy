@@ -12,14 +12,13 @@ import org.openbel.kamnav.core.AddBelColumnsToCurrentFactory
 class AddBelColumnsToCurrentFactoryImpl extends AbstractTaskFactory
     implements AddBelColumnsToCurrentFactory {
 
-    final CyApplicationManager appMgr
-    final CyEventHelper evtHelper
-    final VisualMappingManager visMgr
+    final Expando cyr
 
     @Override
     TaskIterator createTaskIterator() {
         new TaskIterator(
-            new AddBelColumnsToCurrent(appMgr),
-            new ApplyPreferredStyleToCurrent(appMgr, evtHelper, visMgr))
+            new AddBelColumnsToCurrent(cyr.cyApplicationManager),
+            new ApplyPreferredStyleToCurrent(cyr.cyApplicationManager,
+                    cyr.cyEventHelper, cyr.visualMappingManager))
     }
 }

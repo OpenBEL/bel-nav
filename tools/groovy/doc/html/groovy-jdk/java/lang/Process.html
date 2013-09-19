@@ -1,0 +1,1066 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<HTML>
+<HEAD>
+<TITLE>Process (Groovy JDK)</TITLE>
+
+
+<LINK REL ="stylesheet" TYPE="text/css" HREF="../../stylesheet.css" TITLE="Style">
+
+<SCRIPT type="text/javascript">
+function windowTitle()
+{
+    parent.document.title = document.title;
+}
+</SCRIPT>
+
+</HEAD>
+
+<BODY BGCOLOR="white" onload="windowTitle();">
+
+<!-- ========== START OF NAVBAR ========== -->
+<A NAME="navbar_top"><!-- --></A>
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0">
+    <TR>
+        <TD COLSPAN=3 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+            <A NAME="navbar_top_firstrow"><!-- --></A>
+            <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3">
+                <TR ALIGN="center" VALIGN="top">
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../overview-summary.html"><SPAN CLASS="NavBarFont1"><B>Overview</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Package</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Class</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Tree</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Deprecated</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../index-all.html"><SPAN CLASS="NavBarFont1"><B>Index</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Help</SPAN>&nbsp;</TD>
+                </TR>
+            </TABLE>
+        </TD>
+        <TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+            <b>Groovy JDK</b></EM>
+        </TD>
+    </TR>
+</TABLE>
+<!-- =========== END OF NAVBAR =========== -->
+
+<!-- ======== START OF CLASS DATA ======== -->
+<H2>
+<SPAN style="font-size:12px;">
+java.lang</SPAN>
+<BR>
+Class Process</H2>
+
+<!-- ========== METHOD SUMMARY =========== -->
+
+<A NAME="method_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><SPAN style="font-size:24px;">
+<B>Method Summary</B></SPAN></TH>
+</TR>
+
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>void</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#closeStreams()">closeStreams</A></B>()</CODE>
+<BR>
+Closes all the streams associated with the process (ignoring any IOExceptions).
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Thread.html' title='JDK class in java.lang'>Thread</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#consumeProcessErrorStream(java.io.OutputStream)">consumeProcessErrorStream</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/OutputStream.html' title='JDK class in java.io'>OutputStream</a> err)</CODE>
+<BR>
+Gets the error stream from a process and reads it
+to keep the process from blocking due to a full buffer.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Thread.html' title='JDK class in java.lang'>Thread</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#consumeProcessErrorStream(java.lang.Appendable)">consumeProcessErrorStream</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Appendable.html' title='JDK class in java.lang'>Appendable</a> error)</CODE>
+<BR>
+Gets the error stream from a process and reads it
+to keep the process from blocking due to a full buffer.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>void</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#consumeProcessOutput()">consumeProcessOutput</A></B>()</CODE>
+<BR>
+Gets the output and error streams from a process and reads them
+to keep the process from blocking due to a full output buffer.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>void</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#consumeProcessOutput(java.lang.Appendable, java.lang.Appendable)">consumeProcessOutput</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Appendable.html' title='JDK class in java.lang'>Appendable</a> output, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Appendable.html' title='JDK class in java.lang'>Appendable</a> error)</CODE>
+<BR>
+Gets the output and error streams from a process and reads them
+to keep the process from blocking due to a full output buffer.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>void</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#consumeProcessOutput(java.io.OutputStream, java.io.OutputStream)">consumeProcessOutput</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/OutputStream.html' title='JDK class in java.io'>OutputStream</a> output, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/OutputStream.html' title='JDK class in java.io'>OutputStream</a> error)</CODE>
+<BR>
+Gets the output and error streams from a process and reads them
+to keep the process from blocking due to a full output buffer.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Thread.html' title='JDK class in java.lang'>Thread</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#consumeProcessOutputStream(java.lang.Appendable)">consumeProcessOutputStream</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Appendable.html' title='JDK class in java.lang'>Appendable</a> output)</CODE>
+<BR>
+Gets the output stream from a process and reads it
+to keep the process from blocking due to a full output buffer.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Thread.html' title='JDK class in java.lang'>Thread</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#consumeProcessOutputStream(java.io.OutputStream)">consumeProcessOutputStream</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/OutputStream.html' title='JDK class in java.io'>OutputStream</a> output)</CODE>
+<BR>
+Gets the output stream from a process and reads it
+to keep the process from blocking due to a full output buffer.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/InputStream.html' title='JDK class in java.io'>InputStream</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#getErr()">getErr</A></B>()</CODE>
+<BR>
+An alias method so that a process appears similar to System.out, System.in, System.err;
+you can use process.in, process.out, process.err in a similar fashion.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/InputStream.html' title='JDK class in java.io'>InputStream</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#getIn()">getIn</A></B>()</CODE>
+<BR>
+An alias method so that a process appears similar to System.out, System.in, System.err;
+you can use process.in, process.out, process.err in a similar fashion.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/OutputStream.html' title='JDK class in java.io'>OutputStream</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#getOut()">getOut</A></B>()</CODE>
+<BR>
+An alias method so that a process appears similar to System.out, System.in, System.err;
+you can use process.in, process.out, process.err in a similar fashion.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#getText()">getText</A></B>()</CODE>
+<BR>
+Read the text of the output stream of the Process.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/Writer.html' title='JDK class in java.io'>Writer</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#leftShift(java.lang.Object)">leftShift</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> value)</CODE>
+<BR>
+Overloads the left shift operator (&lt;&lt;) to provide an append mechanism
+to pipe data to a Process.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/OutputStream.html' title='JDK class in java.io'>OutputStream</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#leftShift(byte[])">leftShift</A></B>(byte[] value)</CODE>
+<BR>
+Overloads the left shift operator to provide an append mechanism
+to pipe into a Process
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Process.html' title='JDK class in java.lang'>Process</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#or(java.lang.Process)">or</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Process.html' title='JDK class in java.lang'>Process</a> right)</CODE>
+<BR>
+Overrides the or operator to allow one Process to asynchronously
+pipe data to another Process.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Process.html' title='JDK class in java.lang'>Process</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#pipeTo(java.lang.Process)">pipeTo</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Process.html' title='JDK class in java.lang'>Process</a> right)</CODE>
+<BR>
+Allows one Process to asynchronously pipe data to another Process.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>void</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#waitForOrKill(long)">waitForOrKill</A></B>(long numberOfMillis)</CODE>
+<BR>
+Wait for the process to finish during a certain amount of time, otherwise stops the process.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>void</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#waitForProcessOutput()">waitForProcessOutput</A></B>()</CODE>
+<BR>
+Gets the output and error streams from a process and reads them
+to keep the process from blocking due to a full output buffer.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>void</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#waitForProcessOutput(java.lang.Appendable, java.lang.Appendable)">waitForProcessOutput</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Appendable.html' title='JDK class in java.lang'>Appendable</a> output, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Appendable.html' title='JDK class in java.lang'>Appendable</a> error)</CODE>
+<BR>
+Gets the output and error streams from a process and reads them
+to keep the process from blocking due to a full output buffer.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>void</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#waitForProcessOutput(java.io.OutputStream, java.io.OutputStream)">waitForProcessOutput</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/OutputStream.html' title='JDK class in java.io'>OutputStream</a> output, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/OutputStream.html' title='JDK class in java.io'>OutputStream</a> error)</CODE>
+<BR>
+Gets the output and error streams from a process and reads them
+to keep the process from blocking due to a full output buffer.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>void</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#withOutputStream(groovy.lang.Closure)">withOutputStream</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Creates a new buffered OutputStream as stdin for this process,
+passes it to the closure, and ensures the stream is flushed
+and closed after the closure returns.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>void</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#withWriter(groovy.lang.Closure)">withWriter</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Creates a new BufferedWriter as stdin for this process,
+passes it to the closure, and ensures the stream is flushed
+and closed after the closure returns.
+
+</TD>
+</TR>
+
+</TABLE>
+&nbsp;
+
+
+<!-- ============ METHOD DETAIL ========== -->
+
+<A NAME="method_detail"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="1"><SPAN style="font-size:24px;">
+<B>Method Detail</B></SPAN></TH>
+</TR>
+</TABLE>
+
+
+
+<A name="closeStreams()"><!-- --></A><H3>closeStreams</H3>
+<PRE>public void <B>closeStreams</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Closes all the streams associated with the process (ignoring any IOExceptions).</DD>
+</DL>
+
+
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>2.1</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="consumeProcessErrorStream(java.io.OutputStream)"><!-- --></A><H3>consumeProcessErrorStream</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Thread.html' title='JDK class in java.lang'>Thread</a> <B>consumeProcessErrorStream</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/OutputStream.html' title='JDK class in java.io'>OutputStream</a> err)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Gets the error stream from a process and reads it
+to keep the process from blocking due to a full buffer.
+The processed stream data is appended to the supplied OutputStream.
+A new Thread is started, so this method will return immediately.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>err</CODE> -  an OutputStream to capture the process stderr.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the Thread</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.2</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="consumeProcessErrorStream(java.lang.Appendable)"><!-- --></A><H3>consumeProcessErrorStream</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Thread.html' title='JDK class in java.lang'>Thread</a> <B>consumeProcessErrorStream</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Appendable.html' title='JDK class in java.lang'>Appendable</a> error)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Gets the error stream from a process and reads it
+to keep the process from blocking due to a full buffer.
+The processed stream data is appended to the supplied Appendable.
+A new Thread is started, so this method will return immediately.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>error</CODE> -  an Appendable to capture the process stderr.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the Thread</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.5</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="consumeProcessOutput()"><!-- --></A><H3>consumeProcessOutput</H3>
+<PRE>public void <B>consumeProcessOutput</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Gets the output and error streams from a process and reads them
+to keep the process from blocking due to a full output buffer.
+The stream data is thrown away but blocking due to a full output buffer is avoided.
+Use this method if you don't care about the standard or error output and just
+want the process to run silently - use carefully however, because since the stream
+data is thrown away, it might be difficult to track down when something goes wrong.
+For this, two Threads are started, so this method will return immediately.</DD>
+</DL>
+
+
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="consumeProcessOutput(java.lang.Appendable, java.lang.Appendable)"><!-- --></A><H3>consumeProcessOutput</H3>
+<PRE>public void <B>consumeProcessOutput</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Appendable.html' title='JDK class in java.lang'>Appendable</a> output, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Appendable.html' title='JDK class in java.lang'>Appendable</a> error)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Gets the output and error streams from a process and reads them
+to keep the process from blocking due to a full output buffer.
+The processed stream data is appended to the supplied Appendable.
+For this, two Threads are started, so this method will return immediately.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>output</CODE> -  an Appendable to capture the process stdout.</DD>
+
+		<DD><CODE>error</CODE> -  an Appendable to capture the process stderr.</DD>
+
+    </dl>
+    
+
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.5</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="consumeProcessOutput(java.io.OutputStream, java.io.OutputStream)"><!-- --></A><H3>consumeProcessOutput</H3>
+<PRE>public void <B>consumeProcessOutput</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/OutputStream.html' title='JDK class in java.io'>OutputStream</a> output, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/OutputStream.html' title='JDK class in java.io'>OutputStream</a> error)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Gets the output and error streams from a process and reads them
+to keep the process from blocking due to a full output buffer.
+The processed stream data is appended to the supplied OutputStream.
+For this, two Threads are started, so this method will return immediately.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>output</CODE> -  an OutputStream to capture the process stdout.</DD>
+
+		<DD><CODE>error</CODE> -  an OutputStream to capture the process stderr.</DD>
+
+    </dl>
+    
+
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.2</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="consumeProcessOutputStream(java.lang.Appendable)"><!-- --></A><H3>consumeProcessOutputStream</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Thread.html' title='JDK class in java.lang'>Thread</a> <B>consumeProcessOutputStream</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Appendable.html' title='JDK class in java.lang'>Appendable</a> output)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Gets the output stream from a process and reads it
+to keep the process from blocking due to a full output buffer.
+The processed stream data is appended to the supplied Appendable.
+A new Thread is started, so this method will return immediately.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>output</CODE> -  an Appendable to capture the process stdout.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the Thread</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.5</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="consumeProcessOutputStream(java.io.OutputStream)"><!-- --></A><H3>consumeProcessOutputStream</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Thread.html' title='JDK class in java.lang'>Thread</a> <B>consumeProcessOutputStream</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/OutputStream.html' title='JDK class in java.io'>OutputStream</a> output)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Gets the output stream from a process and reads it
+to keep the process from blocking due to a full output buffer.
+The processed stream data is appended to the supplied OutputStream.
+A new Thread is started, so this method will return immediately.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>output</CODE> -  an OutputStream to capture the process stdout.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the Thread</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.2</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="getErr()"><!-- --></A><H3>getErr</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/InputStream.html' title='JDK class in java.io'>InputStream</a> <B>getErr</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>An alias method so that a process appears similar to System.out, System.in, System.err;
+you can use process.in, process.out, process.err in a similar fashion.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>the error InputStream for the process</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="getIn()"><!-- --></A><H3>getIn</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/InputStream.html' title='JDK class in java.io'>InputStream</a> <B>getIn</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>An alias method so that a process appears similar to System.out, System.in, System.err;
+you can use process.in, process.out, process.err in a similar fashion.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>the InputStream for the process</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="getOut()"><!-- --></A><H3>getOut</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/OutputStream.html' title='JDK class in java.io'>OutputStream</a> <B>getOut</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>An alias method so that a process appears similar to System.out, System.in, System.err;
+you can use process.in, process.out, process.err in a similar fashion.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>the OutputStream for the process</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="getText()"><!-- --></A><H3>getText</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> <B>getText</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Read the text of the output stream of the Process.
+Closes all the streams associated with the process after retrieving the text.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>the text of the output</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="leftShift(java.lang.Object)"><!-- --></A><H3>leftShift</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/Writer.html' title='JDK class in java.io'>Writer</a> <B>leftShift</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> value)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Overloads the left shift operator (&lt;&lt;) to provide an append mechanism
+to pipe data to a Process.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>value</CODE> -  a value to append.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a Writer</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="leftShift(byte[])"><!-- --></A><H3>leftShift</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/OutputStream.html' title='JDK class in java.io'>OutputStream</a> <B>leftShift</B>(byte[] value)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Overloads the left shift operator to provide an append mechanism
+to pipe into a Process</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>value</CODE> -  data to append.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>an OutputStream</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="or(java.lang.Process)"><!-- --></A><H3>or</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Process.html' title='JDK class in java.lang'>Process</a> <B>or</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Process.html' title='JDK class in java.lang'>Process</a> right)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Overrides the or operator to allow one Process to asynchronously
+pipe data to another Process.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>right</CODE> -  a Process to pipe output to.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the second Process to allow chaining</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.1</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="pipeTo(java.lang.Process)"><!-- --></A><H3>pipeTo</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Process.html' title='JDK class in java.lang'>Process</a> <B>pipeTo</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Process.html' title='JDK class in java.lang'>Process</a> right)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Allows one Process to asynchronously pipe data to another Process.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>right</CODE> -  a Process to pipe output to.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the second Process to allow chaining</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.2</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="waitForOrKill(long)"><!-- --></A><H3>waitForOrKill</H3>
+<PRE>public void <B>waitForOrKill</B>(long numberOfMillis)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Wait for the process to finish during a certain amount of time, otherwise stops the process.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>numberOfMillis</CODE> -  the number of milliseconds to wait before stopping the process.</DD>
+
+    </dl>
+    
+
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="waitForProcessOutput()"><!-- --></A><H3>waitForProcessOutput</H3>
+<PRE>public void <B>waitForProcessOutput</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Gets the output and error streams from a process and reads them
+to keep the process from blocking due to a full output buffer.
+The stream data is thrown away but blocking due to a full output buffer is avoided.
+Use this method if you don't care about the standard or error output and just
+want the process to run silently - use carefully however, because since the stream
+data is thrown away, it might be difficult to track down when something goes wrong.
+For this, two Threads are started, but join()ed, so we wait.
+As implied by the waitFor... name, we also wait until we finish
+as well. Finally, the output and error streams are closed.</DD>
+</DL>
+
+
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.6.5</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="waitForProcessOutput(java.lang.Appendable, java.lang.Appendable)"><!-- --></A><H3>waitForProcessOutput</H3>
+<PRE>public void <B>waitForProcessOutput</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Appendable.html' title='JDK class in java.lang'>Appendable</a> output, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Appendable.html' title='JDK class in java.lang'>Appendable</a> error)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Gets the output and error streams from a process and reads them
+to keep the process from blocking due to a full output buffer.
+The processed stream data is appended to the supplied Appendable.
+For this, two Threads are started, but join()ed, so we wait.
+As implied by the waitFor... name, we also wait until we finish
+as well. Finally, the input, output and error streams are closed.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>output</CODE> -  an Appendable to capture the process stdout.</DD>
+
+		<DD><CODE>error</CODE> -  an Appendable to capture the process stderr.</DD>
+
+    </dl>
+    
+
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.5</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="waitForProcessOutput(java.io.OutputStream, java.io.OutputStream)"><!-- --></A><H3>waitForProcessOutput</H3>
+<PRE>public void <B>waitForProcessOutput</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/OutputStream.html' title='JDK class in java.io'>OutputStream</a> output, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/OutputStream.html' title='JDK class in java.io'>OutputStream</a> error)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Gets the output and error streams from a process and reads them
+to keep the process from blocking due to a full output buffer.
+The processed stream data is appended to the supplied OutputStream.
+For this, two Threads are started, but join()ed, so we wait.
+As implied by the waitFor... name, we also wait until we finish
+as well. Finally, the input, output and error streams are closed.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>output</CODE> -  an OutputStream to capture the process stdout.</DD>
+
+		<DD><CODE>error</CODE> -  an OutputStream to capture the process stderr.</DD>
+
+    </dl>
+    
+
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.6.5</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="withOutputStream(groovy.lang.Closure)"><!-- --></A><H3>withOutputStream</H3>
+<PRE>public void <B>withOutputStream</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Creates a new buffered OutputStream as stdin for this process,
+passes it to the closure, and ensures the stream is flushed
+and closed after the closure returns.
+A new Thread is started, so this method will return immediately.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  a closure.</DD>
+
+    </dl>
+    
+
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.2</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="withWriter(groovy.lang.Closure)"><!-- --></A><H3>withWriter</H3>
+<PRE>public void <B>withWriter</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Creates a new BufferedWriter as stdin for this process,
+passes it to the closure, and ensures the stream is flushed
+and closed after the closure returns.
+A new Thread is started, so this method will return immediately.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  a closure.</DD>
+
+    </dl>
+    
+
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.2</DD>
+</dl>
+
+
+
+
+<HR>
+
+<!-- ========= END OF CLASS DATA ========= -->
+
+ <!-- ======= START OF BOTTOM NAVBAR ====== -->
+<A NAME="navbar_bottom"><!-- --></A>
+<A HREF="#skip-navbar_bottom" title="Skip navigation links"></A>
+
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0">
+    <TR>
+        <TD COLSPAN=3 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+            <A NAME="navbar_top_firstrow"><!-- --></A>
+            <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3">
+                <TR ALIGN="center" VALIGN="top">
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../overview-summary.html"><SPAN CLASS="NavBarFont1"><B>Overview</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Package</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Class</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Tree</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Deprecated</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../index-all.html"><SPAN CLASS="NavBarFont1"><B>Index</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Help</SPAN>&nbsp;</TD>
+                </TR>
+            </TABLE>
+        </TD>
+        <TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+            <b>Groovy JDK</b></EM>
+        </TD>
+    </TR>
+</TABLE>
+<!-- =========== END OF NAVBAR =========== -->
+
+</BODY>
+</HTML>

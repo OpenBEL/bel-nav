@@ -1,0 +1,1501 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<HTML>
+<HEAD>
+<TITLE>InputStream (Groovy JDK)</TITLE>
+
+
+<LINK REL ="stylesheet" TYPE="text/css" HREF="../../stylesheet.css" TITLE="Style">
+
+<SCRIPT type="text/javascript">
+function windowTitle()
+{
+    parent.document.title = document.title;
+}
+</SCRIPT>
+
+</HEAD>
+
+<BODY BGCOLOR="white" onload="windowTitle();">
+
+<!-- ========== START OF NAVBAR ========== -->
+<A NAME="navbar_top"><!-- --></A>
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0">
+    <TR>
+        <TD COLSPAN=3 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+            <A NAME="navbar_top_firstrow"><!-- --></A>
+            <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3">
+                <TR ALIGN="center" VALIGN="top">
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../overview-summary.html"><SPAN CLASS="NavBarFont1"><B>Overview</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Package</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Class</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Tree</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Deprecated</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../index-all.html"><SPAN CLASS="NavBarFont1"><B>Index</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Help</SPAN>&nbsp;</TD>
+                </TR>
+            </TABLE>
+        </TD>
+        <TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+            <b>Groovy JDK</b></EM>
+        </TD>
+    </TR>
+</TABLE>
+<!-- =========== END OF NAVBAR =========== -->
+
+<!-- ======== START OF CLASS DATA ======== -->
+<H2>
+<SPAN style="font-size:12px;">
+java.io</SPAN>
+<BR>
+Class InputStream</H2>
+
+<!-- ========== METHOD SUMMARY =========== -->
+
+<A NAME="method_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><SPAN style="font-size:24px;">
+<B>Method Summary</B></SPAN></TH>
+</TR>
+
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>void</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#eachByte(groovy.lang.Closure)">eachByte</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Traverse through each byte of the specified stream. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>void</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#eachByte(int, groovy.lang.Closure)">eachByte</A></B>(int bufferLen, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Traverse through each the specified stream reading bytes into a buffer
+and calling the 2 parameter closure with this buffer and the number of bytes.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#eachLine(java.lang.String, groovy.lang.Closure)">eachLine</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> charset, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Iterates through this stream reading with the provided charset, passing each line to the
+given 1 or 2 arg closure.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#eachLine(java.lang.String, int, groovy.lang.Closure)">eachLine</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> charset, int firstLine, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Iterates through this stream reading with the provided charset, passing each line to
+the given 1 or 2 arg closure.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#eachLine(groovy.lang.Closure)">eachLine</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Iterates through this stream, passing each line to the given 1 or 2 arg closure.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#eachLine(int, groovy.lang.Closure)">eachLine</A></B>(int firstLine, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Iterates through this stream, passing each line to the given 1 or 2 arg closure.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://groovy.codehaus.org/api/groovy/lang/Writable.html' title='Groovy class in groovy.lang'>Writable</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#filterLine(groovy.lang.Closure)">filterLine</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> predicate)</CODE>
+<BR>
+Filter lines from an input stream using a closure predicate.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://groovy.codehaus.org/api/groovy/lang/Writable.html' title='Groovy class in groovy.lang'>Writable</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#filterLine(java.lang.String, groovy.lang.Closure)">filterLine</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> charset, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> predicate)</CODE>
+<BR>
+Filter lines from an input stream using a closure predicate.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>void</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#filterLine(java.io.Writer, groovy.lang.Closure)">filterLine</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/Writer.html' title='JDK class in java.io'>Writer</a> writer, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> predicate)</CODE>
+<BR>
+Uses a closure to filter lines from this InputStream and pass them to
+the given writer. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>void</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#filterLine(java.io.Writer, java.lang.String, groovy.lang.Closure)">filterLine</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/Writer.html' title='JDK class in java.io'>Writer</a> writer, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> charset, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> predicate)</CODE>
+<BR>
+Uses a closure to filter lines from this InputStream and pass them to
+the given writer. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>byte[]</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#getBytes()">getBytes</A></B>()</CODE>
+<BR>
+Read the content of this InputStream and return it as a byte[].
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#getText()">getText</A></B>()</CODE>
+<BR>
+Read the content of this InputStream and return it as a String.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#getText(java.lang.String)">getText</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> charset)</CODE>
+<BR>
+Read the content of this InputStream using specified charset and return
+it as a String.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Iterator.html' title='JDK class in java.util'>Iterator</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#iterator()">iterator</A></B>()</CODE>
+<BR>
+Standard iterator for a input stream which iterates through the stream
+content in a byte-based fashion.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/ObjectInputStream.html' title='JDK class in java.io'>ObjectInputStream</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#newObjectInputStream()">newObjectInputStream</A></B>()</CODE>
+<BR>
+Create an object input stream for this input stream.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/ObjectInputStream.html' title='JDK class in java.io'>ObjectInputStream</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#newObjectInputStream(java.lang.ClassLoader)">newObjectInputStream</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/ClassLoader.html' title='JDK class in java.lang'>ClassLoader</a> classLoader)</CODE>
+<BR>
+Create an object input stream for this input stream using the given class loader.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/BufferedReader.html' title='JDK class in java.io'>BufferedReader</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#newReader()">newReader</A></B>()</CODE>
+<BR>
+Creates a reader for this input stream.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/BufferedReader.html' title='JDK class in java.io'>BufferedReader</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#newReader(java.lang.String)">newReader</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> charset)</CODE>
+<BR>
+Creates a reader for this input stream, using the specified
+charset as the encoding.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#readLines()">readLines</A></B>()</CODE>
+<BR>
+Reads the stream into a list, with one element for each line.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#readLines(java.lang.String)">readLines</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> charset)</CODE>
+<BR>
+Reads the stream into a list, with one element for each line.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#splitEachLine(java.lang.String, java.lang.String, groovy.lang.Closure)">splitEachLine</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> regex, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> charset, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Iterates through the given InputStream line by line using the specified
+encoding, splitting each line using the given separator.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#splitEachLine(java.util.regex.Pattern, java.lang.String, groovy.lang.Closure)">splitEachLine</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/regex/Pattern.html' title='JDK class in java.util.regex'>Pattern</a> pattern, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> charset, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Iterates through the given InputStream line by line using the specified
+encoding, splitting each line using the given separator Pattern.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#splitEachLine(java.lang.String, groovy.lang.Closure)">splitEachLine</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> regex, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Iterates through the given InputStream line by line, splitting each line using
+the given separator.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#splitEachLine(java.util.regex.Pattern, groovy.lang.Closure)">splitEachLine</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/regex/Pattern.html' title='JDK class in java.util.regex'>Pattern</a> pattern, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Iterates through the given InputStream line by line, splitting each line using
+the given separator Pattern.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#withObjectInputStream(groovy.lang.Closure)">withObjectInputStream</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Create a new ObjectInputStream for this file and pass it to the closure.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#withObjectInputStream(java.lang.ClassLoader, groovy.lang.Closure)">withObjectInputStream</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/ClassLoader.html' title='JDK class in java.lang'>ClassLoader</a> classLoader, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Create a new ObjectInputStream for this file and pass it to the closure.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#withReader(groovy.lang.Closure)">withReader</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Helper method to create a new Reader for a stream and then
+passes it into the closure.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#withReader(java.lang.String, groovy.lang.Closure)">withReader</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> charset, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Helper method to create a new Reader for a stream and then
+passes it into the closure.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#withStream(groovy.lang.Closure)">withStream</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Allows this input stream to be used within the closure, ensuring that it
+is flushed and closed before this method returns.
+</TD>
+</TR>
+
+</TABLE>
+&nbsp;
+
+
+<!-- ============ METHOD DETAIL ========== -->
+
+<A NAME="method_detail"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="1"><SPAN style="font-size:24px;">
+<B>Method Detail</B></SPAN></TH>
+</TR>
+</TABLE>
+
+
+
+<A name="eachByte(groovy.lang.Closure)"><!-- --></A><H3>eachByte</H3>
+<PRE>public void <B>eachByte</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Traverse through each byte of the specified stream. The
+stream is closed after the closure returns.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  closure to apply to each byte.</DD>
+
+    </dl>
+    
+
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="eachByte(int, groovy.lang.Closure)"><!-- --></A><H3>eachByte</H3>
+<PRE>public void <B>eachByte</B>(int bufferLen, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Traverse through each the specified stream reading bytes into a buffer
+and calling the 2 parameter closure with this buffer and the number of bytes.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>bufferLen</CODE> -  the length of the buffer to use..</DD>
+
+		<DD><CODE>closure</CODE> -    a 2 parameter closure which is passed the byte[] and a number of bytes successfully read..</DD>
+
+    </dl>
+    
+
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="eachLine(java.lang.String, groovy.lang.Closure)"><!-- --></A><H3>eachLine</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>eachLine</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> charset, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates through this stream reading with the provided charset, passing each line to the
+given 1 or 2 arg closure.  The stream is closed before this method returns.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>charset</CODE> -  opens the stream with a specified charset.</DD>
+
+		<DD><CODE>closure</CODE> -  a closure (arg 1 is line, optional arg 2 is line number starting at line 1).</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the last value returned by the closure</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.5</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='../../java/io/InputStream.html#eachLine(java.lang.String, int, groovy.lang.Closure)' title='GDK enhancement for java.io.InputStream'>InputStream#eachLine</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="eachLine(java.lang.String, int, groovy.lang.Closure)"><!-- --></A><H3>eachLine</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>eachLine</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> charset, int firstLine, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates through this stream reading with the provided charset, passing each line to
+the given 1 or 2 arg closure.  The stream is closed after this method returns.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>charset</CODE> -    opens the stream with a specified charset.</DD>
+
+		<DD><CODE>firstLine</CODE> -  the line number value used for the first line (default is 1, set to 0 to start counting from 0).</DD>
+
+		<DD><CODE>closure</CODE> -    a closure (arg 1 is line, optional arg 2 is line number).</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the last value returned by the closure</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.7</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='../../java/io/Reader.html#eachLine(int, groovy.lang.Closure)' title='GDK enhancement for java.io.Reader'>Reader#eachLine</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="eachLine(groovy.lang.Closure)"><!-- --></A><H3>eachLine</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>eachLine</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates through this stream, passing each line to the given 1 or 2 arg closure.
+The stream is closed before this method returns.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  a closure (arg 1 is line, optional arg 2 is line number starting at line 1).</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the last value returned by the closure</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.6</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='../../java/io/InputStream.html#eachLine(int, groovy.lang.Closure)' title='GDK enhancement for java.io.InputStream'>InputStream#eachLine</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="eachLine(int, groovy.lang.Closure)"><!-- --></A><H3>eachLine</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>eachLine</B>(int firstLine, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates through this stream, passing each line to the given 1 or 2 arg closure.
+The stream is closed before this method returns.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>firstLine</CODE> -  the line number value used for the first line (default is 1, set to 0 to start counting from 0).</DD>
+
+		<DD><CODE>closure</CODE> -    a closure (arg 1 is line, optional arg 2 is line number).</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the last value returned by the closure</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.7</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='../../java/io/Reader.html#eachLine(int, groovy.lang.Closure)' title='GDK enhancement for java.io.Reader'>Reader#eachLine</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="filterLine(groovy.lang.Closure)"><!-- --></A><H3>filterLine</H3>
+<PRE>public <a href='http://groovy.codehaus.org/api/groovy/lang/Writable.html' title='Groovy class in groovy.lang'>Writable</a> <B>filterLine</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> predicate)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Filter lines from an input stream using a closure predicate.  The closure
+will be passed each line as a String, and it should return
+<code>true</code> if the line should be passed to the writer.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>predicate</CODE> -  a closure which returns boolean and takes a line.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a writable which writes out the filtered lines</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='../../java/io/Reader.html#filterLine(groovy.lang.Closure)' title='GDK enhancement for java.io.Reader'>Reader#filterLine</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="filterLine(java.lang.String, groovy.lang.Closure)"><!-- --></A><H3>filterLine</H3>
+<PRE>public <a href='http://groovy.codehaus.org/api/groovy/lang/Writable.html' title='Groovy class in groovy.lang'>Writable</a> <B>filterLine</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> charset, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> predicate)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Filter lines from an input stream using a closure predicate.  The closure
+will be passed each line as a String, and it should return
+<code>true</code> if the line should be passed to the writer.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>charset</CODE> -    opens the stream with a specified charset.</DD>
+
+		<DD><CODE>predicate</CODE> -  a closure which returns boolean and takes a line.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a writable which writes out the filtered lines</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.6.8</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='../../java/io/Reader.html#filterLine(groovy.lang.Closure)' title='GDK enhancement for java.io.Reader'>Reader#filterLine</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="filterLine(java.io.Writer, groovy.lang.Closure)"><!-- --></A><H3>filterLine</H3>
+<PRE>public void <B>filterLine</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/Writer.html' title='JDK class in java.io'>Writer</a> writer, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> predicate)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Uses a closure to filter lines from this InputStream and pass them to
+the given writer. The closure will be passed each line as a String, and
+it should return <code>true</code> if the line should be passed to the
+writer.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>writer</CODE> -     a writer to write output to.</DD>
+
+		<DD><CODE>predicate</CODE> -  a closure which returns true if a line should be accepted.</DD>
+
+    </dl>
+    
+
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='../../java/io/Reader.html#filterLine(java.io.Writer, groovy.lang.Closure)' title='GDK enhancement for java.io.Reader'>Reader#filterLine</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="filterLine(java.io.Writer, java.lang.String, groovy.lang.Closure)"><!-- --></A><H3>filterLine</H3>
+<PRE>public void <B>filterLine</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/Writer.html' title='JDK class in java.io'>Writer</a> writer, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> charset, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> predicate)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Uses a closure to filter lines from this InputStream and pass them to
+the given writer. The closure will be passed each line as a String, and
+it should return <code>true</code> if the line should be passed to the
+writer.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>writer</CODE> -     a writer to write output to.</DD>
+
+		<DD><CODE>charset</CODE> -    opens the stream with a specified charset.</DD>
+
+		<DD><CODE>predicate</CODE> -  a closure which returns true if a line should be accepted.</DD>
+
+    </dl>
+    
+
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.6.8</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='../../java/io/Reader.html#filterLine(java.io.Writer, groovy.lang.Closure)' title='GDK enhancement for java.io.Reader'>Reader#filterLine</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="getBytes()"><!-- --></A><H3>getBytes</H3>
+<PRE>public byte[] <B>getBytes</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Read the content of this InputStream and return it as a byte[].
+The stream is closed before this method returns.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>the byte[] from that InputStream</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.1</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="getText()"><!-- --></A><H3>getText</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> <B>getText</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Read the content of this InputStream and return it as a String.
+The stream is closed before this method returns.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>the text from that URL</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="getText(java.lang.String)"><!-- --></A><H3>getText</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> <B>getText</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> charset)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Read the content of this InputStream using specified charset and return
+it as a String.  The stream is closed before this method returns.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>charset</CODE> -  opens the stream with a specified charset.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the text from that URL</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="iterator()"><!-- --></A><H3>iterator</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Iterator.html' title='JDK class in java.util'>Iterator</a> <B>iterator</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Standard iterator for a input stream which iterates through the stream
+content in a byte-based fashion.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>an Iterator for the InputStream</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="newObjectInputStream()"><!-- --></A><H3>newObjectInputStream</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/ObjectInputStream.html' title='JDK class in java.io'>ObjectInputStream</a> <B>newObjectInputStream</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Create an object input stream for this input stream.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>an object input stream</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="newObjectInputStream(java.lang.ClassLoader)"><!-- --></A><H3>newObjectInputStream</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/ObjectInputStream.html' title='JDK class in java.io'>ObjectInputStream</a> <B>newObjectInputStream</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/ClassLoader.html' title='JDK class in java.lang'>ClassLoader</a> classLoader)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Create an object input stream for this input stream using the given class loader.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>classLoader</CODE> -  the class loader to use when loading the class.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>an object input stream</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="newReader()"><!-- --></A><H3>newReader</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/BufferedReader.html' title='JDK class in java.io'>BufferedReader</a> <B>newReader</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Creates a reader for this input stream.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>a reader</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="newReader(java.lang.String)"><!-- --></A><H3>newReader</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/BufferedReader.html' title='JDK class in java.io'>BufferedReader</a> <B>newReader</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> charset)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Creates a reader for this input stream, using the specified
+charset as the encoding.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>charset</CODE> -  the charset for this input stream.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a reader</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.6.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="readLines()"><!-- --></A><H3>readLines</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>readLines</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Reads the stream into a list, with one element for each line.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>a List of lines</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='../../java/io/Reader.html#readLines()' title='GDK enhancement for java.io.Reader'>Reader#readLines</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="readLines(java.lang.String)"><!-- --></A><H3>readLines</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>readLines</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> charset)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Reads the stream into a list, with one element for each line.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>charset</CODE> -  opens the stream with a specified charset.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a List of lines</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.6.8</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='../../java/io/Reader.html#readLines()' title='GDK enhancement for java.io.Reader'>Reader#readLines</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="splitEachLine(java.lang.String, java.lang.String, groovy.lang.Closure)"><!-- --></A><H3>splitEachLine</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>splitEachLine</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> regex, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> charset, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates through the given InputStream line by line using the specified
+encoding, splitting each line using the given separator.  The list of tokens
+for each line is then passed to the given closure. Finally, the stream
+is closed.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>regex</CODE> -    the delimiting regular expression.</DD>
+
+		<DD><CODE>charset</CODE> -  opens the stream with a specified charset.</DD>
+
+		<DD><CODE>closure</CODE> -  a closure.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the last value returned by the closure</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.5</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='../../java/io/Reader.html#splitEachLine(java.lang.String, groovy.lang.Closure)' title='GDK enhancement for java.io.Reader'>Reader#splitEachLine</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="splitEachLine(java.util.regex.Pattern, java.lang.String, groovy.lang.Closure)"><!-- --></A><H3>splitEachLine</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>splitEachLine</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/regex/Pattern.html' title='JDK class in java.util.regex'>Pattern</a> pattern, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> charset, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates through the given InputStream line by line using the specified
+encoding, splitting each line using the given separator Pattern.  The list of tokens
+for each line is then passed to the given closure. Finally, the stream
+is closed.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>pattern</CODE> -  the regular expression Pattern for the delimiter.</DD>
+
+		<DD><CODE>charset</CODE> -  opens the stream with a specified charset.</DD>
+
+		<DD><CODE>closure</CODE> -  a closure.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the last value returned by the closure</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.6.8</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='../../java/io/Reader.html#splitEachLine(java.util.regex.Pattern, groovy.lang.Closure)' title='GDK enhancement for java.io.Reader'>Reader#splitEachLine</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="splitEachLine(java.lang.String, groovy.lang.Closure)"><!-- --></A><H3>splitEachLine</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>splitEachLine</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> regex, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates through the given InputStream line by line, splitting each line using
+the given separator.  The list of tokens for each line is then passed to
+the given closure. The stream is closed before the method returns.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>regex</CODE> -    the delimiting regular expression.</DD>
+
+		<DD><CODE>closure</CODE> -  a closure.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the last value returned by the closure</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.6</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='../../java/io/Reader.html#splitEachLine(java.lang.String, groovy.lang.Closure)' title='GDK enhancement for java.io.Reader'>Reader#splitEachLine</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="splitEachLine(java.util.regex.Pattern, groovy.lang.Closure)"><!-- --></A><H3>splitEachLine</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>splitEachLine</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/regex/Pattern.html' title='JDK class in java.util.regex'>Pattern</a> pattern, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates through the given InputStream line by line, splitting each line using
+the given separator Pattern.  The list of tokens for each line is then passed to
+the given closure. The stream is closed before the method returns.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>pattern</CODE> -  the regular expression Pattern for the delimiter.</DD>
+
+		<DD><CODE>closure</CODE> -  a closure.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the last value returned by the closure</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.6.8</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='../../java/io/Reader.html#splitEachLine(java.util.regex.Pattern, groovy.lang.Closure)' title='GDK enhancement for java.io.Reader'>Reader#splitEachLine</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="withObjectInputStream(groovy.lang.Closure)"><!-- --></A><H3>withObjectInputStream</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>withObjectInputStream</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Create a new ObjectInputStream for this file and pass it to the closure.
+This method ensures the stream is closed after the closure returns.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -      a closure.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the value returned by the closure</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.0</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='../../java/io/InputStream.html#withStream(groovy.lang.Closure)' title='GDK enhancement for java.io.InputStream'>InputStream#withStream</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="withObjectInputStream(java.lang.ClassLoader, groovy.lang.Closure)"><!-- --></A><H3>withObjectInputStream</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>withObjectInputStream</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/ClassLoader.html' title='JDK class in java.lang'>ClassLoader</a> classLoader, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Create a new ObjectInputStream for this file and pass it to the closure.
+This method ensures the stream is closed after the closure returns.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>classLoader</CODE> -  the class loader to use when loading the class.</DD>
+
+		<DD><CODE>closure</CODE> -      a closure.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the value returned by the closure</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.0</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='../../java/io/InputStream.html#withStream(groovy.lang.Closure)' title='GDK enhancement for java.io.InputStream'>InputStream#withStream</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="withReader(groovy.lang.Closure)"><!-- --></A><H3>withReader</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>withReader</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Helper method to create a new Reader for a stream and then
+passes it into the closure.  The reader (and this stream) is closed after
+the closure returns.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  the closure to invoke with the InputStream.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the value returned by the closure</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/InputStreamReader.html' title='JDK class in java.io'>InputStreamReader</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="withReader(java.lang.String, groovy.lang.Closure)"><!-- --></A><H3>withReader</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>withReader</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> charset, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Helper method to create a new Reader for a stream and then
+passes it into the closure.  The reader (and this stream) is closed after
+the closure returns.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>charset</CODE> -  the charset used to decode the stream.</DD>
+
+		<DD><CODE>closure</CODE> -  the closure to invoke with the reader.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the value returned by the closure</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.6</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/InputStreamReader.html' title='JDK class in java.io'>InputStreamReader</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="withStream(groovy.lang.Closure)"><!-- --></A><H3>withStream</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>withStream</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Allows this input stream to be used within the closure, ensuring that it
+is flushed and closed before this method returns.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  the closure that the stream is passed into.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the value returned by the closure</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.2</DD>
+</dl>
+
+
+
+
+<HR>
+
+<!-- ========= END OF CLASS DATA ========= -->
+
+ <!-- ======= START OF BOTTOM NAVBAR ====== -->
+<A NAME="navbar_bottom"><!-- --></A>
+<A HREF="#skip-navbar_bottom" title="Skip navigation links"></A>
+
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0">
+    <TR>
+        <TD COLSPAN=3 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+            <A NAME="navbar_top_firstrow"><!-- --></A>
+            <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3">
+                <TR ALIGN="center" VALIGN="top">
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../overview-summary.html"><SPAN CLASS="NavBarFont1"><B>Overview</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Package</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Class</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Tree</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Deprecated</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../index-all.html"><SPAN CLASS="NavBarFont1"><B>Index</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Help</SPAN>&nbsp;</TD>
+                </TR>
+            </TABLE>
+        </TD>
+        <TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+            <b>Groovy JDK</b></EM>
+        </TD>
+    </TR>
+</TABLE>
+<!-- =========== END OF NAVBAR =========== -->
+
+</BODY>
+</HTML>

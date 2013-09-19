@@ -1,0 +1,364 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<HTML>
+<HEAD>
+<TITLE>JPopupMenu (Groovy JDK)</TITLE>
+
+
+<LINK REL ="stylesheet" TYPE="text/css" HREF="../../stylesheet.css" TITLE="Style">
+
+<SCRIPT type="text/javascript">
+function windowTitle()
+{
+    parent.document.title = document.title;
+}
+</SCRIPT>
+
+</HEAD>
+
+<BODY BGCOLOR="white" onload="windowTitle();">
+
+<!-- ========== START OF NAVBAR ========== -->
+<A NAME="navbar_top"><!-- --></A>
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0">
+    <TR>
+        <TD COLSPAN=3 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+            <A NAME="navbar_top_firstrow"><!-- --></A>
+            <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3">
+                <TR ALIGN="center" VALIGN="top">
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../overview-summary.html"><SPAN CLASS="NavBarFont1"><B>Overview</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Package</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Class</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Tree</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Deprecated</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../index-all.html"><SPAN CLASS="NavBarFont1"><B>Index</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Help</SPAN>&nbsp;</TD>
+                </TR>
+            </TABLE>
+        </TD>
+        <TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+            <b>Groovy JDK</b></EM>
+        </TD>
+    </TR>
+</TABLE>
+<!-- =========== END OF NAVBAR =========== -->
+
+<!-- ======== START OF CLASS DATA ======== -->
+<H2>
+<SPAN style="font-size:12px;">
+javax.swing</SPAN>
+<BR>
+Class JPopupMenu</H2>
+
+<!-- ========== METHOD SUMMARY =========== -->
+
+<A NAME="method_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><SPAN style="font-size:24px;">
+<B>Method Summary</B></SPAN></TH>
+</TR>
+
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Iterator.html' title='JDK class in java.util'>Iterator</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#iterator()">iterator</A></B>()</CODE>
+<BR>
+Returns an <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Iterator.html' title='JDK class in java.util'>Iterator</a> which traverses the JPopupMenu one MenuElement at a time.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/javax/swing/JPopupMenu.html' title='JDK class in javax.swing'>JPopupMenu</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#leftShift(javax.swing.Action)">leftShift</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/javax/swing/Action.html' title='JDK class in javax.swing'>Action</a> action)</CODE>
+<BR>
+Overloads the left shift operator to provide an easy way to add
+components to a popupMenu.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/javax/swing/JPopupMenu.html' title='JDK class in javax.swing'>JPopupMenu</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#leftShift(java.awt.Component)">leftShift</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/awt/Component.html' title='JDK class in java.awt'>Component</a> component)</CODE>
+<BR>
+Overloads the left shift operator to provide an easy way to add
+components to a popupMenu.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/javax/swing/JPopupMenu.html' title='JDK class in javax.swing'>JPopupMenu</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#leftShift(javax.swing.JMenuItem)">leftShift</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/javax/swing/JMenuItem.html' title='JDK class in javax.swing'>JMenuItem</a> item)</CODE>
+<BR>
+Overloads the left shift operator to provide an easy way to add
+components to a popupMenu.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/javax/swing/JPopupMenu.html' title='JDK class in javax.swing'>JPopupMenu</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#leftShift(java.lang.String)">leftShift</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> str)</CODE>
+<BR>
+Overloads the left shift operator to provide an easy way to add
+components to a popupMenu.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/javax/swing/JPopupMenu.html' title='JDK class in javax.swing'>JPopupMenu</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#leftShift(groovy.lang.GString)">leftShift</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/GString.html' title='Groovy class in groovy.lang'>GString</a> gstr)</CODE>
+<BR>
+Overloads the left shift operator to provide an easy way to add
+components to a popupMenu.
+</TD>
+</TR>
+
+</TABLE>
+&nbsp;
+
+
+<!-- ============ METHOD DETAIL ========== -->
+
+<A NAME="method_detail"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="1"><SPAN style="font-size:24px;">
+<B>Method Detail</B></SPAN></TH>
+</TR>
+</TABLE>
+
+
+
+<A name="iterator()"><!-- --></A><H3>iterator</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Iterator.html' title='JDK class in java.util'>Iterator</a> <B>iterator</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Returns an <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Iterator.html' title='JDK class in java.util'>Iterator</a> which traverses the JPopupMenu one MenuElement at a time.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>an Iterator for a JPopupMenu</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.6.4</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="leftShift(javax.swing.Action)"><!-- --></A><H3>leftShift</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/javax/swing/JPopupMenu.html' title='JDK class in javax.swing'>JPopupMenu</a> <B>leftShift</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/javax/swing/Action.html' title='JDK class in javax.swing'>Action</a> action)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Overloads the left shift operator to provide an easy way to add
+components to a popupMenu.<p></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>action</CODE> -  an action to be added to the popupMenu..</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>same popupMenu, after the value was added to it.</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.6.4</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="leftShift(java.awt.Component)"><!-- --></A><H3>leftShift</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/javax/swing/JPopupMenu.html' title='JDK class in javax.swing'>JPopupMenu</a> <B>leftShift</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/awt/Component.html' title='JDK class in java.awt'>Component</a> component)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Overloads the left shift operator to provide an easy way to add
+components to a popupMenu.<p></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>component</CODE> -  a component to be added to the popupMenu..</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>same popupMenu, after the value was added to it.</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.6.4</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="leftShift(javax.swing.JMenuItem)"><!-- --></A><H3>leftShift</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/javax/swing/JPopupMenu.html' title='JDK class in javax.swing'>JPopupMenu</a> <B>leftShift</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/javax/swing/JMenuItem.html' title='JDK class in javax.swing'>JMenuItem</a> item)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Overloads the left shift operator to provide an easy way to add
+components to a popupMenu.<p></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>item</CODE> -  an item to be added to the popupMenu..</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>same popupMenu, after the value was added to it.</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.6.4</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="leftShift(java.lang.String)"><!-- --></A><H3>leftShift</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/javax/swing/JPopupMenu.html' title='JDK class in javax.swing'>JPopupMenu</a> <B>leftShift</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> str)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Overloads the left shift operator to provide an easy way to add
+components to a popupMenu.<p></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>str</CODE> -   a String to be added to the popupMenu..</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>same popupMenu, after the value was added to it.</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.6.4</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="leftShift(groovy.lang.GString)"><!-- --></A><H3>leftShift</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/javax/swing/JPopupMenu.html' title='JDK class in javax.swing'>JPopupMenu</a> <B>leftShift</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/GString.html' title='Groovy class in groovy.lang'>GString</a> gstr)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Overloads the left shift operator to provide an easy way to add
+components to a popupMenu.<p></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>gstr</CODE> -  a GString to be added to the popupMenu..</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>same popupMenu, after the value was added to it.</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.6.4</DD>
+</dl>
+
+
+
+
+<HR>
+
+<!-- ========= END OF CLASS DATA ========= -->
+
+ <!-- ======= START OF BOTTOM NAVBAR ====== -->
+<A NAME="navbar_bottom"><!-- --></A>
+<A HREF="#skip-navbar_bottom" title="Skip navigation links"></A>
+
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0">
+    <TR>
+        <TD COLSPAN=3 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+            <A NAME="navbar_top_firstrow"><!-- --></A>
+            <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3">
+                <TR ALIGN="center" VALIGN="top">
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../overview-summary.html"><SPAN CLASS="NavBarFont1"><B>Overview</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Package</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Class</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Tree</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Deprecated</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../index-all.html"><SPAN CLASS="NavBarFont1"><B>Index</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Help</SPAN>&nbsp;</TD>
+                </TR>
+            </TABLE>
+        </TD>
+        <TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+            <b>Groovy JDK</b></EM>
+        </TD>
+    </TR>
+</TABLE>
+<!-- =========== END OF NAVBAR =========== -->
+
+</BODY>
+</HTML>

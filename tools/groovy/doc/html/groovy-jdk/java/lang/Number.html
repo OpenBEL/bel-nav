@@ -1,0 +1,1677 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<HTML>
+<HEAD>
+<TITLE>Number (Groovy JDK)</TITLE>
+
+
+<LINK REL ="stylesheet" TYPE="text/css" HREF="../../stylesheet.css" TITLE="Style">
+
+<SCRIPT type="text/javascript">
+function windowTitle()
+{
+    parent.document.title = document.title;
+}
+</SCRIPT>
+
+</HEAD>
+
+<BODY BGCOLOR="white" onload="windowTitle();">
+
+<!-- ========== START OF NAVBAR ========== -->
+<A NAME="navbar_top"><!-- --></A>
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0">
+    <TR>
+        <TD COLSPAN=3 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+            <A NAME="navbar_top_firstrow"><!-- --></A>
+            <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3">
+                <TR ALIGN="center" VALIGN="top">
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../overview-summary.html"><SPAN CLASS="NavBarFont1"><B>Overview</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Package</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Class</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Tree</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Deprecated</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../index-all.html"><SPAN CLASS="NavBarFont1"><B>Index</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Help</SPAN>&nbsp;</TD>
+                </TR>
+            </TABLE>
+        </TD>
+        <TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+            <b>Groovy JDK</b></EM>
+        </TD>
+    </TR>
+</TABLE>
+<!-- =========== END OF NAVBAR =========== -->
+
+<!-- ======== START OF CLASS DATA ======== -->
+<H2>
+<SPAN style="font-size:12px;">
+java.lang</SPAN>
+<BR>
+Class Number</H2>
+
+<!-- ========== METHOD SUMMARY =========== -->
+
+<A NAME="method_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><SPAN style="font-size:24px;">
+<B>Method Summary</B></SPAN></TH>
+</TR>
+
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>int</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#abs()">abs</A></B>()</CODE>
+<BR>
+Get the absolute value
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#and(java.lang.Number)">and</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> right)</CODE>
+<BR>
+Bitwise AND together two Numbers.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>boolean</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#asBoolean()">asBoolean</A></B>()</CODE>
+<BR>
+Coerce a number to a boolean value.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#asType(java.lang.Class)">asType</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Class.html' title='JDK class in java.lang'>Class</a> c)</CODE>
+<BR>
+Transform this number to a the given type, using the 'as' operator.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>int</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#compareTo(java.lang.Character)">compareTo</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Character.html' title='JDK class in java.lang'>Character</a> right)</CODE>
+<BR>
+Compare a Number and a Character. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>int</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#compareTo(java.lang.Number)">compareTo</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> right)</CODE>
+<BR>
+Compare two Numbers.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#div(java.lang.Character)">div</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Character.html' title='JDK class in java.lang'>Character</a> right)</CODE>
+<BR>
+Divide a Number by a Character. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#div(java.lang.Number)">div</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> right)</CODE>
+<BR>
+Divide two Numbers.
+
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>void</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#downto(java.lang.Number, groovy.lang.Closure)">downto</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> to, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Iterates from this number down to the given number, inclusive,
+decrementing by one each time.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#intdiv(java.lang.Character)">intdiv</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Character.html' title='JDK class in java.lang'>Character</a> right)</CODE>
+<BR>
+Integer Divide a Number by a Character. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#intdiv(java.lang.Number)">intdiv</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> right)</CODE>
+<BR>
+Integer Divide two Numbers.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>boolean</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#isCase(java.lang.Number)">isCase</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> switchValue)</CODE>
+<BR>
+Special 'case' implementation for all numbers, which delegates to the
+<code>compareTo()</code> method for comparing numbers of different
+types.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#leftShift(java.lang.Number)">leftShift</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> operand)</CODE>
+<BR>
+Implementation of the left shift operator for integral types.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#minus(java.lang.Character)">minus</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Character.html' title='JDK class in java.lang'>Character</a> right)</CODE>
+<BR>
+Subtract a Character from a Number. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#minus(java.lang.Number)">minus</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> right)</CODE>
+<BR>
+Subtraction of two Numbers.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#mod(java.lang.Number)">mod</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> right)</CODE>
+<BR>
+Performs a division modulus operation.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#multiply(java.lang.Character)">multiply</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Character.html' title='JDK class in java.lang'>Character</a> right)</CODE>
+<BR>
+Multiply a Number by a Character. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#multiply(java.lang.Number)">multiply</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> right)</CODE>
+<BR>
+Multiply two Numbers.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#next()">next</A></B>()</CODE>
+<BR>
+Increment a Number by one.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#or(java.lang.Number)">or</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> right)</CODE>
+<BR>
+Bitwise OR together two numbers.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#plus(java.lang.Character)">plus</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Character.html' title='JDK class in java.lang'>Character</a> right)</CODE>
+<BR>
+Add a Number and a Character.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#plus(java.lang.String)">plus</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> right)</CODE>
+<BR>
+Appends a String to the string representation of this number.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#plus(java.lang.Number)">plus</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> right)</CODE>
+<BR>
+Add two numbers and return the result.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#power(java.lang.Number)">power</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> exponent)</CODE>
+<BR>
+Power of a Number to a certain exponent.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#previous()">previous</A></B>()</CODE>
+<BR>
+Decrement a Number by one.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#rightShift(java.lang.Number)">rightShift</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> operand)</CODE>
+<BR>
+Implementation of the right shift operator for integral types.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#rightShiftUnsigned(java.lang.Number)">rightShiftUnsigned</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> operand)</CODE>
+<BR>
+Implementation of the right shift (unsigned) operator for integral types.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>void</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#step(java.lang.Number, java.lang.Number, groovy.lang.Closure)">step</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> to, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> stepNumber, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Iterates from this number up to the given number using a step increment.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>void</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#times(groovy.lang.Closure)">times</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Executes the closure this many times, starting from zero.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/math/BigDecimal.html' title='JDK class in java.math'>BigDecimal</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#toBigDecimal()">toBigDecimal</A></B>()</CODE>
+<BR>
+Transform a Number into a BigDecimal
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/math/BigInteger.html' title='JDK class in java.math'>BigInteger</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#toBigInteger()">toBigInteger</A></B>()</CODE>
+<BR>
+Transform this Number into a BigInteger.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Double.html' title='JDK class in java.lang'>Double</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#toDouble()">toDouble</A></B>()</CODE>
+<BR>
+Transform a Number into a Double
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Float.html' title='JDK class in java.lang'>Float</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#toFloat()">toFloat</A></B>()</CODE>
+<BR>
+Transform a Number into a Float
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Integer.html' title='JDK class in java.lang'>Integer</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#toInteger()">toInteger</A></B>()</CODE>
+<BR>
+Transform a Number into an Integer
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Long.html' title='JDK class in java.lang'>Long</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#toLong()">toLong</A></B>()</CODE>
+<BR>
+Transform a Number into a Long
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#unaryMinus()">unaryMinus</A></B>()</CODE>
+<BR>
+Negates the number.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>void</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#upto(java.lang.Number, groovy.lang.Closure)">upto</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> to, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Iterates from this number up to the given number, inclusive,
+incrementing by one each time.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#xor(java.lang.Number)">xor</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> right)</CODE>
+<BR>
+Bitwise XOR together two Numbers.  
+</TD>
+</TR>
+
+</TABLE>
+&nbsp;
+
+
+<!-- ============ METHOD DETAIL ========== -->
+
+<A NAME="method_detail"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="1"><SPAN style="font-size:24px;">
+<B>Method Detail</B></SPAN></TH>
+</TR>
+</TABLE>
+
+
+
+<A name="abs()"><!-- --></A><H3>abs</H3>
+<PRE>public int <B>abs</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Get the absolute value</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>the absolute value of that Number</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="and(java.lang.Number)"><!-- --></A><H3>and</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> <B>and</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> right)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Bitwise AND together two Numbers.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>right</CODE> -  another Number to bitwise AND.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the bitwise AND of both Numbers</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="asBoolean()"><!-- --></A><H3>asBoolean</H3>
+<PRE>public boolean <B>asBoolean</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Coerce a number to a boolean value.
+A number is coerced to false if its double value is equal to 0, and to true otherwise,
+and to true otherwise.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>the boolean value</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="asType(java.lang.Class)"><!-- --></A><H3>asType</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>asType</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Class.html' title='JDK class in java.lang'>Class</a> c)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Transform this number to a the given type, using the 'as' operator.  The
+following types are supported in addition to the default
+<a href='../../java/lang/Object.html#asType(java.lang.Class)' title='GDK enhancement for java.lang.Object'>Object#asType</a>:
+<ul>
+ <li>BigDecimal</li>
+ <li>BigInteger</li>
+ <li>Double</li>
+ <li>Float</li>
+</ul></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>c</CODE> -  the desired type of the transformed result.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>an instance of the given type</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="compareTo(java.lang.Character)"><!-- --></A><H3>compareTo</H3>
+<PRE>public int <B>compareTo</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Character.html' title='JDK class in java.lang'>Character</a> right)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Compare a Number and a Character. The ordinal value of the Character
+is used in the comparison (the ordinal value is the unicode
+value which for simple character sets is the ASCII value).</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>right</CODE> -  a Character.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the result of the comparison</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="compareTo(java.lang.Number)"><!-- --></A><H3>compareTo</H3>
+<PRE>public int <B>compareTo</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> right)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Compare two Numbers.  Equality (==) for numbers dispatches to this.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>right</CODE> -  another Number to compare to.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the comparison of both numbers</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="div(java.lang.Character)"><!-- --></A><H3>div</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> <B>div</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Character.html' title='JDK class in java.lang'>Character</a> right)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Divide a Number by a Character. The ordinal value of the Character
+is used in the division (the ordinal value is the unicode
+value which for simple character sets is the ASCII value).</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>right</CODE> -  a Character.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the Number corresponding to the division of left by right</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="div(java.lang.Number)"><!-- --></A><H3>div</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> <B>div</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> right)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Divide two Numbers.
+
+Note: Method name different from 'divide' to avoid collision with BigInteger method that has
+different semantics.  We want a BigDecimal result rather than a BigInteger.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>right</CODE> -  another Number.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a Number resulting of the divide operation</DD></dl>
+
+
+
+
+
+
+<HR>
+
+
+<A name="downto(java.lang.Number, groovy.lang.Closure)"><!-- --></A><H3>downto</H3>
+<PRE>public void <B>downto</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> to, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates from this number down to the given number, inclusive,
+decrementing by one each time.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>to</CODE> -       another Number to go down to.</DD>
+
+		<DD><CODE>closure</CODE> -  the closure to call.</DD>
+
+    </dl>
+    
+
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="intdiv(java.lang.Character)"><!-- --></A><H3>intdiv</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> <B>intdiv</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Character.html' title='JDK class in java.lang'>Character</a> right)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Integer Divide a Number by a Character. The ordinal value of the Character
+is used in the division (the ordinal value is the unicode
+value which for simple character sets is the ASCII value).</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>right</CODE> -  a Character.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a Number (an Integer) resulting from the integer division operation</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="intdiv(java.lang.Number)"><!-- --></A><H3>intdiv</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> <B>intdiv</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> right)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Integer Divide two Numbers.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>right</CODE> -  another Number.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a Number (an Integer) resulting from the integer division operation</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="isCase(java.lang.Number)"><!-- --></A><H3>isCase</H3>
+<PRE>public boolean <B>isCase</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> switchValue)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Special 'case' implementation for all numbers, which delegates to the
+<code>compareTo()</code> method for comparing numbers of different
+types.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>switchValue</CODE> -  the switch value.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>true if the numbers are deemed equal</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="leftShift(java.lang.Number)"><!-- --></A><H3>leftShift</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> <B>leftShift</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> operand)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Implementation of the left shift operator for integral types.  Non integral
+Number types throw UnsupportedOperationException.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>operand</CODE> -  the shift distance by which to left shift the number.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the resulting number</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="minus(java.lang.Character)"><!-- --></A><H3>minus</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> <B>minus</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Character.html' title='JDK class in java.lang'>Character</a> right)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Subtract a Character from a Number. The ordinal value of the Character
+is used in the subtraction (the ordinal value is the unicode
+value which for simple character sets is the ASCII value).</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>right</CODE> -  a Character.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the Number corresponding to the subtraction of right from left</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="minus(java.lang.Number)"><!-- --></A><H3>minus</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> <B>minus</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> right)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Subtraction of two Numbers.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>right</CODE> -  another Number to subtract to the first one.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the subtraction</DD></dl>
+
+
+
+
+
+
+<HR>
+
+
+<A name="mod(java.lang.Number)"><!-- --></A><H3>mod</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> <B>mod</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> right)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Performs a division modulus operation.  Called by the '%' operator.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>right</CODE> -  another Number to mod.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the modulus result</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="multiply(java.lang.Character)"><!-- --></A><H3>multiply</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> <B>multiply</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Character.html' title='JDK class in java.lang'>Character</a> right)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Multiply a Number by a Character. The ordinal value of the Character
+is used in the multiplication (the ordinal value is the unicode
+value which for simple character sets is the ASCII value).</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>right</CODE> -  a Character.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the multiplication of left by right</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="multiply(java.lang.Number)"><!-- --></A><H3>multiply</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> <B>multiply</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> right)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Multiply two Numbers.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>right</CODE> -  another Number.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the multiplication of both</DD></dl>
+
+
+
+
+
+
+<HR>
+
+
+<A name="next()"><!-- --></A><H3>next</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> <B>next</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Increment a Number by one.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>an incremented Number</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="or(java.lang.Number)"><!-- --></A><H3>or</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> <B>or</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> right)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Bitwise OR together two numbers.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>right</CODE> -  another Number to bitwise OR.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the bitwise OR of both Numbers</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="plus(java.lang.Character)"><!-- --></A><H3>plus</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> <B>plus</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Character.html' title='JDK class in java.lang'>Character</a> right)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Add a Number and a Character.  The ordinal value of the Character
+is used in the addition (the ordinal value is the unicode
+value which for simple character sets is the ASCII value).</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>right</CODE> -  a Character.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>The Number corresponding to the addition of left and right</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Integer.html#valueOf(int)' title='JDK class in java.lang'>Integer#valueOf</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="plus(java.lang.String)"><!-- --></A><H3>plus</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> <B>plus</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> right)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Appends a String to the string representation of this number.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>right</CODE> -  a String.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a String</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="plus(java.lang.Number)"><!-- --></A><H3>plus</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> <B>plus</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> right)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Add two numbers and return the result.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>right</CODE> -  another Number to add.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the addition of both Numbers</DD></dl>
+
+
+
+
+
+
+<HR>
+
+
+<A name="power(java.lang.Number)"><!-- --></A><H3>power</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> <B>power</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> exponent)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Power of a Number to a certain exponent.  Called by the '**' operator.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>exponent</CODE> -  a Number exponent.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a Number to the power of a certain exponent</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="previous()"><!-- --></A><H3>previous</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> <B>previous</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Decrement a Number by one.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>a decremented Number</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="rightShift(java.lang.Number)"><!-- --></A><H3>rightShift</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> <B>rightShift</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> operand)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Implementation of the right shift operator for integral types.  Non integral
+Number types throw UnsupportedOperationException.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>operand</CODE> -  the shift distance by which to right shift the number.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the resulting number</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="rightShiftUnsigned(java.lang.Number)"><!-- --></A><H3>rightShiftUnsigned</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> <B>rightShiftUnsigned</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> operand)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Implementation of the right shift (unsigned) operator for integral types.  Non integral
+Number types throw UnsupportedOperationException.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>operand</CODE> -  the shift distance by which to right shift (unsigned) the number.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the resulting number</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="step(java.lang.Number, java.lang.Number, groovy.lang.Closure)"><!-- --></A><H3>step</H3>
+<PRE>public void <B>step</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> to, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> stepNumber, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates from this number up to the given number using a step increment.
+Each intermediate number is passed to the given closure.  Example:
+<pre>0.step( 10, 2 ) {
+  println it
+}</pre>
+Prints even numbers 0 through 8.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>to</CODE> -          a Number to go up to, exclusive.</DD>
+
+		<DD><CODE>stepNumber</CODE> -  a Number representing the step increment.</DD>
+
+		<DD><CODE>closure</CODE> -     the closure to call.</DD>
+
+    </dl>
+    
+
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="times(groovy.lang.Closure)"><!-- --></A><H3>times</H3>
+<PRE>public void <B>times</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Executes the closure this many times, starting from zero.  The current
+index is passed to the closure each time.
+Example:
+<pre>10.times {
+  println it
+}</pre>
+Prints the numbers 0 through 9.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  the closure to call a number of times.</DD>
+
+    </dl>
+    
+
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="toBigDecimal()"><!-- --></A><H3>toBigDecimal</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/math/BigDecimal.html' title='JDK class in java.math'>BigDecimal</a> <B>toBigDecimal</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Transform a Number into a BigDecimal</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>an BigDecimal</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="toBigInteger()"><!-- --></A><H3>toBigInteger</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/math/BigInteger.html' title='JDK class in java.math'>BigInteger</a> <B>toBigInteger</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Transform this Number into a BigInteger.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>an BigInteger</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="toDouble()"><!-- --></A><H3>toDouble</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Double.html' title='JDK class in java.lang'>Double</a> <B>toDouble</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Transform a Number into a Double</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>an Double</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="toFloat()"><!-- --></A><H3>toFloat</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Float.html' title='JDK class in java.lang'>Float</a> <B>toFloat</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Transform a Number into a Float</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>an Float</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="toInteger()"><!-- --></A><H3>toInteger</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Integer.html' title='JDK class in java.lang'>Integer</a> <B>toInteger</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Transform a Number into an Integer</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>an Integer</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="toLong()"><!-- --></A><H3>toLong</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Long.html' title='JDK class in java.lang'>Long</a> <B>toLong</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Transform a Number into a Long</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>an Long</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="unaryMinus()"><!-- --></A><H3>unaryMinus</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> <B>unaryMinus</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Negates the number.  Equivalent to the '-' operator when it preceeds
+a single operand, i.e. <code>-10</code></DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>the negation of the number</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="upto(java.lang.Number, groovy.lang.Closure)"><!-- --></A><H3>upto</H3>
+<PRE>public void <B>upto</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> to, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates from this number up to the given number, inclusive,
+incrementing by one each time.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>to</CODE> -       another Number to go up to.</DD>
+
+		<DD><CODE>closure</CODE> -  the closure to call.</DD>
+
+    </dl>
+    
+
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="xor(java.lang.Number)"><!-- --></A><H3>xor</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> <B>xor</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> right)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Bitwise XOR together two Numbers.  Called when the '|' operator is used.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>right</CODE> -  another Number to bitwse XOR.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the bitwise XOR of both Numbers</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+<!-- ========= END OF CLASS DATA ========= -->
+
+ <!-- ======= START OF BOTTOM NAVBAR ====== -->
+<A NAME="navbar_bottom"><!-- --></A>
+<A HREF="#skip-navbar_bottom" title="Skip navigation links"></A>
+
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0">
+    <TR>
+        <TD COLSPAN=3 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+            <A NAME="navbar_top_firstrow"><!-- --></A>
+            <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3">
+                <TR ALIGN="center" VALIGN="top">
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../overview-summary.html"><SPAN CLASS="NavBarFont1"><B>Overview</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Package</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Class</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Tree</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Deprecated</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../index-all.html"><SPAN CLASS="NavBarFont1"><B>Index</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Help</SPAN>&nbsp;</TD>
+                </TR>
+            </TABLE>
+        </TD>
+        <TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+            <b>Groovy JDK</b></EM>
+        </TD>
+    </TR>
+</TABLE>
+<!-- =========== END OF NAVBAR =========== -->
+
+</BODY>
+</HTML>

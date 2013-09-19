@@ -1,0 +1,208 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+<title>groovy.mock.interceptor (groovy 2.1.7 API)</title>
+<META NAME="keywords" CONTENT="groovy.mock.interceptor package">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<LINK REL ="stylesheet" TYPE="text/css" HREF="../../../stylesheet.css" TITLE="Style">
+<link href="../../../groovy.ico" type="image/x-icon" rel="shortcut icon">
+<link href="../../../groovy.ico" type="image/x-icon" rel="icon">
+<SCRIPT type="text/javascript">
+function windowTitle()
+{
+    parent.document.title="groovy.mock.interceptor (groovy 2.1.7 API)";
+}
+</SCRIPT>
+<NOSCRIPT>
+</NOSCRIPT>
+
+</head>
+
+<body BGCOLOR="white" onload="windowTitle();">
+<hr>
+
+<!-- ========= START OF TOP NAVBAR ======= -->
+<a name="navbar_top"><!-- --></a>
+<table summary="" width="100%" border="0" cellpadding="1" cellspacing="0">
+<tbody><tr>
+<td colspan="2" class="NavBarCell1" bgcolor="#eeeeff">
+<a name="navbar_top_firstrow"><!-- --></a>
+<table summary="" border="0" cellpadding="0" cellspacing="3">
+  <tbody><tr valign="top" align="center">
+  <td class="NavBarCell1" bgcolor="#eeeeff">    <a href="../../../overview-summary.html"><font class="NavBarFont1"><b>Overview</b></font></a>&nbsp;</td>
+  <td class="NavBarCell1Rev" bgcolor="#ffffff"> &nbsp;<font class="NavBarFont1Rev"><b>Package</b></font>&nbsp;</td>
+  <td class="NavBarCell1" bgcolor="#eeeeff">    <font class="NavBarFont1">Class</font>&nbsp;</td>
+  <!--
+  <td class="NavBarCell1" bgcolor="#eeeeff">    <a href="overview-tree.html"><font class="NavBarFont1"><b>Tree</b></font></a>&nbsp;</td>
+  -->
+  <td class="NavBarCell1" bgcolor="#eeeeff">    <a href="../../../deprecated-list.html"><font class="NavBarFont1"><b>Deprecated</b></font></a>&nbsp;</td>
+  <td class="NavBarCell1" bgcolor="#eeeeff">    <a href="../../../index-all.html"><font class="NavBarFont1"><b>Index</b></font></a>&nbsp;</td>
+  <td class="NavBarCell1" bgcolor="#eeeeff">    <a href="../../../help-doc.html"><font class="NavBarFont1"><b>Help</b></font></a>&nbsp;</td>
+  </tr>
+</tbody></table>
+</td>
+<td rowspan="3" valign="top" align="right"><em>
+    <b>Groovy 2.1.7</b>
+</em>
+</td>
+</tr>
+
+<tr>
+<td class="NavBarCell2" bgcolor="white"><font size="-2">
+&nbsp;PREV&nbsp;
+&nbsp;NEXT</font></td>
+<td class="NavBarCell2" bgcolor="white"><font size="-2">
+  <a href="../../../index.html?groovy/mock/interceptor/package-summary.html" target="_top"><b>FRAMES</b></a>  &nbsp;
+&nbsp;<a href="package-summary.html" target="_top"><b>NO FRAMES</b></a>  &nbsp;
+&nbsp;<script type="text/javascript">
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="../../../allclasses-frame.html"><B>All Classes</B></A>');
+  }
+  //-->
+</script>
+<noscript>
+  <A HREF="../../../allclasses-frame.html"><B>All Classes</B></A>
+</noscript>
+
+
+</font></td>
+</tr>
+</tbody></table>
+<!-- ========= END OF TOP NAVBAR ========= -->
+
+
+<HR>
+<H2>
+Package groovy.mock.interceptor
+</H2>
+
+The groovy.mock.interceptor is an all-groovy mock testing library.</p>
+    <p>Terms:</p>
+    <dl>
+        <dt>Collaborator</dt>
+        <dd>An ordinary Groovy or Java class that's instance or class methods
+        are to be called. Calling them can be time consuming or produce side effects that
+        are unwanted when testing (e.g. database operations). </dd>
+
+        <dt>Caller</dt>
+        <dd>A Groovy Object that calls methods on the Collaborator, i.e.
+        collaborates with it.</dd>
+
+        <dt>Mock</dt>
+        <dd>An object that can be used to augment the Collaborator.
+        Method calls to the Collaborator will be handled by the Mock, showing a <em>demanded</em>
+        <em>behavior</em>. Method calls are <em>expected</em> to occur <em>strictly</em> in the <em>demanded</em>
+        sequence with a given <em>range</em> of cardinality. The <em>use</em> of a Mock implicitly
+        ends with <em>verifying</em> the <em>expectations</em>.
+        </dd>
+
+        <dt>Stub</dt>
+        <dd>Much like a Mock but the <em>expectation</em> about sequences of method calls on the Collaborator is
+        <em>loose</em>, i.e. calls may occur out of the demanded order as long as the <em>ranges</em>
+        of cardinality are met. The <em>use</em> of a Stub does <em>not</em> end with an implicit
+        <em>verification</em> since the stubbing effect is typically asserted on the Caller.
+        An explicit call to <em>verify</em> can be issued to assert all demanded method call
+        have been effected with the specified cardinality.</dd>
+    </dl>
+
+    <p>Features:</p>
+    <ul>
+        <li>typical mock style of <em>failing early</em></li>
+        <li>mocks instance and class methods</li>
+        <li>mocks final methods and final Collaborators</li>
+        <li>mocks Groovy and Java Collaborators (but Caller must be groovy)</li>
+        <li>can mock all objects of a given class (or a single Groovy object)</li>
+        <li>mocks even if Collaborator cannot be injected into the Caller</li>
+        <li>mocks even if Collaborator is not accessible on the Caller (no getter)</li>
+        <li>demanded calls specified via recording calls on the Demand object (EasyMock style).</li>
+        <li>cardinality specified as Ranges, default is 1..1; 'optional' can be achieved with 0..1</li>
+        <li>behavior specified via Closures, allowing static or calculated return values, throwing exceptions,
+            asserting argument values, etc. (even tricky sequence constraints
+            by sharing state in the testMethod scope between the behavior Closures)</li>
+        <li>matching parameter list specified via Closure's parameter list, supporting
+            typed or untyped params, default params, and varargs.</li>
+        <li>not dependent on any external mock library</li>
+    </ul>
+   <p>For an extensive list of usages see the unit tests in this package.
+
+<P>&nbsp;</P>
+
+
+
+
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+    <TR BGCOLOR="#90DDF7" CLASS="TableHeadingColor">
+    <TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+    <B>Class Summary</B></FONT></TH>
+    </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="CallSpec.html" title="class in groovy/mock/interceptor">CallSpec</A></B></TD>
+        <TD></TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="Demand.html" title="class in groovy/mock/interceptor">Demand</A></B></TD>
+        <TD>The object that registers method calls on it for the use with Mocks and Stubs.
+  </TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="Ignore.html" title="class in groovy/mock/interceptor">Ignore</A></B></TD>
+        <TD>Helper object to support convenience "ignore.methodName" notation similar to demand notation.
+ </TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="LooseExpectation.html" title="class in groovy/mock/interceptor">LooseExpectation</A></B></TD>
+        <TD>Expects demanded call cardinalities to match demanded ranges.
+  </TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="MockFor.html" title="class in groovy/mock/interceptor">MockFor</A></B></TD>
+        <TD>MockFor supports (typically unit) testing of classes in isolation by allowing
+ a strictly ordered expectation of the behavior of collaborators to be defined.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="MockInterceptor.html" title="class in groovy/mock/interceptor">MockInterceptor</A></B></TD>
+        <TD>Intercepting calls to the collaborating object and notify the expectation object.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="MockProxyMetaClass.html" title="class in groovy/mock/interceptor">MockProxyMetaClass</A></B></TD>
+        <TD>The ProxyMetaClass for the MockInterceptor.
+ </TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="StrictExpectation.html" title="class in groovy/mock/interceptor">StrictExpectation</A></B></TD>
+        <TD>Expects demanded call cardinalities to match demanded ranges in the sequence of recording.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="StubFor.html" title="class in groovy/mock/interceptor">StubFor</A></B></TD>
+        <TD>StubFor supports (typically unit) testing of classes in isolation by allowing
+ a loosely-ordered expectation of the behavior of collaborators to be defined.</TD>
+        </TR>
+
+</TABLE>
+&nbsp;
+<P>
+<DL>
+</DL>
+<hr>
+    
+
+
+
+
+
+
+<p>Copyright &amp;copy; 2003-2013 The Codehaus. All rights reserved.</p>
+<hr>
+</body>
+</html>

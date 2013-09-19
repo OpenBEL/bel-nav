@@ -1,0 +1,1131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<HTML>
+<HEAD>
+<TITLE>Character (Groovy JDK)</TITLE>
+
+
+<LINK REL ="stylesheet" TYPE="text/css" HREF="../../stylesheet.css" TITLE="Style">
+
+<SCRIPT type="text/javascript">
+function windowTitle()
+{
+    parent.document.title = document.title;
+}
+</SCRIPT>
+
+</HEAD>
+
+<BODY BGCOLOR="white" onload="windowTitle();">
+
+<!-- ========== START OF NAVBAR ========== -->
+<A NAME="navbar_top"><!-- --></A>
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0">
+    <TR>
+        <TD COLSPAN=3 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+            <A NAME="navbar_top_firstrow"><!-- --></A>
+            <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3">
+                <TR ALIGN="center" VALIGN="top">
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../overview-summary.html"><SPAN CLASS="NavBarFont1"><B>Overview</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Package</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Class</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Tree</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Deprecated</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../index-all.html"><SPAN CLASS="NavBarFont1"><B>Index</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Help</SPAN>&nbsp;</TD>
+                </TR>
+            </TABLE>
+        </TD>
+        <TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+            <b>Groovy JDK</b></EM>
+        </TD>
+    </TR>
+</TABLE>
+<!-- =========== END OF NAVBAR =========== -->
+
+<!-- ======== START OF CLASS DATA ======== -->
+<H2>
+<SPAN style="font-size:12px;">
+java.lang</SPAN>
+<BR>
+Class Character</H2>
+
+<!-- ========== METHOD SUMMARY =========== -->
+
+<A NAME="method_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><SPAN style="font-size:24px;">
+<B>Method Summary</B></SPAN></TH>
+</TR>
+
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>boolean</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#asBoolean()">asBoolean</A></B>()</CODE>
+<BR>
+Coerce a character to a boolean value.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>int</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#compareTo(java.lang.Number)">compareTo</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> right)</CODE>
+<BR>
+Compare a Character and a Number. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>int</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#compareTo(java.lang.Character)">compareTo</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Character.html' title='JDK class in java.lang'>Character</a> right)</CODE>
+<BR>
+Compare two Characters. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#div(java.lang.Number)">div</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> right)</CODE>
+<BR>
+Divide a Character by a Number. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#div(java.lang.Character)">div</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Character.html' title='JDK class in java.lang'>Character</a> right)</CODE>
+<BR>
+Divide one Character by another. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#intdiv(java.lang.Number)">intdiv</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> right)</CODE>
+<BR>
+Integer Divide a Character by a Number. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#intdiv(java.lang.Character)">intdiv</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Character.html' title='JDK class in java.lang'>Character</a> right)</CODE>
+<BR>
+Integer Divide two Characters. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>boolean</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#isDigit()">isDigit</A></B>()</CODE>
+<BR>
+Determines if a character is a digit.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>boolean</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#isLetter()">isLetter</A></B>()</CODE>
+<BR>
+Determines if a character is a letter.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>boolean</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#isLetterOrDigit()">isLetterOrDigit</A></B>()</CODE>
+<BR>
+Determines if a character is a letter or digit.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>boolean</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#isLowerCase()">isLowerCase</A></B>()</CODE>
+<BR>
+Determine if a Character is lowercase.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>boolean</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#isUpperCase()">isUpperCase</A></B>()</CODE>
+<BR>
+Determine if a Character is uppercase.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>boolean</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#isWhitespace()">isWhitespace</A></B>()</CODE>
+<BR>
+Determines if a character is a whitespace character.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#minus(java.lang.Number)">minus</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> right)</CODE>
+<BR>
+Subtract a Number from a Character. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#minus(java.lang.Character)">minus</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Character.html' title='JDK class in java.lang'>Character</a> right)</CODE>
+<BR>
+Subtract one Character from another. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#multiply(java.lang.Number)">multiply</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> right)</CODE>
+<BR>
+Multiply a Character by a Number. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#multiply(java.lang.Character)">multiply</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Character.html' title='JDK class in java.lang'>Character</a> right)</CODE>
+<BR>
+Multiply two Characters. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Character.html' title='JDK class in java.lang'>Character</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#next()">next</A></B>()</CODE>
+<BR>
+Increment a Character by one.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#plus(java.lang.Number)">plus</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> right)</CODE>
+<BR>
+Add a Character and a Number. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#plus(java.lang.Character)">plus</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Character.html' title='JDK class in java.lang'>Character</a> right)</CODE>
+<BR>
+Add one Character to another. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Character.html' title='JDK class in java.lang'>Character</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#previous()">previous</A></B>()</CODE>
+<BR>
+Decrement a Character by one.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>char</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#toLowerCase()">toLowerCase</A></B>()</CODE>
+<BR>
+Converts the character to lowercase.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>char</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#toUpperCase()">toUpperCase</A></B>()</CODE>
+<BR>
+Converts the character to uppercase.
+
+</TD>
+</TR>
+
+</TABLE>
+&nbsp;
+
+
+<!-- ============ METHOD DETAIL ========== -->
+
+<A NAME="method_detail"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="1"><SPAN style="font-size:24px;">
+<B>Method Detail</B></SPAN></TH>
+</TR>
+</TABLE>
+
+
+
+<A name="asBoolean()"><!-- --></A><H3>asBoolean</H3>
+<PRE>public boolean <B>asBoolean</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Coerce a character to a boolean value.
+A character is coerced to false if it's character value is equal to 0,
+and to true otherwise.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>the boolean value</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="compareTo(java.lang.Number)"><!-- --></A><H3>compareTo</H3>
+<PRE>public int <B>compareTo</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> right)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Compare a Character and a Number. The ordinal value of the Character
+is used in the comparison (the ordinal value is the unicode
+value which for simple character sets is the ASCII value).</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>right</CODE> -  a Number.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the result of the comparison</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="compareTo(java.lang.Character)"><!-- --></A><H3>compareTo</H3>
+<PRE>public int <B>compareTo</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Character.html' title='JDK class in java.lang'>Character</a> right)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Compare two Characters. The ordinal values of the Characters
+are compared (the ordinal value is the unicode
+value which for simple character sets is the ASCII value).</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>right</CODE> -  a Character.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the result of the comparison</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="div(java.lang.Number)"><!-- --></A><H3>div</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> <B>div</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> right)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Divide a Character by a Number. The ordinal value of the Character
+is used in the division (the ordinal value is the unicode
+value which for simple character sets is the ASCII value).</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>right</CODE> -  a Number.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the Number corresponding to the division of left by right</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="div(java.lang.Character)"><!-- --></A><H3>div</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> <B>div</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Character.html' title='JDK class in java.lang'>Character</a> right)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Divide one Character by another. The ordinal values of the Characters
+are used in the division (the ordinal value is the unicode
+value which for simple character sets is the ASCII value).</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>right</CODE> -  another Character.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the Number corresponding to the division of left by right</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="intdiv(java.lang.Number)"><!-- --></A><H3>intdiv</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> <B>intdiv</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> right)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Integer Divide a Character by a Number. The ordinal value of the Character
+is used in the division (the ordinal value is the unicode
+value which for simple character sets is the ASCII value).</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>right</CODE> -  a Number.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a Number (an Integer) resulting from the integer division operation</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="intdiv(java.lang.Character)"><!-- --></A><H3>intdiv</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> <B>intdiv</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Character.html' title='JDK class in java.lang'>Character</a> right)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Integer Divide two Characters. The ordinal values of the Characters
+are used in the division (the ordinal value is the unicode
+value which for simple character sets is the ASCII value).</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>right</CODE> -  another Character.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a Number (an Integer) resulting from the integer division operation</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="isDigit()"><!-- --></A><H3>isDigit</H3>
+<PRE>public boolean <B>isDigit</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Determines if a character is a digit.
+Synonym for 'Character.isDigit(this)'.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>true if the character is a digit</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.7</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Character.html#isDigit(char)' title='JDK class in java.lang'>Character#isDigit</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="isLetter()"><!-- --></A><H3>isLetter</H3>
+<PRE>public boolean <B>isLetter</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Determines if a character is a letter.
+Synonym for 'Character.isLetter(this)'.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>true if the character is a letter</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.7</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Character.html#isLetter(char)' title='JDK class in java.lang'>Character#isLetter</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="isLetterOrDigit()"><!-- --></A><H3>isLetterOrDigit</H3>
+<PRE>public boolean <B>isLetterOrDigit</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Determines if a character is a letter or digit.
+Synonym for 'Character.isLetterOrDigit(this)'.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>true if the character is a letter or digit</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.7</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Character.html#isLetterOrDigit(char)' title='JDK class in java.lang'>Character#isLetterOrDigit</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="isLowerCase()"><!-- --></A><H3>isLowerCase</H3>
+<PRE>public boolean <B>isLowerCase</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Determine if a Character is lowercase.
+Synonym for 'Character.isLowerCase(this)'.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>true if the character is lowercase</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.7</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Character.html#isLowerCase(char)' title='JDK class in java.lang'>Character#isLowerCase</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="isUpperCase()"><!-- --></A><H3>isUpperCase</H3>
+<PRE>public boolean <B>isUpperCase</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Determine if a Character is uppercase.
+Synonym for 'Character.isUpperCase(this)'.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>true if the character is uppercase</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.7</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Character.html#isUpperCase(char)' title='JDK class in java.lang'>Character#isUpperCase</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="isWhitespace()"><!-- --></A><H3>isWhitespace</H3>
+<PRE>public boolean <B>isWhitespace</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Determines if a character is a whitespace character.
+Synonym for 'Character.isWhitespace(this)'.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>true if the character is a whitespace character</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.7</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Character.html#isWhitespace(char)' title='JDK class in java.lang'>Character#isWhitespace</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="minus(java.lang.Number)"><!-- --></A><H3>minus</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> <B>minus</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> right)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Subtract a Number from a Character. The ordinal value of the Character
+is used in the subtraction (the ordinal value is the unicode
+value which for simple character sets is the ASCII value).</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>right</CODE> -  a Number.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the Number corresponding to the subtraction of right from left</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="minus(java.lang.Character)"><!-- --></A><H3>minus</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> <B>minus</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Character.html' title='JDK class in java.lang'>Character</a> right)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Subtract one Character from another. The ordinal values of the Characters
+is used in the comparison (the ordinal value is the unicode
+value which for simple character sets is the ASCII value).</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>right</CODE> -  a Character.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the Number corresponding to the subtraction of right from left</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="multiply(java.lang.Number)"><!-- --></A><H3>multiply</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> <B>multiply</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> right)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Multiply a Character by a Number. The ordinal value of the Character
+is used in the multiplication (the ordinal value is the unicode
+value which for simple character sets is the ASCII value).</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>right</CODE> -  a Number.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the Number corresponding to the multiplication of left by right</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="multiply(java.lang.Character)"><!-- --></A><H3>multiply</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> <B>multiply</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Character.html' title='JDK class in java.lang'>Character</a> right)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Multiply two Characters. The ordinal values of the Characters
+are used in the multiplication (the ordinal value is the unicode
+value which for simple character sets is the ASCII value).</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>right</CODE> -  another Character.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the Number corresponding to the multiplication of left by right</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="next()"><!-- --></A><H3>next</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Character.html' title='JDK class in java.lang'>Character</a> <B>next</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Increment a Character by one.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>an incremented Character</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.7</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="plus(java.lang.Number)"><!-- --></A><H3>plus</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> <B>plus</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> right)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Add a Character and a Number. The ordinal value of the Character
+is used in the addition (the ordinal value is the unicode
+value which for simple character sets is the ASCII value).
+This operation will always create a new object for the result,
+while the operands remain unchanged.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>right</CODE> -  a Number.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the Number corresponding to the addition of left and right</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Integer.html#valueOf(int)' title='JDK class in java.lang'>Integer#valueOf</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="plus(java.lang.Character)"><!-- --></A><H3>plus</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> <B>plus</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Character.html' title='JDK class in java.lang'>Character</a> right)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Add one Character to another. The ordinal values of the Characters
+are used in the addition (the ordinal value is the unicode
+value which for simple character sets is the ASCII value).
+This operation will always create a new object for the result,
+while the operands remain unchanged.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>right</CODE> -  a Character.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the Number corresponding to the addition of left and right</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='../../java/lang/Number.html#plus(java.lang.Character)' title='GDK enhancement for java.lang.Number'>Number#plus</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="previous()"><!-- --></A><H3>previous</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Character.html' title='JDK class in java.lang'>Character</a> <B>previous</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Decrement a Character by one.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>a decremented Character</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.7</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="toLowerCase()"><!-- --></A><H3>toLowerCase</H3>
+<PRE>public char <B>toLowerCase</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Converts the character to lowercase.
+Synonym for 'Character.toLowerCase(this)'.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>the lowercase equivalent of the character, if any;
+         otherwise, the character itself.</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.7</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Character.html#isLowerCase(char)' title='JDK class in java.lang'>Character#isLowerCase</a>.</DD>
+
+    <DD><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html#toLowerCase()' title='JDK class in java.lang'>String#toLowerCase</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="toUpperCase()"><!-- --></A><H3>toUpperCase</H3>
+<PRE>public char <B>toUpperCase</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Converts the character to uppercase.
+Synonym for 'Character.toUpperCase(this)'.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>the uppercase equivalent of the character, if any;
+         otherwise, the character itself.</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.7</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Character.html#isUpperCase(char)' title='JDK class in java.lang'>Character#isUpperCase</a>.</DD>
+
+    <DD><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html#toUpperCase()' title='JDK class in java.lang'>String#toUpperCase</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+<!-- ========= END OF CLASS DATA ========= -->
+
+ <!-- ======= START OF BOTTOM NAVBAR ====== -->
+<A NAME="navbar_bottom"><!-- --></A>
+<A HREF="#skip-navbar_bottom" title="Skip navigation links"></A>
+
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0">
+    <TR>
+        <TD COLSPAN=3 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+            <A NAME="navbar_top_firstrow"><!-- --></A>
+            <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3">
+                <TR ALIGN="center" VALIGN="top">
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../overview-summary.html"><SPAN CLASS="NavBarFont1"><B>Overview</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Package</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Class</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Tree</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Deprecated</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../index-all.html"><SPAN CLASS="NavBarFont1"><B>Index</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Help</SPAN>&nbsp;</TD>
+                </TR>
+            </TABLE>
+        </TD>
+        <TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+            <b>Groovy JDK</b></EM>
+        </TD>
+    </TR>
+</TABLE>
+<!-- =========== END OF NAVBAR =========== -->
+
+</BODY>
+</HTML>

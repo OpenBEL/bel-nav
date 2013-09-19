@@ -27,18 +27,17 @@ class CreateCyNetwork extends AbstractTask {
     final WsAPI wsAPI
 
     // tunable
-    private ListSingleSelection<String> knName
-
-    // Called by cytoscape
     @Tunable(description = "Knowledge network")
-    ListSingleSelection<String> getKnName() {
-        knName = knName ?: new ListSingleSelection<String>(wsAPI.knowledgeNetworks().keySet().sort())
-    }
+    private ListSingleSelection<String> knName = new ListSingleSelection<String>(wsAPI.knowledgeNetworks().keySet().sort())
 
-    // Called by cytoscape
-    void setKnName(ListSingleSelection<String> lsel) {
-        this.knName = lsel
-    }
+//    @Tunable(description = "Knowledge network")
+//    public ListSingleSelection<String> getKnName() {
+//        knName = knName ?: new ListSingleSelection<String>(wsAPI.knowledgeNetworks().keySet().sort())
+//    }
+//
+//    public void setKnName(ListSingleSelection<String> lsel) {
+//        this.knName = lsel
+//    }
 
     /**
      * {@inheritDoc}

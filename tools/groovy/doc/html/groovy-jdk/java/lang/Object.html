@@ -1,0 +1,2938 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<HTML>
+<HEAD>
+<TITLE>Object (Groovy JDK)</TITLE>
+
+
+<LINK REL ="stylesheet" TYPE="text/css" HREF="../../stylesheet.css" TITLE="Style">
+
+<SCRIPT type="text/javascript">
+function windowTitle()
+{
+    parent.document.title = document.title;
+}
+</SCRIPT>
+
+</HEAD>
+
+<BODY BGCOLOR="white" onload="windowTitle();">
+
+<!-- ========== START OF NAVBAR ========== -->
+<A NAME="navbar_top"><!-- --></A>
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0">
+    <TR>
+        <TD COLSPAN=3 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+            <A NAME="navbar_top_firstrow"><!-- --></A>
+            <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3">
+                <TR ALIGN="center" VALIGN="top">
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../overview-summary.html"><SPAN CLASS="NavBarFont1"><B>Overview</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Package</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Class</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Tree</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Deprecated</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../index-all.html"><SPAN CLASS="NavBarFont1"><B>Index</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Help</SPAN>&nbsp;</TD>
+                </TR>
+            </TABLE>
+        </TD>
+        <TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+            <b>Groovy JDK</b></EM>
+        </TD>
+    </TR>
+</TABLE>
+<!-- =========== END OF NAVBAR =========== -->
+
+<!-- ======== START OF CLASS DATA ======== -->
+<H2>
+<SPAN style="font-size:12px;">
+java.lang</SPAN>
+<BR>
+Class Object</H2>
+
+<!-- ========== METHOD SUMMARY =========== -->
+
+<A NAME="method_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><SPAN style="font-size:24px;">
+<B>Method Summary</B></SPAN></TH>
+</TR>
+
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>void</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#addShutdownHook(groovy.lang.Closure)">addShutdownHook</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Allows the usage of addShutdownHook without getting the runtime first.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>boolean</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#any(groovy.lang.Closure)">any</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Iterates over the contents of an object or collection, and checks whether a
+predicate is valid for at least one element.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>boolean</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#any()">any</A></B>()</CODE>
+<BR>
+Iterates over the elements of a collection, and checks whether at least
+one element is true according to the Groovy Truth.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>boolean</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#asBoolean()">asBoolean</A></B>()</CODE>
+<BR>
+Coerce an object instance to a boolean value.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#asType(java.lang.Class)">asType</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Class.html' title='JDK class in java.lang'>Class</a> type)</CODE>
+<BR>
+Converts a given object to a type. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#collect(groovy.lang.Closure)">collect</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> transform)</CODE>
+<BR>
+Iterates through this aggregate Object transforming each item into a new value using the
+<code>transform</code> closure, returning a list of transformed values.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#collect()">collect</A></B>()</CODE>
+<BR>
+Iterates through this aggregate Object transforming each item into a new value using Closure.IDENTITY
+as a transformer, basically returning a list of items copied from the original object.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#collect(java.util.Collection, groovy.lang.Closure)">collect</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> collector, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> transform)</CODE>
+<BR>
+Iterates through this aggregate Object transforming each item into a new value using the <code>transform</code> closure
+and adding it to the supplied <code>collector</code>.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#dump()">dump</A></B>()</CODE>
+<BR>
+Generates a detailed dump string of an object showing its class,
+hashCode and fields.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#each(groovy.lang.Closure)">each</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Iterates through an aggregate type or data structure,
+passing each item to the given closure.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#eachWithIndex(groovy.lang.Closure)">eachWithIndex</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Iterates through an aggregate type or data structure,
+passing each item and the item's index (a counter starting at
+zero) to the given closure.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>boolean</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#every(groovy.lang.Closure)">every</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Used to determine if the given predicate closure is valid (i.e.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>boolean</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#every()">every</A></B>()</CODE>
+<BR>
+Iterates over every element of a collection, and checks whether all
+elements are <code>true</code> according to the Groovy Truth.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#find(groovy.lang.Closure)">find</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Finds the first value matching the closure condition
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#find()">find</A></B>()</CODE>
+<BR>
+Finds the first item matching the IDENTITY Closure (i.e.&#160;matching Groovy truth).
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#findAll(groovy.lang.Closure)">findAll</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Finds all items matching the closure condition.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#findAll()">findAll</A></B>()</CODE>
+<BR>
+Finds all items matching the IDENTITY Closure (i.e.&#160;matching Groovy truth).
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>int</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#findIndexOf(groovy.lang.Closure)">findIndexOf</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Iterates over the elements of an iterable collection of items and returns
+the index of the first item that matches the condition specified in the closure.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>int</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#findIndexOf(int, groovy.lang.Closure)">findIndexOf</A></B>(int startIndex, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Iterates over the elements of an iterable collection of items, starting from a
+specified startIndex, and returns the index of the first item that matches the
+condition specified in the closure.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#findIndexValues(groovy.lang.Closure)">findIndexValues</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Iterates over the elements of an iterable collection of items and returns
+the index values of the items that match the condition specified in the closure.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#findIndexValues(java.lang.Number, groovy.lang.Closure)">findIndexValues</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> startIndex, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Iterates over the elements of an iterable collection of items, starting from
+a specified startIndex, and returns the index values of the items that match
+the condition specified in the closure.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>int</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#findLastIndexOf(groovy.lang.Closure)">findLastIndexOf</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Iterates over the elements of an iterable collection of items and returns
+the index of the last item that matches the condition specified in the closure.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>int</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#findLastIndexOf(int, groovy.lang.Closure)">findLastIndexOf</A></B>(int startIndex, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Iterates over the elements of an iterable collection of items, starting
+from a specified startIndex, and returns the index of the last item that
+matches the condition specified in the closure.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#findResult(java.lang.Object, groovy.lang.Closure)">findResult</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> defaultResult, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Treats the object as iterable, iterating through the values it represents and returns the first non-null result obtained from calling the closure, otherwise returns the defaultResult.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#findResult(groovy.lang.Closure)">findResult</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Treats the object as iterable, iterating through the values it represents and returns the first non-null result obtained from calling the closure, otherwise returns null.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#getAt(java.lang.String)">getAt</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> property)</CODE>
+<BR>
+Allows the subscript operator to be used to lookup dynamic property values.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://groovy.codehaus.org/api/groovy/lang/MetaClass.html' title='Groovy class in groovy.lang'>MetaClass</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#getMetaClass()">getMetaClass</A></B>()</CODE>
+<BR>
+Obtains a MetaClass for an object either from the registry or in the case of
+a GroovyObject from the object itself.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#getMetaPropertyValues()">getMetaPropertyValues</A></B>()</CODE>
+<BR>
+Retrieves the list of <a href='http://groovy.codehaus.org/api/groovy/lang/MetaProperty.html' title='Groovy class in groovy.lang'>MetaProperty</a> objects for 'self' and wraps it
+in a list of <a href='http://groovy.codehaus.org/api/groovy/lang/PropertyValue.html' title='Groovy class in groovy.lang'>PropertyValue</a> objects that additionally provide
+the value for each property of 'self'.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#getProperties()">getProperties</A></B>()</CODE>
+<BR>
+Convenience method that calls <a href='../../java/lang/Object.html#getMetaPropertyValues()' title='GDK enhancement for java.lang.Object'>Object#getMetaPropertyValues</a>(self)
+and provides the data in form of simple key/value pairs, i.e.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#grep(java.lang.Object)">grep</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> filter)</CODE>
+<BR>
+Iterates over the collection of items which this Object represents and returns each item that matches
+the given filter - calling the <code><a href='../../java/lang/Object.html#isCase(java.lang.Object)' title='GDK enhancement for java.lang.Object'>Object#isCase</a></code>
+method used by switch statements.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#grep()">grep</A></B>()</CODE>
+<BR>
+Iterates over the collection of items which this Object represents and returns each item that matches
+using the IDENTITY Closure as a filter - effectively returning all elements which satisfy Groovy truth.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://groovy.codehaus.org/api/groovy/lang/MetaProperty.html' title='Groovy class in groovy.lang'>MetaProperty</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#hasProperty(java.lang.String)">hasProperty</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> name)</CODE>
+<BR>
+<p>Returns true of the implementing MetaClass has a property of the given name
+
+<p>Note that this method will only return true for realised properties and does not take into
+account implementation of getProperty or propertyMissing
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#identity(groovy.lang.Closure)">identity</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Allows the closure to be called for the object reference self.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#inject(groovy.lang.Closure)">inject</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Iterates through the given Object, passing in the first value to
+the closure along with the first item. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#inject(U, groovy.lang.Closure)">inject</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> initialValue, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Iterates through the given Object, passing in the initial value to
+the closure along with the first item. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#inspect()">inspect</A></B>()</CODE>
+<BR>
+Inspects returns the String that matches what would be typed into a
+terminal to create this object.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#invokeMethod(java.lang.String, java.lang.Object)">invokeMethod</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> method, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> arguments)</CODE>
+<BR>
+Provide a dynamic method invocation method which can be overloaded in
+classes to implement dynamic proxies easily.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>boolean</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#is(java.lang.Object)">is</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> other)</CODE>
+<BR>
+Identity check. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>boolean</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#isCase(java.lang.Object)">isCase</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> switchValue)</CODE>
+<BR>
+Method for overloading the behavior of the 'case' method in switch statements.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Iterator.html' title='JDK class in java.util'>Iterator</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#iterator()">iterator</A></B>()</CODE>
+<BR>
+Attempts to create an Iterator for the given object by first
+converting it to a Collection.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://groovy.codehaus.org/api/groovy/lang/MetaClass.html' title='Groovy class in groovy.lang'>MetaClass</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#metaClass(groovy.lang.Closure)">metaClass</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Sets/updates the metaclass for a given object to a closure.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>void</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#print(java.lang.Object)">print</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> value)</CODE>
+<BR>
+Print a value formatted Groovy style to self if it
+is a Writer, otherwise to the standard output stream.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>void</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#print(java.io.PrintWriter)">print</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/PrintWriter.html' title='JDK class in java.io'>PrintWriter</a> out)</CODE>
+<BR>
+Print to a console in interactive format.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>void</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#printf(java.lang.String, java.lang.Object[])">printf</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> format, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object[].html' title='JDK class in java.lang'>Object[]</a> values)</CODE>
+<BR>
+Printf to a console (Only works with JDK1.5 or later).
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>void</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#printf(java.lang.String, java.lang.Object)">printf</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> format, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> arg)</CODE>
+<BR>
+Prints a formatted string using the specified format string and
+arguments.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>void</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#println()">println</A></B>()</CODE>
+<BR>
+Print a linebreak to the standard output stream.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>void</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#println(java.lang.Object)">println</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> value)</CODE>
+<BR>
+Print a value formatted Groovy style (followed by a newline) to self
+if it is a Writer, otherwise to the standard output stream.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>void</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#println(java.io.PrintWriter)">println</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/PrintWriter.html' title='JDK class in java.io'>PrintWriter</a> out)</CODE>
+<BR>
+Print to a console in interactive format.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>void</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#putAt(java.lang.String, java.lang.Object)">putAt</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> property, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> newValue)</CODE>
+<BR>
+Allows the subscript operator to be used to set dynamically named property values.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#respondsTo(java.lang.String, java.lang.Object[])">respondsTo</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> name, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object[].html' title='JDK class in java.lang'>Object[]</a> argTypes)</CODE>
+<BR>
+<p>Returns an object satisfying Groovy truth if the implementing MetaClass responds to
+a method with the given name and arguments types.
+
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#respondsTo(java.lang.String)">respondsTo</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> name)</CODE>
+<BR>
+<p>Returns an object satisfying Groovy truth if the implementing MetaClass responds to
+a method with the given name regardless of the arguments.
+
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>void</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#setMetaClass(groovy.lang.MetaClass)">setMetaClass</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/MetaClass.html' title='Groovy class in groovy.lang'>MetaClass</a> metaClass)</CODE>
+<BR>
+Set the metaclass for an object.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>static void</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#sleep(long)">sleep</A></B>(long milliseconds)</CODE>
+<BR>
+Sleep for so many milliseconds, even if interrupted.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>static void</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#sleep(long, groovy.lang.Closure)">sleep</A></B>(long milliseconds, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> onInterrupt)</CODE>
+<BR>
+Sleep for so many milliseconds, using a given closure for interrupt processing.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#split(groovy.lang.Closure)">split</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Splits all items into two lists based on the closure condition.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#sprintf(java.lang.String, java.lang.Object[])">sprintf</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> format, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object[].html' title='JDK class in java.lang'>Object[]</a> values)</CODE>
+<BR>
+Sprintf to a string (Only works with JDK1.5 or later).
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#sprintf(java.lang.String, java.lang.Object)">sprintf</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> format, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> arg)</CODE>
+<BR>
+Returns a formatted string using the specified format string and
+arguments.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#toString()">toString</A></B>()</CODE>
+<BR>
+Create a String representation of this object.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#use(java.lang.Class, groovy.lang.Closure)">use</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Class.html' title='JDK class in java.lang'>Class</a> categoryClass, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Scoped use method
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#use(java.util.List, groovy.lang.Closure)">use</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> categoryClassList, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Scoped use method with list of categories.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#use(java.lang.Object[])">use</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object[].html' title='JDK class in java.lang'>Object[]</a> array)</CODE>
+<BR>
+Allows you to use a list of categories, specifying the list as varargs.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#with(groovy.lang.Closure)">with</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Allows the closure to be called for the object reference self. 
+</TD>
+</TR>
+
+</TABLE>
+&nbsp;
+
+
+<!-- ============ METHOD DETAIL ========== -->
+
+<A NAME="method_detail"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="1"><SPAN style="font-size:24px;">
+<B>Method Detail</B></SPAN></TH>
+</TR>
+</TABLE>
+
+
+
+<A name="addShutdownHook(groovy.lang.Closure)"><!-- --></A><H3>addShutdownHook</H3>
+<PRE>public void <B>addShutdownHook</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Allows the usage of addShutdownHook without getting the runtime first.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  the shutdown hook action.</DD>
+
+    </dl>
+    
+
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="any(groovy.lang.Closure)"><!-- --></A><H3>any</H3>
+<PRE>public boolean <B>any</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates over the contents of an object or collection, and checks whether a
+predicate is valid for at least one element.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  the closure predicate used for matching.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>true   if any iteration for the object matches the closure predicate</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="any()"><!-- --></A><H3>any</H3>
+<PRE>public boolean <B>any</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates over the elements of a collection, and checks whether at least
+one element is true according to the Groovy Truth.
+Equivalent to self.any({element -> element})</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>true if any item in the collection matches the closure predicate</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="asBoolean()"><!-- --></A><H3>asBoolean</H3>
+<PRE>public boolean <B>asBoolean</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Coerce an object instance to a boolean value.
+An object is coerced to true if it's not null, to false if it is null.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>the boolean value</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="asType(java.lang.Class)"><!-- --></A><H3>asType</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>asType</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Class.html' title='JDK class in java.lang'>Class</a> type)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Converts a given object to a type. This method is used through
+the "as" operator and is overloadable as any other operator.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>type</CODE> -  the goal type.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the resulting object</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="collect(groovy.lang.Closure)"><!-- --></A><H3>collect</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>collect</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> transform)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates through this aggregate Object transforming each item into a new value using the
+<code>transform</code> closure, returning a list of transformed values.
+Example:
+<pre class="groovyTestCase">def list = [1, 'a', 1.23, true ]
+def types = list.collect { it.class }
+assert types == [Integer, String, BigDecimal, Boolean]</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>transform</CODE> -  the closure used to transform each item of the aggregate object.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a List of the transformed values</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="collect()"><!-- --></A><H3>collect</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> <B>collect</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates through this aggregate Object transforming each item into a new value using Closure.IDENTITY
+as a transformer, basically returning a list of items copied from the original object.
+<pre class="groovyTestCase">assert [1,2,3] == [1,2,3].iterator().collect()</pre></DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>a List of the transformed values</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.5</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>Closure#IDENTITY.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="collect(java.util.Collection, groovy.lang.Closure)"><!-- --></A><H3>collect</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> <B>collect</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> collector, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> transform)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates through this aggregate Object transforming each item into a new value using the <code>transform</code> closure
+and adding it to the supplied <code>collector</code>.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>collector</CODE> -  the Collection to which the transformed values are added.</DD>
+
+		<DD><CODE>transform</CODE> -  the closure used to transform each item of the aggregate object.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the collector with all transformed values added to it</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="dump()"><!-- --></A><H3>dump</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> <B>dump</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Generates a detailed dump string of an object showing its class,
+hashCode and fields.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>the dump representation</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="each(groovy.lang.Closure)"><!-- --></A><H3>each</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>each</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates through an aggregate type or data structure,
+passing each item to the given closure.  Custom types may utilize this
+method by simply providing an "iterator()" method.  The items returned
+from the resulting iterator will be passed to the closure.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  the closure applied on each element found.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the self Object</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="eachWithIndex(groovy.lang.Closure)"><!-- --></A><H3>eachWithIndex</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>eachWithIndex</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates through an aggregate type or data structure,
+passing each item and the item's index (a counter starting at
+zero) to the given closure.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  a Closure to operate on each item.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the self Object</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="every(groovy.lang.Closure)"><!-- --></A><H3>every</H3>
+<PRE>public boolean <B>every</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Used to determine if the given predicate closure is valid (i.e.&nsbp;returns
+<code>true</code> for all items in this data structure).
+A simple example for a list:
+<pre>def list = [3,4,5]
+def greaterThanTwo = list.every { it > 2 }
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  the closure predicate used for matching.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>true if every iteration of the object matches the closure predicate</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="every()"><!-- --></A><H3>every</H3>
+<PRE>public boolean <B>every</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates over every element of a collection, and checks whether all
+elements are <code>true</code> according to the Groovy Truth.
+Equivalent to <code>self.every({element -> element})</code></DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>true if every item in the collection matches the closure
+        predicate</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="find(groovy.lang.Closure)"><!-- --></A><H3>find</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>find</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Finds the first value matching the closure condition</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  a closure condition.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the first Object found or null if none was found</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="find()"><!-- --></A><H3>find</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>find</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Finds the first item matching the IDENTITY Closure (i.e.&#160;matching Groovy truth).
+<p>
+Example:
+<pre class="groovyTestCase">
+def items = [null, 0, 0.0, false, '', [], 42, 43]
+assert items.find() == 42
+</pre></DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>the first Object found or null if none was found</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.1</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>Closure#IDENTITY.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="findAll(groovy.lang.Closure)"><!-- --></A><H3>findAll</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> <B>findAll</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Finds all items matching the closure condition.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  a closure condition.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a List of the values found</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.6.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="findAll()"><!-- --></A><H3>findAll</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> <B>findAll</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Finds all items matching the IDENTITY Closure (i.e.&#160;matching Groovy truth).
+<p>
+Example:
+<pre class="groovyTestCase">
+def items = [1, 2, 0, false, true, '', 'foo', [], [4, 5], null]
+assert items.findAll() == [1, 2, true, 'foo', [4, 5]]
+</pre></DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>a List of the values found</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.1</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>Closure#IDENTITY.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="findIndexOf(groovy.lang.Closure)"><!-- --></A><H3>findIndexOf</H3>
+<PRE>public int <B>findIndexOf</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates over the elements of an iterable collection of items and returns
+the index of the first item that matches the condition specified in the closure.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  the filter to perform a match on the collection.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>an integer that is the index of the first matched object or -1 if no match was found</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="findIndexOf(int, groovy.lang.Closure)"><!-- --></A><H3>findIndexOf</H3>
+<PRE>public int <B>findIndexOf</B>(int startIndex, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates over the elements of an iterable collection of items, starting from a
+specified startIndex, and returns the index of the first item that matches the
+condition specified in the closure.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>startIndex</CODE> -  start matching from this index.</DD>
+
+		<DD><CODE>closure</CODE> -     the filter to perform a match on the collection.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>an integer that is the index of the first matched object or -1 if no match was found</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="findIndexValues(groovy.lang.Closure)"><!-- --></A><H3>findIndexValues</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>findIndexValues</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates over the elements of an iterable collection of items and returns
+the index values of the items that match the condition specified in the closure.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  the filter to perform a match on the collection.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a list of numbers corresponding to the index values of all matched objects</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.2</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="findIndexValues(java.lang.Number, groovy.lang.Closure)"><!-- --></A><H3>findIndexValues</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>findIndexValues</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> startIndex, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates over the elements of an iterable collection of items, starting from
+a specified startIndex, and returns the index values of the items that match
+the condition specified in the closure.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>startIndex</CODE> -  start matching from this index.</DD>
+
+		<DD><CODE>closure</CODE> -     the filter to perform a match on the collection.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a list of numbers corresponding to the index values of all matched objects</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.2</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="findLastIndexOf(groovy.lang.Closure)"><!-- --></A><H3>findLastIndexOf</H3>
+<PRE>public int <B>findLastIndexOf</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates over the elements of an iterable collection of items and returns
+the index of the last item that matches the condition specified in the closure.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  the filter to perform a match on the collection.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>an integer that is the index of the last matched object or -1 if no match was found</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.2</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="findLastIndexOf(int, groovy.lang.Closure)"><!-- --></A><H3>findLastIndexOf</H3>
+<PRE>public int <B>findLastIndexOf</B>(int startIndex, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates over the elements of an iterable collection of items, starting
+from a specified startIndex, and returns the index of the last item that
+matches the condition specified in the closure.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>startIndex</CODE> -  start matching from this index.</DD>
+
+		<DD><CODE>closure</CODE> -     the filter to perform a match on the collection.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>an integer that is the index of the last matched object or -1 if no match was found</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.2</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="findResult(java.lang.Object, groovy.lang.Closure)"><!-- --></A><H3>findResult</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>findResult</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> defaultResult, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Treats the object as iterable, iterating through the values it represents and returns the first non-null result obtained from calling the closure, otherwise returns the defaultResult.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>defaultResult</CODE> -  an Object that should be returned if all closure results are null.</DD>
+
+		<DD><CODE>closure</CODE> -  a closure that returns a non-null value when processing should stop.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the first non-null result of the closure, otherwise the default value</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.5</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="findResult(groovy.lang.Closure)"><!-- --></A><H3>findResult</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>findResult</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Treats the object as iterable, iterating through the values it represents and returns the first non-null result obtained from calling the closure, otherwise returns null.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  a closure that returns a non-null value when processing should stop.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the first non-null result of the closure</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.5</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="getAt(java.lang.String)"><!-- --></A><H3>getAt</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>getAt</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> property)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Allows the subscript operator to be used to lookup dynamic property values.
+<code>bean[somePropertyNameExpression]</code>. The normal property notation
+of groovy is neater and more concise but only works with compile-time known
+property names.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>property</CODE> -  the property name of interest.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the property value</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="getMetaClass()"><!-- --></A><H3>getMetaClass</H3>
+<PRE>public <a href='http://groovy.codehaus.org/api/groovy/lang/MetaClass.html' title='Groovy class in groovy.lang'>MetaClass</a> <B>getMetaClass</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Obtains a MetaClass for an object either from the registry or in the case of
+a GroovyObject from the object itself.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>The MetaClass</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="getMetaPropertyValues()"><!-- --></A><H3>getMetaPropertyValues</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>getMetaPropertyValues</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Retrieves the list of <a href='http://groovy.codehaus.org/api/groovy/lang/MetaProperty.html' title='Groovy class in groovy.lang'>MetaProperty</a> objects for 'self' and wraps it
+in a list of <a href='http://groovy.codehaus.org/api/groovy/lang/PropertyValue.html' title='Groovy class in groovy.lang'>PropertyValue</a> objects that additionally provide
+the value for each property of 'self'.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>list of {@link groovy.lang.PropertyValue} objects</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://groovy.codehaus.org/api/groovy/util/Expando.html#getMetaPropertyValues()' title='Groovy class in groovy.util'>Expando#getMetaPropertyValues</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="getProperties()"><!-- --></A><H3>getProperties</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> <B>getProperties</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Convenience method that calls <a href='../../java/lang/Object.html#getMetaPropertyValues()' title='GDK enhancement for java.lang.Object'>Object#getMetaPropertyValues</a>(self)
+and provides the data in form of simple key/value pairs, i.e.&nsbp;without
+type() information.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>meta properties as Map of key/value pairs</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="grep(java.lang.Object)"><!-- --></A><H3>grep</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> <B>grep</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> filter)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates over the collection of items which this Object represents and returns each item that matches
+the given filter - calling the <code><a href='../../java/lang/Object.html#isCase(java.lang.Object)' title='GDK enhancement for java.lang.Object'>Object#isCase</a></code>
+method used by switch statements.  This method can be used with different
+kinds of filters like regular expressions, classes, ranges etc.
+Example:
+<pre class="groovyTestCase">
+def list = ['a', 'b', 'aa', 'bc', 3, 4.5]
+assert list.grep( ~/a+/ )  == ['a', 'aa']
+assert list.grep( ~/../ )  == ['aa', 'bc']
+assert list.grep( Number ) == [ 3, 4.5 ]
+assert list.grep{ it.toString().size() == 1 } == [ 'a', 'b', 3 ]
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>filter</CODE> -  the filter to perform on the object (using the <a href='../../java/lang/Object.html#isCase(java.lang.Object)' title='GDK enhancement for java.lang.Object'>Object#isCase</a> method).</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a collection of objects which match the filter</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.6</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="grep()"><!-- --></A><H3>grep</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> <B>grep</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates over the collection of items which this Object represents and returns each item that matches
+using the IDENTITY Closure as a filter - effectively returning all elements which satisfy Groovy truth.
+<p>
+Example:
+<pre class="groovyTestCase">
+def items = [1, 2, 0, false, true, '', 'foo', [], [4, 5], null]
+assert items.grep() == [1, 2, true, 'foo', [4, 5]]
+</pre></DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>a collection of objects which match the filter</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.1</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>Closure#IDENTITY.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="hasProperty(java.lang.String)"><!-- --></A><H3>hasProperty</H3>
+<PRE>public <a href='http://groovy.codehaus.org/api/groovy/lang/MetaProperty.html' title='Groovy class in groovy.lang'>MetaProperty</a> <B>hasProperty</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> name)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD><p>Returns true of the implementing MetaClass has a property of the given name
+
+<p>Note that this method will only return true for realised properties and does not take into
+account implementation of getProperty or propertyMissing</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>name</CODE> -  The name of the property of interest.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>The found MetaProperty or null if it doesn't exist</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.6.1</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://groovy.codehaus.org/api/groovy/lang/MetaObjectProtocol.html#hasProperty(java.lang.Object, java.lang.String)' title='Groovy class in groovy.lang'>MetaObjectProtocol#hasProperty</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="identity(groovy.lang.Closure)"><!-- --></A><H3>identity</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>identity</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Allows the closure to be called for the object reference self.
+Synonym for 'with()'.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  the closure to call on the object.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>result of calling the closure</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="inject(groovy.lang.Closure)"><!-- --></A><H3>inject</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>inject</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates through the given Object, passing in the first value to
+the closure along with the first item. The result is passed back (injected) into
+the closure along with the second item. The new result is injected back into
+the closure along with the third item and so on until further iteration of
+the object is not possible. Also known as foldLeft in functional parlance.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -       a closure.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the result of the last closure call</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.7</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>Collection#inject(Object, Closure).</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="inject(U, groovy.lang.Closure)"><!-- --></A><H3>inject</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>inject</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> initialValue, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates through the given Object, passing in the initial value to
+the closure along with the first item. The result is passed back (injected) into
+the closure along with the second item. The new result is injected back into
+the closure along with the third item and so on until further iteration of
+the object is not possible. Also known as foldLeft in functional parlance.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>initialValue</CODE> -  some initial value.</DD>
+
+		<DD><CODE>closure</CODE> -       a closure.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the result of the last closure call</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.0</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>Collection#inject(Object, Closure).</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="inspect()"><!-- --></A><H3>inspect</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> <B>inspect</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Inspects returns the String that matches what would be typed into a
+terminal to create this object.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>a String that matches what would be typed into a terminal to
+        create this object. e.g. [1, 'hello'].inspect() -> [1, "hello"]</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="invokeMethod(java.lang.String, java.lang.Object)"><!-- --></A><H3>invokeMethod</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>invokeMethod</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> method, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> arguments)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Provide a dynamic method invocation method which can be overloaded in
+classes to implement dynamic proxies easily.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>method</CODE> -     the name of the method to call.</DD>
+
+		<DD><CODE>arguments</CODE> -  the arguments to use.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the result of the method call</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="is(java.lang.Object)"><!-- --></A><H3>is</H3>
+<PRE>public boolean <B>is</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> other)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Identity check. Since == is overridden in Groovy with the meaning of equality
+we need some fallback to check for object identity.  Invoke using the
+'is' method, like so: <code>def same = this.is(that)</code></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>other</CODE> -  an object to compare identity with.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>true if self and other are both references to the same
+        instance, false otherwise</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="isCase(java.lang.Object)"><!-- --></A><H3>isCase</H3>
+<PRE>public boolean <B>isCase</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> switchValue)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Method for overloading the behavior of the 'case' method in switch statements.
+The default implementation handles arrays types but otherwise simply delegates
+to Object#equals, but this may be overridden for other types. In this example:
+<pre> switch( a ) {
+  case b: //some code
+}</pre>
+"some code" is called when <code>b.isCase( a )</code> returns
+<code>true</code>.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>switchValue</CODE> -  the switch value.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>true if the switchValue is deemed to be equal to the caseValue</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="iterator()"><!-- --></A><H3>iterator</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Iterator.html' title='JDK class in java.util'>Iterator</a> <B>iterator</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Attempts to create an Iterator for the given object by first
+converting it to a Collection.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>an Iterator for the given Object.</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://groovy.codehaus.org/api/org/codehaus/groovy/runtime/typehandling/DefaultTypeTransformation.html#asCollection(java.lang.Object)' title='Groovy class in org.codehaus.groovy.runtime.typehandling'>DefaultTypeTransformation#asCollection</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="metaClass(groovy.lang.Closure)"><!-- --></A><H3>metaClass</H3>
+<PRE>public <a href='http://groovy.codehaus.org/api/groovy/lang/MetaClass.html' title='Groovy class in groovy.lang'>MetaClass</a> <B>metaClass</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Sets/updates the metaclass for a given object to a closure.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  the closure representing the new metaclass.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the new metaclass value</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.6.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="print(java.lang.Object)"><!-- --></A><H3>print</H3>
+<PRE>public void <B>print</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> value)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Print a value formatted Groovy style to self if it
+is a Writer, otherwise to the standard output stream.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>value</CODE> -  the value to print.</DD>
+
+    </dl>
+    
+
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="print(java.io.PrintWriter)"><!-- --></A><H3>print</H3>
+<PRE>public void <B>print</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/PrintWriter.html' title='JDK class in java.io'>PrintWriter</a> out)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Print to a console in interactive format.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>out</CODE> -   the PrintWriter used for printing.</DD>
+
+    </dl>
+    
+
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="printf(java.lang.String, java.lang.Object[])"><!-- --></A><H3>printf</H3>
+<PRE>public void <B>printf</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> format, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object[].html' title='JDK class in java.lang'>Object[]</a> values)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Printf to a console (Only works with JDK1.5 or later).</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>format</CODE> -  a format string.</DD>
+
+		<DD><CODE>values</CODE> -  values referenced by the format specifiers in the format string..</DD>
+
+    </dl>
+    
+
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="printf(java.lang.String, java.lang.Object)"><!-- --></A><H3>printf</H3>
+<PRE>public void <B>printf</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> format, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> arg)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Prints a formatted string using the specified format string and
+arguments.
+<p>
+Examples:
+<pre>
+printf ( "Hello, %s!\n" , [ "world" ] as String[] )
+printf ( "Hello, %s!\n" , [ "Groovy" ])
+printf ( "%d + %d = %d\n" , [ 1 , 2 , 1+2 ] as Integer[] )
+printf ( "%d + %d = %d\n" , [ 3 , 3 , 3+3 ])
+
+( 1..5 ).each { printf ( "-- %d\n" , [ it ] as Integer[] ) }
+( 1..5 ).each { printf ( "-- %d\n" , [ it ] as int[] ) }
+( 0x41..0x45 ).each { printf ( "-- %c\n" , [ it ] as char[] ) }
+( 07..011 ).each { printf ( "-- %d\n" , [ it ] as byte[] ) }
+( 7..11 ).each { printf ( "-- %d\n" , [ it ] as short[] ) }
+( 7..11 ).each { printf ( "-- %d\n" , [ it ] as long[] ) }
+( 7..11 ).each { printf ( "-- %5.2f\n" , [ it ] as float[] ) }
+( 7..11 ).each { printf ( "-- %5.2g\n" , [ it ] as double[] ) }
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>format</CODE> -  A format string.</DD>
+
+		<DD><CODE>arg
+
+</CODE> -     Argument which is referenced by the format specifiers in the format
+              string.  The type of <code>arg</code> should be one of Object[], List,
+              int[], short[], byte[], char[], boolean[], long[], float[], or double[]..</DD>
+
+    </dl>
+    
+
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="println()"><!-- --></A><H3>println</H3>
+<PRE>public void <B>println</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Print a linebreak to the standard output stream.</DD>
+</DL>
+
+
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="println(java.lang.Object)"><!-- --></A><H3>println</H3>
+<PRE>public void <B>println</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> value)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Print a value formatted Groovy style (followed by a newline) to self
+if it is a Writer, otherwise to the standard output stream.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>value</CODE> -  the value to print.</DD>
+
+    </dl>
+    
+
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="println(java.io.PrintWriter)"><!-- --></A><H3>println</H3>
+<PRE>public void <B>println</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/PrintWriter.html' title='JDK class in java.io'>PrintWriter</a> out)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Print to a console in interactive format.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>out</CODE> -   the PrintWriter used for printing.</DD>
+
+    </dl>
+    
+
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="putAt(java.lang.String, java.lang.Object)"><!-- --></A><H3>putAt</H3>
+<PRE>public void <B>putAt</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> property, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> newValue)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Allows the subscript operator to be used to set dynamically named property values.
+<code>bean[somePropertyNameExpression] = foo</code>. The normal property notation
+of groovy is neater and more concise but only works with property names which
+are known at compile time.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>property</CODE> -  the name of the property to set.</DD>
+
+		<DD><CODE>newValue</CODE> -  the value to set.</DD>
+
+    </dl>
+    
+
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="respondsTo(java.lang.String, java.lang.Object[])"><!-- --></A><H3>respondsTo</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>respondsTo</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> name, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object[].html' title='JDK class in java.lang'>Object[]</a> argTypes)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD><p>Returns an object satisfying Groovy truth if the implementing MetaClass responds to
+a method with the given name and arguments types.
+
+<p>Note that this method's return value is based on realised methods and does not take into account
+objects or classes that implement invokeMethod or methodMissing
+
+<p>This method is "safe" in that it will always return a value and never throw an exception</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>name</CODE> -  The name of the method of interest.</DD>
+
+		<DD><CODE>argTypes</CODE> -  The argument types to match against.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>A List of MetaMethods matching the argument types which will be empty if no matching methods exist</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.6.0</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://groovy.codehaus.org/api/groovy/lang/MetaObjectProtocol.html#respondsTo(java.lang.Object, java.lang.String, java.lang.Object[])' title='Groovy class in groovy.lang'>MetaObjectProtocol#respondsTo</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="respondsTo(java.lang.String)"><!-- --></A><H3>respondsTo</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>respondsTo</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> name)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD><p>Returns an object satisfying Groovy truth if the implementing MetaClass responds to
+a method with the given name regardless of the arguments.
+
+<p>Note that this method's return value is based on realised methods and does not take into account
+objects or classes that implement invokeMethod or methodMissing
+
+<p>This method is "safe" in that it will always return a value and never throw an exception</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>name</CODE> -  The name of the method of interest.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>A List of MetaMethods matching the given name or an empty list if no matching methods exist</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.6.1</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://groovy.codehaus.org/api/groovy/lang/MetaObjectProtocol.html#respondsTo(java.lang.Object, java.lang.String)' title='Groovy class in groovy.lang'>MetaObjectProtocol#respondsTo</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="setMetaClass(groovy.lang.MetaClass)"><!-- --></A><H3>setMetaClass</H3>
+<PRE>public void <B>setMetaClass</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/MetaClass.html' title='Groovy class in groovy.lang'>MetaClass</a> metaClass)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Set the metaclass for an object.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>metaClass</CODE> -  the new metaclass value.</DD>
+
+    </dl>
+    
+
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.6.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="sleep(long)"><!-- --></A><H3>sleep</H3>
+<PRE>public static void <B>sleep</B>(long milliseconds)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Sleep for so many milliseconds, even if interrupted.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>milliseconds</CODE> -  the number of milliseconds to sleep.</DD>
+
+    </dl>
+    
+
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="sleep(long, groovy.lang.Closure)"><!-- --></A><H3>sleep</H3>
+<PRE>public static void <B>sleep</B>(long milliseconds, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> onInterrupt)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Sleep for so many milliseconds, using a given closure for interrupt processing.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>milliseconds</CODE> -  the number of milliseconds to sleep.</DD>
+
+		<DD><CODE>onInterrupt
+</CODE> -   interrupt handler, InterruptedException is passed to the Closure
+                    as long as it returns false, the sleep continues.</DD>
+
+    </dl>
+    
+
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="split(groovy.lang.Closure)"><!-- --></A><H3>split</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> <B>split</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Splits all items into two lists based on the closure condition.
+The first list contains all items matching the closure expression.
+The second list all those that don't.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  a closure condition.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a List whose first item is the accepted values and whose second item is the rejected values</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.6.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="sprintf(java.lang.String, java.lang.Object[])"><!-- --></A><H3>sprintf</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> <B>sprintf</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> format, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object[].html' title='JDK class in java.lang'>Object[]</a> values)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Sprintf to a string (Only works with JDK1.5 or later).</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>format</CODE> -  a format string.</DD>
+
+		<DD><CODE>values</CODE> -  values referenced by the format specifiers in the format string..</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the resulting formatted string</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="sprintf(java.lang.String, java.lang.Object)"><!-- --></A><H3>sprintf</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> <B>sprintf</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> format, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> arg)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Returns a formatted string using the specified format string and
+arguments.
+<p></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>format</CODE> -  A format string.</DD>
+
+		<DD><CODE>arg
+
+</CODE> -     Argument which is referenced by the format specifiers in the format
+              string.  The type of <code>arg</code> should be one of Object[], List,
+              int[], short[], byte[], char[], boolean[], long[], float[], or double[]..</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the resulting printf'd string</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="toString()"><!-- --></A><H3>toString</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> <B>toString</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Create a String representation of this object.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>a string.</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="use(java.lang.Class, groovy.lang.Closure)"><!-- --></A><H3>use</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>use</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Class.html' title='JDK class in java.lang'>Class</a> categoryClass, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Scoped use method</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>categoryClass</CODE> -  a category class to use.</DD>
+
+		<DD><CODE>closure</CODE> -        the closure to invoke with the category in place.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the value returned from the closure</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="use(java.util.List, groovy.lang.Closure)"><!-- --></A><H3>use</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>use</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> categoryClassList, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Scoped use method with list of categories.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>categoryClassList</CODE> -  a list of category classes.</DD>
+
+		<DD><CODE>closure</CODE> -            the closure to invoke with the categories in place.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the value returned from the closure</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="use(java.lang.Object[])"><!-- --></A><H3>use</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>use</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object[].html' title='JDK class in java.lang'>Object[]</a> array)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Allows you to use a list of categories, specifying the list as varargs.
+<code>use(CategoryClass1, CategoryClass2) { ... }</code>
+This method saves having to wrap the the category
+classes in a list.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>array</CODE> -  a list of category classes and a Closure.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the value returned from the closure</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="with(groovy.lang.Closure)"><!-- --></A><H3>with</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>with</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Allows the closure to be called for the object reference self. <br><br>
+Any method invoked inside the closure will first be invoked on the
+self reference. For instance, the following method calls to the append()
+method are invoked on the StringBuilder instance:
+<pre>
+def b = new StringBuilder().with {
+  append('foo')
+  append('bar')
+  return it
+}
+assert b.toString() == 'foobar'
+</pre>
+This is commonly used to simplify object creation, such as this example:
+<pre>
+def p = new Person().with {
+  firstName = 'John'
+  lastName = 'Doe'
+  return it
+}
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  the closure to call on the object.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>result of calling the closure</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+<!-- ========= END OF CLASS DATA ========= -->
+
+ <!-- ======= START OF BOTTOM NAVBAR ====== -->
+<A NAME="navbar_bottom"><!-- --></A>
+<A HREF="#skip-navbar_bottom" title="Skip navigation links"></A>
+
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0">
+    <TR>
+        <TD COLSPAN=3 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+            <A NAME="navbar_top_firstrow"><!-- --></A>
+            <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3">
+                <TR ALIGN="center" VALIGN="top">
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../overview-summary.html"><SPAN CLASS="NavBarFont1"><B>Overview</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Package</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Class</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Tree</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Deprecated</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../index-all.html"><SPAN CLASS="NavBarFont1"><B>Index</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Help</SPAN>&nbsp;</TD>
+                </TR>
+            </TABLE>
+        </TD>
+        <TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+            <b>Groovy JDK</b></EM>
+        </TD>
+    </TR>
+</TABLE>
+<!-- =========== END OF NAVBAR =========== -->
+
+</BODY>
+</HTML>

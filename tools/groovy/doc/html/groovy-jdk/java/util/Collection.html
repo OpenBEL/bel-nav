@@ -1,0 +1,4359 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<HTML>
+<HEAD>
+<TITLE>Collection (Groovy JDK)</TITLE>
+
+
+<LINK REL ="stylesheet" TYPE="text/css" HREF="../../stylesheet.css" TITLE="Style">
+
+<SCRIPT type="text/javascript">
+function windowTitle()
+{
+    parent.document.title = document.title;
+}
+</SCRIPT>
+
+</HEAD>
+
+<BODY BGCOLOR="white" onload="windowTitle();">
+
+<!-- ========== START OF NAVBAR ========== -->
+<A NAME="navbar_top"><!-- --></A>
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0">
+    <TR>
+        <TD COLSPAN=3 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+            <A NAME="navbar_top_firstrow"><!-- --></A>
+            <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3">
+                <TR ALIGN="center" VALIGN="top">
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../overview-summary.html"><SPAN CLASS="NavBarFont1"><B>Overview</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Package</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Class</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Tree</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Deprecated</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../index-all.html"><SPAN CLASS="NavBarFont1"><B>Index</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Help</SPAN>&nbsp;</TD>
+                </TR>
+            </TABLE>
+        </TD>
+        <TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+            <b>Groovy JDK</b></EM>
+        </TD>
+    </TR>
+</TABLE>
+<!-- =========== END OF NAVBAR =========== -->
+
+<!-- ======== START OF CLASS DATA ======== -->
+<H2>
+<SPAN style="font-size:12px;">
+java.util</SPAN>
+<BR>
+Class Collection</H2>
+
+<!-- ========== METHOD SUMMARY =========== -->
+
+<A NAME="method_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><SPAN style="font-size:24px;">
+<B>Method Summary</B></SPAN></TH>
+</TR>
+
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>boolean</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#addAll(T[])">addAll</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object[].html' title='JDK class in java.lang'>Object[]</a> items)</CODE>
+<BR>
+Modifies the collection by adding all of the elements in the specified array to the collection.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>boolean</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#asBoolean()">asBoolean</A></B>()</CODE>
+<BR>
+Coerce a collection instance to a boolean value.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#asImmutable()">asImmutable</A></B>()</CODE>
+<BR>
+A convenience method for creating an immutable Collection.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#asList()">asList</A></B>()</CODE>
+<BR>
+Converts this Collection to a List. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#asSynchronized()">asSynchronized</A></B>()</CODE>
+<BR>
+A convenience method for creating a synchronized Collection.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#asType(java.lang.Class)">asType</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Class.html' title='JDK class in java.lang'>Class</a> clazz)</CODE>
+<BR>
+Converts the given collection to another type. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#collect(groovy.lang.Closure)">collect</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> transform)</CODE>
+<BR>
+Iterates through this collection transforming each entry into a new value using the <code>transform</code> closure
+returning a list of transformed values.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#collect()">collect</A></B>()</CODE>
+<BR>
+Iterates through this collection transforming each entry into a new value using Closure.IDENTITY
+as a transformer, basically returning a list of items copied from the original collection.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#collect(java.util.Collection, groovy.lang.Closure)">collect</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> collector, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> transform)</CODE>
+<BR>
+Iterates through this collection transforming each value into a new value using the <code>transform</code> closure
+and adding it to the supplied <code>collector</code>.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#collectAll(groovy.lang.Closure)">collectAll</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> transform)</CODE>
+<BR>
+Deprecated alias for collectNested
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#collectAll(java.util.Collection, groovy.lang.Closure)">collectAll</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> collector, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> transform)</CODE>
+<BR>
+Deprecated alias for collectNested
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#collectEntries(groovy.lang.Closure)">collectEntries</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> transform)</CODE>
+<BR>
+Iterates through this Collection transforming each item using the <code>transform</code> closure
+and returning a map of the resulting transformed entries.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#collectEntries()">collectEntries</A></B>()</CODE>
+<BR>
+A variant of collectEntries for Collections using the identity closure as the transform.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#collectEntries(java.util.Map, groovy.lang.Closure)">collectEntries</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> collector, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> transform)</CODE>
+<BR>
+Iterates through this Collection transforming each item using the closure
+as a transformer into a map entry, returning the supplied map with all of the transformed entries added to it.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#collectEntries(java.util.Map)">collectEntries</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> collector)</CODE>
+<BR>
+A variant of collectEntries for Collections using the identity closure as the
+transform and a supplied map as the destination of transformed entries.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#collectMany(groovy.lang.Closure)">collectMany</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> projection)</CODE>
+<BR>
+Projects each item from a source collection to a collection and concatenates (flattens) the resulting collections into a single list.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#collectMany(java.util.Collection, groovy.lang.Closure)">collectMany</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> collector, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> projection)</CODE>
+<BR>
+Projects each item from a source collection to a result collection and concatenates (flattens) the resulting
+collections adding them into the <code>collector</code>.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#collectNested(groovy.lang.Closure)">collectNested</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> transform)</CODE>
+<BR>
+Recursively iterates through this collection transforming each non-Collection value
+into a new value using the closure as a transformer. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#collectNested(java.util.Collection, groovy.lang.Closure)">collectNested</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> collector, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> transform)</CODE>
+<BR>
+Recursively iterates through this collection transforming each non-Collection value
+into a new value using the <code>transform</code> closure. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#combinations()">combinations</A></B>()</CODE>
+<BR>
+Adds GroovyCollections#combinations(Collection) as a method on collections.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>boolean</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#containsAll(java.lang.Object[])">containsAll</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object[].html' title='JDK class in java.lang'>Object[]</a> items)</CODE>
+<BR>
+Returns <tt>true</tt> if this collection contains all of the elements
+in the specified array.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#count(java.lang.Object)">count</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> value)</CODE>
+<BR>
+Counts the number of occurrences of the given value inside this collection.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#count(groovy.lang.Closure)">count</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Counts the number of occurrences which satisfy the given closure from inside this collection.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#countBy(groovy.lang.Closure)">countBy</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Sorts all collection members into groups determined by the supplied mapping
+closure and counts the group size.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>boolean</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#disjoint(java.util.Collection)">disjoint</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> right)</CODE>
+<BR>
+Returns <code>true</code> if the intersection of two collections is empty.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Iterator.html' title='JDK class in java.util'>Iterator</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#eachPermutation(groovy.lang.Closure)">eachPermutation</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Iterates over all permutations of a collection, running a closure for each iteration.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#find(groovy.lang.Closure)">find</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Finds the first value matching the closure condition.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#find()">find</A></B>()</CODE>
+<BR>
+Finds the first item matching the IDENTITY Closure (i.e.&#160;matching Groovy truth).
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#findAll(groovy.lang.Closure)">findAll</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Finds all values matching the closure condition.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#findAll()">findAll</A></B>()</CODE>
+<BR>
+Finds the items matching the IDENTITY Closure (i.e.&#160;matching Groovy truth).
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#findResult(U, groovy.lang.Closure)">findResult</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> defaultResult, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Iterates through the collection calling the given closure for each item but stopping once the first non-null
+result is found and returning that result.&#160;If all are null, the defaultResult is returned.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#findResult(groovy.lang.Closure)">findResult</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Iterates through the collection calling the given closure for each item but stopping once the first non-null
+result is found and returning that result.&#160;If all results are null, null is returned.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#findResults(groovy.lang.Closure)">findResults</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> filteringTransform)</CODE>
+<BR>
+Iterates through the collection transforming items using the supplied closure
+and collecting any non-null results.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#flatten()">flatten</A></B>()</CODE>
+<BR>
+Flatten a collection.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#flatten(groovy.lang.Closure)">flatten</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> flattenUsing)</CODE>
+<BR>
+Flatten a collection.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#getAt(java.lang.String)">getAt</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> property)</CODE>
+<BR>
+Support the subscript operator for Collection.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#grep(java.lang.Object)">grep</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> filter)</CODE>
+<BR>
+Iterates over the collection of items and returns each item that matches
+the given filter - calling the <code><a href='../../java/lang/Object.html#isCase(java.lang.Object)' title='GDK enhancement for java.lang.Object'>Object#isCase</a></code>
+method used by switch statements.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#grep()">grep</A></B>()</CODE>
+<BR>
+Iterates over the collection returning each element that matches
+using the IDENTITY Closure as a filter - effectively returning all elements which satisfy Groovy truth.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#groupBy(groovy.lang.Closure)">groupBy</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Sorts all collection members into groups determined by the
+supplied mapping closure.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#groupBy(java.lang.Object)">groupBy</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> closures)</CODE>
+<BR>
+Sorts all collection members into (sub)groups determined by the supplied
+mapping closures. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#groupBy(java.util.List)">groupBy</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> closures)</CODE>
+<BR>
+Sorts all collection members into (sub)groups determined by the supplied
+mapping closures. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#inject(groovy.lang.Closure)">inject</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Performs the same function as the version of inject that takes an initial value, but
+uses the head of the Collection as the initial value, and iterates over the tail.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#inject(U, groovy.lang.Closure)">inject</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> initialValue, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Iterates through the given Collection, passing in the initial value to
+the 2-arg closure along with the first item. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#intersect(java.util.Collection)">intersect</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> right)</CODE>
+<BR>
+Create a Collection composed of the intersection of both collections.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>boolean</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#isCase(java.lang.Object)">isCase</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> switchValue)</CODE>
+<BR>
+'Case' implementation for collections which tests if the 'switch'
+operand is contained in any of the 'case' values.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#join(java.lang.String)">join</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> separator)</CODE>
+<BR>
+Concatenates the <code>toString()</code> representation of each
+item in this collection, with the given String as a separator between
+each item.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#leftShift(T)">leftShift</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> value)</CODE>
+<BR>
+Overloads the left shift operator to provide an easy way to append
+objects to a Collection.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#max()">max</A></B>()</CODE>
+<BR>
+Adds max() method to Collection objects.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#max(groovy.lang.Closure)">max</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Selects an item in the collection having the maximum
+value as determined by the supplied closure.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#max(java.util.Comparator)">max</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Comparator.html' title='JDK class in java.util'>Comparator</a> comparator)</CODE>
+<BR>
+Selects the maximum value found in the collection using the given comparator.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#min()">min</A></B>()</CODE>
+<BR>
+Adds min() method to Collection objects.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#min(java.util.Comparator)">min</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Comparator.html' title='JDK class in java.util'>Comparator</a> comparator)</CODE>
+<BR>
+Selects the minimum value found in the collection using the given comparator.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#min(groovy.lang.Closure)">min</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Selects an item in the collection having the minimum
+value as determined by the supplied closure.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#multiply(java.lang.Number)">multiply</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> factor)</CODE>
+<BR>
+Create a List composed of the elements of this list, repeated
+a certain number of times.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#plus(java.util.Collection)">plus</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> right)</CODE>
+<BR>
+Create a Collection as a union of two collections. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#plus(java.lang.Iterable)">plus</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Iterable.html' title='JDK class in java.lang'>Iterable</a> right)</CODE>
+<BR>
+Create a Collection as a union of a Collection and an Iterable. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#plus(T)">plus</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> right)</CODE>
+<BR>
+Create a collection as a union of a Collection and an Object. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>boolean</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#removeAll(java.lang.Object[])">removeAll</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object[].html' title='JDK class in java.lang'>Object[]</a> items)</CODE>
+<BR>
+Modifies this collection by removing its elements that are contained
+within the specified object array.
+
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>boolean</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#removeAll(groovy.lang.Closure)">removeAll</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> condition)</CODE>
+<BR>
+Modifies this collection by removing the elements that are matched according
+to the specified closure condition.
+
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>boolean</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#retainAll(java.lang.Object[])">retainAll</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object[].html' title='JDK class in java.lang'>Object[]</a> items)</CODE>
+<BR>
+Modifies this collection so that it retains only its elements that are contained
+in the specified array.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>boolean</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#retainAll(groovy.lang.Closure)">retainAll</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> condition)</CODE>
+<BR>
+Modifies this collection so that it retains only its elements
+that are matched according to the specified closure condition.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#sort()">sort</A></B>()</CODE>
+<BR>
+Sorts the Collection. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#sort(boolean)">sort</A></B>(boolean mutate)</CODE>
+<BR>
+Sorts the Collection. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#sort(java.util.Comparator)">sort</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Comparator.html' title='JDK class in java.util'>Comparator</a> comparator)</CODE>
+<BR>
+Sorts the Collection using the given Comparator. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#sort(boolean, java.util.Comparator)">sort</A></B>(boolean mutate, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Comparator.html' title='JDK class in java.util'>Comparator</a> comparator)</CODE>
+<BR>
+Sorts the Collection using the given Comparator. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#sort(groovy.lang.Closure)">sort</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Sorts this Collection using the given Closure to determine the correct ordering. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#sort(boolean, groovy.lang.Closure)">sort</A></B>(boolean mutate, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Sorts this Collection using the given Closure to determine the correct ordering. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#split(groovy.lang.Closure)">split</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Splits all items into two collections based on the closure condition.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#sum()">sum</A></B>()</CODE>
+<BR>
+Sums the items in a collection.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#sum(java.lang.Object)">sum</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> initialValue)</CODE>
+<BR>
+Sums the items in a collection, adding the result to some initial value.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#sum(groovy.lang.Closure)">sum</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Sums the result of apply a closure to each item of a collection.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#sum(java.lang.Object, groovy.lang.Closure)">sum</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> initialValue, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Sums the result of applying a closure to each item of a collection to some initial value.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#toList()">toList</A></B>()</CODE>
+<BR>
+Convert a Collection to a List. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#toListString()">toListString</A></B>()</CODE>
+<BR>
+Returns the string representation of the given list.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#toListString(int)">toListString</A></B>(int maxSize)</CODE>
+<BR>
+Returns the string representation of the given list.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Set.html' title='JDK class in java.util'>Set</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#toSet()">toSet</A></B>()</CODE>
+<BR>
+Convert a Collection to a Set. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#unique()">unique</A></B>()</CODE>
+<BR>
+Modifies this collection to remove all duplicated items, using the
+default comparator.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#unique(boolean)">unique</A></B>(boolean mutate)</CODE>
+<BR>
+Remove all duplicates from a given Collection using the default comparator.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#unique(groovy.lang.Closure)">unique</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+A convenience method for making a collection unique using a Closure
+to determine duplicate (equal) items.
+
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#unique(boolean, groovy.lang.Closure)">unique</A></B>(boolean mutate, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+A convenience method for making a collection unique using a Closure to determine duplicate (equal) items.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#unique(java.util.Comparator)">unique</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Comparator.html' title='JDK class in java.util'>Comparator</a> comparator)</CODE>
+<BR>
+Remove all duplicates from a given Collection.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#unique(boolean, java.util.Comparator)">unique</A></B>(boolean mutate, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Comparator.html' title='JDK class in java.util'>Comparator</a> comparator)</CODE>
+<BR>
+Remove all duplicates from a given Collection.
+
+</TD>
+</TR>
+
+</TABLE>
+&nbsp;
+
+
+<!-- ============ METHOD DETAIL ========== -->
+
+<A NAME="method_detail"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="1"><SPAN style="font-size:24px;">
+<B>Method Detail</B></SPAN></TH>
+</TR>
+</TABLE>
+
+
+
+<A name="addAll(T[])"><!-- --></A><H3>addAll</H3>
+<PRE>public boolean <B>addAll</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object[].html' title='JDK class in java.lang'>Object[]</a> items)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Modifies the collection by adding all of the elements in the specified array to the collection.
+The behavior of this operation is undefined if
+the specified array is modified while the operation is in progress.
+
+See also <code>plus</code> or the '+' operator if wanting to produce a new collection
+containing additional items but while leaving the original collection unchanged.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>items</CODE> -  array containing elements to be added to this collection.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD><tt>true</tt> if this collection changed as a result of the call</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>Collection#addAll(Collection).</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="asBoolean()"><!-- --></A><H3>asBoolean</H3>
+<PRE>public boolean <B>asBoolean</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Coerce a collection instance to a boolean value.
+A collection is coerced to false if it's empty, and to true otherwise.
+<pre class="groovyTestCase">assert [1,2].asBoolean() == true</pre>
+<pre class="groovyTestCase">assert [].asBoolean() == false</pre></DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>the boolean value</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="asImmutable()"><!-- --></A><H3>asImmutable</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> <B>asImmutable</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>A convenience method for creating an immutable Collection.
+<pre class="groovyTestCase">def mutable = [1,2,3]
+def immutable = mutable.asImmutable()
+mutable << 4
+try {
+  immutable << 4
+  assert false
+} catch (UnsupportedOperationException) {
+  assert true
+}</pre></DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>an immutable Collection</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.0</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collections.html#unmodifiableCollection(java.util.Collection)' title='JDK class in java.util'>Collections#unmodifiableCollection</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="asList()"><!-- --></A><H3>asList</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>asList</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Converts this Collection to a List. Returns the original Collection
+if it is already a List.
+<p>
+Example usage:
+<pre class="groovyTestCase">assert new HashSet().asList() instanceof List</pre></DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>a newly created List if this collection is not already a List</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="asSynchronized()"><!-- --></A><H3>asSynchronized</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> <B>asSynchronized</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>A convenience method for creating a synchronized Collection.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>a synchronized Collection</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collections.html#synchronizedCollection(java.util.Collection)' title='JDK class in java.util'>Collections#synchronizedCollection</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="asType(java.lang.Class)"><!-- --></A><H3>asType</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>asType</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Class.html' title='JDK class in java.lang'>Class</a> clazz)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Converts the given collection to another type. A default concrete
+type is used for List, Set, or SortedSet. If the given type has
+a constructor taking a collection, that is used. Otherwise, the
+call is deferred to {link #asType(Object,Class)}.  If this
+collection is already of the given type, the same instance is
+returned.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>clazz</CODE> -  the desired class.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the object resulting from this type conversion</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='../../java/lang/Object.html#asType(java.lang.Class)' title='GDK enhancement for java.lang.Object'>Object#asType</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="collect(groovy.lang.Closure)"><!-- --></A><H3>collect</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>collect</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> transform)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates through this collection transforming each entry into a new value using the <code>transform</code> closure
+returning a list of transformed values.
+<pre class="groovyTestCase">assert [2,4,6] == [1,2,3].collect { it * 2 }</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>transform</CODE> -  the closure used to transform each item of the collection.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a List of the transformed values</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="collect()"><!-- --></A><H3>collect</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>collect</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates through this collection transforming each entry into a new value using Closure.IDENTITY
+as a transformer, basically returning a list of items copied from the original collection.
+<pre class="groovyTestCase">assert [1,2,3] == [1,2,3].collect()</pre></DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>a List of the transformed values</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.5</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>Closure#IDENTITY.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="collect(java.util.Collection, groovy.lang.Closure)"><!-- --></A><H3>collect</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> <B>collect</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> collector, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> transform)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates through this collection transforming each value into a new value using the <code>transform</code> closure
+and adding it to the supplied <code>collector</code>.
+<pre class="groovyTestCase">assert [1,2,3] as HashSet == [2,4,5,6].collect(new HashSet()) { (int)(it / 2) }</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>collector</CODE> -  the Collection to which the transformed values are added.</DD>
+
+		<DD><CODE>transform</CODE> -  the closure used to transform each item of the collection.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the collector with all transformed values added to it</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="collectAll(groovy.lang.Closure)"><!-- --></A><H3>collectAll</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>collectAll</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> transform)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Deprecated alias for collectNested</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+    </dl>
+    
+
+
+
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>Collection#collectNested(Closure).</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="collectAll(java.util.Collection, groovy.lang.Closure)"><!-- --></A><H3>collectAll</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> <B>collectAll</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> collector, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> transform)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Deprecated alias for collectNested</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+    </dl>
+    
+
+
+
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>Collection#collectNested(Collection, Closure).</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="collectEntries(groovy.lang.Closure)"><!-- --></A><H3>collectEntries</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> <B>collectEntries</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> transform)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates through this Collection transforming each item using the <code>transform</code> closure
+and returning a map of the resulting transformed entries.
+<pre class="groovyTestCase">
+def letters = "abc"
+// collect letters with index using list style
+assert (0..2).collectEntries { index -> [index, letters[index]] } == [0:'a', 1:'b', 2:'c']
+// collect letters with index using map style
+assert (0..2).collectEntries { index -> [(index): letters[index]] } == [0:'a', 1:'b', 2:'c']
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>transform
+</CODE> -  the closure used for transforming, which has an item from self as the parameter and
+                 should return a Map.Entry, a Map or a two-element list containing the resulting key and value.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a Map of the transformed entries</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.9</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>Collection#collectEntries(Map, Closure).</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="collectEntries()"><!-- --></A><H3>collectEntries</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> <B>collectEntries</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>A variant of collectEntries for Collections using the identity closure as the transform.
+The source collection should be a list of <code>[key, value]</code> tuples or a <code>Map.Entry</code>.
+<pre class="groovyTestCase">
+def nums = [1, 10, 100, 1000]
+def tuples = nums.collect{ [it, it.toString().size()] }
+assert tuples == [[1, 1], [10, 2], [100, 3], [1000, 4]]
+def map = tuples.collectEntries()
+assert map == [1:1, 10:2, 100:3, 1000:4]
+</pre></DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>a Map of the transformed entries</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.5</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>Collection#collectEntries(Closure).</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="collectEntries(java.util.Map, groovy.lang.Closure)"><!-- --></A><H3>collectEntries</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> <B>collectEntries</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> collector, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> transform)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates through this Collection transforming each item using the closure
+as a transformer into a map entry, returning the supplied map with all of the transformed entries added to it.
+<pre class="groovyTestCase">
+def letters = "abc"
+// collect letters with index
+assert (0..2).collectEntries( [:] ) { index -> [index, letters[index]] } == [0:'a', 1:'b', 2:'c']
+assert (0..2).collectEntries( [4:'d'] ) { index ->
+    [(index+1): letters[index]] } == [1:'a', 2:'b', 3:'c', 4:'d']
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>collector</CODE> -  the Map into which the transformed entries are put.</DD>
+
+		<DD><CODE>transform
+</CODE> -  the closure used for transforming, which has an item from self as the parameter and
+                 should return a Map.Entry, a Map or a two-element list containing the resulting key and value.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the collector with all transformed values added to it</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.9</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>Map#collect(Collection, Closure).</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="collectEntries(java.util.Map)"><!-- --></A><H3>collectEntries</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> <B>collectEntries</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> collector)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>A variant of collectEntries for Collections using the identity closure as the
+transform and a supplied map as the destination of transformed entries.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>collector</CODE> -  the Map into which the transformed entries are put.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the collector with all transformed values added to it</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.5</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>Collection#collectEntries(Map, Closure).</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="collectMany(groovy.lang.Closure)"><!-- --></A><H3>collectMany</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>collectMany</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> projection)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Projects each item from a source collection to a collection and concatenates (flattens) the resulting collections into a single list.
+<p>
+<pre class="groovyTestCase">
+def nums = 1..10
+def squaresAndCubesOfEvens = nums.collectMany{ it % 2 ? [] : [it**2, it**3] }
+assert squaresAndCubesOfEvens == [4, 8, 16, 64, 36, 216, 64, 512, 100, 1000]
+
+def animals = ['CAT', 'DOG', 'ELEPHANT'] as Set
+def smallAnimals = animals.collectMany{ it.size() > 3 ? [] : [it.toLowerCase()] }
+assert smallAnimals == ['cat', 'dog']
+
+def orig = nums as Set
+def origPlusIncrements = orig.collectMany{ [it, it+1] }
+assert origPlusIncrements.size() == orig.size() * 2
+assert origPlusIncrements.unique().size() == orig.size() + 1
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>projection</CODE> -  a projecting Closure returning a collection of items.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a list created from the projected collections concatenated (flattened) together</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.1</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='../../java/util/Collection.html#sum(groovy.lang.Closure)' title='GDK enhancement for java.util.Collection'>Collection#sum</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="collectMany(java.util.Collection, groovy.lang.Closure)"><!-- --></A><H3>collectMany</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> <B>collectMany</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> collector, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> projection)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Projects each item from a source collection to a result collection and concatenates (flattens) the resulting
+collections adding them into the <code>collector</code>.
+<p>
+<pre class="groovyTestCase">
+def animals = ['CAT', 'DOG', 'ELEPHANT'] as Set
+def smallAnimals = animals.collectMany(['ant', 'bee']){ it.size() > 3 ? [] : [it.toLowerCase()] }
+assert smallAnimals == ['ant', 'bee', 'cat', 'dog']
+
+def nums = 1..5
+def origPlusIncrements = nums.collectMany([] as Set){ [it, it+1] }
+assert origPlusIncrements.size() == nums.size() + 1
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>collector</CODE> -   an initial collection to add the projected items to.</DD>
+
+		<DD><CODE>projection</CODE> -  a projecting Closure returning a collection of items.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the collector with the projected collections concatenated (flattened) to it</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.5</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="collectNested(groovy.lang.Closure)"><!-- --></A><H3>collectNested</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>collectNested</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> transform)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Recursively iterates through this collection transforming each non-Collection value
+into a new value using the closure as a transformer. Returns a potentially nested
+list of transformed values.
+<pre class="groovyTestCase">
+assert [2,[4,6],[8],[]] == [1,[2,3],[4],[]].collectNested { it * 2 }
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>transform</CODE> -  the closure used to transform each item of the collection.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the resultant collection</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.1</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="collectNested(java.util.Collection, groovy.lang.Closure)"><!-- --></A><H3>collectNested</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> <B>collectNested</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> collector, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> transform)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Recursively iterates through this collection transforming each non-Collection value
+into a new value using the <code>transform</code> closure. Returns a potentially nested
+collection of transformed values.
+<pre class="groovyTestCase">def x = [1,[2,3],[4],[]].collectNested(new Vector()) { it * 2 }
+assert x == [2,[4,6],[8],[]]
+assert x instanceof Vector</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>collector</CODE> -  an initial Collection to which the transformed values are added.</DD>
+
+		<DD><CODE>transform</CODE> -  the closure used to transform each element of the collection.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the collector with all transformed values added to it</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.1</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="combinations()"><!-- --></A><H3>combinations</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>combinations</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Adds GroovyCollections#combinations(Collection) as a method on collections.
+<p>
+Example usage:
+<pre class="groovyTestCase">assert [['a', 'b'],[1, 2, 3]].combinations() == [['a', 1], ['b', 1], ['a', 2], ['b', 2], ['a', 3], ['b', 3]]</pre></DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>a List of the combinations found</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.0</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://groovy.codehaus.org/api/groovy/util/GroovyCollections.html#combinations(java.util.Collection)' title='Groovy class in groovy.util'>GroovyCollections#combinations</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="containsAll(java.lang.Object[])"><!-- --></A><H3>containsAll</H3>
+<PRE>public boolean <B>containsAll</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object[].html' title='JDK class in java.lang'>Object[]</a> items)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Returns <tt>true</tt> if this collection contains all of the elements
+in the specified array.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>items</CODE> -  array to be checked for containment in this collection.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD><tt>true</tt> if this collection contains all of the elements
+          in the specified array</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>Collection#containsAll(Collection).</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="count(java.lang.Object)"><!-- --></A><H3>count</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> <B>count</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> value)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Counts the number of occurrences of the given value inside this collection.
+Comparison is done using Groovy's == operator (using
+<code>compareTo(value) == 0</code> or <code>equals(value)</code> ).
+<p>
+Example usage:
+<pre class="groovyTestCase">assert [2,4,2,1,3,5,2,4,3].count(4) == 2</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>value</CODE> -  the value being searched for.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the number of occurrences</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="count(groovy.lang.Closure)"><!-- --></A><H3>count</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> <B>count</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Counts the number of occurrences which satisfy the given closure from inside this collection.
+<p>
+Example usage:
+<pre class="groovyTestCase">assert [2,4,2,1,3,5,2,4,3].count{ it % 2 == 0 } == 5</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  a closure condition.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the number of occurrences</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="countBy(groovy.lang.Closure)"><!-- --></A><H3>countBy</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> <B>countBy</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Sorts all collection members into groups determined by the supplied mapping
+closure and counts the group size.  The closure should return the key that each
+item should be grouped by.  The returned Map will have an entry for each
+distinct key returned from the closure, with each value being the frequency of
+items occurring for that group.
+<p>
+Example usage:
+<pre class="groovyTestCase">assert [0:2, 1:3] == [1,2,3,4,5].countBy { it % 2 }</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  a closure mapping items to the frequency keys.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a new Map grouped by keys with frequency counts</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="disjoint(java.util.Collection)"><!-- --></A><H3>disjoint</H3>
+<PRE>public boolean <B>disjoint</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> right)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Returns <code>true</code> if the intersection of two collections is empty.
+<pre class="groovyTestCase">assert [1,2,3].disjoint([3,4,5]) == false</pre>
+<pre class="groovyTestCase">assert [1,2].disjoint([3,4]) == true</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>right</CODE> -  a Collection.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>boolean   <code>true</code> if the intersection of two collections
+        is empty, <code>false</code> otherwise.</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="eachPermutation(groovy.lang.Closure)"><!-- --></A><H3>eachPermutation</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Iterator.html' title='JDK class in java.util'>Iterator</a> <B>eachPermutation</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates over all permutations of a collection, running a closure for each iteration.
+<p>
+Example usage:
+<pre class="groovyTestCase">def permutations = []
+[1, 2, 3].eachPermutation{ permutations << it }
+assert permutations == [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  the closure to call for each permutation.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the permutations from the list</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="find(groovy.lang.Closure)"><!-- --></A><H3>find</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>find</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Finds the first value matching the closure condition.  Example:
+<pre class="groovyTestCase">def list = [1,2,3]
+assert 2 == list.find { it > 1 }
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  a closure condition.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the first Object found</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="find()"><!-- --></A><H3>find</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>find</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Finds the first item matching the IDENTITY Closure (i.e.&#160;matching Groovy truth).
+<p>
+Example:
+<pre class="groovyTestCase">
+def items = [null, 0, 0.0, false, '', [], 42, 43]
+assert items.find() == 42
+</pre></DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>the first Object found or null if none was found</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.1</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>Closure#IDENTITY.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="findAll(groovy.lang.Closure)"><!-- --></A><H3>findAll</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> <B>findAll</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Finds all values matching the closure condition.
+<pre class="groovyTestCase">assert [2,4] == [1,2,3,4].findAll { it % 2 == 0 }</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  a closure condition.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a Collection of matching values</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.6</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="findAll()"><!-- --></A><H3>findAll</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> <B>findAll</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Finds the items matching the IDENTITY Closure (i.e.&#160;matching Groovy truth).
+<p>
+Example:
+<pre class="groovyTestCase">
+def items = [1, 2, 0, false, true, '', 'foo', [], [4, 5], null]
+assert items.findAll() == [1, 2, true, 'foo', [4, 5]]
+</pre></DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>a List of the values found</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.1</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>Closure#IDENTITY.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="findResult(U, groovy.lang.Closure)"><!-- --></A><H3>findResult</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>findResult</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> defaultResult, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates through the collection calling the given closure for each item but stopping once the first non-null
+result is found and returning that result.&#160;If all are null, the defaultResult is returned.
+<p>
+Examples:
+<pre class="groovyTestCase">
+def list = [1,2,3]
+assert "Found 2" == list.findResult("default") { it > 1 ? "Found $it" : null }
+assert "default" == list.findResult("default") { it > 3 ? "Found $it" : null }
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>defaultResult</CODE> -  an Object that should be returned if all closure results are null.</DD>
+
+		<DD><CODE>closure</CODE> -  a closure that returns a non-null value when processing should stop and a value should be returned.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the first non-null result from calling the closure, or the defaultValue</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.5</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="findResult(groovy.lang.Closure)"><!-- --></A><H3>findResult</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>findResult</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates through the collection calling the given closure for each item but stopping once the first non-null
+result is found and returning that result.&#160;If all results are null, null is returned.
+<p>
+Example:
+<pre class="groovyTestCase">
+def list = [1,2,3]
+assert "Found 2" == list.findResult { it > 1 ? "Found $it" : null }
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  a closure that returns a non-null value when processing should stop and a value should be returned.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the first non-null result from calling the closure, or null</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.5</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="findResults(groovy.lang.Closure)"><!-- --></A><H3>findResults</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> <B>findResults</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> filteringTransform)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates through the collection transforming items using the supplied closure
+and collecting any non-null results.
+<p>
+Example:
+<pre class="groovyTestCase">
+def list = [1,2,3]
+def result = list.findResults { it > 1 ? "Found $it" : null }
+assert result == ["Found 2", "Found 3"]
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>filteringTransform</CODE> -  a Closure that should return either a non-null transformed value or null for items which should be discarded.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the list of non-null transformed values</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.1</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="flatten()"><!-- --></A><H3>flatten</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> <B>flatten</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Flatten a collection.  This collection and any nested arrays or
+collections have their contents (recursively) added to the new collection.
+<pre class="groovyTestCase">assert [1,2,3,4,5] == [1,[2,3],[[4]],[],5].flatten()</pre></DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>a flattened Collection</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.6.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="flatten(groovy.lang.Closure)"><!-- --></A><H3>flatten</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> <B>flatten</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> flattenUsing)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Flatten a collection.  This collection and any nested arrays or
+collections have their contents (recursively) added to the new collection.
+For any non-Array, non-Collection object which represents some sort
+of collective type, the supplied closure should yield the contained items;
+otherwise, the closure should just return any element which corresponds to a leaf.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>flattenUsing</CODE> -  a closure to determine how to flatten non-Array, non-Collection elements.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a flattened Collection</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.6.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="getAt(java.lang.String)"><!-- --></A><H3>getAt</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>getAt</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> property)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Support the subscript operator for Collection.
+<pre class="groovyTestCase">assert [String, Long, Integer] == ["a",5L,2]["class"]</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>property</CODE> -  a String.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a List</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="grep(java.lang.Object)"><!-- --></A><H3>grep</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> <B>grep</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> filter)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates over the collection of items and returns each item that matches
+the given filter - calling the <code><a href='../../java/lang/Object.html#isCase(java.lang.Object)' title='GDK enhancement for java.lang.Object'>Object#isCase</a></code>
+method used by switch statements.  This method can be used with different
+kinds of filters like regular expressions, classes, ranges etc.
+Example:
+<pre class="groovyTestCase">
+def list = ['a', 'b', 'aa', 'bc', 3, 4.5]
+assert list.grep( ~/a+/ )  == ['a', 'aa']
+assert list.grep( ~/../ )  == ['aa', 'bc']
+assert list.grep( Number ) == [ 3, 4.5 ]
+assert list.grep{ it.toString().size() == 1 } == [ 'a', 'b', 3 ]
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>filter</CODE> -  the filter to perform on each element of the collection (using the <a href='../../java/lang/Object.html#isCase(java.lang.Object)' title='GDK enhancement for java.lang.Object'>Object#isCase</a> method).</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a collection of objects which match the filter</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>2.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="grep()"><!-- --></A><H3>grep</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> <B>grep</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates over the collection returning each element that matches
+using the IDENTITY Closure as a filter - effectively returning all elements which satisfy Groovy truth.
+<p>
+Example:
+<pre class="groovyTestCase">
+def items = [1, 2, 0, false, true, '', 'foo', [], [4, 5], null]
+assert items.grep() == [1, 2, true, 'foo', [4, 5]]
+</pre></DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>a collection of elements satisfy Groovy truth</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>2.0</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>Closure#IDENTITY.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="groupBy(groovy.lang.Closure)"><!-- --></A><H3>groupBy</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> <B>groupBy</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Sorts all collection members into groups determined by the
+supplied mapping closure.  The closure should return the key that this
+item should be grouped by.  The returned LinkedHashMap will have an entry for each
+distinct key returned from the closure, with each value being a list of
+items for that group.
+<p>
+Example usage:
+<pre class="groovyTestCase">assert [0:[2,4,6], 1:[1,3,5]] == [1,2,3,4,5,6].groupBy { it % 2 }</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  a closure mapping entries on keys.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a new Map grouped by keys</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="groupBy(java.lang.Object)"><!-- --></A><H3>groupBy</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> <B>groupBy</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> closures)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Sorts all collection members into (sub)groups determined by the supplied
+mapping closures. Each closure should return the key that this item
+should be grouped by. The returned LinkedHashMap will have an entry for each
+distinct 'key path' returned from the closures, with each value being a list
+of items for that 'group path'. <p>
+
+Example usage:
+<pre class="groovyTestCase">def result = [1,2,3,4,5,6].groupBy({ it % 2 }, { it < 4 })
+assert result == [1:[(true):[1, 3], (false):[5]], 0:[(true):[2], (false):[4, 6]]]</pre>
+
+Another example:
+<pre>def sql = groovy.sql.Sql.newInstance(/&ast; ... &ast;/)
+def data = sql.rows("SELECT * FROM a_table").groupBy({ it.column1 }, { it.column2 }, { it.column3 })
+if (data.val1.val2.val3) {
+    // there exists a record where:
+    //   a_table.column1 == val1
+    //   a_table.column2 == val2, and
+    //   a_table.column3 == val3
+} else {
+    // there is no such record
+}</pre>
+If an empty array of closures is supplied the IDENTITY Closure will be used.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closures</CODE> -  an array of closures, each mapping entries on keys.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a new Map grouped by keys on each criterion</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.1</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>Closure#IDENTITY.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="groupBy(java.util.List)"><!-- --></A><H3>groupBy</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html' title='JDK class in java.util'>Map</a> <B>groupBy</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> closures)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Sorts all collection members into (sub)groups determined by the supplied
+mapping closures. Each closure should return the key that this item
+should be grouped by. The returned LinkedHashMap will have an entry for each
+distinct 'key path' returned from the closures, with each value being a list
+of items for that 'group path'. <p>
+
+Example usage:
+<pre class="groovyTestCase">def result = [1,2,3,4,5,6].groupBy([{ it % 2 }, { it < 4 }])
+assert result == [1:[(true):[1, 3], (false):[5]], 0:[(true):[2], (false):[4, 6]]]</pre>
+
+Another example:
+<pre>def sql = groovy.sql.Sql.newInstance(/&ast; ... &ast;/)
+def data = sql.rows("SELECT * FROM a_table").groupBy([{ it.column1 }, { it.column2 }, { it.column3 }])
+if (data.val1.val2.val3) {
+    // there exists a record where:
+    //   a_table.column1 == val1
+    //   a_table.column2 == val2, and
+    //   a_table.column3 == val3
+} else {
+    // there is no such record
+}</pre>
+If an empty list of closures is supplied the IDENTITY Closure will be used.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closures</CODE> -  a list of closures, each mapping entries on keys.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a new Map grouped by keys on each criterion</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.1</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>Closure#IDENTITY.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="inject(groovy.lang.Closure)"><!-- --></A><H3>inject</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>inject</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Performs the same function as the version of inject that takes an initial value, but
+uses the head of the Collection as the initial value, and iterates over the tail.
+<pre class="groovyTestCase">
+assert 1 * 2 * 3 * 4 == [ 1, 2, 3, 4 ].inject { acc, val -> acc * val }
+assert ['b'] == [['a','b'], ['b','c'], ['d','b']].inject { acc, val -> acc.intersect( val ) }
+LinkedHashSet set = [ 't', 'i', 'm' ]
+assert 'tim' == set.inject { a, b -> a + b }
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -       a closure.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the result of the last closure call</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.7</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>Collection#inject(Object, Closure).</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="inject(U, groovy.lang.Closure)"><!-- --></A><H3>inject</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>inject</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> initialValue, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates through the given Collection, passing in the initial value to
+the 2-arg closure along with the first item. The result is passed back (injected) into
+the closure along with the second item. The new result is injected back into
+the closure along with the third item and so on until the entire collection
+has been used. Also known as <tt>foldLeft</tt> or <tt>reduce</tt> in functional parlance.
+
+Examples:
+<pre class="groovyTestCase">
+assert 1*1*2*3*4 == [1,2,3,4].inject(1) { acc, val -> acc * val }
+
+assert 0+1+2+3+4 == [1,2,3,4].inject(0) { acc, val -> acc + val }
+
+assert 'The quick brown fox' ==
+    ['quick', 'brown', 'fox'].inject('The') { acc, val -> acc + ' ' + val }
+
+assert 'bat' ==
+    ['rat', 'bat', 'cat'].inject('zzz') { min, next -> next < min ? next : min }
+
+def max = { a, b -> [a, b].max() }
+def animals = ['bat', 'rat', 'cat']
+assert 'rat' == animals.inject('aaa', max)
+</pre>
+Visual representation of the last example above:
+<pre>
+   initVal  animals[0]
+      v        v
+max('aaa',   'bat')  =>  'bat'  animals[1]
+                           v       v
+                     max('bat',  'rat')  =>  'rat'  animals[2]
+                                               v       v
+                                         max('rat',  'cat')  =>  'rat'
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>initialValue</CODE> -  some initial value.</DD>
+
+		<DD><CODE>closure</CODE> -       a closure.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the result of the last closure call</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="intersect(java.util.Collection)"><!-- --></A><H3>intersect</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> <B>intersect</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> right)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Create a Collection composed of the intersection of both collections.  Any
+elements that exist in both collections are added to the resultant collection.
+<pre class="groovyTestCase">assert [4,5] == [1,2,3,4,5].intersect([4,5,6,7,8])</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>right</CODE> -  a Collection.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a Collection as an intersection of both collections</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.6</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="isCase(java.lang.Object)"><!-- --></A><H3>isCase</H3>
+<PRE>public boolean <B>isCase</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> switchValue)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>'Case' implementation for collections which tests if the 'switch'
+operand is contained in any of the 'case' values.
+For example:
+<pre class="groovyTestCase">switch( 3 ) {
+  case [1,3,5]:
+    assert true
+    break
+  default:
+    assert false
+}</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>switchValue</CODE> -  the switch value.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>true if the caseValue is deemed to contain the switchValue</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html#contains(java.lang.Object)' title='JDK class in java.util'>Collection#contains</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="join(java.lang.String)"><!-- --></A><H3>join</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> <B>join</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> separator)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Concatenates the <code>toString()</code> representation of each
+item in this collection, with the given String as a separator between
+each item.
+<pre class="groovyTestCase">assert "1, 2, 3" == [1,2,3].join(", ")</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>separator</CODE> -  a String separator.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the joined String</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="leftShift(T)"><!-- --></A><H3>leftShift</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> <B>leftShift</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> value)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Overloads the left shift operator to provide an easy way to append
+objects to a Collection.
+<pre class="groovyTestCase">def list = [1,2]
+list << 3
+assert list == [1,2,3]</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>value</CODE> -  an Object to be added to the collection..</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>same collection, after the value was added to it.</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="max()"><!-- --></A><H3>max</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>max</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Adds max() method to Collection objects.
+<pre class="groovyTestCase">assert 5 == [2,3,1,5,4].max()</pre></DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>the maximum value</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://groovy.codehaus.org/api/groovy/util/GroovyCollections.html#max(java.util.Collection)' title='Groovy class in groovy.util'>GroovyCollections#max</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="max(groovy.lang.Closure)"><!-- --></A><H3>max</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>max</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Selects an item in the collection having the maximum
+value as determined by the supplied closure.
+If more than one item has the maximum value,
+an arbitrary choice is made between the items having the maximum value.
+
+If the closure has two parameters
+it is used like a traditional Comparator. I.e. it should compare
+its two parameters for order, returning a negative integer,
+zero, or a positive integer when the first parameter is less than,
+equal to, or greater than the second respectively. Otherwise,
+the Closure is assumed to take a single parameter and return a
+Comparable (typically an Integer) which is then used for
+further comparison.
+<pre class="groovyTestCase">assert "hello" == ["hello","hi","hey"].max { it.length() }</pre>
+<pre class="groovyTestCase">assert "hello" == ["hello","hi","hey"].max { a, b -> a.length() <=> b.length() }</pre>
+<pre class="groovyTestCase">
+def pets = ['dog', 'elephant', 'anaconda']
+def longestName = pets.max{ it.size() } // one of 'elephant' or 'anaconda'
+assert longestName.size() == 8
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  a 1 or 2 arg Closure used to determine the correct ordering.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the maximum value</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="max(java.util.Comparator)"><!-- --></A><H3>max</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>max</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Comparator.html' title='JDK class in java.util'>Comparator</a> comparator)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Selects the maximum value found in the collection using the given comparator.
+<pre class="groovyTestCase">assert "hello" == ["hello","hi","hey"].max( { a, b -> a.length() <=> b.length() } as Comparator )</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>comparator</CODE> -  a Comparator.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the maximum value</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="min()"><!-- --></A><H3>min</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>min</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Adds min() method to Collection objects.
+<pre class="groovyTestCase">assert 2 == [4,2,5].min()</pre></DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>the minimum value</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://groovy.codehaus.org/api/groovy/util/GroovyCollections.html#min(java.util.Collection)' title='Groovy class in groovy.util'>GroovyCollections#min</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="min(java.util.Comparator)"><!-- --></A><H3>min</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>min</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Comparator.html' title='JDK class in java.util'>Comparator</a> comparator)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Selects the minimum value found in the collection using the given comparator.
+<pre class="groovyTestCase">assert "hi" == ["hello","hi","hey"].min( { a, b -> a.length() <=> b.length() } as Comparator )</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>comparator</CODE> -  a Comparator.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the minimum value</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="min(groovy.lang.Closure)"><!-- --></A><H3>min</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>min</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Selects an item in the collection having the minimum
+value as determined by the supplied closure.
+If more than one item has the minimum value,
+an arbitrary choice is made between the items having the minimum value.
+
+If the closure has two parameters
+it is used like a traditional Comparator. I.e. it should compare
+its two parameters for order, returning a negative integer,
+zero, or a positive integer when the first parameter is less than,
+equal to, or greater than the second respectively. Otherwise,
+the Closure is assumed to take a single parameter and return a
+Comparable (typically an Integer) which is then used for
+further comparison.
+<pre class="groovyTestCase">
+assert "hi" == ["hello","hi","hey"].min { it.length() }
+</pre>
+<pre class="groovyTestCase">
+def lastDigit = { a, b -> a % 10 <=> b % 10 }
+assert [19, 55, 91].min(lastDigit) == 91
+</pre>
+<pre class="groovyTestCase">
+def pets = ['dog', 'cat', 'anaconda']
+def shortestName = pets.min{ it.size() } // one of 'dog' or 'cat'
+assert shortestName.size() == 3
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  a 1 or 2 arg Closure used to determine the correct ordering.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the minimum value</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="multiply(java.lang.Number)"><!-- --></A><H3>multiply</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>multiply</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> factor)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Create a List composed of the elements of this list, repeated
+a certain number of times.  Note that for non-primitive
+elements, multiple references to the same instance will be added.
+<pre class="groovyTestCase">assert [1,2,3,1,2,3] == [1,2,3] * 2</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>factor</CODE> -  the number of times to append.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the multiplied list</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="plus(java.util.Collection)"><!-- --></A><H3>plus</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> <B>plus</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> right)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Create a Collection as a union of two collections. If the left collection
+is a Set, then the returned collection will be a Set otherwise a List.
+This operation will always create a new object for the result,
+while the operands remain unchanged.
+<pre class="groovyTestCase">assert [1,2,3,4] == [1,2] + [3,4]</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>right</CODE> -  the right Collection.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the merged Collection</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="plus(java.lang.Iterable)"><!-- --></A><H3>plus</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> <B>plus</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Iterable.html' title='JDK class in java.lang'>Iterable</a> right)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Create a Collection as a union of a Collection and an Iterable. If the left collection
+is a Set, then the returned collection will be a Set otherwise a List.
+This operation will always create a new object for the result,
+while the operands remain unchanged.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>right</CODE> -  the right Iterable.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the merged Collection</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.7</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>Collection#plus(Collection).</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="plus(T)"><!-- --></A><H3>plus</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> <B>plus</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> right)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Create a collection as a union of a Collection and an Object. If the collection
+is a Set, then the returned collection will be a Set otherwise a List.
+This operation will always create a new object for the result,
+while the operands remain unchanged.
+<pre class="groovyTestCase">assert [1,2,3] == [1,2] + 3</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>right</CODE> -  an object to add/append.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the resulting Collection</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="removeAll(java.lang.Object[])"><!-- --></A><H3>removeAll</H3>
+<PRE>public boolean <B>removeAll</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object[].html' title='JDK class in java.lang'>Object[]</a> items)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Modifies this collection by removing its elements that are contained
+within the specified object array.
+
+See also <code>findAll</code> and <code>grep</code> when wanting to produce a new list
+containing items which don't match some criteria while leaving the original collection unchanged.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>items</CODE> -  array containing elements to be removed from this collection.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD><tt>true</tt> if this collection changed as a result of the call</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>Collection#removeAll(Collection).</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="removeAll(groovy.lang.Closure)"><!-- --></A><H3>removeAll</H3>
+<PRE>public boolean <B>removeAll</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> condition)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Modifies this collection by removing the elements that are matched according
+to the specified closure condition.
+
+See also <code>findAll</code> and <code>grep</code> when wanting to produce a new list
+containing items which don't match some criteria while leaving the original collection unchanged.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>condition</CODE> -  a closure condition.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD><tt>true</tt> if this collection changed as a result of the call</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>Iterator#remove().</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="retainAll(java.lang.Object[])"><!-- --></A><H3>retainAll</H3>
+<PRE>public boolean <B>retainAll</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object[].html' title='JDK class in java.lang'>Object[]</a> items)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Modifies this collection so that it retains only its elements that are contained
+in the specified array.  In other words, removes from this collection all of
+its elements that are not contained in the specified array.
+
+See also <code>grep</code> and <code>findAll</code> when wanting to produce a new list
+containing items which match some specified items but leaving the original collection unchanged.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>items</CODE> -  array containing elements to be retained from this collection.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD><tt>true</tt> if this collection changed as a result of the call</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>Collection#retainAll(Collection).</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="retainAll(groovy.lang.Closure)"><!-- --></A><H3>retainAll</H3>
+<PRE>public boolean <B>retainAll</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> condition)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Modifies this collection so that it retains only its elements
+that are matched according to the specified closure condition.  In other words,
+removes from this collection all of its elements that don't match.
+
+See also <code>findAll</code> and <code>grep</code> when wanting to produce a new list
+containing items which match some criteria but leaving the original collection unchanged.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>condition</CODE> -  a closure condition.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD><tt>true</tt> if this collection changed as a result of the call</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>Iterator#remove().</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="sort()"><!-- --></A><H3>sort</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>sort</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Sorts the Collection. Assumes that the collection items are comparable
+and uses their natural ordering to determine the resulting order.
+If the Collection is a List, it is sorted in place and returned.
+Otherwise, the elements are first placed into a new list which is then
+sorted and returned - leaving the original Collection unchanged.
+<pre class="groovyTestCase">assert [1,2,3] == [3,1,2].sort()</pre></DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>the sorted collection as a List</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>Collection#sort(boolean).</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="sort(boolean)"><!-- --></A><H3>sort</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>sort</B>(boolean mutate)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Sorts the Collection. Assumes that the collection items are
+comparable and uses their natural ordering to determine the resulting order.
+If the Collection is a List and mutate is true,
+it is sorted in place and returned. Otherwise, the elements are first placed
+into a new list which is then sorted and returned - leaving the original Collection unchanged.
+<pre class="groovyTestCase">assert [1,2,3] == [3,1,2].sort()</pre>
+<pre class="groovyTestCase">
+def orig = [1, 3, 2]
+def sorted = orig.sort(false)
+assert orig == [1, 3, 2]
+assert sorted == [1, 2, 3]
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>mutate</CODE> -  false will always cause a new list to be created, true will mutate lists in place.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the sorted collection as a List</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.1</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="sort(java.util.Comparator)"><!-- --></A><H3>sort</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>sort</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Comparator.html' title='JDK class in java.util'>Comparator</a> comparator)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Sorts the Collection using the given Comparator. If the Collection is a List,
+it is sorted in place and returned. Otherwise, the elements are first placed
+into a new list which is then sorted and returned - leaving the original Collection unchanged.
+<pre class="groovyTestCase">
+assert ["hi","hey","hello"] == ["hello","hi","hey"].sort( { a, b -> a.length() <=> b.length() } as Comparator )
+</pre>
+<pre class="groovyTestCase">
+assert ["hello","Hey","hi"] == ["hello","hi","Hey"].sort(String.CASE_INSENSITIVE_ORDER)
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>comparator</CODE> -  a Comparator used for the comparison.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a sorted List</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>Collection#sort(boolean, Comparator).</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="sort(boolean, java.util.Comparator)"><!-- --></A><H3>sort</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>sort</B>(boolean mutate, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Comparator.html' title='JDK class in java.util'>Comparator</a> comparator)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Sorts the Collection using the given Comparator. If the Collection is a List and mutate
+is true, it is sorted in place and returned. Otherwise, the elements are first placed
+into a new list which is then sorted and returned - leaving the original Collection unchanged.
+<pre class="groovyTestCase">
+assert ["hi","hey","hello"] == ["hello","hi","hey"].sort( { a, b -> a.length() <=> b.length() } as Comparator )
+</pre>
+<pre class="groovyTestCase">
+def orig = ["hello","hi","Hey"]
+def sorted = orig.sort(false, String.CASE_INSENSITIVE_ORDER)
+assert orig == ["hello","hi","Hey"]
+assert sorted == ["hello","Hey","hi"]
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>mutate</CODE> -      false will always cause a new list to be created, true will mutate lists in place.</DD>
+
+		<DD><CODE>comparator</CODE> -  a Comparator used for the comparison.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a sorted List</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.1</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="sort(groovy.lang.Closure)"><!-- --></A><H3>sort</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>sort</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Sorts this Collection using the given Closure to determine the correct ordering. If the Collection is a List,
+it is sorted in place and returned. Otherwise, the elements are first placed
+into a new list which is then sorted and returned - leaving the original Collection unchanged.
+
+If the Closure has two parameters
+it is used like a traditional Comparator. I.e. it should compare
+its two parameters for order, returning a negative integer,
+zero, or a positive integer when the first parameter is less than,
+equal to, or greater than the second respectively. Otherwise,
+the Closure is assumed to take a single parameter and return a
+Comparable (typically an Integer) which is then used for
+further comparison.
+<pre class="groovyTestCase">assert ["hi","hey","hello"] == ["hello","hi","hey"].sort { it.length() }</pre>
+<pre class="groovyTestCase">assert ["hi","hey","hello"] == ["hello","hi","hey"].sort { a, b -> a.length() <=> b.length() }</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  a 1 or 2 arg Closure used to determine the correct ordering.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a newly created sorted List</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>Collection#sort(boolean, Closure).</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="sort(boolean, groovy.lang.Closure)"><!-- --></A><H3>sort</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>sort</B>(boolean mutate, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Sorts this Collection using the given Closure to determine the correct ordering. If the Collection is a List
+and mutate is true, it is sorted in place and returned. Otherwise, the elements are first placed
+into a new list which is then sorted and returned - leaving the original Collection unchanged.
+
+If the closure has two parameters
+it is used like a traditional Comparator. I.e. it should compare
+its two parameters for order, returning a negative integer,
+zero, or a positive integer when the first parameter is less than,
+equal to, or greater than the second respectively. Otherwise,
+the Closure is assumed to take a single parameter and return a
+Comparable (typically an Integer) which is then used for
+further comparison.
+<pre class="groovyTestCase">assert ["hi","hey","hello"] == ["hello","hi","hey"].sort { it.length() }</pre>
+<pre class="groovyTestCase">assert ["hi","hey","hello"] == ["hello","hi","hey"].sort { a, b -> a.length() <=> b.length() }</pre>
+<pre class="groovyTestCase">
+def orig = ["hello","hi","Hey"]
+def sorted = orig.sort(false) { it.toUpperCase() }
+assert orig == ["hello","hi","Hey"]
+assert sorted == ["hello","Hey","hi"]
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>mutate</CODE> -   false will always cause a new list to be created, true will mutate lists in place.</DD>
+
+		<DD><CODE>closure</CODE> -  a 1 or 2 arg Closure used to determine the correct ordering.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a newly created sorted List</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.1</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="split(groovy.lang.Closure)"><!-- --></A><H3>split</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> <B>split</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Splits all items into two collections based on the closure condition.
+The first list contains all items which match the closure expression.
+The second list all those that don't.
+<p>
+Example usage:
+<pre class="groovyTestCase">assert [[2,4],[1,3]] == [1,2,3,4].split { it % 2 == 0 }</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  a closure condition.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a List whose first item is the accepted values and whose second item is the rejected values</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.6.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="sum()"><!-- --></A><H3>sum</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>sum</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Sums the items in a collection.  This is equivalent to invoking the
+"plus" method on all items in the collection.
+<pre class="groovyTestCase">assert 1+2+3+4 == [1,2,3,4].sum()</pre></DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>The sum of all of the items</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="sum(java.lang.Object)"><!-- --></A><H3>sum</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>sum</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> initialValue)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Sums the items in a collection, adding the result to some initial value.
+<pre class="groovyTestCase">assert 5+1+2+3+4 == [1,2,3,4].sum(5)</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>initialValue</CODE> -  the items in the collection will be summed to this initial value.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>The sum of all of the items.</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="sum(groovy.lang.Closure)"><!-- --></A><H3>sum</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>sum</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Sums the result of apply a closure to each item of a collection.
+<code>coll.sum(closure)</code> is equivalent to:
+<code>coll.collect(closure).sum()</code>.
+<pre class="groovyTestCase">assert 4+6+10+12 == [2,3,5,6].sum() { it * 2 }</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  a single parameter closure that returns a numeric value..</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>The sum of the values returned by applying the closure to each
+        item of the collection.</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="sum(java.lang.Object, groovy.lang.Closure)"><!-- --></A><H3>sum</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>sum</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> initialValue, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Sums the result of applying a closure to each item of a collection to some initial value.
+<code>coll.sum(initVal, closure)</code> is equivalent to:
+<code>coll.collect(closure).sum(initVal)</code>.
+<pre class="groovyTestCase">assert 50+4+6+10+12 == [2,3,5,6].sum(50) { it * 2 }</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -       a single parameter closure that returns a numeric value..</DD>
+
+		<DD><CODE>initialValue</CODE> -  the closure results will be summed to this initial value.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>The sum of the values returned by applying the closure to each
+        item of the collection.</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="toList()"><!-- --></A><H3>toList</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>toList</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Convert a Collection to a List. Always returns a new List
+even if the Collection is already a List.
+<p>
+Example usage:
+<pre class="groovyTestCase">def x = [1,2,3] as HashSet
+assert x.class == HashSet
+assert x.toList() instanceof List</pre></DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>a List</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="toListString()"><!-- --></A><H3>toListString</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> <B>toListString</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Returns the string representation of the given list.  The string
+displays the contents of the list, similar to a list literal, i.e.
+<code>[1, 2, a]</code>.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>the string representation</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="toListString(int)"><!-- --></A><H3>toListString</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> <B>toListString</B>(int maxSize)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Returns the string representation of the given list.  The string
+displays the contents of the list, similar to a list literal, i.e.
+<code>[1, 2, a]</code>.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>maxSize</CODE> -  stop after approximately this many characters and append '...'.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the string representation</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.3</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="toSet()"><!-- --></A><H3>toSet</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Set.html' title='JDK class in java.util'>Set</a> <B>toSet</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Convert a Collection to a Set. Always returns a new Set
+even if the Collection is already a Set.
+<p>
+Example usage:
+<pre class="groovyTestCase">
+def result = [1, 2, 2, 2, 3].toSet()
+assert result instanceof Set
+assert result == [1, 2, 3] as Set
+</pre></DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>a Set</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="unique()"><!-- --></A><H3>unique</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> <B>unique</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Modifies this collection to remove all duplicated items, using the
+default comparator.
+<pre class="groovyTestCase">assert [1,3] == [1,3,3].unique()</pre></DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>the now modified collection</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>Collection#unique(boolean).</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="unique(boolean)"><!-- --></A><H3>unique</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> <B>unique</B>(boolean mutate)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Remove all duplicates from a given Collection using the default comparator.
+If mutate is true, it works by modifying the original object (and also returning it).
+If mutate is false, a new collection is returned leaving the original unchanged.
+<pre class="groovyTestCase">
+assert [1,3] == [1,3,3].unique()
+</pre>
+<pre class="groovyTestCase">
+def orig = [1, 3, 2, 3]
+def uniq = orig.unique(false)
+assert orig == [1, 3, 2, 3]
+assert uniq == [1, 3, 2]
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>mutate</CODE> -  false will cause a new list containing unique items from the collection to be created, true will mutate collections in place.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the now modified collection</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.1</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="unique(groovy.lang.Closure)"><!-- --></A><H3>unique</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> <B>unique</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>A convenience method for making a collection unique using a Closure
+to determine duplicate (equal) items.
+
+If the closure takes a single parameter, the
+argument passed will be each element, and the closure
+should return a value used for comparison (either using
+<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Comparable.html#compareTo(java.lang.Object)' title='JDK class in java.lang'>Comparable#compareTo</a> or <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html#equals(java.lang.Object)' title='JDK class in java.lang'>Object#equals</a>).
+If the closure takes two parameters, two items from the collection
+will be passed as arguments, and the closure should return an
+int value (with 0 indicating the items are not unique).
+<pre class="groovyTestCase">assert [1,4] == [1,3,4,5].unique { it % 2 }</pre>
+<pre class="groovyTestCase">assert [2,3,4] == [2,3,3,4].unique { a, b -> a <=> b }</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  a 1 or 2 arg Closure used to determine unique items.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>self   without any duplicates</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>Collection#unique(boolean, Closure).</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="unique(boolean, groovy.lang.Closure)"><!-- --></A><H3>unique</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> <B>unique</B>(boolean mutate, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>A convenience method for making a collection unique using a Closure to determine duplicate (equal) items.
+If mutate is true, it works on the receiver object and returns it. If mutate is false, a new collection is returned.
+
+If the closure takes a single parameter, the
+argument passed will be each element, and the closure
+should return a value used for comparison (either using
+<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Comparable.html#compareTo(java.lang.Object)' title='JDK class in java.lang'>Comparable#compareTo</a> or <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html#equals(java.lang.Object)' title='JDK class in java.lang'>Object#equals</a>).
+If the closure takes two parameters, two items from the collection
+will be passed as arguments, and the closure should return an
+int value (with 0 indicating the items are not unique).
+<pre class="groovyTestCase">
+def orig = [1, 3, 4, 5]
+def uniq = orig.unique(false) { it % 2 }
+assert orig == [1, 3, 4, 5]
+assert uniq == [1, 4]
+</pre>
+<pre class="groovyTestCase">
+def orig = [2, 3, 3, 4]
+def uniq = orig.unique(false) { a, b -> a <=> b }
+assert orig == [2, 3, 3, 4]
+assert uniq == [2, 3, 4]
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>mutate</CODE> -   false will always cause a new list to be created, true will mutate lists in place.</DD>
+
+		<DD><CODE>closure</CODE> -  a 1 or 2 arg Closure used to determine unique items.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>self   without any duplicates</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.1</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="unique(java.util.Comparator)"><!-- --></A><H3>unique</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> <B>unique</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Comparator.html' title='JDK class in java.util'>Comparator</a> comparator)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Remove all duplicates from a given Collection.
+Works on the original object (and also returns it).
+The order of members in the Collection are compared by the given Comparator.
+For each duplicate, the first member which is returned
+by the given Collection's iterator is retained, but all other ones are removed.
+The given Collection's original order is preserved.
+<p>
+<pre class="groovyTestCase">
+class Person {
+    def fname, lname
+    String toString() {
+        return fname + " " + lname
+    }
+}
+
+class PersonComparator implements Comparator {
+    int compare(Object o1, Object o2) {
+        Person p1 = (Person) o1
+        Person p2 = (Person) o2
+        if (p1.lname != p2.lname)
+            return p1.lname.compareTo(p2.lname)
+        else
+            return p1.fname.compareTo(p2.fname)
+    }
+
+    boolean equals(Object obj) {
+        return this.equals(obj)
+    }
+}
+
+Person a = new Person(fname:"John", lname:"Taylor")
+Person b = new Person(fname:"Clark", lname:"Taylor")
+Person c = new Person(fname:"Tom", lname:"Cruz")
+Person d = new Person(fname:"Clark", lname:"Taylor")
+
+def list = [a, b, c, d]
+List list2 = list.unique(new PersonComparator())
+assert( list2 == list && list == [a, b, c] )
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>comparator</CODE> -  a Comparator.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>self      the now modified collection without duplicates</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='../../java/util/Collection.html#unique(boolean, java.util.Comparator)' title='GDK enhancement for java.util.Collection'>Collection#unique</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="unique(boolean, java.util.Comparator)"><!-- --></A><H3>unique</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> <B>unique</B>(boolean mutate, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Comparator.html' title='JDK class in java.util'>Comparator</a> comparator)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Remove all duplicates from a given Collection.
+If mutate is true, it works on the original object (and also returns it). If mutate is false, a new collection is returned.
+The order of members in the Collection are compared by the given Comparator.
+For each duplicate, the first member which is returned
+by the given Collection's iterator is retained, but all other ones are removed.
+The given Collection's original order is preserved.
+<p>
+<pre class="groovyTestCase">
+class Person {
+    def fname, lname
+    String toString() {
+        return fname + " " + lname
+    }
+}
+
+class PersonComparator implements Comparator {
+    int compare(Object o1, Object o2) {
+        Person p1 = (Person) o1
+        Person p2 = (Person) o2
+        if (p1.lname != p2.lname)
+            return p1.lname.compareTo(p2.lname)
+        else
+            return p1.fname.compareTo(p2.fname)
+    }
+
+    boolean equals(Object obj) {
+        return this.equals(obj)
+    }
+}
+
+Person a = new Person(fname:"John", lname:"Taylor")
+Person b = new Person(fname:"Clark", lname:"Taylor")
+Person c = new Person(fname:"Tom", lname:"Cruz")
+Person d = new Person(fname:"Clark", lname:"Taylor")
+
+def list = [a, b, c, d]
+List list2 = list.unique(false, new PersonComparator())
+assert( list2 != list && list2 == [a, b, c] )
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>mutate</CODE> -      false will always cause a new collection to be created, true will mutate collections in place.</DD>
+
+		<DD><CODE>comparator</CODE> -  a Comparator.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>self      the collection without duplicates</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.1</DD>
+</dl>
+
+
+
+
+<HR>
+
+<!-- ========= END OF CLASS DATA ========= -->
+
+ <!-- ======= START OF BOTTOM NAVBAR ====== -->
+<A NAME="navbar_bottom"><!-- --></A>
+<A HREF="#skip-navbar_bottom" title="Skip navigation links"></A>
+
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0">
+    <TR>
+        <TD COLSPAN=3 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+            <A NAME="navbar_top_firstrow"><!-- --></A>
+            <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3">
+                <TR ALIGN="center" VALIGN="top">
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../overview-summary.html"><SPAN CLASS="NavBarFont1"><B>Overview</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Package</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Class</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Tree</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Deprecated</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../index-all.html"><SPAN CLASS="NavBarFont1"><B>Index</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Help</SPAN>&nbsp;</TD>
+                </TR>
+            </TABLE>
+        </TD>
+        <TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+            <b>Groovy JDK</b></EM>
+        </TD>
+    </TR>
+</TABLE>
+<!-- =========== END OF NAVBAR =========== -->
+
+</BODY>
+</HTML>

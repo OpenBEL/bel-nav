@@ -33,51 +33,44 @@ class Activator extends AbstractCyActivator {
      */
     @Override
     void start(BundleContext bc) {
-        CyApplicationManager appMgr = getService(bc, CyApplicationManager.class)
-        CyNetworkFactory cynFac = getService(bc, CyNetworkFactory.class)
-        CyNetworkManager cynMgr = getService(bc, CyNetworkManager.class)
-        CyNetworkViewFactory cynvFac = getService(bc, CyNetworkViewFactory.class)
-        CyNetworkViewManager cynvMgr = getService(bc, CyNetworkViewManager.class)
-        CyLayoutAlgorithmManager cylMgr = getService(bc, CyLayoutAlgorithmManager.class)
-        VisualMappingManager visMgr = getService(bc, VisualMappingManager.class)
-        CyEventHelper evtHelper = getService(bc, CyEventHelper.class)
-        ApplyPreferredLayoutTaskFactory aplFac = getService(bc, ApplyPreferredLayoutTaskFactory.class)
+        def cyr = cyReference(bc, this.&getService, [CyApplicationManager.class,
+                    CyNetworkFactory.class, CyNetworkManager.class,
+                    CyNetworkViewFactory.class, CyNetworkViewManager.class,
+                    CyLayoutAlgorithmManager.class, VisualMappingManager.class,
+                    CyEventHelper.class, ApplyPreferredLayoutTaskFactory.class,
+                    WsAPI.class] as Class<?>[])
         CyProperty<Properties> cyProp = getService(bc,CyProperty.class,"(cyPropertyName=cytoscape3.props)");
-        WsAPI wsAPI = getService(bc, WsAPI.class)
 
         // register listeners
         LoadVizmapFileTaskFactory vf =  getService(bc,LoadVizmapFileTaskFactory.class)
         registerService(bc,
-            new SessionLoadListener(visMgr, vf),
+            new SessionLoadListener(cyr.visualMappingManager, vf),
             SessionLoadedListener.class, [:] as Properties)
 
         // register tasks
         registerService(bc,
-            new AddBelColumnsToCurrentFactoryImpl(appMgr, evtHelper, visMgr),
+            new AddBelColumnsToCurrentFactoryImpl(cyr),
             AddBelColumnsToCurrentFactory.class, [
                 preferredMenu: 'Apps.KamNav',
                 menuGravity: 11.0,
                 title: "Add Data Columns"
             ] as Properties)
         registerService(bc,
-            new ExpandNodeFactory(aplFac, evtHelper, visMgr, wsAPI),
+            new ExpandNodeFactory(cyr),
             NodeViewTaskFactory.class, [
                 preferredMenu: 'Apps.KamNav',
                 menuGravity: 11.0,
                 title: "Expand Node"
             ] as Properties)
         registerService(bc,
-            new LinkKnowledgeNetworkFactory(appMgr, wsAPI),
+            new LinkKnowledgeNetworkFactory(cyr),
             NetworkViewTaskFactory.class, [
                 preferredMenu: 'Apps.KamNav',
                 menuGravity: 11.0,
                 title: "Link to Knowledge Network"
             ] as Properties)
         registerService(bc,
-            new LoadFullKnowledgeNetworkFactory(appMgr, cynFac, cynvFac,
-                                                cynMgr, cynvMgr, cylMgr,
-                                                cyProp, evtHelper, visMgr,
-                                                wsAPI),
+            new LoadFullKnowledgeNetworkFactory(cyr, cyProp),
             TaskFactory.class, [
                 preferredMenu: 'File.New.Network',
                 menuGravity: 11.0,
@@ -85,6 +78,6 @@ class Activator extends AbstractCyActivator {
             ] as Properties)
 
         // initialization
-        contributeVisualStyles(visMgr, vf)
+        contributeVisualStyles(cyr.visualMappingManager, vf)
     }
 }

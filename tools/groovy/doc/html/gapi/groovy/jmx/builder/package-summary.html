@@ -1,0 +1,242 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+<title>groovy.jmx.builder (groovy 2.1.7 API)</title>
+<META NAME="keywords" CONTENT="groovy.jmx.builder package">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<LINK REL ="stylesheet" TYPE="text/css" HREF="../../../stylesheet.css" TITLE="Style">
+<link href="../../../groovy.ico" type="image/x-icon" rel="shortcut icon">
+<link href="../../../groovy.ico" type="image/x-icon" rel="icon">
+<SCRIPT type="text/javascript">
+function windowTitle()
+{
+    parent.document.title="groovy.jmx.builder (groovy 2.1.7 API)";
+}
+</SCRIPT>
+<NOSCRIPT>
+</NOSCRIPT>
+
+</head>
+
+<body BGCOLOR="white" onload="windowTitle();">
+<hr>
+
+<!-- ========= START OF TOP NAVBAR ======= -->
+<a name="navbar_top"><!-- --></a>
+<table summary="" width="100%" border="0" cellpadding="1" cellspacing="0">
+<tbody><tr>
+<td colspan="2" class="NavBarCell1" bgcolor="#eeeeff">
+<a name="navbar_top_firstrow"><!-- --></a>
+<table summary="" border="0" cellpadding="0" cellspacing="3">
+  <tbody><tr valign="top" align="center">
+  <td class="NavBarCell1" bgcolor="#eeeeff">    <a href="../../../overview-summary.html"><font class="NavBarFont1"><b>Overview</b></font></a>&nbsp;</td>
+  <td class="NavBarCell1Rev" bgcolor="#ffffff"> &nbsp;<font class="NavBarFont1Rev"><b>Package</b></font>&nbsp;</td>
+  <td class="NavBarCell1" bgcolor="#eeeeff">    <font class="NavBarFont1">Class</font>&nbsp;</td>
+  <!--
+  <td class="NavBarCell1" bgcolor="#eeeeff">    <a href="overview-tree.html"><font class="NavBarFont1"><b>Tree</b></font></a>&nbsp;</td>
+  -->
+  <td class="NavBarCell1" bgcolor="#eeeeff">    <a href="../../../deprecated-list.html"><font class="NavBarFont1"><b>Deprecated</b></font></a>&nbsp;</td>
+  <td class="NavBarCell1" bgcolor="#eeeeff">    <a href="../../../index-all.html"><font class="NavBarFont1"><b>Index</b></font></a>&nbsp;</td>
+  <td class="NavBarCell1" bgcolor="#eeeeff">    <a href="../../../help-doc.html"><font class="NavBarFont1"><b>Help</b></font></a>&nbsp;</td>
+  </tr>
+</tbody></table>
+</td>
+<td rowspan="3" valign="top" align="right"><em>
+    <b>Groovy 2.1.7</b>
+</em>
+</td>
+</tr>
+
+<tr>
+<td class="NavBarCell2" bgcolor="white"><font size="-2">
+&nbsp;PREV&nbsp;
+&nbsp;NEXT</font></td>
+<td class="NavBarCell2" bgcolor="white"><font size="-2">
+  <a href="../../../index.html?groovy/jmx/builder/package-summary.html" target="_top"><b>FRAMES</b></a>  &nbsp;
+&nbsp;<a href="package-summary.html" target="_top"><b>NO FRAMES</b></a>  &nbsp;
+&nbsp;<script type="text/javascript">
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="../../../allclasses-frame.html"><B>All Classes</B></A>');
+  }
+  //-->
+</script>
+<noscript>
+  <A HREF="../../../allclasses-frame.html"><B>All Classes</B></A>
+</noscript>
+
+
+</font></td>
+</tr>
+</tbody></table>
+<!-- ========= END OF TOP NAVBAR ========= -->
+
+
+<HR>
+<H2>
+Package groovy.jmx.builder
+</H2>
+
+ Classes for the JMX Builder.
+ 
+
+
+<P>&nbsp;</P>
+
+
+
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+    <TR BGCOLOR="#90DDF7" CLASS="TableHeadingColor">
+    <TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+    <B>Interface Summary</B></FONT></TH>
+    </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="JmxEventEmitterMBean.html" title="class in groovy/jmx/builder">JmxEventEmitterMBean</A></B></TD>
+        <TD>This is the management interface for JmxEventEmitter.  </TD>
+        </TR>
+
+</TABLE>
+&nbsp;
+<P>
+<DL>
+</DL>
+<hr>
+    
+
+
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+    <TR BGCOLOR="#90DDF7" CLASS="TableHeadingColor">
+    <TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+    <B>Class Summary</B></FONT></TH>
+    </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="JmxAttributeInfoManager.html" title="class in groovy/jmx/builder">JmxAttributeInfoManager</A></B></TD>
+        <TD>This class is responsible for assembling JMX Attribute Info from the meta map.
+ </TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="JmxBeanExportFactory.html" title="class in groovy/jmx/builder">JmxBeanExportFactory</A></B></TD>
+        <TD>This factory returns a container node for all other nodes that are used to collect meta data for resources that
+ are exported to the MBeanServer for management.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="JmxBeanFactory.html" title="class in groovy/jmx/builder">JmxBeanFactory</A></B></TD>
+        <TD>This factory returns the bean() node.  </TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="JmxBeanInfoManager.html" title="class in groovy/jmx/builder">JmxBeanInfoManager</A></B></TD>
+        <TD>The JmxBeanInfoManager creates fully-described model mbean info object using the underlying meta map.
+ </TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="JmxBeansFactory.html" title="class in groovy/jmx/builder">JmxBeansFactory</A></B></TD>
+        <TD>@author vladimir</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="JmxBuilder.html" title="class in groovy/jmx/builder">JmxBuilder</A></B></TD>
+        <TD>This is JmxBuilder's factory builder class.  </TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="JmxBuilderModelMBean.html" title="class in groovy/jmx/builder">JmxBuilderModelMBean</A></B></TD>
+        <TD>The JmxBuilderModelMBean is the MBean class that proxies exported POGO/POJO inside the MBeanServer.
+ </TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="JmxBuilderTools.html" title="class in groovy/jmx/builder">JmxBuilderTools</A></B></TD>
+        <TD>This is a utility class used as a helper for JmxBuilder.</TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="JmxClientConnectorFactory.html" title="class in groovy/jmx/builder">JmxClientConnectorFactory</A></B></TD>
+        <TD>This is the factory for node JmxBuilder.connectorClient.
+ </TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="JmxEmitterFactory.html" title="class in groovy/jmx/builder">JmxEmitterFactory</A></B></TD>
+        <TD>This class is the factory for the emitter node.  </TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="JmxEventEmitter.html" title="class in groovy/jmx/builder">JmxEventEmitter</A></B></TD>
+        <TD>The JmxEventEmitter is a JMX Broadcaster class that is used to send generic events on the MBeanServer's
+ event bus. </TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="JmxEventListener.html" title="class in groovy/jmx/builder">JmxEventListener</A></B></TD>
+        <TD>The JmxEventListener class is used by the builder to listen to events on the event bus.  </TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="JmxListenerFactory.html" title="class in groovy/jmx/builder">JmxListenerFactory</A></B></TD>
+        <TD>This factory class is used to create an listener() node for JmxBuilder.  </TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="JmxMetaMapBuilder.html" title="class in groovy/jmx/builder">JmxMetaMapBuilder</A></B></TD>
+        <TD>The JmxMetaMapBuilder class is used to collect meta data passed in JmxBuilder nodes.  </TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="JmxOperationInfoManager.html" title="class in groovy/jmx/builder">JmxOperationInfoManager</A></B></TD>
+        <TD>This class is responsible for assembling JMX Operation Info from the meta map.
+ </TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="JmxServerConnectorFactory.html" title="class in groovy/jmx/builder">JmxServerConnectorFactory</A></B></TD>
+        <TD>This is the server connector factory used for node JmxBuilder.connectorServer().  </TD>
+        </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="JmxTimerFactory.html" title="class in groovy/jmx/builder">JmxTimerFactory</A></B></TD>
+        <TD>The JmxTimerFactory class generates a timer() node for JmxBuilder.  </TD>
+        </TR>
+
+</TABLE>
+&nbsp;
+<P>
+<DL>
+</DL>
+<hr>
+    
+
+
+
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+    <TR BGCOLOR="#90DDF7" CLASS="TableHeadingColor">
+    <TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+    <B>Exception Summary</B></FONT></TH>
+    </TR>
+
+        <TR BGCOLOR="white" CLASS="TableRowColor">
+        <TD WIDTH="15%"><B><A HREF="JmxBuilderException.html" title="class in groovy/jmx/builder">JmxBuilderException</A></B></TD>
+        <TD>Runtime exception used by JmxBuilder.</TD>
+        </TR>
+
+</TABLE>
+&nbsp;
+<P>
+<DL>
+</DL>
+<hr>
+    
+
+
+
+
+<p>Copyright &amp;copy; 2003-2013 The Codehaus. All rights reserved.</p>
+<hr>
+</body>
+</html>

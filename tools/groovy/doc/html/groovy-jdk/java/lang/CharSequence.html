@@ -1,0 +1,4410 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<HTML>
+<HEAD>
+<TITLE>CharSequence (Groovy JDK)</TITLE>
+
+
+<LINK REL ="stylesheet" TYPE="text/css" HREF="../../stylesheet.css" TITLE="Style">
+
+<SCRIPT type="text/javascript">
+function windowTitle()
+{
+    parent.document.title = document.title;
+}
+</SCRIPT>
+
+</HEAD>
+
+<BODY BGCOLOR="white" onload="windowTitle();">
+
+<!-- ========== START OF NAVBAR ========== -->
+<A NAME="navbar_top"><!-- --></A>
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0">
+    <TR>
+        <TD COLSPAN=3 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+            <A NAME="navbar_top_firstrow"><!-- --></A>
+            <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3">
+                <TR ALIGN="center" VALIGN="top">
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../overview-summary.html"><SPAN CLASS="NavBarFont1"><B>Overview</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Package</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Class</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Tree</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Deprecated</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../index-all.html"><SPAN CLASS="NavBarFont1"><B>Index</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Help</SPAN>&nbsp;</TD>
+                </TR>
+            </TABLE>
+        </TD>
+        <TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+            <b>Groovy JDK</b></EM>
+        </TD>
+    </TR>
+</TABLE>
+<!-- =========== END OF NAVBAR =========== -->
+
+<!-- ======== START OF CLASS DATA ======== -->
+<H2>
+<SPAN style="font-size:12px;">
+java.lang</SPAN>
+<BR>
+Class CharSequence</H2>
+
+<!-- ========== METHOD SUMMARY =========== -->
+
+<A NAME="method_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><SPAN style="font-size:24px;">
+<B>Method Summary</B></SPAN></TH>
+</TR>
+
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>boolean</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#asBoolean()">asBoolean</A></B>()</CODE>
+<BR>
+Coerce a string (an instance of CharSequence) to a boolean value.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#asType(java.lang.Class)">asType</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Class.html' title='JDK class in java.lang'>Class</a> c)</CODE>
+<BR>
+<p>Provides a method to perform custom 'dynamic' type conversion
+to the given class using the <code>as</code> operator.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/regex/Pattern.html' title='JDK class in java.util.regex'>Pattern</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#bitwiseNegate()">bitwiseNegate</A></B>()</CODE>
+<BR>
+Turns a CharSequence into a regular expression Pattern
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#capitalize()">capitalize</A></B>()</CODE>
+<BR>
+Convenience method to capitalize the first letter of a CharSequence.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#center(java.lang.Number)">center</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> numberOfChars)</CODE>
+<BR>
+Pad a CharSequence to a minimum length specified by <tt>numberOfChars</tt> by adding the space character around it as many times as needed so that it remains centered.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#center(java.lang.Number, java.lang.CharSequence)">center</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> numberOfChars, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> padding)</CODE>
+<BR>
+Pad a CharSequence to a minimum length specified by <tt>numberOfChars</tt>, appending the supplied padding CharSequence around the original as many times as needed keeping it centered.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>boolean</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#contains(java.lang.CharSequence)">contains</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> text)</CODE>
+<BR>
+Provide an implementation of contains() like
+<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html#contains(Object)' title='JDK class in java.util'>Collection#contains</a> to make CharSequences more polymorphic.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>int</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#count(java.lang.CharSequence)">count</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> text)</CODE>
+<BR>
+Count the number of occurrences of a sub CharSequence.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#denormalize()">denormalize</A></B>()</CODE>
+<BR>
+Return a CharSequence with lines (separated by LF, CR/LF, or CR)
+terminated by the platform specific line separator.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#drop(int)">drop</A></B>(int num)</CODE>
+<BR>
+Drops the given number of chars from the head of this CharSequence
+if they are available.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#dropWhile(groovy.lang.Closure)">dropWhile</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> condition)</CODE>
+<BR>
+Create a suffix of the given CharSequence by dropping as many characters as possible from the
+front of the original CharSequence such that calling the given closure condition evaluates to
+true when passed each of the dropped characters.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#eachLine(groovy.lang.Closure)">eachLine</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Iterates through this CharSequence line by line.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#eachLine(int, groovy.lang.Closure)">eachLine</A></B>(int firstLine, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Iterates through this CharSequence line by line.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#eachMatch(java.lang.CharSequence, groovy.lang.Closure)">eachMatch</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> regex, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Process each regex group matched substring of the given CharSequence. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#eachMatch(java.util.regex.Pattern, groovy.lang.Closure)">eachMatch</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/regex/Pattern.html' title='JDK class in java.util.regex'>Pattern</a> pattern, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Process each regex group matched substring of the given pattern. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#expand()">expand</A></B>()</CODE>
+<BR>
+Expands all tabs into spaces with tabStops of size 8.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#expand(int)">expand</A></B>(int tabStop)</CODE>
+<BR>
+Expands all tabs into spaces. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#expandLine(int)">expandLine</A></B>(int tabStop)</CODE>
+<BR>
+Expands all tabs into spaces. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#find(java.lang.CharSequence)">find</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> regex)</CODE>
+<BR>
+Finds the first occurrence of a regular expression CharSequence within a CharSequence.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#find(java.lang.CharSequence, groovy.lang.Closure)">find</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> regex, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Returns the result of calling a closure with the first occurrence of a regular expression found within a CharSequence.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#find(java.util.regex.Pattern)">find</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/regex/Pattern.html' title='JDK class in java.util.regex'>Pattern</a> pattern)</CODE>
+<BR>
+Finds the first occurrence of a compiled regular expression Pattern within a CharSequence.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#find(java.util.regex.Pattern, groovy.lang.Closure)">find</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/regex/Pattern.html' title='JDK class in java.util.regex'>Pattern</a> pattern, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Returns the result of calling a closure with the first occurrence of a regular expression found within a
+CharSequence.&#160;If the regex doesn't match, the closure will not be called and find will return null.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#findAll(java.lang.CharSequence)">findAll</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> regex)</CODE>
+<BR>
+Returns a (possibly empty) list of all occurrences of a regular expression (in CharSequence format) found within a CharSequence.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#findAll(java.lang.CharSequence, groovy.lang.Closure)">findAll</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> regex, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Finds all occurrences of a capturing regular expression CharSequence within a CharSequence.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#findAll(java.util.regex.Pattern)">findAll</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/regex/Pattern.html' title='JDK class in java.util.regex'>Pattern</a> pattern)</CODE>
+<BR>
+Returns a (possibly empty) list of all occurrences of a regular expression (in Pattern format) found within a CharSequence.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#findAll(java.util.regex.Pattern, groovy.lang.Closure)">findAll</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/regex/Pattern.html' title='JDK class in java.util.regex'>Pattern</a> pattern, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Finds all occurrences of a compiled regular expression Pattern within a CharSequence.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#getAt(java.util.Collection)">getAt</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> indices)</CODE>
+<BR>
+Select a List of characters from a CharSequence using a Collection
+to identify the indices to be selected.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#getAt(groovy.lang.EmptyRange)">getAt</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/EmptyRange.html' title='Groovy class in groovy.lang'>EmptyRange</a> range)</CODE>
+<BR>
+Support the range subscript operator for CharSequence or StringBuffer with EmptyRange
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#getAt(int)">getAt</A></B>(int index)</CODE>
+<BR>
+Support the subscript operator for CharSequence.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#getAt(groovy.lang.IntRange)">getAt</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/IntRange.html' title='Groovy class in groovy.lang'>IntRange</a> range)</CODE>
+<BR>
+Support the range subscript operator for CharSequence or StringBuffer with IntRange
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#getAt(groovy.lang.Range)">getAt</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Range.html' title='Groovy class in groovy.lang'>Range</a> range)</CODE>
+<BR>
+Support the range subscript operator for CharSequence
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>char[]</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#getChars()">getChars</A></B>()</CODE>
+<BR>
+Converts the given CharSequence into an array of characters.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>boolean</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#isAllWhitespace()">isAllWhitespace</A></B>()</CODE>
+<BR>
+True if a CharSequence only contains whitespace characters.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>boolean</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#isBigDecimal()">isBigDecimal</A></B>()</CODE>
+<BR>
+Determine if a CharSequence can be parsed as a BigDecimal.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>boolean</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#isBigInteger()">isBigInteger</A></B>()</CODE>
+<BR>
+Determine if a CharSequence can be parsed as a BigInteger.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>boolean</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#isCase(java.lang.Object)">isCase</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> switchValue)</CODE>
+<BR>
+'Case' implementation for a CharSequence, which simply calls the equivalent method for String.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>boolean</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#isDouble()">isDouble</A></B>()</CODE>
+<BR>
+Determine if a CharSequence can be parsed as a Double.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>boolean</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#isFloat()">isFloat</A></B>()</CODE>
+<BR>
+Determine if a CharSequence can be parsed as a Float.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>boolean</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#isInteger()">isInteger</A></B>()</CODE>
+<BR>
+Determine if a CharSequence can be parsed as an Integer.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>boolean</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#isLong()">isLong</A></B>()</CODE>
+<BR>
+Determine if a CharSequence can be parsed as a Long.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>boolean</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#isNumber()">isNumber</A></B>()</CODE>
+<BR>
+Determine if a CharSequence can be parsed as a Number.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/StringBuilder.html' title='JDK class in java.lang'>StringBuilder</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#leftShift(java.lang.Object)">leftShift</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> value)</CODE>
+<BR>
+Overloads the left shift operator to provide an easy way to append multiple
+objects as string representations to a CharSequence.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>boolean</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#matches(java.util.regex.Pattern)">matches</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/regex/Pattern.html' title='JDK class in java.util.regex'>Pattern</a> pattern)</CODE>
+<BR>
+Tells whether or not a CharSequence matches the given
+compiled regular expression Pattern.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#minus(java.lang.Object)">minus</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> target)</CODE>
+<BR>
+Remove a part of a CharSequence by replacing the first occurrence
+of target within self with '' and returns the result.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#multiply(java.lang.Number)">multiply</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> factor)</CODE>
+<BR>
+Repeat a CharSequence a certain number of times.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#next()">next</A></B>()</CODE>
+<BR>
+This method is called by the ++ operator for the class CharSequence.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#normalize()">normalize</A></B>()</CODE>
+<BR>
+Return a CharSequence with linefeeds and carriage returns normalized to linefeeds.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#padLeft(java.lang.Number)">padLeft</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> numberOfChars)</CODE>
+<BR>
+Pad a CharSequence to a minimum length specified by <tt>numberOfChars</tt> by adding the space character to the left as many times as needed.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#padLeft(java.lang.Number, java.lang.CharSequence)">padLeft</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> numberOfChars, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> padding)</CODE>
+<BR>
+Pad a CharSequence to a minimum length specified by <tt>numberOfChars</tt>, adding the supplied padding CharSequence as many times as needed to the left.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#padRight(java.lang.Number)">padRight</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> numberOfChars)</CODE>
+<BR>
+Pad a CharSequence to a minimum length specified by <tt>numberOfChars</tt> by adding the space character to the right as many times as needed.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#padRight(java.lang.Number, java.lang.CharSequence)">padRight</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> numberOfChars, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> padding)</CODE>
+<BR>
+Pad a CharSequence to a minimum length specified by <tt>numberOfChars</tt>, adding the supplied padding CharSequence as many times as needed to the right.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#plus(java.lang.Object)">plus</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> value)</CODE>
+<BR>
+Appends the String representation of the given operand to this string.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#previous()">previous</A></B>()</CODE>
+<BR>
+This method is called by the -- operator for the class CharSequence.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#readLines()">readLines</A></B>()</CODE>
+<BR>
+Return the lines of a CharSequence as a List of CharSequence.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#replaceAll(java.lang.CharSequence, java.lang.CharSequence)">replaceAll</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> regex, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> replacement)</CODE>
+<BR>
+Replaces each substring of this CharSequence that matches the given
+regular expression with the given replacement.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#replaceAll(java.lang.CharSequence, groovy.lang.Closure)">replaceAll</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> regex, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Replaces all occurrences of a captured group by the result of a closure on that text.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#replaceAll(java.util.regex.Pattern, java.lang.CharSequence)">replaceAll</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/regex/Pattern.html' title='JDK class in java.util.regex'>Pattern</a> pattern, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> replacement)</CODE>
+<BR>
+Replaces all substrings of a CharSequence that match the given
+compiled regular expression with the given replacement.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#replaceAll(java.util.regex.Pattern, groovy.lang.Closure)">replaceAll</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/regex/Pattern.html' title='JDK class in java.util.regex'>Pattern</a> pattern, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Replaces all occurrences of a captured group by the result of a closure call on that text.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#replaceFirst(java.lang.CharSequence, java.lang.CharSequence)">replaceFirst</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> regex, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> replacement)</CODE>
+<BR>
+Replaces the first substring of this CharSequence that matches the given
+regular expression with the given replacement.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#replaceFirst(java.lang.CharSequence, groovy.lang.Closure)">replaceFirst</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> regex, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Replaces the first occurrence of a captured group by the result of a closure call on that text.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#replaceFirst(java.util.regex.Pattern, java.lang.CharSequence)">replaceFirst</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/regex/Pattern.html' title='JDK class in java.util.regex'>Pattern</a> pattern, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> replacement)</CODE>
+<BR>
+Replaces the first substring of a CharSequence that matches the given
+compiled regular expression with the given replacement.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#replaceFirst(java.util.regex.Pattern, groovy.lang.Closure)">replaceFirst</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/regex/Pattern.html' title='JDK class in java.util.regex'>Pattern</a> pattern, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Replaces the first occurrence of a captured group by the result of a closure call on that text.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#reverse()">reverse</A></B>()</CODE>
+<BR>
+Creates a new CharSequence which is the reverse (backwards) of this string
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>int</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#size()">size</A></B>()</CODE>
+<BR>
+Provide the standard Groovy <code>size()</code> method for <code>CharSequence</code>.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence[].html' title='JDK class in java.lang'>CharSequence[]</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#split()">split</A></B>()</CODE>
+<BR>
+Convenience method to split a CharSequence (with whitespace as delimiter).
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#splitEachLine(java.lang.CharSequence, groovy.lang.Closure)">splitEachLine</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> regex, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Iterates through the given CharSequence line by line, splitting each line using
+the given separator.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#splitEachLine(java.util.regex.Pattern, groovy.lang.Closure)">splitEachLine</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/regex/Pattern.html' title='JDK class in java.util.regex'>Pattern</a> pattern, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Iterates through the given CharSequence line by line, splitting each line using
+the given separator Pattern.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#stripIndent()">stripIndent</A></B>()</CODE>
+<BR>
+Strip leading spaces from every line in a CharSequence. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#stripIndent(int)">stripIndent</A></B>(int numChars)</CODE>
+<BR>
+Strip <tt>numChar</tt> leading characters from
+every line in a CharSequence.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#stripMargin()">stripMargin</A></B>()</CODE>
+<BR>
+Strip leading whitespace/control characters followed by '|' from
+every line in a CharSequence.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#stripMargin(char)">stripMargin</A></B>(char marginChar)</CODE>
+<BR>
+Strip leading whitespace/control characters followed by <tt>marginChar</tt> from
+every line in a String.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#stripMargin(java.lang.CharSequence)">stripMargin</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> marginChar)</CODE>
+<BR>
+Strip leading whitespace/control characters followed by <tt>marginChar</tt> from
+every line in a CharSequence.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#take(int)">take</A></B>(int num)</CODE>
+<BR>
+Returns the first <code>num</code> elements from this CharSequence.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#takeWhile(groovy.lang.Closure)">takeWhile</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> condition)</CODE>
+<BR>
+Returns the longest prefix of this CharSequence where each
+element passed to the given closure evaluates to true.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/math/BigDecimal.html' title='JDK class in java.math'>BigDecimal</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#toBigDecimal()">toBigDecimal</A></B>()</CODE>
+<BR>
+Parse a CharSequence into a BigDecimal
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/math/BigInteger.html' title='JDK class in java.math'>BigInteger</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#toBigInteger()">toBigInteger</A></B>()</CODE>
+<BR>
+Parse a CharSequence into a BigInteger
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Double.html' title='JDK class in java.lang'>Double</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#toDouble()">toDouble</A></B>()</CODE>
+<BR>
+Parse a CharSequence into a Double
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Float.html' title='JDK class in java.lang'>Float</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#toFloat()">toFloat</A></B>()</CODE>
+<BR>
+Parse a CharSequence into a Float
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Integer.html' title='JDK class in java.lang'>Integer</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#toInteger()">toInteger</A></B>()</CODE>
+<BR>
+Parse a CharSequence into an Integer
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#toList()">toList</A></B>()</CODE>
+<BR>
+Converts the given CharSequence into a List of CharSequence of one character.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Long.html' title='JDK class in java.lang'>Long</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#toLong()">toLong</A></B>()</CODE>
+<BR>
+Parse a CharSequence into a Long
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Set.html' title='JDK class in java.util'>Set</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#toSet()">toSet</A></B>()</CODE>
+<BR>
+Converts the given CharSequence into a Set of unique CharSequence of one character.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Short.html' title='JDK class in java.lang'>Short</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#toShort()">toShort</A></B>()</CODE>
+<BR>
+Parse a CharSequence into a Short
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/net/URI.html' title='JDK class in java.net'>URI</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#toURI()">toURI</A></B>()</CODE>
+<BR>
+Transforms a CharSequence representing a URI into a URI object.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/net/URL.html' title='JDK class in java.net'>URL</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#toURL()">toURL</A></B>()</CODE>
+<BR>
+Transforms a CharSequence representing a URL into a URL object.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#tokenize()">tokenize</A></B>()</CODE>
+<BR>
+Tokenize a CharSequence (with a whitespace as the delimiter).
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#tokenize(java.lang.Character)">tokenize</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Character.html' title='JDK class in java.lang'>Character</a> token)</CODE>
+<BR>
+Tokenize a CharSequence based on the given character delimiter.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#tokenize(java.lang.CharSequence)">tokenize</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> token)</CODE>
+<BR>
+Tokenize a CharSequence based on the given CharSequence delimiter.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#tr(java.lang.CharSequence, java.lang.CharSequence)">tr</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> sourceSet, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> replacementSet)</CODE>
+<BR>
+Translates a string by replacing characters from the sourceSet with characters from replacementSet.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#unexpand()">unexpand</A></B>()</CODE>
+<BR>
+Replaces sequences of whitespaces with tabs using tabStops of size 8.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#unexpand(int)">unexpand</A></B>(int tabStop)</CODE>
+<BR>
+Replaces sequences of whitespaces with tabs.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#unexpandLine(int)">unexpandLine</A></B>(int tabStop)</CODE>
+<BR>
+Replaces sequences of whitespaces with tabs within a line.
+</TD>
+</TR>
+
+</TABLE>
+&nbsp;
+
+
+<!-- ============ METHOD DETAIL ========== -->
+
+<A NAME="method_detail"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="1"><SPAN style="font-size:24px;">
+<B>Method Detail</B></SPAN></TH>
+</TR>
+</TABLE>
+
+
+
+<A name="asBoolean()"><!-- --></A><H3>asBoolean</H3>
+<PRE>public boolean <B>asBoolean</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Coerce a string (an instance of CharSequence) to a boolean value.
+A string is coerced to false if it is of length 0,
+and to true otherwise.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>the boolean value</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="asType(java.lang.Class)"><!-- --></A><H3>asType</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>asType</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Class.html' title='JDK class in java.lang'>Class</a> c)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD><p>Provides a method to perform custom 'dynamic' type conversion
+to the given class using the <code>as</code> operator.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>c</CODE> -     the desired class.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the converted object</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>String#asType(Class).</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="bitwiseNegate()"><!-- --></A><H3>bitwiseNegate</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/regex/Pattern.html' title='JDK class in java.util.regex'>Pattern</a> <B>bitwiseNegate</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Turns a CharSequence into a regular expression Pattern</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>the regular expression pattern</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="capitalize()"><!-- --></A><H3>capitalize</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> <B>capitalize</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Convenience method to capitalize the first letter of a CharSequence.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>The capitalized CharSequence</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>String#capitalize().</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="center(java.lang.Number)"><!-- --></A><H3>center</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> <B>center</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> numberOfChars)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Pad a CharSequence to a minimum length specified by <tt>numberOfChars</tt> by adding the space character around it as many times as needed so that it remains centered.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>numberOfChars</CODE> -  the total minimum number of characters of the resulting CharSequence.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the CharSequence centered with padded characters around it</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>String#center(Number).</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="center(java.lang.Number, java.lang.CharSequence)"><!-- --></A><H3>center</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> <B>center</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> numberOfChars, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> padding)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Pad a CharSequence to a minimum length specified by <tt>numberOfChars</tt>, appending the supplied padding CharSequence around the original as many times as needed keeping it centered.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>numberOfChars</CODE> -  the total minimum number of characters of the resulting CharSequence.</DD>
+
+		<DD><CODE>padding</CODE> -        the characters used for padding.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the CharSequence centered with padded characters around it</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>String#center(Number, String).</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="contains(java.lang.CharSequence)"><!-- --></A><H3>contains</H3>
+<PRE>public boolean <B>contains</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> text)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Provide an implementation of contains() like
+<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html#contains(Object)' title='JDK class in java.util'>Collection#contains</a> to make CharSequences more polymorphic.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>text</CODE> -  the CharSequence to look for.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>true if this CharSequence contains the given text</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>String#contains(String).</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="count(java.lang.CharSequence)"><!-- --></A><H3>count</H3>
+<PRE>public int <B>count</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> text)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Count the number of occurrences of a sub CharSequence.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>text</CODE> -  a sub CharSequence.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the number of occurrences of the given CharSequence inside this CharSequence</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>String#count(String).</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="denormalize()"><!-- --></A><H3>denormalize</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> <B>denormalize</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Return a CharSequence with lines (separated by LF, CR/LF, or CR)
+terminated by the platform specific line separator.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>the denormalized CharSequence</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>String#denormalize().</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="drop(int)"><!-- --></A><H3>drop</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> <B>drop</B>(int num)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Drops the given number of chars from the head of this CharSequence
+if they are available.
+<pre class="groovyTestCase">
+    def text = "Groovy"
+    assert text.drop( 0 ) == 'Groovy'
+    assert text.drop( 2 ) == 'oovy'
+    assert text.drop( 7 ) == ''
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>num</CODE> -  the number of characters to drop from this iterator.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a CharSequence consisting of all characters except the first <code>num</code> ones,
+        or else an empty String, if this CharSequence has less than <code>num</code> characters.</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.1</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="dropWhile(groovy.lang.Closure)"><!-- --></A><H3>dropWhile</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> <B>dropWhile</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> condition)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Create a suffix of the given CharSequence by dropping as many characters as possible from the
+front of the original CharSequence such that calling the given closure condition evaluates to
+true when passed each of the dropped characters.
+<p>
+<pre class="groovyTestCase">
+def text = "Groovy"
+assert text.dropWhile{ false } == 'Groovy'
+assert text.dropWhile{ true } == ''
+assert text.dropWhile{ it < 'Z' } == 'roovy'
+assert text.dropWhile{ it != 'v' } == 'vy'
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>condition
+</CODE> -  the closure that while continuously evaluating to true will cause us to drop elements from
+                 the front of the original CharSequence.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the shortest suffix of the given CharSequence such that the given closure condition
+        evaluates to true for each element dropped from the front of the CharSequence</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>2.0.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="eachLine(groovy.lang.Closure)"><!-- --></A><H3>eachLine</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>eachLine</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates through this CharSequence line by line.  Each line is passed
+to the given 1 or 2 arg closure. If a 2 arg closure is found
+the line count is passed as the second argument.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  a closure.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the last value returned by the closure</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='../../String.html#eachLine(groovy.lang.Closure)' title='GDK enhancement for String'>String#eachLine</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="eachLine(int, groovy.lang.Closure)"><!-- --></A><H3>eachLine</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>eachLine</B>(int firstLine, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates through this CharSequence line by line.  Each line is passed
+to the given 1 or 2 arg closure. If a 2 arg closure is found
+the line count is passed as the second argument.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>firstLine</CODE> -  the line number value used for the first line (default is 1, set to 0 to start counting from 0).</DD>
+
+		<DD><CODE>closure</CODE> -  a closure (arg 1 is line, optional arg 2 is line number).</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the last value returned by the closure</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='../../String.html#eachLine(int, groovy.lang.Closure)' title='GDK enhancement for String'>String#eachLine</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="eachMatch(java.lang.CharSequence, groovy.lang.Closure)"><!-- --></A><H3>eachMatch</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> <B>eachMatch</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> regex, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Process each regex group matched substring of the given CharSequence. If the closure
+parameter takes one argument, an array with all match groups is passed to it.
+If the closure takes as many arguments as there are match groups, then each
+parameter will be one match group.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>regex</CODE> -    a Regex CharSequence.</DD>
+
+		<DD><CODE>closure</CODE> -  a closure with one parameter or as much parameters as groups.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the source CharSequence</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='../../String.html#eachMatch(String, groovy.lang.Closure)' title='GDK enhancement for String'>String#eachMatch</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="eachMatch(java.util.regex.Pattern, groovy.lang.Closure)"><!-- --></A><H3>eachMatch</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> <B>eachMatch</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/regex/Pattern.html' title='JDK class in java.util.regex'>Pattern</a> pattern, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Process each regex group matched substring of the given pattern. If the closure
+parameter takes one argument, an array with all match groups is passed to it.
+If the closure takes as many arguments as there are match groups, then each
+parameter will be one match group.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>pattern</CODE> -  a regex Pattern.</DD>
+
+		<DD><CODE>closure</CODE> -  a closure with one parameter or as much parameters as groups.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the source CharSequence</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='../../String.html#eachMatch(java.util.regex.Pattern, groovy.lang.Closure)' title='GDK enhancement for String'>String#eachMatch</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="expand()"><!-- --></A><H3>expand</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> <B>expand</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Expands all tabs into spaces with tabStops of size 8.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>The expanded CharSequence</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>String#expand().</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="expand(int)"><!-- --></A><H3>expand</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> <B>expand</B>(int tabStop)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Expands all tabs into spaces. If the CharSequence has multiple
+lines, expand each line - restarting tab stops at the start
+of each line.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>tabStop</CODE> -  The number of spaces a tab represents.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>The expanded CharSequence</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>String#expand(int).</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="expandLine(int)"><!-- --></A><H3>expandLine</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> <B>expandLine</B>(int tabStop)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Expands all tabs into spaces. Assumes the CharSequence represents a single line of text.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>tabStop</CODE> -  The number of spaces a tab represents.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>The expanded CharSequence</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>String#expandLine(int).</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="find(java.lang.CharSequence)"><!-- --></A><H3>find</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> <B>find</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> regex)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Finds the first occurrence of a regular expression CharSequence within a CharSequence.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>regex</CODE> -  the capturing regex.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a CharSequence containing the matched portion, or null if the regex doesn't match</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='../../String.html#find(java.util.regex.Pattern)' title='GDK enhancement for String'>String#find</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="find(java.lang.CharSequence, groovy.lang.Closure)"><!-- --></A><H3>find</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> <B>find</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> regex, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Returns the result of calling a closure with the first occurrence of a regular expression found within a CharSequence.
+If the regex doesn't match, the closure will not be called and find will return null.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>regex</CODE> -    the capturing regex CharSequence.</DD>
+
+		<DD><CODE>closure</CODE> -  the closure that will be passed the full match, plus each of the capturing groups.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a CharSequence containing the result of the closure, or null if the regex pattern doesn't match</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='../../String.html#find(java.util.regex.Pattern, groovy.lang.Closure)' title='GDK enhancement for String'>String#find</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="find(java.util.regex.Pattern)"><!-- --></A><H3>find</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> <B>find</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/regex/Pattern.html' title='JDK class in java.util.regex'>Pattern</a> pattern)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Finds the first occurrence of a compiled regular expression Pattern within a CharSequence.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>pattern</CODE> -  the compiled regex Pattern.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a CharSequence containing the matched portion, or null if the regex pattern doesn't match</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='../../String.html#find(java.util.regex.Pattern)' title='GDK enhancement for String'>String#find</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="find(java.util.regex.Pattern, groovy.lang.Closure)"><!-- --></A><H3>find</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> <B>find</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/regex/Pattern.html' title='JDK class in java.util.regex'>Pattern</a> pattern, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Returns the result of calling a closure with the first occurrence of a regular expression found within a
+CharSequence.&#160;If the regex doesn't match, the closure will not be called and find will return null.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>pattern</CODE> -  the compiled regex Pattern.</DD>
+
+		<DD><CODE>closure</CODE> -  the closure that will be passed the full match, plus each of the capturing groups.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a CharSequence containing the result of the closure, or null if the regex pattern doesn't match</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='../../String.html#find(java.util.regex.Pattern, groovy.lang.Closure)' title='GDK enhancement for String'>String#find</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="findAll(java.lang.CharSequence)"><!-- --></A><H3>findAll</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>findAll</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> regex)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Returns a (possibly empty) list of all occurrences of a regular expression (in CharSequence format) found within a CharSequence.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>regex</CODE> -  the capturing regex CharSequence.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a List containing all full matches of the regex within the CharSequence, an empty list will be returned if there are no matches</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>String#findAll(String).</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="findAll(java.lang.CharSequence, groovy.lang.Closure)"><!-- --></A><H3>findAll</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>findAll</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> regex, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Finds all occurrences of a capturing regular expression CharSequence within a CharSequence.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>regex</CODE> -    the capturing regex CharSequence.</DD>
+
+		<DD><CODE>closure</CODE> -  will be passed the full match plus each of the capturing groups.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a List containing all full matches of the regex within the CharSequence, an empty list will be returned if there are no matches</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='../../String.html#findAll(String, groovy.lang.Closure)' title='GDK enhancement for String'>String#findAll</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="findAll(java.util.regex.Pattern)"><!-- --></A><H3>findAll</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>findAll</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/regex/Pattern.html' title='JDK class in java.util.regex'>Pattern</a> pattern)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Returns a (possibly empty) list of all occurrences of a regular expression (in Pattern format) found within a CharSequence.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>pattern</CODE> -  the compiled regex Pattern.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a List containing all full matches of the Pattern within the CharSequence, an empty list will be returned if there are no matches</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='../../String.html#findAll(java.util.regex.Pattern)' title='GDK enhancement for String'>String#findAll</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="findAll(java.util.regex.Pattern, groovy.lang.Closure)"><!-- --></A><H3>findAll</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>findAll</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/regex/Pattern.html' title='JDK class in java.util.regex'>Pattern</a> pattern, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Finds all occurrences of a compiled regular expression Pattern within a CharSequence.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>pattern</CODE> -  the compiled regex Pattern.</DD>
+
+		<DD><CODE>closure</CODE> -  will be passed the full match plus each of the capturing groups.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a List containing all full matches of the regex Pattern within the CharSequence, an empty list will be returned if there are no matches</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='../../String.html#findAll(java.util.regex.Pattern, groovy.lang.Closure)' title='GDK enhancement for String'>String#findAll</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="getAt(java.util.Collection)"><!-- --></A><H3>getAt</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> <B>getAt</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> indices)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Select a List of characters from a CharSequence using a Collection
+to identify the indices to be selected.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>indices</CODE> -  a Collection of indices.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a CharSequence consisting of the characters at the given indices</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="getAt(groovy.lang.EmptyRange)"><!-- --></A><H3>getAt</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> <B>getAt</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/EmptyRange.html' title='Groovy class in groovy.lang'>EmptyRange</a> range)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Support the range subscript operator for CharSequence or StringBuffer with EmptyRange</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>range</CODE> -  an EmptyRange.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the subsequence CharSequence</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="getAt(int)"><!-- --></A><H3>getAt</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> <B>getAt</B>(int index)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Support the subscript operator for CharSequence.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>index</CODE> -  the index of the Character to get.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the Character at the given index</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="getAt(groovy.lang.IntRange)"><!-- --></A><H3>getAt</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> <B>getAt</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/IntRange.html' title='Groovy class in groovy.lang'>IntRange</a> range)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Support the range subscript operator for CharSequence or StringBuffer with IntRange</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>range</CODE> -  an IntRange.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the subsequence CharSequence</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="getAt(groovy.lang.Range)"><!-- --></A><H3>getAt</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> <B>getAt</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Range.html' title='Groovy class in groovy.lang'>Range</a> range)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Support the range subscript operator for CharSequence</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>range</CODE> -  a Range.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the subsequence CharSequence</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="getChars()"><!-- --></A><H3>getChars</H3>
+<PRE>public char[] <B>getChars</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Converts the given CharSequence into an array of characters.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>an array of characters</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>String#getChars().</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="isAllWhitespace()"><!-- --></A><H3>isAllWhitespace</H3>
+<PRE>public boolean <B>isAllWhitespace</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>True if a CharSequence only contains whitespace characters.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>true If all characters are whitespace characters</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>String#isAllWhitespace().</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="isBigDecimal()"><!-- --></A><H3>isBigDecimal</H3>
+<PRE>public boolean <B>isBigDecimal</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Determine if a CharSequence can be parsed as a BigDecimal.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>true if the CharSequence can be parsed</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>String#isBigDecimal().</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="isBigInteger()"><!-- --></A><H3>isBigInteger</H3>
+<PRE>public boolean <B>isBigInteger</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Determine if a CharSequence can be parsed as a BigInteger.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>true if the CharSequence can be parsed</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>String#isBigInteger().</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="isCase(java.lang.Object)"><!-- --></A><H3>isCase</H3>
+<PRE>public boolean <B>isCase</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> switchValue)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>'Case' implementation for a CharSequence, which simply calls the equivalent method for String.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>switchValue</CODE> -  the switch value.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>true if the switchValue's toString() equals the caseValue</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="isDouble()"><!-- --></A><H3>isDouble</H3>
+<PRE>public boolean <B>isDouble</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Determine if a CharSequence can be parsed as a Double.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>true if the CharSequence can be parsed</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>String#isDouble().</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="isFloat()"><!-- --></A><H3>isFloat</H3>
+<PRE>public boolean <B>isFloat</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Determine if a CharSequence can be parsed as a Float.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>true if the CharSequence can be parsed</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>String#isFloat().</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="isInteger()"><!-- --></A><H3>isInteger</H3>
+<PRE>public boolean <B>isInteger</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Determine if a CharSequence can be parsed as an Integer.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>true if the CharSequence can be parsed</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>String#isInteger().</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="isLong()"><!-- --></A><H3>isLong</H3>
+<PRE>public boolean <B>isLong</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Determine if a CharSequence can be parsed as a Long.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>true if the CharSequence can be parsed</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>String#isLong().</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="isNumber()"><!-- --></A><H3>isNumber</H3>
+<PRE>public boolean <B>isNumber</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Determine if a CharSequence can be parsed as a Number.
+Synonym for 'isBigDecimal()'.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>true if the CharSequence can be parsed</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>String#isNumber().</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="leftShift(java.lang.Object)"><!-- --></A><H3>leftShift</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/StringBuilder.html' title='JDK class in java.lang'>StringBuilder</a> <B>leftShift</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> value)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Overloads the left shift operator to provide an easy way to append multiple
+objects as string representations to a CharSequence.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>value</CODE> -  an Object.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a StringBuilder built from this CharSequence</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="matches(java.util.regex.Pattern)"><!-- --></A><H3>matches</H3>
+<PRE>public boolean <B>matches</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/regex/Pattern.html' title='JDK class in java.util.regex'>Pattern</a> pattern)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Tells whether or not a CharSequence matches the given
+compiled regular expression Pattern.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>pattern</CODE> -  the regex Pattern to which the string of interest is to be matched.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>true if the CharSequence matches</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>String#matches(String).</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="minus(java.lang.Object)"><!-- --></A><H3>minus</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> <B>minus</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> target)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Remove a part of a CharSequence by replacing the first occurrence
+of target within self with '' and returns the result.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>target</CODE> -  an object representing the part to remove.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a CharSequence minus the part to be removed</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>String#minus(Object).</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="multiply(java.lang.Number)"><!-- --></A><H3>multiply</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> <B>multiply</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> factor)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Repeat a CharSequence a certain number of times.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>factor</CODE> -  the number of times the CharSequence should be repeated.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a CharSequence composed of a repetition</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="next()"><!-- --></A><H3>next</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> <B>next</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>This method is called by the ++ operator for the class CharSequence.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>an incremented CharSequence</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>String#next().</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="normalize()"><!-- --></A><H3>normalize</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> <B>normalize</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Return a CharSequence with linefeeds and carriage returns normalized to linefeeds.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>the normalized CharSequence</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>String#normalize().</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="padLeft(java.lang.Number)"><!-- --></A><H3>padLeft</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> <B>padLeft</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> numberOfChars)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Pad a CharSequence to a minimum length specified by <tt>numberOfChars</tt> by adding the space character to the left as many times as needed.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>numberOfChars</CODE> -  the total minimum number of characters of the resulting CharSequence.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the CharSequence padded to the left</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>CharSequence#padLeft(Number, CharSequence).</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="padLeft(java.lang.Number, java.lang.CharSequence)"><!-- --></A><H3>padLeft</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> <B>padLeft</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> numberOfChars, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> padding)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Pad a CharSequence to a minimum length specified by <tt>numberOfChars</tt>, adding the supplied padding CharSequence as many times as needed to the left.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>numberOfChars</CODE> -  the total minimum number of characters of the resulting CharSequence.</DD>
+
+		<DD><CODE>padding</CODE> -        the characters used for padding.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the CharSequence padded to the left</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>String#padLeft(Number, String).</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="padRight(java.lang.Number)"><!-- --></A><H3>padRight</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> <B>padRight</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> numberOfChars)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Pad a CharSequence to a minimum length specified by <tt>numberOfChars</tt> by adding the space character to the right as many times as needed.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>numberOfChars</CODE> -  the total minimum number of characters of the resulting string.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the CharSequence padded to the right</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>String#padRight(Number).</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="padRight(java.lang.Number, java.lang.CharSequence)"><!-- --></A><H3>padRight</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> <B>padRight</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Number.html' title='JDK class in java.lang'>Number</a> numberOfChars, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> padding)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Pad a CharSequence to a minimum length specified by <tt>numberOfChars</tt>, adding the supplied padding CharSequence as many times as needed to the right.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>numberOfChars</CODE> -  the total minimum number of characters of the resulting CharSequence.</DD>
+
+		<DD><CODE>padding</CODE> -        the characters used for padding.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the CharSequence padded to the right</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>String#padRight(Number, String).</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="plus(java.lang.Object)"><!-- --></A><H3>plus</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> <B>plus</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> value)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Appends the String representation of the given operand to this string.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>value</CODE> -  any Object.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the new CharSequence with the object appended</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="previous()"><!-- --></A><H3>previous</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> <B>previous</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>This method is called by the -- operator for the class CharSequence.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>a CharSequence with a decremented digit at the end</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>String#previous().</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="readLines()"><!-- --></A><H3>readLines</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>readLines</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Return the lines of a CharSequence as a List of CharSequence.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>a list of lines</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="replaceAll(java.lang.CharSequence, java.lang.CharSequence)"><!-- --></A><H3>replaceAll</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> <B>replaceAll</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> regex, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> replacement)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Replaces each substring of this CharSequence that matches the given
+regular expression with the given replacement.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>regex</CODE> -        the capturing regex.</DD>
+
+		<DD><CODE>replacement</CODE> -  the capturing regex.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a CharSequence with replaced content</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>String#replaceAll(String, String).</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="replaceAll(java.lang.CharSequence, groovy.lang.Closure)"><!-- --></A><H3>replaceAll</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> <B>replaceAll</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> regex, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Replaces all occurrences of a captured group by the result of a closure on that text.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>regex</CODE> -    the capturing regex.</DD>
+
+		<DD><CODE>closure</CODE> -  the closure to apply on each captured group.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a CharSequence with replaced content</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='../../String.html#replaceAll(java.util.regex.Pattern, groovy.lang.Closure)' title='GDK enhancement for String'>String#replaceAll</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="replaceAll(java.util.regex.Pattern, java.lang.CharSequence)"><!-- --></A><H3>replaceAll</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> <B>replaceAll</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/regex/Pattern.html' title='JDK class in java.util.regex'>Pattern</a> pattern, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> replacement)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Replaces all substrings of a CharSequence that match the given
+compiled regular expression with the given replacement.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>pattern</CODE> -  the regex Pattern to which the CharSequence of interest is to be matched.</DD>
+
+		<DD><CODE>replacement</CODE> -  the CharSequence to be substituted for the first match.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>The resulting <tt>CharSequence</tt></DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='../../String.html#replaceAll(java.util.regex.Pattern, String)' title='GDK enhancement for String'>String#replaceAll</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="replaceAll(java.util.regex.Pattern, groovy.lang.Closure)"><!-- --></A><H3>replaceAll</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> <B>replaceAll</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/regex/Pattern.html' title='JDK class in java.util.regex'>Pattern</a> pattern, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Replaces all occurrences of a captured group by the result of a closure call on that text.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>pattern</CODE> -  the capturing regex Pattern.</DD>
+
+		<DD><CODE>closure</CODE> -  the closure to apply on each captured group.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a CharSequence with replaced content</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='../../String.html#replaceAll(java.util.regex.Pattern, groovy.lang.Closure)' title='GDK enhancement for String'>String#replaceAll</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="replaceFirst(java.lang.CharSequence, java.lang.CharSequence)"><!-- --></A><H3>replaceFirst</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> <B>replaceFirst</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> regex, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> replacement)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Replaces the first substring of this CharSequence that matches the given
+regular expression with the given replacement.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>regex</CODE> -        the capturing regex.</DD>
+
+		<DD><CODE>replacement</CODE> -  the capturing regex.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a CharSequence with replaced content</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>String#replaceAll(String, String).</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="replaceFirst(java.lang.CharSequence, groovy.lang.Closure)"><!-- --></A><H3>replaceFirst</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> <B>replaceFirst</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> regex, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Replaces the first occurrence of a captured group by the result of a closure call on that text.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>regex</CODE> -    the capturing regex.</DD>
+
+		<DD><CODE>closure</CODE> -  the closure to apply on the first captured group.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a CharSequence with replaced content</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='../../String.html#replaceFirst(String, groovy.lang.Closure)' title='GDK enhancement for String'>String#replaceFirst</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="replaceFirst(java.util.regex.Pattern, java.lang.CharSequence)"><!-- --></A><H3>replaceFirst</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> <B>replaceFirst</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/regex/Pattern.html' title='JDK class in java.util.regex'>Pattern</a> pattern, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> replacement)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Replaces the first substring of a CharSequence that matches the given
+compiled regular expression with the given replacement.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>pattern</CODE> -  the regex Pattern to which the CharSequence of interest is to be matched.</DD>
+
+		<DD><CODE>replacement</CODE> -  the CharSequence to be substituted for the first match.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>The resulting <tt>CharSequence</tt></DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='../../String.html#replaceFirst(java.util.regex.Pattern, String)' title='GDK enhancement for String'>String#replaceFirst</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="replaceFirst(java.util.regex.Pattern, groovy.lang.Closure)"><!-- --></A><H3>replaceFirst</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> <B>replaceFirst</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/regex/Pattern.html' title='JDK class in java.util.regex'>Pattern</a> pattern, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Replaces the first occurrence of a captured group by the result of a closure call on that text.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>pattern</CODE> -  the capturing regex Pattern.</DD>
+
+		<DD><CODE>closure</CODE> -  the closure to apply on the first captured group.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a CharSequence with replaced content</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='../../String.html#replaceFirst(java.util.regex.Pattern, groovy.lang.Closure)' title='GDK enhancement for String'>String#replaceFirst</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="reverse()"><!-- --></A><H3>reverse</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> <B>reverse</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Creates a new CharSequence which is the reverse (backwards) of this string</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>a new CharSequence with all the characters reversed.</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>String#reverse().</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="size()"><!-- --></A><H3>size</H3>
+<PRE>public int <B>size</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Provide the standard Groovy <code>size()</code> method for <code>CharSequence</code>.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>the length of the CharSequence</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="split()"><!-- --></A><H3>split</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence[].html' title='JDK class in java.lang'>CharSequence[]</a> <B>split</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Convenience method to split a CharSequence (with whitespace as delimiter).
+Similar to tokenize, but returns an Array of CharSequence instead of a List.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>CharSequence[] result of split</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>String#split().</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="splitEachLine(java.lang.CharSequence, groovy.lang.Closure)"><!-- --></A><H3>splitEachLine</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>splitEachLine</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> regex, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates through the given CharSequence line by line, splitting each line using
+the given separator.  The list of tokens for each line is then passed to
+the given closure.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>regex</CODE> -    the delimiting regular expression.</DD>
+
+		<DD><CODE>closure</CODE> -  a closure.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the last value returned by the closure</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='../../String.html#splitEachLine(String, groovy.lang.Closure)' title='GDK enhancement for String'>String#splitEachLine</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="splitEachLine(java.util.regex.Pattern, groovy.lang.Closure)"><!-- --></A><H3>splitEachLine</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>splitEachLine</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/regex/Pattern.html' title='JDK class in java.util.regex'>Pattern</a> pattern, <a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterates through the given CharSequence line by line, splitting each line using
+the given separator Pattern.  The list of tokens for each line is then passed to
+the given closure.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>pattern</CODE> -  the regular expression Pattern for the delimiter.</DD>
+
+		<DD><CODE>closure</CODE> -  a closure.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the last value returned by the closure</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='../../String.html#splitEachLine(java.util.regex.Pattern, groovy.lang.Closure)' title='GDK enhancement for String'>String#splitEachLine</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="stripIndent()"><!-- --></A><H3>stripIndent</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> <B>stripIndent</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Strip leading spaces from every line in a CharSequence. The
+line with the least number of leading spaces determines
+the number to remove. Lines only containing whitespace are
+ignored when calculating the number of leading spaces to strip.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>the stripped CharSequence</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>String#stripIndent().</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="stripIndent(int)"><!-- --></A><H3>stripIndent</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> <B>stripIndent</B>(int numChars)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Strip <tt>numChar</tt> leading characters from
+every line in a CharSequence.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>numChars</CODE> -  The number of characters to strip.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the stripped CharSequence</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="stripMargin()"><!-- --></A><H3>stripMargin</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> <B>stripMargin</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Strip leading whitespace/control characters followed by '|' from
+every line in a CharSequence.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>the stripped CharSequence</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>CharSequence#stripMargin(char).</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="stripMargin(char)"><!-- --></A><H3>stripMargin</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> <B>stripMargin</B>(char marginChar)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Strip leading whitespace/control characters followed by <tt>marginChar</tt> from
+every line in a String.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>marginChar</CODE> -  Any character that serves as margin delimiter.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the stripped CharSequence</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>String#stripMargin(char).</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="stripMargin(java.lang.CharSequence)"><!-- --></A><H3>stripMargin</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html' title='JDK class in java.lang'>String</a> <B>stripMargin</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> marginChar)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Strip leading whitespace/control characters followed by <tt>marginChar</tt> from
+every line in a CharSequence.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>marginChar</CODE> -  Any character that serves as margin delimiter.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the stripped CharSequence</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>String#stripMargin(String).</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="take(int)"><!-- --></A><H3>take</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> <B>take</B>(int num)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Returns the first <code>num</code> elements from this CharSequence.
+<pre class="groovyTestCase">
+def text = "Groovy"
+assert text.take( 0 ) == ''
+assert text.take( 2 ) == 'Gr'
+assert text.take( 7 ) == 'Groovy'
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>num</CODE> -   the number of chars to take from this CharSequence.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a CharSequence consisting of the first <code>num</code> chars,
+        or else the whole CharSequence if it has less then <code>num</code> elements.</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.1</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="takeWhile(groovy.lang.Closure)"><!-- --></A><H3>takeWhile</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> <B>takeWhile</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> condition)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Returns the longest prefix of this CharSequence where each
+element passed to the given closure evaluates to true.
+<p>
+<pre class="groovyTestCase">
+def text = "Groovy"
+assert text.takeWhile{ it < 'A' } == ''
+assert text.takeWhile{ it < 'Z' } == 'G'
+assert text.takeWhile{ it != 'v' } == 'Groo'
+assert text.takeWhile{ it < 'z' } == 'Groovy'
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>condition</CODE> -  the closure that must evaluate to true to continue taking elements.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a prefix of elements in the CharSequence where each
+        element passed to the given closure evaluates to true</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>2.0.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="toBigDecimal()"><!-- --></A><H3>toBigDecimal</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/math/BigDecimal.html' title='JDK class in java.math'>BigDecimal</a> <B>toBigDecimal</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Parse a CharSequence into a BigDecimal</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>a BigDecimal</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>String#toBigDecimal().</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="toBigInteger()"><!-- --></A><H3>toBigInteger</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/math/BigInteger.html' title='JDK class in java.math'>BigInteger</a> <B>toBigInteger</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Parse a CharSequence into a BigInteger</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>a BigInteger</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>String#toBigInteger().</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="toDouble()"><!-- --></A><H3>toDouble</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Double.html' title='JDK class in java.lang'>Double</a> <B>toDouble</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Parse a CharSequence into a Double</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>a Double</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>String#toDouble().</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="toFloat()"><!-- --></A><H3>toFloat</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Float.html' title='JDK class in java.lang'>Float</a> <B>toFloat</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Parse a CharSequence into a Float</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>a Float</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>String#toFloat().</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="toInteger()"><!-- --></A><H3>toInteger</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Integer.html' title='JDK class in java.lang'>Integer</a> <B>toInteger</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Parse a CharSequence into an Integer</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>an Integer</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>String#toInteger().</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="toList()"><!-- --></A><H3>toList</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>toList</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Converts the given CharSequence into a List of CharSequence of one character.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>a List of characters (a 1-character CharSequence)</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>String#toSet().</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="toLong()"><!-- --></A><H3>toLong</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Long.html' title='JDK class in java.lang'>Long</a> <B>toLong</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Parse a CharSequence into a Long</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>a Long</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>String#toLong().</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="toSet()"><!-- --></A><H3>toSet</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Set.html' title='JDK class in java.util'>Set</a> <B>toSet</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Converts the given CharSequence into a Set of unique CharSequence of one character.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>a Set of unique character CharSequence (each a 1-character CharSequence)</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>String#toSet().</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="toShort()"><!-- --></A><H3>toShort</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Short.html' title='JDK class in java.lang'>Short</a> <B>toShort</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Parse a CharSequence into a Short</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>a Short</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>String#toShort().</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="toURI()"><!-- --></A><H3>toURI</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/net/URI.html' title='JDK class in java.net'>URI</a> <B>toURI</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Transforms a CharSequence representing a URI into a URI object.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>a URI</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="toURL()"><!-- --></A><H3>toURL</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/net/URL.html' title='JDK class in java.net'>URL</a> <B>toURL</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Transforms a CharSequence representing a URL into a URL object.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>a URL</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="tokenize()"><!-- --></A><H3>tokenize</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>tokenize</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Tokenize a CharSequence (with a whitespace as the delimiter).</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>a List of tokens</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>String#tokenize().</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="tokenize(java.lang.Character)"><!-- --></A><H3>tokenize</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>tokenize</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Character.html' title='JDK class in java.lang'>Character</a> token)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Tokenize a CharSequence based on the given character delimiter.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>token</CODE> -  the delimiter.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a List of tokens</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>String#tokenize(Character).</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="tokenize(java.lang.CharSequence)"><!-- --></A><H3>tokenize</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>tokenize</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> token)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Tokenize a CharSequence based on the given CharSequence delimiter.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>token</CODE> -  the delimiter.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a List of tokens</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>String#tokenize(String).</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="tr(java.lang.CharSequence, java.lang.CharSequence)"><!-- --></A><H3>tr</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> <B>tr</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> sourceSet, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> replacementSet)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Translates a string by replacing characters from the sourceSet with characters from replacementSet.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>sourceSet</CODE> -  the set of characters to translate from.</DD>
+
+		<DD><CODE>replacementSet</CODE> -  the set of replacement characters.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>The resulting translated <tt>CharSequence</tt></DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>String#tr(String, String).</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="unexpand()"><!-- --></A><H3>unexpand</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> <B>unexpand</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Replaces sequences of whitespaces with tabs using tabStops of size 8.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>The unexpanded CharSequence</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>String#unexpand().</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="unexpand(int)"><!-- --></A><H3>unexpand</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> <B>unexpand</B>(int tabStop)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Replaces sequences of whitespaces with tabs.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>tabStop</CODE> -  The number of spaces a tab represents.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>The unexpanded CharSequence</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>String#unexpand(int).</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="unexpandLine(int)"><!-- --></A><H3>unexpandLine</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CharSequence.html' title='JDK class in java.lang'>CharSequence</a> <B>unexpandLine</B>(int tabStop)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Replaces sequences of whitespaces with tabs within a line.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>tabStop</CODE> -  The number of spaces a tab represents.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>The unexpanded CharSequence</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>String#unexpandLine(int).</DD>
+
+</dl>
+
+
+<HR>
+
+<!-- ========= END OF CLASS DATA ========= -->
+
+ <!-- ======= START OF BOTTOM NAVBAR ====== -->
+<A NAME="navbar_bottom"><!-- --></A>
+<A HREF="#skip-navbar_bottom" title="Skip navigation links"></A>
+
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0">
+    <TR>
+        <TD COLSPAN=3 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+            <A NAME="navbar_top_firstrow"><!-- --></A>
+            <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3">
+                <TR ALIGN="center" VALIGN="top">
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../overview-summary.html"><SPAN CLASS="NavBarFont1"><B>Overview</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Package</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Class</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Tree</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Deprecated</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../index-all.html"><SPAN CLASS="NavBarFont1"><B>Index</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Help</SPAN>&nbsp;</TD>
+                </TR>
+            </TABLE>
+        </TD>
+        <TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+            <b>Groovy JDK</b></EM>
+        </TD>
+    </TR>
+</TABLE>
+<!-- =========== END OF NAVBAR =========== -->
+
+</BODY>
+</HTML>

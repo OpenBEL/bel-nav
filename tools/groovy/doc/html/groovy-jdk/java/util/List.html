@@ -1,0 +1,2581 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<HTML>
+<HEAD>
+<TITLE>List (Groovy JDK)</TITLE>
+
+
+<LINK REL ="stylesheet" TYPE="text/css" HREF="../../stylesheet.css" TITLE="Style">
+
+<SCRIPT type="text/javascript">
+function windowTitle()
+{
+    parent.document.title = document.title;
+}
+</SCRIPT>
+
+</HEAD>
+
+<BODY BGCOLOR="white" onload="windowTitle();">
+
+<!-- ========== START OF NAVBAR ========== -->
+<A NAME="navbar_top"><!-- --></A>
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0">
+    <TR>
+        <TD COLSPAN=3 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+            <A NAME="navbar_top_firstrow"><!-- --></A>
+            <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3">
+                <TR ALIGN="center" VALIGN="top">
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../overview-summary.html"><SPAN CLASS="NavBarFont1"><B>Overview</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Package</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Class</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Tree</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Deprecated</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../index-all.html"><SPAN CLASS="NavBarFont1"><B>Index</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Help</SPAN>&nbsp;</TD>
+                </TR>
+            </TABLE>
+        </TD>
+        <TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+            <b>Groovy JDK</b></EM>
+        </TD>
+    </TR>
+</TABLE>
+<!-- =========== END OF NAVBAR =========== -->
+
+<!-- ======== START OF CLASS DATA ======== -->
+<H2>
+<SPAN style="font-size:12px;">
+java.util</SPAN>
+<BR>
+Class List</H2>
+
+<!-- ========== METHOD SUMMARY =========== -->
+
+<A NAME="method_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><SPAN style="font-size:24px;">
+<B>Method Summary</B></SPAN></TH>
+</TR>
+
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>boolean</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#addAll(int, T[])">addAll</A></B>(int index, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object[].html' title='JDK class in java.lang'>Object[]</a> items)</CODE>
+<BR>
+Modifies this list by inserting all of the elements in the specified array into the
+list at the specified position.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#asImmutable()">asImmutable</A></B>()</CODE>
+<BR>
+A convenience method for creating an immutable list
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#asSynchronized()">asSynchronized</A></B>()</CODE>
+<BR>
+A convenience method for creating a synchronized List.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#collate(int)">collate</A></B>(int size)</CODE>
+<BR>
+Collates this list into sub-lists of length <code>size</code>.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#collate(int, int)">collate</A></B>(int size, int step)</CODE>
+<BR>
+Collates this list into sub-lists of length <code>size</code> stepping through the code <code>step</code>
+elements for each subList.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#collate(int, boolean)">collate</A></B>(int size, boolean keepRemainder)</CODE>
+<BR>
+Collates this list into sub-lists of length <code>size</code>. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#collate(int, int, boolean)">collate</A></B>(int size, int step, boolean keepRemainder)</CODE>
+<BR>
+Collates this list into sub-lists of length <code>size</code> stepping through the code <code>step</code>
+elements for each sub-list.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#drop(int)">drop</A></B>(int num)</CODE>
+<BR>
+Drops the given number of elements from the head of this list
+if they are available.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#dropWhile(groovy.lang.Closure)">dropWhile</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> condition)</CODE>
+<BR>
+Returns a suffix of this List where elements are dropped from the front
+while the given Closure evaluates to true.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>boolean</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#equals(java.lang.Object[])">equals</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object[].html' title='JDK class in java.lang'>Object[]</a> right)</CODE>
+<BR>
+Determines if the contents of this list are equal to the
+contents of the given array in the same order.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>boolean</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#equals(java.util.List)">equals</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> right)</CODE>
+<BR>
+Compare the contents of two Lists.  
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Process.html' title='JDK class in java.lang'>Process</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#execute()">execute</A></B>()</CODE>
+<BR>
+Executes the command specified by the given list. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Process.html' title='JDK class in java.lang'>Process</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#execute(java.lang.String[], java.io.File)">execute</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String[].html' title='JDK class in java.lang'>String[]</a> envp, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/File.html' title='JDK class in java.io'>File</a> dir)</CODE>
+<BR>
+Executes the command specified by the given list,
+with the environment defined by <code>envp</code> and under the working directory <code>dir</code>.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Process.html' title='JDK class in java.lang'>Process</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#execute(java.util.List, java.io.File)">execute</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> envp, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/File.html' title='JDK class in java.io'>File</a> dir)</CODE>
+<BR>
+Executes the command specified by the given list,
+with the environment defined by <code>envp</code> and under the working directory <code>dir</code>.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#first()">first</A></B>()</CODE>
+<BR>
+Returns the first item from the List.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#getAt(groovy.lang.Range)">getAt</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Range.html' title='Groovy class in groovy.lang'>Range</a> range)</CODE>
+<BR>
+Support the range subscript operator for a List.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#getAt(groovy.lang.EmptyRange)">getAt</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/EmptyRange.html' title='Groovy class in groovy.lang'>EmptyRange</a> range)</CODE>
+<BR>
+Support the range subscript operator for a List.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#getAt(java.util.Collection)">getAt</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> indices)</CODE>
+<BR>
+Select a List of items from a List using a Collection to
+identify the indices to be selected.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#getAt(int)">getAt</A></B>(int idx)</CODE>
+<BR>
+Support the subscript operator for a List.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#head()">head</A></B>()</CODE>
+<BR>
+Returns the first item from the List.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#last()">last</A></B>()</CODE>
+<BR>
+Returns the last item from the List.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#minus(java.util.Collection)">minus</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> removeMe)</CODE>
+<BR>
+Create a List composed of the elements of the first list minus
+every occurrence of elements of the given Collection.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#minus(java.lang.Iterable)">minus</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Iterable.html' title='JDK class in java.lang'>Iterable</a> removeMe)</CODE>
+<BR>
+Create a List composed of the elements of the first list minus
+every occurrence of elements of the given Iterable.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#minus(java.lang.Object)">minus</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> removeMe)</CODE>
+<BR>
+Create a new List composed of the elements of the first list minus every occurrence of the
+given element to remove.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Set.html' title='JDK class in java.util'>Set</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#permutations()">permutations</A></B>()</CODE>
+<BR>
+Finds all permutations of a collection.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#plus(int, T[])">plus</A></B>(int index, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object[].html' title='JDK class in java.lang'>Object[]</a> items)</CODE>
+<BR>
+Creates a new List by inserting all of the elements in the specified array
+to the elements from the original List at the specified index.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#plus(int, java.util.List)">plus</A></B>(int index, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> additions)</CODE>
+<BR>
+Creates a new List by inserting all of the elements in the given additions List
+to the elements from the original List at the specified index.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#plus(int, java.lang.Iterable)">plus</A></B>(int index, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Iterable.html' title='JDK class in java.lang'>Iterable</a> additions)</CODE>
+<BR>
+Creates a new List by inserting all of the elements in the given Iterable
+to the elements from this List at the specified index.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#pop()">pop</A></B>()</CODE>
+<BR>
+Removes the last item from the List. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>boolean</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#push(T)">push</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> value)</CODE>
+<BR>
+Appends an item to the List. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>void</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#putAt(int, T)">putAt</A></B>(int idx, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> value)</CODE>
+<BR>
+A helper method to allow lists to work with subscript operators.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>void</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#putAt(groovy.lang.EmptyRange, java.lang.Object)">putAt</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/EmptyRange.html' title='Groovy class in groovy.lang'>EmptyRange</a> range, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> value)</CODE>
+<BR>
+A helper method to allow lists to work with subscript operators.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>void</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#putAt(groovy.lang.EmptyRange, java.util.Collection)">putAt</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/EmptyRange.html' title='Groovy class in groovy.lang'>EmptyRange</a> range, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> value)</CODE>
+<BR>
+A helper method to allow lists to work with subscript operators.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>void</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#putAt(groovy.lang.IntRange, java.util.Collection)">putAt</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/IntRange.html' title='Groovy class in groovy.lang'>IntRange</a> range, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> col)</CODE>
+<BR>
+List subscript assignment operator when given a range as the index and
+the assignment operand is a collection.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>void</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#putAt(groovy.lang.IntRange, java.lang.Object)">putAt</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/IntRange.html' title='Groovy class in groovy.lang'>IntRange</a> range, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> value)</CODE>
+<BR>
+List subscript assignment operator when given a range as the index.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>void</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#putAt(java.util.List, java.util.List)">putAt</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> splice, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> values)</CODE>
+<BR>
+A helper method to allow lists to work with subscript operators.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE>void</CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#putAt(java.util.List, java.lang.Object)">putAt</A></B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> splice, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> value)</CODE>
+<BR>
+A helper method to allow lists to work with subscript operators.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#reverse()">reverse</A></B>()</CODE>
+<BR>
+Creates a new List with the identical contents to this list
+but in reverse order.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#reverse(boolean)">reverse</A></B>(boolean mutate)</CODE>
+<BR>
+Reverses the elements in a list. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#reverseEach(groovy.lang.Closure)">reverseEach</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</CODE>
+<BR>
+Iterate over each element of the list in the reverse order.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Set.html' title='JDK class in java.util'>Set</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#subsequences()">subsequences</A></B>()</CODE>
+<BR>
+Finds all non-null subsequences of a list.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#tail()">tail</A></B>()</CODE>
+<BR>
+Returns the items from the List excluding the first item.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#take(int)">take</A></B>(int num)</CODE>
+<BR>
+Returns the first <code>num</code> elements from the head of this list.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#takeWhile(groovy.lang.Closure)">takeWhile</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> condition)</CODE>
+<BR>
+Returns the longest prefix of this list where each element
+passed to the given closure condition evaluates to true.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://groovy.codehaus.org/api/groovy/lang/SpreadMap.html' title='Groovy class in groovy.lang'>SpreadMap</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#toSpreadMap()">toSpreadMap</A></B>()</CODE>
+<BR>
+Creates a spreadable map from this list.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#transpose()">transpose</A></B>()</CODE>
+<BR>
+Adds GroovyCollections#transpose(List) as a method on lists. 
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#withDefault(groovy.lang.Closure)">withDefault</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> init)</CODE>
+<BR>
+An alias for <code>withLazyDefault</code> which decorates a list allowing
+it to grow when called with index values outside the normal list bounds.
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#withEagerDefault(groovy.lang.Closure)">withEagerDefault</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> init)</CODE>
+<BR>
+Decorates a list allowing it to grow when called with a non-existent index value.
+
+</TD>
+</TR>
+
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%">
+
+<SPAN>
+<CODE><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a></CODE></SPAN>
+</TD>
+<TD><CODE><B><A HREF="#withLazyDefault(groovy.lang.Closure)">withLazyDefault</A></B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> init)</CODE>
+<BR>
+Decorates a list allowing it to grow when called with a non-existent index value.
+
+</TD>
+</TR>
+
+</TABLE>
+&nbsp;
+
+
+<!-- ============ METHOD DETAIL ========== -->
+
+<A NAME="method_detail"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="1"><SPAN style="font-size:24px;">
+<B>Method Detail</B></SPAN></TH>
+</TR>
+</TABLE>
+
+
+
+<A name="addAll(int, T[])"><!-- --></A><H3>addAll</H3>
+<PRE>public boolean <B>addAll</B>(int index, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object[].html' title='JDK class in java.lang'>Object[]</a> items)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Modifies this list by inserting all of the elements in the specified array into the
+list at the specified position.  Shifts the
+element currently at that position (if any) and any subsequent
+elements to the right (increases their indices).  The new elements
+will appear in this list in the order that they occur in the array.
+The behavior of this operation is undefined if the specified array
+is modified while the operation is in progress.
+
+See also <code>plus</code> for similar functionality with copy semantics, i.e. which produces a new
+list after adding the additional items at the specified position but leaves the original list unchanged.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>items</CODE> -  array containing elements to be added to this collection.</DD>
+
+		<DD><CODE>index
+</CODE> -  index at which to insert the first element from the
+             specified array.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD><tt>true</tt> if this collection changed as a result of the call</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.2</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>List#addAll(int, Collection).</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="asImmutable()"><!-- --></A><H3>asImmutable</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>asImmutable</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>A convenience method for creating an immutable list</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>an immutable List</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collections.html#unmodifiableList(java.util.List)' title='JDK class in java.util'>Collections#unmodifiableList</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="asSynchronized()"><!-- --></A><H3>asSynchronized</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>asSynchronized</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>A convenience method for creating a synchronized List.</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>a synchronized List</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collections.html#synchronizedList(java.util.List)' title='JDK class in java.util'>Collections#synchronizedList</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="collate(int)"><!-- --></A><H3>collate</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>collate</B>(int size)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Collates this list into sub-lists of length <code>size</code>.
+Example:
+<pre class="groovyTestCase">def list = [ 1, 2, 3, 4, 5, 6, 7 ]
+def coll = list.collate( 3 )
+assert coll == [ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7 ] ]</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>size</CODE> -           the length of each sub-list in the returned list.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a List containing the data collated into sub-lists</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.6</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="collate(int, int)"><!-- --></A><H3>collate</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>collate</B>(int size, int step)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Collates this list into sub-lists of length <code>size</code> stepping through the code <code>step</code>
+elements for each subList.
+Example:
+<pre class="groovyTestCase">def list = [ 1, 2, 3, 4 ]
+def coll = list.collate( 3, 1 )
+assert coll == [ [ 1, 2, 3 ], [ 2, 3, 4 ], [ 3, 4 ], [ 4 ] ]</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>size</CODE> -           the length of each sub-list in the returned list.</DD>
+
+		<DD><CODE>step</CODE> -           the number of elements to step through for each sub-list.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a List containing the data collated into sub-lists</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.6</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="collate(int, boolean)"><!-- --></A><H3>collate</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>collate</B>(int size, boolean keepRemainder)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Collates this list into sub-lists of length <code>size</code>. Any remaining elements in
+the list after the subdivision will be dropped if <code>keepRemainder</code> is false.
+Example:
+<pre class="groovyTestCase">def list = [ 1, 2, 3, 4, 5, 6, 7 ]
+def coll = list.collate( 3, false )
+assert coll == [ [ 1, 2, 3 ], [ 4, 5, 6 ] ]</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>size</CODE> -           the length of each sub-list in the returned list.</DD>
+
+		<DD><CODE>keepRemainder</CODE> -  if true, any rmeaining elements are returned as sub-lists.  Otherwise they are discarded.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a List containing the data collated into sub-lists</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.6</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="collate(int, int, boolean)"><!-- --></A><H3>collate</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>collate</B>(int size, int step, boolean keepRemainder)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Collates this list into sub-lists of length <code>size</code> stepping through the code <code>step</code>
+elements for each sub-list.  Any remaining elements in the list after the subdivision will be dropped if
+<code>keepRemainder</code> is false.
+Example:
+<pre class="groovyTestCase">def list = [ 1, 2, 3, 4 ]
+assert list.collate( 3, 1, true  ) == [ [ 1, 2, 3 ], [ 2, 3, 4 ], [ 3, 4 ], [ 4 ] ]
+assert list.collate( 3, 1, false ) == [ [ 1, 2, 3 ], [ 2, 3, 4 ] ]</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>size</CODE> -           the length of each sub-list in the returned list.</DD>
+
+		<DD><CODE>step</CODE> -           the number of elements to step through for each sub-list.</DD>
+
+		<DD><CODE>keepRemainder</CODE> -  if true, any rmeaining elements are returned as sub-lists.  Otherwise they are discarded.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a List containing the data collated into sub-lists</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.6</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="drop(int)"><!-- --></A><H3>drop</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>drop</B>(int num)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Drops the given number of elements from the head of this list
+if they are available.
+<pre class="groovyTestCase">
+def strings = [ 'a', 'b', 'c' ]
+assert strings.drop( 0 ) == [ 'a', 'b', 'c' ]
+assert strings.drop( 2 ) == [ 'c' ]
+assert strings.drop( 5 ) == []
+</pre>
+Similar to Iterable#drop(int)
+except that it attempts to preserve the type of the original list.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>num</CODE> -   the number of elements to drop from this list.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a list consisting of all elements of this list except the first
+        <code>num</code> ones, or else the empty list, if this list has
+        less than <code>num</code> elements.</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.1</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="dropWhile(groovy.lang.Closure)"><!-- --></A><H3>dropWhile</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>dropWhile</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> condition)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Returns a suffix of this List where elements are dropped from the front
+while the given Closure evaluates to true.
+Similar to <a href='../../Iterable.html#dropWhile(groovy.lang.Closure)' title='GDK enhancement for Iterable'>Iterable#dropWhile</a>
+except that it attempts to preserve the type of the original list.
+<pre class="groovyTestCase">
+def nums = [ 1, 3, 2 ]
+assert nums.dropWhile{ it < 4 } == []
+assert nums.dropWhile{ it < 3 } == [ 3, 2 ]
+assert nums.dropWhile{ it != 2 } == [ 2 ]
+assert nums.dropWhile{ it == 0 } == [ 1, 3, 2 ]
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>condition</CODE> -  the closure that must evaluate to true to continue dropping elements.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the shortest suffix of the given List such that the given closure condition
+        evaluates to true for each element dropped from the front of the List</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.7</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="equals(java.lang.Object[])"><!-- --></A><H3>equals</H3>
+<PRE>public boolean <B>equals</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object[].html' title='JDK class in java.lang'>Object[]</a> right)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Determines if the contents of this list are equal to the
+contents of the given array in the same order.  This returns
+<code>false</code> if either collection is <code>null</code>.
+<pre class="groovyTestCase">assert [1, "a"].equals( [ 1, "a" ] as Object[] )</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>right</CODE> -  the Object[] being compared to.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>true if the contents of both collections are equal</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="equals(java.util.List)"><!-- --></A><H3>equals</H3>
+<PRE>public boolean <B>equals</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> right)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Compare the contents of two Lists.  Order matters.
+If numbers exist in the Lists, then they are compared as numbers,
+for example 2 == 2L. If both lists are <code>null</code>, the result
+is true; otherwise if either list is <code>null</code>, the result
+is <code>false</code>.
+<pre class="groovyTestCase">assert ["a", 2].equals(["a", 2])
+assert ![2, "a"].equals("a", 2)
+assert [2.0, "a"].equals(2L, "a") // number comparison at work</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>right</CODE> -  the List being compared to.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>boolean   <code>true</code> if the contents of both lists are identical,
+        <code>false</code> otherwise.</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="execute()"><!-- --></A><H3>execute</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Process.html' title='JDK class in java.lang'>Process</a> <B>execute</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Executes the command specified by the given list. The toString() method is called
+for each item in the list to convert into a resulting String.
+The first item in the list is the command the others are the parameters.
+<p>For more control over Process construction you can use
+<code>java.lang.ProcessBuilder</code> (JDK 1.5+).</DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>the Process which has just started for this command line representation.</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="execute(java.lang.String[], java.io.File)"><!-- --></A><H3>execute</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Process.html' title='JDK class in java.lang'>Process</a> <B>execute</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String[].html' title='JDK class in java.lang'>String[]</a> envp, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/File.html' title='JDK class in java.io'>File</a> dir)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Executes the command specified by the given list,
+with the environment defined by <code>envp</code> and under the working directory <code>dir</code>.
+The first item in the list is the command; the others are the parameters. The toString()
+method is called on items in the list to convert them to Strings.
+<p>For more control over Process construction you can use
+<code>java.lang.ProcessBuilder</code> (JDK 1.5+).</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>envp
+
+
+
+</CODE> -  an array of Strings, each member of which
+            has environment variable settings in the format
+            <i>name</i>=<i>value</i>, or
+            <tt>null</tt> if the subprocess should inherit
+            the environment of the current process..</DD>
+
+		<DD><CODE>dir
+
+</CODE> -   the working directory of the subprocess, or
+            <tt>null</tt> if the subprocess should inherit
+            the working directory of the current process..</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the Process which has just started for this command line representation.</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.1</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="execute(java.util.List, java.io.File)"><!-- --></A><H3>execute</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Process.html' title='JDK class in java.lang'>Process</a> <B>execute</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> envp, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/File.html' title='JDK class in java.io'>File</a> dir)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Executes the command specified by the given list,
+with the environment defined by <code>envp</code> and under the working directory <code>dir</code>.
+The first item in the list is the command; the others are the parameters. The toString()
+method is called on items in the list to convert them to Strings.
+<p>For more control over Process construction you can use
+<code>java.lang.ProcessBuilder</code> (JDK 1.5+).</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>envp
+
+
+
+</CODE> -  a List of Objects (converted to Strings using toString), each member of which
+            has environment variable settings in the format
+            <i>name</i>=<i>value</i>, or
+            <tt>null</tt> if the subprocess should inherit
+            the environment of the current process..</DD>
+
+		<DD><CODE>dir
+
+</CODE> -   the working directory of the subprocess, or
+            <tt>null</tt> if the subprocess should inherit
+            the working directory of the current process..</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the Process which has just started for this command line representation.</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.1</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="first()"><!-- --></A><H3>first</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>first</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Returns the first item from the List.
+<pre class="groovyTestCase">
+def list = [3, 4, 2]
+assert list.first() == 3
+// check original is unaltered
+assert list == [3, 4, 2]
+</pre></DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>the first item from the List</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.5</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="getAt(groovy.lang.Range)"><!-- --></A><H3>getAt</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>getAt</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Range.html' title='Groovy class in groovy.lang'>Range</a> range)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Support the range subscript operator for a List.
+<pre class="groovyTestCase">def list = [1, "a", 4.5, true]
+assert list[1..2] == ["a", 4.5]</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>range</CODE> -  a Range indicating the items to get.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a sublist based on range borders or a new list if range is reversed</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html#subList(int,int)' title='JDK class in java.util'>List#subList</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="getAt(groovy.lang.EmptyRange)"><!-- --></A><H3>getAt</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>getAt</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/EmptyRange.html' title='Groovy class in groovy.lang'>EmptyRange</a> range)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Support the range subscript operator for a List.
+<pre class="groovyTestCase">def list = [true, 1, 3.4]
+assert list[0..<0] == []</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>range</CODE> -  a Range indicating the items to get.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a sublist based on range borders or a new list if range is reversed</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html#subList(int,int)' title='JDK class in java.util'>List#subList</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="getAt(java.util.Collection)"><!-- --></A><H3>getAt</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>getAt</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> indices)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Select a List of items from a List using a Collection to
+identify the indices to be selected.
+<pre class="groovyTestCase">def list = [true, 1, 3.4, false]
+assert list[1,0,2] == [1, true, 3.4]</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>indices</CODE> -  a Collection of indices.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a new list of the values at the given indices</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="getAt(int)"><!-- --></A><H3>getAt</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>getAt</B>(int idx)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Support the subscript operator for a List.
+<pre class="groovyTestCase">def list = [2, "a", 5.3]
+assert list[1] == "a"</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>idx</CODE> -   an index.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the value at the given index</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="head()"><!-- --></A><H3>head</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>head</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Returns the first item from the List.
+<pre class="groovyTestCase">def list = [3, 4, 2]
+assert list.head() == 3
+assert list == [3, 4, 2]</pre></DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>the first item from the List</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.5</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="last()"><!-- --></A><H3>last</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>last</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Returns the last item from the List.
+<pre class="groovyTestCase">
+def list = [3, 4, 2]
+assert list.last() == 2
+// check original is unaltered
+assert list == [3, 4, 2]
+</pre></DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>the last item from the List</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.5</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="minus(java.util.Collection)"><!-- --></A><H3>minus</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>minus</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> removeMe)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Create a List composed of the elements of the first list minus
+every occurrence of elements of the given Collection.
+<pre class="groovyTestCase">assert [1, "a", true, true, false, 5.3] - [true, 5.3] == [1, "a", false]</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>removeMe</CODE> -  a Collection of elements to remove.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a List with the given elements removed</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="minus(java.lang.Iterable)"><!-- --></A><H3>minus</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>minus</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Iterable.html' title='JDK class in java.lang'>Iterable</a> removeMe)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Create a List composed of the elements of the first list minus
+every occurrence of elements of the given Iterable.
+<pre class="groovyTestCase">
+class AbcIterable implements Iterable<String> {
+    Iterator<String> iterator() { "abc".iterator() }
+}
+assert "backtrack".toList() - new AbcIterable() == ["k", "t", "r", "k"]
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>removeMe</CODE> -  an Iterable of elements to remove.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a List with the supplied elements removed</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.7</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="minus(java.lang.Object)"><!-- --></A><H3>minus</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>minus</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> removeMe)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Create a new List composed of the elements of the first list minus every occurrence of the
+given element to remove.
+<pre class="groovyTestCase">assert ["a", 5, 5, true] - 5 == ["a", true]</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>removeMe</CODE> -  an element to remove from the list.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the resulting List with the given element removed</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="permutations()"><!-- --></A><H3>permutations</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Set.html' title='JDK class in java.util'>Set</a> <B>permutations</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Finds all permutations of a collection.
+<p>
+Example usage:
+<pre class="groovyTestCase">def result = [1, 2, 3].permutations()
+assert result == [[3, 2, 1], [3, 1, 2], [1, 3, 2], [2, 3, 1], [2, 1, 3], [1, 2, 3]] as Set</pre></DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>the permutations from the list</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="plus(int, T[])"><!-- --></A><H3>plus</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>plus</B>(int index, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object[].html' title='JDK class in java.lang'>Object[]</a> items)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Creates a new List by inserting all of the elements in the specified array
+to the elements from the original List at the specified index.
+Shifts the element currently at that index (if any) and any subsequent
+elements to the right (increasing their indices).
+The new elements will appear in the resulting List in the order that
+they occur in the original array.
+The behavior of this operation is undefined if the list or
+array operands are modified while the operation is in progress.
+The original list and array operands remain unchanged.
+
+<pre class="groovyTestCase">
+def items = [1, 2, 3]
+def newItems = items.plus(2, 'a'..'c' as String[])
+assert newItems == [1, 2, 'a', 'b', 'c', 3]
+assert items == [1, 2, 3]
+</pre>
+
+See also <code>addAll</code> for similar functionality with modify semantics, i.e. which performs
+the changes on the original list itself.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>items</CODE> -  array containing elements to be merged with elements from the original list.</DD>
+
+		<DD><CODE>index</CODE> -  index at which to insert the first element from the specified array.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the new list</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.1</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>List#plus(int, List).</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="plus(int, java.util.List)"><!-- --></A><H3>plus</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>plus</B>(int index, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> additions)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Creates a new List by inserting all of the elements in the given additions List
+to the elements from the original List at the specified index.
+Shifts the element currently at that index (if any) and any subsequent
+elements to the right (increasing their indices).  The new elements
+will appear in the resulting List in the order that they occur in the original lists.
+The behavior of this operation is undefined if the original lists
+are modified while the operation is in progress. The original lists remain unchanged.
+
+<pre class="groovyTestCase">
+def items = [1, 2, 3]
+def newItems = items.plus(2, 'a'..'c')
+assert newItems == [1, 2, 'a', 'b', 'c', 3]
+assert items == [1, 2, 3]
+</pre>
+
+See also <code>addAll</code> for similar functionality with modify semantics, i.e. which performs
+the changes on the original list itself.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>additions</CODE> -  a List containing elements to be merged with elements from the original List.</DD>
+
+		<DD><CODE>index</CODE> -      index at which to insert the first element from the given additions List.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the new list</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.1</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="plus(int, java.lang.Iterable)"><!-- --></A><H3>plus</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>plus</B>(int index, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Iterable.html' title='JDK class in java.lang'>Iterable</a> additions)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Creates a new List by inserting all of the elements in the given Iterable
+to the elements from this List at the specified index.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>additions</CODE> -  an Iterable containing elements to be merged with the elements from the original List.</DD>
+
+		<DD><CODE>index</CODE> -      index at which to insert the first element from the given additions Iterable.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the new list</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.7</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>List#plus(int, List).</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="pop()"><!-- --></A><H3>pop</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> <B>pop</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Removes the last item from the List. Using add() and pop()
+is similar to push and pop on a Stack.
+<pre class="groovyTestCase">def list = ["a", false, 2]
+assert list.pop() == 2
+assert list == ["a", false]</pre></DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>the item removed from the List</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="push(T)"><!-- --></A><H3>push</H3>
+<PRE>public boolean <B>push</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> value)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Appends an item to the List. Synonym for add().
+<pre class="groovyTestCase">def list = [3, 4, 2]
+list.push("x")
+assert list == [3, 4, 2, "x"]</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>value</CODE> -  element to be appended to this list..</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD><tt>true</tt> (as per the general contract of the
+           <tt>Collection.add</tt> method).</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.5</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="putAt(int, T)"><!-- --></A><H3>putAt</H3>
+<PRE>public void <B>putAt</B>(int idx, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> value)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>A helper method to allow lists to work with subscript operators.
+<pre class="groovyTestCase">def list = [2, 3]
+list[0] = 1
+assert list == [1, 3]</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>idx</CODE> -    an index.</DD>
+
+		<DD><CODE>value</CODE> -  the value to put at the given index.</DD>
+
+    </dl>
+    
+
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="putAt(groovy.lang.EmptyRange, java.lang.Object)"><!-- --></A><H3>putAt</H3>
+<PRE>public void <B>putAt</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/EmptyRange.html' title='Groovy class in groovy.lang'>EmptyRange</a> range, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> value)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>A helper method to allow lists to work with subscript operators.
+<pre class="groovyTestCase">def list = ["a", true]
+list[1..<1] = 5
+assert list == ["a", 5, true]</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>range</CODE> -  the (in this case empty) subset of the list to set.</DD>
+
+		<DD><CODE>value</CODE> -  the values to put at the given sublist or a Collection of values.</DD>
+
+    </dl>
+    
+
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="putAt(groovy.lang.EmptyRange, java.util.Collection)"><!-- --></A><H3>putAt</H3>
+<PRE>public void <B>putAt</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/EmptyRange.html' title='Groovy class in groovy.lang'>EmptyRange</a> range, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> value)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>A helper method to allow lists to work with subscript operators.
+<pre class="groovyTestCase">def list = ["a", true]
+list[1..<1] = [4, 3, 2]
+assert list == ["a", 4, 3, 2, true]</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>range</CODE> -  the (in this case empty) subset of the list to set.</DD>
+
+		<DD><CODE>value</CODE> -  the Collection of values.</DD>
+
+    </dl>
+    
+
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='../../java/util/List.html#putAt(groovy.lang.EmptyRange, java.lang.Object)' title='GDK enhancement for java.util.List'>List#putAt</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="putAt(groovy.lang.IntRange, java.util.Collection)"><!-- --></A><H3>putAt</H3>
+<PRE>public void <B>putAt</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/IntRange.html' title='Groovy class in groovy.lang'>IntRange</a> range, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html' title='JDK class in java.util'>Collection</a> col)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>List subscript assignment operator when given a range as the index and
+the assignment operand is a collection.
+Example: <pre class="groovyTestCase">def myList = [4, 3, 5, 1, 2, 8, 10]
+myList[3..5] = ["a", true]
+assert myList == [4, 3, 5, "a", true, 10]</pre>
+
+Items in the given
+range are replaced with items from the collection.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>range</CODE> -  the subset of the list to set.</DD>
+
+		<DD><CODE>col</CODE> -    the collection of values to put at the given sublist.</DD>
+
+    </dl>
+    
+
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="putAt(groovy.lang.IntRange, java.lang.Object)"><!-- --></A><H3>putAt</H3>
+<PRE>public void <B>putAt</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/IntRange.html' title='Groovy class in groovy.lang'>IntRange</a> range, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> value)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>List subscript assignment operator when given a range as the index.
+Example: <pre class="groovyTestCase">def myList = [4, 3, 5, 1, 2, 8, 10]
+myList[3..5] = "b"
+assert myList == [4, 3, 5, "b", 10]</pre>
+
+Items in the given
+range are replaced with the operand.  The <code>value</code> operand is
+always treated as a single value.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>range</CODE> -  the subset of the list to set.</DD>
+
+		<DD><CODE>value</CODE> -  the value to put at the given sublist.</DD>
+
+    </dl>
+    
+
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="putAt(java.util.List, java.util.List)"><!-- --></A><H3>putAt</H3>
+<PRE>public void <B>putAt</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> splice, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> values)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>A helper method to allow lists to work with subscript operators.
+<pre class="groovyTestCase">def list = ["a", true, 42, 9.4]
+list[1, 4] = ["x", false]
+assert list == ["a", "x", 42, 9.4, false]</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>splice</CODE> -  the subset of the list to set.</DD>
+
+		<DD><CODE>values</CODE> -  the value to put at the given sublist.</DD>
+
+    </dl>
+    
+
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="putAt(java.util.List, java.lang.Object)"><!-- --></A><H3>putAt</H3>
+<PRE>public void <B>putAt</B>(<a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> splice, <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Object.html' title='JDK class in java.lang'>Object</a> value)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>A helper method to allow lists to work with subscript operators.
+<pre class="groovyTestCase">def list = ["a", true, 42, 9.4]
+list[1, 3] = 5
+assert list == ["a", 5, 42, 5]</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>splice</CODE> -  the subset of the list to set.</DD>
+
+		<DD><CODE>value</CODE> -   the value to put at the given sublist.</DD>
+
+    </dl>
+    
+
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="reverse()"><!-- --></A><H3>reverse</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>reverse</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Creates a new List with the identical contents to this list
+but in reverse order.
+<pre class="groovyTestCase">
+def list = ["a", 4, false]
+assert list.reverse() == [false, 4, "a"]
+assert list == ["a", 4, false]
+</pre></DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>a reversed List</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.0</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD>List#reverse(boolean).</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="reverse(boolean)"><!-- --></A><H3>reverse</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>reverse</B>(boolean mutate)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Reverses the elements in a list. If mutate is true, the original list is modified in place and returned.
+Otherwise, a new list containing the reversed items is produced.
+<pre class="groovyTestCase">
+def list = ["a", 4, false]
+assert list.reverse(false) == [false, 4, "a"]
+assert list == ["a", 4, false]
+assert list.reverse(true) == [false, 4, "a"]
+assert list == [false, 4, "a"]
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>mutate</CODE> -  true if the list itself should be reversed in place and returned, false if a new list should be created.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a reversed List</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.1</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="reverseEach(groovy.lang.Closure)"><!-- --></A><H3>reverseEach</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>reverseEach</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> closure)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Iterate over each element of the list in the reverse order.
+<pre class="groovyTestCase">def result = []
+[1,2,3].reverseEach { result << it }
+assert result == [3,2,1]</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>closure</CODE> -  a closure to which each item is passed..</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the original list</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="subsequences()"><!-- --></A><H3>subsequences</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/Set.html' title='JDK class in java.util'>Set</a> <B>subsequences</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Finds all non-null subsequences of a list.
+<p>
+Example usage:
+<pre class="groovyTestCase">def result = [1, 2, 3].subsequences()
+assert result == [[1, 2, 3], [1, 3], [2, 3], [1, 2], [1], [2], [3]] as Set</pre></DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>the subsequences from the list</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.7.0</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="tail()"><!-- --></A><H3>tail</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>tail</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Returns the items from the List excluding the first item.
+<pre class="groovyTestCase">def list = [3, 4, 2]
+assert list.tail() == [4, 2]
+assert list == [3, 4, 2]</pre></DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>a list without its first element</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.6</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="take(int)"><!-- --></A><H3>take</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>take</B>(int num)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Returns the first <code>num</code> elements from the head of this list.
+<pre class="groovyTestCase">
+def strings = [ 'a', 'b', 'c' ]
+assert strings.take( 0 ) == []
+assert strings.take( 2 ) == [ 'a', 'b' ]
+assert strings.take( 5 ) == [ 'a', 'b', 'c' ]
+</pre>
+Similar to Iterable#take(int)
+except that it attempts to preserve the type of the original list.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>num</CODE> -   the number of elements to take from this list.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a list consisting of the first <code>num</code> elements of this list,
+        or else the whole list if it has less then <code>num</code> elements.</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.1</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="takeWhile(groovy.lang.Closure)"><!-- --></A><H3>takeWhile</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>takeWhile</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> condition)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Returns the longest prefix of this list where each element
+passed to the given closure condition evaluates to true.
+Similar to <a href='../../Iterable.html#takeWhile(groovy.lang.Closure)' title='GDK enhancement for Iterable'>Iterable#takeWhile</a>
+except that it attempts to preserve the type of the original list.
+<pre class="groovyTestCase">
+def nums = [ 1, 3, 2 ]
+assert nums.takeWhile{ it < 1 } == []
+assert nums.takeWhile{ it < 3 } == [ 1 ]
+assert nums.takeWhile{ it < 4 } == [ 1, 3, 2 ]
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>condition
+</CODE> -  the closure that must evaluate to true to
+                 continue taking elements.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>a prefix of the given list where each element passed to
+        the given closure evaluates to true</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.7</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="toSpreadMap()"><!-- --></A><H3>toSpreadMap</H3>
+<PRE>public <a href='http://groovy.codehaus.org/api/groovy/lang/SpreadMap.html' title='Groovy class in groovy.lang'>SpreadMap</a> <B>toSpreadMap</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Creates a spreadable map from this list.
+<p></DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>a newly created SpreadMap</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.0</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://groovy.codehaus.org/api/groovy/lang/SpreadMap.html#SpreadMap(java.util.List)' title='Groovy class in groovy.lang'>SpreadMap#SpreadMap</a>.</DD>
+
+    <DD><a href='../../java/util/Map.html#toSpreadMap()' title='GDK enhancement for java.util.Map'>Map#toSpreadMap</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="transpose()"><!-- --></A><H3>transpose</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>transpose</B>()</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Adds GroovyCollections#transpose(List) as a method on lists. <br>
+A TransposeFunction takes a collection of columns and returns a collection of
+rows. The first row consists of the first element from each column. Successive
+rows are constructed similarly.
+<p>
+Example usage:
+<pre class="groovyTestCase">def result = [['a', 'b'], [1, 2]].transpose()
+assert result == [['a', 1], ['b', 2]]</pre>
+<pre class="groovyTestCase">def result = [['a', 'b'], [1, 2], [3, 4]].transpose()
+assert result == [['a', 1, 3], ['b', 2, 4]]</pre></DD>
+</DL>
+
+
+
+<dl><DT><B>Returns:</B></DT><DD>a List of the transposed lists</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.5.0</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='http://groovy.codehaus.org/api/groovy/util/GroovyCollections.html#transpose(java.util.List)' title='Groovy class in groovy.util'>GroovyCollections#transpose</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="withDefault(groovy.lang.Closure)"><!-- --></A><H3>withDefault</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>withDefault</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> init)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>An alias for <code>withLazyDefault</code> which decorates a list allowing
+it to grow when called with index values outside the normal list bounds.</DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>init</CODE> -  a Closure with the target index as parameter which generates the default value.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the decorated List</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.7</DD>
+</dl>
+
+
+
+<dl>
+<DT><B>See:</B></DT>
+
+    <DD><a href='../../java/util/List.html#withLazyDefault(groovy.lang.Closure)' title='GDK enhancement for java.util.List'>List#withLazyDefault</a>.</DD>
+
+    <DD><a href='../../java/util/List.html#withEagerDefault(groovy.lang.Closure)' title='GDK enhancement for java.util.List'>List#withEagerDefault</a>.</DD>
+
+</dl>
+
+
+<HR>
+
+
+<A name="withEagerDefault(groovy.lang.Closure)"><!-- --></A><H3>withEagerDefault</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>withEagerDefault</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> init)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Decorates a list allowing it to grow when called with a non-existent index value.
+When called with such values, the list is grown in size and a default value
+is placed in the list by calling a supplied <code>init</code> Closure. Null values
+can be stored in the list.
+<p>
+How it works: The decorated list intercepts all calls
+to <code>getAt(index)</code> and <code>get(index)</code>. If an index greater than
+or equal to the current <code>size()</code> is used, the list will grow automatically
+up to the specified index. Gaps will be filled by calling the <code>init</code> Closure.
+If generating a default value is a costly operation consider using <code>withLazyDefault</code>.
+<p>
+Example usage:
+<pre class="groovyTestCase">
+def list = [0, 1].withEagerDefault{ 42 }
+assert list[0] == 0
+assert list[1] == 1
+assert list[3] == 42   // default value
+assert list == [0, 1, 42, 42]   // gap filled with default value
+
+// illustrate using the index when generating default values
+def list2 = [5].withEagerDefault{ index -> index * index }
+assert list2[3] == 9
+assert list2 == [5, 1, 4, 9]
+
+// illustrate what happens with null values
+list2[2] = null
+assert list2[2] == null
+assert list2 == [5, 1, null, 9]
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>init</CODE> -  a Closure with the target index as parameter which generates the default value.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the wrapped List</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.7</DD>
+</dl>
+
+
+
+
+<HR>
+
+
+<A name="withLazyDefault(groovy.lang.Closure)"><!-- --></A><H3>withLazyDefault</H3>
+<PRE>public <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html' title='JDK class in java.util'>List</a> <B>withLazyDefault</B>(<a href='http://groovy.codehaus.org/api/groovy/lang/Closure.html' title='Groovy class in groovy.lang'>Closure</a> init)</PRE>
+<DL>
+<dt>&nbsp;</dt>
+<DD>Decorates a list allowing it to grow when called with a non-existent index value.
+When called with such values, the list is grown in size and a default value
+is placed in the list by calling a supplied <code>init</code> Closure. Subsequent
+retrieval operations if finding a null value in the list assume it was set
+as null from an earlier growing operation and again call the <code>init</code> Closure
+to populate the retrieved value; consequently the list can't be used to store null values.
+<p>
+How it works: The decorated list intercepts all calls
+to <code>getAt(index)</code> and <code>get(index)</code>. If an index greater than
+or equal to the current <code>size()</code> is used, the list will grow automatically
+up to the specified index. Gaps will be filled by {@code null}. If a default value
+should also be used to fill gaps instead of {@code null}, use <code>withEagerDefault</code>.
+If <code>getAt(index)</code> or <code>get(index)</code> are called and a null value
+is found, it is assumed that the null value was a consequence of an earlier grow list
+operation and the <code>init</code> Closure is called to populate the value.
+<p>
+Example usage:
+<pre class="groovyTestCase">
+def list = [0, 1].withLazyDefault{ 42 }
+assert list[0] == 0
+assert list[1] == 1
+assert list[3] == 42   // default value
+assert list == [0, 1, null, 42] // gap filled with null
+
+// illustrate using the index when generating default values
+def list2 = [5].withLazyDefault{ index -> index * index }
+assert list2[3] == 9
+assert list2 == [5, null, null, 9]
+assert list2[2] == 4
+assert list2 == [5, null, 4, 9]
+
+// illustrate what happens with null values
+list2[2] = null
+assert list2[2] == 4
+</pre></DD>
+</DL>
+
+<dl><DT><B>Parameters:</B></DT>
+	
+		<DD><CODE>init</CODE> -  a Closure with the target index as parameter which generates the default value.</DD>
+
+    </dl>
+    
+
+
+<dl><DT><B>Returns:</B></DT><DD>the decorated List</DD></dl>
+
+
+
+<dl>
+<DT><B>Since:</B></DT>
+<DD>1.8.7</DD>
+</dl>
+
+
+
+
+<HR>
+
+<!-- ========= END OF CLASS DATA ========= -->
+
+ <!-- ======= START OF BOTTOM NAVBAR ====== -->
+<A NAME="navbar_bottom"><!-- --></A>
+<A HREF="#skip-navbar_bottom" title="Skip navigation links"></A>
+
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0">
+    <TR>
+        <TD COLSPAN=3 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+            <A NAME="navbar_top_firstrow"><!-- --></A>
+            <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3">
+                <TR ALIGN="center" VALIGN="top">
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../overview-summary.html"><SPAN CLASS="NavBarFont1"><B>Overview</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Package</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Class</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Tree</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Deprecated</SPAN>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../index-all.html"><SPAN CLASS="NavBarFont1"><B>Index</B></SPAN></A>&nbsp;</TD>
+                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Help</SPAN>&nbsp;</TD>
+                </TR>
+            </TABLE>
+        </TD>
+        <TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+            <b>Groovy JDK</b></EM>
+        </TD>
+    </TR>
+</TABLE>
+<!-- =========== END OF NAVBAR =========== -->
+
+</BODY>
+</HTML>

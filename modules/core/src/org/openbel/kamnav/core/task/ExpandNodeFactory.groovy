@@ -19,10 +19,7 @@ import org.slf4j.LoggerFactory
 class ExpandNodeFactory extends AbstractNodeViewTaskFactory {
 
     private static final Logger msg = LoggerFactory.getLogger("CyUserMessages");
-    final ApplyPreferredLayoutTaskFactory aplFac
-    final CyEventHelper evtHelper
-    final VisualMappingManager visMgr
-    final WsAPI wsAPI
+    final Expando cyr
 
     @Override
     boolean isReady(View<CyNode> nodeView, CyNetworkView networkView) {
@@ -38,12 +35,12 @@ class ExpandNodeFactory extends AbstractNodeViewTaskFactory {
      */
     @Override
     TaskIterator createTaskIterator(View<CyNode> nodeView, CyNetworkView cyNv) {
-        TaskIterator tasks = new TaskIterator(new ExpandNode(cyNv, nodeView, evtHelper, visMgr, wsAPI))
+        TaskIterator tasks = new TaskIterator(new ExpandNode(cyNv, nodeView, cyr.cyEventHelper, cyr.visualMappingManager, cyr.wsAPI))
         getNodesInState(cyNv.model, 'selected', true).collect {
             def nodeV = cyNv.getNodeView(it)
-            new TaskIterator(new ExpandNode(cyNv, nodeV, evtHelper, visMgr, wsAPI))
+            new TaskIterator(new ExpandNode(cyNv, nodeV, cyr.cyEventHelper, cyr.visualMappingManager, cyr.wsAPI))
         }.each(tasks.&append)
-        tasks.append(aplFac.createTaskIterator([cyNv]))
+        tasks.append(cyr.applyPreferredLayoutTaskFactory.createTaskIterator([cyNv]))
         return tasks
     }
 }
