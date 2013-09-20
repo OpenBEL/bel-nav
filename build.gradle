@@ -2,21 +2,15 @@
 apply plugin: 'idea'
 defaultTasks 'compileGroovy', 'jar'
 
-
 subprojects {
   apply plugin: 'groovy'
   apply plugin: 'osgi'
   apply plugin: 'idea'
+
   project.ext {
     sourceDir = 'src'
     testDir   = 'test'
     buildDir  = 'build'
-  }
-  repositories {
-    mavenCentral()
-    maven {
-      url 'http://code.cytoscape.org/nexus/content/repositories/releases/'
-    }
   }
   configurations {
     provided
