@@ -4,6 +4,6 @@ cd "${DIR}" || exit 1
 . env.sh || exit 1
 
 # remove plugin dependencies
-for lib in `find $PLUGIN_CY3_BUNDLE_DIR -name *\.jar`; do
+for lib in `find "$PLUGIN_CY3_BUNDLE_DIR" -name "*.jar"`; do
     rm "$lib"
 done
