@@ -317,12 +317,12 @@ project('modules/ws') {
 
 // gradle wrapper, included in project tree
 task wrapper(type: Wrapper) {
-  gradleVersion = '1.7'
+  gradleVersion = '1.8'
   archiveBase = Wrapper.PathBase.PROJECT
   archivePath = "tools/gradle-wrapper"
   distributionBase = Wrapper.PathBase.PROJECT
-  distributionPath = "tools/gradle-1.7"
-  distributionUrl = "gradle-1.7-bin.zip"
+  distributionPath = "tools/gradle"
+  distributionUrl = "gradle-1.8-bin.zip"
   scriptFile = "$System.env.PLUGIN_SCRIPTS_DIR/gradlew"
   jarFile = "$System.env.PLUGIN_TOOLS_DIR/gradle-wrapper/wrapper.jar"
 }
