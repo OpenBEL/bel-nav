@@ -25,13 +25,13 @@ if [ ! -e "$vm_options_path/Cytoscape.vmoptions"  -a  -x "$script_path/gen_vmopt
     "$script_path/gen_vmoptions.sh"
 fi
 
-if [ -z "$PLUGIN_DIR" ]; then
+if [ -z "$DEV_DIR" ]; then
     . ../env.sh
 fi
 export JAVA_OPTS="-Xmx1550M -XX:MaxPermSize=512M"
-export JAVA_OPTS="$JAVA_OPTS -Dplugin.cy3.work.dir=$PLUGIN_CY3_WORK_DIR"
-export JAVA_OPTS="$JAVA_OPTS -Dplugin.cy3.bundle.dir=$PLUGIN_CY3_BUNDLE_DIR"
-export JAVA_OPTS="$JAVA_OPTS -Dplugin.cy3.log.file=$PLUGIN_CY3_LOG_FILE"
+export JAVA_OPTS="$JAVA_OPTS -Dplugin.cy3.work.dir=$DEV_CY3_WORK_DIR"
+export JAVA_OPTS="$JAVA_OPTS -Dplugin.cy3.bundle.dir=$DEV_CY3_BUNDLE_DIR"
+export JAVA_OPTS="$JAVA_OPTS -Dplugin.cy3.log.file=$DEV_CY3_LOG_FILE"
 if [ -r $vm_options_path/Cytoscape.vmoptions ]; then
     JAVA_OPTS="$JAVA_OPTS `cat $vm_options_path/Cytoscape.vmoptions`"
 fi
@@ -48,7 +48,7 @@ PWD=$(pwd)
 # working directory to framework is not known.
 export KARAF_OPTS=-Xms128M\ -Dcom.sun.management.jmxremote\ -Duser.dir="$PWD"\ -Dcytoscape.home="$CYTOSCAPE_HOME_ABS"\ -splash:CytoscapeSplashScreen.png\ "$CYTOSCAPE_MAC_OPTS"
 
-export KARAF_DATA="${PLUGIN_CY3_DATA_DIR}"
+export KARAF_DATA="${DEV_CY3_DATA_DIR}"
 mkdir -p "${KARAF_DATA}/tmp"
 
 $script_path/framework/bin/karaf "$@"

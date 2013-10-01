@@ -8,7 +8,7 @@ cd "${DIR}" || exit 1
 . scripts/deploy.sh
 
 # loop
-while inotifywait -qq -r -e modify "$PLUGIN_SOURCE_DIR" -e modify "$PLUGIN_TEST_DIR"; do
+while inotifywait -qq -r -e modify "$DEV_SOURCE_DIR" -e modify "$DEV_TEST_DIR"; do
     gradle -q test jar
     if [ "$?" != "0" ]; then 
         notify-send -t 3000 "Failed compilation.\n\n$RESULT"

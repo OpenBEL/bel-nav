@@ -43,8 +43,8 @@ subprojects {
     }
   }
   dependencies {
-    provided fileTree(dir: "$System.env.PLUGIN_CY3_LIBS_DIR/org/cytoscape", include: '**/*.jar')
-    provided fileTree(dir: "$System.env.PLUGIN_CY3_LIBS_DIR/org/eclipse/osgi", include: '**/*.jar')
+    provided fileTree(dir: "$System.env.DEV_CY3_LIBS_DIR/org/cytoscape", include: '**/*.jar')
+    provided fileTree(dir: "$System.env.DEV_CY3_LIBS_DIR/org/eclipse/osgi", include: '**/*.jar')
   }
 }
 
@@ -323,6 +323,6 @@ task wrapper(type: Wrapper) {
   distributionBase = Wrapper.PathBase.PROJECT
   distributionPath = "tools/gradle"
   distributionUrl = "gradle-1.8-bin.zip"
-  scriptFile = "$System.env.PLUGIN_SCRIPTS_DIR/gradlew"
-  jarFile = "$System.env.PLUGIN_TOOLS_DIR/gradle-wrapper/wrapper.jar"
+  scriptFile = "$System.env.DEV_SCRIPTS_DIR/gradlew"
+  jarFile = "$System.env.DEV_TOOLS_DIR/gradle-wrapper/wrapper.jar"
 }
