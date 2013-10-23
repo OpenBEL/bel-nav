@@ -264,7 +264,7 @@
             <visualProperty name="EDGE_LABEL_FONT_FACE" default="Dialog.plain,plain,10"/>
             <visualProperty name="EDGE_TRANSPARENCY" default="255">
                 <discreteMapping attributeType="boolean" attributeName="linked">
-                    <discreteMappingEntry value="100" attributeValue="false"/>
+                    <discreteMappingEntry value="50" attributeValue="false"/>
                     <discreteMappingEntry value="255" attributeValue="true"/>
                 </discreteMapping>
             </visualProperty>
@@ -573,7 +573,7 @@
             <visualProperty name="EDGE_LABEL_FONT_FACE" default="Dialog.plain,plain,10"/>
             <visualProperty name="EDGE_TRANSPARENCY" default="255">
                 <discreteMapping attributeType="boolean" attributeName="linked">
-                    <discreteMappingEntry value="100" attributeValue="false"/>
+                    <discreteMappingEntry value="50" attributeValue="false"/>
                     <discreteMappingEntry value="255" attributeValue="true"/>
                 </discreteMapping>
             </visualProperty>
