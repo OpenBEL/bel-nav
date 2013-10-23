@@ -23,7 +23,7 @@ import java.util.regex.Pattern
  */
 class BasicWsAPI implements WsAPI {
 
-    static final String URL = 'https://janssen-sdp.selventa.com/openbel-ws/belframework'
+    static final String URL = 'https://selventa-sdp.selventa.com/openbel-ws/belframework'
 
     BasicWsAPI() {
         SSLContext.default = SSL.context
