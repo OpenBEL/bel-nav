@@ -106,6 +106,8 @@ class BasicWsAPI implements WsAPI {
         def client = new SOAPClient(URL)
         def loadMap = loadKnowledgeNetwork(name)
 
+        if (!cyN.nodeList) [].asImmutable()
+
         createNodeColumns(cyN)
         cyN.nodeList.each {
             cyN.getRow(it).set('linked', false)
@@ -151,7 +153,7 @@ class BasicWsAPI implements WsAPI {
             cyN.getRow(n).set(NAME, lbl)
 
             [id: id, fx: fx, lbl: lbl]
-        }
+        }.asImmutable()
     }
 
     /**
@@ -162,6 +164,8 @@ class BasicWsAPI implements WsAPI {
         def client = new SOAPClient(URL)
         def loadMap = loadKnowledgeNetwork(name)
         if (!loadMap.handle) return null
+
+        if(!cyN.edgeList) return [].asImmutable()
 
         createEdgeColumns(cyN)
         cyN.edgeList.each {
@@ -226,7 +230,7 @@ class BasicWsAPI implements WsAPI {
                     lbl: wsEdge.target.label.toString()
                 ]
             ]
-        }
+        }.asImmutable()
     }
 
     /**
