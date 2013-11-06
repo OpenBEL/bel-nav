@@ -27,7 +27,6 @@ import static java.awt.GridBagConstraints.*
 class SearchNodesDialogUIImpl implements SearchNodesDialogUI {
 
     private static final Logger msg = LoggerFactory.getLogger("CyUserMessages");
-    private static final ImageIcon tick = new ImageIcon(SearchNodesDialogUIImpl.class.getResource('/tick.png'))
 
     SwingBuilder swing
 
