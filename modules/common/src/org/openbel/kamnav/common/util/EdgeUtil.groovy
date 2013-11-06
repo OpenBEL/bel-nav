@@ -37,7 +37,9 @@ class EdgeUtil {
     static def makeEdge(CyNetwork cyN, CyNode s, CyNode t, String id, String rel) {
         def table = cyN.defaultEdgeTable
         table.getColumn('kam.id') ?: table.createColumn('kam.id', String.class, false)
+        table.getColumn('linked') ?: table.createColumn('linked', Boolean.class, false)
         CyEdge e = cyN.addEdge(s, t, true)
+        cyN.getRow(e).set('linked', true)
         cyN.getRow(e).set('kam.id', id)
         cyN.getRow(e).set(INTERACTION, rel)
         e
