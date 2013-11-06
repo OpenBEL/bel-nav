@@ -2,6 +2,7 @@ package org.openbel.ws.api
 
 import org.cytoscape.model.CyNetwork
 import org.openbel.framework.common.enums.FunctionEnum
+import org.openbel.kamnav.common.model.Namespace
 import org.openbel.kamnav.common.model.Node
 import org.openbel.kamnav.common.model.Edge
 
@@ -51,6 +52,15 @@ interface WsAPI {
      */
     Map knowledgeNetworks()
 
+    /**
+     * Returns all provided namespaces as a {@link List} of {@link Namespace}.
+     *
+     * @return {@link List} of {@link Namespace}
+     */
+    List<Namespace> getAllNamespaces()
+
+    List findNamespaceValues(Collection<Namespace> ns, Collection<Pattern> regex)
+
     List linkNodes(CyNetwork cyn, String name)
 
     List linkEdges(CyNetwork cyn, String name)
@@ -58,4 +68,6 @@ interface WsAPI {
     Node[] findNodes(String name, Pattern labelPattern, FunctionEnum... functions)
 
     Edge[] adjacentEdges(Node node, String direction)
+
+    List<Node> mapData(String name, Namespace namespace, FunctionEnum[] functions, String[] values)
 }

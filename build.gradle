@@ -110,6 +110,7 @@ project('modules/core') {
   }
 
   dependencies {
+    compile project(':modules/ui')
     compile project(':modules/ws')
     compile files(
       "$rootDir/libs/compile/groovy-all-2.1.7-indy.jar",
@@ -131,6 +132,8 @@ project('modules/core') {
         groovy.lang;version="[2.1,3)",
         groovy.transform;version="[2.1,3)",
         groovy.util;version="[2.1,3)",
+        javax.swing,
+        javax.swing.event,
         org.codehaus.groovy.reflection;version="[2.1,3)",
         org.codehaus.groovy.runtime;version="[2.1,3)",
         org.codehaus.groovy.runtime.callsite;version="[2.1,3)",
@@ -138,6 +141,7 @@ project('modules/core') {
         org.codehaus.groovy.runtime.wrappers;version="[2.1,3)",
         org.codehaus.groovy.vmplugin.v7;version="[2.1,3)",
         org.cytoscape.application;version="[3,4)",
+        org.cytoscape.application.swing;version="[3,4)",
         org.cytoscape.event;version="[3,4)",
         org.cytoscape.model;version="[3,4)",
         org.cytoscape.property;version="[3,4)",
@@ -158,10 +162,10 @@ project('modules/core') {
         org.openbel.framework.ws.model;version="[3,4)",
         org.openbel.kamnav.common.model,
         org.openbel.kamnav.common.util,
+        org.openbel.kamnav.ui,
         org.openbel.ws.api,
         org.osgi.framework,
-        org.slf4j;version="[1,2)",
-        javax.swing
+        org.slf4j;version="[1,2)"
       '''
       instruction 'Bundle-Activator', 'org.openbel.kamnav.core.Activator'
       instruction 'Export-Package', 'org.openbel.kamnav.core;version="1.0.0"'
@@ -178,8 +182,10 @@ project('modules/ui') {
 
   dependencies {
     compile files(
+      "$rootDir/libs/compile/glazedlists_java15-1.9.0.jar",
       "$rootDir/libs/compile/groovy-all-2.1.7-indy.jar",
-      "$rootDir/libs/compile/slf4j-api-1.7.5.jar")
+      "$rootDir/libs/compile/slf4j-api-1.7.5.jar",
+      "$rootDir/libs/compile/swingx-all-1.6.5-1.jar")
     testCompile files(
       "$rootDir/libs/test/junit-4.11.jar")
   }
@@ -194,6 +200,10 @@ project('modules/ui') {
       name = 'OpenBEL KamNav - UI'
       symbolicName = 'org.openbel.kamnav.ui'
       instruction 'Import-Package', '''
+        ca.odell.glazedlists,
+        ca.odell.glazedlists.event,
+        ca.odell.glazedlists.gui,
+        ca.odell.glazedlists.swing,
         groovy.lang;version="[2.1,3)",
         groovy.swing;version="[2.1,3)",
         groovy.util;version="[2.1,3)",
@@ -205,11 +215,17 @@ project('modules/ui') {
         org.codehaus.groovy.reflection;version="[2.1,3)",
         org.codehaus.groovy.runtime;version="[2.1,3)",
         org.codehaus.groovy.runtime.callsite;version="[2.1,3)",
+        org.codehaus.groovy.runtime.typehandling;version="[2.1,3)",
         org.codehaus.groovy.runtime.wrappers;version="[2.1,3)",
         org.codehaus.groovy.vmplugin.v7;version="[2.1,3)",
         org.cytoscape.application.swing;version="[3,4)",
+        org.cytoscape.service.util;version="[3,4)",
+        org.jdesktop.swingx,
+        org.jdesktop.swingx.decorator,
+        org.osgi.framework,
         org.slf4j;version="[1,2)"
       '''
+      instruction 'Bundle-Activator', 'org.openbel.kamnav.ui.Activator'
       instruction 'Export-Package', 'org.openbel.kamnav.ui;version="1.0.0"'
     }
   }

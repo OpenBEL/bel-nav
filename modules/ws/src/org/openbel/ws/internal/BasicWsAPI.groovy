@@ -1,5 +1,7 @@
 package org.openbel.ws.internal
 
+import org.openbel.kamnav.common.model.Namespace
+
 import javax.net.ssl.SSLContext
 
 import static org.cytoscape.model.CyNetwork.NAME
@@ -96,6 +98,64 @@ class BasicWsAPI implements WsAPI {
             ]}.
             groupBy { it.name }.
             collectEntries { k, v -> [(k): v.first()]}
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    List<Namespace> getAllNamespaces() {
+        def client = new SOAPClient(this.URL)
+        def response = client.send {
+            body {
+                GetAllNamespacesRequest('xmlns': 'http://belframework.org/ws/schemas')
+            }
+        }
+
+        response.GetAllNamespacesResponse.namespaceDescriptors.
+        collect {
+            new Namespace(
+                it.namespace.id.toString(),
+                it.name.toString(),
+                it.namespace.prefix.toString(),
+                it.namespace.resourceLocation.toString()
+            )
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    List findNamespaceValues(Collection<Namespace> ns, Collection<Pattern> regex) {
+        def client = new SOAPClient(this.URL)
+        def response = client.send {
+            body {
+                FindNamespaceValuesRequest('xmlns': 'http://belframework.org/ws/schemas') {
+                    ns.collect { nsItem ->
+                        namespaces {
+                            id(nsItem.id)
+                            prefix(nsItem.prefix)
+                            resourceLocation(nsItem.resourceLocation)
+                        }
+                    }
+                    regex.collect {patterns(it.toString())}
+                }
+            }
+        }
+
+        response.FindNamespaceValuesResponse.namespaceValues.
+        collect {
+            [
+                new Namespace(
+                    it.namespace.id.toString(),
+                    null,
+                    it.namespace.prefix.toString(),
+                    it.namespace.resourceLocation.toString()
+                ),
+                it.value
+            ]
+        }
     }
 
     /**
@@ -263,15 +323,15 @@ class BasicWsAPI implements WsAPI {
         }
 
         response.FindKamNodesByPatternsResponse.kamNodes.
-                findAll {
-                    !it.attributes()['{http://www.w3.org/2001/XMLSchema-instance}nil']
-                }.
-                collect {
-                    String id = it.id.toString()
-                    String fx = FunctionType.valueOf(it.function.toString()).displayValue
-                    String label = it.label.toString()
-                    new Node(id, FunctionEnum.fromString(fx), label)
-                }
+        findAll {
+            !it.attributes()['{http://www.w3.org/2001/XMLSchema-instance}nil']
+        }.
+        collect {
+            String id = it.id.toString()
+            String fx = FunctionType.valueOf(it.function.toString()).displayValue
+            String label = it.label.toString()
+            new Node(id, FunctionEnum.fromString(fx), label)
+        }
     }
 
     /**
@@ -306,6 +366,52 @@ class BasicWsAPI implements WsAPI {
                 new Node(it.target.id.toString(),
                     FunctionEnum.fromString(FunctionType.valueOf(it.target.function.toString()).displayValue),
                     it.target.label.toString()))
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    List<Node> mapData(String name, Namespace ns, FunctionEnum[] functions, String[] entities) {
+        def client = new SOAPClient(this.URL)
+        def loadMap = loadKnowledgeNetwork(name)
+        if (!loadMap.handle) return null
+
+        def response = client.send {
+            body {
+                MapDataRequest('xmlns': 'http://belframework.org/ws/schemas') {
+                    handle {
+                        handle(loadMap.handle)
+                    }
+                    namespace {
+                        id(ns.id)
+                        prefix(ns.prefix)
+                        resourceLocation(ns.resourceLocation)
+                    }
+                    if (functions) {
+                        nodeFilter {
+                            functionTypeCriteria {
+                                functions.collect {
+                                    valueSet(toWS(it))
+                                }
+                            }
+                        }
+                    }
+                    entities.collect {values(it)}
+                }
+            }
+        }
+
+        response.MapDataResponse.kamNodes.
+        findAll {
+            !it.attributes()['{http://www.w3.org/2001/XMLSchema-instance}nil']
+        }.
+        collect {
+            String id = it.id.toString()
+            String fx = FunctionType.valueOf(it.function.toString()).displayValue
+            String label = it.label.toString()
+            new Node(id, FunctionEnum.fromString(fx), label)
         }
     }
 
