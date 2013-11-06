@@ -26,35 +26,37 @@ class CreateCyNetwork extends AbstractTask {
     final CyNetworkViewManager cynvMgr
     final WsAPI wsAPI
 
-    // tunable
-    @Tunable(description = "Knowledge network")
-    private ListSingleSelection<String> knName = new ListSingleSelection<String>(wsAPI.knowledgeNetworks().keySet().sort())
+    private String knName
+    private ListSingleSelection<String> knNameSelection
 
-//    @Tunable(description = "Knowledge network")
-//    public ListSingleSelection<String> getKnName() {
-//        knName = knName ?: new ListSingleSelection<String>(wsAPI.knowledgeNetworks().keySet().sort())
-//    }
-//
-//    public void setKnName(ListSingleSelection<String> lsel) {
-//        this.knName = lsel
-//    }
+    // Called by cytoscape
+    @Tunable(description = "Knowledge network")
+    public ListSingleSelection<String> getKnName() {
+        knNameSelection = knNameSelection ?:
+            new ListSingleSelection<String>(wsAPI.knowledgeNetworks().keySet() as String[])
+    }
+
+    // Called by cytoscape
+    public void setKnName(ListSingleSelection<String> lsel) {
+        this.knName = lsel.selectedValue
+    }
 
     /**
      * {@inheritDoc}
      */
     @Override
     void run(TaskMonitor monitor) throws Exception {
-        monitor.title = "Load knowledge network for ${knName.selectedValue}".toString()
-        monitor.statusMessage = format("Loading %s", knName.selectedValue)
+        monitor.title = "Load knowledge network for $knName".toString()
+        monitor.statusMessage = format("Loading %s", knName)
         monitor.progress = -1;
-        Map load = wsAPI.loadKnowledgeNetwork(knName.selectedValue)
+        Map load = wsAPI.loadKnowledgeNetwork(knName)
         if (!load.handle) {
             monitor.statusMessage = load.message
             return
         }
 
         CyNetwork network = cynFac.createNetwork()
-        network.getRow(network).set(NAME, knName.selectedValue)
+        network.getRow(network).set(NAME, knName)
         cynMgr.addNetwork(network)
         def view = cynvFac.createNetworkView(network)
         cynvMgr.addNetworkView(view)
