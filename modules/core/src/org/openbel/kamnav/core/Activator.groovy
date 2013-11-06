@@ -10,6 +10,8 @@ import org.openbel.framework.common.enums.FunctionEnum
 import org.openbel.kamnav.common.model.Namespace
 import org.openbel.kamnav.core.event.SessionLoadListener
 import org.openbel.kamnav.core.task.AddBelColumnsToCurrentFactoryImpl
+import org.openbel.kamnav.core.task.KnowledgeNeighborhoodFactory
+import org.openbel.kamnav.ui.SearchNeighborhoodUI
 import org.openbel.kamnav.ui.SearchNodesDialogUI
 
 import java.awt.event.ActionEvent
@@ -57,6 +59,7 @@ class Activator extends AbstractCyActivator {
                 ApplyPreferredLayoutTaskFactory.class, WsAPI.class] as Class<?>[])
         CyProperty<Properties> cyProp = getService(bc,CyProperty.class,"(cyPropertyName=cytoscape3.props)");
         SearchNodesDialogUI searchNodesUI = getService(bc, SearchNodesDialogUI.class)
+        SearchNeighborhoodUI searchKnUI = getService(bc, SearchNeighborhoodUI.class)
 
         // register listeners
         LoadVizmapFileTaskFactory vf =  getService(bc,LoadVizmapFileTaskFactory.class)
@@ -65,11 +68,12 @@ class Activator extends AbstractCyActivator {
             SessionLoadedListener.class, [:] as Properties)
 
         // register tasks
+        // TODO do not add AddBelColumns... to menu
         registerService(bc,
             new AddBelColumnsToCurrentFactoryImpl(cyr),
             AddBelColumnsToCurrentFactory.class, [
                 preferredMenu: 'Apps.KamNav',
-                menuGravity: 11.0,
+                menuGravity: 10.0,
                 title: "Add Data Columns"
             ] as Properties)
         registerService(bc,
@@ -83,14 +87,21 @@ class Activator extends AbstractCyActivator {
             new LinkKnowledgeNetworkFactory(cyr),
             NetworkViewTaskFactory.class, [
                 preferredMenu: 'Apps.KamNav',
-                menuGravity: 11.0,
+                menuGravity: 12.0,
                 title: "Link to Knowledge Network"
             ] as Properties)
+        registerService(bc,
+                new KnowledgeNeighborhoodFactory(cyr, searchKnUI),
+                NodeViewTaskFactory.class, [
+                preferredMenu: 'Apps.KamNav',
+                menuGravity: 13.0,
+                title: "Search Knowledge Neighborhood"
+        ] as Properties)
         registerService(bc,
             new LoadFullKnowledgeNetworkFactory(cyr, cyProp),
             TaskFactory.class, [
                 preferredMenu: 'File.New.Network',
-                menuGravity: 11.0,
+                menuGravity: 14.0,
                 title: 'From Knowledge Network'
             ] as Properties)
 

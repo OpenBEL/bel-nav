@@ -181,6 +181,7 @@ project('modules/ui') {
   }
 
   dependencies {
+    compile project(':modules/common')
     compile files(
       "$rootDir/libs/compile/glazedlists_java15-1.9.0.jar",
       "$rootDir/libs/compile/groovy-all-2.1.7-indy.jar",
