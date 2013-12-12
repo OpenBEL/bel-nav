@@ -196,10 +196,10 @@ class BasicWsAPI implements WsAPI {
         if (!resNodes || !resNodes.hasNext()) [].asImmutable()
 
         cyN.nodeList.collect { n ->
+            if (!toBEL(cyN, n)) return null
             if (!resNodes.hasNext()) return null
             def wsNode = resNodes.next()
 
-            if (!toBEL(cyN, n)) return null
             def isNil = wsNode.attributes()['{http://www.w3.org/2001/XMLSchema-instance}nil']
             if (isNil) return null
 
