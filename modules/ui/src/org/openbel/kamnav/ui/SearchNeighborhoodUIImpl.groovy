@@ -107,7 +107,7 @@ class SearchNeighborhoodUIImpl implements SearchNeighborhoodUI {
             pane
         }
 
-        def dialog = swing.dialog(id: 'path_facet_dialog', title: 'Pathfind',
+        def dialog = swing.dialog(id: 'path_facet_dialog', title: 'Knowledge Neighborhood',
                 defaultCloseOperation: JFrame.DISPOSE_ON_CLOSE, modal: false) {
 
             panel {
