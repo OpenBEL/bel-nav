@@ -34,7 +34,7 @@ class BelUtil {
             def rt = fromString(evidence.edge_rel)
             statement << (rt.abbreviation ?: rt.displayValue)
             if (evidence.objectTerm) statement << evidence.objectTerm
-            else {
+            else if (evidence.nestedSubject) {
                 def nested = []
                 nested << evidence.nestedSubject
                 rt = fromString(evidence.nestedRelationship)
