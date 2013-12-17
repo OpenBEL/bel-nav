@@ -49,8 +49,13 @@ class KnowledgeNeighborhoodFactory extends AbstractNodeViewTaskFactory {
         }.flatten().unique().iterator()
 
         searchUI.neighborhoodFacet(evidence.iterator(), { item ->
+            def param = ~/[A-Z]+:"?([^"),]+)"?/
+            def entities = []
+            def m = (item.edge.toString() =~ param)
+            while (m.find()) entities << m.group(1)
             def description = [
                 edge: item.edge,
+                entities: entities,
                 statement: belStatement(item),
                 causal: isCausal(item.edge),
                 citation: item.citation
