@@ -40,7 +40,7 @@ class ExpandNodeFactory extends AbstractNodeViewTaskFactory {
             def nodeV = cyNv.getNodeView(it)
             new TaskIterator(new ExpandNode(cyNv, nodeV, cyr.cyEventHelper, cyr.visualMappingManager, cyr.wsAPI))
         }.each(tasks.&append)
-        tasks.append(cyr.applyPreferredLayoutTaskFactory.createTaskIterator([cyNv]))
+        cyr.apply
         return tasks
     }
 }
