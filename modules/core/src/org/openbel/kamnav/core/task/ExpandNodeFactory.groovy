@@ -1,33 +1,28 @@
 package org.openbel.kamnav.core.task
 
+import static java.lang.Boolean.TRUE
 import static org.cytoscape.model.CyTableUtil.getNodesInState
-import static org.openbel.kamnav.common.util.NodeUtil.toNode
 import groovy.transform.TupleConstructor
-import org.cytoscape.event.CyEventHelper
 import org.cytoscape.model.CyNode
 import org.cytoscape.task.AbstractNodeViewTaskFactory
-import org.cytoscape.task.visualize.ApplyPreferredLayoutTaskFactory
 import org.cytoscape.view.model.CyNetworkView
 import org.cytoscape.view.model.View
-import org.cytoscape.view.vizmap.VisualMappingManager
 import org.cytoscape.work.TaskIterator
-import org.openbel.ws.api.WsAPI
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
 
 @TupleConstructor
 class ExpandNodeFactory extends AbstractNodeViewTaskFactory {
 
-    private static final Logger msg = LoggerFactory.getLogger("CyUserMessages");
     final Expando cyr
 
     @Override
     boolean isReady(View<CyNode> nodeView, CyNetworkView networkView) {
-        def node = toNode(networkView.model, nodeView.model)
-        if (!node.id) {
-            msg.warn("${node.label} is not linked to a Knowledge Network.")
+        // at least one linked node needs to be selected; the unlinked nodes
+        // will be filtered once the task executes.
+        def selected = getNodesInState(networkView.model, 'selected', true)
+        selected.find { node ->
+            def row = networkView.model.getRow(node)
+            row.isSet('linked') && row.get('linked', Boolean.class) == TRUE
         }
-        node.id
     }
 
     /**
@@ -35,12 +30,14 @@ class ExpandNodeFactory extends AbstractNodeViewTaskFactory {
      */
     @Override
     TaskIterator createTaskIterator(View<CyNode> nodeView, CyNetworkView cyNv) {
-        TaskIterator tasks = new TaskIterator(new ExpandNode(cyNv, nodeView, cyr.cyEventHelper, cyr.visualMappingManager, cyr.wsAPI))
-        getNodesInState(cyNv.model, 'selected', true).collect {
+        TaskIterator tasks = new TaskIterator()
+        getNodesInState(cyNv.model, 'selected', true).findAll { node ->
+            def row = cyNv.model.getRow(node)
+            row.isSet('linked') && row.get('linked', Boolean.class) == TRUE
+        }.collect {
             def nodeV = cyNv.getNodeView(it)
             new TaskIterator(new ExpandNode(cyNv, nodeV, cyr.cyEventHelper, cyr.visualMappingManager, cyr.wsAPI))
         }.each(tasks.&append)
-        cyr.apply
         return tasks
     }
 }

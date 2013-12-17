@@ -16,6 +16,7 @@ import static org.openbel.kamnav.common.util.NodeUtil.toNode
 import static org.openbel.ws.api.BelUtil.*
 import static org.openbel.kamnav.common.util.EdgeUtil.*
 import static org.openbel.kamnav.common.util.NodeUtil.*
+import static java.lang.Boolean.TRUE
 
 @TupleConstructor
 class KnowledgeNeighborhoodFactory extends AbstractNodeViewTaskFactory {
@@ -26,11 +27,13 @@ class KnowledgeNeighborhoodFactory extends AbstractNodeViewTaskFactory {
 
     @Override
     boolean isReady(View<CyNode> nodeView, CyNetworkView networkView) {
-        def node = toNode(networkView.model, nodeView.model)
-        if (!node.id) {
-            msg.warn("${node.label} is not linked to a Knowledge Network.")
+        // at least one linked node needs to be selected; the unlinked nodes
+        // will be filtered once the task executes.
+        def selected = getNodesInState(networkView.model, 'selected', true)
+        selected.find { node ->
+            def row = networkView.model.getRow(node)
+            row.isSet('linked') && row.get('linked', Boolean.class) == TRUE
         }
-        node.id
     }
 
     /**
@@ -38,7 +41,11 @@ class KnowledgeNeighborhoodFactory extends AbstractNodeViewTaskFactory {
      */
     @Override
     TaskIterator createTaskIterator(View<CyNode> nodeView, CyNetworkView cyNv) {
-        def evidence = getNodesInState(cyNv.model, 'selected', true).collect {
+        def evidence = getNodesInState(cyNv.model, 'selected', true).
+        findAll { node ->
+            def row = cyNv.model.getRow(node)
+            row.isSet('linked') && row.get('linked', Boolean.class) == TRUE
+        }.collect {
             cyr.wsAPI.adjacentEdges(toNode(cyNv.model, it))
         }.flatten().unique().collect { edge ->
             def ev = cyr.wsAPI.getSupportingEvidence(edge)
