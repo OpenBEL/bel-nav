@@ -70,4 +70,6 @@ interface WsAPI {
     Edge[] adjacentEdges(Node node, String direction)
 
     List<Node> mapData(String name, Namespace namespace, FunctionEnum[] functions, String[] values)
+
+    List<Map> getSupportingEvidence(Edge edge)
 }

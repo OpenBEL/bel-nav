@@ -20,7 +20,11 @@ class Activator extends AbstractCyActivator {
         swing.registerBeanFactory('taskPane', JXTaskPane.class)
         swing.registerBeanFactory('jxList', JXList.class)
         swing.registerBeanFactory('jxTable', JXTable.class)
+
         SearchNodesDialogUI addDialog = new SearchNodesDialogUIImpl(swing)
         registerService(bc, addDialog, SearchNodesDialogUI.class, [:] as Properties)
+
+        SearchNeighborhoodUI knDialog = new SearchNeighborhoodUIImpl(swing)
+        registerService(bc, knDialog, SearchNeighborhoodUI.class, [:] as Properties)
     }
 }

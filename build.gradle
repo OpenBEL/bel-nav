@@ -95,6 +95,7 @@ project('modules/common') {
       instruction 'Export-Package', '''
         org.openbel.kamnav.common;version="1.0.0",
         org.openbel.kamnav.common.extensions;version="1.0.0",
+        org.openbel.kamnav.common.facet;version="1.0.0",
         org.openbel.kamnav.common.model;version="1.0.0",
         org.openbel.kamnav.common.util;version="1.0.0"
       '''
@@ -181,6 +182,7 @@ project('modules/ui') {
   }
 
   dependencies {
+    compile project(':modules/common')
     compile files(
       "$rootDir/libs/compile/glazedlists_java15-1.9.0.jar",
       "$rootDir/libs/compile/groovy-all-2.1.7-indy.jar",
@@ -212,6 +214,7 @@ project('modules/ui') {
         javax.swing.border,
         javax.swing.event,
         javax.swing.plaf,
+        javax.swing.table,
         org.codehaus.groovy.reflection;version="[2.1,3)",
         org.codehaus.groovy.runtime;version="[2.1,3)",
         org.codehaus.groovy.runtime.callsite;version="[2.1,3)",
@@ -222,6 +225,7 @@ project('modules/ui') {
         org.cytoscape.service.util;version="[3,4)",
         org.jdesktop.swingx,
         org.jdesktop.swingx.decorator,
+        org.openbel.kamnav.common.facet,
         org.osgi.framework,
         org.slf4j;version="[1,2)"
       '''

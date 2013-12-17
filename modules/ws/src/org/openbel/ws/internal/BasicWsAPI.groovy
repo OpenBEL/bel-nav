@@ -415,6 +415,58 @@ class BasicWsAPI implements WsAPI {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    List<Map> getSupportingEvidence(Edge edge) {
+        def client = new SOAPClient(this.URL)
+        def response = client.send {
+            body {
+                GetSupportingEvidenceRequest('xmlns': 'http://belframework.org/ws/schemas') {
+                    kamEdge {
+                        id(edge.id)
+                        source(edge.source)
+                        relationship(edge.relationship)
+                        target(edge.target)
+                    }
+                }
+            }
+        }
+
+        response.GetSupportingEvidenceResponse.statements.
+        findAll {
+            !it.attributes()['{http://www.w3.org/2001/XMLSchema-instance}nil']
+        }.
+        collect {
+            [
+                edge_source: edge.source.label,
+                edge_rel: edge.relationship.displayValue,
+                edge_target: edge.target.label,
+                subject: it.subjectTerm.label.toString(),
+                relationship: fromWS(it.relationship.toString()),
+                objectTerm: it.objectTerm?.label?.toString(),
+                nestedSubject: it.objectStatement?.subjectTerm?.label?.toString(),
+                nestedRelationship: fromWS(it.objectStatement?.relationship?.toString()),
+                nestedObject: it.objectStatement?.objectTerm?.label?.toString(),
+                annotations: it.annotations.iterator().collectEntries { anno ->
+                   [anno.annotationType.name.toString(), anno.value.toString()]
+                },
+                citation: it.citation.name.toString()
+            ]
+        }
+    }
+
+    private def fromWS(type) {
+        switch (type) {
+            case org.openbel.framework.ws.model.RelationshipType:
+                RelationshipType.fromString(type.displayValue)
+                break
+            default:
+                type
+        }
+    }
+
     private def toWS(type) {
         switch (type) {
             case FunctionEnum:
