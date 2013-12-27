@@ -30,8 +30,8 @@ class BelUtil {
         if (!evidence) return null
 
         def statement = [evidence.subject]
-        if (evidence.edge_rel) {
-            def rt = fromString(evidence.edge_rel)
+        if (evidence.relationship) {
+            def rt = fromString(evidence.relationship)
             statement << (rt.abbreviation ?: rt.displayValue)
             if (evidence.objectTerm) statement << evidence.objectTerm
             else if (evidence.nestedSubject) {

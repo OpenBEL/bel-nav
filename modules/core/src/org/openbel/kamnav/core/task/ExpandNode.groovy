@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory
 
 import static org.openbel.kamnav.common.util.NodeUtil.*
 import static org.openbel.kamnav.common.util.EdgeUtil.*
-import static java.lang.String.format
 import groovy.transform.TupleConstructor
 import org.cytoscape.model.CyNode
 import org.cytoscape.view.model.CyNetworkView

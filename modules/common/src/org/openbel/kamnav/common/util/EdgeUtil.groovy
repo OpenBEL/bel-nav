@@ -1,5 +1,7 @@
 package org.openbel.kamnav.common.util
 
+import org.openbel.kamnav.common.model.Edge
+
 import static org.openbel.framework.common.enums.RelationshipType.fromAbbreviation
 import static org.openbel.framework.common.enums.RelationshipType.fromString
 import static org.cytoscape.model.CyEdge.INTERACTION
@@ -9,6 +11,8 @@ import org.cytoscape.model.CyEdge
 import org.cytoscape.model.CyNetwork
 import org.cytoscape.model.CyNode
 import org.openbel.framework.common.enums.RelationshipType
+import static org.cytoscape.model.CyNetwork.NAME
+import static org.openbel.kamnav.common.util.NodeUtil.toNode
 
 class EdgeUtil {
 
@@ -43,5 +47,18 @@ class EdgeUtil {
         cyN.getRow(e).set('kam.id', id)
         cyN.getRow(e).set(INTERACTION, rel)
         e
+    }
+
+    static def toEdge(CyNetwork cyN, CyEdge cyE) {
+        if (!cyN || !cyE) return null
+        def row = cyN.getRow(cyE)
+        if (!row) return null
+
+        new Edge(
+            row.get('kam.id', String.class),
+            toNode(cyN, cyE.source),
+            fromString(row.get(INTERACTION, String.class)),
+            toNode(cyN, cyE.target)
+        )
     }
 }

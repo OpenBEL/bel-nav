@@ -447,24 +447,21 @@ class BasicWsAPI implements WsAPI {
                 relationship: fromWS(it.relationship.toString()),
                 objectTerm: it.objectTerm?.label?.toString(),
                 nestedSubject: it.objectStatement?.subjectTerm?.label?.toString(),
-                nestedRelationship: fromWS(it.objectStatement?.relationship?.toString()),
+                nestedRelationship: fromWS(it.objectStatement?.relationship.toString()),
                 nestedObject: it.objectStatement?.objectTerm?.label?.toString(),
                 annotations: it.annotations.iterator().collectEntries { anno ->
                    [anno.annotationType.name.toString(), anno.value.toString()]
                 },
-                citation: it.citation.name.toString()
+                citationType: it.citation.citationType.toString(),
+                citationId: it.citation.id.toString(),
+                citationName: it.citation.name.toString()
             ]
         }
     }
 
     private def fromWS(type) {
-        switch (type) {
-            case org.openbel.framework.ws.model.RelationshipType:
-                RelationshipType.fromString(type.displayValue)
-                break
-            default:
-                type
-        }
+        if (!type) return null
+        RelationshipType.values().find {it.name() == type}?.displayValue
     }
 
     private def toWS(type) {

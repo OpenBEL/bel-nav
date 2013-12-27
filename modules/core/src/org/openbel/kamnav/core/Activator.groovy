@@ -5,14 +5,21 @@ import org.cytoscape.application.swing.CyAction
 import org.cytoscape.application.swing.CySwingApplication
 import org.cytoscape.model.CyNetwork
 import org.cytoscape.model.CyNode
+import org.cytoscape.model.CyTableFactory
+import org.cytoscape.model.CyTableManager
+import org.cytoscape.model.events.RowsSetListener
 import org.cytoscape.session.events.SessionLoadedListener
+import org.cytoscape.task.EdgeViewTaskFactory
 import org.openbel.framework.common.enums.FunctionEnum
 import org.openbel.kamnav.common.model.Namespace
 import org.openbel.kamnav.core.event.SessionLoadListener
+import org.openbel.kamnav.core.event.ShowEdgeDetailListener
 import org.openbel.kamnav.core.task.AddBelColumnsToCurrentFactoryImpl
 import org.openbel.kamnav.core.task.KnowledgeNeighborhoodFactory
+import org.openbel.kamnav.core.task.ShowEvidenceFactory
 import org.openbel.kamnav.ui.SearchNeighborhoodUI
 import org.openbel.kamnav.ui.SearchNodesDialogUI
+import org.openbel.kamnav.ui.Updateable
 
 import java.awt.event.ActionEvent
 import java.util.regex.Pattern
@@ -55,11 +62,15 @@ class Activator extends AbstractCyActivator {
         def cyr = cyReference(bc, this.&getService, [CyApplicationManager.class,
                 CySwingApplication.class, CyNetworkFactory.class, CyNetworkManager.class,
                 CyNetworkViewFactory.class, CyNetworkViewManager.class,
-                CyLayoutAlgorithmManager.class, VisualMappingManager.class, CyEventHelper.class,
+                CyLayoutAlgorithmManager.class, CyTableFactory.class, CyTableManager.class,
+                VisualMappingManager.class, CyEventHelper.class,
                 ApplyPreferredLayoutTaskFactory.class, WsAPI.class] as Class<?>[])
         CyProperty<Properties> cyProp = getService(bc,CyProperty.class,"(cyPropertyName=cytoscape3.props)");
         SearchNodesDialogUI searchNodesUI = getService(bc, SearchNodesDialogUI.class)
         SearchNeighborhoodUI searchKnUI = getService(bc, SearchNeighborhoodUI.class)
+
+        def evUpdateable = getService(bc, Updateable.class, '(name=evidence)')
+        registerService(bc, new ShowEdgeDetailListener(cyr, evUpdateable), RowsSetListener.class, [:] as Properties)
 
         // register listeners
         LoadVizmapFileTaskFactory vf =  getService(bc,LoadVizmapFileTaskFactory.class)
@@ -74,34 +85,41 @@ class Activator extends AbstractCyActivator {
             AddBelColumnsToCurrentFactory.class, [
                 preferredMenu: 'Apps.KamNav',
                 menuGravity: 10.0,
-                title: "Add Data Columns"
+                title: 'Add Data Columns'
             ] as Properties)
         registerService(bc,
             new ExpandNodeFactory(cyr),
             NodeViewTaskFactory.class, [
                 preferredMenu: 'Apps.KamNav',
                 menuGravity: 11.0,
-                title: "Expand Node"
+                title: 'Expand Node'
             ] as Properties)
         registerService(bc,
             new LinkKnowledgeNetworkFactory(cyr),
             NetworkViewTaskFactory.class, [
                 preferredMenu: 'Apps.KamNav',
                 menuGravity: 12.0,
-                title: "Link to Knowledge Network"
+                title: 'Link to Knowledge Network'
             ] as Properties)
         registerService(bc,
-                new KnowledgeNeighborhoodFactory(cyr, searchKnUI),
-                NodeViewTaskFactory.class, [
+            new KnowledgeNeighborhoodFactory(cyr, searchKnUI),
+            NodeViewTaskFactory.class, [
                 preferredMenu: 'Apps.KamNav',
                 menuGravity: 13.0,
-                title: "Show Neighborhood"
-        ] as Properties)
+                title: 'Show Neighborhood'
+            ] as Properties)
+        registerService(bc,
+            new ShowEvidenceFactory(cyr, evUpdateable),
+            EdgeViewTaskFactory.class, [
+                preferredMenu: 'Apps.KamNav',
+                menuGravity: 14.0,
+                title: 'Show Evidence'
+            ] as Properties)
         registerService(bc,
             new LoadFullKnowledgeNetworkFactory(cyr, cyProp),
             TaskFactory.class, [
                 preferredMenu: 'File.New.Network',
-                menuGravity: 14.0,
+                menuGravity: 15.0,
                 title: 'From Knowledge Network'
             ] as Properties)
 
@@ -182,6 +200,7 @@ class Activator extends AbstractCyActivator {
         registerService(bc, addNodesAction, CyAction.class, [
                 id: 'apps_nav.search_nodes'
         ] as Properties)
+
 
         // initialization
         contributeVisualStyles(cyr.visualMappingManager, vf)
