@@ -90,7 +90,7 @@ class EvidencePanel implements CytoPanelComponent, Updateable {
                                     annotations.removeAll {true}
                                     annotations.addAll(stmt.ev.annotations.collect { k, v ->
                                         new Expando(type: k, value: v)
-                                    }.findAll {it.value})
+                                    }.findAll {it.value}.sort {it.type})
                                 }
                             }
                         }
@@ -144,7 +144,7 @@ class EvidencePanel implements CytoPanelComponent, Updateable {
             statements.removeAll {true}
             statements.addAll(evidence.collect {
                 new Expando(stmt: it.statement, ev: it, toString: {stmt})
-            })
+            }.sort {it.stmt})
 
             if (stmtTable.getRowCount())
                 stmtTable.selectionModel.setSelectionInterval(0, 0)
