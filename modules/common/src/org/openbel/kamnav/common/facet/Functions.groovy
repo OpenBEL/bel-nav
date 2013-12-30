@@ -191,7 +191,7 @@ class Functions {
      * @return {@code boolean}
      */
     static boolean iterable(obj) {
-        [Collection, Object[]].any {it.isAssignableFrom(obj.class)}
+        obj && [Collection, Object[]].any {it.isAssignableFrom(obj.class)}
     }
 
     // Helper Functions: Halt! Ahead there be side-effects.
