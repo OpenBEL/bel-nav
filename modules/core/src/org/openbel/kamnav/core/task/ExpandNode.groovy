@@ -1,7 +1,5 @@
 package org.openbel.kamnav.core.task
 
-import org.cytoscape.event.CyEventHelper
-import org.cytoscape.view.vizmap.VisualMappingManager
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
@@ -13,7 +11,8 @@ import org.cytoscape.view.model.CyNetworkView
 import org.cytoscape.view.model.View
 import org.cytoscape.work.AbstractTask
 import org.cytoscape.work.TaskMonitor
-import org.openbel.ws.api.WsAPI
+
+import static org.openbel.kamnav.core.Util.addEvidenceForEdge
 
 @TupleConstructor
 class ExpandNode extends AbstractTask {
@@ -21,9 +20,7 @@ class ExpandNode extends AbstractTask {
     private static final Logger msg = LoggerFactory.getLogger('CyUserMessages');
     final CyNetworkView cyNv
     final View<CyNode> nodeView
-    final CyEventHelper evtHelper
-    final VisualMappingManager visMgr
-    final WsAPI wsAPI
+    final Expando cyr
 
     /**
      * {@inheritDoc}
@@ -34,9 +31,9 @@ class ExpandNode extends AbstractTask {
         monitor.title = 'Expand Node'
         monitor.statusMessage = "Expanding ${node.label}"
 
-        def edges = wsAPI.adjacentEdges(node)
+        def edges = cyr.wsAPI.adjacentEdges(node)
         def chunk = 1.0d / edges.length
-        wsAPI.adjacentEdges(node).each { edge ->
+        cyr.wsAPI.adjacentEdges(node).each { edge ->
             def s = edge.source
             def t = edge.target
             def rel = edge.relationship.displayValue
@@ -45,13 +42,14 @@ class ExpandNode extends AbstractTask {
             def cyTarget =
                 findNode(cyNv.model, t.label) ?:
                 makeNode(cyNv.model, t.id, t.fx.displayValue, t.label)
-            findEdge(cyNv.model, s.label, rel, t.label) ?:
+            def cyE = findEdge(cyNv.model, s.label, rel, t.label) ?:
                 makeEdge(cyNv.model, cySource, cyTarget, edge.id, rel)
+            addEvidenceForEdge(cyr.cyTableManager, cyr.cyTableFactory, cyr.wsAPI, cyNv.model, cyE)
             monitor.progress += chunk
         }
 
-        evtHelper.flushPayloadEvents()
-        visMgr.getCurrentVisualStyle().apply(cyNv)
+        cyr.cyEventHelper.flushPayloadEvents()
+        cyr.visualMappingManager.getCurrentVisualStyle().apply(cyNv)
         cyNv.updateView()
 
         msg.info("Expanded ${node.label}")

@@ -11,12 +11,12 @@ import org.openbel.kamnav.ui.SearchNeighborhoodUI
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
+import static java.lang.Boolean.TRUE
 import static org.cytoscape.model.CyTableUtil.getNodesInState
-import static org.openbel.kamnav.common.util.NodeUtil.toNode
-import static org.openbel.ws.api.BelUtil.*
 import static org.openbel.kamnav.common.util.EdgeUtil.*
 import static org.openbel.kamnav.common.util.NodeUtil.*
-import static java.lang.Boolean.TRUE
+import static org.openbel.kamnav.core.Util.addEvidenceForEdge
+import static org.openbel.ws.api.BelUtil.*
 
 @TupleConstructor
 class KnowledgeNeighborhoodFactory extends AbstractNodeViewTaskFactory {
@@ -83,7 +83,8 @@ class KnowledgeNeighborhoodFactory extends AbstractNodeViewTaskFactory {
 
                 def cySource = findNode(cyN, s.label) ?: makeNode(cyN, s.id, s.fx.displayValue, s.label)
                 def cyTarget = findNode(cyN, t.label) ?: makeNode(cyN, t.id, t.fx.displayValue, t.label)
-                findEdge(cyN, s.label, rel, t.label) ?: makeEdge(cyN, cySource, cyTarget, edge.id, rel)
+                def cyE = findEdge(cyN, s.label, rel, t.label) ?: makeEdge(cyN, cySource, cyTarget, edge.id, rel)
+                addEvidenceForEdge(cyr.cyTableManager, cyr.cyTableFactory, cyr.wsAPI, cyN, cyE)
             }
             msg.info("Added ${edges.size()} edges in knowledge neighborhood.")
 

@@ -36,7 +36,7 @@ class ExpandNodeFactory extends AbstractNodeViewTaskFactory {
             row.isSet('linked') && row.get('linked', Boolean.class) == TRUE
         }.collect {
             def nodeV = cyNv.getNodeView(it)
-            new TaskIterator(new ExpandNode(cyNv, nodeV, cyr.cyEventHelper, cyr.visualMappingManager, cyr.wsAPI))
+            new TaskIterator(new ExpandNode(cyNv, nodeV, cyr))
         }.each(tasks.&append)
         return tasks
     }

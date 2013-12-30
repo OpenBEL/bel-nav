@@ -17,7 +17,7 @@ class LinkKnowledgeNetworkFactory extends AbstractNetworkViewTaskFactory {
     TaskIterator createTaskIterator(CyNetworkView cyNv) {
         return new TaskIterator(
             new LinkKnowledgeNetwork(cyr.cyApplicationManager, cyr.wsAPI, cyNv),
-            new RetrieveEvidence(cyNv, cyr.wsAPI, cyr.cyTableFactory, cyr.cyTableManager),
+            new RetrieveEvidenceForNetwork(cyNv, cyr.wsAPI, cyr.cyTableFactory, cyr.cyTableManager),
             new ApplyPreferredStyleToCurrent(cyr.cyApplicationManager, cyr.cyEventHelper, cyr.visualMappingManager)
         )
     }
