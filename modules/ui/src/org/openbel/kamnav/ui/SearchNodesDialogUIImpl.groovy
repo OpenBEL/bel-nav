@@ -9,18 +9,11 @@ import groovy.transform.TupleConstructor
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
-import javax.swing.JComboBox
-import javax.swing.JFileChooser
-import javax.swing.JFrame
-import javax.swing.JTextField
-import javax.swing.RowSorter
-import javax.swing.SortOrder
-import javax.swing.UIManager
-import java.awt.BorderLayout
-import java.awt.FlowLayout
-import java.awt.Font
+import javax.swing.*
+import java.awt.*
 
-import static java.awt.GridBagConstraints.*
+import static java.awt.GridBagConstraints.HORIZONTAL
+import static java.awt.GridBagConstraints.LINE_START
 
 @TupleConstructor
 class SearchNodesDialogUIImpl implements SearchNodesDialogUI {

@@ -1,16 +1,16 @@
 package org.openbel.kamnav.core.task
 
+import groovy.transform.TupleConstructor
+import org.cytoscape.application.CyApplicationManager
+import org.cytoscape.model.CyNetwork
 import org.cytoscape.model.CyRow
+import org.cytoscape.work.AbstractTask
+import org.cytoscape.work.TaskMonitor
 import org.openbel.framework.common.InvalidArgument
 import org.openbel.framework.common.model.Term
 
 import static org.cytoscape.model.CyNetwork.NAME
 import static org.openbel.framework.common.bel.parser.BELParser.parseTerm
-import groovy.transform.TupleConstructor
-import org.cytoscape.application.CyApplicationManager
-import org.cytoscape.model.CyNetwork
-import org.cytoscape.work.AbstractTask
-import org.cytoscape.work.TaskMonitor
 
 @TupleConstructor
 public class AddBelColumnsToCurrent extends AbstractTask {

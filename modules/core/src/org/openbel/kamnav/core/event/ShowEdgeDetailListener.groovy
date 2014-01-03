@@ -1,19 +1,16 @@
 package org.openbel.kamnav.core.event
 
 import groovy.transform.TupleConstructor
-import org.cytoscape.application.swing.CytoPanelComponent
-import org.cytoscape.application.swing.CytoPanelName
-import org.cytoscape.application.swing.CytoPanelState
 import org.cytoscape.model.CyNetwork
 import org.cytoscape.model.events.RowsSetEvent
 import org.cytoscape.model.events.RowsSetListener
-import org.openbel.kamnav.ui.Updateable
+import org.openbel.kamnav.ui.EdgeUpdateable
 
 @TupleConstructor
 class ShowEdgeDetailListener implements RowsSetListener{
 
     final Expando cyr
-    final Updateable updateable
+    final EdgeUpdateable updateable
 
     @Override
     void handleEvent(RowsSetEvent evt) {
@@ -53,12 +50,6 @@ class ShowEdgeDetailListener implements RowsSetListener{
             })
         } else {
             updateable.update([])
-        }
-
-        def east = cyr.cySwingApplication.getCytoPanel(CytoPanelName.EAST)
-        if (east.state != CytoPanelState.HIDE) {
-            def idx = east.indexOfComponent(((CytoPanelComponent) updateable).component)
-            east.selectedIndex = idx
         }
     }
 }

@@ -1,12 +1,11 @@
 package org.openbel.kamnav.core.task
 
 import groovy.transform.TupleConstructor
-import org.cytoscape.work.AbstractTask
-
 import org.cytoscape.application.CyApplicationManager
 import org.cytoscape.view.layout.CyLayoutAlgorithm
 import org.cytoscape.view.layout.CyLayoutAlgorithmManager
 import org.cytoscape.view.model.CyNetworkView
+import org.cytoscape.work.AbstractTask
 import org.cytoscape.work.TaskIterator
 import org.cytoscape.work.TaskMonitor
 

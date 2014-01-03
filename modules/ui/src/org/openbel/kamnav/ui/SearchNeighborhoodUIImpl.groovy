@@ -12,17 +12,15 @@ import org.jdesktop.swingx.decorator.ToolTipHighlighter
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
-import javax.swing.JDialog
-import javax.swing.JFrame
+import javax.swing.*
 import javax.swing.RowSorter.SortKey
-import javax.swing.SortOrder
 import javax.swing.event.ListSelectionListener
 import javax.swing.table.AbstractTableModel
-import java.awt.BorderLayout
-import java.awt.Color
-import java.awt.FlowLayout
+import java.awt.*
+import java.util.List
 
-import static javax.swing.ScrollPaneConstants.*
+import static javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER
+import static javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED
 import static org.openbel.kamnav.common.facet.Functions.*
 
 @TupleConstructor

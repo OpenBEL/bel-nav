@@ -13,10 +13,12 @@ import org.slf4j.LoggerFactory
 
 import static java.lang.Boolean.TRUE
 import static org.cytoscape.model.CyTableUtil.getNodesInState
-import static org.openbel.kamnav.common.util.EdgeUtil.*
+import static org.openbel.kamnav.common.util.EdgeUtil.findEdge
+import static org.openbel.kamnav.common.util.EdgeUtil.makeEdge
 import static org.openbel.kamnav.common.util.NodeUtil.*
 import static org.openbel.kamnav.core.Util.addEvidenceForEdge
-import static org.openbel.ws.api.BelUtil.*
+import static org.openbel.ws.api.BelUtil.belStatement
+import static org.openbel.ws.api.BelUtil.isCausal
 
 @TupleConstructor
 class KnowledgeNeighborhoodFactory extends AbstractNodeViewTaskFactory {

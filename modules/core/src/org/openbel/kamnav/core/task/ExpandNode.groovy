@@ -1,17 +1,17 @@
 package org.openbel.kamnav.core.task
 
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
-
-import static org.openbel.kamnav.common.util.NodeUtil.*
-import static org.openbel.kamnav.common.util.EdgeUtil.*
 import groovy.transform.TupleConstructor
 import org.cytoscape.model.CyNode
 import org.cytoscape.view.model.CyNetworkView
 import org.cytoscape.view.model.View
 import org.cytoscape.work.AbstractTask
 import org.cytoscape.work.TaskMonitor
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 
+import static org.openbel.kamnav.common.util.EdgeUtil.findEdge
+import static org.openbel.kamnav.common.util.EdgeUtil.makeEdge
+import static org.openbel.kamnav.common.util.NodeUtil.*
 import static org.openbel.kamnav.core.Util.addEvidenceForEdge
 
 @TupleConstructor

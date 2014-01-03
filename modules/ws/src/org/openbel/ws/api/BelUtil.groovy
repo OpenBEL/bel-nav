@@ -1,12 +1,8 @@
 package org.openbel.ws.api
 
-import static org.openbel.framework.common.enums.RelationshipType.DECREASES
-import static org.openbel.framework.common.enums.RelationshipType.DIRECTLY_DECREASES
-import static org.openbel.framework.common.enums.RelationshipType.DIRECTLY_INCREASES
-import static org.openbel.framework.common.enums.RelationshipType.INCREASES
-import static org.openbel.framework.common.enums.RelationshipType.RATE_LIMITING_STEP_OF
-import static org.openbel.framework.common.enums.RelationshipType.fromString
 import org.openbel.kamnav.common.model.Edge
+
+import static org.openbel.framework.common.enums.RelationshipType.*
 
 /**
  * Utilities for processing bel constructs.

@@ -1,17 +1,16 @@
 package org.openbel.kamnav.common.util
 
-import org.openbel.kamnav.common.model.Edge
-
-import static org.openbel.framework.common.enums.RelationshipType.fromAbbreviation
-import static org.openbel.framework.common.enums.RelationshipType.fromString
-import static org.cytoscape.model.CyEdge.INTERACTION
-import static org.cytoscape.model.CyEdge.Type.DIRECTED
-import static org.openbel.kamnav.common.util.NodeUtil.findNode
 import org.cytoscape.model.CyEdge
 import org.cytoscape.model.CyNetwork
 import org.cytoscape.model.CyNode
 import org.openbel.framework.common.enums.RelationshipType
-import static org.cytoscape.model.CyNetwork.NAME
+import org.openbel.kamnav.common.model.Edge
+
+import static org.cytoscape.model.CyEdge.INTERACTION
+import static org.cytoscape.model.CyEdge.Type.DIRECTED
+import static org.openbel.framework.common.enums.RelationshipType.fromAbbreviation
+import static org.openbel.framework.common.enums.RelationshipType.fromString
+import static org.openbel.kamnav.common.util.NodeUtil.findNode
 import static org.openbel.kamnav.common.util.NodeUtil.toNode
 
 class EdgeUtil {

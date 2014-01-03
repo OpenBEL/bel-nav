@@ -1,21 +1,15 @@
 package org.openbel.kamnav.core
 
-import org.cytoscape.model.CyColumn
-import org.cytoscape.model.CyEdge
-import org.cytoscape.model.CyNetwork
-import org.cytoscape.model.CyRow
-import org.cytoscape.model.CyTable
-import org.cytoscape.model.CyTableFactory
-import org.cytoscape.model.CyTableManager
-import org.cytoscape.model.SUIDFactory
-import org.openbel.ws.api.WsAPI
-import org.osgi.framework.BundleContext
+import org.cytoscape.model.*
 import org.cytoscape.task.read.LoadVizmapFileTaskFactory
 import org.cytoscape.view.vizmap.VisualMappingManager
+import org.openbel.ws.api.WsAPI
+
 import static java.lang.Boolean.TRUE
 import static org.cytoscape.model.CyNetwork.NAME
 import static org.cytoscape.model.SavePolicy.DO_NOT_SAVE
 import static org.openbel.kamnav.common.util.EdgeUtil.toEdge
+import static org.openbel.kamnav.common.util.Util.createColumn
 import static org.openbel.kamnav.core.Constant.*
 import static org.openbel.ws.api.BelUtil.belStatement
 
@@ -26,43 +20,6 @@ class Util {
         // delete/add knowledge network styles (idempotent)
         visMgr.allVisualStyles.findAll { it.title in STYLE_NAMES }.each(visMgr.&removeVisualStyle)
         vf.loadStyles(Util.class.getResourceAsStream(STYLE_PATH))
-    }
-
-    static Expando cyReference(BundleContext bc, Closure cyAct, Class<?>[] ifaces) {
-        Expando e = new Expando()
-        ifaces.each {
-            def impl = cyAct.call(bc, it)
-            def name = it.simpleName
-            e.setProperty(name[0].toLowerCase() + name[1..-1], impl)
-        }
-        e
-    }
-
-    static CyColumn createColumn(table, name, type, immutable, defaultValue) {
-        name = "$name"
-        table.getColumn(name) ?: (table.createColumn(name, type, immutable, defaultValue))
-        table.getColumn(name)
-    }
-
-    static CyColumn createListColumn(table, name, listElementType, immutable,
-                                     defaultValue) {
-        name = "$name"
-        table.getColumn(name) ?: (table.createListColumn(name, listElementType, immutable, defaultValue))
-        table.getColumn(name)
-    }
-
-    static <T> void setAdd(CyRow row, String name, Class<T> type, T element) {
-        def list = row.getList(name, type, [])
-        if (!list.contains(element)) {
-            list.add(element)
-            row.set(name, list)
-        }
-    }
-
-    static <T> void listAdd(CyRow row, String name, Class<T> type, T element) {
-        def list = row.getList(name, type, [])
-        list.add(element)
-        row.set(name, list)
     }
 
     static CyTable getOrCreateEvidenceTable(CyTableManager mgr, CyTableFactory fac) {

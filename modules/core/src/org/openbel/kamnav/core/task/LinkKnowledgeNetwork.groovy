@@ -1,6 +1,5 @@
 package org.openbel.kamnav.core.task
 
-import static org.cytoscape.model.CyNetwork.NAME
 import org.cytoscape.application.CyApplicationManager
 import org.cytoscape.view.model.CyNetworkView
 import org.cytoscape.work.AbstractTask
@@ -10,6 +9,8 @@ import org.cytoscape.work.util.ListSingleSelection
 import org.openbel.ws.api.WsAPI
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+
+import static org.cytoscape.model.CyNetwork.NAME
 
 class LinkKnowledgeNetwork extends AbstractTask {
 

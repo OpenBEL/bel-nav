@@ -1,6 +1,6 @@
 package org.openbel.kamnav.ui
 
-import javax.swing.JDialog
+import javax.swing.*
 
 interface SearchNeighborhoodUI {
 

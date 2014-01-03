@@ -90,6 +90,7 @@ project('modules/common') {
         org.openbel.framework.common.bel.parser;version="[3,4)",
         org.openbel.framework.common.enums;version="[3,4)",
         org.openbel.framework.common.model;version="[3,4)",
+        org.osgi.framework,
         org.slf4j;version="[1,2)"
       '''
       instruction 'Export-Package', '''
@@ -208,6 +209,7 @@ project('modules/ui') {
         ca.odell.glazedlists.event,
         ca.odell.glazedlists.gui,
         ca.odell.glazedlists.swing,
+        groovy.json;version="[2.1,3)",
         groovy.lang;version="[2.1,3)",
         groovy.swing;version="[2.1,3)",
         groovy.util;version="[2.1,3)",
@@ -223,12 +225,20 @@ project('modules/ui') {
         org.codehaus.groovy.runtime.typehandling;version="[2.1,3)",
         org.codehaus.groovy.runtime.wrappers;version="[2.1,3)",
         org.codehaus.groovy.vmplugin.v7;version="[2.1,3)",
+        org.cytoscape.application;version="[3,4)",
+        org.cytoscape.application.events;version="[3,4)",
         org.cytoscape.application.swing;version="[3,4)",
+        org.cytoscape.event;version="[3,4)",
         org.cytoscape.model;version="[3,4)",
+        org.cytoscape.model.events;version="[3,4)",
         org.cytoscape.service.util;version="[3,4)",
+        org.cytoscape.view.layout;version="[3,4)",
+        org.cytoscape.view.model;version="[3,4)",
+        org.cytoscape.view.vizmap;version="[3,4)",
         org.jdesktop.swingx,
         org.jdesktop.swingx.decorator,
         org.openbel.kamnav.common.facet,
+        org.openbel.kamnav.common.util,
         org.osgi.framework,
         org.slf4j;version="[1,2)"
       '''

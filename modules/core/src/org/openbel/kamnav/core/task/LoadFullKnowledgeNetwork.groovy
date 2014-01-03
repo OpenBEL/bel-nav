@@ -1,17 +1,18 @@
 package org.openbel.kamnav.core.task
 
-import org.cytoscape.application.CyApplicationManager
-import org.openbel.framework.common.enums.FunctionEnum
-import org.openbel.framework.ws.model.FunctionType
-
-import static org.openbel.framework.common.enums.FunctionEnum.fromString
-import static org.openbel.kamnav.common.util.NodeUtil.*
-import static org.openbel.kamnav.common.util.EdgeUtil.*
-import static org.cytoscape.model.CyNetwork.NAME;
 import groovy.transform.TupleConstructor
+import org.cytoscape.application.CyApplicationManager
 import org.cytoscape.work.AbstractTask
 import org.cytoscape.work.TaskMonitor
+import org.openbel.framework.common.enums.FunctionEnum
+import org.openbel.framework.ws.model.FunctionType
 import org.openbel.ws.api.WsAPI
+
+import static org.cytoscape.model.CyNetwork.NAME
+import static org.openbel.framework.common.enums.FunctionEnum.fromString
+import static org.openbel.kamnav.common.util.EdgeUtil.findEdge
+import static org.openbel.kamnav.common.util.EdgeUtil.makeEdge
+import static org.openbel.kamnav.common.util.NodeUtil.*
 
 @TupleConstructor
 class LoadFullKnowledgeNetwork extends AbstractTask {

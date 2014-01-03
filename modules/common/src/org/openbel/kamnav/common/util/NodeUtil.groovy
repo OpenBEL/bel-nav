@@ -1,14 +1,14 @@
 package org.openbel.kamnav.common.util
 
-import org.openbel.framework.common.InvalidArgument
-import org.openbel.framework.common.model.Term
-
-import static org.cytoscape.model.CyNetwork.NAME
-import static org.openbel.framework.common.enums.FunctionEnum.fromString
-import static org.openbel.framework.common.bel.parser.BELParser.parseTerm
 import org.cytoscape.model.CyNetwork
 import org.cytoscape.model.CyNode
+import org.openbel.framework.common.InvalidArgument
+import org.openbel.framework.common.model.Term
 import org.openbel.kamnav.common.model.Node
+
+import static org.cytoscape.model.CyNetwork.NAME
+import static org.openbel.framework.common.bel.parser.BELParser.parseTerm
+import static org.openbel.framework.common.enums.FunctionEnum.fromString
 
 class NodeUtil {
 

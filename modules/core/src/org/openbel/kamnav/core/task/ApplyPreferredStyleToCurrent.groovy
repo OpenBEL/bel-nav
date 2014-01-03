@@ -1,15 +1,15 @@
 package org.openbel.kamnav.core.task
 
-import org.cytoscape.view.vizmap.VisualStyle
-
-import static org.openbel.kamnav.core.Constant.NAV_VIS
 import groovy.transform.TupleConstructor
 import org.cytoscape.application.CyApplicationManager
 import org.cytoscape.event.CyEventHelper
 import org.cytoscape.view.model.CyNetworkView
 import org.cytoscape.view.vizmap.VisualMappingManager
+import org.cytoscape.view.vizmap.VisualStyle
 import org.cytoscape.work.AbstractTask
 import org.cytoscape.work.TaskMonitor
+
+import static org.openbel.kamnav.core.Constant.NAV_VIS
 
 @TupleConstructor
 public class ApplyPreferredStyleToCurrent extends AbstractTask {

@@ -1,42 +1,15 @@
 package org.openbel.kamnav.core
 
+import org.cytoscape.application.CyApplicationManager
 import org.cytoscape.application.swing.AbstractCyAction
 import org.cytoscape.application.swing.CyAction
 import org.cytoscape.application.swing.CySwingApplication
-import org.cytoscape.model.CyNetwork
-import org.cytoscape.model.CyNode
-import org.cytoscape.model.CyTableFactory
-import org.cytoscape.model.CyTableManager
-import org.cytoscape.model.events.RowsSetListener
-import org.cytoscape.session.events.SessionLoadedListener
-import org.cytoscape.task.EdgeViewTaskFactory
-import org.openbel.framework.common.enums.FunctionEnum
-import org.openbel.kamnav.common.model.Namespace
-import org.openbel.kamnav.core.event.SessionLoadListener
-import org.openbel.kamnav.core.event.ShowEdgeDetailListener
-import org.openbel.kamnav.core.task.AddBelColumnsToCurrentFactoryImpl
-import org.openbel.kamnav.core.task.KnowledgeNeighborhoodFactory
-import org.openbel.kamnav.core.task.ShowEvidenceFactory
-import org.openbel.kamnav.ui.SearchNeighborhoodUI
-import org.openbel.kamnav.ui.SearchNodesDialogUI
-import org.openbel.kamnav.ui.Updateable
-
-import java.awt.event.ActionEvent
-import java.util.regex.Pattern
-
-import static javax.swing.KeyStroke.getKeyStroke
-import static org.openbel.kamnav.common.util.EdgeUtil.findEdge
-import static org.openbel.kamnav.common.util.EdgeUtil.makeEdge
-import static org.openbel.kamnav.common.util.NodeUtil.findNode
-import static org.openbel.kamnav.common.util.NodeUtil.makeNode
-import static org.openbel.kamnav.common.util.NodeUtil.toNode
-import static org.openbel.kamnav.core.Util.*
-import org.cytoscape.application.CyApplicationManager
 import org.cytoscape.event.CyEventHelper
-import org.cytoscape.model.CyNetworkFactory
-import org.cytoscape.model.CyNetworkManager
+import org.cytoscape.model.*
 import org.cytoscape.property.CyProperty
 import org.cytoscape.service.util.AbstractCyActivator
+import org.cytoscape.session.events.SessionLoadedListener
+import org.cytoscape.task.EdgeViewTaskFactory
 import org.cytoscape.task.NetworkViewTaskFactory
 import org.cytoscape.task.NodeViewTaskFactory
 import org.cytoscape.task.read.LoadVizmapFileTaskFactory
@@ -46,11 +19,25 @@ import org.cytoscape.view.model.CyNetworkViewFactory
 import org.cytoscape.view.model.CyNetworkViewManager
 import org.cytoscape.view.vizmap.VisualMappingManager
 import org.cytoscape.work.TaskFactory
-import org.openbel.kamnav.core.task.ExpandNodeFactory
-import org.openbel.kamnav.core.task.LinkKnowledgeNetworkFactory
-import org.openbel.kamnav.core.task.LoadFullKnowledgeNetworkFactory
+import org.openbel.framework.common.enums.FunctionEnum
+import org.openbel.kamnav.common.model.Namespace
+import org.openbel.kamnav.core.event.SessionLoadListener
+import org.openbel.kamnav.core.task.*
+import org.openbel.kamnav.ui.EdgeUpdateable
+import org.openbel.kamnav.ui.SearchNeighborhoodUI
+import org.openbel.kamnav.ui.SearchNodesDialogUI
 import org.openbel.ws.api.WsAPI
 import org.osgi.framework.BundleContext
+
+import java.awt.event.ActionEvent
+import java.util.regex.Pattern
+
+import static javax.swing.KeyStroke.getKeyStroke
+import static org.openbel.kamnav.common.util.EdgeUtil.findEdge
+import static org.openbel.kamnav.common.util.EdgeUtil.makeEdge
+import static org.openbel.kamnav.common.util.NodeUtil.*
+import static org.openbel.kamnav.common.util.Util.cyReference
+import static org.openbel.kamnav.core.Util.contributeVisualStyles
 
 class Activator extends AbstractCyActivator {
 
@@ -69,8 +56,7 @@ class Activator extends AbstractCyActivator {
         SearchNodesDialogUI searchNodesUI = getService(bc, SearchNodesDialogUI.class)
         SearchNeighborhoodUI searchKnUI = getService(bc, SearchNeighborhoodUI.class)
 
-        def evUpdateable = getService(bc, Updateable.class, '(name=evidence)')
-        registerService(bc, new ShowEdgeDetailListener(cyr, evUpdateable), RowsSetListener.class, [:] as Properties)
+        def evUpdateable = getService(bc, EdgeUpdateable.class, "(name=evidence)")
 
         // register listeners
         LoadVizmapFileTaskFactory vf =  getService(bc,LoadVizmapFileTaskFactory.class)
@@ -79,7 +65,6 @@ class Activator extends AbstractCyActivator {
             SessionLoadedListener.class, [:] as Properties)
 
         // register tasks
-        // TODO do not add AddBelColumns... to menu
         registerService(bc,
             new AddBelColumnsToCurrentFactoryImpl(cyr),
             AddBelColumnsToCurrentFactory.class, [
@@ -99,6 +84,7 @@ class Activator extends AbstractCyActivator {
             NetworkViewTaskFactory.class, [
                 preferredMenu: 'Apps.KamNav',
                 menuGravity: 12.0,
+                accelerator: 'control alt L',
                 title: 'Link to Knowledge Network'
             ] as Properties)
         registerService(bc,
@@ -200,7 +186,6 @@ class Activator extends AbstractCyActivator {
         registerService(bc, addNodesAction, CyAction.class, [
                 id: 'apps_nav.search_nodes'
         ] as Properties)
-
 
         // initialization
         contributeVisualStyles(cyr.visualMappingManager, vf)

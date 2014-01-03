@@ -1,9 +1,6 @@
 package org.openbel.kamnav.core.task
 
 import groovy.transform.TupleConstructor
-
-import static java.lang.String.format
-import static org.cytoscape.model.CyNetwork.NAME
 import org.cytoscape.application.CyApplicationManager
 import org.cytoscape.model.CyNetwork
 import org.cytoscape.model.CyNetworkFactory
@@ -15,6 +12,9 @@ import org.cytoscape.work.TaskMonitor
 import org.cytoscape.work.Tunable
 import org.cytoscape.work.util.ListSingleSelection
 import org.openbel.ws.api.WsAPI
+
+import static java.lang.String.format
+import static org.cytoscape.model.CyNetwork.NAME
 
 @TupleConstructor
 class CreateCyNetwork extends AbstractTask {

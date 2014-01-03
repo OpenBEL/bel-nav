@@ -1,13 +1,14 @@
 package org.openbel.kamnav.core.task
 
-import static java.lang.Boolean.TRUE
-import static org.cytoscape.model.CyTableUtil.getNodesInState
 import groovy.transform.TupleConstructor
 import org.cytoscape.model.CyNode
 import org.cytoscape.task.AbstractNodeViewTaskFactory
 import org.cytoscape.view.model.CyNetworkView
 import org.cytoscape.view.model.View
 import org.cytoscape.work.TaskIterator
+
+import static java.lang.Boolean.TRUE
+import static org.cytoscape.model.CyTableUtil.getNodesInState
 
 @TupleConstructor
 class ExpandNodeFactory extends AbstractNodeViewTaskFactory {

@@ -2,9 +2,9 @@ package org.openbel.ws.api
 
 import org.cytoscape.model.CyNetwork
 import org.openbel.framework.common.enums.FunctionEnum
+import org.openbel.kamnav.common.model.Edge
 import org.openbel.kamnav.common.model.Namespace
 import org.openbel.kamnav.common.model.Node
-import org.openbel.kamnav.common.model.Edge
 
 import java.util.regex.Pattern
 

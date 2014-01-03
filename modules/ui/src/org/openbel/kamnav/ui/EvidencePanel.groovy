@@ -3,25 +3,28 @@ package org.openbel.kamnav.ui
 import ca.odell.glazedlists.BasicEventList
 import ca.odell.glazedlists.gui.TableFormat
 import ca.odell.glazedlists.swing.DefaultEventTableModel
+import groovy.json.JsonBuilder
+import groovy.json.JsonSlurper
 import groovy.swing.SwingBuilder
-import org.cytoscape.application.swing.CytoPanelComponent
-import org.cytoscape.application.swing.CytoPanelName
+import org.cytoscape.model.CyEdge
+import org.cytoscape.model.CyNetwork
 import org.jdesktop.swingx.JXHyperlink
 import org.jdesktop.swingx.JXTable
 
-import javax.swing.Icon
-import javax.swing.JLabel
-import javax.swing.JPanel
+import javax.swing.*
 import javax.swing.event.ListSelectionEvent
 import javax.swing.event.ListSelectionListener
-import java.awt.Component
-import static CytoPanelName.EAST
+import java.awt.*
+import java.util.List
+
 import static java.awt.GridBagConstraints.*
 import static javax.swing.ListSelectionModel.SINGLE_SELECTION
+import static org.openbel.kamnav.common.util.Util.createColumn
 
-class EvidencePanel implements CytoPanelComponent, Updateable {
+class EvidencePanel implements EdgeUpdateable {
 
     final SwingBuilder swing
+    final Expando cyr
     final JPanel panel
 
     JLabel citationName
@@ -29,9 +32,11 @@ class EvidencePanel implements CytoPanelComponent, Updateable {
     JXTable stmtTable
     List statements
     List annotations
+    JCheckBox linkChk
 
-    EvidencePanel(SwingBuilder swing) {
+    EvidencePanel(SwingBuilder swing, Expando cyr) {
         this.swing = swing
+        this.cyr = cyr
         statements = new BasicEventList()
         annotations = new BasicEventList()
         def stmtModel = new DefaultEventTableModel(statements,
@@ -79,18 +84,22 @@ class EvidencePanel implements CytoPanelComponent, Updateable {
                                         annotations.removeAll {true}
                                         return
                                     }
-                                    def stmt = selection.first()
-                                    def type = stmt.ev.citation.type
-                                    def id = stmt.ev.citation.id
-                                    def name = stmt.ev.citation.name
+                                    def ev = selection.first().ev
+                                    def type = ev.citation.type
+                                    def id = ev.citation.id
+                                    def name = ev.citation.name
                                     citationName.text = name
                                     citationLink.text = id ?: ''
                                     citationLink.URI = makeCitationURI(type, id)
 
                                     annotations.removeAll {true}
-                                    annotations.addAll(stmt.ev.annotations.collect { k, v ->
+                                    annotations.addAll(ev.annotations.collect { k, v ->
                                         new Expando(type: k, value: v)
                                     }.findAll {it.value}.sort {it.type})
+
+                                    def cyN = cyr.cyNetworkManager.getNetwork(ev.network)
+                                    def cyE = cyN.getEdge(ev.edge)
+                                    linkChk.selected = evidenceAdded(makeEvidenceValue(ev), cyN, cyE)
                                 }
                             }
                         }
@@ -128,6 +137,37 @@ class EvidencePanel implements CytoPanelComponent, Updateable {
                             insets: [0, 5, 5, 5], fill: BOTH)) {
                 jxTable(model: annoModel, columnControlVisible: false)
             }
+            panel(constraints: gbc(anchor: LINE_END, gridx: 0, gridy: 6, gridwidth: 1, weightx: 1.0, weighty: 0.1, fill: BOTH)) {
+                flowLayout(alignment: FlowLayout.RIGHT)
+                linkChk = checkBox(name: 'linkChk', action: action(name: 'Add to Edge table?', mnemonic: 'A', closure: {
+                    def selection = stmtTable.selectedRows.
+                            collect(stmtTable.&convertRowIndexToModel).
+                            collect {statements.get(it)}
+                    def modelEvidence = selection.first().ev
+                    CyNetwork cyN = cyr.cyNetworkManager.getNetwork(modelEvidence.network)
+                    def evTbl = cyr.cyTableManager.getAllTables(true).find { it.title == 'BEL.Evidence' }
+                    if (!evTbl) return
+
+                    def row = cyN.getRow(cyN.getEdge(modelEvidence.edge))
+                    createColumn(cyN.defaultEdgeTable, 'evidence', String.class, false, null)
+                    def canonical = makeEvidenceValue(modelEvidence)
+                    def columnEvidence = row.get('evidence', String.class) ?
+                        new JsonSlurper().parseText(row.get('evidence', String.class)) : []
+
+                    def withChange = [columnEvidence].flatten()
+                    if (linkChk.selected) {
+                        // treated like set
+                        if (!(canonical in columnEvidence)) {
+                            withChange.add(canonical)
+                        }
+                    } else {
+                        withChange.remove(canonical)
+                    }
+                    row.set('evidence',
+                            (withChange ?
+                                new JsonBuilder(withChange).toString() : null))
+                }))
+            }
         }
     }
 
@@ -151,14 +191,19 @@ class EvidencePanel implements CytoPanelComponent, Updateable {
         }
     }
 
-    @Override
-    Component getComponent() { panel }
-    @Override
-    CytoPanelName getCytoPanelName() { EAST }
-    @Override
-    String getTitle() { "Evidence" }
-    @Override
-    Icon getIcon() { null }
+    static Map makeEvidenceValue(Map val) {
+        val.annotations = val.annotations.findAll { it.value }.sort()
+        val.subMap('statement', 'citation', 'annotations')
+    }
+
+    static boolean evidenceAdded(Map evidence, CyNetwork cyN, CyEdge edge) {
+        def row = cyN.getRow(edge)
+        createColumn(cyN.defaultEdgeTable, 'evidence', String.class, false, null)
+        def canonical = makeEvidenceValue(evidence)
+        def columnEvidence = row.get('evidence', String.class) ?
+            new JsonSlurper().parseText(row.get('evidence', String.class)) : []
+        canonical in columnEvidence
+    }
 
     static URI makeCitationURI(type, id) {
         if (!id) return null

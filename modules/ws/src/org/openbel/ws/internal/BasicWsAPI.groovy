@@ -1,24 +1,23 @@
 package org.openbel.ws.internal
 
-import org.openbel.kamnav.common.model.Namespace
-
-import javax.net.ssl.SSLContext
-
-import static org.cytoscape.model.CyNetwork.NAME
-import static org.cytoscape.model.CyEdge.INTERACTION
-import static org.openbel.kamnav.common.util.EdgeUtil.createEdgeColumns
-import static org.openbel.kamnav.common.util.NodeUtil.createNodeColumns
-import static org.openbel.kamnav.common.util.NodeUtil.toBEL
 import org.cytoscape.model.CyNetwork
 import org.openbel.framework.common.enums.FunctionEnum
 import org.openbel.framework.common.enums.RelationshipType
 import org.openbel.framework.ws.model.FunctionType
-import org.openbel.kamnav.common.model.Node
 import org.openbel.kamnav.common.model.Edge
+import org.openbel.kamnav.common.model.Namespace
+import org.openbel.kamnav.common.model.Node
 import org.openbel.ws.api.WsAPI
-import wslite.soap.*
+import wslite.soap.SOAPClient
 
+import javax.net.ssl.SSLContext
 import java.util.regex.Pattern
+
+import static org.cytoscape.model.CyEdge.INTERACTION
+import static org.cytoscape.model.CyNetwork.NAME
+import static org.openbel.kamnav.common.util.EdgeUtil.createEdgeColumns
+import static org.openbel.kamnav.common.util.NodeUtil.createNodeColumns
+import static org.openbel.kamnav.common.util.NodeUtil.toBEL
 
 /**
  * {@link WsAPI} implementation using groovy-wslite (soap xml builders).

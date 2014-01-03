@@ -9,8 +9,8 @@ import org.cytoscape.work.TaskMonitor
 import org.openbel.kamnav.core.Util
 import org.openbel.ws.api.WsAPI
 
-import static org.openbel.kamnav.core.Util.clearEvidenceTable
 import static Boolean.TRUE
+import static org.openbel.kamnav.core.Util.clearEvidenceTable
 
 @TupleConstructor
 class RetrieveEvidenceForNetwork extends AbstractTask {
