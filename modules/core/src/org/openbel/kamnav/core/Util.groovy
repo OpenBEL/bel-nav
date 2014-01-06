@@ -34,7 +34,7 @@ class Util {
         createColumn(evTbl, 'edge target', String.class, true, null)
         createColumn(evTbl, 'statement', String.class, true, null)
         createColumn(evTbl, 'citation type', String.class, true, null)
-        createColumn(evTbl, 'citation id', String.class, true, null)
+        createColumn(evTbl, 'citation reference', String.class, true, null)
         createColumn(evTbl, 'citation name', String.class, true, null)
         mgr.addTable(evTbl)
 
@@ -75,7 +75,7 @@ class Util {
             row.set('edge target', ev.edge_target)
             row.set('statement', belStatement(ev))
             row.set('citation type', ev.citationType)
-            row.set('citation id', ev.citationId)
+            row.set('citation reference', ev.citationId)
             row.set('citation name', ev.citationName)
             ev.annotations.each { type, value ->
                 def annotationName = "annotation: $type"

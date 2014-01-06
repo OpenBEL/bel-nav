@@ -86,14 +86,14 @@ class EvidencePanel implements EdgeUpdateable {
                                     }
                                     def ev = selection.first().ev
                                     def type = ev.citation.type
-                                    def id = ev.citation.id
+                                    def ref = ev.citation.reference
                                     def name = ev.citation.name
                                     citationName.text = name
-                                    citationLink.text = id ?: ''
-                                    citationLink.URI = makeCitationURI(type, id)
+                                    citationLink.text = ref ?: ''
+                                    citationLink.URI = makeCitationURI(type, ref)
 
                                     annotations.removeAll {true}
-                                    annotations.addAll(ev.annotations.collect { k, v ->
+                                    annotations.addAll(ev.biological_context.collect { k, v ->
                                         new Expando(type: k, value: v)
                                     }.findAll {it.value}.sort {it.type})
 
@@ -183,7 +183,7 @@ class EvidencePanel implements EdgeUpdateable {
             // update statement table
             statements.removeAll {true}
             statements.addAll(evidence.collect {
-                new Expando(stmt: it.statement, ev: it, toString: {stmt})
+                new Expando(stmt: it.bel_statement, ev: it, toString: {stmt})
             }.sort {it.stmt})
 
             if (stmtTable.getRowCount())
@@ -192,8 +192,8 @@ class EvidencePanel implements EdgeUpdateable {
     }
 
     static Map makeEvidenceValue(Map val) {
-        val.annotations = val.annotations.findAll { it.value }.sort()
-        val.subMap('statement', 'citation', 'annotations')
+        val.biological_context = val.biological_context.findAll { it.value }.sort()
+        val.subMap('bel_statement', 'citation', 'biological_context')
     }
 
     static boolean evidenceAdded(Map evidence, CyNetwork cyN, CyEdge edge) {
@@ -205,14 +205,14 @@ class EvidencePanel implements EdgeUpdateable {
         canonical in columnEvidence
     }
 
-    static URI makeCitationURI(type, id) {
-        if (!id) return null
+    static URI makeCitationURI(type, ref) {
+        if (!ref) return null
 
         switch(type) {
             case 'PUBMED':
-                return new URI("http://www.ncbi.nlm.nih.gov/pubmed/$id")
+                return new URI("http://www.ncbi.nlm.nih.gov/pubmed/$ref")
             case 'ONLINE_RESOURCE':
-                return new URI(id)
+                return new URI(ref)
             default:
                 return null
         }

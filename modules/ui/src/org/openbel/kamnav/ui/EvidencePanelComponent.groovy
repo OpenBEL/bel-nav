@@ -53,13 +53,13 @@ class EvidencePanelComponent implements CytoPanelComponent, EdgeUpdateable, Rows
                 [
                     network: networkSUID,
                     edge: suid,
-                    statement: row.get('statement', String.class),
+                    bel_statement: row.get('statement', String.class),
                     citation: [
                             name: row.get('citation name', String.class),
                             type: row.get('citation type', String.class),
-                            id: row.get('citation id', String.class)
+                            reference: row.get('citation reference', String.class)
                     ],
-                    annotations: row.allValues.findAll { k, v ->
+                    biological_context: row.allValues.findAll { k, v ->
                         k.startsWith('annotation: ')
                     }.collectEntries { k, v ->
                         [k.replaceFirst('annotation: ', ''), v]
