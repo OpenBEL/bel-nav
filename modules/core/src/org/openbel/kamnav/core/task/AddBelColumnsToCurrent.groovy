@@ -16,17 +16,18 @@ import static org.openbel.framework.common.bel.parser.BELParser.parseTerm
 public class AddBelColumnsToCurrent extends AbstractTask {
 
     final CyApplicationManager appMgr
+    final CyNetwork cyN
 
 	@Override
 	public void run(TaskMonitor monitor) {
-        CyNetwork cyN = appMgr.currentNetwork
-        if (!cyN) return
+        def network = cyN ?: appMgr?.currentNetwork
+        if (!network) return
 
         // create column if needed
-        cyN.defaultNodeTable.getColumn('bel.function') ?:
-            cyN.defaultNodeTable.createColumn('bel.function', String.class, false)
+        network.defaultNodeTable.getColumn('bel.function') ?:
+            network.defaultNodeTable.createColumn('bel.function', String.class, false)
 
-        cyN.nodeList.collect(cyN.&getRow).each(this.&addFunction)
+        network.nodeList.collect(network.&getRow).each(this.&addFunction)
 	}
 
     private void addFunction(CyRow row) {

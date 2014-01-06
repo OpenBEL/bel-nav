@@ -19,8 +19,10 @@ import org.cytoscape.view.model.CyNetworkViewFactory
 import org.cytoscape.view.model.CyNetworkViewManager
 import org.cytoscape.view.vizmap.VisualMappingManager
 import org.cytoscape.work.TaskFactory
+import org.cytoscape.work.TaskManager
 import org.openbel.framework.common.enums.FunctionEnum
 import org.openbel.kamnav.common.model.Namespace
+import org.openbel.kamnav.core.event.BELNetworkListener
 import org.openbel.kamnav.core.event.SessionLoadListener
 import org.openbel.kamnav.core.task.*
 import org.openbel.kamnav.ui.EdgeUpdateable
@@ -51,7 +53,7 @@ class Activator extends AbstractCyActivator {
                 CyNetworkViewFactory.class, CyNetworkViewManager.class,
                 CyLayoutAlgorithmManager.class, CyTableFactory.class, CyTableManager.class,
                 VisualMappingManager.class, CyEventHelper.class,
-                ApplyPreferredLayoutTaskFactory.class, WsAPI.class] as Class<?>[])
+                ApplyPreferredLayoutTaskFactory.class, WsAPI.class, TaskManager.class] as Class<?>[])
         CyProperty<Properties> cyProp = getService(bc,CyProperty.class,"(cyPropertyName=cytoscape3.props)");
         SearchNodesDialogUI searchNodesUI = getService(bc, SearchNodesDialogUI.class)
         SearchNeighborhoodUI searchKnUI = getService(bc, SearchNeighborhoodUI.class)
@@ -63,6 +65,7 @@ class Activator extends AbstractCyActivator {
         registerService(bc,
             new SessionLoadListener(cyr.visualMappingManager, vf),
             SessionLoadedListener.class, [:] as Properties)
+        registerAllServices(bc, new BELNetworkListener(cyr), [:] as Properties)
 
         // register tasks
         registerService(bc,

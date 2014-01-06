@@ -14,7 +14,7 @@ class AddBelColumnsToCurrentFactoryImpl extends AbstractTaskFactory
     @Override
     TaskIterator createTaskIterator() {
         new TaskIterator(
-            new AddBelColumnsToCurrent(cyr.cyApplicationManager),
+            new AddBelColumnsToCurrent(cyr.cyApplicationManager, null),
             new ApplyPreferredStyleToCurrent(cyr.cyApplicationManager,
                     cyr.cyEventHelper, cyr.visualMappingManager))
     }
