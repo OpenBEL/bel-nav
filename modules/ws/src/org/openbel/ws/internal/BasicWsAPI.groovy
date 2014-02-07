@@ -361,7 +361,7 @@ class BasicWsAPI implements WsAPI {
                 new Node(it.source.id.toString(),
                     FunctionEnum.fromString(FunctionType.valueOf(it.source.function.toString()).displayValue),
                     it.source.label.toString()),
-                RelationshipType.fromString(org.openbel.framework.ws.model.RelationshipType.valueOf(it.relationship.toString()).displayValue),
+                it.relationship.toString(),
                 new Node(it.target.id.toString(),
                     FunctionEnum.fromString(FunctionType.valueOf(it.target.function.toString()).displayValue),
                     it.target.label.toString()))
@@ -433,6 +433,9 @@ class BasicWsAPI implements WsAPI {
             }
         }
 
+        println edge
+        println edge.relationship
+
         response.GetSupportingEvidenceResponse.statements.
         findAll {
             !it.attributes()['{http://www.w3.org/2001/XMLSchema-instance}nil']
@@ -440,7 +443,7 @@ class BasicWsAPI implements WsAPI {
         collect {
             [
                 edge_source: edge.source.label,
-                edge_rel: edge.relationship.displayValue,
+                edge_rel: edge.relationship ?: '',
                 edge_target: edge.target.label,
                 subject: it.subjectTerm.label.toString(),
                 relationship: fromWS(it.relationship.toString()),

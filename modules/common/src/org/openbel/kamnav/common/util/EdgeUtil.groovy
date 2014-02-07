@@ -56,7 +56,7 @@ class EdgeUtil {
         new Edge(
             row.get('kam.id', String.class),
             toNode(cyN, cyE.source),
-            fromString(row.get(INTERACTION, String.class)),
+            row.get(INTERACTION, String.class),
             toNode(cyN, cyE.target)
         )
     }
