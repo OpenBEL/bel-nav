@@ -433,9 +433,6 @@ class BasicWsAPI implements WsAPI {
             }
         }
 
-        println edge
-        println edge.relationship
-
         response.GetSupportingEvidenceResponse.statements.
         findAll {
             !it.attributes()['{http://www.w3.org/2001/XMLSchema-instance}nil']
@@ -449,7 +446,7 @@ class BasicWsAPI implements WsAPI {
                 relationship: fromWS(it.relationship.toString()),
                 objectTerm: it.objectTerm?.label?.toString(),
                 nestedSubject: it.objectStatement?.subjectTerm?.label?.toString(),
-                nestedRelationship: fromWS(it.objectStatement?.relationship.toString()),
+                nestedRelationship: fromWS(it.objectStatement?.relationship?.toString()),
                 nestedObject: it.objectStatement?.objectTerm?.label?.toString(),
                 annotations: it.annotations.iterator().collectEntries { anno ->
                    [anno.annotationType.name.toString(), anno.value.toString()]
