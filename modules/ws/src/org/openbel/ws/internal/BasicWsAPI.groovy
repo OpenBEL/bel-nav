@@ -209,6 +209,8 @@ class BasicWsAPI implements WsAPI {
             cyN.getRow(it).set('kam.id', null)
         }
 
+        def eligibleNodes = []
+
         def response
         try {
             response = client.send {
@@ -220,6 +222,10 @@ class BasicWsAPI implements WsAPI {
                         cyN.nodeList.collect { n ->
                             def bel = toBEL(cyN, n)
                             if (!bel) return null
+
+                            // track what we're requesting; iterate this later
+                            eligibleNodes << n
+
                             nodes {
                                 function(toWS(bel.fx))
                                 label(bel.lbl)
@@ -236,11 +242,10 @@ class BasicWsAPI implements WsAPI {
         def resNodes = response.ResolveNodesResponse.kamNodes.iterator()
         if (!resNodes || !resNodes.hasNext()) [].asImmutable()
 
-        cyN.nodeList.collect { n ->
-            if (!toBEL(cyN, n)) return null
+        eligibleNodes.collect { n ->
             if (!resNodes.hasNext()) return null
-            def wsNode = resNodes.next()
 
+            def wsNode = resNodes.next()
             def isNil = wsNode.attributes()['{http://www.w3.org/2001/XMLSchema-instance}nil']
             if (isNil) return null
 
@@ -274,6 +279,8 @@ class BasicWsAPI implements WsAPI {
             cyN.getRow(it).set('kam.id', null)
         }
 
+        def eligibleEdges = []
+
         def response
         try {
             response = client.send {
@@ -288,6 +295,9 @@ class BasicWsAPI implements WsAPI {
                             def r = cyN.getRow(e).get(INTERACTION, String.class)
                             if (!r || !toWS(r)) return null
                             if (!src || !tgt) return null
+
+                            // track what we're requesting; iterate this later
+                            eligibleEdges << e
 
                             edges {
                                 source {
@@ -315,13 +325,10 @@ class BasicWsAPI implements WsAPI {
         def resEdges = response.ResolveEdgesResponse.kamEdges.iterator()
         if (!resEdges || !resEdges.hasNext()) [].asImmutable()
 
-        cyN.edgeList.collect { e ->
+        eligibleEdges.collect { e ->
             if (!resEdges.hasNext()) return null
-            def wsEdge = resEdges.next()
 
-            def src = toBEL(cyN, e.source)
-            def tgt = toBEL(cyN, e.target)
-            if (!src || !tgt) return null
+            def wsEdge = resEdges.next()
             def isNil = wsEdge.attributes()['{http://www.w3.org/2001/XMLSchema-instance}nil']
             if (isNil) return null
 
