@@ -35,6 +35,7 @@ import java.awt.event.ActionEvent
 import java.util.regex.Pattern
 
 import static javax.swing.KeyStroke.getKeyStroke
+import static org.openbel.kamnav.common.Constant.setLoggingExceptionHandler
 import static org.openbel.kamnav.common.util.EdgeUtil.findEdge
 import static org.openbel.kamnav.common.util.EdgeUtil.makeEdge
 import static org.openbel.kamnav.common.util.NodeUtil.*
@@ -192,5 +193,7 @@ class Activator extends AbstractCyActivator {
 
         // initialization
         contributeVisualStyles(cyr.visualMappingManager, vf)
+
+        setLoggingExceptionHandler()
     }
 }
