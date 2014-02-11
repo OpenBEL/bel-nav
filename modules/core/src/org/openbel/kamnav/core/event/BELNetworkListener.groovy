@@ -38,16 +38,18 @@ class BELNetworkListener implements NetworkAddedListener, RowsSetListener {
     }
 
     private static void addFunction(RowSetRecord record) {
-        createColumn(record.row.table, 'bel.function', String.class, false, null)
-        def name = record.row.get(NAME, String.class)
-        if (name) {
-            try {
-                Term t = parseTerm(name)
-                if (t) {
-                    record.row.set('bel.function', t.functionEnum.displayValue)
+        def tbl = record.row.table
+        if (tbl.getColumn('bel.function')) {
+            def name = record.row.get(NAME, String.class)
+            if (name) {
+                try {
+                    Term t = parseTerm(name)
+                    if (t) {
+                        record.row.set('bel.function', t.functionEnum.displayValue)
+                    }
+                } catch (InvalidArgument e) {
+                    // indicates failure to parse; skip
                 }
-            } catch (InvalidArgument e) {
-                // indicates failure to parse; skip
             }
         }
     }
