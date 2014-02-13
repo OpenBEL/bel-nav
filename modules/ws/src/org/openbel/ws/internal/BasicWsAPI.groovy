@@ -1,6 +1,8 @@
 package org.openbel.ws.internal
 
+import org.cytoscape.model.CyEdge
 import org.cytoscape.model.CyNetwork
+import org.cytoscape.model.CyNode
 import org.openbel.framework.common.enums.FunctionEnum
 import org.openbel.framework.common.enums.RelationshipType
 import org.openbel.framework.ws.model.FunctionType
@@ -28,7 +30,7 @@ import static org.openbel.kamnav.common.util.NodeUtil.toBEL
 class BasicWsAPI implements WsAPI {
 
     static final String URL = 'https://selventa-sdp.selventa.com/openbel-ws/belframework'
-    private static final Logger log = LoggerFactory.getLogger(BasicWsAPI.class)
+    private static final Logger log = LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME)
 
     BasicWsAPI() {
         SSLContext.default = SSL.context
@@ -210,6 +212,15 @@ class BasicWsAPI implements WsAPI {
         }
 
         def eligibleNodes = []
+        cyN.nodeList.collect { n ->
+            def bel = toBEL(cyN, n)
+            if (!bel) return null
+
+            // track what we're requesting; iterate this later
+            eligibleNodes << n
+        }
+
+        if (!eligibleNodes) return [].asImmutable()
 
         def response
         try {
@@ -219,17 +230,15 @@ class BasicWsAPI implements WsAPI {
                         handle {
                             handle(loadMap.handle)
                         }
-                        cyN.nodeList.collect { n ->
+                        eligibleNodes.collect { CyNode n ->
                             def bel = toBEL(cyN, n)
                             if (!bel) return null
-
-                            // track what we're requesting; iterate this later
-                            eligibleNodes << n
 
                             nodes {
                                 function(toWS(bel.fx))
                                 label(bel.lbl)
                             }
+
                         }
                     }
                 }
@@ -272,7 +281,6 @@ class BasicWsAPI implements WsAPI {
         if (!loadMap.handle) return null
 
         if(!cyN.edgeList) return [].asImmutable()
-
         createEdgeColumns(cyN)
         cyN.edgeList.each {
             cyN.getRow(it).set('linked', false)
@@ -280,6 +288,18 @@ class BasicWsAPI implements WsAPI {
         }
 
         def eligibleEdges = []
+        cyN.edgeList.collect { e ->
+            def src = toBEL(cyN, e.source)
+            def tgt = toBEL(cyN, e.target)
+            def r = cyN.getRow(e).get(INTERACTION, String.class)
+            if (!r || !toWS(r)) return null
+            if (!src || !tgt) return null
+
+            // track what we're requesting; iterate this later
+            eligibleEdges << e
+        }
+
+        if (!eligibleEdges) return [].asImmutable()
 
         def response
         try {
@@ -289,15 +309,12 @@ class BasicWsAPI implements WsAPI {
                         handle {
                             handle(loadMap.handle)
                         }
-                        cyN.edgeList.collect { e ->
+                        eligibleEdges.collect { CyEdge e ->
                             def src = toBEL(cyN, e.source)
                             def tgt = toBEL(cyN, e.target)
                             def r = cyN.getRow(e).get(INTERACTION, String.class)
                             if (!r || !toWS(r)) return null
                             if (!src || !tgt) return null
-
-                            // track what we're requesting; iterate this later
-                            eligibleEdges << e
 
                             edges {
                                 source {
