@@ -172,23 +172,21 @@ class EvidencePanel implements EdgeUpdateable {
     }
 
     def update(evidence) {
-        swing.edt {
-            // clear citation
-            citationName.text = ''
-            citationLink.text = ''
+        // clear citation
+        citationName.text = ''
+        citationLink.text = ''
 
-            // clear annotations
-            annotations.removeAll {true}
+        // clear annotations
+        annotations.removeAll {true}
 
-            // update statement table
-            statements.removeAll {true}
-            statements.addAll(evidence.collect {
-                new Expando(stmt: it.bel_statement, ev: it, toString: {stmt})
-            }.sort {it.stmt})
+        // update statement table
+        statements.removeAll {true}
+        statements.addAll(evidence.collect {
+            new Expando(stmt: it.bel_statement, ev: it, toString: {stmt})
+        }.sort {it.stmt})
 
-            if (stmtTable.getRowCount())
-                stmtTable.selectionModel.setSelectionInterval(0, 0)
-        }
+        if (stmtTable.getRowCount())
+            stmtTable.selectionModel.setSelectionInterval(0, 0)
     }
 
     static Map makeEvidenceValue(Map val) {

@@ -1,5 +1,6 @@
 package org.openbel.kamnav.ui
 
+import groovy.swing.SwingBuilder
 import groovy.transform.TupleConstructor
 import org.cytoscape.application.swing.CytoPanelComponent
 import org.cytoscape.application.swing.CytoPanelName
@@ -30,7 +31,7 @@ class EvidencePanelComponent implements CytoPanelComponent, EdgeUpdateable, Rows
     @Override
     void handleEvent(RowsSetEvent evt) {
         // check for new selection
-        def selected = evt.getColumnRecords(CyNetwork.SELECTED).find { it ->
+        def selected = evt.getColumnRecords(CyNetwork.SELECTED).find {
             it.value == Boolean.TRUE
         }
         if (!selected) return

@@ -15,8 +15,6 @@ import org.cytoscape.view.model.CyNetworkViewManager
 import org.cytoscape.view.vizmap.VisualMappingManager
 import org.jdesktop.swingx.*
 import org.osgi.framework.BundleContext
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
 
 import static org.openbel.kamnav.common.Constant.setLoggingExceptionHandler
 import static org.openbel.kamnav.common.util.Util.cyReference
