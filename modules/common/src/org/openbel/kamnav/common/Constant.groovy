@@ -11,7 +11,7 @@ class Constant {
         Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
             @Override
             void uncaughtException(Thread t, Throwable e) {
-                msg.error("Unhandled error, logging...", e)
+                msg.error("Unhandled error: ${e.message}", e)
             }
         })
     }
