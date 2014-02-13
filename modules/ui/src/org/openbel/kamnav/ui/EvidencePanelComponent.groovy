@@ -1,6 +1,5 @@
 package org.openbel.kamnav.ui
 
-import groovy.swing.SwingBuilder
 import groovy.transform.TupleConstructor
 import org.cytoscape.application.swing.CytoPanelComponent
 import org.cytoscape.application.swing.CytoPanelName
