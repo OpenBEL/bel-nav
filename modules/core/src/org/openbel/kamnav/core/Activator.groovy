@@ -161,7 +161,7 @@ class Activator extends AbstractCyActivator {
                             cyr.wsAPI.adjacentEdges(node).each { edge ->
                                 def s = edge.source
                                 def t = edge.target
-                                def rel = edge.relationship.displayValue
+                                def rel = edge.relationship
 
                                 // only add adjacent edge if opposite node exists in network
                                 def oppositeInNetwork = findNode(cyN, (n.id == s.id) ? t.label : s.label)

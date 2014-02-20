@@ -55,7 +55,7 @@ class LoadFullKnowledgeNetwork extends AbstractTask {
             wsAPI.adjacentEdges(toNode(cyN, n)).each { edge ->
                 def s = edge.source
                 def t = edge.target
-                def r = edge.relationship.displayValue
+                def r = edge.relationship
                 def cySource = findNode(cyN, s.label) ?:
                     makeNode(cyN, s.id, s.fx.displayValue, s.label)
                 def cyTarget =

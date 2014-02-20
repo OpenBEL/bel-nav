@@ -36,7 +36,7 @@ class ExpandNode extends AbstractTask {
         cyr.wsAPI.adjacentEdges(node).each { edge ->
             def s = edge.source
             def t = edge.target
-            def rel = edge.relationship.displayValue
+            def rel = edge.relationship
             def cySource = findNode(cyNv.model, s.label) ?:
                 makeNode(cyNv.model, s.id, s.fx.displayValue, s.label)
             def cyTarget =

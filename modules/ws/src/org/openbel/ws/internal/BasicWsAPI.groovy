@@ -357,7 +357,7 @@ class BasicWsAPI implements WsAPI {
                     fx: FunctionEnum.fromString(FunctionType.valueOf(wsEdge.source.function.toString()).displayValue),
                     lbl: wsEdge.source.label.toString()
                 ],
-                relationship: RelationshipType.fromString(org.openbel.framework.ws.model.RelationshipType.valueOf(wsEdge.relationship.toString()).displayValue),
+                relationship: fromWS(wsEdge.relationship.toString()),
                 target: [
                     fx: FunctionEnum.fromString(FunctionType.valueOf(wsEdge.target.function.toString()).displayValue),
                     lbl: wsEdge.target.label.toString()
@@ -445,7 +445,7 @@ class BasicWsAPI implements WsAPI {
                 new Node(it.source.id.toString(),
                     FunctionEnum.fromString(FunctionType.valueOf(it.source.function.toString()).displayValue),
                     it.source.label.toString()),
-                it.relationship.toString(),
+                fromWS(it.relationship.toString()),
                 new Node(it.target.id.toString(),
                     FunctionEnum.fromString(FunctionType.valueOf(it.target.function.toString()).displayValue),
                     it.target.label.toString()))

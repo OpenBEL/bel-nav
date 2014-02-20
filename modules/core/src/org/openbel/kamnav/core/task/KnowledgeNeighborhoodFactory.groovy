@@ -81,7 +81,7 @@ class KnowledgeNeighborhoodFactory extends AbstractNodeViewTaskFactory {
 
                 def s = edge.source
                 def t = edge.target
-                def rel = edge.relationship.displayValue
+                def rel = edge.relationship
 
                 def cySource = findNode(cyN, s.label) ?: makeNode(cyN, s.id, s.fx.displayValue, s.label)
                 def cyTarget = findNode(cyN, t.label) ?: makeNode(cyN, t.id, t.fx.displayValue, t.label)
