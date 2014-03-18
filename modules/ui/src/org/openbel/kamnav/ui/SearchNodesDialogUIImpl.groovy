@@ -32,7 +32,7 @@ class SearchNodesDialogUIImpl implements SearchNodesDialogUI {
             knowledgeNetwork: 'Full - Human',
             function: 'All',
             namespace: 'HGNC Approved Gene Symbols',
-            connectToNetwork: true
+            connectToNetwork: false
         ] + options
 
         def JComboBox knBox, fxBox, nsBox
