@@ -133,6 +133,7 @@ class SearchNodesDialogUIImpl implements SearchNodesDialogUI {
                                 def file = fileChooser.selectedFile
                                 def lines = []
                                 file.eachLine('utf-8', {
+                                    if (!it?.trim()) return
                                     lines.add(it.trim())
                                 })
                                 lines = lines.unique().sort()
