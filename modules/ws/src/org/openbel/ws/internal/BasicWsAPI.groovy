@@ -535,9 +535,9 @@ class BasicWsAPI implements WsAPI {
         }.
         collect {
             [
-                edge_source: edge.source.label,
+                edge_source: edge.source,
                 edge_rel: edge.relationship ?: '',
-                edge_target: edge.target.label,
+                edge_target: edge.target,
                 subject: it.subjectTerm.label.toString(),
                 relationship: fromWS(it.relationship.toString()),
                 objectTerm: it.objectTerm?.label?.toString(),

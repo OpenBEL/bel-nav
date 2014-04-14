@@ -56,17 +56,19 @@ class Functions {
             ]}
         }
         fieldDescriptions.inject(facets) { result, val ->
-            val.each { k, v ->
-                if (iterable(v)) {
-                    v.each {
-                        result[k][it].count++
-                        result[k][it].value = it
+            val.
+                findAll { it.key != 'display' }.
+                each { k, v ->
+                    if (iterable(v)) {
+                        v.each {
+                            result[k][it].count++
+                            result[k][it].value = it
+                        }
+                    } else {
+                        result[k][v].count++
+                        result[k][v].value = v
                     }
-                } else {
-                    result[k][v].count++
-                    result[k][v].value = v
                 }
-            }
             result
         }
     }

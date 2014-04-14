@@ -35,7 +35,7 @@ class SearchNeighborhoodUIImpl implements SearchNeighborhoodUI {
         def items = [evidenceIterator.take(1).next()]
         def fieldDescriptions = []
 
-        def columns = ['Edge', 'Statement', 'Causal', 'Species', 'Citation']
+        def columns = ['Edge', 'Causal', 'Species', 'Citation']
 
         fieldDescriptions.addAll(describe(items, denormalize))
         def facets = facet(fieldDescriptions) as Map
@@ -48,12 +48,11 @@ class SearchNeighborhoodUIImpl implements SearchNeighborhoodUI {
                         getColumnName: {i -> columns[i]},
                         getColumnValue: {o, i ->
                             switch(i) {
-                                case 0: return o.edge.toString()
-                                case 1: return o.statement
-                                case 2: return o.causal ? 'Yes' : 'No'
-                                case 3:
+                                case 0: return o.display.edge
+                                case 1: return o.causal ? 'Yes' : 'No'
+                                case 2:
                                     return o.species ? o.species.first() : 'N/A'
-                                case 4: return o.citation
+                                case 3: return o.citation
                             }
                         }
                 ] as TableFormat
