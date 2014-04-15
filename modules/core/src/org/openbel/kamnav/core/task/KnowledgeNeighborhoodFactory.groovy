@@ -133,13 +133,15 @@ class KnowledgeNeighborhoodFactory extends AbstractNodeViewTaskFactory {
         @Override
         boolean hasNext() {
             if (!evidenceIterator || !evidenceIterator.hasNext()) {
-                if (index == (edges.size() - 1)) return false
-                def edge = edges[++index]
+                if (index == (edges.size())) return false
+                def edge = edges[index]
                 evidenceIterator = wsAPI.getSupportingEvidence(edge).collect {
                     it.selectedNode = edgeNode[edge.id]
                     it.edge = edge
                     it
                 }.iterator()
+
+                index++
             }
 
             return evidenceIterator.hasNext()
@@ -148,12 +150,14 @@ class KnowledgeNeighborhoodFactory extends AbstractNodeViewTaskFactory {
         @Override
         Map<String, Object> next() {
             if (!evidenceIterator || !evidenceIterator.hasNext()) {
-                def edge = edges[++index]
+                def edge = edges[index]
                 evidenceIterator = wsAPI.getSupportingEvidence(edge).collect {
                     it.selectedNode = edgeNode[edge.id]
                     it.edge = edge
                     it
                 }.iterator()
+
+                index++
             }
 
             evidenceIterator.next()
