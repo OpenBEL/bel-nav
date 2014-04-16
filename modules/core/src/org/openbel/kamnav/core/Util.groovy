@@ -4,6 +4,9 @@ import org.cytoscape.model.*
 import org.cytoscape.task.read.LoadVizmapFileTaskFactory
 import org.cytoscape.view.vizmap.VisualMappingManager
 import org.openbel.ws.api.WsAPI
+import org.cytoscape.application.CyApplicationManager
+import org.cytoscape.model.CyNetwork
+import org.cytoscape.view.model.CyNetworkView
 
 import static java.lang.Boolean.TRUE
 import static org.cytoscape.model.CyNetwork.NAME
@@ -11,7 +14,6 @@ import static org.cytoscape.model.SavePolicy.DO_NOT_SAVE
 import static org.openbel.kamnav.common.util.EdgeUtil.toEdge
 import static org.openbel.kamnav.common.util.Util.createColumn
 import static org.openbel.kamnav.core.Constant.*
-import static org.openbel.ws.api.BelUtil.belStatement
 
 class Util {
 
@@ -86,5 +88,40 @@ class Util {
                 row.set(annotationName, value)
             }
         }
+    }
+
+    /**
+     * Get the current {@link CyNetwork network} and {@link CyNetworkView view}.
+     * <br><br>
+     * If {@code create} is {@code true} then create both and assign as current
+     * to {@link CyApplicationManager}.
+     *
+     * @param cyr {@link Expando} containing cytoscape service refs
+     * @param create {@code true} to create network and view; defaults to {@code false}
+     * @return {@link List} of size 2;
+     * index 0 is {@link CyNetwork}; index 1 is {@link CyNetworkView}
+     */
+    static def getCurrentNetwork(Expando cyr, create = false) {
+        def cyN = cyr.cyApplicationManager.currentNetwork
+        def cyNv = cyr.cyApplicationManager.currentNetworkView
+
+        if (!cyN && !create) return [null, null]
+        if (!cyNv && !create) return [cyN, null]
+
+        if (!cyN) {
+            cyN = cyr.cyNetworkFactory.createNetwork()
+            cyN.getRow(cyN).set(NAME, 'Network')
+            cyr.cyNetworkManager.addNetwork(cyN)
+        }
+
+        if (!cyNv) {
+            cyNv = cyr.cyNetworkViewFactory.createNetworkView(cyN)
+            cyr.cyNetworkViewManager.addNetworkView(cyNv)
+        }
+
+        cyr.cyApplicationManager.currentNetwork = cyN
+        cyr.cyApplicationManager.currentNetworkView = cyNv
+
+        [cyN, cyNv]
     }
 }

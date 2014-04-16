@@ -42,6 +42,7 @@ import static org.openbel.kamnav.common.util.EdgeUtil.makeEdge
 import static org.openbel.kamnav.common.util.NodeUtil.*
 import static org.openbel.kamnav.common.util.Util.cyReference
 import static org.openbel.kamnav.core.Util.contributeVisualStyles
+import static org.openbel.kamnav.core.Util.getCurrentNetwork
 
 class Activator extends AbstractCyActivator {
 
@@ -140,6 +141,9 @@ class Activator extends AbstractCyActivator {
         // Search Nodes
         AbstractCyAction addNodesAction = new AbstractCyAction('Search Nodes') {
             void actionPerformed(ActionEvent e) {
+                def cyN = cyr.cyApplicationManager.currentNetwork
+                def cyNv = cyr.cyApplicationManager.currentNetworkView
+
                 def wsAPI = cyr.wsManager.get(cyr.wsManager.default)
                 searchNodesUI.show(cyr.cySwingApplication, {
                     [
@@ -159,7 +163,6 @@ class Activator extends AbstractCyActivator {
 
                         return it
                     }.flatten().unique()
-                    def cyN = cyr.cyApplicationManager.currentNetwork
                     def searchNodes = wsAPI.mapData(kn, ns,
                             [fx].findAll() as FunctionEnum[],
                             entities as String[]).collect {
@@ -175,9 +178,7 @@ class Activator extends AbstractCyActivator {
 
                     [searchNodes, "${searchNodes.size()} nodes"]
                 }, { selectedNodes, connect ->
-                    def cyN = cyr.cyApplicationManager.currentNetwork
-                    def cyNv = cyr.cyApplicationManager.currentNetworkView
-                    if (!cyN) return null
+                    (cyN, cyNv) = getCurrentNetwork(cyr, true)
 
                     selectedNodes.each { n ->
                         CyNode cyNode = findNode(cyN, n.label) ?: makeNode(cyN, n.id, n.fx.displayValue, n.label)
