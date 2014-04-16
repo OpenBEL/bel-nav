@@ -45,6 +45,8 @@ class KnowledgeNeighborhoodFactory extends AbstractNodeViewTaskFactory {
      */
     @Override
     TaskIterator createTaskIterator(View<CyNode> nodeView, CyNetworkView cyNv) {
+        def wsAPI = cyr.wsManager.get(cyr.wsManager.default)
+
         def selectedNodes = getNodesInState(cyNv.model, 'selected', true).
             findAll { node ->
                 def row = cyNv.model.getRow(node)
@@ -52,7 +54,7 @@ class KnowledgeNeighborhoodFactory extends AbstractNodeViewTaskFactory {
             }
 
         searchUI.neighborhoodFacet(
-            new EvIterator(cyNv.model, selectedNodes, cyr.wsAPI),
+            new EvIterator(cyNv.model, selectedNodes, wsAPI),
             { item ->
                 def param = ~/[A-Z]+:"?([^"),]+)"?/
                 def entities = []
@@ -88,7 +90,7 @@ class KnowledgeNeighborhoodFactory extends AbstractNodeViewTaskFactory {
                     def cySource = findNode(cyN, s.label) ?: makeNode(cyN, s.id, s.fx.displayValue, s.label)
                     def cyTarget = findNode(cyN, t.label) ?: makeNode(cyN, t.id, t.fx.displayValue, t.label)
                     def cyE = findEdge(cyN, s.label, rel, t.label) ?: makeEdge(cyN, cySource, cyTarget, edge.id, rel)
-                    addEvidenceForEdge(cyr.cyTableManager, cyr.cyTableFactory, cyr.wsAPI, cyN, cyE)
+                    addEvidenceForEdge(cyr.cyTableManager, cyr.cyTableFactory, wsAPI, cyN, cyE)
                 }
                 msg.info("Added ${edges.size()} edges in knowledge neighborhood.")
 

@@ -39,6 +39,9 @@ class Activator extends AbstractCyActivator {
         swing.registerBeanFactory('jxTable', JXTable.class)
         swing.registerBeanFactory('jxHyperlink', JXHyperlink.class)
 
+        ConfigurationUI configUI = new ConfigurationUIImpl()
+        registerService(bc, configUI, ConfigurationUI.class, [:] as Properties)
+
         registerAllServices(bc, new EvidencePanelComponent(cyr,
                 new EvidencePanel(swing, cyr)), [name: 'evidence'] as Properties)
 

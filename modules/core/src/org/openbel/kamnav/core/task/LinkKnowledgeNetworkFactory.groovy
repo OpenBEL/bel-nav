@@ -15,9 +15,11 @@ class LinkKnowledgeNetworkFactory extends AbstractNetworkViewTaskFactory {
      */
     @Override
     TaskIterator createTaskIterator(CyNetworkView cyNv) {
+        def wsAPI = cyr.wsManager.get(cyr.wsManager.default)
+
         return new TaskIterator(
-            new LinkKnowledgeNetwork(cyr.cyApplicationManager, cyr.wsAPI, cyNv),
-            new RetrieveEvidenceForNetwork(cyNv, cyr.wsAPI, cyr.cyTableFactory, cyr.cyTableManager),
+            new LinkKnowledgeNetwork(cyr.cyApplicationManager, wsAPI, cyNv),
+            new RetrieveEvidenceForNetwork(cyNv, wsAPI, cyr.cyTableFactory, cyr.cyTableManager),
             new ApplyPreferredStyleToCurrent(cyr.cyApplicationManager, cyr.cyEventHelper, cyr.visualMappingManager)
         )
     }

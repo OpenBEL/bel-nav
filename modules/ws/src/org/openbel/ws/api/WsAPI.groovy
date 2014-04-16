@@ -1,5 +1,6 @@
 package org.openbel.ws.api
 
+import org.cytoscape.io.webservice.WebServiceClient
 import org.cytoscape.model.CyNetwork
 import org.openbel.framework.common.enums.FunctionEnum
 import org.openbel.kamnav.common.model.Edge
@@ -11,13 +12,13 @@ import java.util.regex.Pattern
 /**
  * WsAPI defines an API to interact with knowledge networks through the web.
  */
-interface WsAPI {
+interface WsAPI extends WebServiceClient {
 
     /**
      * Load a knowledge network using the unique name.  Return a {@link Map}
      * containing load results.
      * <br/>
-     * The map will contain:
+     * The clients will contain:
      * <ul>
      *     <li><strong>status</strong></li>
      *     <ul>

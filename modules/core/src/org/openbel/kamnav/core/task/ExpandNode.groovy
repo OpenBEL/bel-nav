@@ -27,13 +27,15 @@ class ExpandNode extends AbstractTask {
      */
     @Override
     void run(TaskMonitor monitor) throws Exception {
+        def wsAPI = cyr.wsManager.get(cyr.wsManager.default)
+
         def node = toNode(cyNv.model, nodeView.model)
         monitor.title = 'Expand Node'
         monitor.statusMessage = "Expanding ${node.label}"
 
-        def edges = cyr.wsAPI.adjacentEdges(node)
+        def edges = wsAPI.adjacentEdges(node)
         def chunk = 1.0d / edges.length
-        cyr.wsAPI.adjacentEdges(node).each { edge ->
+        wsAPI.adjacentEdges(node).each { edge ->
             def s = edge.source
             def t = edge.target
             def rel = edge.relationship
@@ -44,7 +46,7 @@ class ExpandNode extends AbstractTask {
                 makeNode(cyNv.model, t.id, t.fx.displayValue, t.label)
             def cyE = findEdge(cyNv.model, s.label, rel, t.label) ?:
                 makeEdge(cyNv.model, cySource, cyTarget, edge.id, rel)
-            addEvidenceForEdge(cyr.cyTableManager, cyr.cyTableFactory, cyr.wsAPI, cyNv.model, cyE)
+            addEvidenceForEdge(cyr.cyTableManager, cyr.cyTableFactory, wsAPI, cyNv.model, cyE)
             monitor.progress += chunk
         }
 

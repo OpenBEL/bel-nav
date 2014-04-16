@@ -43,6 +43,7 @@ subprojects {
     }
   }
   dependencies {
+    provided fileTree(dir: "$System.env.DEV_CY3_LIBS_DIR/org/apache/felix", include: '**/*.jar')
     provided fileTree(dir: "$System.env.DEV_CY3_LIBS_DIR/org/cytoscape", include: '**/*.jar')
     provided fileTree(dir: "$System.env.DEV_CY3_LIBS_DIR/org/eclipse/osgi", include: '**/*.jar')
   }
@@ -187,6 +188,7 @@ project('modules/ui') {
 
   dependencies {
     compile project(':modules/common')
+    compile project(':modules/ws')
     compile files(
       "$rootDir/libs/compile/glazedlists_java15-1.9.0.jar",
       "$rootDir/libs/compile/groovy-all-2.1.7-indy.jar",
@@ -241,6 +243,7 @@ project('modules/ui') {
         org.openbel.kamnav.common,
         org.openbel.kamnav.common.facet,
         org.openbel.kamnav.common.util,
+        org.openbel.ws.api,
         org.osgi.framework,
         org.slf4j;version="[1,2)"
       '''
@@ -289,8 +292,11 @@ project('modules/ws') {
         org.codehaus.groovy.runtime.typehandling;version="[2.1,3)",
         org.codehaus.groovy.runtime.wrappers;version="[2.1,3)",
         org.codehaus.groovy.vmplugin.v7;version="[2.1,3)",
+        org.cytoscape.application;version="[3,4)",
+        org.cytoscape.io.webservice;version="[3,4)",
         org.cytoscape.model;version="[3,4)",
         org.cytoscape.service.util;version="[3,4)",
+        org.cytoscape.work;version="[3,4)",
         org.openbel.framework.common.enums;version="[3,4)",
         org.openbel.framework.ws.model;version="[3,4)",
         org.openbel.kamnav.common,
@@ -298,11 +304,13 @@ project('modules/ws') {
         org.openbel.kamnav.common.util,
         org.openbel.ws.api,
         org.osgi.framework,
+        org.osgi.service.event,
         org.slf4j;version="[1,2)",
+        wslite.http,
         wslite.soap,
         javax.net.ssl
       '''
-      instruction 'Bundle-Activator', 'org.openbel.ws.Activator'
+      instruction 'Bundle-Activator', 'org.openbel.ws.internal.Activator'
       instruction 'Export-Package', 'org.openbel.ws.api;version="1.0.0"'
     }
   }

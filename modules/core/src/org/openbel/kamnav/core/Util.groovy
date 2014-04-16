@@ -36,6 +36,8 @@ class Util {
         createColumn(evTbl, 'citation type', String.class, true, null)
         createColumn(evTbl, 'citation reference', String.class, true, null)
         createColumn(evTbl, 'citation name', String.class, true, null)
+        createColumn(evTbl, 'citation comment', String.class, true, null)
+        createColumn(evTbl, 'citation date', String.class, true, null)
         mgr.addTable(evTbl)
 
         evTbl
@@ -63,21 +65,22 @@ class Util {
         })
 
         // add to evidence table for this edge
-        api.getSupportingEvidence(toEdge(cyN, cyE)).each {
-            it.SUID = cyE.SUID
-        }.flatten().each { ev ->
+        def edge = toEdge(cyN, cyE)
+        api.getSupportingEvidence(edge).each {
             def row = evTbl.getRow(SUIDFactory.nextSUID)
             row.set('network', cyN.SUID)
             row.set('network_name', cyN.getRow(cyN).get(NAME, String.class))
-            row.set('edge', ev.SUID)
-            row.set('edge source', ev.edge_source.label)
-            row.set('edge relationship', ev.edge_rel)
-            row.set('edge target', ev.edge_target.label)
-            row.set('statement', belStatement(ev))
-            row.set('citation type', ev.citationType)
-            row.set('citation reference', ev.citationId)
-            row.set('citation name', ev.citationName)
-            ev.annotations.each { type, value ->
+            row.set('edge', cyE.SUID)
+            row.set('edge source', edge.source.label)
+            row.set('edge relationship', edge.relationship)
+            row.set('edge target', edge.target.label)
+            row.set('statement', it.statement)
+            row.set('citation type', it.citationType)
+            row.set('citation reference', it.citationId)
+            row.set('citation name', it.citationName)
+            row.set('citation comment', it.citationComment)
+            row.set('citation date', it.citationDate)
+            it.annotations.each { type, value ->
                 def annotationName = "annotation: $type"
                 createColumn(evTbl, annotationName, String.class, true, null)
                 row.set(annotationName, value)

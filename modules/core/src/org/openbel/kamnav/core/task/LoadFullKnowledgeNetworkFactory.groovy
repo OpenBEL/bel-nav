@@ -22,11 +22,12 @@ class LoadFullKnowledgeNetworkFactory extends AbstractTaskFactory {
     TaskIterator createTaskIterator() {
         log.info("Create new LoadFullKnowledgeNetwork task.")
 
+        def wsAPI = cyr.wsManager.get(cyr.wsManager.default)
         new TaskIterator(
             new CreateCyNetwork(cyr.cyApplicationManager, cyr.cyNetworkFactory,
                                 cyr.cyNetworkViewFactory, cyr.cyNetworkManager,
-                                cyr.cyNetworkViewManager, cyr.wsAPI),
-            new LoadFullKnowledgeNetwork(cyr.cyApplicationManager, cyr.wsAPI),
+                                cyr.cyNetworkViewManager, wsAPI),
+            new LoadFullKnowledgeNetwork(cyr.cyApplicationManager, wsAPI),
             new ApplyPreferredStyleToCurrent(cyr.cyApplicationManager, cyr.cyEventHelper, cyr.visualMappingManager),
             new ApplyPreferredLayoutToCurrent(cyr.cyApplicationManager, cyr.cyLayoutAlgorithmManager, cyProp.properties))
     }

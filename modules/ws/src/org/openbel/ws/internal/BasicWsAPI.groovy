@@ -3,6 +3,7 @@ package org.openbel.ws.internal
 import org.cytoscape.model.CyEdge
 import org.cytoscape.model.CyNetwork
 import org.cytoscape.model.CyNode
+import org.cytoscape.work.TaskIterator
 import org.openbel.framework.common.enums.FunctionEnum
 import org.openbel.framework.common.enums.RelationshipType
 import org.openbel.framework.ws.model.FunctionType
@@ -10,12 +11,12 @@ import org.openbel.kamnav.common.model.Edge
 import org.openbel.kamnav.common.model.Namespace
 import org.openbel.kamnav.common.model.Node
 import org.openbel.ws.api.WsAPI
+import wslite.http.HTTPClient
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import wslite.soap.SOAPClient
 import wslite.soap.SOAPFaultException
 
-import javax.net.ssl.SSLContext
 import java.util.regex.Pattern
 
 import static org.cytoscape.model.CyEdge.INTERACTION
@@ -29,11 +30,18 @@ import static org.openbel.kamnav.common.util.NodeUtil.toBEL
  */
 class BasicWsAPI implements WsAPI {
 
-    static final String URL = 'https://selventa-sdp.selventa.com/openbel-ws/belframework'
+    private static final String WS_NAME = "OpenBEL Web API"
+    private static final String WS_DESC = "Web API to the OpenBEL server."
     private static final Logger log = LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME)
 
-    BasicWsAPI() {
-        SSLContext.default = SSL.context
+    private final SOAPClient client
+    private final URI location
+
+    BasicWsAPI(URI location) {
+        this.location = location
+        client = new SOAPClient(
+                location.toString(),
+                new HTTPClient(new ConfigurableConnectionFactory()))
     }
 
     /**
@@ -41,7 +49,6 @@ class BasicWsAPI implements WsAPI {
      */
     @Override
     Map loadKnowledgeNetwork(String name) {
-        def client = new SOAPClient(this.URL)
         def loadMap = [name: name]
 
         Thread load = Thread.start {
@@ -100,7 +107,6 @@ class BasicWsAPI implements WsAPI {
      * {@inheritDoc}
      */
     @Override Map knowledgeNetworks() {
-        def client = new SOAPClient(this.URL)
         def response
         try {
             response = client.send {
@@ -129,7 +135,6 @@ class BasicWsAPI implements WsAPI {
      */
     @Override
     List<Namespace> getAllNamespaces() {
-        def client = new SOAPClient(this.URL)
         def response
         try {
             response = client.send {
@@ -158,8 +163,6 @@ class BasicWsAPI implements WsAPI {
      */
     @Override
     List findNamespaceValues(Collection<Namespace> ns, Collection<Pattern> regex) {
-        def client = new SOAPClient(this.URL)
-
         def response
         try {
             response = client.send {
@@ -200,7 +203,6 @@ class BasicWsAPI implements WsAPI {
      */
     @Override
     List linkNodes(CyNetwork cyN, String name) {
-        def client = new SOAPClient(this.URL)
         def loadMap = loadKnowledgeNetwork(name)
 
         if (!cyN.nodeList) [].asImmutable()
@@ -276,7 +278,6 @@ class BasicWsAPI implements WsAPI {
      */
     @Override
     List linkEdges(CyNetwork cyN, String name) {
-        def client = new SOAPClient(this.URL)
         def loadMap = loadKnowledgeNetwork(name)
         if (!loadMap.handle) return null
 
@@ -371,7 +372,6 @@ class BasicWsAPI implements WsAPI {
      */
     @Override
     Node[] findNodes(String name, Pattern labelPattern, FunctionEnum... functions) {
-        def client = new SOAPClient(this.URL)
         def loadMap = loadKnowledgeNetwork(name)
         if (!loadMap.handle) return null
 
@@ -416,8 +416,6 @@ class BasicWsAPI implements WsAPI {
      */
     @Override
     Edge[] adjacentEdges(Node node, String dir = 'BOTH') {
-        def client = new SOAPClient(this.URL)
-
         def response
         try {
             response = client.send {
@@ -457,7 +455,6 @@ class BasicWsAPI implements WsAPI {
      */
     @Override
     List<Node> mapData(String name, Namespace ns, FunctionEnum[] functions, String[] entities) {
-        def client = new SOAPClient(this.URL)
         def loadMap = loadKnowledgeNetwork(name)
         if (!loadMap.handle) return null
 
@@ -509,13 +506,12 @@ class BasicWsAPI implements WsAPI {
      */
     @Override
     List<Map> getSupportingEvidence(Edge edge) {
-        def client = new SOAPClient(this.URL)
         def response;
         try {
             response = client.send {
                 body {
-                    GetSupportingEvidenceRequest('xmlns': 'http://belframework.org/ws/schemas') {
-                        kamEdge {
+                    GetSupportingEvidenceMultipleRequest('xmlns': 'http://belframework.org/ws/schemas') {
+                        kamEdges {
                             id(edge.id)
                             source(edge.source)
                             relationship(edge.relationship)
@@ -525,41 +521,36 @@ class BasicWsAPI implements WsAPI {
                 }
             }
         } catch(SOAPFaultException ex) {
-            soapError("GetSupportingEvidenceRequest", ex)
+            soapError("GetSupportingEvidenceMultipleRequest", ex)
             throw ex
         }
 
-        response.GetSupportingEvidenceResponse.statements.
+        response.GetSupportingEvidenceMultipleResponse.edgeStatements.
         findAll {
             !it.attributes()['{http://www.w3.org/2001/XMLSchema-instance}nil']
         }.
         collect {
+            def outer = it.statement
             [
-                edge_source: edge.source,
-                edge_rel: edge.relationship ?: '',
-                edge_target: edge.target,
-                subject: it.subjectTerm.label.toString(),
-                relationship: fromWS(it.relationship.toString()),
-                objectTerm: it.objectTerm?.label?.toString(),
-                nestedSubject: it.objectStatement?.subjectTerm?.label?.toString(),
-                nestedRelationship: fromWS(it.objectStatement?.relationship?.toString()),
-                nestedObject: it.objectStatement?.objectTerm?.label?.toString(),
-                annotations: it.annotations.iterator().collectEntries { anno ->
-                   [anno.annotationType.name.toString(), anno.value.toString()]
+                statement: outer.statement.toString(),
+                annotations: outer.annotations.iterator().collectEntries { anno ->
+                    [anno.annotationType.name.toString(), anno.value.toString()]
                 },
-                citationType: it.citation.citationType.toString(),
-                citationId: it.citation.id.toString(),
-                citationName: it.citation.name.toString()
+                citationType: outer.citation.citationType.toString(),
+                citationId: outer.citation.id.toString(),
+                citationName: outer.citation.name.toString(),
+                citationComment: outer.citation.comment?.toString() ?: '',
+                citationDate: outer.citation.publicationDate?.toString() ?: ''
             ]
         }
     }
 
-    private def fromWS(type) {
+    private static def fromWS(type) {
         if (!type) return null
         RelationshipType.values().find {it.name() == type}?.displayValue
     }
 
-    private def toWS(type) {
+    private static def toWS(type) {
         switch (type) {
             case FunctionEnum:
                 FunctionType.fromValue(type.displayValue)
@@ -583,12 +574,33 @@ class BasicWsAPI implements WsAPI {
         }
     }
 
-    private def soapError(String endpoint, SOAPFaultException ex) {
+    private static def soapError(String endpoint, SOAPFaultException ex) {
         String msg = "Error calling ${endpoint}"
         if (ex.httpResponse) {
             def res = ex.httpResponse
             msg += " (code: ${res.statusCode}, msg: ${res.statusMessage}"
         }
         log.error(msg, ex)
+    }
+
+    @Override
+    URI getServiceLocation() {
+        location
+    }
+
+    @Override
+    String getDisplayName() {
+        WS_NAME
+    }
+
+    @Override
+    String getDescription() {
+        WS_DESC
+    }
+
+    @Override
+    TaskIterator createTaskIterator(Object o) {
+        // no tasks for query
+        null
     }
 }

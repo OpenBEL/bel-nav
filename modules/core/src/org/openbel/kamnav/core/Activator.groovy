@@ -25,10 +25,12 @@ import org.openbel.kamnav.common.model.Namespace
 import org.openbel.kamnav.core.event.BELNetworkListener
 import org.openbel.kamnav.core.event.SessionLoadListener
 import org.openbel.kamnav.core.task.*
+import org.openbel.kamnav.ui.ConfigurationUI
 import org.openbel.kamnav.ui.EdgeUpdateable
 import org.openbel.kamnav.ui.SearchNeighborhoodUI
 import org.openbel.kamnav.ui.SearchNodesDialogUI
 import org.openbel.ws.api.WsAPI
+import org.openbel.ws.api.WsManager
 import org.osgi.framework.BundleContext
 
 import java.awt.event.ActionEvent
@@ -54,8 +56,9 @@ class Activator extends AbstractCyActivator {
                 CyNetworkViewFactory.class, CyNetworkViewManager.class,
                 CyLayoutAlgorithmManager.class, CyTableFactory.class, CyTableManager.class,
                 VisualMappingManager.class, CyEventHelper.class,
-                ApplyPreferredLayoutTaskFactory.class, WsAPI.class, TaskManager.class] as Class<?>[])
+                ApplyPreferredLayoutTaskFactory.class, TaskManager.class, WsManager.class] as Class<?>[])
         CyProperty<Properties> cyProp = getService(bc,CyProperty.class,"(cyPropertyName=cytoscape3.props)");
+        ConfigurationUI configUI = getService(bc, ConfigurationUI.class)
         SearchNodesDialogUI searchNodesUI = getService(bc, SearchNodesDialogUI.class)
         SearchNeighborhoodUI searchKnUI = getService(bc, SearchNeighborhoodUI.class)
 
@@ -113,20 +116,42 @@ class Activator extends AbstractCyActivator {
                 title: 'From Knowledge Network'
             ] as Properties)
 
+        // Configuration
+        AbstractCyAction configAction = new AbstractCyAction('Configure') {
+            @Override
+            void actionPerformed(ActionEvent e) {
+                def mgr = cyr.wsManager
+                configUI.configurationDialog(mgr, {url -> true}, { items ->
+                    mgr.removeAll()
+
+                    items.each { item ->
+                        mgr.add(item.url)
+                    }
+                    mgr.default = items.find { it.default }.url
+                    cyr.wsManager.saveConfiguration()
+                })
+            }
+        }
+        configAction.menuGravity = 0.0
+        configAction.preferredMenu = 'Apps.KamNav'
+        registerService(bc, configAction, CyAction.class, [
+                id: 'apps_nav.config'
+        ] as Properties)
+
         // Search Nodes
         AbstractCyAction addNodesAction = new AbstractCyAction('Search Nodes') {
             void actionPerformed(ActionEvent e) {
                 searchNodesUI.show(cyr.cySwingApplication, {
                     [
-                        knowledgeNetworks: cyr.wsAPI.knowledgeNetworks().keySet().sort(),
+                        knowledgeNetworks: wsAPI.knowledgeNetworks().keySet().sort(),
                         functions: FunctionEnum.values().sort {it.displayValue} as List,
-                        namespaces: cyr.wsAPI.getAllNamespaces().sort {it.name}
+                        namespaces: wsAPI.getAllNamespaces().sort {it.name}
                     ]
                 }, { kn, fx, ns, entities ->
                     entities = entities.collect {
                         if (it.endsWith('*')) {
                             it = it.length() == 1 ? '' : it[0..-2]
-                            def nsValues = cyr.wsAPI.findNamespaceValues(
+                            def nsValues = wsAPI.findNamespaceValues(
                                     [ns] as Collection<Namespace>,
                                     [~/${it}.*/] as Collection<Pattern>)
                             return nsValues.collect {it[1]}
@@ -135,7 +160,7 @@ class Activator extends AbstractCyActivator {
                         return it
                     }.flatten().unique()
                     def cyN = cyr.cyApplicationManager.currentNetwork
-                    def searchNodes = cyr.wsAPI.mapData(kn, ns,
+                    def searchNodes = wsAPI.mapData(kn, ns,
                             [fx].findAll() as FunctionEnum[],
                             entities as String[]).collect {
                         [id: it.id, fx: it.fx, label: it.label, present: false]
@@ -158,7 +183,7 @@ class Activator extends AbstractCyActivator {
                         CyNode cyNode = findNode(cyN, n.label) ?: makeNode(cyN, n.id, n.fx.displayValue, n.label)
                         if (connect) {
                             def node = toNode(cyN, cyNode)
-                            cyr.wsAPI.adjacentEdges(node).each { edge ->
+                            wsAPI.adjacentEdges(node).each { edge ->
                                 def s = edge.source
                                 def t = edge.target
                                 def rel = edge.relationship
