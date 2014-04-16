@@ -141,6 +141,7 @@ class Activator extends AbstractCyActivator {
         // Search Nodes
         AbstractCyAction addNodesAction = new AbstractCyAction('Search Nodes') {
             void actionPerformed(ActionEvent e) {
+                def wsAPI = cyr.wsManager.get(cyr.wsManager.default)
                 searchNodesUI.show(cyr.cySwingApplication, {
                     [
                         knowledgeNetworks: wsAPI.knowledgeNetworks().keySet().sort(),
