@@ -17,6 +17,7 @@ import org.slf4j.LoggerFactory
 import wslite.soap.SOAPClient
 import wslite.soap.SOAPFaultException
 
+import javax.net.ssl.SSLContext
 import java.util.regex.Pattern
 
 import static org.cytoscape.model.CyEdge.INTERACTION
@@ -38,6 +39,7 @@ class BasicWsAPI implements WsAPI {
     private final URI location
 
     BasicWsAPI(URI location) {
+        SSLContext.default = SSL.context
         this.location = location
         client = new SOAPClient(
                 location.toString(),
