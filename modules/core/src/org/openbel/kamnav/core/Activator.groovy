@@ -29,7 +29,6 @@ import org.openbel.kamnav.ui.ConfigurationUI
 import org.openbel.kamnav.ui.EdgeUpdateable
 import org.openbel.kamnav.ui.SearchNeighborhoodUI
 import org.openbel.kamnav.ui.SearchNodesDialogUI
-import org.openbel.ws.api.WsAPI
 import org.openbel.ws.api.WsManager
 import org.osgi.framework.BundleContext
 

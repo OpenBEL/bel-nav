@@ -1,8 +1,9 @@
 package org.openbel.kamnav.ui
 
 import groovy.swing.SwingBuilder
-import org.openbel.ws.api.WsAPI
 import org.openbel.ws.api.WsManager
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 
 import javax.swing.JDialog
 import javax.swing.JFrame
@@ -14,6 +15,8 @@ import java.awt.FlowLayout
 import static java.awt.GridBagConstraints.*
 
 class ConfigurationUIImpl implements ConfigurationUI {
+
+    private static final Logger msg = LoggerFactory.getLogger("CyUserMessages");
 
     @Override
     JDialog configurationDialog(WsManager wsManager, Closure auth, Closure save) {
@@ -121,12 +124,15 @@ class ConfigurationUIImpl implements ConfigurationUI {
                 flowLayout(alignment: FlowLayout.RIGHT)
                 button(text: 'Cancel', preferredSize: [85, 25],
                         actionPerformed: {dialog.dispose()})
-                button(text: 'Save', preferredSize: [85, 25], actionPerformed: {
+                button(text: 'OK', preferredSize: [85, 25], actionPerformed: {
                     swing.doOutside {
                         configurationsTable.model.with {
                             def rows = rowsModel.value
                             save.call(rows as Set)
                         }
+
+                        the_dialog.dispose()
+                        msg.info('KamNav configuration saved successfully.')
                     }
                 })
             }
