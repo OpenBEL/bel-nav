@@ -11,6 +11,8 @@ import org.openbel.framework.common.model.Term
 
 import static org.cytoscape.model.CyNetwork.NAME
 import static org.openbel.framework.common.bel.parser.BELParser.parseTerm
+import static org.openbel.kamnav.common.util.Util.createColumn
+import static org.openbel.kamnav.common.util.Util.createListColumn
 
 @TupleConstructor
 public class AddBelColumnsToCurrent extends AbstractTask {
@@ -24,8 +26,9 @@ public class AddBelColumnsToCurrent extends AbstractTask {
         if (!network) return
 
         // create column if needed
-        network.defaultNodeTable.getColumn('bel.function') ?:
-            network.defaultNodeTable.createColumn('bel.function', String.class, false)
+        createColumn(network.defaultNodeTable, 'bel.function', String.class, false, null)
+        createListColumn(network.defaultNodeTable, 'namespace', String.class, false, null)
+        createListColumn(network.defaultNodeTable, 'entity', String.class, false, null)
 
         network.nodeList.collect(network.&getRow).each(this.&addFunction)
 	}

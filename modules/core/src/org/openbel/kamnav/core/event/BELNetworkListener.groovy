@@ -1,7 +1,6 @@
 package org.openbel.kamnav.core.event
 
 import groovy.transform.TupleConstructor
-import org.cytoscape.model.CyRow
 import org.cytoscape.model.events.NetworkAddedEvent
 import org.cytoscape.model.events.NetworkAddedListener
 import org.cytoscape.model.events.RowSetRecord
@@ -9,11 +8,12 @@ import org.cytoscape.model.events.RowsSetEvent
 import org.cytoscape.model.events.RowsSetListener
 import org.cytoscape.work.TaskIterator
 import org.openbel.framework.common.InvalidArgument
+import org.openbel.framework.common.model.Parameter
 import org.openbel.framework.common.model.Term
 import org.openbel.kamnav.core.task.AddBelColumnsToCurrent
 import static org.cytoscape.model.CyNetwork.NAME
 import static org.openbel.framework.common.bel.parser.BELParser.parseTerm
-import static org.openbel.kamnav.common.util.Util.createColumn
+import static org.openbel.kamnav.common.util.Util.setAdd
 
 @TupleConstructor
 class BELNetworkListener implements NetworkAddedListener, RowsSetListener {
@@ -46,6 +46,14 @@ class BELNetworkListener implements NetworkAddedListener, RowsSetListener {
                     Term t = parseTerm(name)
                     if (t) {
                         record.row.set('bel.function', t.functionEnum.displayValue)
+
+                        t.allParametersLeftToRight.inject([] as Set) {
+                            Set res, Parameter next ->
+                                res << next.namespace?.prefix
+                        }.findAll().each {
+                            String prefix ->
+                                setAdd(record.row, 'namespace', String.class, prefix)
+                        }
                     }
                 } catch (InvalidArgument e) {
                     // indicates failure to parse; skip

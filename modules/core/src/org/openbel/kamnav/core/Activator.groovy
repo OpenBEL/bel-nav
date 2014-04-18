@@ -17,6 +17,7 @@ import org.cytoscape.task.visualize.ApplyPreferredLayoutTaskFactory
 import org.cytoscape.view.layout.CyLayoutAlgorithmManager
 import org.cytoscape.view.model.CyNetworkViewFactory
 import org.cytoscape.view.model.CyNetworkViewManager
+import org.cytoscape.view.vizmap.VisualMappingFunctionFactory
 import org.cytoscape.view.vizmap.VisualMappingManager
 import org.cytoscape.work.TaskFactory
 import org.cytoscape.work.TaskManager
@@ -57,6 +58,7 @@ class Activator extends AbstractCyActivator {
                 CyLayoutAlgorithmManager.class, CyTableFactory.class, CyTableManager.class,
                 VisualMappingManager.class, CyEventHelper.class,
                 ApplyPreferredLayoutTaskFactory.class, TaskManager.class, WsManager.class] as Class<?>[])
+        VisualMappingFunctionFactory vmFxFactory = getService(bc,VisualMappingFunctionFactory.class, "(mapping.type=passthrough)");
         CyProperty<Properties> cyProp = getService(bc,CyProperty.class,"(cyPropertyName=cytoscape3.props)");
         ConfigurationUI configUI = getService(bc, ConfigurationUI.class)
         SearchNodesDialogUI searchNodesUI = getService(bc, SearchNodesDialogUI.class)
@@ -114,6 +116,13 @@ class Activator extends AbstractCyActivator {
                 preferredMenu: 'File.New.Network',
                 menuGravity: 15.0,
                 title: 'From Knowledge Network'
+            ] as Properties)
+        registerService(bc,
+            new ViewAsEntityFactory(cyr.visualMappingManager, vmFxFactory),
+            NetworkViewTaskFactory.class, [
+                preferredMenu: 'Apps.KamNav',
+                menuGravity: 16.0,
+                title: 'View Network as Entities'
             ] as Properties)
 
         // Configuration

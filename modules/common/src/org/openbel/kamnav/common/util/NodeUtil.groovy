@@ -3,22 +3,24 @@ package org.openbel.kamnav.common.util
 import org.cytoscape.model.CyNetwork
 import org.cytoscape.model.CyNode
 import org.openbel.framework.common.InvalidArgument
+import org.openbel.framework.common.model.Parameter
 import org.openbel.framework.common.model.Term
 import org.openbel.kamnav.common.model.Node
 
 import static org.cytoscape.model.CyNetwork.NAME
 import static org.openbel.framework.common.bel.parser.BELParser.parseTerm
 import static org.openbel.framework.common.enums.FunctionEnum.fromString
+import static org.openbel.kamnav.common.util.Util.createColumn
+import static org.openbel.kamnav.common.util.Util.createListColumn
 
 class NodeUtil {
 
     static def createNodeColumns(CyNetwork cyN) {
-        cyN.defaultNodeTable.getColumn('bel.function') ?:
-            cyN.defaultNodeTable.createColumn('bel.function', String.class, false)
-        cyN.defaultNodeTable.getColumn('kam.id') ?:
-            cyN.defaultNodeTable.createColumn('kam.id', String.class, false)
-        cyN.defaultNodeTable.getColumn('linked') ?:
-            cyN.defaultNodeTable.createColumn('linked', Boolean.class, false)
+        createColumn(cyN.defaultNodeTable, 'bel.function', String.class, false, null)
+        createListColumn(cyN.defaultNodeTable, 'namespace', String.class, false, null)
+        createListColumn(cyN.defaultNodeTable, 'entity', String.class, false, null)
+        createColumn(cyN.defaultNodeTable, 'kam.id', String.class, false, null)
+        createColumn(cyN.defaultNodeTable, 'linked', Boolean.class, false, null)
     }
 
     static def toNode(CyNetwork cyNetwork, CyNode cyNode) {
@@ -63,6 +65,41 @@ class NodeUtil {
         } catch (InvalidArgument e) {
             // parse failure; cannot resolve so return
             return [:]
+        }
+    }
+
+    static def toEntityDisplay(CyNetwork cyN, CyNode node) {
+        def label = cyN.getRow(node).get(NAME, String.class)
+        try {
+            Term t = parseTerm(label)
+            if (!t) return label
+            t.allParametersLeftToRight.collect { it.value }.join(', ')
+        } catch (InvalidArgument e) {
+            // parse failure; cannot resolve so return
+            return label
+        }
+    }
+
+    static def decomposeTerm(belTerm) {
+        try {
+            Term t = parseTerm(belTerm)
+            if (!t) return null
+
+            return [
+                fx: t.functionEnum.displayValue,
+                namespaces: t.allParametersLeftToRight.
+                        inject([] as Set) { Set res, Parameter next ->
+                            res << next.namespace?.prefix
+                        }.findAll().toArray(),
+                entities: t.allParametersLeftToRight.inject([] as Set) {
+                            Set res, Parameter next ->
+                                res << next.value
+                        }.findAll().toArray(),
+                bel_label: t.toBELShortForm()
+            ]
+        } catch (InvalidArgument e) {
+            // indicates failure to parse; skip
+            return null
         }
     }
 }
