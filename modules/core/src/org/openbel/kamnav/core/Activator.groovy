@@ -17,7 +17,9 @@ import org.cytoscape.task.visualize.ApplyPreferredLayoutTaskFactory
 import org.cytoscape.view.layout.CyLayoutAlgorithmManager
 import org.cytoscape.view.model.CyNetworkViewFactory
 import org.cytoscape.view.model.CyNetworkViewManager
+import org.cytoscape.view.vizmap.VisualMappingFunctionFactory
 import org.cytoscape.view.vizmap.VisualMappingManager
+import org.cytoscape.view.vizmap.VisualStyleFactory
 import org.cytoscape.work.TaskFactory
 import org.cytoscape.work.TaskManager
 import org.openbel.framework.common.enums.FunctionEnum
@@ -55,12 +57,13 @@ class Activator extends AbstractCyActivator {
                 CySwingApplication.class, CyNetworkFactory.class, CyNetworkManager.class,
                 CyNetworkViewFactory.class, CyNetworkViewManager.class,
                 CyLayoutAlgorithmManager.class, CyTableFactory.class, CyTableManager.class,
-                VisualMappingManager.class, CyEventHelper.class,
+                VisualMappingManager.class, CyEventHelper.class, VisualStyleFactory.class,
                 ApplyPreferredLayoutTaskFactory.class, TaskManager.class, WsManager.class] as Class<?>[])
         CyProperty<Properties> cyProp = getService(bc,CyProperty.class,"(cyPropertyName=cytoscape3.props)");
         ConfigurationUI configUI = getService(bc, ConfigurationUI.class)
         SearchNodesDialogUI searchNodesUI = getService(bc, SearchNodesDialogUI.class)
         SearchNeighborhoodUI searchKnUI = getService(bc, SearchNeighborhoodUI.class)
+        VisualMappingFunctionFactory dMapFac = getService(bc,VisualMappingFunctionFactory.class, "(mapping.type=discrete)");
 
         def evUpdateable = getService(bc, EdgeUpdateable.class, "(name=evidence)")
 
@@ -107,6 +110,14 @@ class Activator extends AbstractCyActivator {
                 preferredMenu: 'Apps.KamNav',
                 menuGravity: 14.0,
                 title: 'Show Evidence'
+            ] as Properties)
+        registerService(bc,
+            new ValidateBELNetworkFactory(cyr.cyEventHelper, cyr.visualStyleFactory, cyr.visualMappingManager, dMapFac),
+            NetworkViewTaskFactory.class, [
+                preferredMenu: 'Apps.KamNav',
+                menuGravity: 15.0,
+                accelerator: 'control alt V',
+                title: 'Validate'
             ] as Properties)
         registerService(bc,
             new LoadFullKnowledgeNetworkFactory(cyr, cyProp),
