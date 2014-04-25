@@ -201,7 +201,8 @@ class ValidateBELNetwork extends AbstractTask {
         String cleaned = new String(statement)
         [
             'actsIn', 'hasComponent', 'hasMember', 'hasModification',
-            'hasProduct', 'hasVariant', 'isA', 'reactantIn'
+            'hasProduct', 'hasVariant', 'includes', 'isA', 'reactantIn',
+            'translocates'
         ].each {
             cleaned = cleaned.replace(it, " increases ")
         }
