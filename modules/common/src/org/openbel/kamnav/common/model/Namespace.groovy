@@ -1,8 +1,10 @@
 package org.openbel.kamnav.common.model
 
+import groovy.transform.EqualsAndHashCode
 import groovy.transform.TupleConstructor
 
 @TupleConstructor
+@EqualsAndHashCode
 class Namespace {
     final String id
     final String name

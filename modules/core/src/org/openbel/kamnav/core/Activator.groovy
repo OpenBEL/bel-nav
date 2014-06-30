@@ -163,21 +163,26 @@ class Activator extends AbstractCyActivator {
                         namespaces: wsAPI.getAllNamespaces().sort {it.name}
                     ]
                 }, { kn, fx, ns, entities ->
-                    entities = entities.collect {
-                        if (it.endsWith('*')) {
-                            it = it.length() == 1 ? '' : it[0..-2]
-                            def nsValues = wsAPI.findNamespaceValues(
-                                    [ns] as Collection<Namespace>,
-                                    [~/${it}.*/] as Collection<Pattern>)
-                            return nsValues.collect {it[1]}
+                    def nsSelection = (ns == 'All') ? null : [ns] as Collection<Namespace>
+                    def mapToNamespaces = [:].withDefault{ [] as Set }
+                    entities.collect {
+                        it = it.replace('*', '.*')
+                        def nsValues = wsAPI.findNamespaceValues(
+                                nsSelection,
+                                [~/(?i)${it}/] as Collection<Pattern>)
+                        nsValues.each {
+                            def res = new Namespace(null, null, null, it[0].resourceLocation)
+                            mapToNamespaces[res] << it[1]
                         }
+                    }
+                    def searchNodes = [] as Set
 
-                        return it
-                    }.flatten().unique()
-                    def searchNodes = wsAPI.mapData(kn, ns,
-                            [fx].findAll() as FunctionEnum[],
-                            entities as String[]).collect {
-                        [id: it.id, fx: it.fx, label: it.label, present: false]
+                    mapToNamespaces.each { namespace, values ->
+                        wsAPI.mapData(kn, namespace,
+                                [fx].findAll() as FunctionEnum[],
+                                values as String[]).collect {
+                            searchNodes << [id: it.id, fx: it.fx, label: it.label, present: false]
+                        }
                     }
 
                     if (cyN) {
