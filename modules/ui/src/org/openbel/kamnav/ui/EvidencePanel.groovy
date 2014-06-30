@@ -30,6 +30,7 @@ class EvidencePanel implements EdgeUpdateable {
     JLabel citationName
     JXHyperlink citationLink
     JXTable stmtTable
+    JTextPane annotationPane
     List statements
     List annotations
     JCheckBox linkChk
@@ -45,18 +46,6 @@ class EvidencePanel implements EdgeUpdateable {
                 getColumnName: {'Statement'},
                 getColumnValue: {o, i -> o}
             ] as TableFormat)
-        def annoModel = new DefaultEventTableModel(annotations,
-            [
-                getColumnCount: {2},
-                getColumnName: {i -> ['Type', 'Value'][i]},
-                getColumnValue: {o, i ->
-                    switch(i) {
-                        case 0: return o.type
-                        case 1: return o.value
-                    }
-                }
-            ] as TableFormat
-        )
         panel = swing.panel(preferredSize: [400, 400]) {
             gridBagLayout()
 
@@ -92,10 +81,15 @@ class EvidencePanel implements EdgeUpdateable {
                                     citationLink.text = ref ?: ''
                                     citationLink.URI = makeCitationURI(type, ref)
 
-                                    annotations.removeAll {true}
-                                    annotations.addAll(ev.biological_context.collect { k, v ->
-                                        new Expando(type: k, value: v)
-                                    }.findAll {it.value}.sort {it.type})
+                                    def html = "<html><table width=\"100%\" height=\"100%\">"
+                                    ev.biological_context.
+                                        sort { it.key }.
+                                        findAll {it.value}.each {
+                                            html += "<tr valign=\"top\"><td>${it.key}</td><td>${it.value}</td></tr>"
+                                        }
+                                    html += "</table></html>"
+                                    annotationPane.text = html
+                                    annotationPane.caretPosition = 0
 
                                     def cyN = cyr.cyNetworkManager.getNetwork(ev.network)
                                     def cyE = cyN.getEdge(ev.edge)
@@ -135,7 +129,8 @@ class EvidencePanel implements EdgeUpdateable {
             scrollPane(constraints: gbc(anchor: LINE_START, gridx: 0, gridy: 5,
                             gridwidth: 1, gridheight: 1, weightx: 1.0, weighty: 0.5,
                             insets: [0, 5, 5, 5], fill: BOTH)) {
-                jxTable(model: annoModel, columnControlVisible: false)
+                annotationPane = textPane(contentType: "text/html", background: null,
+                        border: null, editable: false)
             }
             panel(constraints: gbc(anchor: LINE_END, gridx: 0, gridy: 6, gridwidth: 1, weightx: 1.0, weighty: 0.1, fill: BOTH)) {
                 flowLayout(alignment: FlowLayout.RIGHT)
