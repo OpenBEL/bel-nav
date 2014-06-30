@@ -31,7 +31,6 @@ class SearchNodesDialogUIImpl implements SearchNodesDialogUI {
         def mergedOptions = [
             knowledgeNetwork: 'Full - Human',
             function: 'All',
-            namespace: 'HGNC Approved Gene Symbols',
             connectToNetwork: false
         ] + options
 
@@ -116,7 +115,7 @@ class SearchNodesDialogUIImpl implements SearchNodesDialogUI {
                             gridwidth: 1, gridheight: 1,
                             weightx: 0.8, weighty: 0.1,
                             fill: HORIZONTAL, insets: [10, 0, 0, 0]))
-                    label(text: 'Entities', constraints: gbc(anchor: LINE_START,
+                    label(text: "Entities\n(use * for wildcard)", constraints: gbc(anchor: LINE_START,
                             gridx: 0, gridy: 3,
                             gridwidth: 1, gridheight: 1,
                             weightx: 0.0, weighty: 0.1,
@@ -232,8 +231,9 @@ class SearchNodesDialogUIImpl implements SearchNodesDialogUI {
                 kn.addAll(data.knowledgeNetworks)
                 knBox.selectedItem = mergedOptions.knowledgeNetwork
 
+                ns.add('All')
                 ns.addAll(data.namespaces)
-                nsBox.selectedItem = data.namespaces.find {it.name == mergedOptions.namespace}
+                nsBox.selectedItem = 'All'
 
                 fx.addAll(['All'] + data.functions)
                 fxBox.selectedItem = mergedOptions.function
