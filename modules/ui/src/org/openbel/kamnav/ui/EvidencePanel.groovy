@@ -85,7 +85,7 @@ class EvidencePanel implements EdgeUpdateable {
                                     ev.biological_context.
                                         sort { it.key }.
                                         findAll {it.value}.each {
-                                            html += "<tr valign=\"top\"><td>${it.key}</td><td>${it.value}</td></tr>"
+                                            html += "<tr valign=\"top\"><td><strong>${it.key}</strong></td><td>${it.value}</td></tr>"
                                         }
                                     html += "</table></html>"
                                     annotationPane.text = html
