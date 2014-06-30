@@ -460,6 +460,8 @@ class BasicWsAPI implements WsAPI {
         def loadMap = loadKnowledgeNetwork(name)
         if (!loadMap.handle) return null
 
+        if (entities?.length == 0) return null
+
         def response;
         try {
             response = client.send {
