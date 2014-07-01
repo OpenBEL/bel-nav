@@ -65,4 +65,12 @@ class NodeUtil {
             return [:]
         }
     }
+
+    static def findNodeBySUID(long suid, Set<CyNetwork> networks) {
+        for (CyNetwork cyN : networks) {
+            CyNode cyNode = cyN.getNode(suid)
+            if(cyNode) return [cyN, cyNode]
+        }
+        null
+    }
 }
