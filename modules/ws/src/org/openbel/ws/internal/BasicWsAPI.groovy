@@ -22,6 +22,7 @@ import java.util.regex.Pattern
 
 import static org.cytoscape.model.CyEdge.INTERACTION
 import static org.cytoscape.model.CyNetwork.NAME
+import static org.openbel.kamnav.common.util.EdgeUtil.computeEdgeLabel
 import static org.openbel.kamnav.common.util.EdgeUtil.createEdgeColumns
 import static org.openbel.kamnav.common.util.NodeUtil.createNodeColumns
 import static org.openbel.kamnav.common.util.NodeUtil.toBEL
@@ -352,6 +353,9 @@ class BasicWsAPI implements WsAPI {
             def isNil = wsEdge.attributes()['{http://www.w3.org/2001/XMLSchema-instance}nil']
             if (isNil) return null
 
+            def edgeLabel = computeEdgeLabel(cyN, e)
+            cyN.getRow(e).set(NAME, edgeLabel)
+            cyN.getRow(e).set("shared name", edgeLabel)
             cyN.getRow(e).set('linked', true)
             cyN.getRow(e).set("kam.id", wsEdge.id.toString())
             [
