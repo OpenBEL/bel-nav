@@ -174,6 +174,7 @@ class EvidencePanel implements EdgeUpdateable {
 
             // clear annotations
             annotations.removeAll {true}
+            annotationPane.text = ''
 
             // update statement table
             statements.removeAll {true}
