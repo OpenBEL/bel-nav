@@ -62,6 +62,8 @@ interface WsAPI extends WebServiceClient {
 
     List findNamespaceValues(Collection<Namespace> ns, Collection<Pattern> regex)
 
+    List resolveNodes(List<String> terms, String knowledgeNetwork)
+
     List linkNodes(CyNetwork cyn, String name)
 
     List linkEdges(CyNetwork cyn, String name)
