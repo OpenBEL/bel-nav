@@ -11,6 +11,7 @@ import org.cytoscape.model.CyNetwork
 import org.cytoscape.view.model.CyNetworkView
 import org.cytoscape.view.vizmap.VisualMappingFunctionFactory
 import org.cytoscape.view.vizmap.VisualMappingManager
+import org.cytoscape.view.vizmap.VisualPropertyDependency
 import org.cytoscape.view.vizmap.VisualStyleFactory
 import org.cytoscape.view.vizmap.mappings.DiscreteMapping
 import org.cytoscape.work.AbstractTask
@@ -110,6 +111,9 @@ class ValidateBELNetwork extends AbstractTask {
             vs = kamStyle ? vsFac.createVisualStyle(kamStyle) :
                     vsFac.createVisualStyle('Node/Edge Validation')
             vs.title = 'Node/Edge Validation'
+
+            def lock = vs.allVisualPropertyDependencies.find { it.idString == 'nodeSizeLocked' }
+            if (lock) lock.setDependency(false)
             vmManager.addVisualStyle(vs)
         }
 

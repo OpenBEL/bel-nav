@@ -199,8 +199,8 @@ locateJava() {
             JAVA="$JAVA_HOME/bin/java"
         else
             warn "JAVA_HOME not set; results may vary"
-            JAVA=`type java`
-            JAVA=`expr "$JAVA" : '.*is \(.*\)$'`
+            JAVA=$(which java)
+            
             if [ "x$JAVA" = "x" ]; then
                 die "java command not found"
             fi
@@ -328,12 +328,12 @@ init() {
 }
 
 run() {
-    OPTS="-Dkaraf.startLocalConsole=true -Dkaraf.startRemoteShell=true"
+    OPTS="-Dkaraf.startLocalConsole=true -Dkaraf.startRemoteShell=false"
     MAIN=org.cytoscape.launcher.internal.Launcher
     while [ "$1" != "" ]; do
         case $1 in
             'clean')
-                rm -Rf $KARAF_DATA
+                rm -Rf "$KARAF_DATA"
                 shift
                 ;;
             'debug')
@@ -351,7 +351,7 @@ run() {
                 shift
                 ;;
             'server')
-                OPTS="-Dkaraf.startLocalConsole=false -Dkaraf.startRemoteShell=true"
+                OPTS="-Dkaraf.startLocalConsole=false -Dkaraf.startRemoteShell=false"
                 shift
                 ;;
             'client')
