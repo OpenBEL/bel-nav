@@ -203,7 +203,7 @@ class BasicWsAPI implements WsAPI {
 
     @Override
     List resolveNodes(List<String> terms, String knowledgeNetwork) {
-        def loadMap = loadKnowledgeNetwork(name)
+        def loadMap = loadKnowledgeNetwork(knowledgeNetwork)
 
         if (!terms) [].asImmutable()
 
@@ -232,12 +232,12 @@ class BasicWsAPI implements WsAPI {
         if (!resNodes || !resNodes.hasNext()) [].asImmutable()
 
         resNodes.collect {
-            def isNil = wsNode.attributes()['{http://www.w3.org/2001/XMLSchema-instance}nil']
+            def isNil = it.attributes()['{http://www.w3.org/2001/XMLSchema-instance}nil']
             if (isNil) return null
 
-            def id = wsNode.id.toString()
-            def fx = FunctionType.valueOf(wsNode.function.toString()).displayValue
-            def lbl = wsNode.label.toString()
+            def id = it.id.toString()
+            def fx = FunctionType.valueOf(it.function.toString()).displayValue
+            def lbl = it.label.toString()
 
             [id: id, fx: fx, lbl: lbl]
         }.asImmutable()
