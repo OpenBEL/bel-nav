@@ -201,6 +201,49 @@ class BasicWsAPI implements WsAPI {
         }
     }
 
+    @Override
+    List resolveNodes(List<String> terms, String knowledgeNetwork) {
+        def loadMap = loadKnowledgeNetwork(knowledgeNetwork)
+
+        if (!terms) [].asImmutable()
+
+        def response
+        try {
+            response = client.send {
+                body {
+                    ResolveNodesRequest('xmlns': 'http://belframework.org/ws/schemas') {
+                        handle {
+                            handle(loadMap.handle)
+                        }
+                        terms.collect {
+                            String term ->
+                                nodes {
+                                    label(term)
+                                }
+                        }
+                    }
+                }
+            }
+        } catch (SOAPFaultException ex) {
+            soapError("ResolveNodesRequest", ex)
+            throw ex
+        }
+
+        def resNodes = response.ResolveNodesResponse.kamNodes.iterator()
+        if (!resNodes || !resNodes.hasNext()) [].asImmutable()
+
+        resNodes.collect {
+            def isNil = it.attributes()['{http://www.w3.org/2001/XMLSchema-instance}nil']
+            if (isNil) return null
+
+            def id = it.id.toString()
+            def fx = FunctionType.valueOf(it.function.toString()).displayValue
+            def lbl = it.label.toString()
+
+            [id: id, fx: fx, lbl: lbl]
+        }.asImmutable()
+    }
+
     /**
      * {@inheritDoc}
      */

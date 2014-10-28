@@ -232,7 +232,7 @@ if "%KARAF_PROFILER%" == "" goto :RUN
     call %KARAF_PROFILER_SCRIPT%
 
 :RUN
-    SET OPTS=-Dkaraf.startLocalConsole=true -Dkaraf.startRemoteShell=true
+    SET OPTS=-Dkaraf.startLocalConsole=true -Dkaraf.startRemoteShell=false
     SET MAIN=org.cytoscape.launcher.internal.Launcher
     SET SHIFT=false
 
@@ -255,7 +255,7 @@ if "%KARAF_PROFILER%" == "" goto :RUN
     goto :RUN_LOOP
 
 :EXECUTE_SERVER
-    SET OPTS=-Dkaraf.startLocalConsole=false -Dkaraf.startRemoteShell=true
+    SET OPTS=-Dkaraf.startLocalConsole=false -Dkaraf.startRemoteShell=false
     shift
     goto :RUN_LOOP
 
