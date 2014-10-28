@@ -216,9 +216,10 @@ class BasicWsAPI implements WsAPI {
                             handle(loadMap.handle)
                         }
                         terms.collect {
-                            nodes {
-                                label(it)
-                            }
+                            String term ->
+                                nodes {
+                                    label(term)
+                                }
                         }
                     }
                 }
