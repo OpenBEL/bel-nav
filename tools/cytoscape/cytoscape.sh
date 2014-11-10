@@ -7,7 +7,7 @@
 # First, see if help (-h, --help) or version (-v, --version) command line arguments
 # are specified. If so, display help or the current version and exit.
 
-CYTOSCAPE_VERSION="Cytoscape version: 3.1.1"
+CYTOSCAPE_VERSION="Cytoscape version: 3.2.0"
 
 if [[ $# > 0 ]]; then
 	if [ $1 == "-h" -o $1 == "--help" ]; then
@@ -47,7 +47,7 @@ fi
 
 export JAVA_DEBUG_OPTS="-Xdebug -Xnoagent -Djava.compiler=NONE -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=${DEBUG_PORT}"
 if [ `uname` = "Darwin" ]; then
-	CYTOSCAPE_MAC_OPTS="-Xdock:icon=cytoscape_logo_512.png -Xdock:name=Cytoscape"
+	CYTOSCAPE_MAC_OPTS="-Xdock:icon=$script_path/framework/cytoscape_logo_512.png -Xdock:name=Cytoscape"
 fi
 
 #vm_options_path=$HOME/.cytoscape
