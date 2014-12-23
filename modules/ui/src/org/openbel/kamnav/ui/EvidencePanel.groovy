@@ -10,6 +10,8 @@ import org.cytoscape.model.CyEdge
 import org.cytoscape.model.CyNetwork
 import org.jdesktop.swingx.JXHyperlink
 import org.jdesktop.swingx.JXTable
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 
 import javax.swing.*
 import javax.swing.event.ListSelectionEvent
@@ -22,6 +24,9 @@ import static javax.swing.ListSelectionModel.SINGLE_SELECTION
 import static org.openbel.kamnav.common.util.Util.createColumn
 
 class EvidencePanel implements EdgeUpdateable {
+
+    private static String CITATION_WIKI = "http://wiki.openbel.org/display/BELNA/Citation"
+    private static final Logger log = LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME)
 
     final SwingBuilder swing
     final Expando cyr
@@ -73,13 +78,9 @@ class EvidencePanel implements EdgeUpdateable {
                                         annotations.removeAll {true}
                                         return
                                     }
+
                                     def ev = selection.first().ev
-                                    def type = ev.citation.type
-                                    def ref = ev.citation.reference
-                                    def name = ev.citation.name
-                                    citationName.text = name
-                                    citationLink.text = ref ?: ''
-                                    citationLink.URI = makeCitationURI(type, ref)
+                                    updateCitation(ev.citation)
 
                                     def html = "<html><table width=\"100%\" height=\"100%\">"
                                     ev.biological_context.
@@ -201,16 +202,33 @@ class EvidencePanel implements EdgeUpdateable {
         canonical in columnEvidence
     }
 
-    static URI makeCitationURI(type, ref) {
-        if (!ref) return null
+    private void updateCitation(citation) {
+        citationName.text = citation.name
 
-        switch(type) {
+        switch(citation.type) {
             case 'PUBMED':
-                return new URI("http://www.ncbi.nlm.nih.gov/pubmed/$ref")
+                try {
+                    def link = new URI("http://www.ncbi.nlm.nih.gov/pubmed/${citation.reference}")
+                    citationLink.URI = link
+                } catch (URISyntaxException e) {
+                    log.error("Invalid citation URI.", e)
+                    citationLink.URI  = new URI(CITATION_WIKI)
+                    citationLink.text = "Invalid link for citation. Click for help with BEL citation format."
+                }
+                break
             case 'ONLINE_RESOURCE':
-                return new URI(ref)
+                try {
+                    def link = new URI(citation.reference)
+                    citationLink.URI = link
+                } catch (URISyntaxException e) {
+                    log.error("Invalid citation URI.", e)
+                    citationLink.URI  = new URI(CITATION_WIKI)
+                    citationLink.text = "Invalid link for citation. Click for help with BEL citation format."
+                }
+                break
             default:
-                return null
+                citationLink.URI  = null
+                citationLink.text = ""
         }
     }
 }
