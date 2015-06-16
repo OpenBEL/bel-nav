@@ -308,7 +308,6 @@ project('modules/ws') {
         org.openbel.kamnav.common.util,
         org.openbel.ws.api,
         org.osgi.framework,
-        org.osgi.service.event,
         org.slf4j;version="[1,2)",
         wslite.http,
         wslite.soap,
