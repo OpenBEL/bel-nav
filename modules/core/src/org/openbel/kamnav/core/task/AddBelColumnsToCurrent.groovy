@@ -4,7 +4,6 @@ import groovy.transform.TupleConstructor
 import org.cytoscape.application.CyApplicationManager
 import org.cytoscape.model.CyNetwork
 import org.cytoscape.model.CyRow
-import org.cytoscape.work.AbstractTask
 import org.cytoscape.work.TaskMonitor
 import org.openbel.framework.common.InvalidArgument
 import org.openbel.framework.common.model.Term
@@ -13,13 +12,13 @@ import static org.cytoscape.model.CyNetwork.NAME
 import static org.openbel.framework.common.bel.parser.BELParser.parseTerm
 
 @TupleConstructor
-public class AddBelColumnsToCurrent extends AbstractTask {
+public class AddBelColumnsToCurrent extends BaseTask {
 
     final CyApplicationManager appMgr
     final CyNetwork cyN
 
 	@Override
-	public void run(TaskMonitor monitor) {
+	public void doRun(TaskMonitor m) {
         def network = cyN ?: appMgr?.currentNetwork
         if (!network) return
 

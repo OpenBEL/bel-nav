@@ -2,7 +2,6 @@ package org.openbel.kamnav.core.task
 
 import org.cytoscape.application.CyApplicationManager
 import org.cytoscape.view.model.CyNetworkView
-import org.cytoscape.work.AbstractTask
 import org.cytoscape.work.TaskMonitor
 import org.cytoscape.work.Tunable
 import org.cytoscape.work.util.ListSingleSelection
@@ -12,7 +11,7 @@ import org.slf4j.LoggerFactory
 
 import static org.cytoscape.model.CyNetwork.NAME
 
-class LinkKnowledgeNetwork extends AbstractTask {
+class LinkKnowledgeNetwork extends BaseTask {
 
     private static final Logger msg = LoggerFactory.getLogger("CyUserMessages")
 
@@ -46,21 +45,21 @@ class LinkKnowledgeNetwork extends AbstractTask {
     /**
      * {@inheritDoc}
      */
-    @Override void run(TaskMonitor monitor) throws Exception {
+    @Override void doRun(TaskMonitor m) throws Exception {
         def cyN = cyNv.model
         if (!cyN.nodeCount) {
             msg.error("0 nodes in network.")
             return
         }
         def name = cyN.getRow(cyN).get(NAME, String.class)
-        monitor.title = "Link $name (Network) to $knName (Knowledge Network)"
+        m.title = "Link $name (Network) to $knName (Knowledge Network)"
 
-        monitor.statusMessage = "Loading $knName."
+        m.statusMessage = "Loading $knName."
         wsAPI.loadKnowledgeNetwork(knName)
 
-        monitor.statusMessage = "Resolving nodes to $knName"
+        m.statusMessage = "Resolving nodes to $knName"
         def nodeCount = wsAPI.linkNodes(cyNv.model, knName).count {it}
-        monitor.statusMessage = "Resolving edges to $knName"
+        m.statusMessage = "Resolving edges to $knName"
         def edgeCount = wsAPI.linkEdges(cyNv.model, knName).count {it}
         msg.info("Linked ${nodeCount} nodes and ${edgeCount} edges.")
     }

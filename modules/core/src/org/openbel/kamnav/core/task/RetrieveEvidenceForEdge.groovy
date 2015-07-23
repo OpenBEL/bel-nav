@@ -5,14 +5,13 @@ import org.cytoscape.model.CyEdge
 import org.cytoscape.model.CyTableFactory
 import org.cytoscape.model.CyTableManager
 import org.cytoscape.view.model.CyNetworkView
-import org.cytoscape.work.AbstractTask
 import org.cytoscape.work.TaskMonitor
 import org.openbel.ws.api.WsAPI
 
 import static org.openbel.kamnav.core.Util.addEvidenceForEdge
 
 @TupleConstructor
-class RetrieveEvidenceForEdge extends AbstractTask {
+class RetrieveEvidenceForEdge extends BaseTask {
 
     final CyNetworkView cyNv
     final CyEdge cyE
@@ -21,7 +20,7 @@ class RetrieveEvidenceForEdge extends AbstractTask {
     final CyTableManager mgr
 
     @Override
-    void run(TaskMonitor m) throws Exception {
+    void doRun(TaskMonitor m) throws Exception {
         m.title = "Retrieving evidence for edge."
         addEvidenceForEdge(mgr, fac, wsAPI, cyNv.model, cyE)
     }

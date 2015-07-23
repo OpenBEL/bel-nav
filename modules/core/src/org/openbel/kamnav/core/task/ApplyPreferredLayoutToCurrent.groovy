@@ -5,12 +5,11 @@ import org.cytoscape.application.CyApplicationManager
 import org.cytoscape.view.layout.CyLayoutAlgorithm
 import org.cytoscape.view.layout.CyLayoutAlgorithmManager
 import org.cytoscape.view.model.CyNetworkView
-import org.cytoscape.work.AbstractTask
 import org.cytoscape.work.TaskIterator
 import org.cytoscape.work.TaskMonitor
 
 @TupleConstructor
-public class ApplyPreferredLayoutToCurrent extends AbstractTask {
+public class ApplyPreferredLayoutToCurrent extends BaseTask {
 
     private static final String DEF_LAYOUT = "force-directed"
     private static final String PL_PROP = "preferredLayoutAlgorithm"
@@ -20,7 +19,7 @@ public class ApplyPreferredLayoutToCurrent extends AbstractTask {
     final Properties props
 
 	@Override
-	public void run(TaskMonitor monitor) {
+	public void doRun(TaskMonitor monitor) {
         CyNetworkView view = appMgr.currentNetworkView
         if (!view) return
 

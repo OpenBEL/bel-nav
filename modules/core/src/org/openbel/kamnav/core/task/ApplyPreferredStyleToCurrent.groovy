@@ -6,20 +6,19 @@ import org.cytoscape.event.CyEventHelper
 import org.cytoscape.view.model.CyNetworkView
 import org.cytoscape.view.vizmap.VisualMappingManager
 import org.cytoscape.view.vizmap.VisualStyle
-import org.cytoscape.work.AbstractTask
 import org.cytoscape.work.TaskMonitor
 
 import static org.openbel.kamnav.core.Constant.NAV_VIS
 
 @TupleConstructor
-public class ApplyPreferredStyleToCurrent extends AbstractTask {
+public class ApplyPreferredStyleToCurrent extends BaseTask {
 
     final CyApplicationManager appMgr
     final CyEventHelper evtHelper
     final VisualMappingManager visMgr
 
 	@Override
-	public void run(TaskMonitor monitor) {
+	public void doRun(TaskMonitor m) {
         CyNetworkView view = appMgr.currentNetworkView
         if (!view) return
 

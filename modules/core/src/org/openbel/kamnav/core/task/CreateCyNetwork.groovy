@@ -7,7 +7,6 @@ import org.cytoscape.model.CyNetworkFactory
 import org.cytoscape.model.CyNetworkManager
 import org.cytoscape.view.model.CyNetworkViewFactory
 import org.cytoscape.view.model.CyNetworkViewManager
-import org.cytoscape.work.AbstractTask
 import org.cytoscape.work.TaskMonitor
 import org.cytoscape.work.Tunable
 import org.cytoscape.work.util.ListSingleSelection
@@ -17,7 +16,7 @@ import static java.lang.String.format
 import static org.cytoscape.model.CyNetwork.NAME
 
 @TupleConstructor
-class CreateCyNetwork extends AbstractTask {
+class CreateCyNetwork extends BaseTask {
 
     final CyApplicationManager appMgr
     final CyNetworkFactory cynFac
@@ -45,13 +44,13 @@ class CreateCyNetwork extends AbstractTask {
      * {@inheritDoc}
      */
     @Override
-    void run(TaskMonitor monitor) throws Exception {
-        monitor.title = "Load knowledge network for $knName".toString()
-        monitor.statusMessage = format("Loading %s", knName)
-        monitor.progress = -1;
+    void doRun(TaskMonitor m) throws Exception {
+        m.title = "Load knowledge network for $knName".toString()
+        m.statusMessage = format("Loading %s", knName)
+        m.progress = -1;
         Map load = wsAPI.loadKnowledgeNetwork(knName)
         if (!load.handle) {
-            monitor.statusMessage = load.message
+            m.statusMessage = load.message
             return
         }
 

@@ -4,7 +4,6 @@ import groovy.transform.TupleConstructor
 import org.cytoscape.model.CyTableFactory
 import org.cytoscape.model.CyTableManager
 import org.cytoscape.view.model.CyNetworkView
-import org.cytoscape.work.AbstractTask
 import org.cytoscape.work.TaskMonitor
 import org.openbel.kamnav.core.Util
 import org.openbel.ws.api.WsAPI
@@ -13,7 +12,7 @@ import static Boolean.TRUE
 import static org.openbel.kamnav.core.Util.clearEvidenceTable
 
 @TupleConstructor
-class RetrieveEvidenceForNetwork extends AbstractTask {
+class RetrieveEvidenceForNetwork extends BaseTask {
 
     final CyNetworkView cyNv
     final WsAPI wsAPI
@@ -21,7 +20,7 @@ class RetrieveEvidenceForNetwork extends AbstractTask {
     final CyTableManager mgr
 
     @Override
-    void run(TaskMonitor m) throws Exception {
+    void doRun(TaskMonitor m) throws Exception {
         def cyN = cyNv.model
 
         def edges = cyN.edgeList.findAll { edge ->

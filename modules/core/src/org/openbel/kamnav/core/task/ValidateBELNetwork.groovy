@@ -13,7 +13,6 @@ import org.cytoscape.view.vizmap.VisualMappingFunctionFactory
 import org.cytoscape.view.vizmap.VisualMappingManager
 import org.cytoscape.view.vizmap.VisualStyleFactory
 import org.cytoscape.view.vizmap.mappings.DiscreteMapping
-import org.cytoscape.work.AbstractTask
 import org.cytoscape.work.TaskMonitor
 import org.openbel.framework.common.InvalidArgument
 import org.openbel.framework.common.bel.parser.BELStatementLexer
@@ -38,7 +37,7 @@ import static org.openbel.kamnav.common.util.Util.createColumn
  * of a {@link org.cytoscape.model.CyNetwork}.
  */
 @TupleConstructor
-class ValidateBELNetwork extends AbstractTask {
+class ValidateBELNetwork extends BaseTask {
 
     private static final Logger log = LoggerFactory.getLogger("CyUserMessages")
 
@@ -49,7 +48,7 @@ class ValidateBELNetwork extends AbstractTask {
     final VisualMappingFunctionFactory discreteFxFac
 
     @Override
-    void run(TaskMonitor monitor) throws Exception {
+    void doRun(TaskMonitor m) throws Exception {
         def cyN = cyNv.model
         if (cyN.nodeCount == 0 && cyN.edgeCount == 0) {
             log.error("Network is empty.")
