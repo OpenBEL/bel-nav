@@ -2,17 +2,17 @@
 apply plugin: 'idea'
 defaultTasks 'compileGroovy', 'jar'
 
-subprojects {
-  apply plugin: 'groovy'
-  apply plugin: 'osgi'
-  apply plugin: 'idea'
+apply plugin: 'groovy'
+apply plugin: 'osgi'
+apply plugin: 'idea'
 
-  project.ext {
+project.ext {
     sourceDir = 'src'
     testDir   = 'test'
     buildDir  = 'build'
-  }
-  configurations {
+}
+
+configurations {
     provided
     compileGroovy.sourceCompatibility = 1.7
     compileGroovy.targetCompatibility = 1.7
@@ -20,16 +20,19 @@ subprojects {
     compileTestGroovy.sourceCompatibility = 1.7
     compileTestGroovy.targetCompatibility = 1.7
     compileTestGroovy.groovyOptions.optimizationOptions.indy = true
-  }
-  sourceSets {
+}
+
+sourceSets {
     main { compileClasspath += configurations.provided }
-  }
-  idea {
+}
+
+idea {
     module {
       scopes.PROVIDED.plus += configurations.provided
     }
-  }
-  sourceSets {
+}
+
+sourceSets {
     main {
       groovy { srcDirs = [project.ext.sourceDir] }
       resources { srcDir 'resources' }
@@ -41,282 +44,103 @@ subprojects {
       resources { srcDir 'test-resources' }
       output.classesDir = "$project.ext.buildDir/test-classes"
     }
-  }
-  dependencies {
+}
+
+dependencies {
     provided fileTree(dir: "$System.env.DEV_CY3_LIBS_DIR/org/apache/felix", include: '**/*.jar')
     provided fileTree(dir: "$System.env.DEV_CY3_LIBS_DIR/org/cytoscape", include: '**/*.jar')
     provided fileTree(dir: "$System.env.DEV_CY3_LIBS_DIR/org/eclipse/osgi", include: '**/*.jar')
-  }
+    compile files(
+        "$rootDir/libs/compile/antlr-runtime-3.3.jar",
+        "$rootDir/libs/compile/glazedlists_java15-1.9.0.jar",
+        "$rootDir/libs/compile/groovy-all-2.1.7-indy.jar",
+        "$rootDir/libs/compile/groovy-common-extensions-0.5.jar",
+        "$rootDir/libs/compile/groovy-wslite-0.8.0.jar",
+        "$rootDir/libs/compile/org.openbel.framework.common-3.0.0.jar",
+        "$rootDir/libs/compile/org.openbel.framework.ws.model-3.0.0.jar",
+        "$rootDir/libs/compile/slf4j-api-1.7.5.jar",
+        "$rootDir/libs/compile/swingx-all-1.6.5-1.jar",
+    )
+    testCompile files(
+        "$rootDir/libs/test/junit-4.11.jar"
+    )
 }
 
-project('modules/common') {
-  idea {
-    module {
-      name = 'common'
-    }
-  }
-
-  dependencies {
-    compile files(
-      "$rootDir/libs/compile/antlr-runtime-3.3.jar",
-      "$rootDir/libs/compile/groovy-all-2.1.7-indy.jar",
-      "$rootDir/libs/compile/slf4j-api-1.7.5.jar",
-      "$rootDir/libs/compile/org.openbel.framework.common-3.0.0.jar")
-    testCompile files(
-      "$rootDir/libs/test/junit-4.11.jar")
-  }
-
-  jar {
-    baseName = 'kamnav-common'
+jar {
+    baseName = 'kamnav'
     version = '1.0.0'
     manifest {
-      classesDir = sourceSets.main.output.classesDir
-      classpath = sourceSets.main.runtimeClasspath
-      version = '1.0.0'
-      name = 'OpenBEL KamNav - Common'
-      symbolicName = 'org.openbel.kamnav.common'
-      instruction 'Import-Package', '''
-        groovy.lang;version="[2.1,3)",
-        groovy.transform;version="[2.1,3)",
-        groovy.util;version="[2.1,3)",
-        groovy.util.slurpersupport;version="[2.1,3)",
-        org.codehaus.groovy.reflection;version="[2.1,3)",
-        org.codehaus.groovy.runtime;version="[2.1,3)",
-        org.codehaus.groovy.runtime.callsite;version="[2.1,3)",
-        org.codehaus.groovy.runtime.typehandling;version="[2.1,3)",
-        org.codehaus.groovy.runtime.wrappers;version="[2.1,3)",
-        org.codehaus.groovy.util;version="[2.1,3)",
-        org.codehaus.groovy.vmplugin.v7;version="[2.1,3)",
-        org.cytoscape.model;version="[3,4)",
-        org.openbel.framework.common;version="[3,4)",
-        org.openbel.framework.common.bel.parser;version="[3,4)",
-        org.openbel.framework.common.enums;version="[3,4)",
-        org.openbel.framework.common.model;version="[3,4)",
-        org.osgi.framework,
-        org.slf4j;version="[1,2)"
-      '''
-      instruction 'Export-Package', '''
-        org.openbel.kamnav.common;version="1.0.0",
-        org.openbel.kamnav.common.extensions;version="1.0.0",
-        org.openbel.kamnav.common.facet;version="1.0.0",
-        org.openbel.kamnav.common.model;version="1.0.0",
-        org.openbel.kamnav.common.util;version="1.0.0"
-      '''
+        classesDir = sourceSets.main.output.classesDir
+        classpath = sourceSets.main.runtimeClasspath
+        version = '1.0.0'
+        name = 'OpenBEL KamNav'
+        symbolicName = 'org.openbel.kamnav'
+        instruction 'Import-Package', '''
+            ca.odell.glazedlists,
+            ca.odell.glazedlists.event,
+            ca.odell.glazedlists.gui,
+            ca.odell.glazedlists.swing,
+            groovy.json;version="[2.1,3)",
+            groovy.lang;version="[2.1,3)",
+            groovy.swing;version="[2.1,3)",
+            groovy.transform;version="[2.1,3)",
+            groovy.util;version="[2.1,3)",
+            groovy.util.slurpersupport;version="[2.1,3)",
+            javax.net.ssl,
+            javax.swing,
+            javax.accessibility,
+            javax.swing.border,
+            javax.swing.event,
+            javax.swing.plaf,
+            javax.swing.table,
+            org.antlr.runtime,
+            org.codehaus.groovy.reflection;version="[2.1,3)",
+            org.codehaus.groovy.runtime;version="[2.1,3)",
+            org.codehaus.groovy.runtime.callsite;version="[2.1,3)",
+            org.codehaus.groovy.runtime.typehandling;version="[2.1,3)",
+            org.codehaus.groovy.runtime.wrappers;version="[2.1,3)",
+            org.codehaus.groovy.util;version="[2.1,3)",
+            org.codehaus.groovy.vmplugin.v7;version="[2.1,3)",
+            org.cytoscape.application;version="[3,4)",
+            org.cytoscape.application.events;version="[3,4)",
+            org.cytoscape.application.swing;version="[3,4)",
+            org.cytoscape.application.swing.events;version="[3,4)",
+            org.cytoscape.event;version="[3,4)",
+            org.cytoscape.io.webservice;version="[3,4)",
+            org.cytoscape.model;version="[3,4)",
+            org.cytoscape.model.events;version="[3,4)",
+            org.cytoscape.property;version="[3,4)",
+            org.cytoscape.service.util;version="[3,4)",
+            org.cytoscape.session.events;version="[3,4)",
+            org.cytoscape.task;version="[3,4)",
+            org.cytoscape.task.read;version="[3,4)",
+            org.cytoscape.task.visualize;version="[3,4)",
+            org.cytoscape.view.layout;version="[3,4)",
+            org.cytoscape.view.model;version="[3,4)",
+            org.cytoscape.view.presentation.property;version="[3,4)",
+            org.cytoscape.view.vizmap;version="[3,4)",
+            org.cytoscape.view.vizmap.mappings;version="[3,4)",
+            org.cytoscape.work;version="[3,4)",
+            org.cytoscape.work.util;version="[3,4)",
+            org.jdesktop.swingx,
+            org.jdesktop.swingx.decorator,
+            org.openbel.framework.common;version="[3,4)",
+            org.openbel.framework.common.bel.parser;version="[3,4)",
+            org.openbel.framework.common.enums;version="[3,4)",
+            org.openbel.framework.common.model;version="[3,4)",
+            org.openbel.framework.ws.model;version="[3,4)",
+            org.openbel.ws.api,
+            org.osgi.framework,
+            org.slf4j;version="[1,2)",
+            wslite.http,
+            wslite.soap,
+        '''
+        instruction 'Export-Package', '''
+            org.openbel.kamnav.core;version="1.0.0",
+            org.openbel.kamnav.core.event;version="1.0.0",
+            org.openbel.kamnav.core.task;version="1.0.0",
+        '''
     }
-  }
-}
-
-project('modules/core') {
-  idea {
-    module {
-      name = 'core'
-    }
-  }
-
-  dependencies {
-    compile project(':modules/ui')
-    compile project(':modules/ws')
-    compile files(
-      "$rootDir/libs/compile/groovy-all-2.1.7-indy.jar",
-      "$rootDir/libs/compile/slf4j-api-1.7.5.jar")
-    testCompile files(
-      "$rootDir/libs/test/junit-4.11.jar")
-  }
-
-  jar {
-    baseName = 'kamnav-core'
-    version = '1.0.0'
-    manifest {
-      classesDir = sourceSets.main.output.classesDir
-      classpath = sourceSets.main.runtimeClasspath
-      version = '1.0.0'
-      name = 'OpenBEL KamNav - Core'
-      symbolicName = 'org.openbel.kamnav.core'
-      instruction 'Import-Package', '''
-        groovy.lang;version="[2.1,3)",
-        groovy.transform;version="[2.1,3)",
-        groovy.util;version="[2.1,3)",
-        javax.swing,
-        javax.swing.event,
-        org.antlr.runtime,
-        org.codehaus.groovy.reflection;version="[2.1,3)",
-        org.codehaus.groovy.runtime;version="[2.1,3)",
-        org.codehaus.groovy.runtime.callsite;version="[2.1,3)",
-        org.codehaus.groovy.runtime.typehandling;version="[2.1,3)",
-        org.codehaus.groovy.runtime.wrappers;version="[2.1,3)",
-        org.codehaus.groovy.vmplugin.v7;version="[2.1,3)",
-        org.cytoscape.application;version="[3,4)",
-        org.cytoscape.application.swing;version="[3,4)",
-        org.cytoscape.application.swing.events;version="[3,4)",
-        org.cytoscape.event;version="[3,4)",
-        org.cytoscape.model;version="[3,4)",
-        org.cytoscape.model.events;version="[3,4)",
-        org.cytoscape.property;version="[3,4)",
-        org.cytoscape.service.util;version="[3,4)",
-        org.cytoscape.session.events;version="[3,4)",
-        org.cytoscape.task;version="[3,4)",
-        org.cytoscape.task.read;version="[3,4)",
-        org.cytoscape.task.visualize;version="[3,4)",
-        org.cytoscape.view.layout;version="[3,4)",
-        org.cytoscape.view.model;version="[3,4)",
-        org.cytoscape.view.presentation.property;version="[3,4)",
-        org.cytoscape.view.vizmap;version="[3,4)",
-        org.cytoscape.view.vizmap.mappings;version="[3,4)",
-        org.cytoscape.work;version="[3,4)",
-        org.cytoscape.work.util;version="[3,4)",
-        org.openbel.framework.common;version="[3,4)",
-        org.openbel.framework.common.bel.parser;version="[3,4)",
-        org.openbel.framework.common.enums;version="[3,4)",
-        org.openbel.framework.common.model;version="[3,4)",
-        org.openbel.framework.ws.model;version="[3,4)",
-        org.openbel.kamnav.common,
-        org.openbel.kamnav.common.model,
-        org.openbel.kamnav.common.util,
-        org.openbel.kamnav.ui,
-        org.openbel.ws.api,
-        org.osgi.framework,
-        org.slf4j;version="[1,2)"
-      '''
-      instruction 'Bundle-Activator', 'org.openbel.kamnav.core.Activator'
-      instruction 'Export-Package', 'org.openbel.kamnav.core;version="1.0.0"'
-    }
-  }
-}
-
-project('modules/ui') {
-  idea {
-    module {
-      name = 'ui'
-    }
-  }
-
-  dependencies {
-    compile project(':modules/common')
-    compile project(':modules/ws')
-    compile files(
-      "$rootDir/libs/compile/glazedlists_java15-1.9.0.jar",
-      "$rootDir/libs/compile/groovy-all-2.1.7-indy.jar",
-      "$rootDir/libs/compile/slf4j-api-1.7.5.jar",
-      "$rootDir/libs/compile/swingx-all-1.6.5-1.jar")
-    testCompile files(
-      "$rootDir/libs/test/junit-4.11.jar")
-  }
-
-  jar {
-    baseName = 'kamnav-ui'
-    version = '1.0.0'
-    manifest {
-      classesDir = sourceSets.main.output.classesDir
-      classpath = sourceSets.main.runtimeClasspath
-      version = '1.0.0'
-      name = 'OpenBEL KamNav - UI'
-      symbolicName = 'org.openbel.kamnav.ui'
-      instruction 'Import-Package', '''
-        ca.odell.glazedlists,
-        ca.odell.glazedlists.event,
-        ca.odell.glazedlists.gui,
-        ca.odell.glazedlists.swing,
-        groovy.json;version="[2.1,3)",
-        groovy.lang;version="[2.1,3)",
-        groovy.swing;version="[2.1,3)",
-        groovy.util;version="[2.1,3)",
-        javax.accessibility,
-        javax.swing,
-        javax.swing.border,
-        javax.swing.event,
-        javax.swing.plaf,
-        javax.swing.table,
-        org.codehaus.groovy.reflection;version="[2.1,3)",
-        org.codehaus.groovy.runtime;version="[2.1,3)",
-        org.codehaus.groovy.runtime.callsite;version="[2.1,3)",
-        org.codehaus.groovy.runtime.typehandling;version="[2.1,3)",
-        org.codehaus.groovy.runtime.wrappers;version="[2.1,3)",
-        org.codehaus.groovy.vmplugin.v7;version="[2.1,3)",
-        org.cytoscape.application;version="[3,4)",
-        org.cytoscape.application.events;version="[3,4)",
-        org.cytoscape.application.swing;version="[3,4)",
-        org.cytoscape.event;version="[3,4)",
-        org.cytoscape.model;version="[3,4)",
-        org.cytoscape.model.events;version="[3,4)",
-        org.cytoscape.service.util;version="[3,4)",
-        org.cytoscape.view.layout;version="[3,4)",
-        org.cytoscape.view.model;version="[3,4)",
-        org.cytoscape.view.vizmap;version="[3,4)",
-        org.jdesktop.swingx,
-        org.jdesktop.swingx.decorator,
-        org.openbel.kamnav.common,
-        org.openbel.kamnav.common.facet,
-        org.openbel.kamnav.common.util,
-        org.openbel.ws.api,
-        org.osgi.framework,
-        org.slf4j;version="[1,2)"
-      '''
-      instruction 'Bundle-Activator', 'org.openbel.kamnav.ui.Activator'
-      instruction 'Export-Package', 'org.openbel.kamnav.ui;version="1.0.0"'
-    }
-  }
-}
-
-project('modules/ws') {
-  idea {
-    module {
-      name = 'ws'
-    }
-  }
-
-  dependencies {
-    compile project(':modules/common')
-    compile files(
-      "$rootDir/libs/compile/antlr-runtime-3.3.jar",
-      "$rootDir/libs/compile/groovy-all-2.1.7-indy.jar",
-      "$rootDir/libs/compile/groovy-common-extensions-0.5.jar",
-      "$rootDir/libs/compile/groovy-wslite-0.8.0.jar",
-      "$rootDir/libs/compile/slf4j-api-1.7.5.jar",
-      "$rootDir/libs/compile/org.openbel.framework.common-3.0.0.jar",
-      "$rootDir/libs/compile/org.openbel.framework.ws.model-3.0.0.jar")
-    testCompile files(
-      "$rootDir/libs/test/junit-4.11.jar")
-  }
-
-  jar {
-    baseName = 'kamnav-ws'
-    version = '1.0.0'
-    manifest {
-      classesDir = sourceSets.main.output.classesDir
-      classpath = sourceSets.main.runtimeClasspath
-      version = '1.0.0'
-      name = 'OpenBEL KamNav - Ws'
-      symbolicName = 'org.openbel.kamnav.ws'
-      instruction 'Import-Package', '''
-        groovy.lang;version="[2.1,3)",
-        groovy.util;version="[2.1,3)",
-        org.codehaus.groovy.reflection;version="[2.1,3)",
-        org.codehaus.groovy.runtime;version="[2.1,3)",
-        org.codehaus.groovy.runtime.callsite;version="[2.1,3)",
-        org.codehaus.groovy.runtime.typehandling;version="[2.1,3)",
-        org.codehaus.groovy.runtime.wrappers;version="[2.1,3)",
-        org.codehaus.groovy.vmplugin.v7;version="[2.1,3)",
-        org.cytoscape.application;version="[3,4)",
-        org.cytoscape.io.webservice;version="[3,4)",
-        org.cytoscape.model;version="[3,4)",
-        org.cytoscape.service.util;version="[3,4)",
-        org.cytoscape.work;version="[3,4)",
-        org.openbel.framework.common.enums;version="[3,4)",
-        org.openbel.framework.ws.model;version="[3,4)",
-        org.openbel.kamnav.common,
-        org.openbel.kamnav.common.model,
-        org.openbel.kamnav.common.util,
-        org.openbel.ws.api,
-        org.osgi.framework,
-        org.slf4j;version="[1,2)",
-        wslite.http,
-        wslite.soap,
-        javax.net.ssl
-      '''
-      instruction 'Bundle-Activator', 'org.openbel.ws.internal.Activator'
-      instruction 'Export-Package', 'org.openbel.ws.api;version="1.0.0"'
-    }
-  }
 }
 
 // gradle wrapper, included in project tree
