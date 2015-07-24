@@ -7,8 +7,8 @@ apply plugin: 'osgi'
 apply plugin: 'idea'
 
 project.ext {
-    sourceDir = 'src'
-    testDir   = 'test'
+    sourceDir = 'src/main/groovy'
+    testDir   = 'src/test/groovy'
     buildDir  = 'build'
 }
 

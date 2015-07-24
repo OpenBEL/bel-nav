@@ -1,6 +1,7 @@
 package org.openbel.ws.internal
 
 import groovy.transform.TupleConstructor
+import java.net.Proxy
 import wslite.http.HTTPConnectionFactory
 
 @TupleConstructor()

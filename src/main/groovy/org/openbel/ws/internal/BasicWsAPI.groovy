@@ -420,7 +420,6 @@ class BasicWsAPI implements WsAPI {
     /**
      * {@inheritDoc}
      */
-    @Override
     Edge[] adjacentEdges(Node node, String dir = 'BOTH') {
         def response
         try {
