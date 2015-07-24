@@ -1,0 +1,4 @@
+moduleName=kamnav-common
+moduleVersion=1.0.0
+extensionClasses=org.openbel.kamnav.common.extensions.NodeChildExtensionMethods
+staticExtensionClasses=

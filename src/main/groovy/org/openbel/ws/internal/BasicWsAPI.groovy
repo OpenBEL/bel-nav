@@ -216,16 +216,16 @@ class BasicWsAPI implements WsAPI {
             cyN.getRow(it).set('kam.id', null)
         }
 
-        def eligibleNodes = []
-        cyN.nodeList.collect { n ->
-            def bel = toBEL(cyN, n)
-            if (!bel) return null
-
-            // track what we're requesting; iterate this later
-            eligibleNodes << n
-        }
-
-        if (!eligibleNodes) return [].asImmutable()
+        def validBELNodes = cyN.nodeList.
+                collect { n ->
+                    def bel = toBEL(cyN, n)
+                    if (!bel) return null
+                    def wsFx = toWS(bel.fx)
+                    if (!wsFx) return null
+                    bel
+                }.
+                findAll()
+        if (!validBELNodes) return [].asImmutable()
 
         def response
         try {
@@ -235,15 +235,11 @@ class BasicWsAPI implements WsAPI {
                         handle {
                             handle(loadMap.handle)
                         }
-                        eligibleNodes.collect { CyNode n ->
-                            def bel = toBEL(cyN, n)
-                            if (!bel) return null
-
+                        validBELNodes.collect { bel ->
                             nodes {
-                                function(toWS(bel.fx))
+                                function(bel.fx)
                                 label(bel.lbl)
                             }
-
                         }
                     }
                 }
@@ -291,19 +287,23 @@ class BasicWsAPI implements WsAPI {
             cyN.getRow(it).set('kam.id', null)
         }
 
-        def eligibleEdges = []
-        cyN.edgeList.collect { e ->
+        def validBELEdges = cyN.edgeList.collect { e ->
             def src = toBEL(cyN, e.source)
             def tgt = toBEL(cyN, e.target)
-            def r = cyN.getRow(e).get(INTERACTION, String.class)
-            if (!r || !toWS(r)) return null
-            if (!src || !tgt) return null
+            def r   = cyN.getRow(e).get(INTERACTION, String.class)
+            def wsR = toWS(r)
+            if (!src || !tgt || !r || !wsR) return null
 
-            // track what we're requesting; iterate this later
-            eligibleEdges << e
+            def sourceWsFx = toWS(src.fx)
+            if (!sourceWsFx) return null
+            src.fx = sourceWsFx
+            def targetWsFx = toWS(tgt.fx)
+            if (!targetWsFx) return null
+            tgt.fx = targetWsFx
+
+            [ source: src, relationship: wsR, target: tgt]
         }
-
-        if (!eligibleEdges) return [].asImmutable()
+        if (!validBELEdges) return [].asImmutable()
 
         def response
         try {
@@ -313,22 +313,16 @@ class BasicWsAPI implements WsAPI {
                         handle {
                             handle(loadMap.handle)
                         }
-                        eligibleEdges.collect { CyEdge e ->
-                            def src = toBEL(cyN, e.source)
-                            def tgt = toBEL(cyN, e.target)
-                            def r = cyN.getRow(e).get(INTERACTION, String.class)
-                            if (!r || !toWS(r)) return null
-                            if (!src || !tgt) return null
-
+                        validBELEdges.collect { edge ->
                             edges {
                                 source {
-                                    function(toWS(src.fx))
-                                    label(src.lbl)
+                                    function(edge.source.fx)
+                                    label(edge.source.lbl)
                                 }
-                                relationship(toWS(r))
+                                relationship(edge.relationship)
                                 target {
-                                    function(toWS(tgt.fx))
-                                    label(tgt.lbl)
+                                    function(edge.target.fx)
+                                    label(edge.target.lbl)
                                 }
                             }
                         }
@@ -381,6 +375,12 @@ class BasicWsAPI implements WsAPI {
         def loadMap = loadKnowledgeNetwork(name)
         if (!loadMap.handle) return null
 
+        def validFunctions = functions.
+                collect { fx ->
+                    toWS(fx)
+                }.
+                findAll()
+
         def response
         try {
             response = client.send {
@@ -390,10 +390,12 @@ class BasicWsAPI implements WsAPI {
                             handle(loadMap.handle)
                         }
                         patterns(labelPattern.toString())
-                        filter {
-                            functionTypeCriteria {
-                                functions.collect {
-                                    valueSet(toWS(it))
+                        if (functions) {
+                            filter {
+                                functionTypeCriteria {
+                                    validFunctions.collect { wsFx ->
+                                        valueSet(wsFx)
+                                    }
                                 }
                             }
                         }
@@ -422,13 +424,19 @@ class BasicWsAPI implements WsAPI {
      */
     Edge[] adjacentEdges(Node node, String dir = 'BOTH') {
         def response
+
+        def nodeWsFx = toWS(node.fx)
+        if (!nodeWsFx) {
+            return new Edge[0]
+        }
+
         try {
             response = client.send {
                 body {
                     GetAdjacentKamEdgesRequest('xmlns': 'http://belframework.org/ws/schemas') {
                         kamNode {
                             id(node.id)
-                            function(toWS(node.fx))
+                            function(nodeWsFx)
                             label(node.label)
                         }
                         direction(dir)
@@ -465,6 +473,12 @@ class BasicWsAPI implements WsAPI {
 
         if (entities?.length == 0) return null
 
+        def validFunctions = functions.
+                collect { fx ->
+                    toWS(fx)
+                }.
+                findAll()
+
         def response;
         try {
             response = client.send {
@@ -481,8 +495,8 @@ class BasicWsAPI implements WsAPI {
                         if (functions) {
                             nodeFilter {
                                 functionTypeCriteria {
-                                    functions.collect {
-                                        valueSet(toWS(it))
+                                    validFunctions.collect { wsFx ->
+                                        valueSet(wsFx)
                                     }
                                 }
                             }
@@ -558,26 +572,31 @@ class BasicWsAPI implements WsAPI {
     }
 
     private static def toWS(type) {
-        switch (type) {
-            case FunctionEnum:
-                FunctionType.fromValue(type.displayValue)
-                break;
-            case RelationshipType:
-                org.openbel.framework.ws.model.RelationshipType.fromValue(type.displayValue)
-                break;
-            case String:
-                FunctionEnum fx = FunctionEnum.fromString(type)
-                if (fx)
-                    FunctionType.fromValue(fx.displayValue)
-                else {
-                    RelationshipType r = [
-                        RelationshipType.fromString(type),
-                        RelationshipType.fromAbbreviation(type)
-                    ].find()
-                    if (r)
-                        org.openbel.framework.ws.model.RelationshipType.fromValue(r.displayValue)
-                }
-                break;
+        try {
+            switch (type) {
+                case FunctionEnum:
+                    FunctionType.fromValue(type.displayValue)
+                    break;
+                case RelationshipType:
+                    org.openbel.framework.ws.model.RelationshipType.fromValue(type.displayValue)
+                    break;
+                case String:
+                    FunctionEnum fx = FunctionEnum.fromString(type)
+                    if (fx)
+                        FunctionType.fromValue(fx.displayValue)
+                    else {
+                        RelationshipType r = [
+                                RelationshipType.fromString(type),
+                                RelationshipType.fromAbbreviation(type)
+                        ].find()
+                        if (r)
+                            org.openbel.framework.ws.model.RelationshipType.fromValue(r.displayValue)
+                    }
+                    break;
+            }
+        } catch (IllegalArgumentException e) {
+            // the type is invalid within the ws.model enums; Enum.valueOf(...) will throw IllegalArgumentException
+            return null;
         }
     }
 

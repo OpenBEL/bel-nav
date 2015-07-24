@@ -21,7 +21,7 @@ class Util {
                                LoadVizmapFileTaskFactory vf) {
         // delete/add knowledge network styles (idempotent)
         visMgr.allVisualStyles.findAll { it.title in STYLE_NAMES }.each(visMgr.&removeVisualStyle)
-        vf.loadStyles(Util.class.getResourceAsStream(STYLE_PATH))
+        vf.loadStyles((InputStream) Util.class.getResourceAsStream(STYLE_PATH))
     }
 
     static CyTable getOrCreateEvidenceTable(CyTableManager mgr, CyTableFactory fac) {

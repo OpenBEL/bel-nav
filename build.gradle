@@ -35,13 +35,13 @@ idea {
 sourceSets {
     main {
       groovy { srcDirs = [project.ext.sourceDir] }
-      resources { srcDir 'resources' }
+      resources { srcDir 'src/main/resources' }
       output.classesDir = "$project.ext.buildDir/classes"
       output.resourcesDir = "$project.ext.buildDir/resources"
     }
     test {
       groovy { srcDirs = [project.ext.testDir] }
-      resources { srcDir 'test-resources' }
+      resources { srcDir 'src/test/resources' }
       output.classesDir = "$project.ext.buildDir/test-classes"
     }
 }
@@ -53,13 +53,13 @@ dependencies {
     compile files(
         "$rootDir/libs/compile/antlr-runtime-3.3.jar",
         "$rootDir/libs/compile/glazedlists_java15-1.9.0.jar",
-        "$rootDir/libs/compile/groovy-all-2.1.7-indy.jar",
+        "$rootDir/libs/compile/groovy-all-2.4.4-indy.jar",
         "$rootDir/libs/compile/groovy-common-extensions-0.5.jar",
         "$rootDir/libs/compile/groovy-wslite-0.8.0.jar",
         "$rootDir/libs/compile/org.openbel.framework.common-3.0.0.jar",
         "$rootDir/libs/compile/org.openbel.framework.ws.model-3.0.0.jar",
         "$rootDir/libs/compile/slf4j-api-1.7.5.jar",
-        "$rootDir/libs/compile/swingx-all-1.6.5-1.jar",
+        "$rootDir/libs/compile/swingx-all-1.6.5-1.jar"
     )
     testCompile files(
         "$rootDir/libs/test/junit-4.11.jar"
@@ -133,13 +133,14 @@ jar {
             org.osgi.framework,
             org.slf4j;version="[1,2)",
             wslite.http,
-            wslite.soap,
+            wslite.soap
         '''
         instruction 'Export-Package', '''
             org.openbel.kamnav.core;version="1.0.0",
             org.openbel.kamnav.core.event;version="1.0.0",
-            org.openbel.kamnav.core.task;version="1.0.0",
+            org.openbel.kamnav.core.task;version="1.0.0"
         '''
+        instruction 'Bundle-Activator', 'org.openbel.kamnav.core.Activator'
     }
 }
 

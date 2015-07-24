@@ -1,5 +1,8 @@
 package org.openbel.kamnav.core
 
+import groovy.swing.SwingBuilder
+import groovy.transform.PackageScope
+import org.cytoscape.application.CyApplicationConfiguration
 import org.cytoscape.application.CyApplicationManager
 import org.cytoscape.application.swing.AbstractCyAction
 import org.cytoscape.application.swing.CyAction
@@ -22,16 +25,28 @@ import org.cytoscape.view.vizmap.VisualMappingManager
 import org.cytoscape.view.vizmap.VisualStyleFactory
 import org.cytoscape.work.TaskFactory
 import org.cytoscape.work.TaskManager
+import org.jdesktop.swingx.JXHyperlink
+import org.jdesktop.swingx.JXList
+import org.jdesktop.swingx.JXTable
+import org.jdesktop.swingx.JXTaskPane
+import org.jdesktop.swingx.JXTaskPaneContainer
 import org.openbel.framework.common.enums.FunctionEnum
 import org.openbel.kamnav.common.model.Namespace
 import org.openbel.kamnav.core.event.BELNetworkListener
 import org.openbel.kamnav.core.event.SessionLoadListener
 import org.openbel.kamnav.core.task.*
 import org.openbel.kamnav.ui.ConfigurationUI
+import org.openbel.kamnav.ui.ConfigurationUIImpl
 import org.openbel.kamnav.ui.EdgeUpdateable
+import org.openbel.kamnav.ui.EvidencePanel
+import org.openbel.kamnav.ui.EvidencePanelComponent
 import org.openbel.kamnav.ui.SearchNeighborhoodUI
+import org.openbel.kamnav.ui.SearchNeighborhoodUIImpl
 import org.openbel.kamnav.ui.SearchNodesDialogUI
+import org.openbel.kamnav.ui.SearchNodesDialogUIImpl
+import org.openbel.ws.api.WsAPI
 import org.openbel.ws.api.WsManager
+import org.openbel.ws.internal.BasicWsManager
 import org.osgi.framework.BundleContext
 
 import java.awt.event.ActionEvent
@@ -48,21 +63,48 @@ import static org.openbel.kamnav.core.Util.getCurrentNetwork
 
 class Activator extends AbstractCyActivator {
 
+    static Activator act;
+    private static BundleContext ctx = null;
+
     /**
      * {@inheritDoc}
      */
     @Override
     void start(BundleContext bc) {
-        def cyr = cyReference(bc, this.&getService, [CyApplicationManager.class,
-                CySwingApplication.class, CyNetworkFactory.class, CyNetworkManager.class,
-                CyNetworkViewFactory.class, CyNetworkViewManager.class,
-                CyLayoutAlgorithmManager.class, CyTableFactory.class, CyTableManager.class,
-                VisualMappingManager.class, CyEventHelper.class, VisualStyleFactory.class,
-                ApplyPreferredLayoutTaskFactory.class, TaskManager.class, WsManager.class] as Class<?>[])
+        ctx = bc
+        act = this
+
+        def cyr = cyReference(
+                bc, this.&getService,
+                [
+                    CyApplicationManager.class, CySwingApplication.class, CyNetworkFactory.class,
+                    CyNetworkManager.class, CyNetworkViewFactory.class, CyNetworkViewManager.class,
+                    CyLayoutAlgorithmManager.class, CyTableFactory.class, CyTableManager.class,
+                    VisualMappingManager.class, CyEventHelper.class, VisualStyleFactory.class,
+                    ApplyPreferredLayoutTaskFactory.class, TaskManager.class
+                ] as Class<?>[]
+        )
+
+        // Ws
+        cyr.wsManager = setupWsManager(bc)
+
+        // UI
+        def swing = new SwingBuilder()
+        swing.registerBeanFactory('taskPaneContainer', JXTaskPaneContainer.class)
+        swing.registerBeanFactory('taskPane', JXTaskPane.class)
+        swing.registerBeanFactory('jxList', JXList.class)
+        swing.registerBeanFactory('jxTable', JXTable.class)
+        swing.registerBeanFactory('jxHyperlink', JXHyperlink.class)
+
+        ConfigurationUI configUI = new ConfigurationUIImpl()
+        SearchNodesDialogUI searchNodesUI = new SearchNodesDialogUIImpl(swing)
+        SearchNeighborhoodUI searchKnUI = new SearchNeighborhoodUIImpl(swing)
+
+        registerAllServices(bc, new EvidencePanelComponent(cyr,
+                new EvidencePanel(swing, cyr)), [name: 'evidence'] as Properties)
+
+        // Core
         CyProperty<Properties> cyProp = getService(bc,CyProperty.class,"(cyPropertyName=cytoscape3.props)");
-        ConfigurationUI configUI = getService(bc, ConfigurationUI.class)
-        SearchNodesDialogUI searchNodesUI = getService(bc, SearchNodesDialogUI.class)
-        SearchNeighborhoodUI searchKnUI = getService(bc, SearchNeighborhoodUI.class)
         VisualMappingFunctionFactory dMapFac = getService(bc,VisualMappingFunctionFactory.class, "(mapping.type=discrete)");
 
         def evUpdateable = getService(bc, EdgeUpdateable.class, "(name=evidence)")
@@ -237,5 +279,17 @@ class Activator extends AbstractCyActivator {
         contributeVisualStyles(cyr.visualMappingManager, vf)
 
         setLoggingExceptionHandler()
+    }
+
+    @PackageScope
+    void register(WsAPI wsAPI) {
+        if (ctx == null) throw new IllegalStateException("ctx is null");
+        registerAllServices(ctx, wsAPI, ['uri': wsAPI.serviceLocation.toString()] as Properties)
+    }
+
+    private WsManager setupWsManager(BundleContext bc) {
+        CyApplicationConfiguration cyAppConfig = getService(bc, CyApplicationConfiguration.class)
+        File configDir = cyAppConfig.getAppConfigurationDirectoryLocation(Activator.class)
+        new BasicWsManager(configDir)
     }
 }
