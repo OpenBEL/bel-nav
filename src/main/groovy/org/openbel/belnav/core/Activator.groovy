@@ -86,7 +86,9 @@ class Activator extends AbstractCyActivator {
         )
 
         // Ws
-        cyr.wsManager = setupWsManager(bc)
+        WsManager wsManager = setupWsManager(bc)
+        registerService(bc, wsManager, WsManager.class, [:] as Properties)
+        cyr.wsManager = wsManager
 
         // UI
         def swing = new SwingBuilder()
