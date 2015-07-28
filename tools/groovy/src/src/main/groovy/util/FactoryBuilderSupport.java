@@ -1,19 +1,21 @@
-/*
- * Copyright 2003-2013 the original author or authors.
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
-
 package groovy.util;
 
 import groovy.lang.Binding;
@@ -776,7 +778,7 @@ public abstract class FactoryBuilderSupport extends Binding {
             return explicitResult.get();
         } else {
             try {
-                return dispathNodeCall(name, args);
+                return dispatchNodeCall(name, args);
             } catch(MissingMethodException mme) {
                 if(mme.getMethod().equals(methodName) && methodMissingDelegate != null) {
                     return methodMissingDelegate.call(new Object[]{methodName, args});
@@ -801,7 +803,15 @@ public abstract class FactoryBuilderSupport extends Binding {
         }
     }
 
+    /**
+     * Use {@link FactoryBuilderSupport#dispatchNodeCall(Object, Object)} instead.
+     */
+    @Deprecated
     protected Object dispathNodeCall(Object name, Object args) {
+        return dispatchNodeCall(name, args);
+    }
+
+    protected Object dispatchNodeCall(Object name, Object args) {
         Object node;
         Closure closure = null;
         List list = InvokerHelper.asList(args);
@@ -991,7 +1001,7 @@ public abstract class FactoryBuilderSupport extends Binding {
     /**
      * Removes the last context from the stack.
      *
-     * @return the contet just removed
+     * @return the content just removed
      */
     protected Map<String, Object> popContext() {
         if (!getProxyBuilder().getContexts().isEmpty()) {
@@ -1269,6 +1279,10 @@ public abstract class FactoryBuilderSupport extends Binding {
 
     public void addDisposalClosure(Closure closure) {
         disposalClosures.add(closure);
+    }
+
+    public List<Closure> getDisposalClosures() {
+        return Collections.unmodifiableList(disposalClosures);
     }
 
     public void dispose() {

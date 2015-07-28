@@ -1,19 +1,21 @@
-/*
- * Copyright 2003-2007 the original author or authors.
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
-
 package groovy.ui.text;
 
 import java.awt.Color;
@@ -48,12 +50,22 @@ public class GroovyFilter extends StructuredSyntaxDocumentFilter {
     public static final String COMMENT = "comment";
     public static final String SLASH_STAR_COMMENT = "/\\*(?s:.)*?(?:\\*/|\\z)";
     public static final String SLASH_SLASH_COMMENT = "//.*";
+
     public static final String QUOTES =
-            "(?ms:\"{3}(?!\\\"{1,3}).*?(?:\"{3}|\\z))|(?:\"{1}(?!\\\").*?(?:\"|\\Z))";
+            "(?ms:\"{3}.*?(?:\"{3}|\\z))|(?:\"{1}.*?(?:\"|\\Z))";
+
     public static final String SINGLE_QUOTES =
-            "(?ms:'{3}(?!'{1,3}).*?(?:'{3}|\\z))|(?:'[^'].*?(?:'|\\z))";
+            "(?ms:'{3}(?!'{1,3}).*?(?:'{3}|\\z))|(?:'{1}.*?(?:'|\\z))";
+
     public static final String SLASHY_QUOTES = "(?:/[^/*].*?/|(?ms:\\$/.*?(?:/\\$|\\z)))";
-    public static final String DIGIT = "\\d+?[efld]?";
+
+    public static final String DIGIT = "DIGIT";
+    public static final String DECIMAL_INTEGER_LITERAL = "(?:0|[1-9](?:[_0-9]*[0-9])?)[lL]?";
+    public static final String HEX_INTEGER_LITERAL = "0[xX][0-9a-fA-F](?:[0-9a-fA-F_]*[0-9a-fA-F])?";
+    public static final String OCTAL_INTEGER_LITERAL = "0[0-7](?:[_0-7]*[0-7])?";
+    public static final String BINARY_INTEGER_LITERAL = "0[bB][01](?:[_01]*[01])?";
+    public static final String DECIMAL_FLOATING_POINT_LITERAL = "(?:0|[1-9](?:[_0-9]*[0-9])?)?\\.?[0-9](?:[_0-9]*[0-9])?(?:[eE][+-]?[0-9]+(?:[_0-9]*[0-9])?)?[fFdD]?";
+    public static final String HEXADECIMAL_FLOATING_POINT_LITERAL = "0[xX](?:[0-9a-fA-F](?:[0-9a-fA-F_]*[0-9a-fA-F])?)?\\.?(?:[0-9a-fA-F_]*[0-9a-fA-F])?(?:[pP][+-]?[0-9]+(?:[_0-9]*[0-9])?)?[fFdD]?";
 
     public static final String IDENT = "[\\w\\$&&[\\D]][\\w\\$]*";
     public static final String OPERATION = "[\\w\\$&&[\\D]][\\w\\$]* *\\(";
@@ -117,7 +129,9 @@ public class GroovyFilter extends StructuredSyntaxDocumentFilter {
             "\\bas\\b",
             "\\bin\\b",
             "\\bsynchronized\\b",
-            "\\bnull\\b"};
+            "\\bnull\\b",
+            "\\btrait\\b"
+    };
 
     /**
      * Creates a new instance of GroovyFilter
@@ -163,7 +177,15 @@ public class GroovyFilter extends StructuredSyntaxDocumentFilter {
         getRootNode().putStyle(QUOTES, quotes);
         getRootNode().putStyle(SINGLE_QUOTES, charQuotes);
         getRootNode().putStyle(SLASHY_QUOTES, slashyQuotes);
-        getRootNode().putStyle(DIGIT, digit);
+
+        getRootNode().putStyle(new String[] {
+            HEX_INTEGER_LITERAL,
+            OCTAL_INTEGER_LITERAL,
+            BINARY_INTEGER_LITERAL,
+            DECIMAL_FLOATING_POINT_LITERAL,
+            HEXADECIMAL_FLOATING_POINT_LITERAL,
+            DECIMAL_INTEGER_LITERAL,
+        }, digit);
 
         getRootNode().putStyle(OPERATION, operation);
         StructuredSyntaxDocumentFilter.LexerNode node = createLexerNode();

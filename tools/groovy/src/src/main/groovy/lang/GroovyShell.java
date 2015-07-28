@@ -1,17 +1,20 @@
-/*
- * Copyright 2003-2012 the original author or authors.
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package groovy.lang;
 
@@ -27,6 +30,7 @@ import org.codehaus.groovy.runtime.InvokerInvocationException;
 import java.io.*;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.net.URI;
 import java.security.AccessController;
 import java.security.PrivilegedAction;
 import java.security.PrivilegedActionException;
@@ -40,7 +44,6 @@ import java.util.Map;
  * @author <a href="mailto:james@coredevelopers.net">James Strachan</a>
  * @author Guillaume Laforge
  * @author Paul King
- * @version $Revision$
  */
 public class GroovyShell extends GroovyObjectSupport {
 
@@ -61,6 +64,10 @@ public class GroovyShell extends GroovyObjectSupport {
 
     public GroovyShell(Binding binding) {
         this(null, binding);
+    }
+
+    public GroovyShell(ClassLoader parent, CompilerConfiguration config) {
+        this(parent, new Binding(), config);
     }
 
     public GroovyShell(CompilerConfiguration config) {
@@ -238,23 +245,39 @@ public class GroovyShell extends GroovyObjectSupport {
      * }
      */
     private Object runScriptOrMainOrTestOrRunnable(Class scriptClass, String[] args) {
+        // Always set the "args" property, regardless of what path we take in the code.
+        // Bad enough to have side effects but worse if their behavior is wonky.
+        context.setProperty("args", args);
+
         if (scriptClass == null) {
             return null;
         }
+
+        //TODO: This logic mostly duplicates InvokerHelper.createScript.  They should probably be unified.
+
         if (Script.class.isAssignableFrom(scriptClass)) {
             // treat it just like a script if it is one
-            Script script  = null;
             try {
-                script = (Script) scriptClass.newInstance();
+                Constructor constructor = scriptClass.getConstructor(Binding.class);
+                Script script = (Script) constructor.newInstance(context);
+                return script.run();
             } catch (InstantiationException e) {
                 // ignore instantiation errors,, try to do main
             } catch (IllegalAccessException e) {
                // ignore instantiation errors, try to do main
-            }
-            if (script != null) {
-                script.setBinding(context);
-                script.setProperty("args", args);
-                return script.run();
+            } catch (NoSuchMethodException e) {
+                try {
+                    // Fallback for non-standard "Scripts" that don't have contextual constructor.
+                    Script script = (Script) scriptClass.newInstance();
+                    script.setBinding(context);
+                    return script.run();
+                } catch (InstantiationException e1) {
+                    // ignore instantiation errors, try to do main
+                } catch (IllegalAccessException e1) {
+                    // ignore instantiation errors, try to do main
+                }
+            } catch (InvocationTargetException e) {
+                // ignore instantiation errors, try to do main
             }
         }
         try {
@@ -477,8 +500,59 @@ public class GroovyShell extends GroovyObjectSupport {
                 return new GroovyCodeSource(scriptText, fileName, DEFAULT_CODE_BASE);
             }
         });
-        Class scriptClass = parseClass(gcs);
+        return run(gcs, args);
+    }
+
+    /**
+     * Runs the given script source with command line arguments
+     *
+     * @param source    is the source content of the script
+     * @param args      the command line arguments to pass in
+     */
+    public Object run(GroovyCodeSource source, List args) throws CompilationFailedException {
+        return run(source, ((String[]) args.toArray(new String[args.size()])));
+    }
+
+    /**
+     * Runs the given script source with command line arguments
+     *
+     * @param source    is the source content of the script
+     * @param args      the command line arguments to pass in
+     */
+    public Object run(GroovyCodeSource source, String[] args) throws CompilationFailedException {
+        Class scriptClass = parseClass(source);
         return runScriptOrMainOrTestOrRunnable(scriptClass, args);
+    }
+
+    /**
+     * Runs the given script source with command line arguments
+     *
+     * @param source    is the source content of the script
+     * @param args      the command line arguments to pass in
+     */
+    public Object run(URI source, List args) throws CompilationFailedException, IOException {
+        return run(new GroovyCodeSource(source), ((String[]) args.toArray(new String[args.size()])));
+    }
+
+    /**
+     * Runs the given script source with command line arguments
+     *
+     * @param source    is the source content of the script
+     * @param args      the command line arguments to pass in
+     */
+    public Object run(URI source, String[] args) throws CompilationFailedException, IOException {
+        return run(new GroovyCodeSource(source), args);
+    }
+
+    /**
+     * Runs the given script with command line arguments
+     *
+     * @param in       the stream reading the script
+     * @param fileName is the logical file name of the script (which is used to create the class name of the script)
+     * @param list     the command line arguments to pass in
+     */
+    public Object run(final Reader in, final String fileName, List list) throws CompilationFailedException {
+        return run(in, fileName, (String[]) list.toArray(new String[list.size()]));
     }
 
     /**
@@ -514,7 +588,6 @@ public class GroovyShell extends GroovyObjectSupport {
      */
     public Object evaluate(GroovyCodeSource codeSource) throws CompilationFailedException {
         Script script = parse(codeSource);
-        script.setBinding(context);
         return script.run();
     }
 
@@ -568,6 +641,15 @@ public class GroovyShell extends GroovyObjectSupport {
     /**
      * Evaluates some script against the current Binding and returns the result
      *
+     * @param uri is the URI of the script (which is used to create the class name of the script)
+     */
+    public Object evaluate(URI uri) throws CompilationFailedException, IOException {
+        return evaluate(new GroovyCodeSource(uri));
+    }
+
+    /**
+     * Evaluates some script against the current Binding and returns the result
+     *
      * @param in the stream reading the script
      */
     public Object evaluate(Reader in) throws CompilationFailedException {
@@ -584,7 +666,6 @@ public class GroovyShell extends GroovyObjectSupport {
         Script script = null;
         try {
             script = parse(in, fileName);
-            script.setBinding(context);
             return script.run();
         } finally {
             if (script != null) {
@@ -632,6 +713,15 @@ public class GroovyShell extends GroovyObjectSupport {
      */
     public Script parse(File file) throws CompilationFailedException, IOException {
         return parse(new GroovyCodeSource(file, config.getSourceEncoding()));
+    }
+
+    /**
+     * Parses the given script and returns it ready to be run
+     *
+     * @param uri is the URI of the script (which is used to create the class name of the script)
+     */
+    public Script parse(URI uri) throws CompilationFailedException, IOException {
+        return parse(new GroovyCodeSource(uri));
     }
 
     /**

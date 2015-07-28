@@ -1,19 +1,24 @@
 /*
- * Copyright 2003-2012 the original author or authors.
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package groovy.util
+
+import org.codehaus.groovy.runtime.DefaultGroovyMethods
 
 /** 
  * Tests OrderBy
@@ -27,18 +32,18 @@ class OrderByTest extends GroovyTestCase {
         def people = buildPeople()
 
         def order = new OrderBy({it.get('@cheese')})
-        def sorted = people.sort(order)
+        def sorted = DefaultGroovyMethods.sort(people,order)
         assert (0..3).collect{ sorted.get(it).get('@name') } == ['Joe', 'Bob', 'James', 'Chris']
 
         order = new OrderBy({it.get('@name')})
-        sorted = people.sort(order)
+        sorted = DefaultGroovyMethods.sort(people,order)
         assert (0..3).collect{ sorted.get(it).get('@name') } == ['Bob', 'Chris', 'James', 'Joe']
     }
 
     void testSortByMultipleFields() {
         def people = buildPeople()
         def order = new OrderBy([{it.get('@location')}, {it.get('@cheese')}])
-        def sorted = people.sort(order)
+        def sorted = DefaultGroovyMethods.sort(people,order)
         assert (0..3).collect{ sorted.get(it).get('@name') } == ['Bob', 'Joe', 'James', 'Chris']
     }
 
@@ -60,7 +65,7 @@ class OrderByTest extends GroovyTestCase {
 
         def people = [bobby, bob, raul]
         def order = new OrderBy([{it}, {it.age}])
-        def sorted = people.sort(order)
+        def sorted = DefaultGroovyMethods.sort(people,order)
 
         assert sorted[0].first == 'Bob'
         assert sorted[0].age == '10'

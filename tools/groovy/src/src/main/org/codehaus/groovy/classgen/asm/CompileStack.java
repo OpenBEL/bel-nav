@@ -1,24 +1,27 @@
-/*
- * Copyright 2003-2013 the original author or authors.
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
-
 package org.codehaus.groovy.classgen.asm;
 
 import org.codehaus.groovy.GroovyBugError;
 import org.codehaus.groovy.ast.ClassHelper;
 import org.codehaus.groovy.ast.ClassNode;
+import org.codehaus.groovy.ast.MethodNode;
 import org.codehaus.groovy.ast.Parameter;
 import org.codehaus.groovy.ast.Variable;
 import org.codehaus.groovy.ast.VariableScope;
@@ -216,7 +219,12 @@ public class CompileStack implements Opcodes {
         final BytecodeVariable head = (BytecodeVariable) temporaryVariables.removeFirst();
         if (head.getIndex() != tempIndex) {
             temporaryVariables.addFirst(head);
+            MethodNode methodNode = controller.getMethodNode();
+            if (methodNode==null) {
+                methodNode = controller.getConstructorNode();
+            }
             throw new GroovyBugError(
+                    "In method "+ (methodNode!=null?methodNode.getText():"<unknown>") + ", " +
                     "CompileStack#removeVar: tried to remove a temporary " +
                     "variable with index "+ tempIndex + " in wrong order. " +
                     "Current temporary variables=" + temporaryVariables);
@@ -254,7 +262,7 @@ public class CompileStack implements Opcodes {
     }
 
     public BytecodeVariable getVariable(String variableName ) {
-        return getVariable(variableName,true);
+        return getVariable(variableName, true);
     }
 
     /**
@@ -285,7 +293,7 @@ public class CompileStack implements Opcodes {
      * creates a temporary variable.
      *
      * @param name defines type and name
-     * @param store defines if the toplevel argument of the stack should be stored
+     * @param store defines if the top-level argument of the stack should be stored
      * @return the index used for this temporary variable
      */
     public int defineTemporaryVariable(String name,boolean store) {
@@ -297,7 +305,7 @@ public class CompileStack implements Opcodes {
      *
      * @param name defines the name
      * @param node defines the node
-     * @param store defines if the toplevel argument of the stack should be stored
+     * @param store defines if the top-level argument of the stack should be stored
      * @return the index used for this temporary variable
      */
     public int defineTemporaryVariable(String name, ClassNode node, boolean store) {
@@ -426,7 +434,7 @@ public class CompileStack implements Opcodes {
     }
 
     /**
-     * Causes the statestack to add an element and sets
+     * Causes the state-stack to add an element and sets
      * the given scope as new current variable scope. Creates
      * a element for the state stack so pop has to be called later
      */
@@ -439,33 +447,68 @@ public class CompileStack implements Opcodes {
     }
 
     /**
-     * Should be called when decending into a loop that defines
+     * Should be called when descending into a loop that defines
      * also a scope. Calls pushVariableScope and prepares labels
      * for a loop structure. Creates a element for the state stack
-     * so pop has to be called later
+     * so pop has to be called later, TODO: @Deprecate
      */
     public void pushLoop(VariableScope el, String labelName) {
         pushVariableScope(el);
-        initLoopLabels(labelName);
-    }
-
-    private void initLoopLabels(String labelName) {
         continueLabel = new Label();
         breakLabel = new Label();
-        if (labelName!=null) {
-            namedLoopBreakLabel.put(labelName,breakLabel);
-            namedLoopContinueLabel.put(labelName,continueLabel);
+        if (labelName != null) {
+            initLoopLabels(labelName);
         }
     }
 
     /**
-     * Should be called when decending into a loop that does
-     * not define a scope. Creates a element for the state stack
+     * Should be called when descending into a loop that defines
+     * also a scope. Calls pushVariableScope and prepares labels
+     * for a loop structure. Creates a element for the state stack
      * so pop has to be called later
+     */
+    public void pushLoop(VariableScope el, List<String> labelNames) {
+        pushVariableScope(el);
+        continueLabel = new Label();
+        breakLabel = new Label();
+        if (labelNames != null) {
+            for (String labelName : labelNames) {
+                initLoopLabels(labelName);
+            }
+        }
+    }
+
+    private void initLoopLabels(String labelName) {
+        namedLoopBreakLabel.put(labelName,breakLabel);
+        namedLoopContinueLabel.put(labelName,continueLabel);
+    }
+
+    /**
+     * Should be called when descending into a loop that does
+     * not define a scope. Creates a element for the state stack
+     * so pop has to be called later, TODO: @Deprecate
      */
     public void pushLoop(String labelName) {
         pushState();
+        continueLabel = new Label();
+        breakLabel = new Label();
         initLoopLabels(labelName);
+    }
+
+    /**
+     * Should be called when descending into a loop that does
+     * not define a scope. Creates a element for the state stack
+     * so pop has to be called later
+     */
+    public void pushLoop(List<String> labelNames) {
+        pushState();
+        continueLabel = new Label();
+        breakLabel = new Label();
+        if (labelNames != null) {
+            for (String labelName : labelNames) {
+                initLoopLabels(labelName);
+            }
+        }
     }
 
     /**
@@ -585,7 +628,7 @@ public class CompileStack implements Opcodes {
         mv.visitTypeInsn(NEW, "groovy/lang/Reference");
         mv.visitInsn(DUP_X1);
         mv.visitInsn(SWAP);
-        mv.visitMethodInsn(INVOKESPECIAL, "groovy/lang/Reference", "<init>", "(Ljava/lang/Object;)V");
+        mv.visitMethodInsn(INVOKESPECIAL, "groovy/lang/Reference", "<init>", "(Ljava/lang/Object;)V", false);
         mv.visitVarInsn(ASTORE, reference.getIndex());
     }
 
@@ -616,7 +659,7 @@ public class CompileStack implements Opcodes {
         return defineVariable(v, v.getOriginType(), initFromStack);
     }
     public BytecodeVariable defineVariable(Variable v, ClassNode variableType, boolean initFromStack) {
-        //TODO: any usage of this method should have different operand stack hanlding
+        //TODO: any usage of this method should have different operand stack handing
         //      then the remove(1) here and there in this one can be removed and others
         //      can be changed
         String name = v.getName();

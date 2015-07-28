@@ -1,66 +1,92 @@
 /*
- * Copyright 2003-2011 the original author or authors.
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
-
 package org.codehaus.groovy.tools.shell
 
+import jline.TerminalFactory
+import jline.UnixTerminal
+import jline.UnsupportedTerminal
+import jline.WindowsTerminal
 import org.codehaus.groovy.tools.shell.util.HelpFormatter
 import org.codehaus.groovy.tools.shell.util.Logger
 import org.codehaus.groovy.tools.shell.util.MessageSource
 import org.codehaus.groovy.tools.shell.util.NoExitSecurityManager
-import java.util.concurrent.Callable
 import org.fusesource.jansi.Ansi
 import org.fusesource.jansi.AnsiConsole
-import jline.Terminal
 
 /**
+ * A Main instance has a Groovysh member representing the shell,
+ * and a startGroovysh() method to run an interactive shell.
+ * Subclasses should preferably extend createIO() or configure the shell
+ * via getShell prior to invoking startGroovysh.
+ * Clients may use configureAndStartGroovysh to provide the same CLI params
+ * but a different Groovysh implementation (implementing getIO() and run()).
+ *
+ *
+ * The class also has static utility methods to manipulate the
+ * static ansi state using the jAnsi library.
+ *
  * Main CLI entry-point for <tt>groovysh</tt>.
  *
- * @version $Id$
  * @author <a href="mailto:jason@planet57.com">Jason Dillon</a>
  */
 class Main
 {
-    static {
-        // Install the system adapters
-        AnsiConsole.systemInstall()
+    final Groovysh groovysh
 
-        // Register jline ansi detector
-        Ansi.setDetector(new AnsiDetector())
+    /**
+     * @param io: may just be new IO(), which is the default
+     */
+    Main(IO io) {
+        Logger.io = io
+        groovysh = new Groovysh(io)
     }
 
-    private static final MessageSource messages = new MessageSource(Main.class)
+    Groovysh getGroovysh() {
+        return groovysh
+    }
 
+    /**
+     * create a Main instance, configures it according to CLI arguments, and starts the shell.
+     * @param main must have a Groovysh member that has an IO member.
+     */
     static void main(final String[] args) {
-        IO io = new IO()
-        Logger.io = io
+        CliBuilder cli = new CliBuilder(usage: 'groovysh [options] [...]', formatter: new HelpFormatter(), stopAtNonOption: false)
+        MessageSource messages = new MessageSource(Main)
+        cli.with {
+            classpath(messages['cli.option.classpath.description'])
+            cp(longOpt: 'classpath', messages['cli.option.cp.description'])
+            h(longOpt: 'help', messages['cli.option.help.description'])
+            V(longOpt: 'version', messages['cli.option.version.description'])
+            v(longOpt: 'verbose', messages['cli.option.verbose.description'])
+            q(longOpt: 'quiet', messages['cli.option.quiet.description'])
+            d(longOpt: 'debug', messages['cli.option.debug.description'])
+            e(longOpt: 'evaluate', args: 1, argName: 'CODE', optionalArg: false, messages['cli.option.evaluate.description'])
+            C(longOpt: 'color', args: 1, argName: 'FLAG', optionalArg: true, messages['cli.option.color.description'])
+            D(longOpt: 'define', args: 1, argName: 'NAME=VALUE', messages['cli.option.define.description'])
+            T(longOpt: 'terminal', args: 1, argName: 'TYPE', messages['cli.option.terminal.description'])
+        }
+        OptionAccessor options = cli.parse(args)
 
-        def cli = new CliBuilder(usage : 'groovysh [options] [...]', formatter: new HelpFormatter(), writer: io.out)
-
-        cli.classpath(messages['cli.option.classpath.description'])
-        cli.cp(longOpt: 'classpath', messages['cli.option.cp.description'])
-        cli.h(longOpt: 'help', messages['cli.option.help.description'])
-        cli.V(longOpt: 'version', messages['cli.option.version.description'])
-        cli.v(longOpt: 'verbose', messages['cli.option.verbose.description'])
-        cli.q(longOpt: 'quiet', messages['cli.option.quiet.description'])
-        cli.d(longOpt: 'debug', messages['cli.option.debug.description'])
-        cli.C(longOpt: 'color', args: 1, argName: 'FLAG', optionalArg: true, messages['cli.option.color.description'])
-        cli.D(longOpt: 'define', args: 1, argName: 'NAME=VALUE', messages['cli.option.define.description'])
-        cli.T(longOpt: 'terminal', args: 1, argName: 'TYPE', messages['cli.option.terminal.description'])
-
-        def options = cli.parse(args)
+        if (options == null) {
+            // CliBuilder prints error, but does not exit
+            System.exit(22) // Invalid Args
+        }
 
         if (options.h) {
             cli.usage()
@@ -68,14 +94,33 @@ class Main
         }
 
         if (options.V) {
-            io.out.println(messages.format('cli.info.version', GroovySystem.version))
+            System.out.println(messages.format('cli.info.version', GroovySystem.version))
             System.exit(0)
         }
 
-        if (options.hasOption('T')) {
-            def type = options.getOptionValue('T')
-            setTerminalType(type)
+        boolean suppressColor = false
+        if (options.hasOption('C')) {
+            def value = options.getOptionValue('C')
+            if (value != null) {
+                suppressColor = !Boolean.valueOf(value).booleanValue() // For JDK 1.4 compat
+            }
         }
+
+        String type = TerminalFactory.AUTO
+        if (options.hasOption('T')) {
+            type = options.getOptionValue('T')
+        }
+        try {
+            setTerminalType(type, suppressColor)
+        } catch (IllegalArgumentException e) {
+            System.err.println(e.getMessage())
+            cli.usage()
+            System.exit(22) // Invalid Args
+        }
+
+        // IO must be constructed AFTER calling setTerminalType()/AnsiConsole.systemInstall(),
+        // else wrapped System.out does not work on Windows.
+        IO io = new IO()
 
         if (options.hasOption('D')) {
             def values = options.getOptionValues('D')
@@ -97,12 +142,23 @@ class Main
             io.verbosity = IO.Verbosity.QUIET
         }
 
-        if (options.hasOption('C')) {
-            def value = options.getOptionValue('C')
-            setColor(value)
+        String evalString = null
+        if (options.e) {
+            evalString = options.getOptionValue('e')
         }
 
-        def code
+        List<String> filenames = options.arguments()
+        Main main = new Main(io)
+        main.startGroovysh(evalString, filenames)
+    }
+
+    /**
+     * @param evalString commands that will be executed at startup after loading files given with filenames param
+     * @param filenames files that will be loaded at startup
+     */
+    protected void startGroovysh(String evalString, List<String> filenames) {
+        int code
+        Groovysh shell = getGroovysh()
 
         // Add a hook to display some status when shutting down...
         addShutdownHook {
@@ -114,21 +170,20 @@ class Main
                 // Give the user a warning when the JVM shutdown abnormally, normal shutdown
                 // will set an exit code through the proper channels
 
-                io.err.println()
-                io.err.println('@|red WARNING:|@ Abnormal JVM shutdown detected')
+                println('WARNING: Abnormal JVM shutdown detected')
             }
 
-            io.flush()
+            if (shell.history) {
+                shell.history.flush()
+            }
         }
 
-        // Boot up the shell... :-)
-        Groovysh shell = new Groovysh(io)
 
         SecurityManager psm = System.getSecurityManager()
         System.setSecurityManager(new NoExitSecurityManager())
 
         try {
-            code = shell.run(options.arguments() as String[])
+            code = shell.run(evalString, filenames)
         }
         finally {
             System.setSecurityManager(psm)
@@ -141,49 +196,58 @@ class Main
         System.exit(code)
     }
 
-    static void setTerminalType(String type) {
+    /**
+     * @param type: one of 'auto', 'unix', ('win', 'windows'), ('false', 'off', 'none')
+     * @param suppressColor only has effect when ansi is enabled
+     */
+    static void setTerminalType(String type, boolean suppressColor) {
         assert type != null
-        
-        type = type.toLowerCase();
 
+        type = type.toLowerCase()
+        boolean enableAnsi = true
         switch (type) {
-            case 'auto':
-                type = null;
-                break;
-
-            case 'unix':
-                type = 'jline.UnixTerminal'
+            case TerminalFactory.AUTO:
+                type = null
                 break
-
-            case 'win':
-            case 'windows':
-                type = 'jline.WindowsTerminal'
+            case TerminalFactory.UNIX:
+                type = UnixTerminal.canonicalName
                 break
-
-            case 'false':
-            case 'off':
-            case 'none':
-                type = 'jline.UnsupportedTerminal'
+            case TerminalFactory.WIN:
+            case TerminalFactory.WINDOWS:
+                type = WindowsTerminal.canonicalName
+                break
+            case TerminalFactory.FALSE:
+            case TerminalFactory.OFF:
+            case TerminalFactory.NONE:
+                type = UnsupportedTerminal.canonicalName
                 // Disable ANSI, for some reason UnsupportedTerminal reports ANSI as enabled, when it shouldn't
-                Ansi.enabled = false
-                break;
+                enableAnsi = false
+                break
+            default:
+                // Should never happen
+                throw new IllegalArgumentException("Invalid Terminal type: $type")
+        }
+        if (enableAnsi) {
+            installAnsi() // must be called before IO(), since it modifies System.in
+            Ansi.enabled = !suppressColor
+        } else {
+            Ansi.enabled = false
         }
 
         if (type != null) {
-            System.setProperty('jline.terminal', type)
+            System.setProperty(TerminalFactory.JLINE_TERMINAL, type)
         }
     }
 
-    static void setColor(value) {
-        if (value == null) {
-            value = true // --color is the same as --color=true
-        }
-        else {
-            value = Boolean.valueOf(value).booleanValue(); // For JDK 1.4 compat
-        }
+    static void installAnsi() {
+        // Install the system adapters, replaces System.out and System.err
+        // Must be called before using IO(), because IO stores refs to System.out and System.err
+        AnsiConsole.systemInstall()
 
-        Ansi.enabled = value
+        // Register jline ansi detector
+        Ansi.setDetector(new AnsiDetector())
     }
+
 
     static void setSystemProperty(final String nameValue) {
         String name
@@ -203,10 +267,3 @@ class Main
     }
 }
 
-class AnsiDetector
-    implements Callable<Boolean>
-{
-    public Boolean call() throws Exception {
-        return Terminal.getTerminal().isANSISupported()
-    }
-}

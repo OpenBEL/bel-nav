@@ -1,17 +1,20 @@
-/*
- * Copyright 2003-2012 the original author or authors.
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package groovy.util;
 
@@ -24,7 +27,12 @@ import org.codehaus.groovy.runtime.InvokerHelper;
 
 import java.io.PrintWriter;
 import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Represents an arbitrary tree node which can be used for structured metadata or any arbitrary XML-like tree.
@@ -207,23 +215,46 @@ public class Node implements Serializable, Cloneable {
         return new Node(this, name, attributes, value);
     }
 
-    // TODO return replaced node rather than last appended?
-    // * @return the original now replaced node
     /**
      * Replaces the current node with nodes defined using builder-style notation via a Closure.
      *
      * @param c A Closure defining the new nodes using builder-style notation.
-     * @return the last appended node
+     * @return the original now replaced node
      */
     public Node replaceNode(Closure c) {
         if (parent() == null) {
             throw new UnsupportedOperationException("Replacing the root node is not supported");
         }
-        Node result = appendNodes(c);
+        appendNodes(c);
         getParentList(parent()).remove(this);
-//        this.setParent(null);
-//        return this;
-        return result;
+        this.setParent(null);
+        return this;
+    }
+
+    /**
+     * Replaces the current node with the supplied node.
+     *
+     * @param n the new Node
+     * @return the original now replaced node
+     */
+    public Node replaceNode(Node n) {
+        if (parent() == null) {
+            throw new UnsupportedOperationException("Replacing the root node is not supported");
+        }
+        List tail = getTail();
+        parent().appendNode(n.name(), n.attributes(), n.value());
+        parent().children().addAll(tail);
+        getParentList(parent()).remove(this);
+        this.setParent(null);
+        return this;
+    }
+
+    private List getTail() {
+        List list = parent().children();
+        int afterIndex = list.indexOf(this);
+        List tail = new ArrayList(list.subList(afterIndex + 1, list.size()));
+        list.subList(afterIndex + 1, list.size()).clear();
+        return tail;
     }
 
     /**
@@ -238,17 +269,12 @@ public class Node implements Serializable, Cloneable {
         appendNodes(c);
     }
 
-    private Node appendNodes(Closure c) {
-        List list = parent().children();
-        int afterIndex = list.indexOf(this);
-        List leftOvers = new ArrayList(list.subList(afterIndex + 1, list.size()));
-        list.subList(afterIndex + 1, list.size()).clear();
-        Node lastAppended = null;
+    private void appendNodes(Closure c) {
+        List tail = getTail();
         for (Node child : buildChildrenFromClosure(c)) {
-            lastAppended = parent().appendNode(child.name(), child.attributes(), child.value());
+            parent().appendNode(child.name(), child.attributes(), child.value());
         }
-        parent().children().addAll(leftOvers);
-        return lastAppended;
+        parent().children().addAll(tail);
     }
 
     private List<Node> buildChildrenFromClosure(Closure c) {
@@ -311,13 +337,21 @@ public class Node implements Serializable, Cloneable {
         if (value instanceof String) {
             return (String) value;
         }
+        if (value instanceof NodeList) {
+            return ((NodeList) value).text();
+        }
         if (value instanceof Collection) {
             Collection coll = (Collection) value;
             String previousText = null;
             StringBuilder sb = null;
             for (Object child : coll) {
+                String childText = null;
                 if (child instanceof String) {
-                    String childText = (String) child;
+                    childText = (String) child;
+                } else if (child instanceof Node) {
+                    childText = ((Node) child).text();
+                }
+                if (childText != null) {
                     if (previousText == null) {
                         previousText = childText;
                     } else {
@@ -556,6 +590,23 @@ public class Node implements Serializable, Cloneable {
                     List children = childNode.getDirectChildren();
                     if (children.size() > 1 || (children.size() == 1 && !(children.get(0) instanceof String))) nextLevelChildren.addAll(children);
                 }
+            }
+        }
+        return answer;
+    }
+
+    /**
+     * Returns the list of any direct String nodes of this node.
+     *
+     * @return the list of String values from this node
+     * @since 2.3.0
+     */
+    public List<String> localText() {
+        List<String> answer = new ArrayList<String>();
+        for (Iterator iter = InvokerHelper.asIterator(value); iter.hasNext(); ) {
+            Object child = iter.next();
+            if (!(child instanceof Node)) {
+                answer.add(child.toString());
             }
         }
         return answer;

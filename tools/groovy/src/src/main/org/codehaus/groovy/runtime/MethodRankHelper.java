@@ -1,17 +1,20 @@
-/*
- * Copyright 2003-2009 the original author or authors.
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package org.codehaus.groovy.runtime;
 
@@ -49,7 +52,8 @@ public class MethodRankHelper{
     public static final int MAX_METHOD_SCORE = 50;
     public static final int MAX_CONSTRUCTOR_SCORE = 20;
     public static final int MAX_FIELD_SCORE = 30;
-    
+    private static final Object[] EMPTY_OBJECT_ARRAY = new Object[0];
+
     private static final class Pair<U,V> {
         private U u;
         private V v;
@@ -73,7 +77,7 @@ public class MethodRankHelper{
         List<MetaMethod> methods = new ArrayList<MetaMethod>(ci.getMetaClass().getMethods());
         methods.addAll(ci.getMetaClass().getMetaMethods());
         List<MetaMethod> sugg = rankMethods(methodName,arguments,methods);
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         if (!sugg.isEmpty()){
             sb.append("\nPossible solutions: ");
             for(int i = 0; i < sugg.size(); i++) {
@@ -148,7 +152,7 @@ public class MethodRankHelper{
     public static String getConstructorSuggestionString(Class type, Object[] arguments){
         Constructor[] sugg = rankConstructors(arguments, type.getConstructors());
         if(sugg.length >0){
-            StringBuffer sb = new StringBuffer();
+            StringBuilder sb = new StringBuilder();
             sb.append("\nPossible solutions: ");
             for(int i = 0; i < sugg.length; i++){
                 if(i != 0) sb.append(", ");
@@ -174,7 +178,7 @@ public class MethodRankHelper{
         ClassInfo ci = ClassInfo.getClassInfo(type);
         List<MetaProperty>  fi = ci.getMetaClass().getProperties();
         List<RankableField> rf = new ArrayList<RankableField>(fi.size());
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         sb.append("\nPossible solutions: ");
         
         for(MetaProperty mp : fi) rf.add(new RankableField(fieldName, mp));
@@ -198,7 +202,7 @@ public class MethodRankHelper{
      * @return the Class names
      */
     private static String listParameterNames(Class[] cachedClasses){
-      StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
       for(int i =0; i < cachedClasses.length;i++){
           if(i != 0) sb.append(", ");
           sb.append(cachedClasses[i].getName());
@@ -208,7 +212,7 @@ public class MethodRankHelper{
     
     
     private static String listParameterNames(CachedClass[] cachedClasses){
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         for(int i =0; i < cachedClasses.length;i++){
             if(i != 0) sb.append(", ");
             sb.append(cachedClasses[i].getName());
@@ -227,7 +231,7 @@ public class MethodRankHelper{
      */
     private static List<MetaMethod> rankMethods(String name, Object[] original, List<MetaMethod> methods) {
         List<RankableMethod> rm = new ArrayList<RankableMethod>(methods.size());
-        if (original==null) original = new Object[0];
+        if (original==null) original = EMPTY_OBJECT_ARRAY;
         Class[] ta = new Class[original.length];
     
         Class nullC =  NullObject.class;

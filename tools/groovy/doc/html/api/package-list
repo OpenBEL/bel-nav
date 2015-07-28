@@ -5,6 +5,7 @@ groovy.inspect.swingui
 groovy.io
 groovy.jmx.builder
 groovy.json
+groovy.json.internal
 groovy.lang
 groovy.mock.interceptor
 groovy.model
@@ -15,8 +16,11 @@ groovy.swing.binding
 groovy.swing.impl
 groovy.test
 groovy.text
+groovy.text.markup
 groovy.time
 groovy.transform
+groovy.transform.builder
+groovy.transform.stc
 groovy.ui
 groovy.ui.text
 groovy.util
@@ -41,6 +45,7 @@ org.codehaus.groovy.binding
 org.codehaus.groovy.bsf
 org.codehaus.groovy.classgen
 org.codehaus.groovy.classgen.asm
+org.codehaus.groovy.classgen.asm.indy
 org.codehaus.groovy.classgen.asm.sc
 org.codehaus.groovy.cli
 org.codehaus.groovy.control
@@ -52,7 +57,9 @@ org.codehaus.groovy.groovydoc
 org.codehaus.groovy.jsr223
 org.codehaus.groovy.plugin
 org.codehaus.groovy.reflection
+org.codehaus.groovy.reflection.android
 org.codehaus.groovy.reflection.stdclasses
+org.codehaus.groovy.reflection.v7
 org.codehaus.groovy.runtime
 org.codehaus.groovy.runtime.callsite
 org.codehaus.groovy.runtime.dgmimpl
@@ -77,7 +84,9 @@ org.codehaus.groovy.transform
 org.codehaus.groovy.transform.sc
 org.codehaus.groovy.transform.sc.transformers
 org.codehaus.groovy.transform.stc
+org.codehaus.groovy.transform.trait
 org.codehaus.groovy.util
 org.codehaus.groovy.vmplugin
 org.codehaus.groovy.vmplugin.v5
 org.codehaus.groovy.vmplugin.v6
+org.codehaus.groovy.vmplugin.v7

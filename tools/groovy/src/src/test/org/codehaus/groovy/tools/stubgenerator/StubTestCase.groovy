@@ -1,17 +1,20 @@
 /*
- * Copyright 2003-2013 the original author or authors.
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package org.codehaus.groovy.tools.stubgenerator
 
@@ -60,6 +63,7 @@ abstract class StubTestCase extends GroovyTestCase {
 
     protected JavaDocBuilder qdox = new JavaDocBuilder()
 
+    protected GroovyClassLoader loader
     protected CompilerConfiguration config = new CompilerConfiguration()
 
     protected boolean debug = false;
@@ -91,6 +95,8 @@ abstract class StubTestCase extends GroovyTestCase {
             targetDir.deleteDir()
             stubDir.deleteDir()
         }
+        loader = null
+        config = null
         super.tearDown()
     }
 
@@ -179,6 +185,9 @@ abstract class StubTestCase extends GroovyTestCase {
             use (QDoxCategory) {
                 verifyStubs()
             }
+            if (sourceRootPath.getAbsolutePath() =~ 'stubgentests') {
+                sourceRootPath.deleteDir()
+            }
         }
 
     }
@@ -206,7 +215,7 @@ abstract class StubTestCase extends GroovyTestCase {
      * @param sources the sources to be compiled
      */
     protected void compile(List<File> sources) {
-        def loader = new GroovyClassLoader(this.class.classLoader)
+        loader = new GroovyClassLoader(this.class.classLoader)
         def cu = new JavaAwareCompilationUnit(config, loader)
         cu.addSources(sources as File[])
         try {

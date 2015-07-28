@@ -1,17 +1,20 @@
-/*
- * Copyright 2003-2012 the original author or authors.
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package org.codehaus.groovy.classgen;
 
@@ -23,6 +26,7 @@ import org.codehaus.groovy.ast.MethodNode;
 import org.codehaus.groovy.ast.Parameter;
 import org.codehaus.groovy.ast.PropertyNode;
 import org.codehaus.groovy.ast.VariableScope;
+import org.codehaus.groovy.ast.expr.ClosureExpression;
 import org.codehaus.groovy.ast.expr.ConstructorCallExpression;
 import org.codehaus.groovy.ast.expr.Expression;
 import org.codehaus.groovy.ast.expr.PropertyExpression;
@@ -47,6 +51,7 @@ public class InnerClassVisitor extends InnerClassVisitorHelper implements Opcode
     private MethodNode currentMethod;
     private FieldNode currentField;
     private boolean processingObjInitStatements = false;
+    private boolean inClosure = false;
 
     public InnerClassVisitor(CompilationUnit cu, SourceUnit su) {
         sourceUnit = su;
@@ -78,6 +83,14 @@ public class InnerClassVisitor extends InnerClassVisitorHelper implements Opcode
             node.addInterface(node.getUnresolvedSuperClass());
             node.setUnresolvedSuperClass(ClassHelper.OBJECT_TYPE);
         }
+    }
+    
+    @Override
+    public void visitClosureExpression(ClosureExpression expression) {
+        boolean inClosureOld = inClosure;
+        inClosure = true;
+        super.visitClosureExpression(expression);
+        inClosure = inClosureOld;
     }
 
     @Override
@@ -139,14 +152,19 @@ public class InnerClassVisitor extends InnerClassVisitorHelper implements Opcode
         }
 
         InnerClassNode innerClass = (InnerClassNode) call.getType();
+        ClassNode outerClass = innerClass.getOuterClass();
+        ClassNode superClass = innerClass.getSuperClass();
+        if (superClass instanceof InnerClassNode
+                && !superClass.isInterface()
+                && !(superClass.isStaticClass()||((superClass.getModifiers()&ACC_STATIC)==ACC_STATIC))) {
+            insertThis0ToSuperCall(call, innerClass);
+        }
         if (!innerClass.getDeclaredConstructors().isEmpty()) return;
         if ((innerClass.getModifiers() & ACC_STATIC) != 0) return;
 
         VariableScope scope = innerClass.getVariableScope();
         if (scope == null) return;
 
-
-        boolean isStatic = scope.isInStaticContext();
         // expressions = constructor call arguments
         List<Expression> expressions = ((TupleExpression) call.getArguments()).getExpressions();
         // block = init code for the constructor we produce
@@ -182,7 +200,10 @@ public class InnerClassVisitor extends InnerClassVisitorHelper implements Opcode
         // this is saved in a field named this$0
         pCount = 0;
         expressions.add(pCount, VariableExpression.THIS_EXPRESSION);
-        ClassNode outerClassType = getClassNode(innerClass.getOuterClass(), isStatic).getPlainNodeReference();
+        boolean isStatic = isStaticThis(innerClass,scope);
+        ClassNode outerClassType = getClassNode(outerClass, isStatic);
+        if (!isStatic && inClosure) outerClassType = ClassHelper.CLOSURE_TYPE;
+        outerClassType = outerClassType.getPlainNodeReference();
         Parameter thisParameter = new Parameter(outerClassType, "p" + pCount);
         parameters.add(pCount, thisParameter);
 
@@ -203,6 +224,7 @@ public class InnerClassVisitor extends InnerClassVisitorHelper implements Opcode
             parameters.add(pCount, p);
             p.setOriginType(var.getOriginType());
             final VariableExpression initial = new VariableExpression(p);
+            initial.setSynthetic(true);
             initial.setUseReferenceDirectly(true);
             final FieldNode pField = innerClass.addFieldFirst(ve.getName(), PUBLIC_SYNTHETIC,rawReferenceType, initial);
             pField.setHolder(true);
@@ -210,6 +232,19 @@ public class InnerClassVisitor extends InnerClassVisitorHelper implements Opcode
         }
 
         innerClass.addConstructor(ACC_SYNTHETIC, parameters.toArray(new Parameter[0]), ClassNode.EMPTY_ARRAY, block);
+    }
+
+    private boolean isStaticThis(InnerClassNode innerClass, VariableScope scope) {
+        if (inClosure) return false;
+        boolean ret = innerClass.isStaticClass();
+        if (    innerClass.getEnclosingMethod()!=null) {
+            ret = ret || innerClass.getEnclosingMethod().isStatic();
+        } else if (currentField!=null) {
+            ret = ret || currentField.isStatic();
+        } else if (currentMethod!=null && "<clinit>".equals(currentMethod.getName())) {
+            ret = true;
+        }
+        return ret;
     }
 
     // this is the counterpart of addThisReference(). To non-static inner classes, outer this should be
@@ -237,7 +272,11 @@ public class InnerClassVisitor extends InnerClassVisitorHelper implements Opcode
             }
             return;
         }
+        insertThis0ToSuperCall(call, cn);
 
+    }
+
+    private void insertThis0ToSuperCall(final ConstructorCallExpression call, final ClassNode cn) {
         // calculate outer class which we need for this$0
         ClassNode parent = classNode;
         int level = 0;

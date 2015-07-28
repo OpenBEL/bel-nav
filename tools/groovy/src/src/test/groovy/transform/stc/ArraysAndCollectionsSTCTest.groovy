@@ -1,17 +1,20 @@
 /*
- * Copyright 2003-2013 the original author or authors.
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package groovy.transform.stc
 
@@ -380,7 +383,7 @@ class ArraysAndCollectionsSTCTest extends StaticTypeCheckingTestCase {
         shouldFailWithMessages '''
             String[] arr = ['abc']
             arr.putAt(0, new Object())
-        ''', 'Cannot find matching method [Ljava.lang.String;#putAt(int, java.lang.Object)'
+        ''', 'Cannot call <T,U extends T> java.lang.String[]#putAt(int, U) with arguments [int, java.lang.Object]'
     }
 
     void testStringArrayPutWithSubType() {
@@ -401,7 +404,7 @@ class ArraysAndCollectionsSTCTest extends StaticTypeCheckingTestCase {
         shouldFailWithMessages '''
             Serializable[] arr = ['abc']
             arr.putAt(0, new XmlSlurper())
-        ''', 'Cannot find matching method [Ljava.io.Serializable;#putAt(int, groovy.util.XmlSlurper)'
+        ''', 'Cannot call <T,U extends T> java.io.Serializable[]#putAt(int, U) with arguments [int, groovy.util.XmlSlurper]'
     }
 
     void testArrayGetOnPrimitiveArray() {
@@ -523,6 +526,36 @@ class ArraysAndCollectionsSTCTest extends StaticTypeCheckingTestCase {
             assert res[0].contains('abc')
             assert res[0].contains('def')
         """
+    }
+    
+    // GROOVY-6241
+    void testAsImmutable() {
+        assertScript """
+            List<Integer> list = [1, 2, 3]
+            List<Integer> immutableList = [1, 2, 3].asImmutable()
+            Map<String, Integer> map = [foo: 123, bar: 456]
+            Map<String, Integer> immutableMap = [foo: 123, bar: 456].asImmutable()
+        """
+    }
+    
+    // GROOVY-6350
+    void testListPlusList() {
+        assertScript """
+            def foo = [] + []
+            assert foo==[]
+        """
+    }
+
+    // GROOVY-7122
+    void testIterableLoop() {
+        assertScript '''
+            int countIt(Iterable<Integer> list) {
+                int count = 0
+                for (Integer obj : list) {count ++}
+                return count
+            }
+            countIt([1,2,3])==3
+        '''
     }
 }
 

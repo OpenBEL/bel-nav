@@ -1,17 +1,20 @@
 /*
- * Copyright 2003-2010 the original author or authors.
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package org.codehaus.groovy.runtime
 
@@ -20,6 +23,7 @@ import java.text.SimpleDateFormat
 
 /**
  * @author tnichols
+ * @author Paul King
  */
 class DateGDKTest extends GroovyTestCase {
 
@@ -30,9 +34,6 @@ class DateGDKTest extends GroovyTestCase {
         Locale.setDefault locale // set this otherwise the test will fail if your locale isn't the same
         TimeZone.setDefault TimeZone.getTimeZone('Etc/GMT')
         Date d = new Date(0)
-//        println d.dateString
-//        println d.timeString
-//        println d.dateTimeString
         assertEquals '1970-01-01', d.format('yyyy-MM-dd')
         assertEquals '01/Jan/1970', d.format('dd/MMM/yyyy', TimeZone.getTimeZone('GMT'))
         assertEquals DateFormat.getDateInstance(DateFormat.SHORT, locale).format(d), d.dateString
@@ -56,6 +57,17 @@ class DateGDKTest extends GroovyTestCase {
         TimeZone.setDefault defaultTZ
     }
 
+    void testParseWithTimeZone() {
+        TimeZone defaultTZ = TimeZone.default
+
+        TimeZone.default = TimeZone.getTimeZone("GMT+05")
+        def tz = TimeZone.getTimeZone("GMT+03")
+        def newYear = Date.parse('yyyy-MM-dd', "2015-01-01", tz)
+        assert newYear.toString() == 'Thu Jan 01 02:00:00 GMT+05:00 2015'
+
+        TimeZone.default = defaultTZ
+    }
+
     void testRoundTrip() {
         Date d = new Date()
         String pattern = 'dd MMM yyyy, hh:mm:ss,SSS a z'
@@ -76,8 +88,6 @@ class DateGDKTest extends GroovyTestCase {
         def offset = 8
         def notLocalTZ = TimeZone.getTimeZone("GMT-$offset")
         Calendar cal = Calendar.getInstance(notLocalTZ)
-//        println cal.time.format( 'MM/dd/yyyy HH:mm:ss' )
-//        println cal.format( 'MM/dd/yyyy HH:mm:ss' )
         def offsetHr = cal.format('HH') as int
         def hr = cal.time.format('HH') as int
 
@@ -144,5 +154,106 @@ class DateGDKTest extends GroovyTestCase {
         assert toStringRepresentation == "Thu Jan 01 01:00:00 CET 1970"
         assert date == Date.parseToStringDate(toStringRepresentation)
         TimeZone.setDefault(tz)
+    }
+
+    void test_Upto_Date_ShouldExecuteClosureForEachDayUpToDate() {
+        Date startDate = new Date()
+        List expectedResults = [startDate, startDate + 1, startDate + 2]
+
+        List actualResults = []
+
+        startDate.upto(startDate + 2){
+            actualResults << it
+        }
+
+        assert actualResults == expectedResults
+    }
+
+    void test_upto_Date_ShouldNotAcceptToDatesLessThanStartDate() {
+        Date startDate = new Date()
+        Date toDate = new Date(startDate.getTime() - 1L)
+
+        shouldFail(GroovyRuntimeException) {
+            startDate.upto(toDate){}
+        }
+    }
+
+    void test_downto_Date_ShouldExecuteClosureForEachDayDownToDate() {
+        Date startDate = new Date()
+        List expectedResults = [startDate, startDate - 1, startDate - 2]
+
+        List actualResults = []
+        startDate.downto(startDate - 2){
+            actualResults << it
+        }
+
+        assert actualResults == expectedResults
+    }
+
+    void test_downto_Date_ShouldNotAcceptToDatesGreaterThanStartDate() {
+        Date startDate = new Date()
+        Date toDate = new Date(startDate.getTime() + 1L)
+
+        shouldFail(GroovyRuntimeException) {
+            startDate.downto(toDate){}
+        }
+    }
+
+    void test_upto_Calendar_ShouldExecuteClosureForEachDayUpToDate() {
+        Calendar startDate = Calendar.getInstance()
+        Calendar toDate = startDate.clone()
+        toDate.add(Calendar.DATE, 1)
+        List expectedResults = [startDate, toDate]
+
+        List actualResults = []
+        startDate.upto(toDate){
+            actualResults << it
+        }
+
+        assert actualResults == expectedResults
+    }
+
+    void test_upto_Calendar_ShouldNotAcceptToDatesLessThanStartDate() {
+        Calendar startDate = Calendar.getInstance()
+        Calendar toDate = startDate.clone()
+        toDate.add(Calendar.MILLISECOND, -1)
+
+        shouldFail(GroovyRuntimeException) {
+            startDate.upto(toDate){}
+        }
+    }
+
+    void test_downto_Calendar_ShouldExecuteClosureForEachDayDownToDate() {
+        Calendar startDate = Calendar.getInstance()
+        Calendar toDate = startDate.clone()
+        toDate.add(Calendar.DATE, -1)
+        List expectedResults = [startDate, toDate]
+
+        List actualResults = []
+        startDate.downto(toDate){
+            actualResults << it
+        }
+
+        assert actualResults == expectedResults
+    }
+
+    void test_downto_Calendar_ShouldNotAcceptToDatesGreaterThanStartDate() {
+        Calendar startDate = Calendar.getInstance()
+        Calendar toDate = startDate.clone()
+        toDate.add(Calendar.MILLISECOND, 1)
+
+        shouldFail(GroovyRuntimeException) {
+            startDate.downto(toDate){}
+        }
+    }
+
+    void testCopyWith() {
+        Date febOne1970 = new Date(70, 1, 1)
+        Date aprilSix = febOne1970.copyWith(dayOfMonth: 6, month: Calendar.APRIL)
+        assertEquals '1970-04-06', aprilSix.format('yyyy-MM-dd')
+        Map updates = [:]
+        updates[Calendar.DAY_OF_MONTH] = 4
+        Date aprilFour = aprilSix.copyWith(updates)
+        assertEquals '1970-04-04', aprilFour.format('yyyy-MM-dd')
     }
 }

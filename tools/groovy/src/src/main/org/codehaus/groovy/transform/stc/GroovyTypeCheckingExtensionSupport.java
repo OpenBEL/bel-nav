@@ -1,43 +1,57 @@
-/*
- * Copyright 2003-2012 the original author or authors.
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
-
 package org.codehaus.groovy.transform.stc;
 
-import groovy.lang.*;
+import groovy.lang.Binding;
+import groovy.lang.Closure;
+import groovy.lang.GroovyClassLoader;
+import groovy.lang.GroovyShell;
+import groovy.lang.Script;
 import org.codehaus.groovy.GroovyBugError;
-import org.codehaus.groovy.ast.*;
-import org.codehaus.groovy.ast.expr.*;
-import org.codehaus.groovy.ast.stmt.EmptyStatement;
-import org.codehaus.groovy.classgen.asm.InvocationWriter;
+import org.codehaus.groovy.ast.ClassNode;
+import org.codehaus.groovy.ast.MethodNode;
+import org.codehaus.groovy.ast.expr.ArgumentListExpression;
+import org.codehaus.groovy.ast.expr.AttributeExpression;
+import org.codehaus.groovy.ast.expr.Expression;
+import org.codehaus.groovy.ast.expr.MethodCall;
+import org.codehaus.groovy.ast.expr.PropertyExpression;
+import org.codehaus.groovy.ast.expr.VariableExpression;
+import org.codehaus.groovy.ast.stmt.ReturnStatement;
 import org.codehaus.groovy.control.CompilationFailedException;
 import org.codehaus.groovy.control.CompilationUnit;
 import org.codehaus.groovy.control.CompilerConfiguration;
 import org.codehaus.groovy.control.customizers.ImportCustomizer;
-import org.codehaus.groovy.control.messages.ExceptionMessage;
 import org.codehaus.groovy.control.messages.SimpleMessage;
 import org.codehaus.groovy.runtime.InvokerHelper;
-import org.codehaus.groovy.runtime.InvokerInvocationException;
-import org.objectweb.asm.Opcodes;
 
-import java.io.*;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.net.URLClassLoader;
-import java.util.*;
-import java.util.concurrent.Callable;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Base class for type checking extensions written in Groovy. Compared to its superclass, {@link TypeCheckingExtension},
@@ -47,10 +61,10 @@ import java.util.concurrent.Callable;
  * @author Cedric Champeau
  * @since 2.1.0
  */
-public class GroovyTypeCheckingExtensionSupport extends TypeCheckingExtension {
+public class GroovyTypeCheckingExtensionSupport extends AbstractTypeCheckingExtension {
 
     // method name to DSL name
-    private final static Map<String, String> METHOD_ALIASES = Collections.unmodifiableMap(
+    private static final Map<String, String> METHOD_ALIASES = Collections.unmodifiableMap(
             new HashMap<String, String>() {{
                 put("onMethodSelection", "onMethodSelection");
                 put("afterMethodCall", "afterMethodCall");
@@ -58,28 +72,24 @@ public class GroovyTypeCheckingExtensionSupport extends TypeCheckingExtension {
                 put("unresolvedVariable", "handleUnresolvedVariableExpression");
                 put("unresolvedProperty", "handleUnresolvedProperty");
                 put("unresolvedAttribute", "handleUnresolvedAttribute");
+                put("ambiguousMethods", "handleAmbiguousMethods");
                 put("methodNotFound", "handleMissingMethod");
                 put("afterVisitMethod", "afterVisitMethod");
                 put("beforeVisitMethod", "beforeVisitMethod");
                 put("afterVisitClass", "afterVisitClass");
                 put("beforeVisitClass", "beforeVisitClass");
                 put("incompatibleAssignment", "handleIncompatibleAssignment");
+                put("incompatibleReturnType", "handleIncompatibleReturnType");
                 put("setup","setup");
                 put("finish", "finish");
             }}
     );
 
-    private final Set<MethodNode> generatedMethods = new LinkedHashSet<MethodNode>();
-    private final LinkedList<TypeCheckingScope> scopeData = new LinkedList<TypeCheckingScope>();
-
     // the following fields are closures executed in event-based methods
     private final Map<String, List<Closure>> eventHandlers = new HashMap<String, List<Closure>>();
 
     private final String scriptPath;
-    private final TypeCheckingContext context;
 
-    // this boolean is used through setHandled(boolean)
-    private boolean handled = false;
     private final CompilationUnit compilationUnit;
 
     /**
@@ -94,8 +104,11 @@ public class GroovyTypeCheckingExtensionSupport extends TypeCheckingExtension {
             final String scriptPath, final CompilationUnit compilationUnit) {
         super(typeCheckingVisitor);
         this.scriptPath = scriptPath;
-        this.context = typeCheckingVisitor.typeCheckingContext;
         this.compilationUnit = compilationUnit;
+    }
+
+    public void setDebug(final boolean debug) {
+        this.debug = debug;
     }
 
     @Override
@@ -109,42 +122,87 @@ public class GroovyTypeCheckingExtensionSupport extends TypeCheckingExtension {
         config.addCompilationCustomizers(ic);
         final GroovyClassLoader transformLoader = compilationUnit!=null?compilationUnit.getTransformLoader():typeCheckingVisitor.getSourceUnit().getClassLoader();
 
-        ClassLoader cl = typeCheckingVisitor.getSourceUnit().getClassLoader();
-        // cast to prevent incorrect @since 1.7 warning
-        InputStream is = ((ClassLoader)transformLoader).getResourceAsStream(scriptPath);
-        if (is == null) {
-            // fallback to the source unit classloader
-            is = cl.getResourceAsStream(scriptPath);
-        }
-        if (is == null) {
-            // fallback to the compiler classloader
-            cl = GroovyTypeCheckingExtensionSupport.class.getClassLoader();
-            is = cl.getResourceAsStream(scriptPath);
-        }
-        if (is == null) {
-            // if the input stream is still null, we've not found the extension
-            context.getErrorCollector().addFatalError(
-                    new SimpleMessage("Static type checking extension '" + scriptPath + "' was not found on the classpath.",
-                            config.getDebug(), typeCheckingVisitor.getSourceUnit()));
-        }
+        // since Groovy 2.2, it is possible to use FQCN for type checking extension scripts
+        TypeCheckingDSL script = null;
         try {
-            GroovyShell shell = new GroovyShell(transformLoader, new Binding(), config);
-            TypeCheckingDSL parse = (TypeCheckingDSL) shell.parse(
-                    new InputStreamReader(is, typeCheckingVisitor.getSourceUnit().getConfiguration().getSourceEncoding())
-            );
-            parse.extension = this;
-            parse.run();
+            Class<?> clazz = transformLoader.loadClass(scriptPath, false, true);
+            if (TypeCheckingDSL.class.isAssignableFrom(clazz)) {
+                script = (TypeCheckingDSL) clazz.newInstance();
+            } else if (TypeCheckingExtension.class.isAssignableFrom(clazz)) {
+                // since 2.4, we can also register precompiled type checking extensions which are not scripts
+                try {
+                    Constructor<?> declaredConstructor = clazz.getDeclaredConstructor(StaticTypeCheckingVisitor.class);
+                    TypeCheckingExtension extension = (TypeCheckingExtension) declaredConstructor.newInstance(typeCheckingVisitor);
+                    typeCheckingVisitor.addTypeCheckingExtension(extension);
+                    extension.setup();
+                    return;
+                } catch (InstantiationException e) {
+                    addLoadingError(config);
+                } catch (IllegalAccessException e) {
+                    addLoadingError(config);
+                } catch (NoSuchMethodException e) {
+                    context.getErrorCollector().addFatalError(
+                            new SimpleMessage("Static type checking extension '" + scriptPath + "' could not be loaded because it doesn't have a constructor accepting StaticTypeCheckingVisitor.",
+                                    config.getDebug(), typeCheckingVisitor.getSourceUnit())
+                    );
+                } catch (InvocationTargetException e) {
+                    addLoadingError(config);
+                }
+            }
+        } catch (ClassNotFoundException e) {
+            // silent
+        } catch (InstantiationException e) {
+            addLoadingError(config);
+        } catch (IllegalAccessException e) {
+            addLoadingError(config);
+        }
+        if (script==null) {
+            ClassLoader cl = typeCheckingVisitor.getSourceUnit().getClassLoader();
+            // cast to prevent incorrect @since 1.7 warning
+            InputStream is = ((ClassLoader)transformLoader).getResourceAsStream(scriptPath);
+            if (is == null) {
+                // fallback to the source unit classloader
+                is = cl.getResourceAsStream(scriptPath);
+            }
+            if (is == null) {
+                // fallback to the compiler classloader
+                cl = GroovyTypeCheckingExtensionSupport.class.getClassLoader();
+                is = cl.getResourceAsStream(scriptPath);
+            }
+            if (is == null) {
+                // if the input stream is still null, we've not found the extension
+                context.getErrorCollector().addFatalError(
+                        new SimpleMessage("Static type checking extension '" + scriptPath + "' was not found on the classpath.",
+                                config.getDebug(), typeCheckingVisitor.getSourceUnit()));
+            }
+            try {
+                GroovyShell shell = new GroovyShell(transformLoader, new Binding(), config);
+                script = (TypeCheckingDSL) shell.parse(
+                        new InputStreamReader(is, typeCheckingVisitor.getSourceUnit().getConfiguration().getSourceEncoding())
+                );
+            } catch (CompilationFailedException e) {
+                throw new GroovyBugError("An unexpected error was thrown during custom type checking", e);
+            } catch (UnsupportedEncodingException e) {
+                throw new GroovyBugError("Unsupported encoding found in compiler configuration", e);
+            }
+        }
+        if (script!=null) {
+            script.extension = this;
+            script.run();
             List<Closure> list = eventHandlers.get("setup");
             if (list != null) {
                 for (Closure closure : list) {
                     safeCall(closure);
                 }
             }
-        } catch (CompilationFailedException e) {
-            throw new GroovyBugError("An unexpected error was thrown during custom type checking", e);
-        } catch (UnsupportedEncodingException e) {
-            throw new GroovyBugError("Unsupported encoding found in compiler configuration", e);
         }
+    }
+
+    private void addLoadingError(final CompilerConfiguration config) {
+        context.getErrorCollector().addFatalError(
+                new SimpleMessage("Static type checking extension '" + scriptPath + "' could not be loaded.",
+                        config.getDebug(), typeCheckingVisitor.getSourceUnit())
+        );
     }
 
     @Override
@@ -154,123 +212,6 @@ public class GroovyTypeCheckingExtensionSupport extends TypeCheckingExtension {
             for (Closure closure : list) {
                 safeCall(closure);
             }
-        }
-    }
-
-    public void setHandled(final boolean handled) {
-        this.handled = handled;
-    }
-
-    public TypeCheckingScope newScope() {
-        TypeCheckingScope scope = new TypeCheckingScope(scopeData.peek());
-        scopeData.addFirst(scope);
-        return scope;
-    }
-
-    public TypeCheckingScope newScope(Closure code) {
-        TypeCheckingScope scope = newScope();
-        Closure callback = code.rehydrate(scope, this, this);
-        callback.call();
-        return scope;
-    }
-
-    public TypeCheckingScope scopeExit() {
-        return scopeData.removeFirst();
-    }
-
-    public TypeCheckingScope getCurrentScope() {
-        return scopeData.peek();
-    }
-
-    public TypeCheckingScope scopeExit(Closure code) {
-        TypeCheckingScope scope = scopeData.peek();
-        Closure copy = code.rehydrate(scope, this, this);
-        copy.call();
-        return scopeExit();
-    }
-
-    public boolean isGenerated(MethodNode node) {
-        return generatedMethods.contains(node);
-    }
-
-    public List<MethodNode> unique(MethodNode node) {
-        return Collections.singletonList(node);
-    }
-
-    public MethodNode newMethod(final String name, final Class returnType) {
-        return newMethod(name, ClassHelper.make(returnType));
-    }
-
-    public MethodNode newMethod(final String name, final ClassNode returnType) {
-        MethodNode node = new MethodNode(name,
-                Opcodes.ACC_PUBLIC,
-                returnType,
-                Parameter.EMPTY_ARRAY,
-                ClassNode.EMPTY_ARRAY,
-                EmptyStatement.INSTANCE);
-        generatedMethods.add(node);
-        return node;
-    }
-
-    public MethodNode newMethod(final String name,
-                                final Callable<ClassNode> returnType) {
-        MethodNode node = new MethodNode(name,
-                Opcodes.ACC_PUBLIC,
-                ClassHelper.OBJECT_TYPE,
-                Parameter.EMPTY_ARRAY,
-                ClassNode.EMPTY_ARRAY,
-                EmptyStatement.INSTANCE) {
-            @Override
-            public ClassNode getReturnType() {
-                try {
-                    return returnType.call();
-                } catch (Exception e) {
-                    return super.getReturnType();
-                }
-            }
-        };
-        generatedMethods.add(node);
-        return node;
-    }
-
-    public void delegatesTo(ClassNode type) {
-        delegatesTo(type, Closure.OWNER_FIRST);
-    }
-
-    public void delegatesTo(ClassNode type, int strategy) {
-        delegatesTo(type, strategy, typeCheckingVisitor.typeCheckingContext.delegationMetadata);
-    }
-
-    public void delegatesTo(ClassNode type, int strategy, DelegationMetadata parent) {
-        typeCheckingVisitor.typeCheckingContext.delegationMetadata = new DelegationMetadata(type, strategy, parent);
-    }
-
-    public boolean isAnnotatedBy(ASTNode node, Class annotation) {
-        return isAnnotatedBy(node, ClassHelper.make(annotation));
-    }
-
-    public boolean isAnnotatedBy(ASTNode node, ClassNode annotation) {
-        return node instanceof AnnotatedNode && !((AnnotatedNode)node).getAnnotations(annotation).isEmpty();
-    }
-
-    public boolean isDynamic(VariableExpression var) {
-        return var.getAccessedVariable() instanceof DynamicVariable;
-    }
-
-    public boolean isExtensionMethod(MethodNode node) {
-        return node instanceof ExtensionMethodNode;
-    }
-
-    public ArgumentListExpression getArguments(MethodCall call) {
-        return InvocationWriter.makeArgumentList(call.getArguments());
-    }
-
-    private Object safeCall(Closure closure, Object... args) {
-        try {
-            return closure.call(args);
-        } catch (Exception err) {
-            typeCheckingVisitor.getSourceUnit().addException(err);
-            return null;
         }
     }
 
@@ -399,6 +340,18 @@ public class GroovyTypeCheckingExtensionSupport extends TypeCheckingExtension {
     }
 
     @Override
+    public boolean handleIncompatibleReturnType(final ReturnStatement returnStatement, ClassNode inferredReturnType) {
+        setHandled(false);
+        List<Closure> list = eventHandlers.get("handleIncompatibleReturnType");
+        if (list != null) {
+            for (Closure closure : list) {
+                safeCall(closure, returnStatement, inferredReturnType);
+            }
+        }
+        return handled;
+    }
+
+    @Override
     @SuppressWarnings("unchecked")
     public List<MethodNode> handleMissingMethod(final ClassNode receiver, final String name, final ArgumentListExpression argumentList, final ClassNode[] argumentTypes, final MethodCall call) {
         List<Closure> onMethodSelection = eventHandlers.get("handleMissingMethod");
@@ -420,181 +373,37 @@ public class GroovyTypeCheckingExtensionSupport extends TypeCheckingExtension {
         return methodList;
     }
 
-    public boolean isMethodCall(Object o) {
-        return o instanceof MethodCallExpression;
-    }
-
-    public boolean argTypesMatches(ClassNode[] argTypes, Class... classes) {
-        if (classes == null) return argTypes == null || argTypes.length == 0;
-        if (argTypes.length != classes.length) return false;
-        boolean match = true;
-        for (int i = 0; i < argTypes.length && match; i++) {
-            match = matchWithOrWithourBoxing(argTypes[i], classes[i]);
-        }
-        return match;
-    }
-
-    private boolean matchWithOrWithourBoxing(final ClassNode argType, final Class aClass) {
-        final boolean match;
-        ClassNode type = ClassHelper.make(aClass);
-        if (ClassHelper.isPrimitiveType(type) && !ClassHelper.isPrimitiveType(argType)) {
-            type = ClassHelper.getWrapper(type);
-        } else if (ClassHelper.isPrimitiveType(argType) && !ClassHelper.isPrimitiveType(type)) {
-            type = ClassHelper.getUnwrapper(type);
-        }
-        match = argType.equals(type);
-        return match;
-    }
-
-    public boolean argTypesMatches(MethodCall call, Class... classes) {
-        ArgumentListExpression argumentListExpression = InvocationWriter.makeArgumentList(call.getArguments());
-        ClassNode[] argumentTypes = typeCheckingVisitor.getArgumentTypes(argumentListExpression);
-        return argTypesMatches(argumentTypes, classes);
-    }
-
-    public boolean firstArgTypesMatches(ClassNode[] argTypes, Class... classes) {
-        if (classes == null) return argTypes == null || argTypes.length == 0;
-        if (argTypes.length<classes.length) return false;
-        boolean match = true;
-        for (int i = 0; i < classes.length && match; i++) {
-            match = matchWithOrWithourBoxing(argTypes[i], classes[i]);
-        }
-        return match;
-    }
-
-    public boolean firstArgTypesMatches(MethodCall call, Class... classes) {
-        ArgumentListExpression argumentListExpression = InvocationWriter.makeArgumentList(call.getArguments());
-        ClassNode[] argumentTypes = typeCheckingVisitor.getArgumentTypes(argumentListExpression);
-        return firstArgTypesMatches(argumentTypes, classes);
-    }
-
-    public boolean argTypeMatches(ClassNode[] argTypes, int index, Class clazz) {
-        if (index >= argTypes.length) return false;
-        return matchWithOrWithourBoxing(argTypes[index], clazz);
-    }
-
-    public boolean argTypeMatches(MethodCall call, int index, Class clazz) {
-        ArgumentListExpression argumentListExpression = InvocationWriter.makeArgumentList(call.getArguments());
-        ClassNode[] argumentTypes = typeCheckingVisitor.getArgumentTypes(argumentListExpression);
-        return argTypeMatches(argumentTypes, index, clazz);
-    }
-
+    @Override
     @SuppressWarnings("unchecked")
-    public <R> R withTypeChecker(Closure<R> code) {
-        Closure<R> clone = (Closure<R>) code.clone();
-        clone.setDelegate(typeCheckingVisitor);
-        clone.setResolveStrategy(Closure.DELEGATE_FIRST);
-        return clone.call();
+    public List<MethodNode> handleAmbiguousMethods(final List<MethodNode> nodes, final Expression origin) {
+        List<Closure> onMethodSelection = eventHandlers.get("handleAmbiguousMethods");
+        List<MethodNode> methodList = nodes;
+        if (onMethodSelection != null) {
+            Iterator<Closure> iterator = onMethodSelection.iterator();
+            while (methodList.size()>1 && iterator.hasNext() ) {
+                final Closure closure = iterator.next();
+                Object result = safeCall(closure, methodList, origin);
+                if (result != null) {
+                    if (result instanceof MethodNode) {
+                        methodList = Collections.singletonList((MethodNode) result);
+                    } else if (result instanceof Collection) {
+                        methodList = new LinkedList<MethodNode>((Collection<? extends MethodNode>) result);
+                    } else {
+                        throw new GroovyBugError("Type checking extension returned unexpected method list: " + result);
+                    }
+                }
+            }
+        }
+        return methodList;
     }
 
     // -------------------------------------
     // delegate to the type checking context
     // -------------------------------------
 
-    public BinaryExpression getEnclosingBinaryExpression() {
-        return context.getEnclosingBinaryExpression();
-    }
-
-    public void pushEnclosingBinaryExpression(final BinaryExpression binaryExpression) {
-        context.pushEnclosingBinaryExpression(binaryExpression);
-    }
-
-    public void pushEnclosingClosureExpression(final ClosureExpression closureExpression) {
-        context.pushEnclosingClosureExpression(closureExpression);
-    }
-
-    public Expression getEnclosingMethodCall() {
-        return context.getEnclosingMethodCall();
-    }
-
-    public Expression popEnclosingMethodCall() {
-        return context.popEnclosingMethodCall();
-    }
-
-    public MethodNode popEnclosingMethod() {
-        return context.popEnclosingMethod();
-    }
-
-    public ClassNode getEnclosingClassNode() {
-        return context.getEnclosingClassNode();
-    }
-
-    public List<MethodNode> getEnclosingMethods() {
-        return context.getEnclosingMethods();
-    }
-
-    public MethodNode getEnclosingMethod() {
-        return context.getEnclosingMethod();
-    }
-
-    public void popTemporaryTypeInfo() {
-        context.popTemporaryTypeInfo();
-    }
-
-    public void pushEnclosingClassNode(final ClassNode classNode) {
-        context.pushEnclosingClassNode(classNode);
-    }
-
-    public BinaryExpression popEnclosingBinaryExpression() {
-        return context.popEnclosingBinaryExpression();
-    }
-
-    public List<ClassNode> getEnclosingClassNodes() {
-        return context.getEnclosingClassNodes();
-    }
-
-    public List<TypeCheckingContext.EnclosingClosure> getEnclosingClosureStack() {
-        return context.getEnclosingClosureStack();
-    }
-
-    public ClassNode popEnclosingClassNode() {
-        return context.popEnclosingClassNode();
-    }
-
-    public void pushEnclosingMethod(final MethodNode methodNode) {
-        context.pushEnclosingMethod(methodNode);
-    }
-
-    public List<BinaryExpression> getEnclosingBinaryExpressionStack() {
-        return context.getEnclosingBinaryExpressionStack();
-    }
-
-    public TypeCheckingContext.EnclosingClosure getEnclosingClosure() {
-        return context.getEnclosingClosure();
-    }
-
-    public List<Expression> getEnclosingMethodCalls() {
-        return context.getEnclosingMethodCalls();
-    }
-
-    public void pushEnclosingMethodCall(final Expression call) {
-        context.pushEnclosingMethodCall(call);
-    }
-
-    public TypeCheckingContext.EnclosingClosure popEnclosingClosure() {
-        return context.popEnclosingClosure();
-    }
-
-    public void pushTemporaryTypeInfo() {
-        context.pushTemporaryTypeInfo();
-    }
-
     // --------------------------------------------
     // end of delegate to the type checking context
     // --------------------------------------------
-
-    private class TypeCheckingScope extends LinkedHashMap<String, Object> {
-        private final TypeCheckingScope parent;
-
-        private TypeCheckingScope(final TypeCheckingScope parentScope) {
-            this.parent = parentScope;
-        }
-
-        public TypeCheckingScope getParent() {
-            return parent;
-        }
-
-    }
 
     public abstract static class TypeCheckingDSL extends Script {
         private GroovyTypeCheckingExtensionSupport extension;

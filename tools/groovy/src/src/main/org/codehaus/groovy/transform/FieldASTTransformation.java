@@ -1,24 +1,35 @@
-/*
- * Copyright 2008-2012 the original author or authors.
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
-
 package org.codehaus.groovy.transform;
 
+import groovy.lang.Lazy;
 import groovy.transform.Field;
 import org.codehaus.groovy.GroovyBugError;
-import org.codehaus.groovy.ast.*;
+import org.codehaus.groovy.ast.ASTNode;
+import org.codehaus.groovy.ast.AnnotatedNode;
+import org.codehaus.groovy.ast.AnnotationNode;
+import org.codehaus.groovy.ast.ClassCodeExpressionTransformer;
+import org.codehaus.groovy.ast.ClassNode;
+import org.codehaus.groovy.ast.FieldNode;
+import org.codehaus.groovy.ast.MethodNode;
+import org.codehaus.groovy.ast.Variable;
+import org.codehaus.groovy.ast.VariableScope;
 import org.codehaus.groovy.ast.expr.BinaryExpression;
 import org.codehaus.groovy.ast.expr.ClosureExpression;
 import org.codehaus.groovy.ast.expr.ConstantExpression;
@@ -35,6 +46,8 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
+import static org.codehaus.groovy.ast.ClassHelper.make;
+
 /**
  * Handles transformation for the @Field annotation.
  *
@@ -45,9 +58,10 @@ import java.util.List;
 public class FieldASTTransformation extends ClassCodeExpressionTransformer implements ASTTransformation, Opcodes {
 
     private static final Class MY_CLASS = Field.class;
-    private static final ClassNode MY_TYPE = ClassHelper.make(MY_CLASS);
+    private static final ClassNode MY_TYPE = make(MY_CLASS);
+    private static final ClassNode LAZY_TYPE = make(Lazy.class);
     private static final String MY_TYPE_NAME = "@" + MY_TYPE.getNameWithoutPackage();
-    private static final ClassNode ASTTRANSFORMCLASS_TYPE = ClassHelper.make(GroovyASTTransformationClass.class);
+    private static final ClassNode ASTTRANSFORMCLASS_TYPE = make(GroovyASTTransformationClass.class);
     private SourceUnit sourceUnit;
     private DeclarationExpression candidate;
     private boolean insideScriptBody;
@@ -69,13 +83,13 @@ public class FieldASTTransformation extends ClassCodeExpressionTransformer imple
             DeclarationExpression de = (DeclarationExpression) parent;
             ClassNode cNode = de.getDeclaringClass();
             if (!cNode.isScript()) {
-                addError("Error: annotation " + MY_TYPE_NAME + " can only be used within a Script.", parent);
+                addError("Annotation " + MY_TYPE_NAME + " can only be used within a Script.", parent);
                 return;
             }
             candidate = de;
             // GROOVY-4548: temp fix to stop CCE until proper support is added
             if (de.isMultipleAssignmentDeclaration()) {
-                addError("Error: annotation " + MY_TYPE_NAME + " not supported with multiple assignment notation.", parent);
+                addError("Annotation " + MY_TYPE_NAME + " not supported with multiple assignment notation.", parent);
                 return;
             }
             VariableExpression ve = de.getVariableExpression();
@@ -89,6 +103,10 @@ public class FieldASTTransformation extends ClassCodeExpressionTransformer imple
             // GROOVY-6112 : also copy acceptable Groovy transforms
             final List<AnnotationNode> annotations = de.getAnnotations();
             for (AnnotationNode annotation : annotations) {
+                // GROOVY-6337 HACK: in case newly created field is @Lazy
+                if (annotation.getClassNode().equals(LAZY_TYPE)) {
+                    LazyASTTransformation.visitField(annotation, fieldNode);
+                }
                 final ClassNode annotationClassNode = annotation.getClassNode();
                 if (notTransform(annotationClassNode) || acceptableTransform(annotation)) {
                     fieldNode.addAnnotation(annotation);
@@ -129,7 +147,7 @@ public class FieldASTTransformation extends ClassCodeExpressionTransformer imple
                     // return EmptyExpression.INSTANCE;
                     return new ConstantExpression(null);
                 }
-                addError("Error: annotation " + MY_TYPE_NAME + " can only be used within a Script body.", expr);
+                addError("Annotation " + MY_TYPE_NAME + " can only be used within a Script body.", expr);
                 return expr;
             }
         } else if (insideScriptBody && expr instanceof VariableExpression && currentClosure != null) {

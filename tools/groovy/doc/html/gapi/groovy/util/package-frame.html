@@ -1,65 +1,82 @@
+<!--
+
+     Licensed to the Apache Software Foundation (ASF) under one
+     or more contributor license agreements.  See the NOTICE file
+     distributed with this work for additional information
+     regarding copyright ownership.  The ASF licenses this file
+     to you under the Apache License, Version 2.0 (the
+     "License"); you may not use this file except in compliance
+     with the License.  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing,
+     software distributed under the License is distributed on an
+     "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+     specific language governing permissions and limitations
+     under the License.
+
+-->
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<HTML>
-<HEAD>
-<TITLE>
-groovy.util
-</TITLE>
+<html>
+<head>
+    <title>groovy.util</title>
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="keywords" CONTENT="groovy/util package">
 
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<META NAME="keywords" CONTENT="groovy/util package">
+    <link href="groovy.ico" type="image/x-icon" rel="shortcut icon">
+    <link href="groovy.ico" type="image/x-icon" rel="icon">
+    <link rel="stylesheet" type="text/css" href="../../stylesheet.css" title="Style">
+</head>
 
-<LINK REL ="stylesheet" TYPE="text/css" HREF="../../stylesheet.css" TITLE="Style">
-
-</HEAD>
-
-<BODY BGCOLOR="white">
-<FONT size="+1" CLASS="FrameTitleFont">
-<A HREF="package-summary.html" target="classFrame">groovy.util</A></FONT>
-
-
-
-<TABLE BORDER="0" WIDTH="100%" SUMMARY="">
-<TR>
-<TD NOWRAP><FONT size="+1" CLASS="FrameHeadingFont">
-Interfaces</FONT>&nbsp;
-<FONT CLASS="FrameItemFont"><BR><A HREF="Factory.html" title="interface in groovy.util" target="classFrame"><I>Factory</I></A><BR><A HREF="IFileNameFinder.html" title="interface in groovy.util" target="classFrame"><I>IFileNameFinder</I></A><BR><A HREF="ObjectGraphBuilder.ChildPropertySetter.html" title="interface in groovy.util" target="classFrame"><I>ObjectGraphBuilder.ChildPropertySetter</I></A><BR><A HREF="ObjectGraphBuilder.ClassNameResolver.html" title="interface in groovy.util" target="classFrame"><I>ObjectGraphBuilder.ClassNameResolver</I></A><BR><A HREF="ObjectGraphBuilder.IdentifierResolver.html" title="interface in groovy.util" target="classFrame"><I>ObjectGraphBuilder.IdentifierResolver</I></A><BR><A HREF="ObjectGraphBuilder.NewInstanceResolver.html" title="interface in groovy.util" target="classFrame"><I>ObjectGraphBuilder.NewInstanceResolver</I></A><BR><A HREF="ObjectGraphBuilder.ReferenceResolver.html" title="interface in groovy.util" target="classFrame"><I>ObjectGraphBuilder.ReferenceResolver</I></A><BR><A HREF="ObjectGraphBuilder.RelationNameResolver.html" title="interface in groovy.util" target="classFrame"><I>ObjectGraphBuilder.RelationNameResolver</I></A><BR><A HREF="ResourceConnector.html" title="interface in groovy.util" target="classFrame"><I>ResourceConnector</I></A></FONT></TD>
-</TR>
-</TABLE>
+<body class="left">
+<div class="indexHeader">
+    <b><a href="package-summary.html" target="classFrame">groovy.util</a></b>
+</div>
 
 
 
-<TABLE BORDER="0" WIDTH="100%" SUMMARY="">
-<TR>
-<TD NOWRAP><FONT size="+1" CLASS="FrameHeadingFont">
-Classes</FONT>&nbsp;
-<FONT CLASS="FrameItemFont"><BR><A HREF="AbstractFactory.html" title="class in groovy.util" target="classFrame">AbstractFactory</A><BR><A HREF="AllTestSuite.html" title="class in groovy.util" target="classFrame">AllTestSuite</A><BR><A HREF="AntBuilder.html" title="class in groovy.util" target="classFrame">AntBuilder</A><BR><A HREF="BuilderSupport.html" title="class in groovy.util" target="classFrame">BuilderSupport</A><BR><A HREF="CharsetToolkit.html" title="class in groovy.util" target="classFrame">CharsetToolkit</A><BR><A HREF="CliBuilder.html" title="class in groovy.util" target="classFrame">CliBuilder</A><BR><A HREF="ClosureComparator.html" title="class in groovy.util" target="classFrame">ClosureComparator</A><BR><A HREF="ConfigBinding.html" title="class in groovy.util" target="classFrame">ConfigBinding</A><BR><A HREF="ConfigObject.html" title="class in groovy.util" target="classFrame">ConfigObject</A><BR><A HREF="ConfigSlurper.html" title="class in groovy.util" target="classFrame">ConfigSlurper</A><BR><A HREF="Eval.html" title="class in groovy.util" target="classFrame">Eval</A><BR><A HREF="Expando.html" title="class in groovy.util" target="classFrame">Expando</A><BR><A HREF="FactoryBuilderSupport.html" title="class in groovy.util" target="classFrame">FactoryBuilderSupport</A><BR><A HREF="FileNameByRegexFinder.html" title="class in groovy.util" target="classFrame">FileNameByRegexFinder</A><BR><A HREF="FileNameFinder.html" title="class in groovy.util" target="classFrame">FileNameFinder</A><BR><A HREF="GroovyAssert.html" title="class in groovy.util" target="classFrame">GroovyAssert</A><BR><A HREF="GroovyCollections.html" title="class in groovy.util" target="classFrame">GroovyCollections</A><BR><A HREF="GroovyMBean.html" title="class in groovy.util" target="classFrame">GroovyMBean</A><BR><A HREF="GroovyScriptEngine.html" title="class in groovy.util" target="classFrame">GroovyScriptEngine</A><BR><A HREF="GroovyShellTestCase.html" title="class in groovy.util" target="classFrame">GroovyShellTestCase</A><BR><A HREF="GroovyTestCase.html" title="class in groovy.util" target="classFrame">GroovyTestCase</A><BR><A HREF="GroovyTestSuite.html" title="class in groovy.util" target="classFrame">GroovyTestSuite</A><BR><A HREF="IndentPrinter.html" title="class in groovy.util" target="classFrame">IndentPrinter</A><BR><A HREF="JavadocAssertionTestBuilder.html" title="class in groovy.util" target="classFrame">JavadocAssertionTestBuilder</A><BR><A HREF="JavadocAssertionTestSuite.html" title="class in groovy.util" target="classFrame">JavadocAssertionTestSuite</A><BR><A HREF="MapEntry.html" title="class in groovy.util" target="classFrame">MapEntry</A><BR><A HREF="Node.html" title="class in groovy.util" target="classFrame">Node</A><BR><A HREF="NodeBuilder.html" title="class in groovy.util" target="classFrame">NodeBuilder</A><BR><A HREF="NodeList.html" title="class in groovy.util" target="classFrame">NodeList</A><BR><A HREF="NodePrinter.html" title="class in groovy.util" target="classFrame">NodePrinter</A><BR><A HREF="ObjectGraphBuilder.html" title="class in groovy.util" target="classFrame">ObjectGraphBuilder</A><BR><A HREF="ObjectGraphBuilder.DefaultChildPropertySetter.html" title="class in groovy.util" target="classFrame">ObjectGraphBuilder.DefaultChildPropertySetter</A><BR><A HREF="ObjectGraphBuilder.DefaultClassNameResolver.html" title="class in groovy.util" target="classFrame">ObjectGraphBuilder.DefaultClassNameResolver</A><BR><A HREF="ObjectGraphBuilder.DefaultIdentifierResolver.html" title="class in groovy.util" target="classFrame">ObjectGraphBuilder.DefaultIdentifierResolver</A><BR><A HREF="ObjectGraphBuilder.DefaultNewInstanceResolver.html" title="class in groovy.util" target="classFrame">ObjectGraphBuilder.DefaultNewInstanceResolver</A><BR><A HREF="ObjectGraphBuilder.DefaultReferenceResolver.html" title="class in groovy.util" target="classFrame">ObjectGraphBuilder.DefaultReferenceResolver</A><BR><A HREF="ObjectGraphBuilder.DefaultRelationNameResolver.html" title="class in groovy.util" target="classFrame">ObjectGraphBuilder.DefaultRelationNameResolver</A><BR><A HREF="ObjectGraphBuilder.ReflectionClassNameResolver.html" title="class in groovy.util" target="classFrame">ObjectGraphBuilder.ReflectionClassNameResolver</A><BR><A HREF="ObservableList.html" title="class in groovy.util" target="classFrame">ObservableList</A><BR><A HREF="ObservableList.ElementAddedEvent.html" title="class in groovy.util" target="classFrame">ObservableList.ElementAddedEvent</A><BR><A HREF="ObservableList.ElementClearedEvent.html" title="class in groovy.util" target="classFrame">ObservableList.ElementClearedEvent</A><BR><A HREF="ObservableList.ElementEvent.html" title="class in groovy.util" target="classFrame">ObservableList.ElementEvent</A><BR><A HREF="ObservableList.ElementRemovedEvent.html" title="class in groovy.util" target="classFrame">ObservableList.ElementRemovedEvent</A><BR><A HREF="ObservableList.ElementUpdatedEvent.html" title="class in groovy.util" target="classFrame">ObservableList.ElementUpdatedEvent</A><BR><A HREF="ObservableList.MultiElementAddedEvent.html" title="class in groovy.util" target="classFrame">ObservableList.MultiElementAddedEvent</A><BR><A HREF="ObservableList.MultiElementRemovedEvent.html" title="class in groovy.util" target="classFrame">ObservableList.MultiElementRemovedEvent</A><BR><A HREF="ObservableList.ObservableIterator.html" title="class in groovy.util" target="classFrame">ObservableList.ObservableIterator</A><BR><A HREF="ObservableList.ObservableListIterator.html" title="class in groovy.util" target="classFrame">ObservableList.ObservableListIterator</A><BR><A HREF="ObservableMap.html" title="class in groovy.util" target="classFrame">ObservableMap</A><BR><A HREF="ObservableMap.MultiPropertyEvent.html" title="class in groovy.util" target="classFrame">ObservableMap.MultiPropertyEvent</A><BR><A HREF="ObservableMap.PropertyAddedEvent.html" title="class in groovy.util" target="classFrame">ObservableMap.PropertyAddedEvent</A><BR><A HREF="ObservableMap.PropertyClearedEvent.html" title="class in groovy.util" target="classFrame">ObservableMap.PropertyClearedEvent</A><BR><A HREF="ObservableMap.PropertyEvent.html" title="class in groovy.util" target="classFrame">ObservableMap.PropertyEvent</A><BR><A HREF="ObservableMap.PropertyRemovedEvent.html" title="class in groovy.util" target="classFrame">ObservableMap.PropertyRemovedEvent</A><BR><A HREF="ObservableMap.PropertyUpdatedEvent.html" title="class in groovy.util" target="classFrame">ObservableMap.PropertyUpdatedEvent</A><BR><A HREF="ObservableSet.html" title="class in groovy.util" target="classFrame">ObservableSet</A><BR><A HREF="ObservableSet.ElementAddedEvent.html" title="class in groovy.util" target="classFrame">ObservableSet.ElementAddedEvent</A><BR><A HREF="ObservableSet.ElementClearedEvent.html" title="class in groovy.util" target="classFrame">ObservableSet.ElementClearedEvent</A><BR><A HREF="ObservableSet.ElementEvent.html" title="class in groovy.util" target="classFrame">ObservableSet.ElementEvent</A><BR><A HREF="ObservableSet.ElementRemovedEvent.html" title="class in groovy.util" target="classFrame">ObservableSet.ElementRemovedEvent</A><BR><A HREF="ObservableSet.MultiElementAddedEvent.html" title="class in groovy.util" target="classFrame">ObservableSet.MultiElementAddedEvent</A><BR><A HREF="ObservableSet.MultiElementRemovedEvent.html" title="class in groovy.util" target="classFrame">ObservableSet.MultiElementRemovedEvent</A><BR><A HREF="ObservableSet.ObservableIterator.html" title="class in groovy.util" target="classFrame">ObservableSet.ObservableIterator</A><BR><A HREF="OptionAccessor.html" title="class in groovy.util" target="classFrame">OptionAccessor</A><BR><A HREF="OrderBy.html" title="class in groovy.util" target="classFrame">OrderBy</A><BR><A HREF="PermutationGenerator.html" title="class in groovy.util" target="classFrame">PermutationGenerator</A><BR><A HREF="Proxy.html" title="class in groovy.util" target="classFrame">Proxy</A><BR><A HREF="ProxyGenerator.html" title="class in groovy.util" target="classFrame">ProxyGenerator</A><BR><A HREF="StringTestUtil.html" title="class in groovy.util" target="classFrame">StringTestUtil</A><BR><A HREF="XmlNodePrinter.html" title="class in groovy.util" target="classFrame">XmlNodePrinter</A><BR><A HREF="XmlNodePrinter.NamespaceContext.html" title="class in groovy.util" target="classFrame">XmlNodePrinter.NamespaceContext</A><BR><A HREF="XmlParser.html" title="class in groovy.util" target="classFrame">XmlParser</A><BR><A HREF="XmlSlurper.html" title="class in groovy.util" target="classFrame">XmlSlurper</A></FONT></TD>
-</TR>
-</TABLE>
+<div class="indexContainer">
+    <h2>Interfaces</h2>
+    <ul>
+        <li><a href="Factory.html" title="interface in groovy.util" target="classFrame"><em>Factory</em></a></li><li><a href="IFileNameFinder.html" title="interface in groovy.util" target="classFrame"><em>IFileNameFinder</em></a></li><li><a href="ObjectGraphBuilder.ChildPropertySetter.html" title="interface in groovy.util" target="classFrame"><em>ObjectGraphBuilder.ChildPropertySetter</em></a></li><li><a href="ObjectGraphBuilder.ClassNameResolver.html" title="interface in groovy.util" target="classFrame"><em>ObjectGraphBuilder.ClassNameResolver</em></a></li><li><a href="ObjectGraphBuilder.IdentifierResolver.html" title="interface in groovy.util" target="classFrame"><em>ObjectGraphBuilder.IdentifierResolver</em></a></li><li><a href="ObjectGraphBuilder.NewInstanceResolver.html" title="interface in groovy.util" target="classFrame"><em>ObjectGraphBuilder.NewInstanceResolver</em></a></li><li><a href="ObjectGraphBuilder.ReferenceResolver.html" title="interface in groovy.util" target="classFrame"><em>ObjectGraphBuilder.ReferenceResolver</em></a></li><li><a href="ObjectGraphBuilder.RelationNameResolver.html" title="interface in groovy.util" target="classFrame"><em>ObjectGraphBuilder.RelationNameResolver</em></a></li><li><a href="ResourceConnector.html" title="interface in groovy.util" target="classFrame"><em>ResourceConnector</em></a></li>
+    </ul>
+</div>
 
 
 
-<TABLE BORDER="0" WIDTH="100%" SUMMARY="">
-<TR>
-<TD NOWRAP><FONT size="+1" CLASS="FrameHeadingFont">
-Enums</FONT>&nbsp;
-<FONT CLASS="FrameItemFont"><BR><A HREF="ObservableList.ChangeType.html" title="enum in groovy.util" target="classFrame">ObservableList.ChangeType</A><BR><A HREF="ObservableMap.ChangeType.html" title="enum in groovy.util" target="classFrame">ObservableMap.ChangeType</A><BR><A HREF="ObservableSet.ChangeType.html" title="enum in groovy.util" target="classFrame">ObservableSet.ChangeType</A></FONT></TD>
-</TR>
-</TABLE>
+
+<div class="indexContainer">
+    <h2>Classes</h2>
+    <ul>
+        <li><a href="AbstractFactory.html" title="class in groovy.util" target="classFrame">AbstractFactory</a></li><li><a href="AllTestSuite.html" title="class in groovy.util" target="classFrame">AllTestSuite</a></li><li><a href="AntBuilder.html" title="class in groovy.util" target="classFrame">AntBuilder</a></li><li><a href="BuilderSupport.html" title="class in groovy.util" target="classFrame">BuilderSupport</a></li><li><a href="CharsetToolkit.html" title="class in groovy.util" target="classFrame">CharsetToolkit</a></li><li><a href="CliBuilder.html" title="class in groovy.util" target="classFrame">CliBuilder</a></li><li><a href="ClosureComparator.html" title="class in groovy.util" target="classFrame">ClosureComparator</a></li><li><a href="ConfigBinding.html" title="class in groovy.util" target="classFrame">ConfigBinding</a></li><li><a href="ConfigObject.html" title="class in groovy.util" target="classFrame">ConfigObject</a></li><li><a href="ConfigSlurper.html" title="class in groovy.util" target="classFrame">ConfigSlurper</a></li><li><a href="DelegatingScript.html" title="class in groovy.util" target="classFrame">DelegatingScript</a></li><li><a href="Eval.html" title="class in groovy.util" target="classFrame">Eval</a></li><li><a href="Expando.html" title="class in groovy.util" target="classFrame">Expando</a></li><li><a href="FactoryBuilderSupport.html" title="class in groovy.util" target="classFrame">FactoryBuilderSupport</a></li><li><a href="FileNameByRegexFinder.html" title="class in groovy.util" target="classFrame">FileNameByRegexFinder</a></li><li><a href="FileNameFinder.html" title="class in groovy.util" target="classFrame">FileNameFinder</a></li><li><a href="FileTreeBuilder.html" title="class in groovy.util" target="classFrame">FileTreeBuilder</a></li><li><a href="GroovyAssert.html" title="class in groovy.util" target="classFrame">GroovyAssert</a></li><li><a href="GroovyCollections.html" title="class in groovy.util" target="classFrame">GroovyCollections</a></li><li><a href="GroovyMBean.html" title="class in groovy.util" target="classFrame">GroovyMBean</a></li><li><a href="GroovyScriptEngine.html" title="class in groovy.util" target="classFrame">GroovyScriptEngine</a></li><li><a href="GroovyShellTestCase.html" title="class in groovy.util" target="classFrame">GroovyShellTestCase</a></li><li><a href="GroovyTestCase.html" title="class in groovy.util" target="classFrame">GroovyTestCase</a></li><li><a href="GroovyTestSuite.html" title="class in groovy.util" target="classFrame">GroovyTestSuite</a></li><li><a href="IndentPrinter.html" title="class in groovy.util" target="classFrame">IndentPrinter</a></li><li><a href="JavadocAssertionTestBuilder.html" title="class in groovy.util" target="classFrame">JavadocAssertionTestBuilder</a></li><li><a href="JavadocAssertionTestSuite.html" title="class in groovy.util" target="classFrame">JavadocAssertionTestSuite</a></li><li><a href="MapEntry.html" title="class in groovy.util" target="classFrame">MapEntry</a></li><li><a href="Node.html" title="class in groovy.util" target="classFrame">Node</a></li><li><a href="NodeBuilder.html" title="class in groovy.util" target="classFrame">NodeBuilder</a></li><li><a href="NodeList.html" title="class in groovy.util" target="classFrame">NodeList</a></li><li><a href="NodePrinter.html" title="class in groovy.util" target="classFrame">NodePrinter</a></li><li><a href="ObjectGraphBuilder.html" title="class in groovy.util" target="classFrame">ObjectGraphBuilder</a></li><li><a href="ObjectGraphBuilder.DefaultChildPropertySetter.html" title="class in groovy.util" target="classFrame">ObjectGraphBuilder.DefaultChildPropertySetter</a></li><li><a href="ObjectGraphBuilder.DefaultClassNameResolver.html" title="class in groovy.util" target="classFrame">ObjectGraphBuilder.DefaultClassNameResolver</a></li><li><a href="ObjectGraphBuilder.DefaultIdentifierResolver.html" title="class in groovy.util" target="classFrame">ObjectGraphBuilder.DefaultIdentifierResolver</a></li><li><a href="ObjectGraphBuilder.DefaultNewInstanceResolver.html" title="class in groovy.util" target="classFrame">ObjectGraphBuilder.DefaultNewInstanceResolver</a></li><li><a href="ObjectGraphBuilder.DefaultReferenceResolver.html" title="class in groovy.util" target="classFrame">ObjectGraphBuilder.DefaultReferenceResolver</a></li><li><a href="ObjectGraphBuilder.DefaultRelationNameResolver.html" title="class in groovy.util" target="classFrame">ObjectGraphBuilder.DefaultRelationNameResolver</a></li><li><a href="ObjectGraphBuilder.ReflectionClassNameResolver.html" title="class in groovy.util" target="classFrame">ObjectGraphBuilder.ReflectionClassNameResolver</a></li><li><a href="ObservableList.html" title="class in groovy.util" target="classFrame">ObservableList</a></li><li><a href="ObservableList.ElementAddedEvent.html" title="class in groovy.util" target="classFrame">ObservableList.ElementAddedEvent</a></li><li><a href="ObservableList.ElementClearedEvent.html" title="class in groovy.util" target="classFrame">ObservableList.ElementClearedEvent</a></li><li><a href="ObservableList.ElementEvent.html" title="class in groovy.util" target="classFrame">ObservableList.ElementEvent</a></li><li><a href="ObservableList.ElementRemovedEvent.html" title="class in groovy.util" target="classFrame">ObservableList.ElementRemovedEvent</a></li><li><a href="ObservableList.ElementUpdatedEvent.html" title="class in groovy.util" target="classFrame">ObservableList.ElementUpdatedEvent</a></li><li><a href="ObservableList.MultiElementAddedEvent.html" title="class in groovy.util" target="classFrame">ObservableList.MultiElementAddedEvent</a></li><li><a href="ObservableList.MultiElementRemovedEvent.html" title="class in groovy.util" target="classFrame">ObservableList.MultiElementRemovedEvent</a></li><li><a href="ObservableList.ObservableIterator.html" title="class in groovy.util" target="classFrame">ObservableList.ObservableIterator</a></li><li><a href="ObservableList.ObservableListIterator.html" title="class in groovy.util" target="classFrame">ObservableList.ObservableListIterator</a></li><li><a href="ObservableMap.html" title="class in groovy.util" target="classFrame">ObservableMap</a></li><li><a href="ObservableMap.MultiPropertyEvent.html" title="class in groovy.util" target="classFrame">ObservableMap.MultiPropertyEvent</a></li><li><a href="ObservableMap.PropertyAddedEvent.html" title="class in groovy.util" target="classFrame">ObservableMap.PropertyAddedEvent</a></li><li><a href="ObservableMap.PropertyClearedEvent.html" title="class in groovy.util" target="classFrame">ObservableMap.PropertyClearedEvent</a></li><li><a href="ObservableMap.PropertyEvent.html" title="class in groovy.util" target="classFrame">ObservableMap.PropertyEvent</a></li><li><a href="ObservableMap.PropertyRemovedEvent.html" title="class in groovy.util" target="classFrame">ObservableMap.PropertyRemovedEvent</a></li><li><a href="ObservableMap.PropertyUpdatedEvent.html" title="class in groovy.util" target="classFrame">ObservableMap.PropertyUpdatedEvent</a></li><li><a href="ObservableSet.html" title="class in groovy.util" target="classFrame">ObservableSet</a></li><li><a href="ObservableSet.ElementAddedEvent.html" title="class in groovy.util" target="classFrame">ObservableSet.ElementAddedEvent</a></li><li><a href="ObservableSet.ElementClearedEvent.html" title="class in groovy.util" target="classFrame">ObservableSet.ElementClearedEvent</a></li><li><a href="ObservableSet.ElementEvent.html" title="class in groovy.util" target="classFrame">ObservableSet.ElementEvent</a></li><li><a href="ObservableSet.ElementRemovedEvent.html" title="class in groovy.util" target="classFrame">ObservableSet.ElementRemovedEvent</a></li><li><a href="ObservableSet.MultiElementAddedEvent.html" title="class in groovy.util" target="classFrame">ObservableSet.MultiElementAddedEvent</a></li><li><a href="ObservableSet.MultiElementRemovedEvent.html" title="class in groovy.util" target="classFrame">ObservableSet.MultiElementRemovedEvent</a></li><li><a href="ObservableSet.ObservableIterator.html" title="class in groovy.util" target="classFrame">ObservableSet.ObservableIterator</a></li><li><a href="OptionAccessor.html" title="class in groovy.util" target="classFrame">OptionAccessor</a></li><li><a href="OrderBy.html" title="class in groovy.util" target="classFrame">OrderBy</a></li><li><a href="PermutationGenerator.html" title="class in groovy.util" target="classFrame">PermutationGenerator</a></li><li><a href="Proxy.html" title="class in groovy.util" target="classFrame">Proxy</a></li><li><a href="ProxyGenerator.html" title="class in groovy.util" target="classFrame">ProxyGenerator</a></li><li><a href="StringTestUtil.html" title="class in groovy.util" target="classFrame">StringTestUtil</a></li><li><a href="XmlNodePrinter.html" title="class in groovy.util" target="classFrame">XmlNodePrinter</a></li><li><a href="XmlNodePrinter.NamespaceContext.html" title="class in groovy.util" target="classFrame">XmlNodePrinter.NamespaceContext</a></li><li><a href="XmlParser.html" title="class in groovy.util" target="classFrame">XmlParser</a></li><li><a href="XmlSlurper.html" title="class in groovy.util" target="classFrame">XmlSlurper</a></li>
+    </ul>
+</div>
 
 
 
-<TABLE BORDER="0" WIDTH="100%" SUMMARY="">
-<TR>
-<TD NOWRAP><FONT size="+1" CLASS="FrameHeadingFont">
-Exceptions</FONT>&nbsp;
-<FONT CLASS="FrameItemFont"><BR><A HREF="ResourceException.html" title="exception in groovy.util" target="classFrame">ResourceException</A><BR><A HREF="ScriptException.html" title="exception in groovy.util" target="classFrame">ScriptException</A></FONT></TD>
-</TR>
-</TABLE>
+<div class="indexContainer">
+    <h2>Enums</h2>
+    <ul>
+        <li><a href="ObservableList.ChangeType.html" title="enum in groovy.util" target="classFrame">ObservableList.ChangeType</a></li><li><a href="ObservableMap.ChangeType.html" title="enum in groovy.util" target="classFrame">ObservableMap.ChangeType</a></li><li><a href="ObservableSet.ChangeType.html" title="enum in groovy.util" target="classFrame">ObservableSet.ChangeType</a></li>
+    </ul>
+</div>
+
+
+
+<div class="indexContainer">
+    <h2>Exceptions</h2>
+    <ul>
+        <li><a href="ResourceException.html" title="exception in groovy.util" target="classFrame">ResourceException</a></li><li><a href="ScriptException.html" title="exception in groovy.util" target="classFrame">ScriptException</a></li>
+    </ul>
+</div>
 
 
 
 
 
 
-</BODY>
-</HTML>
+</body>
+</html>

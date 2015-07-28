@@ -1,17 +1,20 @@
 /*
- * Copyright 2003-2013 the original author or authors.
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package groovy.util
 
@@ -19,6 +22,7 @@ import groovy.xml.TraversalTestSupport
 import groovy.xml.GpathSyntaxTestSupport
 import groovy.xml.MixedMarkupTestSupport
 import groovy.xml.StreamingMarkupBuilder
+import static groovy.xml.XmlUtil.serialize
 
 class XmlSlurperTest extends GroovyTestCase {
 
@@ -32,17 +36,17 @@ class XmlSlurperTest extends GroovyTestCase {
                          xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
                          xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
                          xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
-                         xmlns="http://schemas.xmlsoap.org/wsdl/">                                              
-                <message name="SomeRequest">                                                          
-                    <part name="parameters" element="ns1:SomeReq" />                                  
-                </message>                                                                            
-                <message name="SomeResponse">                                                         
-                    <part name="result" element="ns1:SomeRsp" />                                      
-                </message>                                                                            
-            </definitions>                                                                            
-            '''
+                         xmlns="http://schemas.xmlsoap.org/wsdl/">
+                <message name="SomeRequest">
+                    <part name="parameters" element="ns1:SomeReq" />
+                </message>
+                <message name="SomeResponse">
+                    <part name="result" element="ns1:SomeRsp" />
+                </message>
+            </definitions>
+        '''
         def xml = new XmlSlurper().parseText(wsdl)
-        assert xml.message.part.@element.findAll {it =~ /.Req$/}.size() == 1
+        assert xml.message.part.@element*.text().findAll {it =~ /.Req$/}.size() == 1
         assert xml.message.part.findAll { true }.size() == 2
         assert xml.message.part.find { it.name() == 'part' }.name() == 'part'
         assert xml.message.findAll { true }.size() == 2
@@ -93,13 +97,14 @@ class XmlSlurperTest extends GroovyTestCase {
 
     void testMixedMarkup() {
         MixedMarkupTestSupport.checkMixedMarkup(getRoot)
+        MixedMarkupTestSupport.checkMixedMarkupText(getRoot)
     }
 
     void testReplace() {
         def input = "<doc><sec>Hello<p>World</p></sec></doc>"
         def replaceSlurper = new XmlSlurper().parseText(input)
         replaceSlurper.sec.replaceNode { node ->
-            t() { delegate.mkp.yield node.getBody() }
+            t { delegate.mkp.yield node.getBody() }
         }
         def outputSlurper = new StreamingMarkupBuilder()
         String output = outputSlurper.bind { mkp.yield replaceSlurper }
@@ -140,4 +145,74 @@ class XmlSlurperTest extends GroovyTestCase {
         assert root.ChildElement.@'two:ItemId'[0].namespaceURI() == 'http://www.ivan.com/ns2'
     }
 
+    // GROOVY-6255
+    void testXmlNamespacedAttributes() {
+        def xml = '''
+        <appendix version="5.0" xmlns="http://docbook.org/ns/docbook" xmlns:xml="http://www.w3.org/XML/1998/namespace">
+            <section xml:id="a"/>
+        </appendix>
+        '''
+
+        def root = new XmlSlurper().parseText(xml).declareNamespace(docbook: 'http://docbook.org/ns/docbook')
+
+        assert root.section[0].@'xml:id' == 'a'
+    }
+
+    // GROOVY-6356
+    void testSetAndRemoveAttributesWithNamespace() {
+        def xmlSource = '''<bob:root
+                xmlns:bob="stuff"
+                xmlns:gmi="http://www.isotc211.org/2005/gmi"
+                xmlns:xlink="http://www.w3.org/1999/xlink">
+            <gmi:instrument xlink:title="$INSTRUMENT"/>
+        </bob:root>'''
+
+        def bobRoot = new XmlSlurper(false, true).parseText(xmlSource).declareNamespace(bob: 'stuff',
+                ns2: 'http://www.example.org/NS2', gmi: "http://www.isotc211.org/2005/gmi")
+
+        def instrument = bobRoot.'gmi:instrument'
+
+        assert serialize(instrument).contains('xlink:title="$INSTRUMENT"')
+        instrument[0].'@xlink:title' = 'XXX'
+        assert !serialize(instrument).contains('xlink:title="$INSTRUMENT"')
+        assert serialize(instrument).contains('xlink:title="XXX"')
+        instrument[0].attributes().remove('xlink:title')
+        assert !serialize(instrument).contains('xlink:title="XXX"')
+    }
+
+    // GROOVY-6356
+    void testSetAndRemoveAttributesNamespaceUnaware() {
+        def xmlSource = '''<bob:root
+                xmlns:bob="stuff"
+                xmlns:gmi="http://www.isotc211.org/2005/gmi"
+                xmlns:xlink="http://www.w3.org/1999/xlink">
+            <gmi:instrument xlink:title="$INSTRUMENT"/>
+        </bob:root>'''
+
+        def bobRoot = new XmlSlurper(false, false, true).parseText(xmlSource)
+
+        def instrument = bobRoot.children()[0]
+        assert instrument.'@xlink:title' == '$INSTRUMENT'
+        instrument.'@xlink:title' = 'XXX'
+        assert instrument.'@xlink:title' == 'XXX'
+        instrument.attributes().remove('xlink:title')
+        assert instrument.'@xlink:title' == ''
+    }
+
+    // GROOVY-5931
+    void testIterableGPathResult() {
+        def xml = """
+        <RootElement>
+            <ChildElement ItemId="FirstItemId">Child element data</ChildElement>
+        </RootElement>"""
+
+        def root = new XmlSlurper().parseText(xml)
+
+        assert root instanceof Iterable
+        assert root.ChildElement instanceof Iterable
+        assert root.ChildElement.@'ItemId' instanceof Iterable
+
+        // execute a DGM on the Iterable
+        assert root.first() == 'Child element data'
+    }
 }

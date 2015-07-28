@@ -1,19 +1,21 @@
-/*
- * Copyright 2003-2012 the original author or authors.
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
-
 package groovy.util.slurpersupport;
 
 import groovy.lang.Closure;
@@ -23,6 +25,7 @@ import groovy.lang.GroovyRuntimeException;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import org.codehaus.groovy.runtime.typehandling.DefaultTypeTransformation;
@@ -44,6 +47,7 @@ public class NodeChild extends GPathResult {
     public NodeChild(final Node node, final GPathResult parent, final String namespacePrefix, final Map<String, String> namespaceTagHints) {
         super(parent, node.name(), namespacePrefix, namespaceTagHints);
         this.node = node;
+        ((NamespaceAwareHashMap)this.node.attributes()).setNamespaceTagHints(namespaceTagHints);
     }
 
     /**
@@ -54,6 +58,13 @@ public class NodeChild extends GPathResult {
     public NodeChild(final Node node, final GPathResult parent, final Map<String, String> namespaceTagHints) {
         this(node, parent, "*", namespaceTagHints);
     }
+    
+    public GPathResult parent() {
+        if (node.parent() != null)
+            return new NodeChild(node.parent(), this, namespaceTagHints);
+        else
+            return this;
+    }
 
     public int size() {
         return 1;
@@ -61,6 +72,16 @@ public class NodeChild extends GPathResult {
 
     public String text() {
         return this.node.text();
+    }
+
+    /**
+     * Returns the list of any direct String nodes of this NodeChild.
+     *
+     * @return the list of String values from this node
+     * @since 2.3.0
+     */
+    public List<String> localText() {
+        return this.node.localText();
     }
 
     /**

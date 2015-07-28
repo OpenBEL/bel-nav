@@ -1,17 +1,20 @@
-/*
- * Copyright 2004-2005 the original author or authors.
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package org.codehaus.groovy.grails.compiler.injection;
 
@@ -239,12 +242,13 @@ public class DefaultGrailsDomainClassInjector implements ASTTransformation {
      */
     private static boolean implementsMethod(ClassNode classNode, String methodName, Class[] argTypes) {
         List methods = classNode.getMethods();
-        for (Iterator i = methods.iterator(); i.hasNext();) {
-            MethodNode mn = (MethodNode) i.next();
-            final boolean isZeroArg = (argTypes == null || argTypes.length ==0);
-            boolean methodMatch = isZeroArg && mn.getName().equals(methodName);
-            if(methodMatch)return true;
-            // TODO Implement further parameter analysis
+        if (argTypes == null || argTypes.length ==0) {
+            for (Iterator i = methods.iterator(); i.hasNext();) {
+                MethodNode mn = (MethodNode) i.next();
+                boolean methodMatch = mn.getName().equals(methodName);
+                if(methodMatch)return true;
+                // TODO Implement further parameter analysis
+            }
         }
         return false;
     }

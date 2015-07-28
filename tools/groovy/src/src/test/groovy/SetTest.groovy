@@ -1,17 +1,20 @@
 /*
- * Copyright 2003-2011 the original author or authors.
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package groovy
 
@@ -34,13 +37,15 @@ class SetTest extends GroovyTestCase {
 
     void testSetFlatten() {
         Set orig = [[[4, 5, 6, [46, 7, "erer"] as Set] as Set, 4, [3, 6, 78] as Set] as Set, 4]
-        Set flat = orig.flatten()
+        def flat = orig.flatten()
+        assert flat instanceof Set
         assert flat == [3, 4, 5, 6, 7, 46, 78, "erer"] as Set
     }
 
     void testFlattenSetOfMapsWithClosure() {
         Set orig = [[a:1, b:2], [c:3, d:4]] as Set
-        Set flat = orig.flatten{ it instanceof Map ? it.values() : it }
+        def flat = orig.flatten{ it instanceof Map ? it.values() : it }
+        assert flat instanceof Set
         assert flat == [1, 2, 3 ,4] as Set
         flat = orig.flatten{ it instanceof Map ? it.keySet() : it }
         assert flat == ["a", "b", "c", "d"] as Set

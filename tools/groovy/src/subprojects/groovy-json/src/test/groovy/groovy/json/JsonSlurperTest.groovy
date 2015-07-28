@@ -1,33 +1,39 @@
 /*
- * Copyright 2003-2011 the original author or authors.
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package groovy.json
+
+import groovy.json.internal.Value
 
 /**
  * @author Guillaume Laforge
  */
 class JsonSlurperTest extends GroovyTestCase {
 
-    def parser = new JsonSlurper()
+    def parser
+
+    void setUp() {
+        parser = new JsonSlurper()
+    }
 
     void testJsonShouldStartWithCurlyOrBracket() {
-        def msg = shouldFail(JsonException) {
-            parser.parseText("true")
-        }
-
-        assert msg.contains('A JSON payload should start with')
+        /* We can handle parsing boolean, numbers, and such. */
+        parser.parseText("true")
     }
 
     void testEmptyStructures() {
@@ -45,6 +51,131 @@ class JsonSlurperTest extends GroovyTestCase {
         shouldFail(JsonException) {
             parser.parseText('[123, "abc"')
         }
+    }
+
+    void testAddingToEmptyList() {
+        def list = parser.parseText('[]')
+        list << "Hello"
+        list << "World"
+        assert list == ["Hello", "World"]
+    }
+
+    void testParseNum() {
+        int i = parser.parseText('123')
+        int i2 = 123
+        assert i == i2
+    }
+
+    void testNegNum() {
+        int i = parser.parseText('-123')
+        int i2 = -123
+        assert i == i2
+    }
+
+    void testNegNumWithSpace() {
+        int i = parser.parseText('   -123')
+        int i2 = -123
+        assert i == i2
+    }
+
+    void testLargeNegNumWithSpace() {
+        int i = parser.parseText('   -1234567891')
+        int i2 = -1234567891
+        assert i == i2
+    }
+
+    void testWithSpaces() {
+        int num = ((Number) parser.parseText("           123")).intValue()
+        int num2 = 123
+        boolean ok = num == num2 || die("" + num)
+    }
+
+    void testParseLargeNum() {
+        long num = parser.parseText("" + Long.MAX_VALUE)
+        long num2 = Long.MAX_VALUE
+        assert num == num2
+    }
+
+    void testParseSmallNum() {
+        long num = parser.parseText("" + Long.MIN_VALUE)
+        long num2 = Long.MIN_VALUE
+        assert num == num2
+    }
+
+    void testParseLargeDecimal() {
+        double num = parser.parseText("" + Double.MAX_VALUE)
+        double num2 = Double.MAX_VALUE
+        assert num == num2
+    }
+
+    void testParseSmallDecimal() {
+        double num = parser.parseText("" + Double.MIN_VALUE)
+        double num2 = Double.MIN_VALUE
+        assert num == num2
+    }
+
+    void testOutputTypes() {
+        if (parser.type in [JsonParserType.CHAR_BUFFER, JsonParserType.CHARACTER_SOURCE]) {
+            assert parser.parseText('"hello"').class == String
+        } else {
+            assert parser.parseText('"hello"') instanceof CharSequence
+        }
+
+        if (parser.type in [JsonParserType.CHAR_BUFFER, JsonParserType.CHARACTER_SOURCE]) {
+            assert parser.parseText('123.45').class == BigDecimal
+        } else {
+            assert parser.parseText('123.45') instanceof Number
+        }
+
+        if (parser.type in [JsonParserType.CHAR_BUFFER, JsonParserType.CHARACTER_SOURCE]) {
+            assert parser.parseText('123').class == Integer
+        } else {
+            assert parser.parseText('123') instanceof Number
+        }
+
+        if (parser.type in [JsonParserType.CHAR_BUFFER, JsonParserType.CHARACTER_SOURCE]) {
+            assert parser.parseText('12345678912345').class == Long
+        } else {
+            assert parser.parseText('12345678912345') instanceof Number
+        }
+
+        if (parser.type in [JsonParserType.CHAR_BUFFER, JsonParserType.CHARACTER_SOURCE]) {
+            assert parser.parseText('true').class == Boolean
+        } else {
+            assert parser.parseText('true') instanceof Value
+        }
+
+        assert parser.parseText('[1,2,3,4]') instanceof List
+
+        assert parser.parseText('{"message":"Hello"}') instanceof Map
+
+        if (parser.type in [JsonParserType.INDEX_OVERLAY, JsonParserType.LAX]) {
+            assert parser.parseText('null') instanceof Value
+        }
+    }
+
+    void testNull() {
+        if (parser.type in [JsonParserType.CHAR_BUFFER, JsonParserType.CHARACTER_SOURCE]) {
+            assert parser.parseText("null") == null
+        } else {
+            assert parser.parseText("null").toValue() == null
+        }
+    }
+
+    void testBoolean() {
+        if (parser.type in [JsonParserType.CHAR_BUFFER, JsonParserType.CHARACTER_SOURCE]) {
+            assert parser.parseText("true") == true
+            assert parser.parseText("false") == false
+        } else {
+            assert parser.parseText("true").toValue() == true
+            assert parser.parseText("false").toValue() == false
+        }
+    }
+
+    void exactly312Test() {
+        assert parser.parseText('22') == 22
+        assert parser.parseText('-22') == -22
+        assert parser.parseText('-22.0065') == -22.0065
     }
 
     void testArrayOfArrayWithSimpleValues() {
@@ -143,6 +274,7 @@ class JsonSlurperTest extends GroovyTestCase {
         shouldFail(JsonException) { parser.parseText('["a"')        }
         shouldFail(JsonException) { parser.parseText('["a", ')      }
         shouldFail(JsonException) { parser.parseText('["a", true')  }
+        shouldFail(JsonException) { parser.parseText('[1.1.1]')     }
     }
 
     void testBackSlashEscaping() {
@@ -168,5 +300,21 @@ class JsonSlurperTest extends GroovyTestCase {
         shouldFail(JsonException) {
             parser.parseText('{"a":"c:\\\"}')
         }
+    }
+
+    void testParseWithByteArray() {
+        def slurper = new JsonSlurper()
+
+        assert slurper.parse('{"a":true}'.bytes) == [a: true]
+
+    }
+
+    void testJsonDate() {
+        def o = new JsonSlurper().
+            setType(JsonParserType.INDEX_OVERLAY).
+            setCheckDates(true).
+            parseText(JsonOutput.toJson([a : new Date()]))
+
+        assertEquals(Date.class, o.a.class)
     }
 }

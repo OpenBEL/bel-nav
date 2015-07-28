@@ -1,17 +1,20 @@
 /*
- * Copyright 2003-2010 the original author or authors.
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package gls.annotations.closures
 
@@ -56,59 +59,59 @@ class Foo {}
     }
 
     void testIsCompiledToPublicClass() {
-        def closureClass = ClassWithAnnClosure.class.getAnnotation(AnnWithClassElement).elem()
+        def closureClass = ClassWithAnnClosure.getAnnotation(AnnWithClassElement).elem()
         assert Modifier.isPublic(closureClass.modifiers)
     }
 
     void testDefaultValueIsCompiledToPublicClass() {
-        def closureClass = ClosureAsDefaultValue.class.getAnnotation(AnnWithDefaultValue).elem()
+        def closureClass = ClosureAsDefaultValue.getAnnotation(AnnWithDefaultValue).elem()
         assert Modifier.isPublic(closureClass.modifiers)
     }
 
     void testCanBeUsedAsDefaultValue() {
-        def closureClass = ClosureAsDefaultValue.class.getAnnotation(AnnWithDefaultValue).elem()
+        def closureClass = ClosureAsDefaultValue.getAnnotation(AnnWithDefaultValue).elem()
         def closure = closureClass.newInstance(null, null)
 
         assert closure.call() == 3
     }
 
     void testCanBeNested() {
-        def closureClass = NestedClosure.class.getAnnotation(AnnWithClassElement).elem()
+        def closureClass = NestedClosure.getAnnotation(AnnWithClassElement).elem()
         def closure = closureClass.newInstance(null, null)
 
         assert closure.call(9) == 9
     }
 
     void testWorksOnInnerClass() {
-        def closureClass = ClassWithAnnClosure.InnerClassWithAnnClosure.class.getAnnotation(AnnWithClassElement).elem()
+        def closureClass = ClassWithAnnClosure.InnerClassWithAnnClosure.getAnnotation(AnnWithClassElement).elem()
         def closure = closureClass.newInstance(null, null)
 
         assert closure.call() == 3
     }
 
     void testWorksOnNestedClass() {
-        def closureClass = ClassWithAnnClosure.NestedClassWithAnnClosure.class.getAnnotation(AnnWithClassElement).elem()
+        def closureClass = ClassWithAnnClosure.NestedClassWithAnnClosure.getAnnotation(AnnWithClassElement).elem()
         def closure = closureClass.newInstance(null, null)
 
         assert closure.call() == 3
     }
 
     void testWorksOnNestedAnnotation() {
-        def closureClass = NestedAnnotation.class.getAnnotation(AnnWithNestedAnn).elem().elem()
+        def closureClass = NestedAnnotation.getAnnotation(AnnWithNestedAnn).elem().elem()
         def closure = closureClass.newInstance(null, null)
 
         assert closure.call() == 3
     }
 
     void testWorksOnNestedAnnotationWithDefaultValue() {
-        def closureClass = NestedAnnotationWithDefault.class.getAnnotation(AnnWithNestedAnnWithDefault).elem().elem()
+        def closureClass = NestedAnnotationWithDefault.getAnnotation(AnnWithNestedAnnWithDefault).elem().elem()
         def closure = closureClass.newInstance(null, null)
 
         assert closure.call() == 3
     }
 
     void testMayContainGString() {
-        def closureClass = ClosureWithGString.class.getAnnotation(AnnWithClassElement).elem()
+        def closureClass = ClosureWithGString.getAnnotation(AnnWithClassElement).elem()
         def closure = closureClass.newInstance(null, null)
 
         assert closure.call([1, 2, 3]) == "list has 3 elements"

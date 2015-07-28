@@ -1,19 +1,21 @@
-/*
- * Copyright 2008-2010 the original author or authors.
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
-
 package org.codehaus.groovy.transform;
 
 import org.codehaus.groovy.GroovyBugError;
@@ -33,16 +35,19 @@ import java.util.List;
  *
  * @author Cedric Champeau
  * @author Hamlet D'Arcy
+ * @author Paul King
  * @since 1.8.0
  */
 public abstract class AbstractInterruptibleASTTransformation extends ClassCodeVisitorSupport implements ASTTransformation, Opcodes {
 
     protected static final String CHECK_METHOD_START_MEMBER = "checkOnMethodStart";
-    protected static final String PROPAGATE_TO_COMPILE_UNIT = "applyToAllClasses";
+    private static final String APPLY_TO_ALL_CLASSES = "applyToAllClasses";
+    private static final String APPLY_TO_ALL_MEMBERS = "applyToAllMembers";
     protected static final String THROWN_EXCEPTION_TYPE = "thrown";
     protected SourceUnit source;
     protected boolean checkOnMethodStart;
     protected boolean applyToAllClasses;
+    protected boolean applyToAllMembers;
     protected ClassNode thrownExceptionType;
 
     protected SourceUnit getSourceUnit() {
@@ -63,13 +68,14 @@ public abstract class AbstractInterruptibleASTTransformation extends ClassCodeVi
 
     protected void setupTransform(AnnotationNode node) {
         checkOnMethodStart = getBooleanAnnotationParameter(node, CHECK_METHOD_START_MEMBER, true);
-        applyToAllClasses = getBooleanAnnotationParameter(node, PROPAGATE_TO_COMPILE_UNIT, true);
+        applyToAllMembers = getBooleanAnnotationParameter(node, APPLY_TO_ALL_MEMBERS, true);
+        applyToAllClasses = applyToAllMembers ? getBooleanAnnotationParameter(node, APPLY_TO_ALL_CLASSES, true) : false;
         thrownExceptionType = getClassAnnotationParameter(node, THROWN_EXCEPTION_TYPE, ClassHelper.make(InterruptedException.class));
     }
 
     public void visit(ASTNode[] nodes, SourceUnit source) {
         if (nodes.length != 2 || !(nodes[0] instanceof AnnotationNode) || !(nodes[1] instanceof AnnotatedNode)) {
-            internalError("Expecting [AnnotationNode, AnnotatedClass] but got: " + Arrays.asList(nodes));
+            internalError("Expecting [AnnotationNode, AnnotatedNode] but got: " + Arrays.asList(nodes));
         }
 
         this.source = source;
@@ -95,6 +101,15 @@ public abstract class AbstractInterruptibleASTTransformation extends ClassCodeVi
         } else if (annotatedNode instanceof ClassNode) {
             // only guard this particular class
             this.visitClass((ClassNode) annotatedNode);
+        } else if (!applyToAllMembers && annotatedNode instanceof MethodNode) {
+            this.visitMethod((MethodNode) annotatedNode);
+            this.visitClass(annotatedNode.getDeclaringClass());
+        } else if (!applyToAllMembers && annotatedNode instanceof FieldNode) {
+            this.visitField((FieldNode) annotatedNode);
+            this.visitClass(annotatedNode.getDeclaringClass());
+        } else if (!applyToAllMembers && annotatedNode instanceof DeclarationExpression) {
+            this.visitDeclarationExpression((DeclarationExpression) annotatedNode);
+            this.visitClass(annotatedNode.getDeclaringClass());
         } else {
             // only guard the script class
             if (tree != null) {
@@ -107,7 +122,6 @@ public abstract class AbstractInterruptibleASTTransformation extends ClassCodeVi
             }
         }
     }
-
 
     protected static boolean getBooleanAnnotationParameter(AnnotationNode node, String parameterName, boolean defaultValue) {
         Expression member = node.getMember(parameterName);
@@ -157,7 +171,7 @@ public abstract class AbstractInterruptibleASTTransformation extends ClassCodeVi
                         new ConstructorCallExpression(thrownExceptionType,
                                 new ArgumentListExpression(new ConstantExpression(getErrorMessage())))
                 ),
-                new EmptyStatement()
+                EmptyStatement.INSTANCE
         );
     }
 

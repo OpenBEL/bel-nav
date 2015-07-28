@@ -1,3 +1,22 @@
+@REM ----------------------------------------------------------------------------
+@REM Licensed to the Apache Software Foundation (ASF) under one
+@REM or more contributor license agreements.  See the NOTICE file
+@REM distributed with this work for additional information
+@REM regarding copyright ownership.  The ASF licenses this file
+@REM to you under the Apache License, Version 2.0 (the
+@REM "License"); you may not use this file except in compliance
+@REM with the License.  You may obtain a copy of the License at
+@REM
+@REM    http://www.apache.org/licenses/LICENSE-2.0
+@REM
+@REM Unless required by applicable law or agreed to in writing,
+@REM software distributed under the License is distributed on an
+@REM "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+@REM KIND, either express or implied.  See the License for the
+@REM specific language governing permissions and limitations
+@REM under the License.
+@REM ----------------------------------------------------------------------------
+
 @if "%DEBUG%" == "" @echo off
 @rem ##########################################################################
 @rem                                                                         ##
@@ -130,6 +149,7 @@ set _ARGS=%*
 if not defined _ARGS goto execute
 set _ARGS=%_ARGS:-=-d%
 set _ARGS=%_ARGS:"=-q%
+set _ARGS=%_ARGS:?=-n%
 rem Windowz will try to match * with files so we escape it here
 rem but it is also a meta char for env var string substitution
 rem so it can't be first char here, hack just for common cases.
@@ -182,9 +202,11 @@ if "x3" == "x%_SKIP%" goto skip_3
 if "x2" == "x%_SKIP%" goto skip_2
 if "x1" == "x%_SKIP%" goto skip_1
 
-rem now unescape -q, -s, -d
+rem now unescape -s, -q, -n, -d
+rem -d must be the last to be unescaped
 set _ARG=%_ARG:-s=*%
 set _ARG=%_ARG:-q="%
+set _ARG=%_ARG:-n=?%
 set _ARG=%_ARG:-d=-%
 
 set CMD_LINE_ARGS=%CMD_LINE_ARGS% %_ARG%
@@ -217,7 +239,7 @@ set CMD_LINE_ARGS=%$
 
 :execute
 @rem Setup the command line
-set STARTER_CLASSPATH=%GROOVY_HOME%\lib\groovy-2.1.7.jar
+set STARTER_CLASSPATH=%GROOVY_HOME%\lib\groovy-2.4.4.jar
 
 if exist "%USERPROFILE%/.groovy/init.bat" call "%USERPROFILE%/.groovy/init.bat"
 

@@ -9,7 +9,7 @@ cd "${DIR}" || exit 1
 
 # loop
 while inotifywait -qq -r -e modify "$DEV_SOURCE_DIR"; do
-    gradle -q compileGroovy jar
+    mvn -q package
     if [ "$?" != "0" ]; then 
         notify-send -t 3000 "Failed compilation.\n\n$RESULT"
         echo "$RESULT" 2>&1

@@ -1,20 +1,24 @@
-/*
- * Copyright 2003-2011 the original author or authors.
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
-
 package org.codehaus.groovy.ast;
+
+import static org.codehaus.groovy.ast.ClassHelper.GROOVY_OBJECT_TYPE;
 
 import org.codehaus.groovy.ast.tools.GenericsUtils;
 import org.codehaus.groovy.ast.tools.WideningCategories;
@@ -31,6 +35,8 @@ import java.util.Set;
  * @see ClassNode
  */
 public class GenericsType extends ASTNode {
+    public static final GenericsType[] EMPTY_ARRAY = new GenericsType[0];
+    
     private final ClassNode[] upperBounds;
     private final ClassNode lowerBound;
     private ClassNode type;
@@ -69,10 +75,14 @@ public class GenericsType extends ASTNode {
         if (placeholder) visited.add(name);
         String ret = wildcard?"?":((type == null || placeholder) ? name : genericsBounds(type, visited));
         if (upperBounds != null) {
-            ret += " extends ";
-            for (int i = 0; i < upperBounds.length; i++) {
-                ret += genericsBounds(upperBounds[i], visited);
-                if (i + 1 < upperBounds.length) ret += " & ";
+            if (placeholder && upperBounds.length==1 && !upperBounds[0].isGenericsPlaceHolder() && upperBounds[0].getName().equals("java.lang.Object")) {
+                // T extends Object should just be printed as T
+            } else {
+                ret += " extends ";
+                for (int i = 0; i < upperBounds.length; i++) {
+                    ret += genericsBounds(upperBounds[i], visited);
+                    if (i + 1 < upperBounds.length) ret += " & ";
+                }
             }
         } else if (lowerBound != null) {
             ret += " super " + genericsBounds(lowerBound, visited);
@@ -80,13 +90,23 @@ public class GenericsType extends ASTNode {
         return ret;
     }
 
+    private String nameOf(ClassNode theType) {
+        StringBuilder ret = new StringBuilder();
+        if (theType.isArray()) {
+            ret.append(nameOf(theType.getComponentType()));
+            ret.append("[]");
+        } else {
+            ret.append(theType.getName());
+        }
+        return ret.toString();
+    }
+
     private String genericsBounds(ClassNode theType, Set<String> visited) {
 
         StringBuilder ret = new StringBuilder();
 
         if (theType.isArray()) {
-            ret.append(theType.getComponentType().getName());
-            ret.append("[]");
+            ret.append(nameOf(theType));
         } else if (theType.redirect() instanceof InnerClassNode) {
             InnerClassNode innerClassNode = (InnerClassNode) theType.redirect();
             String parentClassNodeName = innerClassNode.getOuterClass().getName();
@@ -190,6 +210,10 @@ public class GenericsType extends ASTNode {
             if (result) {
                 return true;
             }
+            if (GROOVY_OBJECT_TYPE.equals(superOrInterface) && type.getCompileUnit()!=null) {
+                // type is being compiled so it will implement GroovyObject later
+                return true;
+            }
             if (superOrInterface instanceof WideningCategories.LowestUpperBoundClassNode) {
                 WideningCategories.LowestUpperBoundClassNode cn = (WideningCategories.LowestUpperBoundClassNode) superOrInterface;
                 result = implementsInterfaceOrIsSubclassOf(type, cn.getSuperClass());
@@ -226,7 +250,8 @@ public class GenericsType extends ASTNode {
                     if (lowerBound!=null) return genericsTypes[0].getName().equals(lowerBound.getUnresolvedName());
                     if (upperBounds!=null) {
                         for (ClassNode upperBound : upperBounds) {
-                            if (genericsTypes[0].getName().equals(upperBound.getUnresolvedName())) return true;
+                            String name = upperBound.getGenericsTypes()[0].getName();
+                            if (genericsTypes[0].getName().equals(name)) return true;
                         }
                         return false;
                     }
@@ -297,7 +322,7 @@ public class GenericsType extends ASTNode {
          */
         private boolean compareGenericsWithBound(final ClassNode classNode, final ClassNode bound) {
             if (classNode==null) return false;
-            if (!bound.isUsingGenerics()) {
+            if (!bound.isUsingGenerics() || (classNode.getGenericsTypes()==null && classNode.redirect().getGenericsTypes()!=null)) {
                 // if the bound is not using generics, there's nothing to compare with
                 return true;
             }
@@ -361,7 +386,7 @@ public class GenericsType extends ASTNode {
                             match = false;
                             if (genericsType!=null) {
                                 if (genericsType.isPlaceholder()) {
-                                    match = genericsType.getName().equals(name);
+                                    match = true;
                                 } else if (genericsType.isWildcard()) {
                                     if (genericsType.getUpperBounds()!=null) {
                                         for (ClassNode up : genericsType.getUpperBounds()) {
@@ -430,7 +455,8 @@ public class GenericsType extends ASTNode {
                             match = redirectBoundType.isCompatibleWith(classNodeType.getType());
                         }
                     } else {
-                        match = classNodeType.isCompatibleWith(redirectBoundType.getType());
+                        // todo: the check for isWildcard should be replaced with a more complete check
+                        match = redirectBoundType.isWildcard() || classNodeType.isCompatibleWith(redirectBoundType.getType());
                     }
                 }
             }

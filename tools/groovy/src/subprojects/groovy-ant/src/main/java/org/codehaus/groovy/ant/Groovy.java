@@ -1,17 +1,20 @@
-/*
- * Copyright 2003-2013 the original author or authors.
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package org.codehaus.groovy.ant;
 
@@ -59,6 +62,7 @@ import java.util.Vector;
 public class Groovy extends Java {
     private static final String PREFIX = "embedded_script_in_";
     private static final String SUFFIX = "groovy_Ant_task";
+    private static final Object[] EMPTY_OBJECT_ARRAY = new Object[0];
 
     private final LoggingHelper log = new LoggingHelper(this);
 
@@ -160,7 +164,7 @@ public class Groovy extends Java {
      * Set an inline command to execute.
      * NB: Properties are not expanded in this text.
      *
-     * @param txt the inline groovy ommands to execute
+     * @param txt the inline groovy commands to execute
      */
     public void addText(String txt) {
         log("addText('" + txt + "')", Project.MSG_VERBOSE);
@@ -324,7 +328,7 @@ public class Groovy extends Java {
     }
 
     private static String getText(BufferedReader reader) throws IOException {
-        StringBuffer answer = new StringBuffer();
+        StringBuilder answer = new StringBuilder();
         // reading the content of the file within a char buffer allow to keep the correct line endings
         char[] charBuffer = new char[4096];
         int nbCharRead = 0;
@@ -350,7 +354,7 @@ public class Groovy extends Java {
     protected void runStatements(Reader reader, PrintStream out)
             throws IOException {
         log.debug("runStatements()");
-        StringBuffer txt = new StringBuffer();
+        StringBuilder txt = new StringBuilder();
         String line = "";
         BufferedReader in = new BufferedReader(reader);
 
@@ -419,7 +423,7 @@ public class Groovy extends Java {
                 final Field contextField = propsHandler.getClass().getDeclaredField("context");
                 contextField.setAccessible(true);
                 final Object context = contextField.get(propsHandler);
-                mavenPom = InvokerHelper.invokeMethod(context, "getProject", new Object[0]);
+                mavenPom = InvokerHelper.invokeMethod(context, "getProject", EMPTY_OBJECT_ARRAY);
             }
             catch (Exception e) {
                 throw new BuildException("Impossible to retrieve Maven's Ant project: " + e.getMessage(), getLocation());
@@ -633,7 +637,7 @@ public class Groovy extends Java {
      */
     protected void printResults(PrintStream out) {
         log.debug("printResults()");
-        StringBuffer line = new StringBuffer();
+        StringBuilder line = new StringBuilder();
         out.println(line);
         out.println();
     }

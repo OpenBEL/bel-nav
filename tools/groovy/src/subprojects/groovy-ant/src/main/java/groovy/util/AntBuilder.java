@@ -1,17 +1,20 @@
-/*
- * Copyright 2003-2013 the original author or authors.
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package groovy.util;
 
@@ -62,6 +65,7 @@ public class AntBuilder extends BuilderSupport {
     private final ProjectHelper2.TargetHandler antTargetHandler = new ProjectHelper2.TargetHandler();
     private final Target collectorTarget;
     private final Target implicitTarget;
+    private Target definingTarget;
     private Object lastCompletedNode;
     // true when inside a task so special ant.target handling occurs just at top level
     boolean insideTask;
@@ -225,6 +229,10 @@ public class AntBuilder extends BuilderSupport {
         if (parent != null && !(parent instanceof Target)) {
             log.finest("parent is not null: no perform on nodeCompleted");
             return; // parent will care about when children perform
+        }
+        if (definingTarget != null && definingTarget == parent && node instanceof Task) return; // inside defineTarget
+        if (definingTarget == node) {
+            definingTarget = null;
         }
 
         // as in Target.execute()
@@ -401,6 +409,8 @@ public class AntBuilder extends BuilderSupport {
             antXmlContext.setCurrentTarget(implicitTarget);
         } else if ("target".equals(name) && !insideTask) {
             return onStartTarget(attrs, tagName, ns);
+        } else if ("defineTarget".equals(name) && !insideTask) {
+            return onDefineTarget(attrs, "target", ns);
         }
 
         try {
@@ -411,8 +421,25 @@ public class AntBuilder extends BuilderSupport {
         }
 
         insideTask = true;
-        final RuntimeConfigurable wrapper = (RuntimeConfigurable) antXmlContext.getWrapperStack().lastElement();
+        final RuntimeConfigurable wrapper = antXmlContext.getWrapperStack().lastElement();
         return wrapper.getProxy();
+    }
+
+    private Target onDefineTarget(final Attributes attrs, String tagName, String ns) {
+        final Target target = new Target();
+        target.setProject(project);
+        target.setLocation(new Location(antXmlContext.getLocator()));
+        try {
+            antTargetHandler.onStartElement(ns, tagName, tagName, attrs, antXmlContext);
+            final Target newTarget = getProject().getTargets().get(attrs.getValue("name"));
+            antXmlContext.setCurrentTarget(newTarget);
+            definingTarget = newTarget;
+            return newTarget;
+        }
+        catch (final SAXParseException e) {
+            log.log(Level.SEVERE, "Caught: " + e, e);
+        }
+        return null;
     }
 
     private Target onStartTarget(final Attributes attrs, String tagName, String ns) {
@@ -421,12 +448,12 @@ public class AntBuilder extends BuilderSupport {
         target.setLocation(new Location(antXmlContext.getLocator()));
         try {
             antTargetHandler.onStartElement(ns, tagName, tagName, attrs, antXmlContext);
-            final Target newTarget = (Target) getProject().getTargets().get(attrs.getValue("name"));
+            final Target newTarget = getProject().getTargets().get(attrs.getValue("name"));
 
             // execute dependencies (if any)
-            final Vector targets = new Vector();
-            for (final Enumeration deps = newTarget.getDependencies(); deps.hasMoreElements();) {
-                final String targetName = (String) deps.nextElement();
+            final Vector<Target> targets = new Vector<Target>();
+            for (final Enumeration<String> deps = newTarget.getDependencies(); deps.hasMoreElements();) {
+                final String targetName = deps.nextElement();
                 targets.add(project.getTargets().get(targetName));
             }
             getProject().executeSortedTargets(targets);

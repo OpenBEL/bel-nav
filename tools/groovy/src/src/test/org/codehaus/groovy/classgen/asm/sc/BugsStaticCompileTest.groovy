@@ -1,17 +1,20 @@
 /*
- * Copyright 2003-2010 the original author or authors.
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package org.codehaus.groovy.classgen.asm.sc
 
@@ -22,14 +25,7 @@ import groovy.transform.stc.BugsSTCTest
  *
  * @author Cedric Champeau
  */
-@Mixin(StaticCompilationTestSupport)
-class BugsStaticCompileTest extends BugsSTCTest {
-
-    @Override
-    protected void setUp() {
-        super.setUp()
-        extraSetup()
-    }
+class BugsStaticCompileTest extends BugsSTCTest implements StaticCompilationTestSupport {
 
     void testGroovy5498PropertyAccess() {
         assertScript '''
@@ -311,7 +307,7 @@ class BugsStaticCompileTest extends BugsSTCTest {
         assertScript '''
                 Closure c = { Integer x, Integer y -> x <=> y }
                 def list = [ 3,1,5,2,4 ]
-                assert list.sort(c) == [1,2,3,4,5]
+                assert ((Collection)list).sort(c) == [1,2,3,4,5]
             '''
     }
 
@@ -891,7 +887,7 @@ import groovy.transform.TypeCheckingMode
                 assert x == Closure.DELEGATE_FIRST
             '''
         } finally {
-            println astTrees
+//            println astTrees
         }
     }
 
@@ -1018,6 +1014,384 @@ assert it.next() == 1G
             }
             assert foo([(1):null,(2):null,(3):null],2)==2
         """
+    }
+
+    void testSuperCallShouldBeDirect() {
+        try {
+            assertScript '''
+                class TwoException extends Exception {
+                    @ASTTest(phase=INSTRUCTION_SELECTION,value={
+                        def superCall = node.code.statements[0].expression
+                        assert superCall.getNodeMetaData(DIRECT_METHOD_CALL_TARGET)!=null
+                    })
+                    public TwoException(Throwable t) {
+                        super(t)
+                    }
+                }
+                def e = new TwoException(null) // will not throw an exception
+            '''
+        } finally {
+            assert !astTrees.TwoException.contains('selectConstructorAndTransformArguments')
+        }
+    }
+
+    void testNullSafeOperatorShouldNotCallMethodTwice() {
+        assertScript '''
+            import java.util.concurrent.atomic.AtomicLong
+
+            class Sequencer {
+              private final AtomicLong sequenceNumber = new AtomicLong(0)
+
+              public Long getNext() {
+                return sequenceNumber.getAndIncrement()
+              }
+            }
+
+            final seq = new Sequencer()
+            (1..5).each {
+              println seq.next?.longValue()
+            }
+            assert seq.next == 5
+'''
+    }
+
+    void testNullSafeOperatorShouldNotCallMethodTwiceWithPrimitive() {
+        assertScript '''
+            import java.util.concurrent.atomic.AtomicLong
+
+            class Sequencer {
+              private final AtomicLong sequenceNumber = new AtomicLong(0)
+
+              public long getNext() {
+                sequenceNumber.getAndIncrement()
+              }
+            }
+
+            final seq = new Sequencer()
+            (1..5).each {
+              println seq.next?.longValue()
+            }
+            assert seq.next == 5
+'''
+    }
+
+    void testNullSafeOperatorShouldNotCallMethodTwice1Arg() {
+        assertScript '''
+            import java.util.concurrent.atomic.AtomicLong
+
+            class Sequencer {
+              private final AtomicLong sequenceNumber = new AtomicLong(0)
+
+              public Long getNext(int factor) {
+                factor*sequenceNumber.getAndIncrement()
+              }
+            }
+
+            final seq = new Sequencer()
+            (1..5).each {
+              println seq.getNext(2)?.longValue()
+            }
+            assert seq.getNext(2) == 10
+'''
+    }
+
+    void testNullSafeOperatorShouldNotCallMethodTwiceWithPrimitive1Arg() {
+        assertScript '''
+            import java.util.concurrent.atomic.AtomicLong
+
+            class Sequencer {
+              private final AtomicLong sequenceNumber = new AtomicLong(0)
+
+              public long getNext(int factor) {
+                factor*sequenceNumber.getAndIncrement()
+              }
+            }
+
+            final seq = new Sequencer()
+            (1..5).each {
+              println seq.getNext(2)?.longValue()
+            }
+            assert seq.getNext(2) == 10
+'''
+    }
+
+    void testShouldAllowSubscriptOperatorOnSet() {
+        assertScript '''
+            def map = new LinkedHashMap<>([a:1,b:2])
+            @ASTTest(phase=INSTRUCTION_SELECTION, value={
+                def ift = node.getNodeMetaData(INFERRED_TYPE)
+                assert ift == make(Set)
+                assert ift.isUsingGenerics()
+                assert ift.genericsTypes[0].type==STRING_TYPE
+            })
+            def set = map.keySet()
+            def key = set[0]
+            assert key=='a'
+        '''
+        assertScript '''
+            def map = new LinkedHashMap([a:1,b:2])
+            @ASTTest(phase=INSTRUCTION_SELECTION, value={
+                def ift = node.getNodeMetaData(INFERRED_TYPE)
+                assert ift == make(Set)
+                assert ift.isUsingGenerics()
+                assert ift.genericsTypes[0].name=='K'
+            })
+            def set = map.keySet()
+            def key = set[0]
+            assert key=='a'
+        '''
+    }
+
+    // GROOVY-6552
+    void testShouldNotThrowClassCastException() {
+        assertScript '''import java.util.concurrent.Callable
+
+    String text(Class clazz) {
+        new Callable<String>() {
+            String call() throws Exception {
+                new Callable<String>() {
+                    String call() throws Exception {
+                        clazz.getName()
+                    }
+                }.call()
+            }
+        }.call()
+    }
+
+    assert text(String) == 'java.lang.String'
+    '''
+    }
+
+    // GROOVY-6851
+    void testShouldNotThrowNPEIfElvisOperatorIsUsedInDefaultArgumentValue() {
+        assertScript '''import org.codehaus.groovy.ast.expr.MethodCallExpression
+
+class GrailsHomeWorkspaceReader {
+    @ASTTest(phase=INSTRUCTION_SELECTION,value={
+        def defaultValue = node.parameters[0].initialExpression
+        assert defaultValue instanceof MethodCallExpression
+        def target = defaultValue.getNodeMetaData(DIRECT_METHOD_CALL_TARGET)
+        assert target != null
+    })
+    GrailsHomeWorkspaceReader(String grailsHome = System.getProperty('grails.home')) {
+    }
+}
+new GrailsHomeWorkspaceReader()
+'''
+        assertScript '''
+class GrailsHomeWorkspaceReader {
+    GrailsHomeWorkspaceReader(String grailsHome = System.getProperty('grails.home') ?: System.getenv('GRAILS_HOME')) {
+    }
+}
+new GrailsHomeWorkspaceReader()
+'''
+    }
+
+    // GROOVY-6342
+    void testShouldNotThrowNPEIfElvisOperatorIsUsedInsideTernary() {
+        assertScript '''class Inner {
+    int somestuff
+}
+Inner inner = null
+int someInt = inner?.somestuff ?: 0
+println someInt
+
+'''
+    }
+
+    void testAccessOuterClassMethodFromInnerClassConstructor() {
+        assertScript '''
+    class Parent {
+        String str
+        Parent(String s) { str = s }
+    }
+    class Outer {
+        String a
+
+        private class Inner extends Parent {
+           Inner() { super(getA()) }
+        }
+
+        String test() { new Inner().str }
+    }
+    def o = new Outer(a:'ok')
+    assert o.test() == 'ok'
+    '''
+    }
+
+    void testAccessOuterClassMethodFromInnerClassConstructorUsingExplicitOuterThis() {
+        assertScript '''
+    class Parent {
+        String str
+        Parent(String s) { str = s }
+    }
+    class Outer {
+        String a
+
+        private class Inner extends Parent {
+           Inner() { super(Outer.this.getA()) }
+        }
+
+        String test() { new Inner().str }
+    }
+    def o = new Outer(a:'ok')
+    assert o.test() == 'ok'
+    '''
+    }
+
+    void testAccessOuterClassMethodFromInnerClassConstructorUsingExplicitOuterThisAndProperty() {
+        assertScript '''
+    class Parent {
+        String str
+        Parent(String s) { str = s }
+    }
+    class Outer {
+        String a
+
+        private class Inner extends Parent {
+           Inner() { super(Outer.this.a) }
+        }
+
+        String test() { new Inner().str }
+    }
+    def o = new Outer(a:'ok')
+    assert o.test() == 'ok'
+    '''
+    }
+
+    void testAccessOuterClassStaticMethodFromInnerClassConstructor() {
+        assertScript '''
+    class Parent {
+        String str
+        Parent(String s) { str = s }
+    }
+    class Outer {
+        static String a
+
+        private class Inner extends Parent {
+           Inner() { super(getA()) }
+        }
+
+        String test() { new Inner().str }
+    }
+    def o = new Outer()
+    Outer.a = 'ok'
+    assert o.test() == 'ok'
+    '''
+    }
+
+    void testStaticMethodFromInnerClassConstructor() {
+        assertScript '''
+    class Parent {
+        String str
+        Parent(String s) { str = s }
+    }
+    class Outer {
+        private class Inner extends Parent {
+           static String a = 'ok'
+           Inner() { super(getA()) }
+        }
+
+        String test() { new Inner().str }
+    }
+    def o = new Outer()
+    assert o.test() == 'ok'
+    '''
+    }
+
+    // GROOVY-6876
+    void testSetterOfPrimitiveType() {
+        assertScript '''
+            class Foo {
+                long bar
+                def method() {
+                    setBar(-1L)
+                    bar
+                }
+            }
+            assert new Foo().method() == -1L
+            '''
+
+        assertScript '''
+            class Foo {
+                long bar
+                def method(Long v) {
+                    setBar(v)
+                    bar
+                }
+            }
+            assert new Foo().method(-1L) == -1L
+        '''
+
+        assertScript '''
+            class Foo {
+                long rankOrderingOrId
+                void setRankOrderingOrId(long rankOrderingOrId) {
+                    this.rankOrderingOrId = rankOrderingOrId < 0 ? -1 : rankOrderingOrId
+                }
+            }
+            def f = new Foo()
+            f.setRankOrderingOrId(1L)
+            assert f.getRankOrderingOrId() == 1L
+            assert f.rankOrderingOrId == 1L
+            f.rankOrderingOrId = 2L
+            assert f.getRankOrderingOrId() == 2L
+            assert f.rankOrderingOrId == 2L
+        '''
+    }
+
+    // GROOVY-6921
+    void testSubscriptOnClosureSharedVariable() {
+        assertScript '''
+            def versionRanges = [['1.7', 3]]
+            def versions = versionRanges.collect { versionRange -> (0..versionRange[1]).collect { "${versionRange[0]}.${it}" } }.flatten()
+            assert versions == ['1.7.0','1.7.1','1.7.2','1.7.3']
+        '''
+    }
+
+    // GROOVY-6924
+    void testShouldNotThrowIncompatibleClassChangeError() {
+        try {
+            assertScript '''import org.codehaus.groovy.classgen.asm.sc.Groovy6924Support
+            class Test {
+                static void foo() {
+                    Groovy6924Support bean = new Groovy6924Support()
+                    bean.with {
+                        foo = 'foo'
+                        bar = 'bar'
+                    }
+                    String val = "$bean.foo and $bean.bar"
+                    assert val == 'foo and bar'
+                }
+            }
+            Test.foo()
+        '''
+        } finally {
+            assert astTrees['Test$_foo_closure1'][1].contains('INVOKEVIRTUAL org/codehaus/groovy/classgen/asm/sc/Groovy6924Support.setFoo (Ljava/lang/String;)V')
+        }
+    }
+
+    // GROOVY-7381
+    void testNonVoidSetterCalls(){
+        assertScript '''
+            class Foo {
+                int num
+                String name
+
+                Foo setNum(int num){
+                    this.num = num
+                    this
+                }
+
+                Foo setName(String name){
+                    this.name = name
+                    this
+                }
+            }
+            Foo foo = new Foo().setNum(1).setName('fluent')
+            assert foo.num == 1
+            assert foo.name == 'fluent'
+        '''
     }
 }
 

@@ -1,19 +1,21 @@
 /*
- * Copyright 2003-2012 the original author or authors.
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
-
 package groovy.transform.stc
 
 import groovy.transform.NotYetImplemented
@@ -95,7 +97,6 @@ class AnonymousInnerClassSTCTest extends StaticTypeCheckingTestCase {
         '''
     }
 
-    @NotYetImplemented
     void testAICIntoClass() {
         assertScript '''
             class Outer {
@@ -126,5 +127,58 @@ class AnonymousInnerClassSTCTest extends StaticTypeCheckingTestCase {
                 }
                 s.size()
             }'''
+    }
+    
+    void testAICInAICInStaticMethod() {
+        assertScript '''
+            class A {
+                public static foo() {
+                    return new Object() {
+                        public String toString() {
+                            return new Object() {
+                                public String toString() {
+                                    "ii"
+                                }
+                            }.toString()+" i"
+                        }
+                    }.toString()
+                }
+            }
+            assert A.foo() == "ii i"
+        '''
+    }
+
+    // GROOVY-6904
+    void testAICInClosure() {
+        assertScript '''
+            interface X {
+                def m()
+            }
+
+            class A {
+                Object pm = "pm"
+                def bar(Closure<? extends X> x) {x().m()}
+                def foo() {
+                    bar { ->
+                        return new X() {
+                            def m() { pm }
+                        }
+                    }
+                }
+            }
+            def a = new A()
+            assert a.foo() == "pm"
+        '''
+    }
+
+    void testAICWithGenerics() {
+        assertScript '''
+            Comparator<Integer> comp = new Comparator<Integer>(){
+                @Override
+                int compare(Integer o1, Integer o2) {
+                    return 0
+                }
+            }
+        '''
     }
 }

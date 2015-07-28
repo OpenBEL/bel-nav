@@ -1,7 +1,28 @@
+/*
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
+ */
 package groovy.transform
 
 import groovy.mock.interceptor.StubFor
+import org.codehaus.groovy.ast.MethodNode
 import org.codehaus.groovy.transform.ThreadInterruptibleASTTransformation
+
+import java.lang.reflect.Modifier
 
 /**
  * Test for @ThreadInterrupt.
@@ -9,12 +30,34 @@ import org.codehaus.groovy.transform.ThreadInterruptibleASTTransformation
  * @author Hamlet D'Arcy
  */
 class ThreadInterruptTest extends GroovyTestCase {
+    private Map<String,MethodNode> oldValues = [:]
     @Override protected void tearDown() {
         Thread.metaClass = null
+        ['CURRENTTHREAD_METHOD', 'ISINTERRUPTED_METHOD'].each {
+            def ov = ThreadInterruptibleASTTransformation.getDeclaredField(it)
+            def modifiersField = ov.class.getDeclaredField("modifiers")
+            modifiersField.accessible = true
+            modifiersField.setInt(ov, ov.modifiers & ~Modifier.FINAL);
+            ov.accessible = true
+            ov.set(ThreadInterruptibleASTTransformation, oldValues[it])
+        }
     }
 
+    @Override
+    protected void setUp() throws Exception {
+        super.setUp()
+        ['CURRENTTHREAD_METHOD', 'ISINTERRUPTED_METHOD'].each {
+            def ov = ThreadInterruptibleASTTransformation.getDeclaredField(it)
+            def modifiersField = ov.class.getDeclaredField("modifiers")
+            modifiersField.accessible = true
+            modifiersField.setInt(ov, ov.modifiers & ~Modifier.FINAL);
+            ov.accessible = true
+            oldValues[it] = ov.get(ThreadInterruptibleASTTransformation)
+            ov.set(ThreadInterruptibleASTTransformation, null)
+        }
+    }
 
-    public void testDefaultParameters_Method() {
+    void testDefaultParameters_Method() {
 
         def c = new GroovyClassLoader().parseClass("""
             @groovy.transform.ThreadInterrupt
@@ -32,7 +75,7 @@ class ThreadInterruptTest extends GroovyTestCase {
         assert 1 == counter.interruptedCheckCount
     }
 
-    public void testNoMethodCheck_Method() {
+    void testNoMethodCheck_Method() {
 
         def c = new GroovyClassLoader().parseClass("""
             @groovy.transform.ThreadInterrupt(checkOnMethodStart = false)
@@ -49,7 +92,7 @@ class ThreadInterruptTest extends GroovyTestCase {
         // no exception means success
     }
 
-    public void testDefaultParameters_ForLoop() {
+    void testDefaultParameters_ForLoop() {
 
         def c = new GroovyClassLoader().parseClass("""
             @groovy.transform.ThreadInterrupt
@@ -71,7 +114,7 @@ class ThreadInterruptTest extends GroovyTestCase {
         assert 100 == counter.interruptedCheckCount
     }
 
-    public void testDefaultParameters_WhileLoop() {
+    void testDefaultParameters_WhileLoop() {
 
         def c = new GroovyClassLoader().parseClass("""
             @groovy.transform.ThreadInterrupt
@@ -94,7 +137,7 @@ class ThreadInterruptTest extends GroovyTestCase {
         assert 100 == counter.interruptedCheckCount
     }
 
-    public void testDefaultParameters_Closure() {
+    void testDefaultParameters_Closure() {
 
         def c = new GroovyClassLoader().parseClass("""
             @groovy.transform.ThreadInterrupt
@@ -116,7 +159,7 @@ class ThreadInterruptTest extends GroovyTestCase {
         assert 100 == counter.interruptedCheckCount
     }
 
-    public void testInterrupt_Method_AndTestExceptionMessage() {
+    void testInterrupt_Method_AndTestExceptionMessage() {
 
         def c = new GroovyClassLoader().parseClass("""
             @groovy.transform.ThreadInterrupt
@@ -133,7 +176,7 @@ class ThreadInterruptTest extends GroovyTestCase {
         }
     }
 
-    public void testInterrupt_ForLoop() {
+    void testInterrupt_ForLoop() {
 
         def c = new GroovyClassLoader().parseClass("""
             @groovy.transform.ThreadInterrupt
@@ -153,7 +196,7 @@ class ThreadInterruptTest extends GroovyTestCase {
         }
     }
 
-    public void testInterrupt_WhileLoop() {
+    void testInterrupt_WhileLoop() {
 
         def c = new GroovyClassLoader().parseClass("""
             @groovy.transform.ThreadInterrupt
@@ -174,7 +217,7 @@ class ThreadInterruptTest extends GroovyTestCase {
         }
     }
 
-    public void testInterrupt_Closure() {
+    void testInterrupt_Closure() {
 
         def c = new GroovyClassLoader().parseClass("""
             @groovy.transform.ThreadInterrupt
@@ -194,7 +237,7 @@ class ThreadInterruptTest extends GroovyTestCase {
         }
     }
 
-    public void testInterrupt_ClosureWithCustomExceptionType() {
+    void testInterrupt_ClosureWithCustomExceptionType() {
 
         def c = new GroovyClassLoader(this.class.classLoader).parseClass("""
             @groovy.transform.ThreadInterrupt(thrown=groovy.transform.CustomException)
@@ -214,7 +257,7 @@ class ThreadInterruptTest extends GroovyTestCase {
         }
     }
 
-    public void testEntireCompileUnitIsAffected() {
+    void testEntireCompileUnitIsAffected() {
 
         def script = '''
             def scriptMethod() {
@@ -241,7 +284,7 @@ class ThreadInterruptTest extends GroovyTestCase {
         assert 3 == counter.interruptedCheckCount
     }
 
-    public void testOnlyScriptAffected() {
+    void testOnlyScriptAffected() {
 
         def script = '''
             @groovy.transform.ThreadInterrupt(applyToAllClasses = false)
@@ -267,7 +310,7 @@ class ThreadInterruptTest extends GroovyTestCase {
         assert 2 == counter.interruptedCheckCount
     }
 
-    public void testAnnotationOnImport() {
+    void testAnnotationOnImport() {
 
         def script = '''
             @groovy.transform.ThreadInterrupt
@@ -283,11 +326,11 @@ class ThreadInterruptTest extends GroovyTestCase {
         mocker.use {
             new GroovyShell().evaluate(script)
         }
-        // 2 is once for run() and once for scriptMethod()
+        // 4 is once for run() plus 3 for times loop
         assert 4 == counter.interruptedCheckCount
     }
 
-    public void testOnlyClassAffected() {
+    void testOnlyClassAffected() {
 
         def script = '''
             def scriptMethod() {
@@ -313,7 +356,7 @@ class ThreadInterruptTest extends GroovyTestCase {
         assert 1 == counter.interruptedCheckCount
     }
 
-    public void testThreadInterruptOnAbstractClass() {
+    void testThreadInterruptOnAbstractClass() {
         def script = '''
             @groovy.transform.ThreadInterrupt
             abstract class MyAbstractClass {
@@ -354,12 +397,10 @@ class CountingThread extends Thread {
         interruptedCheckCount++
         false
     }
-
 }
 
 class CustomException extends Exception {
-
-    public CustomException(final String message) {
+    CustomException(final String message) {
         super(message)
     }
 }

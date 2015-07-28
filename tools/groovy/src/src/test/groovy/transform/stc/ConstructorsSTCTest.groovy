@@ -1,17 +1,20 @@
 /*
- * Copyright 2003-2013 the original author or authors.
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package groovy.transform.stc
 
@@ -314,6 +317,56 @@ class ConstructorsSTCTest extends StaticTypeCheckingTestCase {
 
         def constructor = fooClass.getDeclaredConstructor()
         assert constructor.declaredAnnotations.size() == 0
+    }
+
+    // GROOVY-6616
+    void testConstructorsWithVarargsAndArrayParameters() {
+        assertScript '''
+            class MultipleConstructors {
+
+                public MultipleConstructors(String s, short[] arr) {}
+                public MultipleConstructors(String s, int... arr) {}
+                public MultipleConstructors(short[] arr) {}
+            }
+
+            class Clz {
+                  void run() {
+                        new MultipleConstructors('d',1)
+                }
+            }
+
+            new Clz().run()
+        '''
+    }
+
+    // GROOVY-6929
+    void testShouldNotThrowNPEDuringConstructorCallCheck() {
+        assertScript '''
+            class MyBean {
+                private String var
+                void setFoo(String foo) {
+                    var = foo
+                }
+                String toString() { var }
+            }
+            def b = new MyBean(foo: 'Test')
+            assert b.toString() == 'Test'
+        '''
+    }
+
+    void testMapStyleConstructorShouldNotCarrySetterInfoToOuterBinExp() {
+        assertScript '''
+            class Blah {
+                void setA(String a) {}
+            }
+
+            void blah(Map attrs) {
+               Closure c = {
+                  def blah = new Blah(a:attrs.a as String)
+               }
+            }
+            blah(a:'foo')
+        '''
     }
 }
 

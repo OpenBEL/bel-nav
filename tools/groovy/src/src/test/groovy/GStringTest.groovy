@@ -1,17 +1,20 @@
 /*
- * Copyright 2003-2010 the original author or authors.
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package groovy
 
@@ -347,7 +350,7 @@ class GStringTest extends GroovyTestCase {
      *
      * GROOVY-781
      */
-    void fixmeTestExtractRangeStartToBeforeEndLiteral() {
+    void testExtractRangeStartToBeforeEndLiteral() {
         def literal = "0123456789";
         doTestExtractRangeStartToBeforeEnd(literal);
     }
@@ -357,7 +360,7 @@ class GStringTest extends GroovyTestCase {
      *
      * GROOVY-781
      */
-    void fixmeTestExtractRangeStartToBeforeEndTemplate() {
+    void testExtractRangeStartToBeforeEndTemplate() {
         def literal = "0123456789";
         def template = "${literal}";
 
@@ -369,7 +372,7 @@ class GStringTest extends GroovyTestCase {
      *
      * GROOVY-781
      */
-    void fixmeTestExtractRangeBeforeEndToStartLiteral() {
+    void testExtractRangeBeforeEndToStartLiteral() {
         def literal = "0123456789";
         doTestExtractRangeBeforeEndToStart(literal);
     }
@@ -379,7 +382,7 @@ class GStringTest extends GroovyTestCase {
      *
      * GROOVY-781
      */
-    void fixmeTestExtractRangeBeforeEndToStartTemplate() {
+    void testExtractRangeBeforeEndToStartTemplate() {
         def literal = "0123456789";
         def template = "${literal}";
 
@@ -566,5 +569,15 @@ class GStringTest extends GroovyTestCase {
 
         assert gstring.bytes == string.bytes
         assert gstring.getBytes('UTF-8') ==  string.getBytes('UTF-8')
+    }
+
+    /**
+     * GROOVY-7377: Interpolated variable followed by asterisk in slashy-string causes compiler error
+     */
+    void testSlashyStringWithInterpolatedVariableFollowedByAsterisk() {
+        assert Eval.me('''def foo='bar'; /$foo*baz/''') == 'bar*baz'
+        assert Eval.me('''def foo='bar'; /${foo}*baz/''') == 'bar*baz'
+        assert Eval.me('''def foo='bar'; /$foo\u002abaz/''') == 'bar*baz'
+        assert Eval.me('''def foo='bar'; /${foo}\u002abaz/''') == 'bar*baz'
     }
 }

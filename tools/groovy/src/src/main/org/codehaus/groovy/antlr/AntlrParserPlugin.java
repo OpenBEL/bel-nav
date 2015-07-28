@@ -1,17 +1,20 @@
-/*
- * Copyright 2003-2013 the original author or authors.
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package org.codehaus.groovy.antlr;
 
@@ -166,12 +169,14 @@ public class AntlrParserPlugin extends ASTHelper implements ParserPlugin, Groovy
 
     private void outputASTInVariousFormsIfNeeded(SourceUnit sourceUnit, SourceBuffer sourceBuffer) {
         // straight xstream output of AST
-        if ("xml".equals(System.getProperty("antlr.ast"))) {
+        String formatProp = System.getProperty("ANTLR.AST".toLowerCase()); // uppercase to hide from jarjar
+
+        if ("xml".equals(formatProp)) {
             saveAsXML(sourceUnit.getName(), ast);
         }
 
         // 'pretty printer' output of AST
-        if ("groovy".equals(System.getProperty("antlr.ast"))) {
+        if ("groovy".equals(formatProp)) {
             try {
                 PrintStream out = new PrintStream(new FileOutputStream(sourceUnit.getName() + ".pretty.groovy"));
                 Visitor visitor = new SourcePrinter(out, tokenNames);
@@ -184,7 +189,7 @@ public class AntlrParserPlugin extends ASTHelper implements ParserPlugin, Groovy
 
         // output AST in format suitable for opening in http://freemind.sourceforge.net
         // which is a really nice way of seeing the AST, folding nodes etc
-        if ("mindmap".equals(System.getProperty("antlr.ast"))) {
+        if ("mindmap".equals(formatProp)) {
             try {
                 PrintStream out = new PrintStream(new FileOutputStream(sourceUnit.getName() + ".mm"));
                 Visitor visitor = new MindMapPrinter(out, tokenNames);
@@ -196,7 +201,7 @@ public class AntlrParserPlugin extends ASTHelper implements ParserPlugin, Groovy
         }
 
         // include original line/col info and source code on the mindmap output
-        if ("extendedMindmap".equals(System.getProperty("antlr.ast"))) {
+        if ("extendedMindmap".equals(formatProp)) {
             try {
                 PrintStream out = new PrintStream(new FileOutputStream(sourceUnit.getName() + ".mm"));
                 Visitor visitor = new MindMapPrinter(out, tokenNames, sourceBuffer);
@@ -208,7 +213,7 @@ public class AntlrParserPlugin extends ASTHelper implements ParserPlugin, Groovy
         }
 
         // html output of AST
-        if ("html".equals(System.getProperty("antlr.ast"))) {
+        if ("html".equals(formatProp)) {
             try {
                 PrintStream out = new PrintStream(new FileOutputStream(sourceUnit.getName() + ".html"));
                 List<VisitorAdapter> v = new ArrayList<VisitorAdapter>();
@@ -281,6 +286,7 @@ public class AntlrParserPlugin extends ASTHelper implements ParserPlugin, Groovy
                     importDef(node);
                     break;
 
+                case TRAIT_DEF:
                 case CLASS_DEF:
                     classDef(node);
                     break;
@@ -548,6 +554,11 @@ public class AntlrParserPlugin extends ASTHelper implements ParserPlugin, Groovy
 
     protected void innerClassDef(AST classDef) {
         List<AnnotationNode> annotations = new ArrayList<AnnotationNode>();
+
+        if (isType(TRAIT_DEF, classDef)) {
+            annotations.add(new AnnotationNode(ClassHelper.make("groovy.transform.Trait")));
+        }
+
         AST node = classDef.getFirstChild();
         int modifiers = Opcodes.ACC_PUBLIC;
         if (isType(MODIFIERS, node)) {
@@ -646,6 +657,7 @@ public class AntlrParserPlugin extends ASTHelper implements ParserPlugin, Groovy
                     enumConstantDef(node);
                     break;
 
+                case TRAIT_DEF:
                 case CLASS_DEF:
                     innerClassDef(node);
                     break;
@@ -703,8 +715,6 @@ public class AntlrParserPlugin extends ASTHelper implements ParserPlugin, Groovy
             element = element.getNextSibling();
         }
         String identifier = identifier(element);
-        int savedLine = element.getLine();
-        int savedColumn = element.getColumn();
         Expression init = null;
         element = element.getNextSibling();
 
@@ -723,9 +733,8 @@ public class AntlrParserPlugin extends ASTHelper implements ParserPlugin, Groovy
             }
 
             if (innerClass != null) {
-                // we have to handle an enum that defines a class for a constant
-                // for example the constant having overwriting a method. we need 
-                // to configure the inner class 
+                // we have to handle an enum constant with a class overriding
+                // a method in which case we need to configure the inner class
                 innerClass.setSuperClass(classNode.getPlainNodeReference());
                 innerClass.setModifiers(classNode.getModifiers() | Opcodes.ACC_FINAL);
                 // we use a ClassExpression for transportation to EnumVisitor
@@ -754,7 +763,7 @@ public class AntlrParserPlugin extends ASTHelper implements ParserPlugin, Groovy
                 }
             }
         }
-        FieldNode enumField = EnumHelper.addEnumConstant(classNode, identifier, init, savedLine, savedColumn);
+        FieldNode enumField = EnumHelper.addEnumConstant(classNode, identifier, init);
         enumField.addAnnotations(annotations);
         configureAST(enumField, node);
         enumConstantBeingDef = false;
@@ -1435,8 +1444,7 @@ public class AntlrParserPlugin extends ASTHelper implements ParserPlugin, Groovy
         AST node = labelNode.getFirstChild();
         String label = identifier(node);
         Statement statement = statement(node.getNextSibling());
-        if (statement.getStatementLabel() == null) // if statement has multiple labels, retain the last one
-            statement.setStatementLabel(label);
+        statement.addStatementLabel(label);
         return statement;
     }
 
@@ -2554,7 +2562,7 @@ public class AntlrParserPlugin extends ASTHelper implements ParserPlugin, Groovy
             TupleExpression te = (TupleExpression) arguments;
             List<Expression> expressions = te.getExpressions();
             if (expressions.size() == 0) return null;
-            Expression last = (Expression) expressions.remove(expressions.size() - 1);
+            Expression last = expressions.remove(expressions.size() - 1);
             if (last instanceof AnonymousInnerClassCarrier) {
                 AnonymousInnerClassCarrier carrier = (AnonymousInnerClassCarrier) last;
                 return carrier.innerClass;
@@ -2798,7 +2806,7 @@ public class AntlrParserPlugin extends ASTHelper implements ParserPlugin, Groovy
         List strings = new ArrayList();
         List values = new ArrayList();
 
-        StringBuffer buffer = new StringBuffer();
+        StringBuilder buffer = new StringBuilder();
 
         boolean isPrevString = false;
 
@@ -2845,7 +2853,7 @@ public class AntlrParserPlugin extends ASTHelper implements ParserPlugin, Groovy
         }
         if (isType(DOT, qualifiedNameNode)) {
             AST node = qualifiedNameNode.getFirstChild();
-            StringBuffer buffer = new StringBuffer();
+            StringBuilder buffer = new StringBuilder();
             boolean first = true;
 
             for (; node != null && !isType(TYPE_ARGUMENTS, node); node = node.getNextSibling()) {

@@ -1,27 +1,35 @@
-/*
- * Copyright 2003-2013 the original author or authors.
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package org.codehaus.groovy.classgen;
 
 import org.codehaus.groovy.ast.*;
-import org.codehaus.groovy.ast.expr.*;
+import org.codehaus.groovy.ast.expr.ArgumentListExpression;
+import org.codehaus.groovy.ast.expr.ConstructorCallExpression;
+import org.codehaus.groovy.ast.expr.Expression;
+import org.codehaus.groovy.ast.expr.TupleExpression;
+import org.codehaus.groovy.ast.expr.VariableExpression;
 import org.codehaus.groovy.ast.stmt.BlockStatement;
 import org.codehaus.groovy.ast.stmt.ExpressionStatement;
 import org.codehaus.groovy.ast.stmt.Statement;
 import org.codehaus.groovy.control.CompilationUnit;
 import org.codehaus.groovy.control.SourceUnit;
+import org.codehaus.groovy.transform.TupleConstructorASTTransformation;
 import org.objectweb.asm.Opcodes;
 
 import java.util.ArrayList;
@@ -34,7 +42,6 @@ import java.util.List;
  */
 public class EnumCompletionVisitor extends ClassCodeVisitorSupport {
     private final SourceUnit sourceUnit;
-
 
     public EnumCompletionVisitor(CompilationUnit cu, SourceUnit su) {
         sourceUnit = su;
@@ -50,45 +57,40 @@ public class EnumCompletionVisitor extends ClassCodeVisitorSupport {
     }
 
     private void completeEnum(ClassNode enumClass) {
-        addConstructor(enumClass);
-    }
-
-    private void addConstructor(ClassNode enumClass) {
-        // first look if there are declared constructors
-        List<ConstructorNode> ctors = new ArrayList<ConstructorNode>(enumClass.getDeclaredConstructors());
         boolean isAic = isAnonymousInnerClass(enumClass);
-        if (ctors.size() == 0) {
-            if (isAic) {
-                ClassNode sn = enumClass.getSuperClass();
-                List<ConstructorNode> sctors = new ArrayList<ConstructorNode>(sn.getDeclaredConstructors());
-                if (sctors.size() == 0) {
-                    ctors.add(defaultConstructor(enumClass));
-                } else {
-                    for (ConstructorNode constructorNode : sctors) {
-                        ConstructorNode init = new ConstructorNode(Opcodes.ACC_PUBLIC, constructorNode.getParameters(), ClassNode.EMPTY_ARRAY, new BlockStatement());
-                        enumClass.addConstructor(init);
-                        ctors.add(init);
-                    }
-                }
-            } else {
-                ctors.add(defaultConstructor(enumClass));
-            }
+        if (enumClass.getDeclaredConstructors().size() == 0) {
+            addImplicitConstructors(enumClass, isAic);
         }
 
-        // for each constructor:
-        // if constructor does not define a call to super, then transform constructor
-        // to get String,int parameters at beginning and add call super(String,int)
-        for (ConstructorNode ctor : ctors) {
+        for (ConstructorNode ctor : enumClass.getDeclaredConstructors()) {
             transformConstructor(ctor, isAic);
         }
     }
 
-    private ConstructorNode defaultConstructor(ClassNode enumClass) {
-        ConstructorNode init = new ConstructorNode(Opcodes.ACC_PUBLIC, new Parameter[0], ClassNode.EMPTY_ARRAY, new BlockStatement());
-        enumClass.addConstructor(init);
-        return init;
+    /**
+     * Add map and no-arg constructor or mirror those of the superclass (i.e. base enum).
+     */
+    private void addImplicitConstructors(ClassNode enumClass, boolean aic) {
+        if (aic) {
+            ClassNode sn = enumClass.getSuperClass();
+            List<ConstructorNode> sctors = new ArrayList<ConstructorNode>(sn.getDeclaredConstructors());
+            if (sctors.size() == 0) {
+                addMapConstructors(enumClass, false);
+            } else {
+                for (ConstructorNode constructorNode : sctors) {
+                    ConstructorNode init = new ConstructorNode(Opcodes.ACC_PUBLIC, constructorNode.getParameters(), ClassNode.EMPTY_ARRAY, new BlockStatement());
+                    enumClass.addConstructor(init);
+                }
+            }
+        } else {
+            addMapConstructors(enumClass, false);
+        }
     }
 
+    /**
+     * If constructor does not define a call to super, then transform constructor
+     * to get String,int parameters at beginning and add call super(String,int).
+     */
     private void transformConstructor(ConstructorNode ctor, boolean isAic) {
         boolean chainedThisConstructorCall = false;
         ConstructorCallExpression cce = null;
@@ -132,6 +134,11 @@ public class EnumCompletionVisitor extends ClassCodeVisitorSupport {
             if (oldCode != null) code.addStatement(oldCode);
             ctor.setCode(code);
         }
+    }
+
+    public static void addMapConstructors(ClassNode enumClass, boolean hasNoArg) {
+        TupleConstructorASTTransformation.addMapConstructors(enumClass, hasNoArg, "One of the enum constants for enum " + enumClass.getName() +
+                " was initialized with null. Please use a non-null value or define your own constructor.");
     }
 
     private String getUniqueVariableName(final String name, Statement code) {

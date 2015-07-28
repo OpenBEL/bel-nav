@@ -1,21 +1,25 @@
 /*
- * Copyright 2003-2011 the original author or authors.
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package groovy.json
 
 import static groovy.json.JsonTokenType.*
+
 import groovy.io.LineColumnReader
 
 /**
@@ -109,6 +113,8 @@ class JsonLexerTest extends GroovyTestCase {
     }
 
     void testUnescapingWithLexer() {
+        // use string concatenation so that the unicode escape characters are not decoded 
+        // by Groovy's lexer but by the JsonLexer
         def lexer = new JsonLexer(new StringReader('"\\' + 'u004A\\' + 'u0053\\' + 'u004F\\' + 'u004E"'))
 
         assert lexer.nextToken().value == 'JSON'
@@ -124,6 +130,8 @@ class JsonLexerTest extends GroovyTestCase {
         assert JsonLexer.unescape('\\/') == '/'
         assert JsonLexer.unescape('\\"') == '"'
 
+        // use string concatenation so that the unicode escape characters are not decoded
+        // by Groovy's lexer but by the JsonLexer
         assert JsonLexer.unescape('\\' + 'u004A\\' + 'u0053\\' + 'u004F\\' + 'u004E') == 'JSON'
     }
 

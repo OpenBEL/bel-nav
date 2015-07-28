@@ -1,17 +1,20 @@
 /*
- * Copyright 2008 the original author or authors.
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package groovy.swing.binding
 
@@ -21,14 +24,6 @@ import javax.swing.table.TableColumnModel
 import javax.swing.table.TableModel
 import org.codehaus.groovy.runtime.InvokerHelper
 
-
-/**
- * Created by IntelliJ IDEA.
- * User: Danno.Ferrin
- * Date: Jun 19, 2008
- * Time: 12:46:29 PM
- * To change this template use File | Settings | File Templates.
- */
 class JTableMetaMethods {
 
     public static void enhanceMetaClass(table) {
@@ -47,7 +42,7 @@ class JTableMetaMethods {
             },
             getSelectedElements:{->
                 def myTable = delegate
-                return myTable.getSelectedRows().collect() { getElement(myTable, it) }
+                return myTable.getSelectedRows().collect { getElement(myTable, it) }
             }
         ]);
     }
@@ -71,11 +66,9 @@ class JTableMetaMethods {
             Object rowValue = model.getRowsModel().value
             if (rowValue == null) {
                 return null;
-            } else {
-                return InvokerHelper.asList(rowValue)[row]
             }
+            return InvokerHelper.asList(rowValue)[row]
         }
     }
-
 
 }

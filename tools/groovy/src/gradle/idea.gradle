@@ -1,4 +1,22 @@
 /**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
+ */
+/**
  * Configuration for gradle idea.
  *
  * Inspired from the Gradle build.
@@ -28,17 +46,15 @@ allprojects {
 }
 
 idea {
-
     project {
-
         ipr {
             withXml { provider ->
                 def node = provider.asNode()
 
                 // jdk, language level fix
                 def pRoot = node.component.find { it.'@name' == 'ProjectRootManager' }
-                pRoot.'@languageLevel' = 'JDK_1_5'
-                pRoot.'@project-jdk-name' = '1.7'
+                pRoot.'@languageLevel' = 'JDK_1_6'
+                pRoot.'@project-jdk-name' = '1.8'
 
                 // Use git
                 def vcsConfig = node.component.find { it.'@name' == 'VcsDirectoryMappings' }
@@ -46,8 +62,8 @@ idea {
 
                 // license header
                 def copyrightManager = node.component.find { it.'@name' == 'CopyrightManager' }
-                copyrightManager.@default = "ASL2"
-                def aslCopyright = copyrightManager.copyright.find { it.option.find { it.@name == "myName" }?.@value == "ASL2" }
+                copyrightManager.@default = 'ASL2'
+                def aslCopyright = copyrightManager.copyright.find { it.option.find { it.@name == 'myName' }?.@value == 'ASL2' }
                 if (aslCopyright == null) {
                     appendNode(copyrightManager, '''
                       <copyright>
@@ -61,11 +77,21 @@ idea {
                 }
 
                 def compilerConfig = node.component.find { it.@name == 'CompilerConfiguration' }
-                ['/groovy/inspect/swingui/AstBrowserProperties.groovy',
+                ['/**/org.codehaus.groovy.runtime.ExtensionModule',
+                '*.jar',
+                'test-resources:/**/*.groovy','test-resources:/**/*.java',
+                '!?*.groovy',
+                '/groovy/inspect/swingui/AstBrowserProperties.groovy',
+                '/groovy/inspect/swingui/AstBrowserProperties.groovy',
+                '/**/org.codehaus.groovy.runtime.ExtensionModule;*.jar',
+                '/groovy/inspect/swingui/AstBrowserProperties.groovy',
                 '/**/org.codehaus.groovy.runtime.ExtensionModule',
                 '*.jar'].each {
                     appendNode(compilerConfig.wildcardResourcePatterns[0], "<entry name=\"$it\" />")
                 }
+                appendNode(compilerConfig,'''<excludeFromCompile>
+      <directory url="file://$PROJECT_DIR$/src/test-resources" includeSubdirectories="true" />
+    </excludeFromCompile>''')
             }
         }
     }

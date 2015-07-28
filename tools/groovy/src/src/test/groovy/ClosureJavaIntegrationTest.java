@@ -1,24 +1,26 @@
-/*
- * Copyright 2003-2011 the original author or authors.
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package groovy;
 
 import groovy.lang.Closure;
 import groovy.lang.Reference;
 import junit.framework.TestCase;
-import org.codehaus.groovy.runtime.DefaultGroovyMethods;
 import org.codehaus.groovy.runtime.typehandling.DefaultTypeTransformation;
 
 import java.math.BigDecimal;
@@ -27,17 +29,26 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import static org.codehaus.groovy.runtime.DefaultGroovyMethods.*;
+import static org.codehaus.groovy.runtime.DefaultGroovyMethods.any;
+import static org.codehaus.groovy.runtime.DefaultGroovyMethods.collect;
+import static org.codehaus.groovy.runtime.DefaultGroovyMethods.each;
+import static org.codehaus.groovy.runtime.DefaultGroovyMethods.every;
+import static org.codehaus.groovy.runtime.DefaultGroovyMethods.findAll;
+import static org.codehaus.groovy.runtime.DefaultGroovyMethods.inject;
+import static org.codehaus.groovy.runtime.DefaultGroovyMethods.join;
+import static org.codehaus.groovy.runtime.DefaultGroovyMethods.max;
+import static org.codehaus.groovy.runtime.DefaultGroovyMethods.sort;
 
 /**
  * Groovy's Closure class isn't specifically designed with Java integration in
  * mind, but these tests illustrate some of the possible ways to use them from Java.
  */
 public class ClosureJavaIntegrationTest extends TestCase {
-    Map<String, Integer> zoo = new HashMap<String, Integer>();
+    Map<String, Integer> zoo = new LinkedHashMap<String, Integer>();
     List<String> animals = Arrays.asList("ant", "bear", "camel");
 
     @Override
@@ -69,7 +80,7 @@ public class ClosureJavaIntegrationTest extends TestCase {
                 result.add("k=" + k + ",v=" + v);
             }
         });
-        assertEquals(Arrays.asList("k=Lions,v=5", "k=Monkeys,v=3", "k=Giraffe,v=2"), result);
+        assertEquals(Arrays.asList("k=Monkeys,v=3", "k=Giraffe,v=2", "k=Lions,v=5" ), result);
     }
 
     public void testCollectList() {

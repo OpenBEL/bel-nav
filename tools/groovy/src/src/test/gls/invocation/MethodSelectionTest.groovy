@@ -1,17 +1,20 @@
 /*
- * Copyright 2003-2009 the original author or authors.
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package gls.invocation
 
@@ -208,7 +211,7 @@ public class MethodSelectionTest extends CompilableTestSupport {
     """
   }
   
-  void testNullUsageForPrimtivesWithExplcitNull() {
+  void testNullUsageForPrimitivesWithExplicitNull() {
     [byte,int,short,float,double,boolean,char].each { type ->
       assertScript """
          def foo($type x) {}
@@ -226,7 +229,7 @@ public class MethodSelectionTest extends CompilableTestSupport {
     }
   }
   
-  void testNullUsageForPrimtivesWithImplcitNull() {
+  void testNullUsageForPrimitivesWithImplicitNull() {
     [byte,int,short,float,double,boolean,char].each { type ->
       assertScript """
          def foo($type x) {}
@@ -379,6 +382,53 @@ public class MethodSelectionTest extends CompilableTestSupport {
           assert getStringArrayDirectly_Length() == getStringArrayIndirectlyWithType_Length()
           assert getStringArrayIndirectlyWithType_Length() == getStringArrayIndirectlyWithoutType_Length()
       """
+  }
+  
+  //GROOVY-6189
+  void testSAMs(){
+      // simple direct case
+      assertScript """
+          interface MySAM {
+              def someMethod()
+          }
+          def foo(MySAM sam) {sam.someMethod()}
+          assert foo {1} == 1
+      """
+
+      // overloads with classes implemented by Closure
+      ["java.util.concurrent.Callable", "Object", "Closure", "GroovyObjectSupport", "Cloneable", "Runnable", "GroovyCallable", "Serializable", "GroovyObject"].each {
+          className ->
+          assertScript """
+              interface MySAM {
+                  def someMethod()
+              }
+              def foo(MySAM sam) {sam.someMethod()}
+              def foo($className x) {2}
+              assert foo {1} == 2
+          """
+      }
+  }
+  
+  // GROOVY-6431
+  void testBigDecAndBigIntSubClass() {
+      assertScript'''
+          class MyDecimal extends BigDecimal {
+              public MyDecimal(String s) {super(s)}
+          }
+          class MyInteger extends BigInteger {
+              public MyInteger(String s) {super(s)}
+          }
+          class Expression {
+              public int takeNumber(Number a) {return 1}
+              public int takeBigDecimal(BigDecimal a) {return 2}
+              public int takeBigInteger(BigInteger a) {return 3}
+          }
+
+          Expression exp = new Expression();
+          assert 1 == exp.takeNumber(new MyInteger("3"))
+          assert 2 == exp.takeBigDecimal(new MyDecimal("3.0"))
+          assert 3 == exp.takeBigInteger(new MyInteger("3"))
+      '''
   }
 }
 

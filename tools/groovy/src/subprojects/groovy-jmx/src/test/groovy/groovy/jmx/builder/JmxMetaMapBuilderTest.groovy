@@ -1,17 +1,20 @@
 /*
- * Copyright 2003-2010 the original author or authors.
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package groovy.jmx.builder
 
@@ -208,7 +211,6 @@ class JmxMetaMapBuilderTest extends GroovyTestCase {
         assert attribs.Available.setMethod == "setAvailable"
     }
 
-
     void testBuildAttributeMapFromDescriptorList() {
         def object = new MockManagedObject()
         def attribs = JmxMetaMapBuilder.buildAttributeMapFrom(object, ["something", "somethingElse"])
@@ -230,7 +232,7 @@ class JmxMetaMapBuilderTest extends GroovyTestCase {
         assert attribs.SomethingElse.setMethod == null
     }
 
-    void TODO_testBuildConstructorMapFromObject() {
+    void testBuildConstructorMapFromObject() {
         def object = new MockManagedObject()
         def ctors = JmxMetaMapBuilder.buildConstructorMapFrom(object)
 
@@ -250,12 +252,12 @@ class JmxMetaMapBuilderTest extends GroovyTestCase {
         assert m.params.size() == 2
         assert m.params."java.lang.String"
         assert m.params."java.lang.String".name == "java.lang.String"
-        assert m.params."java.lang.String".type == String.class
+        assert m.params."java.lang.String".type == String
         assert m.params."int".name == "int"
         assert m.params."int".type == Integer.TYPE
     }
 
-    void TODO_testBuildConstructorMapFromDescriptor() {
+    void testBuildConstructorMapFromDescriptor() {
         def object = new MockManagedObject()
 
         def map = JmxMetaMapBuilder.buildConstructorMapFrom(object, "*")
@@ -279,7 +281,7 @@ class JmxMetaMapBuilderTest extends GroovyTestCase {
         assert map
         assert map."ctor2".params.size() == 2
         assert map."ctor2".params."int".type == int.class
-        assert map."ctor2".params."java.lang.String".type == String.class
+        assert map."ctor2".params."java.lang.String".type == String
         assert map."ctor3".params."java.lang.String".name == "quantity"
 
         map = JmxMetaMapBuilder.buildConstructorMapFrom(object, [
@@ -348,11 +350,7 @@ class JmxMetaMapBuilderTest extends GroovyTestCase {
         assert map."doSomethingElse".params
         assert map.doSomethingElse.params.size() == 2
         assert map.doSomethingElse.params."java.lang.String"
-
     }
-
-
-
 
     void testBuildParameterMapFromConstructor() {
         def object = new MockManagedObject()
@@ -466,7 +464,6 @@ class JmxMetaMapBuilderTest extends GroovyTestCase {
         assert map.SomethingElse.methodListener.callback instanceof Closure
     }
 
-
     void testBuildOperationNotificationFromDescriptor() {
         def object = new MockManagedObject()
         def map
@@ -485,10 +482,7 @@ class JmxMetaMapBuilderTest extends GroovyTestCase {
     }
 
     void testBuildListenerMap() {
-        def object = new MockManagedObject()
-        def map
-
-        map = JmxMetaMapBuilder.buildListenerMapFrom(
+        def map = JmxMetaMapBuilder.buildListenerMapFrom(
                 [
                         heartbeat: [event: "event.heartbeat", from: "some:type=object", call: {-> "event block"}],
                         timer: [event: "event.timer", from: "some:type=object", call: {-> "event block"}]
@@ -503,7 +497,6 @@ class JmxMetaMapBuilderTest extends GroovyTestCase {
         shouldFail {
             assert map.heartbeat.from instanceof String
         }
-
     }
 
     private Map getCtorMapByParamSize(Map maps, int size) {
@@ -514,6 +507,5 @@ class JmxMetaMapBuilderTest extends GroovyTestCase {
                 return m.value
             }
         }
-        return null
     }
 }

@@ -1,19 +1,21 @@
-/*
- * Copyright 2003-2007 the original author or authors.
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
-
 package groovy.lang;
 
 import org.codehaus.groovy.ast.ClassNode;
@@ -72,7 +74,7 @@ public interface MetaClass extends MetaObjectProtocol {
      Object getProperty(Class sender, Object receiver, String property, boolean isCallToSuper, boolean fromInsideClass);
 
     /**
-     * <p>Retrieves a property on the given receiver for the specified arguments. The sender is the class that is requesting the property from the object.
+     * <p>Sets a property on the given receiver for the specified arguments. The sender is the class that is setting the property from the object.
      * The MetaClass will attempt to establish the method to invoke based on the name and arguments provided.
      *
      * <p>The isCallToSuper and fromInsideClass help the Groovy runtime perform optimisations on the call to go directly
@@ -83,7 +85,7 @@ public interface MetaClass extends MetaObjectProtocol {
      * @param property The name of the property
      * @param value The new value of the property to set
      * @param isCallToSuper Whether the call is to a super class property
-     * @param fromInsideClass ??
+     * @param fromInsideClass Whether the call was invoked from the inside or the outside of the class
      */
      void setProperty(Class sender, Object receiver, String property, Object value, boolean isCallToSuper, boolean fromInsideClass);
 
@@ -136,7 +138,7 @@ public interface MetaClass extends MetaObjectProtocol {
      void setAttribute(Class sender, Object receiver, String messageName, Object messageValue, boolean useSuper, boolean fromInsideClass);
     
     /**
-     * complete the initialisation process. After this method
+     * Complete the initialisation process. After this method
      * is called no methods should be added to the meta class.
      * Invocation of methods or access to fields/properties is
      * forbidden unless this method is called. This method 
@@ -157,9 +159,9 @@ public interface MetaClass extends MetaObjectProtocol {
      List<MetaProperty> getProperties();
 
     /**
-     * Retrieves a list of MetaMethods held by the class
+     * Retrieves a list of Methods held by the class
      *
-     * @return A list of MetaMethods
+     * @return A list of Methods
      */
      List<MetaMethod> getMethods();
      

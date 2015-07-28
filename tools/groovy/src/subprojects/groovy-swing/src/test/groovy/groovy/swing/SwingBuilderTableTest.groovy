@@ -1,19 +1,21 @@
 /*
- * Copyright 2003-2008 the original author or authors.
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
-
 package groovy.swing
 
 import groovy.model.DefaultTableColumn
@@ -44,13 +46,13 @@ class SwingBuilderTableTest extends GroovySwingTestCase {
             assert msg.contains('propertyColumn must be a child of a tableModel')
             msg = shouldFail {
                 swing.table {
-                    tableModel() {
+                    tableModel {
                         propertyColumn()
                     }
                 }
             }
-            assert msg.contains("Must specify a property for a propertyColumn"):   \
-              "Instead found message: " + msg
+            assert msg.contains("Must specify a property for a propertyColumn"):    \
+               "Instead found message: " + msg
             swing.table {
                 tableModel(id: 'model') {
                     propertyColumn(propertyName: 'p')
@@ -63,7 +65,7 @@ class SwingBuilderTableTest extends GroovySwingTestCase {
                     propertyColumn(propertyName: 'peth', editable: false, type: String, header: 'header')
                 }
             }
-            swing.model.columnList.each {col ->
+            swing.model.columnList.each { col ->
                 def propName = col.valueModel.property
                 assert (col.headerValue == 'header') ^ !propName.contains('h')
                 assert (col.type == String) ^ !propName.contains('t')
@@ -81,23 +83,23 @@ class SwingBuilderTableTest extends GroovySwingTestCase {
             assert msg.contains('closureColumn must be a child of a tableModel')
             msg = shouldFail {
                 swing.table {
-                    tableModel() {
+                    tableModel {
                         closureColumn()
                     }
                 }
             }
-            assert msg.contains("Must specify 'read' Closure property for a closureColumn"):   \
-              "Instead found message: " + msg
-            def closure = {x -> x }
+            assert msg.contains("Must specify 'read' Closure property for a closureColumn"):    \
+               "Instead found message: " + msg
+            def closure = { x -> x }
             def table = swing.table {
-                tableModel() {
+                tableModel {
                     closureColumn(read: closure, write: closure, header: 'header')
                 }
                 tableModel(model: new groovy.model.ValueHolder('foo')) {
-                    closureColumn(read: closure, type: String.class)
+                    closureColumn(read: closure, type: String)
                 }
                 tableModel(list: ['a', 'b']) {
-                    closureColumn(read: closure, type: String.class)
+                    closureColumn(read: closure, type: String)
                 }
             }
 
@@ -134,7 +136,7 @@ class SwingBuilderTableTest extends GroovySwingTestCase {
 
             SwingBuilder swing = new SwingBuilder()
 
-            swing.frame() {
+            swing.frame {
                 scrollPane {
                     table(id: 'table01') {
                         tableModel(list: tableData, id: 'tableModel01') {
@@ -191,14 +193,14 @@ class SwingBuilderTableTest extends GroovySwingTestCase {
                 }
             }
 
-            squares.eachWithIndex {it, i ->
+            squares.eachWithIndex { it, i ->
                 assert swing.table.getValueAt(i, 0) == it.val
                 assert swing.table.getValueAt(i, 1) == it.square
             }
         }
     }
 
-    public void testTableSyntheticProperties() {
+    void testTableSyntheticProperties() {
         testInEDT {
 
             SwingBuilder swing = new SwingBuilder()
@@ -215,7 +217,7 @@ class SwingBuilderTableTest extends GroovySwingTestCase {
             ]
 
 
-            swing.frame() {
+            swing.frame {
                 scrollPane {
                     table(id: 'table01') {
                         tableModel(list: tableData, id: 'tableModel01') {
@@ -228,7 +230,7 @@ class SwingBuilderTableTest extends GroovySwingTestCase {
                 }
                 scrollPane {
                     table(id: 'table02', model: new javax.swing.table.DefaultTableModel(
-                            new Vector(vectorData.collect() {new Vector(it)}),
+                            new Vector(vectorData.collect { new Vector(it) }),
                             new Vector(['Athlete ID', 'First Name', 'Last Name', 'Date Of Birth']))
 
                     )
@@ -269,7 +271,7 @@ class SwingBuilderTableTest extends GroovySwingTestCase {
         }
     }
 
-    public void testTableBindSyntheticProperties() {
+    void testTableBindSyntheticProperties() {
         testInEDT {
 
             SwingBuilder swing = new SwingBuilder()
@@ -286,7 +288,7 @@ class SwingBuilderTableTest extends GroovySwingTestCase {
             ]
 
 
-            swing.frame() {
+            swing.frame {
                 scrollPane {
                     table(id: 'table01') {
                         tableModel(list: tableData, id: 'tableModel01') {
@@ -299,17 +301,17 @@ class SwingBuilderTableTest extends GroovySwingTestCase {
                 }
                 scrollPane {
                     table(id: 'table02', model: new javax.swing.table.DefaultTableModel(
-                            new Vector(vectorData.collect() {new Vector(it)}),
+                            new Vector(vectorData.collect { new Vector(it) }),
                             new Vector(['Athlete ID', 'First Name', 'Last Name', 'Date Of Birth']))
 
                     )
                 }
-                t1e = label(text: bind {table01.elements})
-                t1se = label(text: bind {table01.selectedElement})
-                t1ses = label(text: bind {table01.selectedElements})
-                t2e = label(text: bind {table02.elements})
-                t2se = label(text: bind {table02.selectedElement})
-                t2ses = label(text: bind {table02.selectedElements})
+                t1e = label(text: bind { table01.elements })
+                t1se = label(text: bind { table01.selectedElement })
+                t1ses = label(text: bind { table01.selectedElements })
+                t2e = label(text: bind { table02.elements })
+                t2se = label(text: bind { table02.selectedElement })
+                t2ses = label(text: bind { table02.selectedElements })
             }
 
             assert swing.t1e.text == '[{ATHLETEID=1, FIRSTNAME=Bob, LASTNAME=Jones, DATEOFBIRTH=1875-05-20}, {ATHLETEID=2, FIRSTNAME=Sam, LASTNAME=Wilson, DATEOFBIRTH=1876-12-15}, {ATHLETEID=3, FIRSTNAME=Jessie, LASTNAME=James, DATEOFBIRTH=1877-06-12}]'
@@ -386,7 +388,7 @@ class SwingBuilderTableTest extends GroovySwingTestCase {
                         }
                     }
                     def obj = new Object()
-                    obj.metaClass.toString = {'col3'}
+                    obj.metaClass.toString = { 'col3' }
                     column(obj, width: [100]) {
                         cellRenderer {
                             onRender {}
@@ -443,6 +445,18 @@ class SwingBuilderTableTest extends GroovySwingTestCase {
             assert columns[3].minWidth == 100
             assert columns[3].preferredWidth == 100
             assert columns[3].maxWidth == 100
+        }
+    }
+
+    void testColumnModelInNoParent() {
+        testInEDT {
+            def swing = new SwingBuilder()
+            def columnModel = swing.noparent {
+                columnModel(columnMargin: 1, columnSelectionAllowed: true) {}
+            }.last()
+            assert columnModel.class.name == 'javax.swing.table.DefaultTableColumnModel'
+            assert columnModel.columnSelectionAllowed == true
+            assert columnModel.columnMargin == 1
         }
     }
 

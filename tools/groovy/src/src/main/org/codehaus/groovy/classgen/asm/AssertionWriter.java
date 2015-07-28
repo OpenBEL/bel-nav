@@ -1,17 +1,20 @@
-/*
- * Copyright 2003-2010 the original author or authors.
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package org.codehaus.groovy.classgen.asm;
 
@@ -70,7 +73,7 @@ public class AssertionWriter {
                 assertionTracker.sourceText = new SourceText(statement, controller.getSourceUnit(), janitor);
                 mv.visitTypeInsn(NEW, "org/codehaus/groovy/runtime/powerassert/ValueRecorder");
                 mv.visitInsn(DUP);
-                mv.visitMethodInsn(INVOKESPECIAL, "org/codehaus/groovy/runtime/powerassert/ValueRecorder", "<init>", "()V");
+                mv.visitMethodInsn(INVOKESPECIAL, "org/codehaus/groovy/runtime/powerassert/ValueRecorder", "<init>", "()V", false);
                 //TODO: maybe use more specialized type here
                 controller.getOperandStack().push(ClassHelper.OBJECT_TYPE);
                 assertionTracker.recorderIndex = controller.getCompileStack().defineTemporaryVariable("recorder", true);
@@ -91,11 +94,7 @@ public class AssertionWriter {
         if (rewriteAssert) {
             //clean up assertion recorder
             mv.visitVarInsn(ALOAD, assertionTracker.recorderIndex);
-            mv.visitMethodInsn(
-                    INVOKEVIRTUAL, 
-                    "org/codehaus/groovy/runtime/powerassert/ValueRecorder",
-                    "clear", 
-                    "()V");
+            mv.visitMethodInsn(INVOKEVIRTUAL, "org/codehaus/groovy/runtime/powerassert/ValueRecorder", "clear", "()V", false);
         }
         Label afterAssert = new Label();
         mv.visitJumpInsn(GOTO, afterAssert);
@@ -104,12 +103,7 @@ public class AssertionWriter {
         if (rewriteAssert) {
             mv.visitLdcInsn(assertionTracker.sourceText.getNormalizedText());
             mv.visitVarInsn(ALOAD, assertionTracker.recorderIndex);
-            mv.visitMethodInsn(
-                    INVOKESTATIC, 
-                    "org/codehaus/groovy/runtime/powerassert/AssertionRenderer",
-                    "render", 
-                    "(Ljava/lang/String;Lorg/codehaus/groovy/runtime/powerassert/ValueRecorder;)Ljava/lang/String;"
-            );
+            mv.visitMethodInsn(INVOKESTATIC, "org/codehaus/groovy/runtime/powerassert/AssertionRenderer", "render", "(Ljava/lang/String;Lorg/codehaus/groovy/runtime/powerassert/ValueRecorder;)Ljava/lang/String;", false);
         } else {
             writeSourcelessAssertText(statement);
         }
@@ -131,11 +125,7 @@ public class AssertionWriter {
             final Label catchAny = new Label();
             mv.visitLabel(catchAny);
             mv.visitVarInsn(ALOAD, savedTracker.recorderIndex);
-            mv.visitMethodInsn(
-                    INVOKEVIRTUAL, 
-                    "org/codehaus/groovy/runtime/powerassert/ValueRecorder",
-                    "clear", 
-                    "()V");
+            mv.visitMethodInsn(INVOKEVIRTUAL, "org/codehaus/groovy/runtime/powerassert/ValueRecorder", "clear", "()V", false);
             mv.visitInsn(ATHROW);
             // add catch any block to exception table
             controller.getCompileStack().addExceptionBlock(tryStart, tryEnd, catchAny, null);
@@ -169,7 +159,7 @@ public class AssertionWriter {
             mv.visitTypeInsn(NEW, "java/lang/StringBuffer");
             mv.visitInsn(DUP);
             mv.visitLdcInsn(expressionText + ". Values: ");
-            mv.visitMethodInsn(INVOKESPECIAL, "java/lang/StringBuffer", "<init>", "(Ljava/lang/String;)V");
+            mv.visitMethodInsn(INVOKESPECIAL, "java/lang/StringBuffer", "<init>", "(Ljava/lang/String;)V", false);
             //TODO: maybe use more special type StringBuffer here
             operandStack.push(ClassHelper.OBJECT_TYPE);
             int tempIndex = controller.getCompileStack().defineTemporaryVariable("assert", true);
@@ -184,22 +174,14 @@ public class AssertionWriter {
 
                 mv.visitVarInsn(ALOAD, tempIndex);
                 mv.visitLdcInsn(text);
-                mv.visitMethodInsn(
-                        INVOKEVIRTUAL,
-                        "java/lang/StringBuffer",
-                        "append",
-                        "(Ljava/lang/Object;)Ljava/lang/StringBuffer;");
+                mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuffer", "append", "(Ljava/lang/Object;)Ljava/lang/StringBuffer;", false);
                 mv.visitInsn(POP);
 
                 mv.visitVarInsn(ALOAD, tempIndex);
                 new VariableExpression(name).visit(controller.getAcg());
                 operandStack.box();
-                mv.visitMethodInsn(INVOKESTATIC, "org/codehaus/groovy/runtime/InvokerHelper", "toString", "(Ljava/lang/Object;)Ljava/lang/String;");
-                mv.visitMethodInsn(
-                        INVOKEVIRTUAL,
-                        "java/lang/StringBuffer",
-                        "append",
-                        "(Ljava/lang/String;)Ljava/lang/StringBuffer;");
+                mv.visitMethodInsn(INVOKESTATIC, "org/codehaus/groovy/runtime/InvokerHelper", "toString", "(Ljava/lang/Object;)Ljava/lang/String;", false);
+                mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuffer", "append", "(Ljava/lang/String;)Ljava/lang/StringBuffer;", false);
                 mv.visitInsn(POP);
                 operandStack.remove(1);
             }
@@ -232,11 +214,7 @@ public class AssertionWriter {
         //helper.swapWithObject(ClassHelper.OBJECT_TYPE);
         operandStack.swap();
         mv.visitLdcInsn(normalizedColumn);
-        mv.visitMethodInsn(
-                INVOKEVIRTUAL, 
-                "org/codehaus/groovy/runtime/powerassert/ValueRecorder", 
-                "record", 
-                "(Ljava/lang/Object;I)Ljava/lang/Object;");
+        mv.visitMethodInsn(INVOKEVIRTUAL, "org/codehaus/groovy/runtime/powerassert/ValueRecorder", "record", "(Ljava/lang/Object;I)Ljava/lang/Object;", false);
         mv.visitInsn(POP);
         operandStack.remove(2);
     }

@@ -1,31 +1,69 @@
-test {
-    jvmArgs "-ea", "-Xms${groovyJUnit_ms}", "-Xmx${groovyJUnit_mx}", "-XX:PermSize=${groovyJUnit_permSize}", "-XX:MaxPermSize=${groovyJUnit_maxPermSize}"
-    def headless = System.properties['java.awt.headless']
-    if (headless == 'true') {
-        systemProperties 'java.awt.headless': "true"
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
+ */
+import org.apache.tools.ant.taskdefs.condition.Os
+
+allprojects {
+    test {
+        if (JavaVersion.current().isJava8Compatible()) {
+            jvmArgs '-ea', "-Xms${groovyJUnit_ms}", "-Xmx${groovyJUnit_mx}"
+        } else {
+            jvmArgs '-ea', "-Xms${groovyJUnit_ms}", "-Xmx${groovyJUnit_mx}", "-XX:PermSize=${groovyJUnit_permSize}", "-XX:MaxPermSize=${groovyJUnit_maxPermSize}"
+        }
+        def headless = System.properties['java.awt.headless']
+        if (headless == 'true') {
+            systemProperties 'java.awt.headless': 'true'
+        }
+
+        forkEvery = 50
+        maxParallelForks = isRunningOnCI() ? 1 : Runtime.runtime.availableProcessors()
+        scanForTestClasses = true
+        ignoreFailures = false
+        testLogging {
+            exceptionFormat = 'full'
+            // uncomment the following line if you need more logging
+            // events "failed", "started"
+        }
     }
+
+    sourceSets {
+        test {
+            groovy {
+                srcDirs += 'src/spec/test'
+            }
+            resources {
+                srcDirs += 'src/spec/test-resources'
+            }
+        }
+    }
+}
+
+test {
     def testdb = System.properties['groovy.testdb.props']
     if (testdb) {
         systemProperties 'groovy.testdb.props': testdb
     }
-    systemProperties 'apple.awt.UIElement': "true", "javadocAssertion.src.dir": './src/main'
-    systemProperties "gradle.home": gradle.gradleHomeDir // this is needed by the security.policy
-    if (rootProject.hasProperty('indy') && (Boolean.valueOf(rootProject.indy))) {
-        println "adding indy target"
-        systemProperties "groovy.target.indy": true
-    }
-    doFirst {
-        // this is needed by the security.policy. We set it at execution time to avoid resolving a configuration when not needed.
-// temp hack
-//        systemProperties "gradle.junit": configurations.testCompile.fileCollection { dep -> dep.name == 'junit' }.singleFile.absolutePath
-    }
+    systemProperties 'apple.awt.UIElement': 'true', 'javadocAssertion.src.dir': './src/main'
+    systemProperties 'gradle.home': gradle.gradleHomeDir // this is needed by the security.policy
+
     classpath = files('src/test') + classpath
-//    forkEvery = 10
-//    maxParallelForks = Runtime.runtime.availableProcessors()
-    scanForTestClasses = false
-    ignoreFailures = false
+    exclude buildExcludeFilter()
     ext.resultText = ''
-    includes = getIncludePattern()
     doLast {
         ant.delete {
             fileset(dir: '.', includes: '*.class')
@@ -34,50 +72,80 @@ test {
 }
 
 boolean isRunningOnCI() {
-    new File('.').absolutePath.contains('ci.codehaus.org')
+    new File('.').absolutePath.contains('teamcity')
 }
 
-logger.lifecycle "Detected ${isRunningOnCI()?'Continuous Integration environment':'development environment'}"
+logger.lifecycle "Detected ${isRunningOnCI() ? 'Continuous Integration environment' : 'development environment'}"
 
-allprojects {
-    test {
-        forkEvery = isRunningOnCI()?50:200
-        maxParallelForks = isRunningOnCI()?1:Runtime.runtime.availableProcessors()
-    }
-}
-tasks.addRule("Pattern: testSingle<Name> will test **/<Name>.class") {String taskName ->
-    if (taskName.startsWith("testSingle")) {
-        tasks.add(taskName).dependsOn(test)
+tasks.addRule('Pattern: testSingle<Name> will test **/<Name>.class') { String taskName ->
+    if (taskName.startsWith('testSingle')) {
+        tasks.create(taskName).dependsOn(test)
         test.includes = ['**/' + taskName.substring(10) + '.class']
         test.outputs.upToDateWhen { false }
     }
 }
 
-def getIncludePattern() {
-    def baseInclude = ['UberTestCaseBugs.class',
-            'UberTestCaseGroovySourceCodehausPackages.class',
-            'UberTestCaseGroovySourceRootPackage.class',
-            "UberTestCaseGroovySourceSubPackages.class",
-            "UberTestCaseJavaSourceCodehausPackages.class",
-            "UberTestCaseJavaSourceGroovyPackagesNonSecurity.class",
-            "UberTestCaseTCK.class"
-            // temporarily disable security test suite, see GRADLE-2170
-            //,"UberTestCaseJavaSourceGroovyPackagesSecurity.class"
-    ]
-    if (System.properties['junit.network']) {
-        baseInclude += ['groovy/grape/*Test.class']    
+def buildExcludeFilter() {
+    def excludes = ['GroovyTestCase', 'TestSupport', 'DummyTestDerivation', 'LineColumnChecker']
+
+    // temporary disabling Groovy4393Bug because it requires a specific configuration
+    excludes << 'Groovy4393Bug'
+
+    // deal with OS specific tests
+    def windowsTests = ['ExecuteTest_Windows']
+    def unixTests = ['ExecuteTest_LinuxSolaris']
+    Set osSpecificTests = [*windowsTests, *unixTests]
+    if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+        osSpecificTests.removeAll windowsTests
+    } else if (Os.isFamily(Os.FAMILY_UNIX)) {
+        osSpecificTests.removeAll unixTests
     }
-    if (!isJava15()) {
-        baseInclude += [
-                "UberTestCaseGroovySourceSubPackages_VM6.class",
-                "UberTestCaseGroovySourceCodehausPackages_VM6.class"
-        ]
+    excludes += osSpecificTests
+
+    // temporarily disable security tests, see GRADLE-2170
+    excludes << 'security'
+
+    // if not compiled with indy support, disable indy tests
+    if (!rootProject.useIndy()) {
+        excludes += ['indy', 'Indy']
     }
-    if (rootProject.hasProperty('indy') && (Boolean.valueOf(rootProject.indy))) {
-        println "adding indy include"
-        baseInclude += [
-            "UberTestCaseIndy.class"
-        ]
+
+    // if no network available, disable Grapes
+    if (!System.properties['junit.network']) {
+        excludes  << 'groovy/grape/'
     }
-    baseInclude
+
+    return { f ->
+        excludes.any { f.file =~ it }
+    }
 }
+
+// some tests require Jars, but those are not allowed in the source directory
+// by the Apache policy, so we need to build them and add them to the test
+// resources classpath
+
+ext.extModuleFixtureDir = file("$projectDir/src/test-fixtures/extmodule")
+ext.extModuleOutputDir = file("$buildDir/testFixtures/extmodule")
+ext.extModuleRepoDir = file("$extModuleOutputDir/repo")
+
+task compileTestExtensionModule(type:JavaCompile) {
+    classpath = files(jar.archivePath)
+    source fileTree("$extModuleFixtureDir/src/main/java")
+    destinationDir = file("$extModuleOutputDir/classes")
+    sourceCompatibility = 1.6
+    targetCompatibility = 1.6
+}
+
+task testExtensionModuleJar(type:Jar) {
+    description = 'Builds a sample extension module used in tests'
+    dependsOn compileTestExtensionModule
+    baseName = 'module-test'
+    version = '1.3'
+    from { compileTestExtensionModule.destinationDir }
+    from files("$extModuleFixtureDir/src/main/resources")
+    // emulate Maven repo format for output
+    destinationDir = file("$extModuleRepoDir/jars/module-test/module-test/${version}")
+}
+
+test.dependsOn(testExtensionModuleJar)
+test.classpath += files(extModuleRepoDir)

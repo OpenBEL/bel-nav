@@ -1,17 +1,20 @@
-/*
- * Copyright 2003-2013 the original author or authors.
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package org.codehaus.groovy.classgen;
 
@@ -44,9 +47,9 @@ public class VariableScopeVisitor extends ClassCodeVisitorSupport {
     private VariableScope headScope = new VariableScope();
     private ClassNode currentClass = null;
     private SourceUnit source;
-    private boolean inPropertyExpression = false;
     private boolean isSpecialConstructorCall = false;
     private boolean inConstructor = false;
+    private final boolean recurseInnerClasses;
 
     private LinkedList stateStack = new LinkedList();
 
@@ -62,9 +65,15 @@ public class VariableScopeVisitor extends ClassCodeVisitorSupport {
         }
     }
 
-    public VariableScopeVisitor(SourceUnit source) {
+    public VariableScopeVisitor(SourceUnit source, boolean recurseInnerClasses) {
         this.source = source;
         currentScope = headScope;
+        this.recurseInnerClasses = recurseInnerClasses;
+    }
+
+
+    public VariableScopeVisitor(SourceUnit source) {
+        this(source, false);
     }
 
     // ------------------------------
@@ -158,7 +167,7 @@ public class VariableScopeVisitor extends ClassCodeVisitorSupport {
         for (MethodNode mn : cn.getMethods()) {
             String pName = getPropertyName(mn);
             if (pName != null && pName.equals(name))
-                return new PropertyNode(pName, mn.getModifiers(), getPropertyType(mn), cn, null, null, null);
+                return new PropertyNode(pName, mn.getModifiers(), ClassHelper.OBJECT_TYPE, cn, null, null, null);
         }
 
         for (PropertyNode pn : cn.getProperties()) {
@@ -168,13 +177,6 @@ public class VariableScopeVisitor extends ClassCodeVisitorSupport {
         Variable ret = findClassMember(cn.getSuperClass(), name);
         if (ret != null) return ret;
         return findClassMember(cn.getOuterClass(), name);
-    }
-
-    private ClassNode getPropertyType(MethodNode m) {
-        if (m.getReturnType() != ClassHelper.VOID_TYPE) {
-            return m.getReturnType();
-        }
-        return m.getParameters()[0].getType();
     }
 
     private String getPropertyName(MethodNode m) {
@@ -202,8 +204,11 @@ public class VariableScopeVisitor extends ClassCodeVisitorSupport {
 
         VariableScope scope = currentScope;
         Variable var = new DynamicVariable(name, currentScope.isInStaticContext());
+        Variable orig = var;
         // try to find a declaration of a variable
+        boolean crossingStaticContext = false;
         while (true) {
+            crossingStaticContext = crossingStaticContext || scope.isInStaticContext();
             Variable var1;
             var1 = scope.getDeclaredVariable(var.getName());
 
@@ -228,7 +233,7 @@ public class VariableScopeVisitor extends ClassCodeVisitorSupport {
             if (classScope != null) {
                 Variable member = findClassMember(classScope, var.getName());
                 if (member != null) {
-                    boolean staticScope = currentScope.isInStaticContext() || isSpecialConstructorCall;
+                    boolean staticScope = crossingStaticContext || isSpecialConstructorCall;
                     boolean staticMember = member.isInStaticContext();
                     // We don't allow a static context (e.g. a static method) to access
                     // a non-static variable (e.g. a non-static field).
@@ -238,6 +243,9 @@ public class VariableScopeVisitor extends ClassCodeVisitorSupport {
                 break;
             }
             scope = scope.getParent();
+        }
+        if (var == orig && crossingStaticContext) {
+            var = new DynamicVariable(var.getName(), true);
         }
 
         VariableScope end = scope;
@@ -278,7 +286,7 @@ public class VariableScopeVisitor extends ClassCodeVisitorSupport {
     }
 
     private void checkVariableContextAccess(Variable v, Expression expr) {
-        if (inPropertyExpression || v.isInStaticContext() || !currentScope.isInStaticContext()) return;
+        if (v.isInStaticContext() || !currentScope.isInStaticContext()) return;
 
         String msg = v.getName() +
                 " is declared in a dynamic context, but you tried to" +
@@ -320,7 +328,7 @@ public class VariableScopeVisitor extends ClassCodeVisitorSupport {
         ifElse.getElseBlock().visit(this);
         popState();
     }
-    
+
     public void visitDeclarationExpression(DeclarationExpression expression) {
         // visit right side first to avoid the usage of a
         // variable before its declaration
@@ -393,13 +401,9 @@ public class VariableScopeVisitor extends ClassCodeVisitorSupport {
     }
 
     public void visitPropertyExpression(PropertyExpression expression) {
-        boolean ipe = inPropertyExpression;
-        inPropertyExpression = true;
         expression.getObjectExpression().visit(this);
-        inPropertyExpression = false;
         expression.getProperty().visit(this);
         checkPropertyOnExplicitThis(expression);
-        inPropertyExpression = ipe;
     }
 
     public void visitClosureExpression(ClosureExpression expression) {
@@ -467,6 +471,12 @@ public class VariableScopeVisitor extends ClassCodeVisitorSupport {
         prepareVisit(node);
 
         super.visitClass(node);
+        if (recurseInnerClasses) {
+            Iterator<InnerClassNode> innerClasses = node.getInnerClasses();
+            while (innerClasses.hasNext()) {
+                visitClass(innerClasses.next());
+            }
+        }
         popState();
     }
 
@@ -493,7 +503,7 @@ public class VariableScopeVisitor extends ClassCodeVisitorSupport {
 
         declare(node.getParameters(), node);
         visitClassCodeContainer(node.getCode());
-        
+
         popState();
     }
 
@@ -544,9 +554,19 @@ public class VariableScopeVisitor extends ClassCodeVisitorSupport {
 
         for (FieldNode field : innerClass.getFields()) {
             final Expression expression = field.getInitialExpression();
+            pushState(field.isStatic());
             if (expression != null) {
+                if (expression instanceof VariableExpression) {
+                    VariableExpression vexp = (VariableExpression) expression;
+                    if (vexp.getAccessedVariable() instanceof Parameter) {
+                        // workaround for GROOVY-6834: accessing a parameter which is not yet seen in scope
+                        popState();
+                        continue;
+                    }
+                }
                 expression.visit(this);
             }
+            popState();
         }
 
         for (Statement statement : innerClass.getObjectInitializerStatements()) {

@@ -1,22 +1,26 @@
 /*
- * Copyright 2003-2013 the original author or authors.
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package groovy.transform.stc
 
 import org.codehaus.groovy.control.MultipleCompilationErrorsException
 import org.codehaus.groovy.control.customizers.ASTTransformationCustomizer
+import org.codehaus.groovy.transform.stc.GroovyTypeCheckingExtensionSupport
 
 /**
  * Units tests for type checking extensions.
@@ -385,9 +389,6 @@ class TypeCheckingExtensionsTest extends StaticTypeCheckingTestCase {
         extension = null
         assertScript '''
         @groovy.transform.stc.MyType(String)
-        @ASTTest(phase=INSTRUCTION_SELECTION,value={
-            assert node.getNodeMetaData(INFERRED_RETURN_TYPE) == int_TYPE
-        })
         int foo() { 1 }
         '''
 
@@ -450,4 +451,59 @@ class TypeCheckingExtensionsTest extends StaticTypeCheckingTestCase {
         }
     }
 
+    void testAmbiguousMethodCall() {
+        // fail with error from type checker
+        extension = null
+        shouldFailWithMessages '''
+            int foo(Integer x) { 1 }
+            int foo(String s) { 2 }
+            int foo(Date d) { 3 }
+            assert foo(null) == 2
+        ''', 'Reference to method is ambiguous'
+        // fail with error from runtime
+        extension = 'groovy/transform/stc/AmbiguousMethods.groovy'
+        shouldFail { assertScript '''
+            int foo(Integer x) { 1 }
+            int foo(String s) { 2 }
+            int foo(Date d) { 3 }
+            assert foo(null) == 2
+        '''}
+    }
+
+    void testIncompatibleReturnType() {
+        extension = null
+        shouldFailWithMessages '''
+            Date foo() { '1' }
+            true
+        ''', 'Cannot return value of type'
+        extension = 'groovy/transform/stc/IncompatibleReturnTypeTestExtension.groovy'
+        assertScript '''
+            Date foo() { '1' }
+            true
+        '''
+    }
+
+    void testPrecompiledExtension() {
+        extension = null
+        assertScript '''
+            println 'Everything is ok'
+        '''
+        extension = 'groovy.transform.stc.PrecompiledExtension'
+        shouldFailWithMessages '''
+            println 'Everything is ok'
+        ''', 'Error thrown from extension'
+
+    }
+
+    void testPrecompiledExtensionNotExtendingTypeCheckingDSL() {
+        extension = null
+        assertScript '''
+            println 'Everything is ok'
+        '''
+        extension = 'groovy.transform.stc.PrecompiledExtensionNotExtendingDSL'
+        shouldFailWithMessages '''
+            println 'Everything is ok'
+        ''', 'Error thrown from extension in setup', 'Error thrown from extension in onMethodSelection'
+
+    }
 }

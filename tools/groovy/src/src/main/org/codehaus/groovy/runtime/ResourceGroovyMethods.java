@@ -1,17 +1,20 @@
-/*
- * Copyright 2003-2013 the original author or authors.
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package org.codehaus.groovy.runtime;
 
@@ -22,6 +25,9 @@ import groovy.io.GroovyPrintWriter;
 import groovy.lang.Closure;
 import groovy.lang.MetaClass;
 import groovy.lang.Writable;
+import groovy.transform.stc.ClosureParams;
+import groovy.transform.stc.FromString;
+import groovy.transform.stc.SimpleType;
 import groovy.util.CharsetToolkit;
 
 import org.codehaus.groovy.runtime.callsite.BooleanReturningMethodInvoker;
@@ -33,6 +39,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.nio.charset.Charset;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -84,8 +91,6 @@ import static org.codehaus.groovy.runtime.DefaultGroovyMethods.get;
  * @author Dinko Srkoc
  */
 public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
-
-//    private static final Logger LOG = Logger.getLogger(FileIOGroovyMethods.class.getName());
 
     /**
      * Provide the standard Groovy <code>size()</code> method for <code>File</code>.
@@ -145,7 +150,7 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
      * @see IOGroovyMethods#withStream(java.io.OutputStream, groovy.lang.Closure)
      * @since 1.5.0
      */
-    public static <T> T withObjectOutputStream(File file, Closure<T> closure) throws IOException {
+    public static <T> T withObjectOutputStream(File file, @ClosureParams(value=SimpleType.class, options="java.io.ObjectOutputStream") Closure<T> closure) throws IOException {
         return IOGroovyMethods.withStream(newObjectOutputStream(file), closure);
     }
 
@@ -199,7 +204,7 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
      * @see IOGroovyMethods#withStream(java.io.InputStream, groovy.lang.Closure)
      * @since 1.5.2
      */
-    public static <T> T withObjectInputStream(File file, Closure<T> closure) throws IOException {
+    public static <T> T withObjectInputStream(File file, @ClosureParams(value=SimpleType.class, options="java.io.ObjectInputStream") Closure<T> closure) throws IOException {
         return IOGroovyMethods.withStream(newObjectInputStream(file), closure);
     }
 
@@ -215,7 +220,7 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
      * @see IOGroovyMethods#withStream(java.io.InputStream, groovy.lang.Closure)
      * @since 1.5.2
      */
-    public static <T> T withObjectInputStream(File file, ClassLoader classLoader, Closure<T> closure) throws IOException {
+    public static <T> T withObjectInputStream(File file, ClassLoader classLoader, @ClosureParams(value=SimpleType.class, options="java.io.ObjectInputStream") Closure<T> closure) throws IOException {
         return IOGroovyMethods.withStream(newObjectInputStream(file, classLoader), closure);
     }
 
@@ -231,7 +236,7 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
      * @see #eachLine(java.io.File, int, groovy.lang.Closure)
      * @since 1.5.5
      */
-    public static <T> T eachLine(File self, Closure<T> closure) throws IOException {
+    public static <T> T eachLine(File self, @ClosureParams(value=FromString.class,options={"String","String,Integer"}) Closure<T> closure) throws IOException {
         return eachLine(self, 1, closure);
     }
 
@@ -248,7 +253,7 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
      * @see #eachLine(java.io.File, java.lang.String, int, groovy.lang.Closure)
      * @since 1.6.8
      */
-    public static <T> T eachLine(File self, String charset, Closure<T> closure) throws IOException {
+    public static <T> T eachLine(File self, String charset, @ClosureParams(value=FromString.class,options={"String","String,Integer"}) Closure<T> closure) throws IOException {
         return eachLine(self, charset, 1, closure);
     }
 
@@ -265,7 +270,7 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
      * @see IOGroovyMethods#eachLine(java.io.Reader, int, groovy.lang.Closure)
      * @since 1.5.7
      */
-    public static <T> T eachLine(File self, int firstLine, Closure<T> closure) throws IOException {
+    public static <T> T eachLine(File self, int firstLine, @ClosureParams(value=FromString.class,options={"String","String,Integer"}) Closure<T> closure) throws IOException {
         return IOGroovyMethods.eachLine(newReader(self), firstLine, closure);
     }
 
@@ -283,7 +288,7 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
      * @see IOGroovyMethods#eachLine(java.io.Reader, int, groovy.lang.Closure)
      * @since 1.6.8
      */
-    public static <T> T eachLine(File self, String charset, int firstLine, Closure<T> closure) throws IOException {
+    public static <T> T eachLine(File self, String charset, int firstLine, @ClosureParams(value=FromString.class,options={"String","String,Integer"}) Closure<T> closure) throws IOException {
         return IOGroovyMethods.eachLine(newReader(self, charset), firstLine, closure);
     }
 
@@ -298,7 +303,7 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
      * @see #eachLine(java.net.URL, int, groovy.lang.Closure)
      * @since 1.5.6
      */
-    public static <T> T eachLine(URL url, Closure<T> closure) throws IOException {
+    public static <T> T eachLine(URL url, @ClosureParams(value=FromString.class,options={"String","String,Integer"}) Closure<T> closure) throws IOException {
         return eachLine(url, 1, closure);
     }
 
@@ -314,7 +319,7 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
      * @see IOGroovyMethods#eachLine(java.io.InputStream, int, groovy.lang.Closure)
      * @since 1.5.7
      */
-    public static <T> T eachLine(URL url, int firstLine, Closure<T> closure) throws IOException {
+    public static <T> T eachLine(URL url, int firstLine, @ClosureParams(value=FromString.class,options={"String","String,Integer"}) Closure<T> closure) throws IOException {
         return IOGroovyMethods.eachLine(url.openConnection().getInputStream(), firstLine, closure);
     }
 
@@ -330,7 +335,7 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
      * @see #eachLine(java.net.URL, java.lang.String, int, groovy.lang.Closure)
      * @since 1.5.6
      */
-    public static <T> T eachLine(URL url, String charset, Closure<T> closure) throws IOException {
+    public static <T> T eachLine(URL url, String charset, @ClosureParams(value=FromString.class,options={"String","String,Integer"}) Closure<T> closure) throws IOException {
         return eachLine(url, charset, 1, closure);
     }
 
@@ -347,7 +352,7 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
      * @see IOGroovyMethods#eachLine(java.io.Reader, int, groovy.lang.Closure)
      * @since 1.5.7
      */
-    public static <T> T eachLine(URL url, String charset, int firstLine, Closure<T> closure) throws IOException {
+    public static <T> T eachLine(URL url, String charset, int firstLine, @ClosureParams(value=FromString.class,options={"String","String,Integer"}) Closure<T> closure) throws IOException {
         return IOGroovyMethods.eachLine(newReader(url, charset), firstLine, closure);
     }
 
@@ -368,7 +373,7 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
      * @see IOGroovyMethods#splitEachLine(java.io.Reader, java.lang.String, groovy.lang.Closure)
      * @since 1.5.5
      */
-    public static <T> T splitEachLine(File self, String regex, Closure<T> closure) throws IOException {
+    public static <T> T splitEachLine(File self, String regex, @ClosureParams(value=SimpleType.class, options="java.lang.String[]") Closure<T> closure) throws IOException {
         return IOGroovyMethods.splitEachLine(newReader(self), regex, closure);
     }
 
@@ -387,7 +392,7 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
      * @see IOGroovyMethods#splitEachLine(java.io.Reader, java.util.regex.Pattern, groovy.lang.Closure)
      * @since 1.6.8
      */
-    public static <T> T splitEachLine(File self, Pattern pattern, Closure<T> closure) throws IOException {
+    public static <T> T splitEachLine(File self, Pattern pattern, @ClosureParams(value=SimpleType.class, options="java.lang.String[]") Closure<T> closure) throws IOException {
         return IOGroovyMethods.splitEachLine(newReader(self), pattern, closure);
     }
 
@@ -409,7 +414,7 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
      * @see IOGroovyMethods#splitEachLine(java.io.Reader, java.lang.String, groovy.lang.Closure)
      * @since 1.6.8
      */
-    public static <T> T splitEachLine(File self, String regex, String charset, Closure<T> closure) throws IOException {
+    public static <T> T splitEachLine(File self, String regex, String charset, @ClosureParams(value=SimpleType.class, options="java.lang.String[]") Closure<T> closure) throws IOException {
         return IOGroovyMethods.splitEachLine(newReader(self, charset), regex, closure);
     }
 
@@ -429,7 +434,7 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
      * @see IOGroovyMethods#splitEachLine(java.io.Reader, java.util.regex.Pattern, groovy.lang.Closure)
      * @since 1.6.8
      */
-    public static <T> T splitEachLine(File self, Pattern pattern, String charset, Closure<T> closure) throws IOException {
+    public static <T> T splitEachLine(File self, Pattern pattern, String charset, @ClosureParams(value=SimpleType.class, options="java.lang.String[]") Closure<T> closure) throws IOException {
         return IOGroovyMethods.splitEachLine(newReader(self, charset), pattern, closure);
     }
 
@@ -450,7 +455,7 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
      * @see IOGroovyMethods#splitEachLine(java.io.Reader, java.lang.String, groovy.lang.Closure)
      * @since 1.6.8
      */
-    public static <T> T splitEachLine(URL self, String regex, Closure<T> closure) throws IOException {
+    public static <T> T splitEachLine(URL self, String regex, @ClosureParams(value=SimpleType.class, options="java.lang.String[]") Closure<T> closure) throws IOException {
         return IOGroovyMethods.splitEachLine(newReader(self), regex, closure);
     }
 
@@ -469,7 +474,7 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
      * @see IOGroovyMethods#splitEachLine(java.io.Reader, java.util.regex.Pattern, groovy.lang.Closure)
      * @since 1.6.8
      */
-    public static <T> T splitEachLine(URL self, Pattern pattern, Closure<T> closure) throws IOException {
+    public static <T> T splitEachLine(URL self, Pattern pattern, @ClosureParams(value=SimpleType.class, options="java.lang.String[]") Closure<T> closure) throws IOException {
         return IOGroovyMethods.splitEachLine(newReader(self), pattern, closure);
     }
 
@@ -491,7 +496,7 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
      * @see IOGroovyMethods#splitEachLine(java.io.Reader, java.lang.String, groovy.lang.Closure)
      * @since 1.6.8
      */
-    public static <T> T splitEachLine(URL self, String regex, String charset, Closure<T> closure) throws IOException {
+    public static <T> T splitEachLine(URL self, String regex, String charset, @ClosureParams(value=SimpleType.class, options="java.lang.String[]") Closure<T> closure) throws IOException {
         return IOGroovyMethods.splitEachLine(newReader(self, charset), regex, closure);
     }
 
@@ -511,7 +516,7 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
      * @see IOGroovyMethods#splitEachLine(java.io.Reader, java.util.regex.Pattern, groovy.lang.Closure)
      * @since 1.6.8
      */
-    public static <T> T splitEachLine(URL self, Pattern pattern, String charset, Closure<T> closure) throws IOException {
+    public static <T> T splitEachLine(URL self, Pattern pattern, String charset, @ClosureParams(value=SimpleType.class, options="java.lang.String[]") Closure<T> closure) throws IOException {
         return IOGroovyMethods.splitEachLine(newReader(self, charset), pattern, closure);
     }
 
@@ -604,11 +609,20 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
      * @since 1.0
      */
     public static String getText(URL url) throws IOException {
-        return getText(url, CharsetToolkit.getDefaultSystemCharset().toString());
+        return getText(url, CharsetToolkit.getDefaultSystemCharset().name());
     }
 
     /**
      * Read the content of this URL and returns it as a String.
+     * The default connection parameters can be modified by adding keys to the
+     * <i>parameters map</i>:
+     * <ul>
+     * <li>connectTimeout : the connection timeout</li>
+     * <li>readTimeout : the read timeout</li>
+     * <li>useCaches : set the use cache property for the URL connection</li>
+     * <li>allowUserInteraction : set the user interaction flag for the URL connection</li>
+     * <li>requestProperties : a map of properties to be passed to the URL connection</li>
+     * </ul>
      *
      * @param url        URL to read content from
      * @param parameters connection parameters
@@ -617,7 +631,7 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
      * @since 1.8.1
      */
     public static String getText(URL url, Map parameters) throws IOException {
-        return getText(url, parameters, CharsetToolkit.getDefaultSystemCharset().toString());
+        return getText(url, parameters, CharsetToolkit.getDefaultSystemCharset().name());
     }
 
     /**
@@ -678,6 +692,29 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
     }
 
     /**
+     * Read the content of this URL and returns it as a byte[].
+     * The default connection parameters can be modified by adding keys to the
+     * <i>parameters map</i>:
+     * <ul>
+     * <li>connectTimeout : the connection timeout</li>
+     * <li>readTimeout : the read timeout</li>
+     * <li>useCaches : set the use cache property for the URL connection</li>
+     * <li>allowUserInteraction : set the user interaction flag for the URL connection</li>
+     * <li>requestProperties : a map of properties to be passed to the URL connection</li>
+     * </ul>
+     *
+     * @param url        URL to read content from
+     * @param parameters connection parameters
+     * @return the byte[] from that URL
+     * @throws IOException if an IOException occurs.
+     * @since 2.4.4
+     */
+    public static byte[] getBytes(URL url, Map parameters) throws IOException {
+        return IOGroovyMethods.getBytes(configuredInputStream(parameters, url));
+    }
+
+
+    /**
      * Write the bytes from the byte array to the File.
      *
      * @param file  the file to write to
@@ -698,9 +735,9 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
      * @since 1.0
      */
     public static void write(File file, String text) throws IOException {
-        BufferedWriter writer = null;
+        Writer writer = null;
         try {
-            writer = newWriter(file);
+            writer = new FileWriter(file);
             writer.write(text);
             writer.flush();
 
@@ -790,7 +827,9 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
     }
 
     /**
-     * Write the text to the File, using the specified encoding.
+     * Write the text to the File, using the specified encoding.  If the given
+     * charset is "UTF-16BE" or "UTF-16LE" (or an equivalent alias), the
+     * requisite byte order mark is written to the file before the text.
      *
      * @param file    a File
      * @param text    the text to write to the File
@@ -799,9 +838,11 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
      * @since 1.0
      */
     public static void write(File file, String text, String charset) throws IOException {
-        BufferedWriter writer = null;
+        Writer writer = null;
         try {
-            writer = newWriter(file, charset);
+            FileOutputStream out = new FileOutputStream(file);
+            writeUTF16BomIfRequired(charset, out);
+            writer = new OutputStreamWriter(out, charset);
             writer.write(text);
             writer.flush();
 
@@ -822,6 +863,45 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
      * @since 1.0
      */
     public static void append(File file, Object text) throws IOException {
+        Writer writer = null;
+        try {
+            writer = new FileWriter(file, true);
+            InvokerHelper.write(writer, text);
+            writer.flush();
+
+            Writer temp = writer;
+            writer = null;
+            temp.close();
+        } finally {
+            closeWithWarning(writer);
+        }
+    }
+    
+    /**
+     * Append the text supplied by the Writer at the end of the File.
+     *
+     * @param file a File
+     * @param reader the Reader supplying the text to append at the end of the File
+     * @throws IOException if an IOException occurs.
+     * @since 2.3
+     */
+    public static void append(File file, Reader reader) throws IOException {
+        appendBuffered(file, reader);
+    }
+    
+    /**
+     * Append the text supplied by the Writer at the end of the File.
+     *
+     * @param file a File
+     * @param writer the Writer supplying the text to append at the end of the File
+     * @throws IOException if an IOException occurs.
+     * @since 2.3
+     */
+    public static void append(File file, Writer writer) throws IOException {
+         appendBuffered(file, writer);
+    }
+    
+    private static void appendBuffered(File file, Object text) throws IOException {
         BufferedWriter writer = null;
         try {
             writer = newWriter(file, true);
@@ -845,9 +925,9 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
      * @since 1.5.1
      */
     public static void append(File file, byte[] bytes) throws IOException {
-        BufferedOutputStream stream = null;
+        OutputStream stream = null;
         try {
-            stream = new BufferedOutputStream(new FileOutputStream(file, true));
+            stream = new FileOutputStream(file, true);
             stream.write(bytes, 0, bytes.length);
             stream.flush();
 
@@ -878,7 +958,10 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
     }
 
     /**
-     * Append the text at the end of the File, using a specified encoding.
+     * Append the text at the end of the File, using a specified encoding.  If
+     * the given charset is "UTF-16BE" or "UTF-16LE" (or an equivalent alias)
+     * and the file doesn't already exist, the requisite byte order mark is
+     * written to the file before the text is appended.
      *
      * @param file    a File
      * @param text    the text to append at the end of the File
@@ -887,6 +970,51 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
      * @since 1.0
      */
     public static void append(File file, Object text, String charset) throws IOException {
+        Writer writer = null;
+        try {
+            FileOutputStream out = new FileOutputStream(file, true);
+            if (!file.exists()) {
+                writeUTF16BomIfRequired(charset, out);
+            }
+            writer = new OutputStreamWriter(out, charset);
+            InvokerHelper.write(writer, text);
+            writer.flush();
+
+            Writer temp = writer;
+            writer = null;
+            temp.close();
+        } finally {
+            closeWithWarning(writer);
+        }
+    }
+    
+    /**
+     * Append the text supplied by the Writer at the end of the File, using a specified encoding.
+     *
+     * @param file a File
+     * @param writer the Writer supplying the text to append at the end of the File
+     * @param charset the charset used
+     * @throws IOException if an IOException occurs.
+     * @since 2.3
+     */
+    public static void append(File file, Writer writer, String charset) throws IOException {
+        appendBuffered(file, writer, charset);
+    }
+    
+    /**
+     * Append the text supplied by the Reader at the end of the File, using a specified encoding.
+     *
+     * @param file a File
+     * @param reader the Reader supplying the text to append at the end of the File
+     * @param charset the charset used
+     * @throws IOException if an IOException occurs.
+     * @since 2.3
+     */
+    public static void append(File file, Reader reader, String charset) throws IOException {
+        appendBuffered(file, reader, charset);
+    }
+    
+    private static void appendBuffered(File file, Object text, String charset) throws IOException {
         BufferedWriter writer = null;
         try {
             writer = newWriter(file, charset, true);
@@ -929,7 +1057,7 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
      * @throws IllegalArgumentException if the provided File object does not represent a directory
      * @since 1.7.1
      */
-    public static void eachFile(final File self, final FileType fileType, final Closure closure)
+    public static void eachFile(final File self, final FileType fileType, @ClosureParams(value=SimpleType.class,options="java.io.File") final Closure closure)
             throws FileNotFoundException, IllegalArgumentException {
         checkDir(self);
         final File[] files = self.listFiles();
@@ -956,7 +1084,7 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
      * @see #eachFile(java.io.File, groovy.io.FileType, groovy.lang.Closure)
      * @since 1.5.0
      */
-    public static void eachFile(final File self, final Closure closure) throws FileNotFoundException, IllegalArgumentException {
+    public static void eachFile(final File self, @ClosureParams(value=SimpleType.class,options="java.io.File") final Closure closure) throws FileNotFoundException, IllegalArgumentException {
         eachFile(self, FileType.ANY, closure);
     }
 
@@ -972,7 +1100,7 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
      * @see #eachFile(java.io.File, groovy.io.FileType, groovy.lang.Closure)
      * @since 1.0
      */
-    public static void eachDir(File self, Closure closure) throws FileNotFoundException, IllegalArgumentException {
+    public static void eachDir(File self, @ClosureParams(value=SimpleType.class,options="java.io.File") Closure closure) throws FileNotFoundException, IllegalArgumentException {
         eachFile(self, FileType.DIRECTORIES, closure);
     }
 
@@ -989,7 +1117,7 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
      * @throws IllegalArgumentException if the provided File object does not represent a directory
      * @since 1.7.1
      */
-    public static void eachFileRecurse(final File self, final FileType fileType, final Closure closure)
+    public static void eachFileRecurse(final File self, final FileType fileType, @ClosureParams(value=SimpleType.class,options="java.io.File") final Closure closure)
             throws FileNotFoundException, IllegalArgumentException {
         checkDir(self);
         final File[] files = self.listFiles();
@@ -1061,7 +1189,7 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
      * @see groovy.io.FileType
      * @since 1.7.1
      */
-    public static void traverse(final File self, final Map<String, Object> options, final Closure closure)
+    public static void traverse(final File self, final Map<String, Object> options, final @ClosureParams(value=SimpleType.class, options="java.io.File") Closure closure)
             throws FileNotFoundException, IllegalArgumentException {
         Number maxDepthNumber = DefaultGroovyMethods.asType(options.remove("maxDepth"), Number.class);
         int maxDepth = maxDepthNumber == null ? -1 : maxDepthNumber.intValue();
@@ -1139,7 +1267,7 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
      * @see #traverse(java.io.File, java.util.Map, groovy.lang.Closure)
      * @since 1.7.1
      */
-    public static void traverse(final File self, final Closure closure)
+    public static void traverse(final File self, final @ClosureParams(value=SimpleType.class, options="java.io.File") Closure closure)
             throws FileNotFoundException, IllegalArgumentException {
         traverse(self, new HashMap<String, Object>(), closure);
     }
@@ -1231,7 +1359,7 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
      * @see #eachFileRecurse(java.io.File, groovy.io.FileType, groovy.lang.Closure)
      * @since 1.0
      */
-    public static void eachFileRecurse(File self, Closure closure) throws FileNotFoundException, IllegalArgumentException {
+    public static void eachFileRecurse(File self, @ClosureParams(value=SimpleType.class,options="java.io.File") Closure closure) throws FileNotFoundException, IllegalArgumentException {
         eachFileRecurse(self, FileType.ANY, closure);
     }
 
@@ -1247,7 +1375,7 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
      * @see #eachFileRecurse(java.io.File, groovy.io.FileType, groovy.lang.Closure)
      * @since 1.5.0
      */
-    public static void eachDirRecurse(final File self, final Closure closure) throws FileNotFoundException, IllegalArgumentException {
+    public static void eachDirRecurse(final File self, @ClosureParams(value=SimpleType.class,options="java.io.File") final Closure closure) throws FileNotFoundException, IllegalArgumentException {
         eachFileRecurse(self, FileType.DIRECTORIES, closure);
     }
 
@@ -1279,7 +1407,7 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
      * @throws IllegalArgumentException if the provided File object does not represent a directory
      * @since 1.7.1
      */
-    public static void eachFileMatch(final File self, final FileType fileType, final Object nameFilter, final Closure closure)
+    public static void eachFileMatch(final File self, final FileType fileType, final Object nameFilter, @ClosureParams(value=SimpleType.class,options="java.io.File") final Closure closure)
             throws FileNotFoundException, IllegalArgumentException {
         checkDir(self);
         final File[] files = self.listFiles();
@@ -1287,9 +1415,9 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
         if (files == null) return;
         BooleanReturningMethodInvoker bmi = new BooleanReturningMethodInvoker("isCase");
         for (final File currentFile : files) {
-            if ((fileType != FileType.FILES && currentFile.isDirectory()) ||
-                (fileType != FileType.DIRECTORIES && currentFile.isFile())) 
-            {
+            if (fileType == FileType.ANY ||
+                    (fileType != FileType.FILES && currentFile.isDirectory()) ||
+                    (fileType != FileType.DIRECTORIES && currentFile.isFile())) {
                 if (bmi.invoke(nameFilter, currentFile.getName()))
                     closure.call(currentFile);
             }
@@ -1310,7 +1438,7 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
      * @see #eachFileMatch(java.io.File, groovy.io.FileType, java.lang.Object, groovy.lang.Closure)
      * @since 1.5.0
      */
-    public static void eachFileMatch(final File self, final Object nameFilter, final Closure closure)
+    public static void eachFileMatch(final File self, final Object nameFilter, @ClosureParams(value=SimpleType.class,options="java.io.File") final Closure closure)
             throws FileNotFoundException, IllegalArgumentException {
         eachFileMatch(self, FileType.ANY, nameFilter, closure);
     }
@@ -1329,7 +1457,7 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
      * @see #eachFileMatch(java.io.File, groovy.io.FileType, java.lang.Object, groovy.lang.Closure)
      * @since 1.5.0
      */
-    public static void eachDirMatch(final File self, final Object nameFilter, final Closure closure) throws FileNotFoundException, IllegalArgumentException {
+    public static void eachDirMatch(final File self, final Object nameFilter, @ClosureParams(value=SimpleType.class,options="java.io.File") final Closure closure) throws FileNotFoundException, IllegalArgumentException {
         eachFileMatch(self, FileType.DIRECTORIES, nameFilter, closure);
     }
 
@@ -1472,7 +1600,7 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
      * @throws IOException if an IOException occurs.
      * @since 1.5.2
      */
-    public static <T> T withReader(File file, Closure<T> closure) throws IOException {
+    public static <T> T withReader(File file, @ClosureParams(value=SimpleType.class, options="java.io.BufferedReader") Closure<T> closure) throws IOException {
         return IOGroovyMethods.withReader(newReader(file), closure);
     }
 
@@ -1488,7 +1616,7 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
      * @throws IOException if an IOException occurs.
      * @since 1.6.0
      */
-    public static <T> T withReader(File file, String charset, Closure<T> closure) throws IOException {
+    public static <T> T withReader(File file, String charset, @ClosureParams(value=SimpleType.class, options="java.io.BufferedReader") Closure<T> closure) throws IOException {
         return IOGroovyMethods.withReader(newReader(file, charset), closure);
     }
 
@@ -1527,7 +1655,7 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
      * @see IOGroovyMethods#withStream(java.io.OutputStream, groovy.lang.Closure)
      * @since 1.5.2
      */
-    public static Object withOutputStream(File file, Closure closure) throws IOException {
+    public static Object withOutputStream(File file, @ClosureParams(value=SimpleType.class, options="java.io.OutputStream") Closure closure) throws IOException {
         return IOGroovyMethods.withStream(newOutputStream(file), closure);
     }
 
@@ -1542,7 +1670,7 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
      * @see IOGroovyMethods#withStream(java.io.InputStream, groovy.lang.Closure)
      * @since 1.5.2
      */
-    public static Object withInputStream(File file, Closure closure) throws IOException {
+    public static Object withInputStream(File file, @ClosureParams(value=SimpleType.class, options="java.io.InputStream") Closure closure) throws IOException {
         return IOGroovyMethods.withStream(newInputStream(file), closure);
     }
 
@@ -1557,7 +1685,7 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
      * @see IOGroovyMethods#withStream(java.io.InputStream, groovy.lang.Closure)
      * @since 1.5.2
      */
-    public static <T> T withInputStream(URL url, Closure<T> closure) throws IOException {
+    public static <T> T withInputStream(URL url, @ClosureParams(value=SimpleType.class, options="java.io.InputStream") Closure<T> closure) throws IOException {
         return IOGroovyMethods.withStream(newInputStream(url), closure);
     }
 
@@ -1572,7 +1700,7 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
      * @see IOGroovyMethods#withStream(java.io.OutputStream, groovy.lang.Closure)
      * @since 1.5.2
      */
-    public static <T> T withDataOutputStream(File file, Closure<T> closure) throws IOException {
+    public static <T> T withDataOutputStream(File file, @ClosureParams(value=SimpleType.class, options="java.io.DataOutputStream") Closure<T> closure) throws IOException {
         return IOGroovyMethods.withStream(newDataOutputStream(file), closure);
     }
 
@@ -1587,7 +1715,7 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
      * @see IOGroovyMethods#withStream(java.io.InputStream, groovy.lang.Closure)
      * @since 1.5.2
      */
-    public static <T> T withDataInputStream(File file, Closure<T> closure) throws IOException {
+    public static <T> T withDataInputStream(File file, @ClosureParams(value=SimpleType.class, options="java.io.DataInputStream") Closure<T> closure) throws IOException {
         return IOGroovyMethods.withStream(newDataInputStream(file), closure);
     }
 
@@ -1619,8 +1747,9 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
 
     /**
      * Helper method to create a buffered writer for a file.  If the given
-     * charset is "UTF-16BE" or "UTF-16LE", the requisite byte order mark is
-     * written to the stream before the writer is returned.
+     * charset is "UTF-16BE" or "UTF-16LE" (or an equivalent alias), the
+     * requisite byte order mark is written to the stream before the writer
+     * is returned.
      *
      * @param file    a File
      * @param charset the name of the encoding used to write in this file
@@ -1635,18 +1764,24 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
         } else {
             // first write the Byte Order Mark for Unicode encodings
             FileOutputStream stream = new FileOutputStream(file);
-            if ("UTF-16BE".equals(charset)) {
-                writeUtf16Bom(stream, true);
-            } else if ("UTF-16LE".equals(charset)) {
-                writeUtf16Bom(stream, false);
-            }
+            writeUTF16BomIfRequired(charset, stream);
             return new EncodingAwareBufferedWriter(new OutputStreamWriter(stream, charset));
+        }
+    }
+
+    private static void writeUTF16BomIfRequired(final String charset, final OutputStream stream) throws IOException {
+        if ("UTF-16BE".equals(Charset.forName(charset).name())) {
+            writeUtf16Bom(stream, true);
+        } else if ("UTF-16LE".equals(Charset.forName(charset).name())) {
+            writeUtf16Bom(stream, false);
         }
     }
 
     /**
      * Creates a buffered writer for this file, writing data using the given
-     * encoding.
+     * encoding.  If the given charset is "UTF-16BE" or "UTF-16LE" (or an
+     * equivalent alias), the requisite byte order mark is written to the
+     * stream before the writer is returned.
      *
      * @param file    a File
      * @param charset the name of the encoding used to write in this file
@@ -1666,7 +1801,7 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
      * @throws IOException if an IOException occurs.
      * @since 1.0
      */
-    private static void writeUtf16Bom(FileOutputStream stream, boolean bigEndian) throws IOException {
+    private static void writeUtf16Bom(OutputStream stream, boolean bigEndian) throws IOException {
         if (bigEndian) {
             stream.write(-2);
             stream.write(-1);
@@ -1686,14 +1821,16 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
      * @throws IOException if an IOException occurs.
      * @since 1.5.2
      */
-    public static <T> T withWriter(File file, Closure<T> closure) throws IOException {
+    public static <T> T withWriter(File file, @ClosureParams(value=SimpleType.class, options="java.io.BufferedWriter") Closure<T> closure) throws IOException {
         return IOGroovyMethods.withWriter(newWriter(file), closure);
     }
 
     /**
      * Creates a new BufferedWriter for this file, passes it to the closure, and
      * ensures the stream is flushed and closed after the closure returns.
-     * The writer will use the given charset encoding.
+     * The writer will use the given charset encoding.  If the given charset is
+     * "UTF-16BE" or "UTF-16LE" (or an equivalent alias), the requisite byte
+     * order mark is written to the stream when the writer is created.
      *
      * @param file    a File
      * @param charset the charset used
@@ -1702,13 +1839,15 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
      * @throws IOException if an IOException occurs.
      * @since 1.5.2
      */
-    public static <T> T withWriter(File file, String charset, Closure<T> closure) throws IOException {
+    public static <T> T withWriter(File file, String charset, @ClosureParams(value=SimpleType.class, options="java.io.BufferedWriter") Closure<T> closure) throws IOException {
         return IOGroovyMethods.withWriter(newWriter(file, charset), closure);
     }
 
     /**
-     * Create a new BufferedWriter which will append to this
-     * file.  The writer is passed to the closure and will be closed before
+     * Create a new BufferedWriter which will append to this file.  If the
+     * given charset is "UTF-16BE" or "UTF-16LE" (or an equivalent alias), the
+     * requisite byte order mark is written to the stream when the writer is
+     * created.  The writer is passed to the closure and will be closed before
      * this method returns.
      *
      * @param file    a File
@@ -1718,7 +1857,7 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
      * @throws IOException if an IOException occurs.
      * @since 1.5.2
      */
-    public static <T> T withWriterAppend(File file, String charset, Closure<T> closure) throws IOException {
+    public static <T> T withWriterAppend(File file, String charset, @ClosureParams(value=SimpleType.class, options="java.io.BufferedWriter") Closure<T> closure) throws IOException {
         return IOGroovyMethods.withWriter(newWriter(file, charset, true), closure);
     }
 
@@ -1732,7 +1871,7 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
      * @throws IOException if an IOException occurs.
      * @since 1.5.2
      */
-    public static <T> T withWriterAppend(File file, Closure<T> closure) throws IOException {
+    public static <T> T withWriterAppend(File file, @ClosureParams(value=SimpleType.class, options="java.io.BufferedWriter") Closure<T> closure) throws IOException {
         return IOGroovyMethods.withWriter(newWriter(file, true), closure);
     }
 
@@ -1750,7 +1889,9 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
 
     /**
      * Create a new PrintWriter for this file, using specified
-     * charset.
+     * charset.  If the given charset is "UTF-16BE" or "UTF-16LE" (or an
+     * equivalent alias), the requisite byte order mark is written to the
+     * stream before the writer is returned.
      *
      * @param file    a File
      * @param charset the charset
@@ -1773,13 +1914,15 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
      * @throws IOException if an IOException occurs.
      * @since 1.5.2
      */
-    public static <T> T withPrintWriter(File file, Closure<T> closure) throws IOException {
+    public static <T> T withPrintWriter(File file, @ClosureParams(value=SimpleType.class, options="java.io.PrintWriter") Closure<T> closure) throws IOException {
         return IOGroovyMethods.withWriter(newPrintWriter(file), closure);
     }
 
     /**
-     * Create a new PrintWriter with a specified charset for
-     * this file.  The writer is passed to the closure, and will be closed
+     * Create a new PrintWriter with a specified charset for this file.  If the
+     * given charset is "UTF-16BE" or "UTF-16LE" (or an equivalent alias), the
+     * requisite byte order mark is written to the stream when the writer is
+     * created.  The writer is passed to the closure, and will be closed
      * before this method returns.
      *
      * @param file    a File
@@ -1789,7 +1932,7 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
      * @throws IOException if an IOException occurs.
      * @since 1.5.2
      */
-    public static <T> T withPrintWriter(File file, String charset, Closure<T> closure) throws IOException {
+    public static <T> T withPrintWriter(File file, String charset, @ClosureParams(value=SimpleType.class, options="java.io.PrintWriter") Closure<T> closure) throws IOException {
         return IOGroovyMethods.withWriter(newPrintWriter(file, charset), closure);
     }
 
@@ -1803,7 +1946,7 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
      * @throws IOException if an IOException occurs.
      * @since 1.5.2
      */
-    public static <T> T withReader(URL url, Closure<T> closure) throws IOException {
+    public static <T> T withReader(URL url, @ClosureParams(value=SimpleType.class, options="java.io.Reader") Closure<T> closure) throws IOException {
         return IOGroovyMethods.withReader(url.openConnection().getInputStream(), closure);
     }
 
@@ -1818,7 +1961,7 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
      * @throws IOException if an IOException occurs.
      * @since 1.5.6
      */
-    public static <T> T withReader(URL url, String charset, Closure<T> closure) throws IOException {
+    public static <T> T withReader(URL url, String charset, @ClosureParams(value=SimpleType.class, options="java.io.Reader") Closure<T> closure) throws IOException {
         return IOGroovyMethods.withReader(url.openConnection().getInputStream(), charset, closure);
     }
 
@@ -1868,9 +2011,9 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
             }
             if (parameters.containsKey("requestProperties")) {
                 @SuppressWarnings("unchecked")
-                Map<String, String> properties = (Map<String, String>) parameters.get("requestProperties");
-                for (Map.Entry<String, String> entry : properties.entrySet()) {
-                    connection.setRequestProperty(entry.getKey(), entry.getValue());
+                Map<String, CharSequence> properties = (Map<String, CharSequence>) parameters.get("requestProperties");
+                for (Map.Entry<String, CharSequence> entry : properties.entrySet()) {
+                    connection.setRequestProperty(entry.getKey(), entry.getValue().toString());
                 }
             }
 
@@ -1893,7 +2036,16 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
 
     /**
      * Creates a buffered input stream for this URL.
-     *
+     * The default connection parameters can be modified by adding keys to the
+     * <i>parameters map</i>:
+     * <ul>
+     * <li>connectTimeout : the connection timeout</li>
+     * <li>readTimeout : the read timeout</li>
+     * <li>useCaches : set the use cache property for the URL connection</li>
+     * <li>allowUserInteraction : set the user interaction flag for the URL connection</li>
+     * <li>requestProperties : a map of properties to be passed to the URL connection</li>
+     * </ul>
+     * 
      * @param url        a URL
      * @param parameters connection parameters
      * @return a BufferedInputStream for the URL
@@ -1920,6 +2072,15 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
 
     /**
      * Creates a buffered reader for this URL.
+     * The default connection parameters can be modified by adding keys to the
+     * <i>parameters map</i>:
+     * <ul>
+     * <li>connectTimeout : the connection timeout</li>
+     * <li>readTimeout : the read timeout</li>
+     * <li>useCaches : set the use cache property for the URL connection</li>
+     * <li>allowUserInteraction : set the user interaction flag for the URL connection</li>
+     * <li>requestProperties : a map of properties to be passed to the URL connection</li>
+     * </ul>
      *
      * @param url        a URL
      * @param parameters connection parameters
@@ -1982,7 +2143,7 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
      * @see IOGroovyMethods#eachByte(java.io.InputStream, groovy.lang.Closure)
      * @since 1.0
      */
-    public static void eachByte(File self, Closure closure) throws IOException {
+    public static void eachByte(File self, @ClosureParams(value= SimpleType.class,options="byte") Closure closure) throws IOException {
         BufferedInputStream is = newInputStream(self);
         IOGroovyMethods.eachByte(is, closure);
     }
@@ -1997,7 +2158,7 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
      * @see IOGroovyMethods#eachByte(java.io.InputStream, int, groovy.lang.Closure)
      * @since 1.7.4
      */
-    public static void eachByte(File self, int bufferLen, Closure closure) throws IOException {
+    public static void eachByte(File self, int bufferLen, @ClosureParams(value= FromString.class,options="byte[],Integer") Closure closure) throws IOException {
         BufferedInputStream is = newInputStream(self);
         IOGroovyMethods.eachByte(is, bufferLen, closure);
     }
@@ -2012,7 +2173,7 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
      * @see IOGroovyMethods#eachByte(java.io.InputStream, groovy.lang.Closure)
      * @since 1.0
      */
-    public static void eachByte(URL url, Closure closure) throws IOException {
+    public static void eachByte(URL url, @ClosureParams(value= SimpleType.class,options="byte") Closure closure) throws IOException {
         InputStream is = url.openConnection().getInputStream();
         IOGroovyMethods.eachByte(is, closure);
     }
@@ -2028,7 +2189,7 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
      * @see IOGroovyMethods#eachByte(java.io.InputStream, int, groovy.lang.Closure)
      * @since 1.8
      */
-    public static void eachByte(URL url, int bufferLen, Closure closure) throws IOException {
+    public static void eachByte(URL url, int bufferLen, @ClosureParams(value= FromString.class,options="byte[],Integer") Closure closure) throws IOException {
         InputStream is = url.openConnection().getInputStream();
         IOGroovyMethods.eachByte(is, bufferLen, closure);
     }
@@ -2045,7 +2206,7 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
      * @see IOGroovyMethods#filterLine(java.io.Reader, groovy.lang.Closure)
      * @since 1.0
      */
-    public static Writable filterLine(File self, Closure closure) throws IOException {
+    public static Writable filterLine(File self, @ClosureParams(value=SimpleType.class, options="java.lang.String") Closure closure) throws IOException {
         return IOGroovyMethods.filterLine(newReader(self), closure);
     }
 
@@ -2062,7 +2223,7 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
      * @see IOGroovyMethods#filterLine(java.io.Reader, groovy.lang.Closure)
      * @since 1.6.8
      */
-    public static Writable filterLine(File self, String charset, Closure closure) throws IOException {
+    public static Writable filterLine(File self, String charset, @ClosureParams(value=SimpleType.class, options="java.lang.String") Closure closure) throws IOException {
         return IOGroovyMethods.filterLine(newReader(self, charset), closure);
     }
 
@@ -2078,7 +2239,7 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
      * @see IOGroovyMethods#filterLine(java.io.Reader, java.io.Writer, groovy.lang.Closure)
      * @since 1.0
      */
-    public static void filterLine(File self, Writer writer, Closure closure) throws IOException {
+    public static void filterLine(File self, Writer writer, @ClosureParams(value=SimpleType.class, options="java.lang.String") Closure closure) throws IOException {
         IOGroovyMethods.filterLine(newReader(self), writer, closure);
     }
 
@@ -2095,7 +2256,7 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
      * @see IOGroovyMethods#filterLine(java.io.Reader, java.io.Writer, groovy.lang.Closure)
      * @since 1.6.8
      */
-    public static void filterLine(File self, Writer writer, String charset, Closure closure) throws IOException {
+    public static void filterLine(File self, Writer writer, String charset, @ClosureParams(value=SimpleType.class, options="java.lang.String") Closure closure) throws IOException {
         IOGroovyMethods.filterLine(newReader(self, charset), writer, closure);
     }
 
@@ -2111,7 +2272,7 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
      * @see IOGroovyMethods#filterLine(java.io.Reader, groovy.lang.Closure)
      * @since 1.6.8
      */
-    public static Writable filterLine(URL self, Closure predicate) throws IOException {
+    public static Writable filterLine(URL self, @ClosureParams(value=SimpleType.class, options="java.lang.String") Closure predicate) throws IOException {
         return IOGroovyMethods.filterLine(newReader(self), predicate);
     }
 
@@ -2128,7 +2289,7 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
      * @see IOGroovyMethods#filterLine(java.io.Reader, groovy.lang.Closure)
      * @since 1.6.8
      */
-    public static Writable filterLine(URL self, String charset, Closure predicate) throws IOException {
+    public static Writable filterLine(URL self, String charset, @ClosureParams(value=SimpleType.class, options="java.lang.String") Closure predicate) throws IOException {
         return IOGroovyMethods.filterLine(newReader(self, charset), predicate);
     }
 
@@ -2145,7 +2306,7 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
      * @see IOGroovyMethods#filterLine(java.io.Reader, java.io.Writer, groovy.lang.Closure)
      * @since 1.6.8
      */
-    public static void filterLine(URL self, Writer writer, Closure predicate) throws IOException {
+    public static void filterLine(URL self, Writer writer, @ClosureParams(value=SimpleType.class, options="java.lang.String") Closure predicate) throws IOException {
         IOGroovyMethods.filterLine(newReader(self), writer, predicate);
     }
 
@@ -2163,7 +2324,7 @@ public class ResourceGroovyMethods extends DefaultGroovyMethodsSupport {
      * @see IOGroovyMethods#filterLine(java.io.Reader, java.io.Writer, groovy.lang.Closure)
      * @since 1.6.8
      */
-    public static void filterLine(URL self, Writer writer, String charset, Closure predicate) throws IOException {
+    public static void filterLine(URL self, Writer writer, String charset, @ClosureParams(value=SimpleType.class, options="java.lang.String") Closure predicate) throws IOException {
         IOGroovyMethods.filterLine(newReader(self, charset), writer, predicate);
     }
 

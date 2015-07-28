@@ -1,17 +1,20 @@
-/*
- * Copyright 2003-2012 the original author or authors.
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package org.codehaus.groovy.control;
 
@@ -20,6 +23,7 @@ import org.codehaus.groovy.ast.expr.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -70,6 +74,42 @@ public class StaticVerifier extends ClassCodeVisitorSupport {
         MethodNode oldCurrentMethod = currentMethod;
         currentMethod = node;
         super.visitConstructorOrMethod(node, isConstructor);
+        if (isConstructor) {
+            final HashSet<String> exceptions = new HashSet<String>();
+            for (final Parameter param : node.getParameters()) {
+                exceptions.add(param.getName());
+                if (param.hasInitialExpression()) {
+                    param.getInitialExpression().visit(new CodeVisitorSupport() {
+                        @Override
+                        public void visitVariableExpression(VariableExpression ve) {
+                            if (exceptions.contains(ve.getName())) return;
+                            Variable av = ve.getAccessedVariable();
+                            if (av instanceof DynamicVariable || !av.isInStaticContext()) {
+                                addVariableError(ve);
+                            }
+                        }
+
+                        @Override
+                        public void visitMethodCallExpression(MethodCallExpression call) {
+                            Expression objectExpression = call.getObjectExpression();
+                            if (objectExpression instanceof VariableExpression) {
+                                VariableExpression ve = (VariableExpression) objectExpression;
+                                if (ve.isThisExpression()) {
+                                    addError("Can't access instance method '" + call.getMethodAsString() + "' for a constructor parameter default value", param);
+                                    return;
+                                }
+                            }
+                            super.visitMethodCallExpression(call);
+                        }
+
+                        @Override
+                        public void visitClosureExpression(ClosureExpression expression) {
+                            //skip contents, because of dynamic scope
+                        }
+                    });
+                }
+            }
+        }
         currentMethod = oldCurrentMethod;
     }
 
@@ -111,6 +151,10 @@ public class StaticVerifier extends ClassCodeVisitorSupport {
             if (fieldNode != null && fieldNode.isStatic()) return;
         }
         if (v != null && !(v instanceof DynamicVariable) && v.isInStaticContext()) return;
+        addVariableError(ve);
+    }
+
+    private void addVariableError(VariableExpression ve) {
         addError("Apparent variable '" + ve.getName() + "' was found in a static scope but doesn't refer" +
                 " to a local variable, static field or class. Possible causes:\n" +
                 "You attempted to reference a variable in the binding or an instance variable from a static context.\n" +

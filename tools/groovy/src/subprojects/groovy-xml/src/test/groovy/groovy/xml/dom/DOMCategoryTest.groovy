@@ -1,17 +1,20 @@
 /*
- * Copyright 2003-2012 the original author or authors.
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package groovy.xml.dom
 
@@ -19,6 +22,8 @@ import groovy.xml.DOMBuilder
 import groovy.xml.GpathSyntaxTestSupport
 import groovy.xml.MixedMarkupTestSupport
 import groovy.xml.TraversalTestSupport
+import groovy.xml.XmlUtil
+
 import static javax.xml.xpath.XPathConstants.*
 
 class DOMCategoryTest extends GroovyTestCase {
@@ -40,6 +45,7 @@ class DOMCategoryTest extends GroovyTestCase {
     void testMixedMarkup() {
         use(DOMCategory) {
             MixedMarkupTestSupport.checkMixedMarkup(getRoot)
+            MixedMarkupTestSupport.checkMixedMarkupText(getRoot)
         }
     }
 
@@ -170,6 +176,23 @@ class DOMCategoryTest extends GroovyTestCase {
             assert a.breadthFirst()*.name().join('->') == 'a->b->b->#text->#text'
             assert a.depthFirst()*.name().join('->') == 'a->b->b'
         }
+    }
+
+    void testReplaceNode() {
+        def readerOld = new StringReader('<root><old/></root>')
+        def oldDoc = DOMBuilder.parse(readerOld)
+        def oldRoot = oldDoc.documentElement
+        def readerNew = new StringReader('<new><child/></new>')
+        def newRoot = DOMBuilder.parse(readerNew).documentElement
+        def imported = oldDoc.importNode(newRoot, true)
+        use(DOMCategory) {
+            def old = oldRoot[0]
+            def removed = oldRoot.replaceChild(imported, old)
+            assert removed.name() == 'old'
+        }
+
+        assert XmlUtil.serialize(oldRoot).readLines()*.trim().join('') ==
+            '<?xml version="1.0" encoding="UTF-8"?><root><new><child/></new></root>'
     }
 }
 

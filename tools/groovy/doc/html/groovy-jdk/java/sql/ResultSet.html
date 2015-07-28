@@ -1,144 +1,167 @@
+<!--
+
+     Licensed to the Apache Software Foundation (ASF) under one
+     or more contributor license agreements.  See the NOTICE file
+     distributed with this work for additional information
+     regarding copyright ownership.  The ASF licenses this file
+     to you under the Apache License, Version 2.0 (the
+     "License"); you may not use this file except in compliance
+     with the License.  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing,
+     software distributed under the License is distributed on an
+     "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+     specific language governing permissions and limitations
+     under the License.
+
+-->
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>ResultSet (Groovy JDK enhancements)</title>
+    
+    <link rel="stylesheet" type="text/css" href="../../stylesheet.css" title="Style">
+    <script type="text/javascript">
+        function windowTitle() {
+            parent.document.title = document.title;
+        }
+    </script>
+</head>
 
-<HTML>
-<HEAD>
-<TITLE>ResultSet (Groovy JDK)</TITLE>
+<body class="center" onload="windowTitle();">
 
+    <!-- ========== START OF NAVBAR ========== -->
+    <a name="navbar_top"><!-- --></a>
 
-<LINK REL ="stylesheet" TYPE="text/css" HREF="../../stylesheet.css" TITLE="Style">
+    <div class="topNav">
+        <ul class="navList" title="Navigation">
+            <li><a href="../../overview-summary.html">Overview</a></li>
+            <li><a href="package-summary.html">Package</a></li>
+            <li class="navBarCell1Rev">Class</li>
+            <li><a href="../../index-all.html">Index</a></li>
+        </ul>
+    </div>
 
-<SCRIPT type="text/javascript">
-function windowTitle()
-{
-    parent.document.title = document.title;
-}
-</SCRIPT>
+    <!-- =========== END OF NAVBAR =========== -->
 
-</HEAD>
+    <!-- ======== START OF class DATA ======== -->
 
-<BODY BGCOLOR="white" onload="windowTitle();">
+    <div class="header">
+        <div class="subTitle">Package: <strong>java.sql</strong></div>
+        <h2>Interface ResultSet</h2>
+    </div>
 
-<!-- ========== START OF NAVBAR ========== -->
-<A NAME="navbar_top"><!-- --></A>
-<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0">
-    <TR>
-        <TD COLSPAN=3 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
-            <A NAME="navbar_top_firstrow"><!-- --></A>
-            <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3">
-                <TR ALIGN="center" VALIGN="top">
-                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../overview-summary.html"><SPAN CLASS="NavBarFont1"><B>Overview</B></SPAN></A>&nbsp;</TD>
-                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Package</SPAN>&nbsp;</TD>
-                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Class</SPAN>&nbsp;</TD>
-                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Tree</SPAN>&nbsp;</TD>
-                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Deprecated</SPAN>&nbsp;</TD>
-                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../index-all.html"><SPAN CLASS="NavBarFont1"><B>Index</B></SPAN></A>&nbsp;</TD>
-                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Help</SPAN>&nbsp;</TD>
-                </TR>
-            </TABLE>
-        </TD>
-        <TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
-            <b>Groovy JDK</b></EM>
-        </TD>
-    </TR>
-</TABLE>
-<!-- =========== END OF NAVBAR =========== -->
+    <div class="contentContainer">
 
-<!-- ======== START OF CLASS DATA ======== -->
-<H2>
-<SPAN style="font-size:12px;">
-java.sql</SPAN>
-<BR>
-Class ResultSet</H2>
+    <!-- ========== METHOD SUMMARY =========== -->
 
-<!-- ========== METHOD SUMMARY =========== -->
+        <a name="method_summary"><!-- --></a>
 
-<A NAME="method_summary"><!-- --></A>
-<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
-<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
-<TH ALIGN="left" COLSPAN="2"><SPAN style="font-size:24px;">
-<B>Method Summary</B></SPAN></TH>
-</TR>
+        <div class="summary">
+            <ul class="blockList">
+                <li class="blockList">
+                    <ul class="blockList">
+                        <li class="blockList">
+                            <h3>Methods Summary</h3>
+                            <table border="0" cellpadding="3" cellspacing="0" class="overviewSummary">
+                               <caption><span>Methods</span><span class="tabEnd">&nbsp;</span></caption>
+                                <tbody>
+                                    <tr>
+                                        <th>Return type</th>
+                                        <th>Name and parameters</th>
+                                    </tr>
+                                    
+                                    <tr class="altColor">
+                                        <td align="right" valign="top" width="1%">
+                                            <span> <code><a href="http://docs.groovy-lang.org/latest/html/gapi/groovy/sql/GroovyRowResult.html" title="Class in groovy.sql">GroovyRowResult</a></code></span>
+                                        </td>
+                                        <td>
+                                            <code><strong><a href="#toRowResult()">toRowResult</a></strong>()</code>
+                                            <br>
+                                            Returns a GroovyRowResult given a ResultSet.
+                                        </td>
+                                    </tr>
+                                    
+                                </tbody>
+                            </table>
+                        </li>
+                        
+                    </ul>
+                </li>
+            </ul>
+        </div>
 
+    <!-- ============ METHOD DETAIL ========== -->
 
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%">
-
-<SPAN>
-<CODE><a href='http://groovy.codehaus.org/api/groovy/sql/GroovyRowResult.html' title='Groovy class in groovy.sql'>GroovyRowResult</a></CODE></SPAN>
-</TD>
-<TD><CODE><B><A HREF="#toRowResult()">toRowResult</A></B>()</CODE>
-<BR>
-Returns a GroovyRowResult given a ResultSet.
-</TD>
-</TR>
-
-</TABLE>
-&nbsp;
-
-
-<!-- ============ METHOD DETAIL ========== -->
-
-<A NAME="method_detail"><!-- --></A>
-<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
-<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
-<TH ALIGN="left" COLSPAN="1"><SPAN style="font-size:24px;">
-<B>Method Detail</B></SPAN></TH>
-</TR>
-</TABLE>
+    <a name="method_detail"><!-- --></a>
 
 
+        <div class="details">
+            <ul class="blockList">
+                <li class="blockList">
+                    <ul class="blockList">
+                        <li class="blockList">
+                            <h3>Methods Detail</h3>
 
-<A name="toRowResult()"><!-- --></A><H3>toRowResult</H3>
-<PRE>public <a href='http://groovy.codehaus.org/api/groovy/sql/GroovyRowResult.html' title='Groovy class in groovy.sql'>GroovyRowResult</a> <B>toRowResult</B>()</PRE>
-<DL>
-<dt>&nbsp;</dt>
-<DD>Returns a GroovyRowResult given a ResultSet.</DD>
-</DL>
+                            
+                            <a name="toRowResult()"><!-- --></a>
 
+                            <ul class="blockListLast">
+                                <li class="blockList">
 
+                                    <h4>public <a href="http://docs.groovy-lang.org/latest/html/gapi/groovy/sql/GroovyRowResult.html" title="Class in groovy.sql">GroovyRowResult</a> <b>toRowResult</b>()</h4>
 
-<dl><DT><B>Returns:</B></DT><DD>the resulting GroovyRowResult</DD></dl>
+                                    <p>Returns a GroovyRowResult given a ResultSet.</p>
 
+                                    
 
+                                    
+                                    <dl>
+                                        <dt><b>Returns:</b></dt>
+                                        <dd>the resulting GroovyRowResult</dd>
+                                    </dl>
+                                    
 
-<dl>
-<DT><B>Since:</B></DT>
-<DD>1.6.0</DD>
-</dl>
+                                    
+                                    <dl>
+                                        <dt><b>Since:</b></dt>
+                                        <dd>1.6.0</dd>
+                                    </dl>
+                                    
 
+                                    
 
+                                </li>
+                            </ul>
 
+                            
 
-<HR>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
 
-<!-- ========= END OF CLASS DATA ========= -->
+    </div>
 
- <!-- ======= START OF BOTTOM NAVBAR ====== -->
-<A NAME="navbar_bottom"><!-- --></A>
-<A HREF="#skip-navbar_bottom" title="Skip navigation links"></A>
+    <!-- ========= END OF class DATA ========= -->
 
-<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0">
-    <TR>
-        <TD COLSPAN=3 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
-            <A NAME="navbar_top_firstrow"><!-- --></A>
-            <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3">
-                <TR ALIGN="center" VALIGN="top">
-                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../overview-summary.html"><SPAN CLASS="NavBarFont1"><B>Overview</B></SPAN></A>&nbsp;</TD>
-                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Package</SPAN>&nbsp;</TD>
-                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Class</SPAN>&nbsp;</TD>
-                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Tree</SPAN>&nbsp;</TD>
-                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Deprecated</SPAN>&nbsp;</TD>
-                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../index-all.html"><SPAN CLASS="NavBarFont1"><B>Index</B></SPAN></A>&nbsp;</TD>
-                    <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <SPAN CLASS="NavBarFont1">Help</SPAN>&nbsp;</TD>
-                </TR>
-            </TABLE>
-        </TD>
-        <TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
-            <b>Groovy JDK</b></EM>
-        </TD>
-    </TR>
-</TABLE>
-<!-- =========== END OF NAVBAR =========== -->
+    <!-- ======= START OF BOTTOM NAVBAR ====== -->
+    <a name="navbar_bottom"><!-- --></a>
+    <a href="#skip-navbar_bottom" title="Skip navigation links"></a>
 
-</BODY>
-</HTML>
+    <div class="topNav">
+        <ul class="navList" title="Navigation">
+            <li><a href="../../overview-summary.html">Overview</a></li>
+            <li><a href="package-summary.html">Package</a></li>
+            <li class="navBarCell1Rev">Class</li>
+            <li><a href="../../index-all.html">Index</a></li>
+        </ul>
+    </div>
+    <!-- =========== END OF NAVBAR =========== -->
+
+</body>
+</html>

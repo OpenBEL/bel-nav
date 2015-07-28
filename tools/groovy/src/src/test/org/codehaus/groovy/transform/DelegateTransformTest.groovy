@@ -1,17 +1,20 @@
 /*
- * Copyright 2003-2013 the original author or authors.
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package org.codehaus.groovy.transform
 
@@ -49,6 +52,46 @@ class DelegateTransformTest extends CompilableTestSupport {
             }
 
             new ZipWrapper()
+        """
+    }
+
+    /** test for GROOVY-5974 */
+    void testDelegateExcludes() {
+        assertScript """
+          class MapSet {
+            @Delegate(interfaces=false, excludes=['remove','clear']) Map m = [a: 1]
+            @Delegate Set s = new LinkedHashSet([2, 3, 4] as Set) // HashSet not good enough in JDK 1.5
+            String toString() { m.toString() + ' ' + s }
+          }
+
+          def ms = new MapSet()
+          assert ms.size() == 1
+          assert ms.toString() == '[a:1] [2, 3, 4]'
+          ms.remove(3)
+          assert ms.size() == 1
+          assert ms.toString() == '[a:1] [2, 4]'
+          ms.clear()
+          assert ms.toString() == '[a:1] []'
+        """
+    }
+
+    void testDelegateCompileStatic() {
+        assertScript """
+          @groovy.transform.CompileStatic
+          class MapSet {
+            @Delegate(interfaces=false, excludes=['remove','clear']) Map m = [a: 1]
+            @Delegate Set s = new LinkedHashSet([2, 3, 4] as Set)
+            String toString() { m.toString() + ' ' + s }
+          }
+
+          def ms = new MapSet()
+          assert ms.size() == 1
+          assert ms.toString() == '{a=1} [2, 3, 4]'
+          ms.remove(3)
+          assert ms.size() == 1
+          assert ms.toString() == '{a=1} [2, 4]'
+          ms.clear()
+          assert ms.toString() == '{a=1} []'
         """
     }
 
@@ -447,6 +490,92 @@ class DelegateTransformTest extends CompilableTestSupport {
         """
     }
 
+    // GROOVY-7243
+    void testInclude() {
+        assertScript '''
+            class Book {
+                String title
+                String author
+
+                String getTitleAndAuthor() {
+                    "${title} : ${author}"
+                }
+
+                String getAuthorAndTitle() {
+                    "${author} : ${title}"
+                }
+            }
+
+            class OwnedBook {
+                String owner
+
+                @Delegate(includes=['author', 'getTitleAndAuthor'])
+                Book book
+            }
+            
+            Book book = new Book(title: 'Ulysses', author: 'James Joyce')
+            OwnedBook ownedBook = new OwnedBook(owner: 'John Smith', book: book)
+
+            ownedBook.author = 'John Smith'
+            assert book.author == 'John Smith'
+
+            assert ownedBook.getTitleAndAuthor() == 'Ulysses : John Smith'
+
+            try {
+                ownedBook.getAuthorAndTitle()
+                assert false, 'Non-included methods should not be delegated'
+            } catch(groovy.lang.MissingMethodException expected) {
+            }
+
+            try {
+                ownedBook.title = 'Finnegans Wake'
+                assert false, 'Non-included properties should not be delegated'
+            } catch(groovy.lang.MissingPropertyException expected) {
+            }
+        '''
+    }
+    
+    // GROOVY-6329
+    void testIncludeAndExcludeByType() {
+        assertScript """
+            interface OddInclusionsTU<T, U> {
+                boolean addAll(Collection<? extends T> t)
+                boolean add(U u)
+                T remove(int index)
+            }
+
+            interface OddInclusionsU<U> extends OddInclusionsTU<Integer, U> { }
+
+            interface OddInclusions extends OddInclusionsU<Integer> { }
+
+            interface OtherInclusions {
+                void clear()
+            }
+
+            interface EvenExclusions extends OddInclusions, OtherInclusions { }
+
+            class MixedNumbers {
+                // collection variant of addAll and remove will work on odd list
+                @Delegate(includeTypes=OddInclusions) List<Integer> odds = [1, 3]
+                // clear will work on other list
+                @Delegate(includeTypes=OtherInclusions) List<Integer> others = [0]
+                // all other methods will work on even list
+                @Delegate(excludeTypes=EvenExclusions) List<Integer> evens = [2, 4, 6]
+                def getAll() { evens + odds + others }
+            }
+
+            def list = new MixedNumbers()
+            assert list.all == [2, 4, 6, 1, 3, 0]
+            list.add(5)
+            list.addAll([7, 9])
+            list.addAll(1, [8])
+            list.remove(0)
+            assert list.indexOf(8) == 1
+            list.clear()
+            assert list.all == [2, 8, 4, 6, 3, 5, 7, 9]
+        """
+    }
+
     // GROOVY-5211
     void testAvoidFieldNameClashWithParameterName() {
         assertScript """
@@ -460,6 +589,110 @@ class DelegateTransformTest extends CompilableTestSupport {
 
             assert new B().foo(10) == 20
         """
+    }
+
+    // GROOVY-6542
+    void testLineNumberInStackTrace() {
+        try {
+            assertScript '''import groovy.transform.ASTTest
+    import org.codehaus.groovy.control.CompilePhase
+
+    @ASTTest(phase=CompilePhase.CANONICALIZATION, value={
+        def fieldNode = node.getDeclaredField('thingie')
+        def blowupMethod = node.getDeclaredMethod('blowup')
+        def mce = blowupMethod.code.expression
+        assert mce.lineNumber==fieldNode.lineNumber
+        assert mce.lineNumber>0
+    })
+    class Upper {
+      @Delegate Lower thingie
+
+      Upper() {
+        thingie = new Lower()
+      }
+    }
+
+    class Lower {
+      def foo() {
+        println("Foo!")
+      }
+
+      def blowup(String a) {
+        throw new Exception("blow up with ${a}")
+      }
+
+      def blowup() {
+        throw new Exception("blow up")
+      }
+    }
+
+    def up = new Upper()
+    up.foo()
+    up.blowup("bar")
+    '''
+        } catch (e) {
+            // ok
+        }
+    }
+
+    //
+    void testShouldNotReuseRawClassNode() {
+        assertScript '''import org.codehaus.groovy.transform.DelegateMap
+class Foo {
+    DelegateMap dm = new DelegateMap()
+}
+def foo = new Foo()
+assert foo.dm.x == '123'
+'''
+    }
+
+    // GROOVY-7118
+    void testDelegateOfMethodHavingPlaceholder() {
+        assertScript """
+            interface FooInt {
+              public <T extends Throwable> T get(Class<T> clazz) throws Exception
+            }
+
+            class Foo implements FooInt {
+              public <T extends Throwable> T get(Class<T> clazz) throws Exception {
+                clazz.newInstance()
+              }
+            }
+
+            class FooMain {
+                @Delegate Foo foo = new Foo()
+            }
+
+            @groovy.transform.CompileStatic
+            class FooMain2 {
+                @Delegate Foo foo = new Foo()
+            }
+
+            assert new FooMain().get(Exception).class == Exception
+            assert new FooMain2().get(Exception).class == Exception
+
+            import org.codehaus.groovy.transform.Bar
+            class BarMain {
+                @Delegate Bar bar = new Bar()
+            }
+            assert new BarMain().get(Exception).class == Exception
+        """
+    }
+
+    // GROOVY-7261
+    void testShouldWorkWithLazyTransform() {
+        assertScript '''
+            class Foo {
+                private @Delegate @Lazy ArrayList list = ['bar', 'baz']
+                // fragile: $list is an internal implementation detail that may change
+                def getInternalDelegate() { $list }
+            }
+
+            def f = new Foo()
+            assert f.internalDelegate == null
+            assert f.size() == 2
+            assert f.internalDelegate == ['bar', 'baz']
+        '''
     }
 }
 
@@ -514,4 +747,20 @@ interface SomeOtherInterface4619 extends SomeInterface4619 {}
 class SomeClass4619 {
     @Delegate
     SomeOtherInterface4619 delegate
+}
+
+interface BarInt {
+    public <T extends Throwable> T get(Class<T> clazz) throws Exception
+}
+
+class Bar implements BarInt {
+    public <T extends Throwable> T get(Class<T> clazz) throws Exception {
+        clazz.newInstance()
+    }
+}
+
+// DO NOT MOVE INSIDE THE TEST SCRIPT OR IT WILL NOT TEST
+// WHAT IT IS SUPPOSED TO TEST ANYMORE !
+class DelegateMap {
+    protected final @Delegate Map props = [x:'123']
 }

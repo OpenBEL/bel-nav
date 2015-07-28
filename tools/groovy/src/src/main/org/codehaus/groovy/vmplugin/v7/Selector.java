@@ -1,21 +1,25 @@
-/*
- * Copyright 2003-2012 the original author or authors.
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package org.codehaus.groovy.vmplugin.v7;
 
 import groovy.lang.AdaptingMetaClass;
+import groovy.lang.Closure;
 import groovy.lang.ExpandoMetaClass;
 import groovy.lang.GroovyInterceptable;
 import groovy.lang.GroovyObject;
@@ -23,10 +27,29 @@ import groovy.lang.GroovyRuntimeException;
 import groovy.lang.GroovySystem;
 import groovy.lang.MetaClass;
 import groovy.lang.MetaClassImpl;
+import groovy.lang.MetaClassImpl.MetaConstructor;
 import groovy.lang.MetaMethod;
 import groovy.lang.MetaProperty;
 import groovy.lang.MissingMethodException;
-import groovy.lang.MetaClassImpl.MetaConstructor;
+import org.codehaus.groovy.GroovyBugError;
+import org.codehaus.groovy.reflection.CachedField;
+import org.codehaus.groovy.reflection.CachedMethod;
+import org.codehaus.groovy.reflection.ClassInfo;
+import org.codehaus.groovy.reflection.GeneratedMetaMethod;
+import org.codehaus.groovy.reflection.stdclasses.CachedSAMClass;
+import org.codehaus.groovy.runtime.GeneratedClosure;
+import org.codehaus.groovy.runtime.GroovyCategorySupport;
+import org.codehaus.groovy.runtime.GroovyCategorySupport.CategoryMethod;
+import org.codehaus.groovy.runtime.NullObject;
+import org.codehaus.groovy.runtime.dgmimpl.NumberNumberMetaMethod;
+import org.codehaus.groovy.runtime.metaclass.ClosureMetaClass;
+import org.codehaus.groovy.runtime.metaclass.MetaClassRegistryImpl;
+import org.codehaus.groovy.runtime.metaclass.MethodMetaProperty;
+import org.codehaus.groovy.runtime.metaclass.NewInstanceMetaMethod;
+import org.codehaus.groovy.runtime.metaclass.NewStaticMetaMethod;
+import org.codehaus.groovy.runtime.metaclass.ReflectionMetaMethod;
+import org.codehaus.groovy.runtime.wrappers.Wrapper;
+import org.codehaus.groovy.vmplugin.v7.IndyInterface.CALL_TYPES;
 
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;
@@ -37,27 +60,16 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
 
-import org.codehaus.groovy.GroovyBugError;
-import org.codehaus.groovy.reflection.CachedField;
-import org.codehaus.groovy.reflection.CachedMethod;
-import org.codehaus.groovy.reflection.ClassInfo;
-import org.codehaus.groovy.runtime.GeneratedClosure;
-import org.codehaus.groovy.runtime.NullObject;
-import org.codehaus.groovy.runtime.GroovyCategorySupport.CategoryMethod;
-import org.codehaus.groovy.runtime.dgmimpl.NumberNumberMetaMethod;
-import org.codehaus.groovy.runtime.metaclass.ClosureMetaClass;
-import org.codehaus.groovy.runtime.metaclass.MetaClassRegistryImpl;
-import org.codehaus.groovy.runtime.metaclass.MethodMetaProperty;
-import org.codehaus.groovy.runtime.metaclass.NewInstanceMetaMethod;
-import org.codehaus.groovy.runtime.metaclass.NewStaticMetaMethod;
-import org.codehaus.groovy.runtime.metaclass.ReflectionMetaMethod;
-import org.codehaus.groovy.runtime.wrappers.Wrapper;
-
-import org.codehaus.groovy.vmplugin.v7.IndyInterface.CALL_TYPES;
-
-import static org.codehaus.groovy.vmplugin.v7.IndyInterface.*;
 import static org.codehaus.groovy.vmplugin.v7.IndyGuardsFiltersAndSignatures.*;
+import static org.codehaus.groovy.vmplugin.v7.IndyInterface.LOG;
+import static org.codehaus.groovy.vmplugin.v7.IndyInterface.LOG_ENABLED;
+import static org.codehaus.groovy.vmplugin.v7.IndyInterface.LOOKUP;
+import static org.codehaus.groovy.vmplugin.v7.IndyInterface.makeFallBack;
+import static org.codehaus.groovy.vmplugin.v7.IndyInterface.switchPoint;
 
 public abstract class Selector {
     public Object[] args, originalArguments;
@@ -88,8 +100,9 @@ public abstract class Selector {
                 return new PropertySelector(callSite, sender, methodName, callType, safeNavigation, thisCall, spreadCall, arguments);
             case SET:
                 throw new GroovyBugError("your call tried to do a property set, which is not supported.");
+            case CAST:  return new CastSelector(callSite, arguments);
+            default: throw new GroovyBugError("unexpected call type");
         }
-        return null;
     }
     abstract void setCallSiteTarget();
 
@@ -107,6 +120,131 @@ public abstract class Selector {
         ret[0] = args[0];
         System.arraycopy(normalArguments, 0, ret, 1, ret.length-1);
         return ret;
+    }
+
+    private static class CastSelector extends MethodSelector {
+        private Class<?> staticSourceType, staticTargetType;
+
+        public CastSelector(MutableCallSite callSite, Object[] arguments) {
+            super(callSite, Selector.class, "", CALL_TYPES.CAST, false, false, false, arguments);
+            this.staticSourceType = callSite.type().parameterType(0);
+            this.staticTargetType = callSite.type().returnType();
+        }
+
+        @Override
+        public void setCallSiteTarget() {
+            // targetTypes String, Enum and Class are handled 
+            // by the compiler already
+            // Boolean / boolean
+            handleBoolean();
+            handleNullWithoutBoolean();
+
+            // !! from here on args[0] is always not null !!
+            handleInstanceCase();
+
+            // targetType is abstract Collection fitting for HashSet or ArrayList
+            // and object is Collection or array
+            handleCollections();
+            handleSAM();
+
+            // will handle :
+            //      * collection case where argument is an array
+            //      * array transformation (staticTargetType.isArray())
+            //      * constructor invocation
+            //      * final GroovyCastException
+            castToTypeFallBack();
+
+            if (!handle.type().equals(callSite.type())) castAndSetGuards();
+        }
+
+        private void castAndSetGuards() {
+            handle =  MethodHandles.explicitCastArguments(handle,targetType);
+            setGuards(args[0]);
+            doCallSiteTargetSet();
+        }
+
+        private void handleNullWithoutBoolean() {
+            if (handle!=null || args[0]!=null) return;
+
+            if (staticTargetType.isPrimitive()) {
+                handle = MethodHandles.insertArguments(GROOVY_CAST_EXCEPTION,1,staticTargetType);
+                // need to call here here because we used the static target type
+                // it won't be done otherwise because handle.type() == callSite.type()
+                castAndSetGuards(); 
+            } else {
+               handle = MethodHandles.identity(staticSourceType);
+            }
+        }
+
+        private void handleInstanceCase() {
+            if (handle!=null) return;
+
+            if (staticTargetType.isAssignableFrom(args[0].getClass())) {
+                handle = MethodHandles.identity(staticSourceType);
+            }
+        }
+
+        private static boolean isAbstractClassOf(Class toTest, Class givenOnCallSite) {
+            if (!toTest.isAssignableFrom(givenOnCallSite)) return false;
+            if (givenOnCallSite.isInterface()) return true;
+            return Modifier.isAbstract(givenOnCallSite.getModifiers());
+        }
+
+        private void handleCollections() {
+            if (handle!=null) return;
+
+            if (!(args[0] instanceof Collection)) return;
+            if (isAbstractClassOf(HashSet.class, staticTargetType)) {
+                handle = HASHSET_CONSTRUCTOR;
+            } else if (isAbstractClassOf(ArrayList.class, staticTargetType)) {
+                handle = ARRAYLIST_CONSTRUCTOR;
+            }
+        }
+
+        private void handleSAM() {
+            if (handle!=null) return;
+
+            if (!(args[0] instanceof Closure)) return;
+            Method m = CachedSAMClass.getSAMMethod(staticTargetType);
+            if (m==null) return;
+            //TODO: optimize: add guard based on type Closure
+            handle = MethodHandles.insertArguments(SAM_CONVERSION, 1, m, staticTargetType, staticTargetType.isInterface());
+        }
+
+        private void castToTypeFallBack() {
+            if (handle!=null) return;
+
+            // generic fallback to castToType
+            handle = MethodHandles.insertArguments(DTT_CAST_TO_TYPE, 1, staticTargetType);
+        }
+
+        private void handleBoolean() {
+            if (handle!=null) return;
+
+            // boolean->boolean, Boolean->boolean, boolean->Boolean
+            // is handled by compiler
+            // that leaves (T)Z and (T)Boolean, where T is the static type
+            // but runtime type of T might be Boolean
+
+            boolean primitive = staticTargetType==boolean.class;
+            if (!primitive && staticTargetType!=Boolean.class) return;
+            if (args[0]==null) {
+                if (primitive) {
+                    handle = MethodHandles.constant(boolean.class, false);
+                    handle = MethodHandles.dropArguments(handle, 0, staticSourceType);
+                } else {
+                    handle = BOOLEAN_IDENTITY;
+                }
+            } else if (args[0] instanceof Boolean) {
+                // give value through or unbox
+                handle = BOOLEAN_IDENTITY;
+            } else { 
+                //call asBoolean
+                name = "asBoolean";
+                super.setCallSiteTarget();
+                return;
+            }
+        }
     }
 
     private static class PropertySelector extends MethodSelector {
@@ -148,7 +286,11 @@ public abstract class Selector {
             }
 
             if (method!=null || mci==null) return;
-            MetaProperty res = mci.getEffectiveGetMetaProperty(mci.getTheClass(), receiver, name, false);
+            Class chosenSender = this.sender;
+            if (mci.getTheClass()!= chosenSender && GroovyCategorySupport.hasCategoryInCurrentThread()) {
+                chosenSender = mci.getTheClass();
+            }
+            MetaProperty res = mci.getEffectiveGetMetaProperty(chosenSender, receiver, name, false);
             if (res instanceof MethodMetaProperty) {
                 MethodMetaProperty mmp = (MethodMetaProperty) res;
                 method = mmp.getMetaMethod();
@@ -408,11 +550,11 @@ public abstract class Selector {
             Object[] newArgs = removeRealReceiver(args);
             if (receiver instanceof Class) {
                 if (LOG_ENABLED) LOG.info("receiver is a class");
-                method = mci.retrieveStaticMethod(name, newArgs);
+                if (!mci.hasCustomStaticInvokeMethod()) method = mci.retrieveStaticMethod(name, newArgs);
             } else {
                 String changedName = name;
                 if (receiver instanceof GeneratedClosure && changedName.equals("call")) {changedName = "doCall";}
-                method = mci.getMethodWithCaching(selectionBase, changedName, newArgs, false);
+                if (!mci.hasCustomInvokeMethod()) method = mci.getMethodWithCaching(selectionBase, changedName, newArgs, false);
             }
             if (LOG_ENABLED) LOG.info("retrieved method from meta class: "+method);
         }
@@ -428,10 +570,13 @@ public abstract class Selector {
             MetaMethod metaMethod = method;
             isCategoryMethod = method instanceof CategoryMethod;
 
-            if (metaMethod instanceof NumberNumberMetaMethod) {
+            if (
+                    metaMethod instanceof NumberNumberMetaMethod ||
+                    (method instanceof GeneratedMetaMethod && (name.equals("next") || name.equals("previous")))
+            ) {
                 if (LOG_ENABLED) LOG.info("meta method is number method");
-                catchException = false;
                 if (IndyMath.chooseMathMethod(this, metaMethod)) {
+                    catchException = false;
                     if (LOG_ENABLED) LOG.info("indy math successfull");
                     return;
                 }
@@ -702,6 +847,11 @@ public abstract class Selector {
                 test = test.asType(MethodType.methodType(boolean.class,targetType.parameterType(0)));
                 handle = MethodHandles.guardWithTest(test, handle, fallback);
                 if (LOG_ENABLED) LOG.info("added meta class equality check");
+            } else if (receiver instanceof Class) {
+                MethodHandle test = EQUALS.bindTo(receiver);
+                test = test.asType(MethodType.methodType(boolean.class,targetType.parameterType(0)));
+                handle = MethodHandles.guardWithTest(test, handle, fallback);
+                if (LOG_ENABLED) LOG.info("added class equality check");
             }
 
             if (!useMetaClass && isCategoryMethod) {
@@ -735,7 +885,8 @@ public abstract class Selector {
                     if (LOG_ENABLED) LOG.info("added null argument check at pos "+i);
                 } else { 
                     Class argClass = arg.getClass();
-                    if (Modifier.isFinal(argClass.getModifiers()) && TypeHelper.argumentClassIsParameterClass(argClass,pt[i])) continue;
+                    if (pt[i].isPrimitive()) continue;
+                    //if (Modifier.isFinal(argClass.getModifiers()) && TypeHelper.argumentClassIsParameterClass(argClass,pt[i])) continue;
                     test = SAME_CLASS.
                                 bindTo(argClass).
                                 asType(MethodType.methodType(boolean.class, pt[i]));

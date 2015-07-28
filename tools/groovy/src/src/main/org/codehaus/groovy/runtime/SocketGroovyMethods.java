@@ -1,21 +1,26 @@
-/*
- * Copyright 2003-2013 the original author or authors.
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package org.codehaus.groovy.runtime;
 
 import groovy.lang.Closure;
+import groovy.transform.stc.ClosureParams;
+import groovy.transform.stc.SimpleType;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -53,7 +58,7 @@ public class SocketGroovyMethods extends DefaultGroovyMethodsSupport {
      * @throws IOException if an IOException occurs.
      * @since 1.5.2
      */
-    public static <T> T withStreams(Socket socket, Closure<T> closure) throws IOException {
+    public static <T> T withStreams(Socket socket, @ClosureParams(value=SimpleType.class, options={"java.io.InputStream","java.io.OutputStream"}) Closure<T> closure) throws IOException {
         InputStream input = socket.getInputStream();
         OutputStream output = socket.getOutputStream();
         try {
@@ -84,7 +89,7 @@ public class SocketGroovyMethods extends DefaultGroovyMethodsSupport {
      * @throws IOException if an IOException occurs.
      * @since 1.5.0
      */
-    public static <T> T withObjectStreams(Socket socket, Closure<T> closure) throws IOException {
+    public static <T> T withObjectStreams(Socket socket, @ClosureParams(value=SimpleType.class, options={"java.io.ObjectInputStream","java.io.ObjectOutputStream"}) Closure<T> closure) throws IOException {
         InputStream input = socket.getInputStream();
         OutputStream output = socket.getOutputStream();
         ObjectOutputStream oos = new ObjectOutputStream(output);
@@ -153,7 +158,7 @@ public class SocketGroovyMethods extends DefaultGroovyMethodsSupport {
      * @see java.net.ServerSocket#accept()
      * @since 1.0
      */
-    public static Socket accept(ServerSocket serverSocket, final Closure closure) throws IOException {
+    public static Socket accept(ServerSocket serverSocket, final @ClosureParams(value=SimpleType.class, options="java.net.Socket") Closure closure) throws IOException {
         return accept(serverSocket, true, closure);
     }
 
@@ -170,7 +175,7 @@ public class SocketGroovyMethods extends DefaultGroovyMethodsSupport {
      * @since 1.7.6
      */
     public static Socket accept(ServerSocket serverSocket, final boolean runInANewThread,
-                                final Closure closure) throws IOException {
+                                final @ClosureParams(value=SimpleType.class, options="java.net.Socket") Closure closure) throws IOException {
         final Socket socket = serverSocket.accept();
         if (runInANewThread) {
             new Thread(new Runnable() {

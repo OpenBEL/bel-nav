@@ -1,3 +1,21 @@
+/*
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
+ */
 package groovy.operator
 
 class IntegerOperatorsTest extends GroovyTestCase {
@@ -5,7 +23,7 @@ class IntegerOperatorsTest extends GroovyTestCase {
     def x
     def y
     def z
-    
+
     void testPlus() {
         x = 2 + 2
         assert x == 4
@@ -16,7 +34,15 @@ class IntegerOperatorsTest extends GroovyTestCase {
         z = y + x + 1 + 2
         assert z == 12
     }
-    
+
+    void testUnaryPlus() {
+        x = 3
+        y = +x
+        assert y == 3
+        y = x.unaryPlus()
+        assert y == 3
+    }
+
     void testCharacterPlus() {
         Character c1 = 1
         Character c2 = 2
@@ -53,7 +79,23 @@ class IntegerOperatorsTest extends GroovyTestCase {
         y = x - 1
         assert y == 3
     }
-    
+
+    void testUnaryMinus() {
+        x = 3
+        y = -x
+        assert y == -3
+        y = x.unaryMinus()
+        assert y == -3
+    }
+
+    void testBitwiseNegate() {
+        x = 3
+        y = ~x
+        assert y == -4
+        y = x.bitwiseNegate()
+        assert y == -4
+    }
+
     void testCharacterMinus() {
         Character c1 = 1
         Character c2 = 2

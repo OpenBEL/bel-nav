@@ -1,24 +1,27 @@
-/*
- * Copyright 2003-2013 the original author or authors.
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
-
 package groovy.util;
 
 import groovy.util.slurpersupport.GPathResult;
 import groovy.util.slurpersupport.Node;
 import groovy.util.slurpersupport.NodeChild;
+import groovy.util.slurpersupport.NamespaceAwareHashMap;
 import groovy.xml.FactorySupport;
 
 import java.io.File;
@@ -33,6 +36,7 @@ import java.util.Hashtable;
 import java.util.Map;
 import java.util.Stack;
 
+import javax.xml.XMLConstants;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
@@ -84,23 +88,49 @@ public class XmlSlurper extends DefaultHandler {
     private final Stack<Node> stack = new Stack<Node>();
     private final StringBuffer charBuffer = new StringBuffer();
     private final Map<String, String> namespaceTagHints = new Hashtable<String, String>();
-    private boolean keepWhitespace = false;
+    private boolean keepIgnorableWhitespace = false;
+    private boolean namespaceAware = false;
 
     /**
-     * Uses the defaults of not validating and namespace aware.
+     * Creates a non-validating and non-namespace-aware <code>XmlSlurper</code> which does not allow DOCTYPE declarations in documents.
      *
-     * @throws ParserConfigurationException if a parser cannot
-     *   be created which satisfies the requested configuration.
+     * @throws ParserConfigurationException if no parser which satisfies the requested configuration can be created.
      * @throws SAXException for SAX errors.
      */
     public XmlSlurper() throws ParserConfigurationException, SAXException {
         this(false, true);
     }
-
+    
+    /**
+     * Creates a <code>XmlSlurper</code> which does not allow DOCTYPE declarations in documents.
+     * 
+     * @param validating <code>true</code> if the parser should validate documents as they are parsed; false otherwise.
+     * @param namespaceAware <code>true</code> if the parser should provide support for XML namespaces; <code>false</code> otherwise.
+     *
+     * @throws ParserConfigurationException if no parser which satisfies the requested configuration can be created.
+     * @throws SAXException for SAX errors.
+     */
     public XmlSlurper(final boolean validating, final boolean namespaceAware) throws ParserConfigurationException, SAXException {
+        this(validating, namespaceAware, false);
+    }
+
+    /**
+     * Creates a <code>XmlSlurper</code>.
+     * 
+     * @param validating <code>true</code> if the parser should validate documents as they are parsed; false otherwise.
+     * @param namespaceAware <code>true</code> if the parser should provide support for XML namespaces; <code>false</code> otherwise.
+     * @param allowDocTypeDeclaration <code>true</code> if the parser should provide support for DOCTYPE declarations; <code>false</code> otherwise.
+     *
+     * @throws ParserConfigurationException if no parser which satisfies the requested configuration can be created.
+     * @throws SAXException for SAX errors.
+     */
+    public XmlSlurper(final boolean validating, final boolean namespaceAware, boolean allowDocTypeDeclaration) throws ParserConfigurationException, SAXException {
         SAXParserFactory factory = FactorySupport.createSaxParserFactory();
         factory.setNamespaceAware(namespaceAware);
+        this.namespaceAware = namespaceAware;
         factory.setValidating(validating);
+        setQuietly(factory, XMLConstants.FEATURE_SECURE_PROCESSING, true);
+        setQuietly(factory, "http://apache.org/xml/features/disallow-doctype-decl", !allowDocTypeDeclaration);
         reader = factory.newSAXParser().getXMLReader();
     }
 
@@ -111,13 +141,39 @@ public class XmlSlurper extends DefaultHandler {
     public XmlSlurper(final SAXParser parser) throws SAXException {
         this(parser.getXMLReader());
     }
+    
+    private void setQuietly(SAXParserFactory factory, String feature, boolean value) {
+        try {
+            factory.setFeature(feature, value);
+        }
+        catch (ParserConfigurationException ignored) { }
+        catch (SAXNotRecognizedException ignored) { }
+        catch (SAXNotSupportedException ignored) { }
+    }
 
     /**
+     * @deprecated use setKeepIgnorableWhitespace
      * @param keepWhitespace If true then whitespace before elements is kept.
      *                       The default is to discard the whitespace.
      */
+    @Deprecated
     public void setKeepWhitespace(boolean keepWhitespace) {
-        this.keepWhitespace = keepWhitespace;
+        setKeepIgnorableWhitespace(keepWhitespace);
+    }
+
+    /**
+     * @param keepIgnorableWhitespace If true then ignorable whitespace (i.e. whitespace before elements) is kept.
+     *                       The default is to discard the whitespace.
+     */
+    public void setKeepIgnorableWhitespace(boolean keepIgnorableWhitespace) {
+        this.keepIgnorableWhitespace = keepIgnorableWhitespace;
+    }
+
+    /**
+     * @return true if ignorable whitespace is kept
+     */
+    public boolean isKeepIgnorableWhitespace() {
+        return keepIgnorableWhitespace;
     }
 
     /**
@@ -127,6 +183,10 @@ public class XmlSlurper extends DefaultHandler {
      */
     public GPathResult getDocument() {
         try {
+            // xml namespace is always defined
+            if (namespaceAware) {
+                namespaceTagHints.put("xml", "http://www.w3.org/XML/1998/namespace");
+            }
             return new NodeChild(currentNode, null, namespaceTagHints);
         } finally {
             currentNode = null;
@@ -327,7 +387,7 @@ public class XmlSlurper extends DefaultHandler {
     * @see org.xml.sax.helpers.DefaultHandler#startPrefixMapping(java.lang.String, java.lang.String)
     */
     public void startPrefixMapping(final String tag, final String uri) throws SAXException {
-        namespaceTagHints.put(tag, uri);
+        if (namespaceAware) namespaceTagHints.put(tag, uri);
     }
 
     /* (non-Javadoc)
@@ -336,7 +396,7 @@ public class XmlSlurper extends DefaultHandler {
     public void startElement(final String namespaceURI, final String localName, final String qName, final Attributes atts) throws SAXException {
         addCdata();
 
-        final Map<String, String> attributes = new HashMap<String, String>();
+        final Map<String, String> attributes = new NamespaceAwareHashMap();
         final Map<String, String> attributeNamespaces = new HashMap<String, String>();
 
         for (int i = atts.getLength() - 1; i != -1; i--) {
@@ -363,6 +423,10 @@ public class XmlSlurper extends DefaultHandler {
 
         stack.push(currentNode);
         currentNode = newElement;
+    }
+
+    public void ignorableWhitespace(char buffer[], int start, int len) throws SAXException {
+        if (keepIgnorableWhitespace) characters(buffer, start, len);
     }
 
     /* (non-Javadoc)
@@ -392,14 +456,14 @@ public class XmlSlurper extends DefaultHandler {
     private void addCdata() {
         if (charBuffer.length() != 0) {
             //
-            // This element is preceded by CDATA if keepWhitespace is false (the default setting) and
+            // This element is preceded by CDATA if keepIgnorableWhitespace is false (the default setting) and
             // it's not whitespace add it to the body
             // Note that, according to the XML spec, we should preserve the CDATA if it's all whitespace
             // but for the sort of work I'm doing ignoring the whitespace is preferable
             //
             final String cdata = charBuffer.toString();
             charBuffer.setLength(0);
-            if (keepWhitespace || cdata.trim().length() != 0) {
+            if (keepIgnorableWhitespace || cdata.trim().length() != 0) {
                 currentNode.addChild(cdata);
             }
         }

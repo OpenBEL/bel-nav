@@ -1,4 +1,22 @@
 # -*- mode:sh -*-
+# ----------------------------------------------------------------------------
+# Licensed to the Apache Software Foundation (ASF) under one
+# or more contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership.  The ASF licenses this file
+# to you under the Apache License, Version 2.0 (the
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+# KIND, either express or implied.  See the License for the
+# specific language governing permissions and limitations
+# under the License.
+# ----------------------------------------------------------------------------
 
 ##############################################################################
 ##                                                                          ##
@@ -93,7 +111,7 @@ if $cygwin ; then
     [ -n "$JAVA_HOME" ] && JAVA_HOME=`cygpath --unix "$JAVA_HOME"`
     [ -n "$CP" ] && CP=`cygpath --path --unix "$CP"`
 else
-    if [ -n "$GROOVY_HOME" -a `expr "$GROOVY_HOME":'\/$'` ] ; then
+    if [ -n "$GROOVY_HOME" -a "`expr "$GROOVY_HOME":'\/$'`" ] ; then
         GROOVY_HOME=`echo $GROOVY_HOME | sed -e 's/\/$//'`
     fi
 fi
@@ -128,7 +146,7 @@ fi
 if [ -z "$GROOVY_CONF" ] ; then
     GROOVY_CONF="$GROOVY_HOME/conf/groovy-starter.conf"
 fi
-STARTER_CLASSPATH="$GROOVY_HOME/lib/groovy-2.1.7.jar"
+STARTER_CLASSPATH="$GROOVY_HOME/lib/groovy-2.4.4.jar"
 
 # Create the final classpath. Setting a classpath using the -cp or -classpath option means not to use the
 # global classpath. Groovy behaves then the same as the java interpreter

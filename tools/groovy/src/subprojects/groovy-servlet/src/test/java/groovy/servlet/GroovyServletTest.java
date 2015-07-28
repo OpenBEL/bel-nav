@@ -1,29 +1,29 @@
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
+ */
 package groovy.servlet;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.jmock.Mock;
 import org.jmock.MockObjectTestCase;
 
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
-
 public class GroovyServletTest extends MockObjectTestCase {
-
-    private ServletConfig config;
-    private ServletContext context;
-    private GroovyServlet servlet;
-
-    protected void setUp() throws Exception {
-        super.setUp();
-        //this.config = (ServletConfig) mock(ServletConfig.class).proxy();
-        //this.context = (ServletContext) mock(ServletContext.class).proxy();
-        this.servlet = new GroovyServlet();
-        //servlet.init(config);
-    }
-
-    protected void tearDown() throws Exception {
-        super.tearDown();
-    }
 
     public void testRequestGetCommandOK() {
         Mock requestMock = mock(HttpServletRequest.class);
@@ -32,19 +32,4 @@ public class GroovyServletTest extends MockObjectTestCase {
         String command = request.getParameter("command");
         assertEquals("SELECT...", command);
     }
-
-    //    public void testService() {
-    //        Mock requestMock = mock(HttpServletRequest.class);
-    //        Mock responseMock = mock(HttpServletResponse.class);
-    //        
-    //        HttpServletRequest request = (HttpServletRequest) requestMock.proxy();
-    //        HttpServletResponse response = (HttpServletResponse) responseMock.proxy();
-    //        try {
-    //            servlet.service(request, response);
-    //        } catch (Throwable t) {
-    //            t.printStackTrace();
-    //            fail(t.getMessage());
-    //        }
-    //    }
-
 }

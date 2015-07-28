@@ -1,17 +1,20 @@
-/*
- * Copyright 2003-2013 the original author or authors.
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package org.codehaus.groovy.tools.groovydoc;
 
@@ -25,6 +28,8 @@ import java.util.regex.Pattern;
 public class SimpleGroovyClassDoc extends SimpleGroovyAbstractableElementDoc implements GroovyClassDoc {
 
     public static final Pattern TAG_REGEX = Pattern.compile("(?sm)\\s*@([a-zA-Z.]+)\\s+(.*?)(?=\\s+@)");
+    public static final String DOCROOT_PATTERN2    = "(?m)[{]@docRoot}/";
+    public static final String DOCROOT_PATTERN    = "(?m)[{]@docRoot}";
 
     // group 1: tag name, group 2: tag body
     public static final Pattern LINK_REGEX    = Pattern.compile("(?m)[{]@(link)\\s+([^}]*)}");
@@ -64,6 +69,7 @@ public class SimpleGroovyClassDoc extends SimpleGroovyAbstractableElementDoc imp
     private String fullPathName;
     private boolean isgroovy;
     private GroovyRootDoc savedRootDoc = null;
+    private String nameWithTypeArgs;
 
     public SimpleGroovyClassDoc(List<String> importedClassesAndPackages, Map<String, String> aliases, String name, List<LinkArgument> links) {
         super(name);
@@ -279,7 +285,7 @@ public class SimpleGroovyClassDoc extends SimpleGroovyAbstractableElementDoc imp
 
     private Class getClassOf(String next) {
         try {
-            return Class.forName(next.replace("/", "."));
+            return Class.forName(next.replace("/", "."), false, getClass().getClassLoader());
         } catch (Throwable t) {
             return null;
         }
@@ -416,10 +422,50 @@ public class SimpleGroovyClassDoc extends SimpleGroovyAbstractableElementDoc imp
         if (type == null)
             return type;
         type = type.trim();
-        if (isPrimitiveType(type)) return type;
+        if (isPrimitiveType(type) || type.length() == 1) return type;
         if (type.equals("def")) type = "java.lang.Object def";
+        // cater for explicit href in e.g. @see, TODO: push this earlier?
+        if (type.startsWith("<a href=")) return type;
+        if (type.startsWith("? extends ")) return "? extends " + getDocUrl(type.substring(10), full, links, relativePath, rootDoc, classDoc);
+        if (type.startsWith("? super ")) return "? super " + getDocUrl(type.substring(8), full, links, relativePath, rootDoc, classDoc);
 
         String label = null;
+        int lt = type.indexOf("<");
+        if (lt != -1) {
+            String outerType = type.substring(0, lt);
+            int gt = type.lastIndexOf(">");
+            if (gt != -1) {
+                if (gt > lt) {
+                    String allTypeArgs = type.substring(lt + 1, gt);
+                    List<String> typeArgs = new ArrayList<String>();
+                    int nested = 0;
+                    StringBuilder sb = new StringBuilder();
+                    for (char ch : allTypeArgs.toCharArray()) {
+                        if (ch == '<') nested++;
+                        else if (ch == '>') nested--;
+                        else if (ch == ',' && nested == 0) {
+                            typeArgs.add(sb.toString().trim());
+                            sb = new StringBuilder();
+                            continue;
+                        }
+                        sb.append(ch);
+                    }
+                    if (sb.length() > 0) {
+                        typeArgs.add(sb.toString().trim());
+                    }
+                    List<String> typeUrls = new ArrayList<String>();
+                    for (String typeArg : typeArgs) {
+                        typeUrls.add(getDocUrl(typeArg, full, links, relativePath, rootDoc, classDoc));
+                    }
+                    sb = new StringBuilder(getDocUrl(outerType, full, links, relativePath, rootDoc, classDoc));
+                    sb.append("&lt;");
+                    sb.append(DefaultGroovyMethods.join(typeUrls, ", "));
+                    sb.append("&gt;");
+                    return sb.toString();
+                }
+                return type.replaceAll("<", "&lt;").replaceAll(">", "&gt;");
+            }
+        }
         Matcher matcher = REF_LABEL_REGEX.matcher(type);
         if (matcher.find()) {
             type = matcher.group(1);
@@ -443,8 +489,6 @@ public class SimpleGroovyClassDoc extends SimpleGroovyAbstractableElementDoc imp
             if (pieces.length > 1) type += "#" + pieces[1];
             type = resolveMethodArgs(rootDoc, classDoc, type);
         }
-        if (type.indexOf('.') == -1)
-            return type;
 
         final String[] target = type.split("#");
         String shortClassName = target[0].replaceAll(".*\\.", "");
@@ -456,9 +500,12 @@ public class SimpleGroovyClassDoc extends SimpleGroovyAbstractableElementDoc imp
             String slashedName = target[0].replaceAll("\\.", "/");
             GroovyClassDoc doc = rootDoc.classNamed(classDoc, slashedName);
             if (doc != null) {
+                target[0] = doc.getFullPathName(); // if we added a package
                 return buildUrl(relativePath, target, label == null ? name : label);
             }
         }
+        if (type.indexOf('.') == -1)
+            return type;
 
         if (links != null) {
             for (LinkArgument link : links) {
@@ -489,9 +536,9 @@ public class SimpleGroovyClassDoc extends SimpleGroovyAbstractableElementDoc imp
             if (componentClass != null) return new ArrayClassDocWrapper(componentClass);
             return null;
         }
-        if (name.equals("T") || name.equals("U") || name.equals("K") || name.equals("V") || name.equals("G")) {
-            name = "java/lang/Object";
-        }
+//        if (name.equals("T") || name.equals("U") || name.equals("K") || name.equals("V") || name.equals("G")) {
+//            name = "java/lang/Object";
+//        }
         GroovyClassDoc doc = ((SimpleGroovyRootDoc)rootDoc).classNamedExact(name);
         if (doc != null) return doc;
         int slashIndex = name.lastIndexOf("/");
@@ -562,7 +609,7 @@ public class SimpleGroovyClassDoc extends SimpleGroovyAbstractableElementDoc imp
 
     private Class resolveFromJavaLang(String name) {
         try {
-            return Class.forName("java.lang." + name);
+            return Class.forName("java.lang." + name, false, getClass().getClassLoader());
         } catch (NoClassDefFoundError e) {
             // ignore
         } catch (ClassNotFoundException e) {
@@ -603,7 +650,7 @@ public class SimpleGroovyClassDoc extends SimpleGroovyAbstractableElementDoc imp
             if (candidate != null) {
                 try {
                     // TODO cache these??
-                    return Class.forName(candidate);
+                    return Class.forName(candidate, false, getClass().getClassLoader());
                 } catch (NoClassDefFoundError e) {
                     // ignore
                 } catch (ClassNotFoundException e) {
@@ -618,7 +665,7 @@ public class SimpleGroovyClassDoc extends SimpleGroovyAbstractableElementDoc imp
         String candidate = name.replace('/', '.');
         try {
             // TODO cache these??
-            return Class.forName(candidate);
+            return Class.forName(candidate, false, getClass().getClassLoader());
         } catch (NoClassDefFoundError e) {
             // ignore
         } catch (ClassNotFoundException e) {
@@ -754,6 +801,13 @@ public class SimpleGroovyClassDoc extends SimpleGroovyAbstractableElementDoc imp
     public String replaceTags(String comment) {
         String result = comment.replaceAll("(?m)^\\s*\\*", ""); // todo precompile regex
 
+        String relativeRootPath = getRelativeRootPath();
+        if (!relativeRootPath.endsWith("/")) {
+            relativeRootPath += "/";
+        }
+        result = result.replaceAll(DOCROOT_PATTERN2, relativeRootPath);
+        result = result.replaceAll(DOCROOT_PATTERN, relativeRootPath);
+
         // {@link processing hack}
         result = replaceAllTags(result, "", "", LINK_REGEX);
 
@@ -874,7 +928,7 @@ public class SimpleGroovyClassDoc extends SimpleGroovyAbstractableElementDoc imp
     }
 
     public static String encodeAngleBrackets(String text) {
-        return text.replace("<", "&lt;").replace(">", "&gt;");
+        return text == null ? null : text.replace("<", "&lt;").replace(">", "&gt;");
     }
 
     public static String encodeSpecialSymbols(String text) {
@@ -885,4 +939,11 @@ public class SimpleGroovyClassDoc extends SimpleGroovyAbstractableElementDoc imp
         return text.replaceAll("&at;", "@");
     }
 
+    public void setNameWithTypeArgs(String nameWithTypeArgs) {
+        this.nameWithTypeArgs = nameWithTypeArgs;
+    }
+
+    public String getNameWithTypeArgs() {
+        return nameWithTypeArgs;
+    }
 }

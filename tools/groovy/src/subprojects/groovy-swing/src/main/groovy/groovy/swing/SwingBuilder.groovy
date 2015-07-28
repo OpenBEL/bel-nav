@@ -1,17 +1,20 @@
 /*
- * Copyright 2003-2007 the original author or authors.
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package groovy.swing
 
@@ -86,10 +89,9 @@ import groovy.swing.factory.CollectionFactory
  * A helper class for creating Swing widgets using GroovyMarkup
  *
  * @author <a href="mailto:james@coredevelopers.net">James Strachan</a>
- * @version $Revision$
  */
 public class SwingBuilder extends FactoryBuilderSupport {
-    // local fields
+
     private static final Logger LOG = Logger.getLogger(SwingBuilder.name)
     private static boolean headless = false
 
@@ -100,7 +102,6 @@ public class SwingBuilder extends FactoryBuilderSupport {
 
     public SwingBuilder(boolean init = true) {
         super(init)
-        //registerWidgets()
         headless = GraphicsEnvironment.isHeadless()
         containingWindows = new LinkedList()
         this[DELEGATE_PROPERTY_OBJECT_ID] = DEFAULT_DELEGATE_PROPERTY_OBJECT_ID
@@ -316,7 +317,7 @@ public class SwingBuilder extends FactoryBuilderSupport {
 
     /**
      * Utility method to run a closure in EDT,
-     * using <code>SwingUtilities.invokeAndWait</cod>.
+     * using <code>SwingUtilities.invokeAndWait</code>.
      *
      * @param c this closure is run in the EDT
      */
@@ -348,7 +349,7 @@ public class SwingBuilder extends FactoryBuilderSupport {
 
     /**
      * Utility method to run a closure in EDT,
-     * using <code>SwingUtilities.invokeLater</cod>.
+     * using <code>SwingUtilities.invokeLater</code>.
      *
      * @param c this closure is run in the EDT
      */

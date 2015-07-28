@@ -1,24 +1,29 @@
-/*
- * Copyright 2003-2007 the original author or authors.
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
-
 package org.codehaus.groovy.ast;
 
+import static org.codehaus.groovy.ast.ClassHelper.OBJECT_TYPE;
 import groovy.lang.*;
 
 import org.codehaus.groovy.runtime.GeneratedClosure;
+import org.codehaus.groovy.transform.stc.StaticTypeCheckingSupport;
+import org.codehaus.groovy.transform.trait.Traits;
 import org.codehaus.groovy.util.ManagedConcurrentMap;
 import org.codehaus.groovy.util.ReferenceBundle;
 import org.codehaus.groovy.vmplugin.VMPluginFactory;
@@ -31,6 +36,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 import java.lang.ref.SoftReference;
+import java.lang.reflect.Modifier;
 
 /**
  * This class is a Helper for ClassNode and classes handling ClassNodes.
@@ -65,7 +71,8 @@ public class ClassHelper {
         MAP_TYPE = makeWithoutCaching(Map.class), RANGE_TYPE = makeCached(Range.class),
         PATTERN_TYPE = makeCached(Pattern.class), STRING_TYPE = makeCached(String.class),
         SCRIPT_TYPE = makeCached(Script.class),   REFERENCE_TYPE = makeWithoutCaching(Reference.class),
-        
+        BINDING_TYPE = makeCached(Binding.class),
+
         boolean_TYPE = makeCached(boolean.class),     char_TYPE = makeCached(char.class),
         byte_TYPE = makeCached(byte.class),           int_TYPE = makeCached(int.class),
         long_TYPE = makeCached(long.class),           short_TYPE = makeCached(short.class),
@@ -114,6 +121,10 @@ public class ClassHelper {
         GROOVY_OBJECT_TYPE, GROOVY_INTERCEPTABLE_TYPE, Enum_Type, Annotation_TYPE
     };
 
+    private static final int ABSTRACT_STATIC_PRIVATE = 
+            Modifier.ABSTRACT|Modifier.PRIVATE|Modifier.STATIC;
+    private static final int VISIBILITY = 5; // public|protected
+    
     protected static final ClassNode[] EMPTY_TYPE_ARRAY = {};
     
     public static final String OBJECT = "java.lang.Object";
@@ -374,5 +385,93 @@ public class ClassHelper {
 
     static class ClassHelperCache {
         static ManagedConcurrentMap<Class, SoftReference<ClassNode>> classCache = new ManagedConcurrentMap<Class, SoftReference<ClassNode>>(ReferenceBundle.getWeakBundle());
+    }
+    
+    public static boolean isSAMType(ClassNode type) {
+        return findSAM(type) != null;
+    }
+
+    /**
+     * Returns the single abstract method of a class node, if it is a SAM type, or null otherwise.
+     * @param type a type for which to search for a single abstract method
+     * @return the method node if type is a SAM type, null otherwise
+     */
+    public static MethodNode findSAM(ClassNode type) {
+        if (!Modifier.isAbstract(type.getModifiers())) return null;
+        if (type.isInterface()) {
+            List<MethodNode> methods = type.getMethods();
+            MethodNode found=null;
+            for (MethodNode mi : methods) {
+                // ignore methods, that are not abstract and from Object
+                if (!Modifier.isAbstract(mi.getModifiers())) continue;
+                // ignore trait methods which have a default implementation
+                if (Traits.hasDefaultImplementation(mi)) continue;
+                if (mi.getDeclaringClass().equals(OBJECT_TYPE)) continue;
+                if (OBJECT_TYPE.getDeclaredMethod(mi.getName(), mi.getParameters())!=null) continue;
+
+                // we have two methods, so no SAM
+                if (found!=null) return null;
+                found = mi;
+            }
+            return found;
+
+        } else {
+
+            List<MethodNode> methods = type.getAbstractMethods();
+            MethodNode found = null;
+            if (methods!=null) {
+                for (MethodNode mi : methods) {
+                    if (!hasUsableImplementation(type, mi)) {
+                        if (found!=null) return null;
+                        found = mi;
+                    }
+                }
+            }
+            return found;
+        }
+    }
+
+    private static boolean hasUsableImplementation(ClassNode c, MethodNode m) {
+        if (c==m.getDeclaringClass()) return false;
+        MethodNode found = c.getDeclaredMethod(m.getName(), m.getParameters());
+        if (found==null) return false;
+        int asp = found.getModifiers() & ABSTRACT_STATIC_PRIVATE;
+        int visible = found.getModifiers() & VISIBILITY;
+        if (visible !=0 && asp == 0) return true;
+        if (c.equals(OBJECT_TYPE)) return false;
+        return hasUsableImplementation(c.getSuperClass(), m);
+    }
+
+    /**
+     * Returns a super class or interface for a given class depending on a given target.
+     * If the target is no super class or interface, then null will be returned.
+     * @param clazz the start class
+     * @param goalClazz the goal class
+     * @return the next super class or interface
+     */
+    public static ClassNode getNextSuperClass(ClassNode clazz, ClassNode goalClazz) {
+        if (clazz.isArray()) {
+            ClassNode cn = getNextSuperClass(clazz.getComponentType(),goalClazz.getComponentType());
+            if (cn!=null) cn = cn.makeArray();
+            return cn;
+        }
+
+        if (!goalClazz.isInterface()) {
+            if (clazz.isInterface()) {
+                if (OBJECT_TYPE.equals(clazz)) return null;
+                return OBJECT_TYPE;
+            } else {
+                return clazz.getUnresolvedSuperClass();
+            }
+        }
+
+        ClassNode[] interfaces = clazz.getUnresolvedInterfaces();
+        for (int i=0; i<interfaces.length; i++) {
+            if (StaticTypeCheckingSupport.implementsInterfaceOrIsSubclassOf(interfaces[i],goalClazz)) {
+                return interfaces[i];
+            }
+        }
+        //none of the interfaces here match, so continue with super class
+        return clazz.getUnresolvedSuperClass();
     }
 }

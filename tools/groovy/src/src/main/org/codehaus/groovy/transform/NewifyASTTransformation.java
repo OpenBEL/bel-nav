@@ -1,25 +1,41 @@
-/*
- * Copyright 2008-2011 the original author or authors.
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
-
 package org.codehaus.groovy.transform;
 
 import groovy.lang.Newify;
 import org.codehaus.groovy.GroovyBugError;
-import org.codehaus.groovy.ast.*;
-import org.codehaus.groovy.ast.expr.*;
+import org.codehaus.groovy.ast.ASTNode;
+import org.codehaus.groovy.ast.AnnotatedNode;
+import org.codehaus.groovy.ast.AnnotationNode;
+import org.codehaus.groovy.ast.ClassCodeExpressionTransformer;
+import org.codehaus.groovy.ast.ClassNode;
+import org.codehaus.groovy.ast.FieldNode;
+import org.codehaus.groovy.ast.MethodNode;
+import org.codehaus.groovy.ast.expr.ClassExpression;
+import org.codehaus.groovy.ast.expr.ClosureExpression;
+import org.codehaus.groovy.ast.expr.ConstantExpression;
+import org.codehaus.groovy.ast.expr.ConstructorCallExpression;
+import org.codehaus.groovy.ast.expr.DeclarationExpression;
+import org.codehaus.groovy.ast.expr.Expression;
+import org.codehaus.groovy.ast.expr.ListExpression;
+import org.codehaus.groovy.ast.expr.MethodCallExpression;
+import org.codehaus.groovy.ast.expr.VariableExpression;
 import org.codehaus.groovy.control.CompilePhase;
 import org.codehaus.groovy.control.SourceUnit;
 
@@ -28,6 +44,10 @@ import java.util.List;
 import java.util.Arrays;
 import java.util.Set;
 
+import static org.codehaus.groovy.ast.ClassHelper.make;
+import static org.codehaus.groovy.ast.tools.GeneralUtils.callX;
+import static org.codehaus.groovy.ast.tools.GeneralUtils.classX;
+
 /**
  * Handles generation of code for the @Newify annotation.
  *
@@ -35,7 +55,7 @@ import java.util.Set;
  */
 @GroovyASTTransformation(phase = CompilePhase.CANONICALIZATION)
 public class NewifyASTTransformation extends ClassCodeExpressionTransformer implements ASTTransformation {
-    private static final ClassNode MY_TYPE = ClassHelper.make(Newify.class);
+    private static final ClassNode MY_TYPE = make(Newify.class);
     private static final String MY_NAME = MY_TYPE.getNameWithoutPackage();
     private static final String BASE_BAD_PARAM_ERROR = "Error during @" + MY_NAME +
             " processing. Annotation parameter must be a class or list of classes but found ";
@@ -93,7 +113,7 @@ public class NewifyASTTransformation extends ClassCodeExpressionTransformer impl
             VariableExpression ve = (VariableExpression) expr;
             ClassNode fromSourceUnit = getSourceUnitClass(ve);
             if (fromSourceUnit != null) {
-                ClassExpression found = new ClassExpression(fromSourceUnit);
+                ClassExpression found = classX(fromSourceUnit);
                 found.setSourcePosition(ve);
                 list.addExpression(found);
             } else {
@@ -108,7 +128,7 @@ public class NewifyASTTransformation extends ClassCodeExpressionTransformer impl
                     VariableExpression ve = (VariableExpression) next;
                     ClassNode fromSourceUnit = getSourceUnitClass(ve);
                     if (fromSourceUnit != null) {
-                        ClassExpression found = new ClassExpression(fromSourceUnit);
+                        ClassExpression found = classX(fromSourceUnit);
                         found.setSourcePosition(ve);
                         expressions.set(i, found);
                     } else {
@@ -145,12 +165,20 @@ public class NewifyASTTransformation extends ClassCodeExpressionTransformer impl
             }
             Expression method = transform(mce.getMethod());
             Expression object = transform(mce.getObjectExpression());
-            MethodCallExpression transformed = new MethodCallExpression(object, method, args);
+            MethodCallExpression transformed = callX(object, method, args);
             transformed.setSourcePosition(mce);
             return transformed;
+        } else if (expr instanceof ClosureExpression) {
+            ClosureExpression ce = (ClosureExpression) expr;
+            ce.getCode().visit(this);
+        } else if (expr instanceof ConstructorCallExpression) {
+            ConstructorCallExpression cce = (ConstructorCallExpression) expr;
+            if (cce.isUsingAnonymousInnerClass()) {
+                cce.getType().visitContents(this);
+            }
         } else if (expr instanceof DeclarationExpression) {
             DeclarationExpression de = (DeclarationExpression) expr;
-            if (de == candidate) {
+            if (de == candidate || auto) {
                 candidate = null;
                 Expression left = de.getLeftExpression();
                 Expression right = transform(de.getRightExpression());

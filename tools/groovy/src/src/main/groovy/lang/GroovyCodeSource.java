@@ -1,19 +1,21 @@
-/*
- * Copyright 2003-2013 the original author or authors.
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
-
 package groovy.lang;
 
 import groovy.security.GroovyCodeSourcePermission;
@@ -21,6 +23,7 @@ import groovy.util.CharsetToolkit;
 
 import java.io.*;
 import java.net.MalformedURLException;
+import java.net.URI;
 import java.net.URL;
 import java.security.AccessController;
 import java.security.CodeSource;
@@ -65,6 +68,8 @@ public class GroovyCodeSource {
     private boolean cachable;
 
     private File file;
+
+    private URL url;
 
     public GroovyCodeSource(String script, String name, String codeBase) {
         this.name = name;
@@ -155,10 +160,16 @@ public class GroovyCodeSource {
         this(infile, CharsetToolkit.getDefaultSystemCharset().name());
     }
 
+    public GroovyCodeSource(URI uri) throws IOException {
+        this(uri.toURL());
+    }
+
     public GroovyCodeSource(URL url) throws IOException {
         if (url == null) {
             throw new RuntimeException("Could not construct a GroovyCodeSource from a null URL");
         }
+        this.url = url;
+        // TODO: GROOVY-6561: GroovyMain got the name this way: script.substring(script.lastIndexOf("/") + 1)
         this.name = url.toExternalForm();
         this.codeSource = new CodeSource(url, (java.security.cert.Certificate[]) null);
         try {
@@ -187,6 +198,10 @@ public class GroovyCodeSource {
 
     public File getFile() {
         return file;
+    }
+
+    public URL getURL() {
+        return url;
     }
 
     public void setCachable(boolean b) {

@@ -1,24 +1,30 @@
-/*
- * Copyright 2003-2009 the original author or authors.
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package org.codehaus.groovy.classgen.asm;
 
 import java.lang.reflect.Modifier;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import org.codehaus.groovy.ast.ClassHelper;
 import org.codehaus.groovy.ast.ClassNode;
@@ -29,7 +35,17 @@ import org.objectweb.asm.MethodVisitor;
 import static org.objectweb.asm.Opcodes.*;
 
 public class MopWriter {
-    
+    public static interface Factory {
+        MopWriter create(WriterController controller);
+    }
+
+    public static final Factory FACTORY = new Factory() {
+        @Override
+        public MopWriter create(final WriterController controller) {
+            return new MopWriter(controller);
+        }
+    };
+
     private static class MopKey {
         int hash = 0;
         String name;
@@ -62,8 +78,19 @@ public class MopWriter {
         if (classNode.declaresInterface(ClassHelper.GENERATED_CLOSURE_Type)) {
             return;
         }
-        visitMopMethodList(classNode.getMethods(), true);
-        visitMopMethodList(classNode.getSuperClass().getAllDeclaredMethods(), false);
+        Set<MopKey> currentClassSignatures = buildCurrentClassSignatureSet(classNode.getMethods());
+        visitMopMethodList(classNode.getMethods(), true, Collections.EMPTY_SET);
+        visitMopMethodList(classNode.getSuperClass().getAllDeclaredMethods(), false, currentClassSignatures);
+    }
+
+    private Set<MopKey> buildCurrentClassSignatureSet(List<MethodNode> methods) {
+        if (methods.size()==0) return Collections.EMPTY_SET;
+        HashSet<MopKey> result = new HashSet<MopKey>(methods.size());
+        for (MethodNode mn : methods) {
+            MopKey key = new MopKey(mn.getName(), mn.getParameters());
+            result.add(key);
+        }
+        return result;
     }
     
     /**
@@ -77,12 +104,13 @@ public class MopWriter {
      * @param isThis  if true, then we are creating a MOP method on "this", "super" else
      * @see #generateMopCalls(LinkedList, boolean)
      */
-    private void visitMopMethodList(List methods, boolean isThis) {
+    private void visitMopMethodList(List<MethodNode> methods, boolean isThis, Set<MopKey> useOnlyIfDeclaredHereToo) {
         HashMap<MopKey, MethodNode> mops = new HashMap<MopKey, MethodNode>();
         LinkedList<MethodNode> mopCalls = new LinkedList<MethodNode>();
-        for (Object method : methods) {
-            MethodNode mn = (MethodNode) method;
-            if ((mn.getModifiers() & ACC_ABSTRACT) != 0) continue;
+        for (MethodNode mn : methods) {
+            // mop methods are helper for this and super calls and do direct calls
+            // to the target methods. Such a method cannot be abstract or a bridge
+            if ((mn.getModifiers() & (ACC_ABSTRACT | ACC_BRIDGE)) != 0) continue;
             if (mn.isStatic()) continue;
             // no this$ methods for non-private isThis=true
             // super$ method for non-private isThis=false
@@ -95,6 +123,7 @@ public class MopWriter {
                 continue;
             }
             if (methodName.startsWith("<")) continue;
+            if (!useOnlyIfDeclaredHereToo.contains(new MopKey(methodName, mn.getParameters()))) continue;
             String name = getMopMethodName(mn, isThis);
             MopKey key = new MopKey(name, mn.getParameters());
             if (mops.containsKey(key)) continue;
@@ -142,7 +171,7 @@ public class MopWriter {
      * @param mopCalls list of methods a mop call method should be generated for
      * @param useThis  true if "this" should be used for the naming
      */
-    private void generateMopCalls(LinkedList<MethodNode> mopCalls, boolean useThis) {
+    protected void generateMopCalls(LinkedList<MethodNode> mopCalls, boolean useThis) {
         for (MethodNode method : mopCalls) {
             String name = getMopMethodName(method, useThis);
             Parameter[] parameters = method.getParameters();
@@ -160,7 +189,11 @@ public class MopWriter {
                 if (type == ClassHelper.double_TYPE || type == ClassHelper.long_TYPE) newRegister++;
             }
             operandStack.remove(parameters.length);
-            mv.visitMethodInsn(INVOKESPECIAL, BytecodeHelper.getClassInternalName(method.getDeclaringClass()), method.getName(), methodDescriptor);
+            ClassNode declaringClass = method.getDeclaringClass();
+            // JDK 8 support for default methods in interfaces
+            // this should probably be strenghtened when we support the A.super.foo() syntax
+            int opcode = declaringClass.isInterface()?INVOKEINTERFACE:INVOKESPECIAL;
+            mv.visitMethodInsn(opcode, BytecodeHelper.getClassInternalName(declaringClass), method.getName(), methodDescriptor, opcode == INVOKEINTERFACE);
             BytecodeHelper.doReturn(mv, method.getReturnType());
             mv.visitMaxs(0, 0);
             mv.visitEnd();
