@@ -1,8 +1,6 @@
 package org.openbel.ws.internal
 
-import org.cytoscape.model.CyEdge
 import org.cytoscape.model.CyNetwork
-import org.cytoscape.model.CyNode
 import org.cytoscape.work.TaskIterator
 import org.openbel.framework.common.enums.FunctionEnum
 import org.openbel.framework.common.enums.RelationshipType
@@ -216,7 +214,16 @@ class BasicWsAPI implements WsAPI {
             cyN.getRow(it).set('kam.id', null)
         }
 
-        def validBELNodes = cyN.nodeList.
+        def validCyNodes = cyN.nodeList.
+                findAll { n ->
+                    def bel = toBEL(cyN, n)
+                    if (!bel) return false
+                    def wsFx = toWS(bel.fx)
+                    if (!wsFx) return false
+                    true
+                }
+
+        def validBELNodes = validCyNodes
                 collect { n ->
                     def bel = toBEL(cyN, n)
                     if (!bel) return null
@@ -252,7 +259,7 @@ class BasicWsAPI implements WsAPI {
         def resNodes = response.ResolveNodesResponse.kamNodes.iterator()
         if (!resNodes || !resNodes.hasNext()) [].asImmutable()
 
-        eligibleNodes.collect { n ->
+        validBELNodes.collect { n ->
             if (!resNodes.hasNext()) return null
 
             def wsNode = resNodes.next()
