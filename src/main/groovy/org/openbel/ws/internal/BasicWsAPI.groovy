@@ -223,7 +223,7 @@ class BasicWsAPI implements WsAPI {
                     true
                 }
 
-        def validBELNodes = validCyNodes
+        def validBELNodes = validCyNodes.
                 collect { n ->
                     def bel = toBEL(cyN, n)
                     if (!bel) return null
@@ -259,7 +259,7 @@ class BasicWsAPI implements WsAPI {
         def resNodes = response.ResolveNodesResponse.kamNodes.iterator()
         if (!resNodes || !resNodes.hasNext()) [].asImmutable()
 
-        validBELNodes.collect { n ->
+        validCyNodes.collect { n ->
             if (!resNodes.hasNext()) return null
 
             def wsNode = resNodes.next()
@@ -308,7 +308,7 @@ class BasicWsAPI implements WsAPI {
             if (!targetWsFx) return null
             tgt.fx = targetWsFx
 
-            [ source: src, relationship: wsR, target: tgt]
+            [ source: src, relationship: wsR, target: tgt, cyE: e]
         }
         if (!validBELEdges) return [].asImmutable()
 
@@ -347,18 +347,19 @@ class BasicWsAPI implements WsAPI {
         def resEdges = response.ResolveEdgesResponse.kamEdges.iterator()
         if (!resEdges || !resEdges.hasNext()) [].asImmutable()
 
-        eligibleEdges.collect { e ->
+        validBELEdges.collect { edge ->
             if (!resEdges.hasNext()) return null
 
             def wsEdge = resEdges.next()
             def isNil = wsEdge.attributes()['{http://www.w3.org/2001/XMLSchema-instance}nil']
             if (isNil) return null
 
-            def edgeLabel = computeEdgeLabel(cyN, e)
-            cyN.getRow(e).set(NAME, edgeLabel)
-            cyN.getRow(e).set("shared name", edgeLabel)
-            cyN.getRow(e).set('linked', true)
-            cyN.getRow(e).set("kam.id", wsEdge.id.toString())
+            def cyE       = edge.cyE
+            def edgeLabel = computeEdgeLabel(cyN, cyE)
+            cyN.getRow(cyE).set(NAME, edgeLabel)
+            cyN.getRow(cyE).set("shared name", edgeLabel)
+            cyN.getRow(cyE).set('linked', true)
+            cyN.getRow(cyE).set("kam.id", wsEdge.id.toString())
             [
                 id: wsEdge.id.toString(),
                 source: [
