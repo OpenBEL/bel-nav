@@ -1,10 +1,7 @@
 *.iml
 *.ipr
 *.iws
-.gradle
-build
-tools/gradle
-tools/gradle-wrapper/*-bin
+/target/
 tools/cytoscape/framework/instances/instance.properties
 tools/cytoscape/framework/data/*
 tools/cytoscape/work/*

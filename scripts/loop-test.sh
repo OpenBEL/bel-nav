@@ -5,7 +5,7 @@ cd "${DIR}" || exit 1
 . env.sh || exit 1
 
 while inotifywait -qq -r -e modify "$DEV_SOURCE_DIR" -e modify "$DEV_TEST_DIR"; do
-    gradle -q test
+    mvn -q test
     if [ "$?" != "0" ]; then 
         notify-send -t 3000 "Failed compilation.\n\n$RESULT"
         echo "$RESULT" 2>&1

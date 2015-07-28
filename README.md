@@ -35,7 +35,7 @@ Explore OpenBEL knowledge networks within Cytoscape 3.
 
 *Development*
 
-The *kam-nav* plugin is built with Groovy and uses a gradle build system.
+The *kam-nav* plugin is built with Groovy and uses a maven build system.
 
 Additionally it includes the [gosh](https://github.com/formwork-io/gosh) shell tool to drive development functions. This shell tool is based on bash so it works within Mac, Linux, and Windows w/ Cygwin.
 
@@ -44,7 +44,8 @@ An isolated version of Cytoscape 3 is included in the repository to ease develop
 To get started follow these steps:
 
 1. Clone repository: `git clone git@github.com:OpenBEL/kam-nav.git`
-2. Execute the `go.sh` shell script. Gradle will be downloaded when needed.
+2. Install maven.
+3. Execute the `go.sh` shell script.
 
 ```bash
 [tony@starship kam-nav]$ ./go.sh 
