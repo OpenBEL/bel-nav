@@ -309,7 +309,8 @@ class BasicWsAPI implements WsAPI {
             tgt.fx = targetWsFx
 
             [ source: src, relationship: wsR, target: tgt, cyE: e]
-        }
+        }.findAll()
+
         if (!validBELEdges) return [].asImmutable()
 
         def response
