@@ -1,6 +1,6 @@
 package org.openbel.ws.internal
 
-import org.openbel.kamnav.core.Activator
+import org.openbel.belnav.core.Activator
 import org.openbel.ws.api.WsAPI
 import org.openbel.ws.api.WsManager
 import org.slf4j.Logger

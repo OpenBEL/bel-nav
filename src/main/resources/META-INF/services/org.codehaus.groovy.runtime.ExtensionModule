@@ -1,4 +1,4 @@
-moduleName=kamnav-common
+moduleName=belnav
 moduleVersion=1.0.0
-extensionClasses=org.openbel.kamnav.common.extensions.NodeChildExtensionMethods
+extensionClasses=org.openbel.belnav.common.extensions.NodeChildExtensionMethods
 staticExtensionClasses=

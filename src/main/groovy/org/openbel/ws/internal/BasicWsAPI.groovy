@@ -5,9 +5,9 @@ import org.cytoscape.work.TaskIterator
 import org.openbel.framework.common.enums.FunctionEnum
 import org.openbel.framework.common.enums.RelationshipType
 import org.openbel.framework.ws.model.FunctionType
-import org.openbel.kamnav.common.model.Edge
-import org.openbel.kamnav.common.model.Namespace
-import org.openbel.kamnav.common.model.Node
+import org.openbel.belnav.common.model.Edge
+import org.openbel.belnav.common.model.Namespace
+import org.openbel.belnav.common.model.Node
 import org.openbel.ws.api.WsAPI
 import wslite.http.HTTPClient
 import org.slf4j.Logger
@@ -20,10 +20,10 @@ import java.util.regex.Pattern
 
 import static org.cytoscape.model.CyEdge.INTERACTION
 import static org.cytoscape.model.CyNetwork.NAME
-import static org.openbel.kamnav.common.util.EdgeUtil.computeEdgeLabel
-import static org.openbel.kamnav.common.util.EdgeUtil.createEdgeColumns
-import static org.openbel.kamnav.common.util.NodeUtil.createNodeColumns
-import static org.openbel.kamnav.common.util.NodeUtil.toBEL
+import static org.openbel.belnav.common.util.EdgeUtil.computeEdgeLabel
+import static org.openbel.belnav.common.util.EdgeUtil.createEdgeColumns
+import static org.openbel.belnav.common.util.NodeUtil.createNodeColumns
+import static org.openbel.belnav.common.util.NodeUtil.toBEL
 
 /**
  * {@link WsAPI} implementation using groovy-wslite (soap xml builders).

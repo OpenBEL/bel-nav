@@ -3,9 +3,9 @@ package org.openbel.ws.api
 import org.cytoscape.io.webservice.WebServiceClient
 import org.cytoscape.model.CyNetwork
 import org.openbel.framework.common.enums.FunctionEnum
-import org.openbel.kamnav.common.model.Edge
-import org.openbel.kamnav.common.model.Namespace
-import org.openbel.kamnav.common.model.Node
+import org.openbel.belnav.common.model.Edge
+import org.openbel.belnav.common.model.Namespace
+import org.openbel.belnav.common.model.Node
 
 import java.util.regex.Pattern
 

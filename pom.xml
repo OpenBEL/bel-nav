@@ -5,15 +5,15 @@
         <maven-compiler-plugin.version>3.3</maven-compiler-plugin.version>
         <maven-bundle-plugin.version>2.4.0</maven-bundle-plugin.version>
         <osgi.api.version>4.2.0</osgi.api.version>
-        <bundle.symbolicName>org.openbel.kamnav</bundle.symbolicName>
+        <bundle.symbolicName>org.openbel.belnav</bundle.symbolicName>
     <local.libs>${basedir}/libs/compile</local.libs>
     </properties>
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.openbel</groupId>
-    <artifactId>kamnav</artifactId>
+    <artifactId>belnav</artifactId>
     <version>1.0.0</version>
-    <name>KAM Navigator</name>
+    <name>BEL Navigator</name>
     <description>A Cytoscape app that connects to the OpenBEL Framework to explore knowledge networks.</description>
     <packaging>bundle</packaging>
 
@@ -132,10 +132,10 @@
                         <Bundle-Version>${project.version}</Bundle-Version>
 
                         <!-- OSGi Package Dependencies -->
-                        <Bundle-Activator>org.openbel.kamnav.core.Activator</Bundle-Activator>
+                        <Bundle-Activator>org.openbel.belnav.core.Activator</Bundle-Activator>
                         <Embed-Dependency>*;scope=!provided|test;groupId=!org.cytoscape</Embed-Dependency>
                         <Embed-Transitive>true</Embed-Transitive>
-                        <Export-Package>org.openbel.kamnav.core.*,org.openbel.ws.*</Export-Package>
+                        <Export-Package>org.openbel.belnav.core.*,org.openbel.ws.*</Export-Package>
                         <Import-Package>*;resolution:=optional;org.codehaus.groovy.runtime.typehandling</Import-Package>
                     </instructions>
                 </configuration>

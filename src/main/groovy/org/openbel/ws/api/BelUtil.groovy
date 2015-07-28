@@ -1,6 +1,6 @@
 package org.openbel.ws.api
 
-import org.openbel.kamnav.common.model.Edge
+import org.openbel.belnav.common.model.Edge
 
 import static org.openbel.framework.common.enums.RelationshipType.*
 
