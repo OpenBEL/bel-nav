@@ -1,28 +1,34 @@
-/*
- * Copyright 2003-2013 the original author or authors.
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
-
 package org.codehaus.groovy.runtime;
 
 import groovy.lang.GroovyRuntimeException;
+import org.codehaus.groovy.vmplugin.VMPlugin;
+import org.codehaus.groovy.vmplugin.VMPluginFactory;
 
 import java.io.Serializable;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.lang.reflect.Proxy;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * This class is a general adapter to map a call to a Java interface
@@ -34,6 +40,10 @@ import java.lang.reflect.Proxy;
 public abstract class ConversionHandler implements InvocationHandler, Serializable {
     private Object delegate;
     private static final long serialVersionUID = 1162833717190835227L;
+    private ConcurrentHashMap handleCache;
+    {
+        if (VMPluginFactory.getPlugin().getVersion()>=7) handleCache = new ConcurrentHashMap();
+    }
 
     /**
      * Creates a ConversionHandler with an delegate.
@@ -58,15 +68,19 @@ public abstract class ConversionHandler implements InvocationHandler, Serializab
     /**
      * This method is a default implementation for the invoke method given in
      * InvocationHandler. Any call to a method with a declaring class that is
-     * not Object, excluding toString(), is redirected to invokeCustom.
+     * not Object, excluding toString() and default methods is redirected to invokeCustom.
+     * <p>
      * Methods like equals and hashcode are called on the class itself instead
      * of the delegate because they are considered fundamental methods that should
      * not be overwritten. The toString() method gets special treatment as it is
      * deemed to be a method that you might wish to override when called from Groovy.
-     * <p>
+     * Interface default methods from Java 8 on the other hand are considered being
+     * default implementations you don't normally want to change. So they are called
+     * directly too
+     * </p><p>
      * In many scenarios, it is better to overwrite the invokeCustom method where
      * the core Object related methods are filtered out.
-     *
+     *</p>
      * @param proxy  the proxy
      * @param method the method
      * @param args   the arguments
@@ -76,6 +90,16 @@ public abstract class ConversionHandler implements InvocationHandler, Serializab
      * @see InvocationHandler#invoke(java.lang.Object, java.lang.reflect.Method, java.lang.Object[])
      */
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+        VMPlugin plugin = VMPluginFactory.getPlugin();
+        if (plugin.getVersion()>=7 && isDefaultMethod(method)) {
+            Object handle = handleCache.get(method);
+            if (handle == null) {
+                handle = plugin.getInvokeSpecialHandle(method, proxy);
+                handleCache.put(method, handle);
+            }
+            return plugin.invokeHandle(handle, args);
+        }
+
         if (!checkMethod(method)) {
             try {
                 return invokeCustom(proxy, method, args);
@@ -83,11 +107,17 @@ public abstract class ConversionHandler implements InvocationHandler, Serializab
                 throw ScriptBytecodeAdapter.unwrap(gre);
             }
         }
+
         try {
             return method.invoke(this, args);
         } catch (InvocationTargetException ite) {
             throw ite.getTargetException();
         }
+    }
+
+    protected boolean isDefaultMethod(Method method) {
+        return ((method.getModifiers() & (Modifier.ABSTRACT | Modifier.PUBLIC | Modifier.STATIC)) ==
+                Modifier.PUBLIC) && method.getDeclaringClass().isInterface();
     }
 
     protected boolean checkMethod(Method method) {

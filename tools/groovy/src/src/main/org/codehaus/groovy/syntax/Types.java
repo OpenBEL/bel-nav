@@ -1,19 +1,21 @@
-/*
- * Copyright 2003-2007 the original author or authors.
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
-
 package org.codehaus.groovy.syntax;
 
 import java.util.HashMap;
@@ -33,8 +35,6 @@ import org.codehaus.groovy.GroovyBugError;
  *
  *  @author <a href="mailto:bob@werken.com">bob mcwhirter</a>
  *  @author <a href="mailto:cpoirier@dreaming.org">Chris Poirier</a>
- *
- *  @version $Id$
  */
 
 public class Types
@@ -290,7 +290,7 @@ public class Types
     public static final int GSTRING_START               = 901;   // any marker tha begins a GString
     public static final int GSTRING_END                 = 902;   // any matching marker that ends a GString
     public static final int GSTRING_EXPRESSION_START    = 903;   // the ${ marker that starts a GString expression
-    public static final int GSTRING_EXPRESSION_END      = 904;   // the } marker that ends a GString expresssion
+    public static final int GSTRING_EXPRESSION_END      = 904;   // the } marker that ends a GString expression
 
 
     //
@@ -967,7 +967,7 @@ public class Types
 
 
    /**
-    *  Returns the precendence of the specified operator.  Non-operator's will
+    *  Returns the precedence of the specified operator.  Non-operator's will
     *  receive -1 or a GroovyBugError, depending on your preference.
     */
 

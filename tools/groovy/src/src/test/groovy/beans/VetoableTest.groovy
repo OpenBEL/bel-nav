@@ -1,19 +1,21 @@
 /*
- * Copyright 2008-2012 the original author or authors.
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
-
 package groovy.beans
 
 import org.codehaus.groovy.control.CompilationFailedException
@@ -23,7 +25,7 @@ import org.codehaus.groovy.control.CompilationFailedException
  */
 class VetoableTest extends GroovyTestCase {
 
-    public void testSimpleConstrainedProperty() {
+    void testSimpleConstrainedProperty() {
         GroovyShell shell = new GroovyShell()
         shell.evaluate("""
             import groovy.beans.Vetoable
@@ -54,7 +56,7 @@ class VetoableTest extends GroovyTestCase {
         assert shell.changed
     }
 
-    public void testBindableVetoableProperty() {
+    void testBindableVetoableProperty() {
         GroovyShell shell = new GroovyShell()
         shell.evaluate("""
             import groovy.beans.Bindable
@@ -79,7 +81,7 @@ class VetoableTest extends GroovyTestCase {
         assert shell.vetoCheck
     }
 
-    public void testMultipleProperties() {
+    void testMultipleProperties() {
         GroovyShell shell = new GroovyShell()
         shell.evaluate("""
             import groovy.beans.Bindable
@@ -112,18 +114,17 @@ class VetoableTest extends GroovyTestCase {
         assert shell.changed == 8
     }
 
-    public void testExisingSetter() {
-    GroovyShell shell = new GroovyShell()
-        shell.evaluate("""
+    void testExisingSetter() {
+        assertScript """
             class VetoableTestBean4 {
                 @groovy.beans.Vetoable String name
                 void setName() { }
             }
             new VetoableTestBean4()
-        """)
+        """
     }
 
-    public void testWithSettersAndGetters() {
+    void testWithSettersAndGetters() {
         for (int i = 0; i < 16; i++) {
             boolean vetoClass = i & 1
             boolean field = i & 2
@@ -161,8 +162,7 @@ class VetoableTest extends GroovyTestCase {
     }
 
 
-
-    public void testOnField() {
+    void testOnField() {
         GroovyShell shell = new GroovyShell()
         shouldFail(CompilationFailedException) {
             shell.evaluate("""
@@ -173,7 +173,7 @@ class VetoableTest extends GroovyTestCase {
         }
     }
 
-    public void testOnStaticField() {
+    void testOnStaticField() {
         GroovyShell shell = new GroovyShell()
         shouldFail(CompilationFailedException) {
             shell.evaluate("""
@@ -184,7 +184,7 @@ class VetoableTest extends GroovyTestCase {
         }
     }
 
-    public void testInheritance() {
+    void testInheritance() {
         for (int i = 0; i < 15; i++) {
             boolean bindParent = i & 1
             boolean bindChild  = i & 2
@@ -225,9 +225,8 @@ class VetoableTest extends GroovyTestCase {
         }
     }
 
-    public void testPrimitiveTypes() {
-        GroovyShell shell = new GroovyShell()
-        shell.evaluate("""
+    void testPrimitiveTypes() {
+        assertScript """
                 import groovy.beans.Vetoable
 
                 class VetoableTestBean8 {
@@ -254,10 +253,10 @@ class VetoableTest extends GroovyTestCase {
                 sb.testFloat = 1
                 sb.testDouble = 1
                 assert changed == 8
-            """)
+            """
     }
 
-    public void testBadInheritance() {
+    void testBadInheritance() {
         shouldFail(CompilationFailedException) {
             GroovyShell shell = new GroovyShell()
             shell.evaluate("""
@@ -288,9 +287,8 @@ class VetoableTest extends GroovyTestCase {
         }
     }
 
-    public void testVetoableParent() {
-        GroovyShell shell = new GroovyShell()
-        shell.evaluate("""
+    void testVetoableParent() {
+        assertScript """
             import groovy.beans.Vetoable
             import java.beans.PropertyChangeEvent
             import java.beans.VetoableChangeListener
@@ -314,10 +312,10 @@ class VetoableTest extends GroovyTestCase {
             }
 
             new VetoableTestBeanChild()
-        """)
+        """
     }
 
-    public void testFinalProperty() {
+    void testFinalProperty() {
         shouldFail(CompilationFailedException) {
             GroovyShell shell = new GroovyShell()
             shell.evaluate("""
@@ -331,7 +329,7 @@ class VetoableTest extends GroovyTestCase {
         }
     }
 
-    public void testOnClassFinalProperty() {
+    void testOnClassFinalProperty() {
         shouldFail(ReadOnlyPropertyException) {
             GroovyShell shell = new GroovyShell()
             shell.evaluate("""
@@ -353,7 +351,7 @@ class VetoableTest extends GroovyTestCase {
         }
     }
 
-    public void testFinalClass() {
+    void testFinalClass() {
         shouldFail(ReadOnlyPropertyException) {
             GroovyShell shell = new GroovyShell()
             shell.evaluate("""
@@ -375,7 +373,7 @@ class VetoableTest extends GroovyTestCase {
         }
     }
 
-    public void testClassMarkers() {
+    void testClassMarkers() {
         for (int i = 0; i < 31; i++) {
             boolean bindField  = i & 1
             boolean bindClass  = i & 2
@@ -424,9 +422,8 @@ class VetoableTest extends GroovyTestCase {
         }
     }
 
-    public void testGetVetoableChangeListeners() {
-        GroovyShell shell = new GroovyShell()
-        shell.evaluate("""
+    void testGetVetoableChangeListeners() {
+        assertScript """
             import groovy.beans.Vetoable
             import java.beans.VetoableChangeListener
             import java.beans.PropertyChangeEvent
@@ -447,6 +444,19 @@ class VetoableTest extends GroovyTestCase {
             assert !sb.getVetoableChangeListeners("bar")
             assert sb.getVetoableChangeListeners("foo") == [listener]
             assert sb.vetoableChangeListeners.size() == 1
-        """)
+        """
+    }
+
+    void testPropertyChangeMethodWithCompileStatic() {
+        assertScript """
+            import groovy.beans.Vetoable
+            import groovy.transform.CompileStatic
+
+            @CompileStatic
+            class MyBean {
+                @Vetoable String test = "a test"
+            }
+            assert new MyBean()
+        """
     }
 }

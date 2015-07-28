@@ -1,17 +1,20 @@
-/*
- * Copyright 2003-2013 the original author or authors.
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package org.codehaus.groovy.control.customizers.builder;
 
@@ -63,6 +66,11 @@ import java.util.Map;
  *     builder.source(unitValidator: { unit -> !unit.AST.classes.any { it.name == 'Baz' } }) {
  *         ast(CompileStatic)
  *     }
+ *
+ *     // apply CompileStatic AST annotation on class nodes that end with 'CS'
+ *     builder.source(classValidator: { cn -> cn.name.endsWith('CS') }) {
+ *         ast(CompileStatic)
+ *     }
  * </code></pre>
  *
  * @author Cedric Champeau
@@ -97,6 +105,7 @@ public class SourceAwareCustomizerFactory extends AbstractFactory implements Pos
         addExtensionValidator(sourceAwareCustomizer, data);
         addBasenameValidator(sourceAwareCustomizer, data);
         if (data.unitValidator!=null) sourceAwareCustomizer.setSourceUnitValidator(data.unitValidator);
+        if (data.classValidator!=null) sourceAwareCustomizer.setClassValidator(data.classValidator);
         return sourceAwareCustomizer;
     }
 
@@ -138,6 +147,7 @@ public class SourceAwareCustomizerFactory extends AbstractFactory implements Pos
         public Closure<Boolean> extensionValidator;
         public Closure<Boolean> unitValidator;
         public Closure<Boolean> basenameValidator;
+        public Closure<Boolean> classValidator;
 
         // validate with one string
         public String extension;

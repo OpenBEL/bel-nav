@@ -1,3 +1,21 @@
+/*
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
+ */
 // Note: Please don't use physical tabs.  Logical tabs for indent are width 4.
 header {
 package org.codehaus.groovy.antlr.parser;
@@ -194,7 +212,7 @@ import antlr.TokenStreamRecognitionException;
  *    o fixed various rules so that they call the correct Create Method
  *      to make sure that the line information are correct
  *
- * This grammar is in the PUBLIC DOMAIN
+ * Based on an original grammar released in the PUBLIC DOMAIN
  */
 
 class GroovyRecognizer extends Parser;
@@ -209,7 +227,7 @@ options {
 
 tokens {
     BLOCK; MODIFIERS; OBJBLOCK; SLIST; METHOD_DEF; VARIABLE_DEF;
-    INSTANCE_INIT; STATIC_INIT; TYPE; CLASS_DEF; INTERFACE_DEF;
+    INSTANCE_INIT; STATIC_INIT; TYPE; CLASS_DEF; INTERFACE_DEF; TRAIT_DEF;
     PACKAGE_DEF; ARRAY_DECLARATOR; EXTENDS_CLAUSE; IMPLEMENTS_CLAUSE;
     PARAMETERS; PARAMETER_DEF; LABELED_STAT; TYPECAST; INDEX_OP;
     POST_INC; POST_DEC; METHOD_CALL; EXPR;
@@ -535,6 +553,8 @@ importStatement
 protected typeDefinitionInternal[AST mods]
     :   cd:classDefinition[#mods]       // inner class
         {#typeDefinitionInternal = #cd;}
+    |   td:traitDefinition[#mods]       // inner trait
+        {#typeDefinitionInternal = #td;}
     |   id:interfaceDefinition[#mods]   // inner interface
         {#typeDefinitionInternal = #id;}
     |   ed:enumDefinition[#mods]        // inner enum
@@ -678,7 +698,7 @@ constructorStart!
 just stop at '@', because variable and method declarations can also be
 annotated.
 > typeDeclarationStart!
->     :   (modifier!)* ("class" | "interface" | "enum" | AT )
+>     :   (modifier!)* ("class" | "interface" | "enum" | "trait" | AT )
 S.B. something like
 >     :   (modifier! | annotationTokens!)* ("class" | "interface" |
 > "enum" )
@@ -689,7 +709,7 @@ places: '@' ident '(' balancedTokens ')'.
 */
 
 typeDeclarationStart!
-    :   modifiersOpt! ("class" | "interface" | "enum" | AT "interface")
+    :   modifiersOpt! ("class" | "interface" | "enum" | "trait" | AT "interface")
     ;
 
 /** An IDENT token whose spelling is required to start with an uppercase letter.
@@ -1020,7 +1040,6 @@ annotationMemberArrayInitializer
         )?
         RCURLY!
     ;
-*OBS*/
 
 // The two things that can initialize an annotation array element are a conditional expression
 // and an annotation (nested annotation array initialisers are not valid)
@@ -1028,6 +1047,7 @@ annotationMemberArrayValueInitializer
     :   conditionalExpression[0]
     |   annotation nls!
     ;
+*OBS*/
 
 superClassClause!
     {Token first = LT(1);}
@@ -1054,6 +1074,28 @@ if (modifiers != null) {
         // now parse the body of the class
         cb:classBlock
         {#classDefinition = #(create(CLASS_DEF,"CLASS_DEF",first,LT(1)),
+                                                            modifiers,IDENT,tp,sc,ic,cb);}
+        { currentClass = prevCurrentClass; }
+    ;
+
+// Definition of a Trait
+traitDefinition![AST modifiers]
+{Token first = cloneToken(LT(1));AST prevCurrentClass = currentClass;
+if (modifiers != null) {
+     first.setLine(modifiers.getLine());
+     first.setColumn(modifiers.getColumn());
+}}
+    :   "trait" IDENT nls!
+       { currentClass = #IDENT; }
+        // it _might_ have type parameters
+        (tp:typeParameters nls!)?
+        // it _might_ have a superclass...
+        sc:superClassClause
+        // it might implement some interfaces...
+        ic:implementsClause
+        // now parse the body of the class
+        cb:classBlock
+        {#traitDefinition = #(create(TRAIT_DEF, "TRAIT_DEF",first,LT(1)),
                                                             modifiers,IDENT,tp,sc,ic,cb);}
         { currentClass = prevCurrentClass; }
     ;
@@ -1256,50 +1298,58 @@ enumConstantBlock  {Token first = LT(1);}
 
 // TODO - maybe allow 'declaration' production within this production,
 // but how to disallow constructors and static initializers...
-enumConstantField!  {Token first = LT(1);}
-    :   mods:modifiersOpt!
-        (   td:typeDefinitionInternal[#mods]
+enumConstantField! {Token first = LT(1);}
+    :   (
+            (typeDeclarationStart)=>
+            mods:modifiersOpt!
+            td:typeDefinitionInternal[#mods]
             {#enumConstantField = #td;}
-        |   // A generic method has the typeParameters before the return type.
-            // This is not allowed for variable definitions, but this production
-            // allows it, a semantic check could be used if you wanted.
-            (tp:typeParameters)? t:typeSpec[false]          // method or variable declaration(s)
-            (
-                // Need a syntactic predicate, since variableDefinitions
-                // can start with foo() also.  Since method defs are not legal
-                // in this context, there's no harm done.
-                (IDENT LPAREN)=>
-
-                IDENT                                     // the name of the method
-
-                // parse the formal parameter declarations.
-                LPAREN! param:parameterDeclarationList RPAREN!
-
-                /*OBS* rt:declaratorBrackets[#t] *OBS*/
-
-                // get the list of exceptions that this method is
-                // declared to throw
-                ((nls "throws") => tc:throwsClause)?
-
-                ( s2:compoundStatement )?
-                // TODO - verify that 't' is useful/correct here, used to be 'rt'
-                {#enumConstantField = #(create(METHOD_DEF,"METHOD_DEF",first,LT(1)),
-                                         mods,
-                                         tp,
-                                         #(create(TYPE,"TYPE",first,LT(1)),t),
-                                         IDENT,
-                                         param,
-                                         tc,
-                                         s2);}
-
-            |   v:variableDefinitions[#mods,#t]
-                {#enumConstantField = #v;}
-            )
+        |
+            (modifiers)=>
+            m1:modifiers
+            (tp1:typeParameters)? (t1:typeSpec[false])?
+            e1:enumConstantFieldInternal[#m1, #tp1, #t1, #first]
+            {#enumConstantField = #e1;}
+        |
+            m2:modifiersOpt!
+            (tp2:typeParameters)? t2:typeSpec[false]
+            e2:enumConstantFieldInternal[#m2, #tp2, #t2, #first]
+            {#enumConstantField = #e2;}
         )
+    |   cs:compoundStatement
+        {#enumConstantField = #(create(INSTANCE_INIT,"INSTANCE_INIT",first,LT(1)), cs);}
+    ;
 
-        // "{ ... }" instance initializer
-    |   s4:compoundStatement
-        {#enumConstantField = #(create(INSTANCE_INIT,"INSTANCE_INIT",first,LT(1)), s4);}
+protected enumConstantFieldInternal![AST mods, AST tp, AST t, Token first]
+    :
+        // Need a syntactic predicate to avoid potential ambiguity
+        (IDENT LPAREN)=>
+        IDENT
+
+        // parse the formal parameter declarations.
+        LPAREN! param:parameterDeclarationList RPAREN!
+
+        // get the list of declared exceptions
+        ((nls "throws") => tc:throwsClause)?
+
+        ( s2:compoundStatement )?
+        {
+            #enumConstantFieldInternal = #(create(METHOD_DEF,"METHOD_DEF",first,LT(1)),
+                    mods,
+                    #(create(TYPE,"TYPE",first,LT(1)),t),
+                    IDENT,
+                    param,
+                    tc,
+                    s2);
+            if (tp != null) {
+                AST old = #enumConstantFieldInternal.getFirstChild();
+                #enumConstantFieldInternal.setFirstChild(#tp);
+                #tp.setNextSibling(old);
+            }
+        }
+
+    |   v:variableDefinitions[#mods,#t]
+        {#enumConstantFieldInternal = #v;}
     ;
 
 // An interface can extend several other interfaces...
@@ -1594,21 +1644,6 @@ initializer
     ;
 *OBS*/
 
-/*OBS???
-// This is the header of a method. It includes the name and parameters
-// for the method.
-// This also watches for a list of exception classes in a "throws" clause.
-ctorHead
-    :   IDENT // the name of the method
-
-        // parse the formal parameter declarations.
-        LPAREN! parameterDeclarationList RPAREN!
-
-        // get the list of exceptions that this method is declared to throw
-        (throwsClause)?
-    ;
-*OBS*/
-
 // This is a list of exception classes that the method is declared to throw
 throwsClause
     :   nls! "throws"^ nls! identifier ( COMMA! nls! identifier )*
@@ -1688,7 +1723,7 @@ multicatch
 variableLengthParameterDeclaration!  {Token first = LT(1);}
     :   pm:parameterModifier t:typeSpec[false] TRIPLE_DOT! id:IDENT
 
-        /*OBS* pd:declaratorBrackets[#t]* /
+        pd:declaratorBrackets[#t]
         {#variableLengthParameterDeclaration = #(create(VARIABLE_PARAMETER_DEF,"VARIABLE_PARAMETER_DEF",first,LT(1)),
                                                                                             pm, #(create(TYPE,"TYPE",first,LT(1)),t), id);}
     ;
@@ -2292,27 +2327,28 @@ commandArgument
 //         nextHigherPrecedenceExpression
 //                 (OPERATOR nextHigherPrecedenceExpression)*
 // which is a standard recursive definition for a parsing an expression.
-// The operators in java have the following precedences:
-//      lowest  ( 15)  = **= *= /= %= += -= <<= >>= >>>= &= ^= |=
+// The operators have the following precedences:
+//      lowest  ( 15)  = **= *= /= %= += -= <<= >>= >>>= &= ^= |= (assignments)
 //              ( 14)  ?: (conditional expression and elvis)
-//              ( 13)  ||
-//              ( 12)  &&
-//              ( 11)  |
-//              ( 10)  ^
-//              (  9)  &
-//              (8.5)  =~ ==~
-//              (  8)  == != <=> === !==
-//              (  7)  < <= > >= instanceof as in
-//              (  6)  << >> .. ..<
-//              (  5)  +(binary) -(binary)
-//              (  4)  * / %
-//              (  3)  **(power)
-//              (  2)  ++(pre) --(pre) +(unary) -(unary)
-//              (  1)  ~  ! $ (type) ++(post) --(post)
-//                     . ?. *. (dot -- identifier qualification)
-//                     []   () (method call)  {} (closableBlock)  [] (list/map)
-//                     new  () (explicit parenthesis)
-//                     $x (scope escape)
+//              ( 13)  || (logical or)
+//              ( 12)  && (logical and)
+//              ( 11)  | ()binary or
+//              ( 10)  ^ (binary xor)
+//              (  9)  & (binary and)
+//              (8.5)  =~ ==~ (regex find/match)
+//              (  8)  == != <=> === !== (equals, not equals, compareTo)
+//              (  7)  < <= > >= instanceof as in (relational, in, instanceof, type coercion)
+//              (  6)  << >> >>> .. ..< (shift, range)
+//              (  5)  + - (addition, subtraction)
+//              (  4)  * / % (multiply div modulo)
+//              (  3)  ++ -- + - (pre dec/increment, unary signs)
+//              (  2)  ** (power)
+//              (  1)  ~ ! $ (type) (negate, not, typecast)
+//                     ?. * *. *: (safe dereference, spread, spread-dot, spread-map)
+//                     . .& .@ (member access, method closure, field/attribute access)
+//                     [] ++ -- (list/map/array index, post inc/decrement)
+//                     () {} [] (method call, closableBlock, list/map literal)
+//                     new () (object creation, explicit parenthesis)
 //
 // the last two are not usually on a precedence chart; I put them in
 // to point out that new has a higher precedence than '.', so you
@@ -2330,10 +2366,10 @@ commandArgument
 // in contexts where we know we have an expression.  It allows general Java-type expressions.
 expression[int lc_stmt]
     :
-        (LPAREN typeSpec[true] RPAREN expression[lc_stmt])=>
-            lp:LPAREN^ {#lp.setType(TYPECAST);} typeSpec[true] RPAREN!
-            expression[lc_stmt]
-    |
+//        (LPAREN typeSpec[true] RPAREN expression[lc_stmt])=>
+//            lp:LPAREN^ {#lp.setType(TYPECAST);} typeSpec[true] RPAREN!
+//            expression[lc_stmt]
+//    |
        (LPAREN nls IDENT (COMMA nls IDENT)* RPAREN ASSIGN) =>
         m:multipleAssignment[lc_stmt] {#expression=#m;}
     |   assignmentExpression[lc_stmt]
@@ -2433,14 +2469,15 @@ pathElement[AST prefix] {Token operator = LT(1);}
         // The primary can then be followed by a chain of .id, (a), [a], and {...}
     :
         { #pathElement = prefix; }
-        (   // Spread operator:  x*.y  ===  x?.collect{it.y}
-            SPREAD_DOT!
-        |   // Optional-null operator:  x?.y  === (x==null)?null:x.y
-            OPTIONAL_DOT!
-        |   // Member pointer operator: foo.&y == foo.metaClass.getMethodPointer(foo, "y")
-            MEMBER_POINTER!
-        |   // The all-powerful dot.
-            (nls! DOT!)
+        ( nls!
+            ( SPREAD_DOT!     // Spread operator:  x*.y  ===  x?.collect{it.y}
+            |
+              OPTIONAL_DOT!   // Optional-null operator:  x?.y  === (x==null)?null:x.y
+            |
+              MEMBER_POINTER! // Member pointer operator: foo.&y == foo.metaClass.getMethodPointer(foo, "y")
+            |
+              DOT!            // The all-powerful dot.
+            )
         ) nls!
         (ta:typeArguments!)?
         np:namePart!
@@ -2459,34 +2496,16 @@ pathElement[AST prefix] {Token operator = LT(1);}
         // since the bracket operator is transformed into a method call.
         ipa:indexPropertyArgs[prefix]!
         {   #pathElement = #ipa;  }
-/*    |
-        (DOT nls "this") => DOT! nls! thisPart:"this"!
-        { #pathElement = #(create(operator.getType(),operator.getText(),prefix,LT(1)),prefix,thisPart); }
-/*NYI*
-    |   DOT^ nls! "this"
-
-    |   DOT^ nls! "super"
-        (   // (new Outer()).super()  (create enclosing instance)
-            lp3:LPAREN^ argList RPAREN!
-            {#lp3.setType(SUPER_CTOR_CALL);}
-        |   DOT^ IDENT
-            (   lps:LPAREN^ {#lps.setType(METHOD_CALL);}
-                argList
-                RPAREN!
-            )?
-        )
-    |   DOT^ nls! newExpression
-*NYI*/
     ;
 
 pathElementStart!
-    :   (nls! DOT)
-    |   SPREAD_DOT
-    |   OPTIONAL_DOT
-    |   MEMBER_POINTER
-    |   LBRACK
-    |   LPAREN
-    |   LCURLY
+    :   (nls! ( DOT
+                |   SPREAD_DOT
+                |   OPTIONAL_DOT
+                |   MEMBER_POINTER ) )
+        |   LBRACK
+        |   LPAREN
+        |   LCURLY
     ;
 
 /** This is the grammar for what can follow a dot:  x.a, x.@a, x.&a, x.'a', etc.
@@ -2553,6 +2572,7 @@ keywordPropertyNames
         | "this"
         | "throw"
         | "throws"
+        | "trait"
         | "true"
         | "try"
         | "while"
@@ -2686,8 +2706,8 @@ assignmentExpression[int lc_stmt]
 conditionalExpression[int lc_stmt]
     :   logicalOrExpression[lc_stmt]
         (
-          (ELVIS_OPERATOR)=> ELVIS_OPERATOR^ nls! conditionalExpression[0]
-          | QUESTION^ nls! assignmentExpression[0] nls! COLON! nls! conditionalExpression[0]
+          (nls! ELVIS_OPERATOR)=> nls! ELVIS_OPERATOR^ nls! conditionalExpression[0]
+          | (nls! QUESTION)=> nls! QUESTION^ nls! assignmentExpression[0] nls! COLON! nls! conditionalExpression[0]
         )?
     ;
 
@@ -2788,20 +2808,7 @@ multiplicativeExpression[int lc_stmt]
     |    (  powerExpressionNotPlusMinus[lc_stmt] ((STAR^ | DIV^ | MOD^ )  nls!  powerExpression[0])* )
     ;
 
-// math power operator (**) (level 3)
-powerExpression[int lc_stmt]
-    :   unaryExpression[lc_stmt] (STAR_STAR^ nls! unaryExpression[0])*
-    ;
-
-// math power operator (**) (level 3)
-// (without ++(prefix)/--(prefix)/+(unary)/-(unary))
-// The different rules are needed to avoid ambiguous selection
-// of alternatives.
-powerExpressionNotPlusMinus[int lc_stmt]
-    :   unaryExpressionNotPlusMinus[lc_stmt] (STAR_STAR^ nls! unaryExpression[0])*
-    ;
-
-// ++(prefix)/--(prefix)/+(unary)/-(unary) (level 2)
+// ++(prefix)/--(prefix)/+(unary)/-(unary) (level 3)
 unaryExpression[int lc_stmt]
     :   INC^ nls! unaryExpression[0]
     |   DEC^ nls! unaryExpression[0]
@@ -2810,11 +2817,22 @@ unaryExpression[int lc_stmt]
     |   unaryExpressionNotPlusMinus[lc_stmt]
     ;
 
+// math power operator (**) (level 2)
+powerExpression[int lc_stmt]
+    :   unaryExpression[lc_stmt] (STAR_STAR^ nls! unaryExpression[0])*
+    ;
+
+// math power operator (**) (level 2)
+// (without ++(prefix)/--(prefix)/+(unary)/-(unary))
+// The different rules are needed to avoid ambiguous selection
+// of alternatives.
+powerExpressionNotPlusMinus[int lc_stmt]
+    :   unaryExpressionNotPlusMinus[lc_stmt] (STAR_STAR^ nls! unaryExpression[0])*
+    ;
+
 // ~(BNOT)/!(LNOT)/(type casting) (level 1)
 unaryExpressionNotPlusMinus[int lc_stmt]
-    :   //BAND^    {#BAND.setType(MEMBER_POINTER_DEFAULT);}   nls!  namePart
-    //|
-        BNOT^ nls! unaryExpression[0]
+    :   BNOT^ nls! unaryExpression[0]
     |   LNOT^ nls! unaryExpression[0]
     |   (   // subrule allows option to shut off warnings
             options {
@@ -2842,7 +2860,7 @@ unaryExpressionNotPlusMinus[int lc_stmt]
         )
     ;
 
-// qualified names, array expressions, method invocation, post inc/dec
+// qualified names, array expressions, method invocation, post inc/dec (level 1)
 postfixExpression[int lc_stmt]
     :
         pathExpression[lc_stmt]
@@ -2860,9 +2878,6 @@ postfixExpression[int lc_stmt]
 // the basic element of an expression
 primaryExpression {Token first = LT(1);}
     :   IDENT
-        /*OBS*  //keywords can follow dot in Groovy; no need for this special case
-        ( options {greedy=true;} : DOT^ "class" )?
-        *OBS*/
     |   constant
     |   newExpression
     |   "this"
@@ -2872,14 +2887,7 @@ primaryExpression {Token first = LT(1);}
     |   closableBlockConstructorExpression
     |   listOrMapConstructorExpression
     |   stringConstructorExpression         // "foo $bar baz"; presented as multiple tokens
-//deprecated    |   scopeEscapeExpression               // $x
     |   builtInType
-    /*OBS*  //class names work fine as expressions
-            // look for int.class and int[].class
-    |   bt:builtInType!
-        declaratorBrackets[bt]
-        DOT^ nls! "class"
-    *OBS*/
     ;
 
 // Note:  This is guaranteed to be an EXPR AST.
@@ -3488,6 +3496,7 @@ options {
         case LITERAL_super:
         case LITERAL_switch:
         case LITERAL_synchronized:
+        case LITERAL_trait:
         case LITERAL_this:
         case LITERAL_threadsafe:
         case LITERAL_throw:
@@ -3515,17 +3524,20 @@ options {
     }
 
     protected boolean atValidDollarEscape() throws CharStreamException {
-        // '$' (('*')? ('{' | LETTER)) =>
+        // '$' (('{' | LETTER) =>
         int k = 1;
         char lc = LA(k++);
         if (lc != '$')  return false;
         lc = LA(k++);
-        if (lc == '*')  lc = LA(k++);
         return (lc == '{' || (lc != '$' && Character.isJavaIdentifierStart(lc)));
     }
 
     protected boolean atDollarDollarEscape() throws CharStreamException {
         return LA(1) == '$' && LA(2) == '$';
+    }
+
+    protected boolean atMultiCommentStart() throws CharStreamException {
+        return LA(1) == '/' && LA(2) == '*';
     }
 
     protected boolean atDollarSlashEscape() throws CharStreamException {
@@ -3620,7 +3632,12 @@ options {
     protected GroovyRecognizer parser;  // little-used link; TODO: get rid of
     private void require(boolean z, String problem, String solution) throws SemanticException {
         // TODO: Direct to a common error handler, rather than through the parser.
-        if (!z)  parser.requireFailed(problem, solution);
+        if (!z && parser!=null)  parser.requireFailed(problem, solution);
+        if (!z) {
+            int lineNum = inputState.getLine(), colNum = inputState.getColumn();
+            throw new SemanticException(problem + ";\n   solution: " + solution,
+                                        getFilename(), lineNum, colNum);
+        }
     }
 }
 
@@ -3787,9 +3804,9 @@ options {
 // multiple-line comments
 ML_COMMENT
 options {
-    paraphrase="a comment";
+    paraphrase="a multi-line comment";
 }
-    :   "/*"
+    :   { atMultiCommentStart() }? "/*"
         (   /*  '\r' '\n' can be matched in one alternative or by matching
                 '\r' in one iteration and '\n' in another. I am trying to
                 handle any flavor of newline that comes in, but the language
@@ -3886,28 +3903,30 @@ options {
     paraphrase="a multiline regular expression literal";
 }
         {int tt=0;}
-    :   {allowRegexpLiteral()}?
-        '/'!
-        {++suppressNewline;}
-        //Do this, but require it to be non-trivial:  REGEXP_CTOR_END[true]
-        // There must be at least one symbol or $ escape, lest the regexp collapse to '//'.
-        // (This should be simpler, but I don't know how to do it w/o ANTLR warnings vs. '//' comments.)
-        (
-            REGEXP_SYMBOL
-            tt=REGEXP_CTOR_END[true]
-        |   {!atValidDollarEscape()}? '$'
-            tt=REGEXP_CTOR_END[true]
-        |   '$'!
-            {
-                // Yes, it's a regexp constructor, and we've got a value part.
-                tt = STRING_CTOR_START;
-                stringCtorState = SCS_VAL + SCS_RE_TYPE;
-            }
-        )
-        {$setType(tt);}
+    :   { !atMultiCommentStart() }?
+        (   {allowRegexpLiteral()}?
+            '/'!
+            {++suppressNewline;}
+            //Do this, but require it to be non-trivial:  REGEXP_CTOR_END[true]
+            // There must be at least one symbol or $ escape, lest the regexp collapse to '//'.
+            // (This should be simpler, but I don't know how to do it w/o ANTLR warnings vs. '//' comments.)
+            (
+                REGEXP_SYMBOL
+                tt=REGEXP_CTOR_END[true]
+            |   {!atValidDollarEscape()}? '$'
+                tt=REGEXP_CTOR_END[true]
+            |   '$'!
+                {
+                    // Yes, it's a regexp constructor, and we've got a value part.
+                    tt = STRING_CTOR_START;
+                    stringCtorState = SCS_VAL + SCS_RE_TYPE;
+                }
+            )
+            {$setType(tt);}
 
-    |   DIV                 {$setType(DIV);}
-    |   DIV_ASSIGN          {$setType(DIV_ASSIGN);}
+        |   ( '/' ~'=' ) => DIV {$setType(DIV);}
+        |   DIV_ASSIGN {$setType(DIV_ASSIGN);}
+        )
     ;
 
 DOLLAR_REGEXP_LITERAL
@@ -3921,9 +3940,16 @@ options {
         (
             DOLLAR_REGEXP_SYMBOL
             tt=DOLLAR_REGEXP_CTOR_END[true]
-        | {!atValidDollarEscape()}? '$'
+        | {!atValidDollarEscape() && !atDollarSlashEscape() && !atDollarDollarEscape()}? '$'
             tt=DOLLAR_REGEXP_CTOR_END[true]
-        | '$'!
+        |
+            ('$' '/') => ESCAPED_SLASH
+            tt=DOLLAR_REGEXP_CTOR_END[true]
+        |
+            ('$' '$') => ESCAPED_DOLLAR
+            tt=DOLLAR_REGEXP_CTOR_END[true]
+        |
+            '$'!
             {
                 // Yes, it's a regexp constructor, and we've got a value part.
                 tt = STRING_CTOR_START;
@@ -4005,14 +4031,11 @@ options {
     paraphrase="a multiline regular expression character";
 }
     :
-        (
-            ~('*'|'/'|'$'|'\\'|'\n'|'\r'|'\uffff')
-        |   { LA(2)!='/' && LA(2)!='\n' && LA(2)!='\r' }? '\\' // backslash only escapes '/' and EOL
-        |   '\\' '/'                   { $setText('/'); }
-        |   STRING_NL[true]
-        |!  '\\' ONE_NL[false]
-        )
-        ('*')*      // stars handled specially to avoid ambig. on /**/
+        ~('/'|'$'|'\\'|'\n'|'\r'|'\uffff')
+    |   { LA(2)!='/' && LA(2)!='\n' && LA(2)!='\r' }? '\\' // backslash only escapes '/' and EOL
+    |   '\\' '/'                   { $setText('/'); }
+    |   STRING_NL[true]
+    |!  '\\' ONE_NL[false]
     ;
 
 protected
@@ -4021,13 +4044,11 @@ options {
     paraphrase="a multiline dollar escaping regular expression character";
 }
     :
-        (
-            ~('$' | '\\' | '/' | '\n' | '\r' | '\uffff')
-        |   { LA(2)!='\n' && LA(2)!='\r' }? '\\'               // backslash only escapes EOL
-        |   ('/' ~'$') => '/'                                  // allow a slash if not followed by a $
-        |   STRING_NL[true]
-        |!  '\\' ONE_NL[false]
-        )
+        ~('$' | '\\' | '/' | '\n' | '\r' | '\uffff')
+    |   { LA(2)!='\n' && LA(2)!='\r' }? '\\'               // backslash only escapes EOL
+    |   ('/' ~'$') => '/'                                  // allow a slash if not followed by a $
+    |   STRING_NL[true]
+    |!  '\\' ONE_NL[false]
     ;
 
 // escape sequence -- note that this is protected; it can only be called
@@ -4136,8 +4157,14 @@ options {
             int ttype = testLiteralsTable(IDENT);
             // Java doesn't have the keywords 'as', 'in' or 'def so we make some allowances
             // for them in package names for better integration with existing Java packages
-            if ((ttype == LITERAL_as || ttype == LITERAL_def || ttype == LITERAL_in) &&
+            if ((ttype == LITERAL_as || ttype == LITERAL_def || ttype == LITERAL_in || ttype == LITERAL_trait) &&
                 (LA(1) == '.' || lastSigTokenType == DOT || lastSigTokenType == LITERAL_package)) {
+                ttype = IDENT;
+            }
+            // allow access to classes with the name package
+            if ((ttype == LITERAL_package) &&
+                (LA(1) == '.' || lastSigTokenType == DOT || lastSigTokenType == LITERAL_import
+                || (LA(1) == ')' && lastSigTokenType == LPAREN))) {
                 ttype = IDENT;
             }
             if (ttype == LITERAL_static && LA(1) == '.') {

@@ -1,17 +1,20 @@
-/*
- * Copyright 2003-2007 the original author or authors.
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package org.codehaus.groovy.reflection;
 
@@ -19,6 +22,7 @@ import groovy.lang.*;
 
 import org.codehaus.groovy.classgen.asm.BytecodeHelper;
 import org.codehaus.groovy.runtime.callsite.CallSiteClassLoader;
+import org.codehaus.groovy.runtime.metaclass.ClosureMetaClass;
 import org.codehaus.groovy.util.LazyReference;
 import org.codehaus.groovy.util.FastArray;
 import org.codehaus.groovy.util.ReferenceBundle;
@@ -35,6 +39,7 @@ import java.util.*;
  * @author Alex.Tkachman
  */
 public class CachedClass {
+    private static final Method[] EMPTY_METHOD_ARRAY = new Method[0];
     private final Class cachedClass;
     public ClassInfo classInfo;
     
@@ -81,13 +86,18 @@ public class CachedClass {
             final Method[] declaredMethods = (Method[])
                AccessController.doPrivileged(new PrivilegedAction/*<Method[]>*/() {
                    public /*Method[]*/ Object run() {
-                       final Method[] dm = getTheClass().getDeclaredMethods();
                        try {
-                           AccessibleObject.setAccessible(dm, true);
-                       } catch (SecurityException e) {
-                           // swallow for strict security managers
+                           final Method[] dm = getTheClass().getDeclaredMethods();
+                           try {
+                               AccessibleObject.setAccessible(dm, true);
+                           } catch (SecurityException e) {
+                               // swallow for strict security managers
+                           }
+                           return dm;
+                       } catch (Throwable e) {
+                           // Typically, Android can throw ClassNotFoundException
+                           return EMPTY_METHOD_ARRAY;
                        }
-                       return dm;
                    }
                });
             List<CachedMethod> methods = new ArrayList<CachedMethod>(declaredMethods.length);
@@ -450,6 +460,10 @@ public class CachedClass {
         res.addAll(Arrays.asList(classInfo.newMetaMethods));
         res.addAll(arr);
         classInfo.newMetaMethods = res.toArray(new MetaMethod[res.size()]);
+        Class theClass = classInfo.getCachedClass().getTheClass();
+        if (theClass==Closure.class || theClass==Class.class) {
+            ClosureMetaClass.resetCachedMetaClasses();
+        }
     }
 
     public boolean isAssignableFrom(Class argument) {

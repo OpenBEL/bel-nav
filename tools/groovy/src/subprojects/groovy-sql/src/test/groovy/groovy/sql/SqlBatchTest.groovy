@@ -1,17 +1,20 @@
 /*
- * Copyright 2003-2012 the original author or authors.
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package groovy.sql
 
@@ -26,7 +29,7 @@ import static groovy.sql.SqlTestConstants.*
  */
 class SqlBatchTest extends GroovyTestCase {
     Sql sql
-    private others = ['Jean':'Gabin', 'Lino':'Ventura']
+    private final others = ['Jean':'Gabin', 'Lino':'Ventura']
 
     void setUp() {
         DataSource ds = DB_DATASOURCE.newInstance(
@@ -41,6 +44,11 @@ class SqlBatchTest extends GroovyTestCase {
         people.add(id: 1, firstname: "James", lastname: "Strachan")
         people.add(id: 2, firstname: "Bob", lastname: "Mcwhirter")
         people.add(id: 3, firstname: "Sam", lastname: "Pullara")
+
+        // uncomment to see logging (or set FINEST in <JRE_HOME>/lib/logging.properties)
+//        def logger = java.util.logging.Logger.getLogger('groovy.sql')
+//        logger.level = java.util.logging.Level.FINE
+//        logger.addHandler(new java.util.logging.ConsoleHandler(level: java.util.logging.Level.FINE))
     }
 
     void testManualBatch() {

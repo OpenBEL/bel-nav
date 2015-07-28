@@ -1,27 +1,26 @@
-/*
- * Copyright 2003-2007 the original author or authors.
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
-
 package groovy.ui.text;
-
-import java.awt.Font;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
-
 import org.xml.sax.helpers.DefaultHandler;
 
 /**
@@ -68,11 +67,8 @@ public class StructuredSyntaxHandler extends DefaultHandler {
     public static final String UNDERLINE = "underline";
 
     private StructuredSyntaxDocumentFilter.LexerNode currentNode;
-    private StructuredSyntaxDocumentFilter.LexerNode parentNode;
 
     private final StructuredSyntaxDocumentFilter filter;
-
-    private Font font;
 
     /**
      * Creates a new instance of MasterFrameHandler
@@ -83,55 +79,27 @@ public class StructuredSyntaxHandler extends DefaultHandler {
         this.filter = filter;
     }
 
-    /**
-     * @param ch
-     * @param start
-     * @param length
-     */
     public void characters(char[] ch, int start, int length) {
     }
 
-    /**
-     * @throws SAXException
-     */
     public void endDocument() throws SAXException {
         super.endDocument();
     }
 
-    /**
-     * @param uri
-     * @param localName
-     * @param qName
-     * @throws SAXException
-     */
     public void endElement(String uri,
                            String localName,
                            String qName) throws SAXException {
     }
 
-    /**
-     * @param e
-     * @throws SAXException
-     */
     public void error(SAXParseException e) throws SAXException {
         throw new SAXException("Line: " + e.getLineNumber() + " message: " + e.getMessage());
     }
 
-    /**
-     * @throws SAXException
-     */
     public void startDocument() throws SAXException {
         super.startDocument();
         currentNode = filter.getRootNode();
     }
 
-    /**
-     * @param uri
-     * @param localName
-     * @param qName
-     * @param attributes
-     * @throws SAXException
-     */
     public void startElement(String uri,
                              String localName,
                              String qName,

@@ -1,17 +1,20 @@
 /*
- * Copyright 2003-2010 the original author or authors.
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package groovy.transform.stc
 
@@ -19,6 +22,7 @@ package groovy.transform.stc
  * Unit tests for static type checking : closures.
  *
  * @author Cedric Champeau
+ * @author Jochen Theodorou
  */
 class ClosuresSTCTest extends StaticTypeCheckingTestCase {
 
@@ -83,7 +87,7 @@ class ClosuresSTCTest extends StaticTypeCheckingTestCase {
                 }
             }
             byte res = cl(0) // should throw an error because return type inference should be a long
-        ''', 'Possible loose of precision from long to byte'
+        ''', 'Possible loss of precision from long to byte'
     }
 
     void testClosureWithoutParam() {
@@ -289,6 +293,179 @@ class ClosuresSTCTest extends StaticTypeCheckingTestCase {
             }
         ''', 'Cannot find matching method'
     }
+    
+    //GROOVY-6189
+    void testSAMsInMethodSelection(){
+        // simple direct case
+        assertScript """
+            interface MySAM {
+                def someMethod()
+            }
+            def foo(MySAM sam) {sam.someMethod()}
+            assert foo {1} == 1
+        """
+  
+        // overloads with classes implemented by Closure
+        ["java.util.concurrent.Callable", "Object", "Closure", "GroovyObjectSupport", "Cloneable", "Runnable", "GroovyCallable", "Serializable", "GroovyObject"].each {
+            className ->
+            assertScript """
+                interface MySAM {
+                    def someMethod()
+                }
+                def foo(MySAM sam) {sam.someMethod()}
+                def foo($className x) {2}
+                assert foo {1} == 2
+            """
+        }
+    }
+    
+    void testSAMVariable() {
+        assertScript """
+            interface SAM { def foo(); }
+
+            @ASTTest(phase=INSTRUCTION_SELECTION, value={
+                assert node.getNodeMetaData(INFERRED_TYPE).name == 'SAM'
+            })
+            SAM s = {1}
+            assert s.foo() == 1
+            def t = (SAM) {2}
+            assert t.foo() == 2
+        """
+    }
+    
+    void testSAMProperty() {
+        assertScript """
+            interface SAM { def foo(); }
+            class X {
+                SAM s
+            }
+            def x = new X(s:{1})
+            assert x.s.foo() == 1
+        """
+    }
+    
+    void testSAMAttribute() {
+        assertScript """
+            interface SAM { def foo(); }
+            class X {
+                public SAM s
+            }
+            def x = new X()
+            x.s = {1}
+            assert x.s.foo() == 1
+            x = new X()
+            x.@s = {2}
+            assert x.s.foo() == 2
+        """
+    }
+
+    void testMultipleSAMSignature() {
+        assertScript '''
+            interface SAM { def foo() }
+            def method(SAM a, SAM b) {
+                a.foo()
+                b.foo()
+            }
+            method({println 'a'}, {println 'b'})
+        '''
+    }
+
+    void testMultipleSAMSignature2() {
+        assertScript '''
+            interface SAM { def foo() }
+            def method(Object o, SAM a, SAM b) {
+                a.foo()
+                b.foo()
+            }
+            method(new Object(), {println 'a'}, {println 'b'})
+        '''
+    }
+
+    void testMultipleSAMMethodWithClosure() {
+        assertScript '''
+            interface SAM { def foo() }
+            def method(SAM a, SAM b) {
+                a.foo()
+                b.foo()
+            }
+            def method(Closure a, SAM b) {
+                b.foo()
+            }
+            def called = false
+            method({called = true;println 'a'}, {println 'b'})
+            assert !called
+        '''
+    }
+
+    void testMultipleSAMMethodWithClosureInverted() {
+        assertScript '''
+            interface SAM { def foo() }
+            def method(SAM a, SAM b) {
+                a.foo()
+                b.foo()
+            }
+            def method(SAM a, Closure b) {
+                a.foo()
+            }
+            def called = false
+            method({println 'a'}, {called=true;println 'b'})
+            assert !called
+        '''
+    }
+
+    void testAmbiguousSAMOverload() {
+        shouldFailWithMessages '''
+            interface Sammy { def sammy() }
+            interface Sam { def sam() }
+            def method(Sam sam) { sam.sam() }
+            def method(Sammy sammy) { sammy.sammy() }
+            method {
+                println 'foo'
+            }
+        ''', 'Reference to method is ambiguous. Cannot choose between'
+    }
+    
+    void testSAMType() {
+        assertScript """
+            interface Foo {int foo()}
+            Foo f = {1}
+            assert f.foo() == 1
+            abstract class Bar implements Foo {}
+            Bar b = {2}
+            assert b.foo() == 2
+        """
+        shouldFailWithMessages """
+            interface Foo2 {
+                String toString()
+            }
+            Foo2 f2 = {int i->"hi"}
+        """, "Cannot assign"
+        shouldFailWithMessages """
+            interface Foo2 {
+                String toString()
+            }
+            abstract class Bar2 implements Foo2 {}
+            Bar2 b2 = {"there"}
+        """, "Cannot assign"
+        assertScript """
+            interface Foo3 {
+                boolean equals(Object)
+                int f()
+            }
+            Foo3 f3 = {1}
+            assert f3.f() == 1
+        """
+        shouldFailWithMessages """
+            interface Foo3 {
+                boolean equals(Object)
+                int f()
+            }
+            abstract class Bar3 implements Foo3 {
+                int f(){2}
+            }
+            Bar3 b3 = {2}
+        """, "Cannot assign"
+    }
 
     // GROOVY-6238
     void testDirectMethodCallOnClosureExpression() {
@@ -305,5 +482,23 @@ class ClosuresSTCTest extends StaticTypeCheckingTestCase {
         '''
     }
 
+    // GROOVY-6343
+    void testAccessStaticFieldFromNestedClosures() {
+        assertScript '''
+            class A {
+
+              public static final CONST = "a"
+
+              public static List doSomething() {
+                return (0..1).collect{ int x ->
+                  (0..1).collect{ int y ->
+                    return CONST
+                  }
+                }
+              }
+            }
+            A.doSomething()
+        '''
+    }
 }
 

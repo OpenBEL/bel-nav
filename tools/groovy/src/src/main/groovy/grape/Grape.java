@@ -1,17 +1,20 @@
-/*
- * Copyright 2008-2013 the original author or authors.
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package groovy.grape;
 
@@ -25,8 +28,12 @@ import java.net.URI;
  */
 public class Grape {
 
+    public static final String AUTO_DOWNLOAD_SETTING = "autoDownload";
+    public static final String DISABLE_CHECKSUMS_SETTING = "disableChecksums";
+
     private static boolean enableGrapes = Boolean.valueOf(System.getProperty("groovy.grape.enable", "true"));
     private static boolean enableAutoDownload = Boolean.valueOf(System.getProperty("groovy.grape.autoDownload", "true"));
+    private static boolean disableChecksums = Boolean.valueOf(System.getProperty("groovy.grape.disableChecksums", "false"));
     protected static GrapeEngine instance;
 
     /**
@@ -63,7 +70,7 @@ public class Grape {
      * will be checked for new versions and downloaded (with dependencies)
      * if found.
      * <p>
-     * By default it is set to false.
+     * By default it is set to true.
      */
     public static boolean getEnableAutoDownload() {
         return enableAutoDownload;
@@ -83,10 +90,26 @@ public class Grape {
      * If it is set to true, then any jars not already downloaded will
      * automatically be downloaded.  Also, any versions expressed as a range
      * will be checked for new versions and downloaded (with dependencies)
-     * if found. By default it is set to false.
+     * if found. By default it is set to true.
      */
     public static void setEnableAutoDownload(boolean enableAutoDownload) {
         Grape.enableAutoDownload = enableAutoDownload;
+    }
+
+    /**
+     * Global flag to ignore checksums.
+     * By default it is set to false.
+     */
+    public static boolean getDisableChecksums() {
+        return disableChecksums;
+    }
+
+    /**
+     * Set global flag to ignore checksums.
+     * By default it is set to false.
+     */
+    public static void setDisableChecksums(boolean disableChecksums) {
+        Grape.disableChecksums = disableChecksums;
     }
 
     public static synchronized GrapeEngine getInstance() {
@@ -119,8 +142,11 @@ public class Grape {
         if (enableGrapes) {
             GrapeEngine instance = getInstance();
             if (instance != null) {
-                if (!dependency.containsKey("autoDownload")) {
-                    dependency.put("autoDownload" , enableAutoDownload);
+                if (!dependency.containsKey(AUTO_DOWNLOAD_SETTING)) {
+                    dependency.put(AUTO_DOWNLOAD_SETTING, enableAutoDownload);
+                }
+                if (!dependency.containsKey(DISABLE_CHECKSUMS_SETTING)) {
+                    dependency.put(DISABLE_CHECKSUMS_SETTING, disableChecksums);
                 }
                 instance.grab(dependency);
             }
@@ -131,8 +157,11 @@ public class Grape {
         if (enableGrapes) {
             GrapeEngine instance = getInstance();
             if (instance != null) {
-                if (!args.containsKey("autoDownload")) {
-                    args.put("autoDownload" , enableAutoDownload);
+                if (!args.containsKey(AUTO_DOWNLOAD_SETTING)) {
+                    args.put(AUTO_DOWNLOAD_SETTING, enableAutoDownload);
+                }
+                if (!args.containsKey(DISABLE_CHECKSUMS_SETTING)) {
+                    args.put(DISABLE_CHECKSUMS_SETTING, disableChecksums);
                 }
                 instance.grab(args, dependencies);
             }
@@ -163,8 +192,11 @@ public class Grape {
         if (enableGrapes) {
             GrapeEngine instance = getInstance();
             if (instance != null) {
-                if (!args.containsKey("autoDownload")) {
-                    args.put("autoDownload" , enableAutoDownload);
+                if (!args.containsKey(AUTO_DOWNLOAD_SETTING)) {
+                    args.put(AUTO_DOWNLOAD_SETTING, enableAutoDownload);
+                }
+                if (!args.containsKey(DISABLE_CHECKSUMS_SETTING)) {
+                    args.put(DISABLE_CHECKSUMS_SETTING, disableChecksums);
                 }
                 uris = instance.resolve(args, depsInfo, dependencies);
             }
@@ -201,4 +233,3 @@ public class Grape {
         }
     }
 }
-

@@ -1,17 +1,20 @@
-/*
- * Copyright 2003-2012 the original author or authors.
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package groovy.xml.dom;
 
@@ -47,8 +50,44 @@ import java.util.Map;
  * @author paulk
  */
 public class DOMCategory {
+    private static boolean trimWhitespace = false;
+    private static boolean keepIgnorableWhitespace = false;
 
-    private static boolean trimWhitespace = true;
+    /**
+     * @return true if text elements are trimmed before returning; default false
+     */
+    public static synchronized boolean isGlobalTrimWhitespace() {
+        return trimWhitespace;
+    }
+
+    /**
+     * Whether text content is trimmed (removing leading and trailing whitespace); default false.
+     * WARNING: this is a global setting. Altering it will affect all DOMCategory usage within the current Java process.
+     * It is not recommended that this is altered; instead call the trim() method on the returned text, but the
+     * flag is available to support legacy Groovy behavior.
+     *
+     * @param trimWhitespace the new value
+     */
+    public static synchronized void setGlobalTrimWhitespace(boolean trimWhitespace) {
+        DOMCategory.trimWhitespace = trimWhitespace;
+    }
+
+    /**
+     * @return true if ignorable whitespace (e.g. whitespace between elements) is kept; default false
+     */
+    public static synchronized boolean isGlobalKeepIgnorableWhitespace() {
+        return keepIgnorableWhitespace;
+    }
+
+    /**
+     * Whether ignorable whitespace (e.g. whitespace between elements) is kept (default false).
+     * WARNING: this is a global setting. Altering it will affect all DOMCategory usage within the current Java process.
+     *
+     * @param keepIgnorableWhitespace the new value
+     */
+    public static synchronized void setGlobalKeepIgnorableWhitespace(boolean keepIgnorableWhitespace) {
+        DOMCategory.keepIgnorableWhitespace = keepIgnorableWhitespace;
+    }
 
     public static Object get(Element element, String elementName) {
         return xgetAt(element, elementName);
@@ -321,15 +360,13 @@ public class DOMCategory {
         return replaceNode(self.item(0), c);
     }
 
-    // TODO return replaced node rather than last appended?
     public static Node replaceNode(Node self, Closure c) {
         if (self.getParentNode() instanceof Document) {
             throw new UnsupportedOperationException("Replacing the root node is not supported");
         }
-        Node result = appendNodes(self, c);
+        appendNodes(self, c);
         self.getParentNode().removeChild(self);
-        return result;
-//        return self;
+        return self;
     }
 
     public static void plus(Element self, Closure c) {
@@ -339,17 +376,37 @@ public class DOMCategory {
         appendNodes(self, c);
     }
 
-    private static Node appendNodes(Node self, Closure c) {
+    private static void appendNodes(Node self, Closure c) {
         Node parent = self.getParentNode();
         Node beforeNode = self.getNextSibling();
         DOMBuilder b = new DOMBuilder(self.getOwnerDocument());
         Element newNodes = (Element) b.invokeMethod("rootNode", c);
         Iterator<Node> iter = XmlGroovyMethods.iterator(children(newNodes));
-        Node lastAppended = null;
         while (iter.hasNext()) {
-            lastAppended = parent.insertBefore(iter.next(), beforeNode);
+            parent.insertBefore(iter.next(), beforeNode);
         }
-        return lastAppended;
+    }
+
+    /**
+     * Returns the list of any direct String nodes of this node.
+     *
+     * @return the list of String values from this node
+     * @since 2.3.0
+     */
+    public static List<String> localText(Element self) {
+        List<String> result = new ArrayList<String>();
+        if (self.getNodeType() == Node.TEXT_NODE || self.getNodeType() == Node.CDATA_SECTION_NODE) {
+            result.add(self.getNodeValue());
+        } else if (self.hasChildNodes()) {
+            NodeList nodeList = self.getChildNodes();
+            for (int i = 0; i < nodeList.getLength(); i++) {
+                Node item = nodeList.item(i);
+                if (item.getNodeType() == Node.TEXT_NODE || item.getNodeType() == Node.CDATA_SECTION_NODE) {
+                    result.add(item.getNodeValue());
+                }
+            }
+        }
+        return result;
     }
 
     public static void plus(NodeList self, Closure c) {
@@ -405,7 +462,7 @@ public class DOMCategory {
                 }
             } else if (node.getNodeType() == Node.TEXT_NODE) {
                 String value = node.getNodeValue();
-                if (trimWhitespace) {
+                if ((!isGlobalKeepIgnorableWhitespace() && value.trim().length() == 0) || isGlobalTrimWhitespace()) {
                     value = value.trim();
                 }
                 if ("*".equals(elementName) && value.length() > 0) {

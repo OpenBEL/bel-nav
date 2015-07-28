@@ -1,17 +1,20 @@
-/*
- * Copyright 2003-2013 the original author or authors.
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package org.codehaus.groovy.ast.builder;
 
@@ -19,6 +22,7 @@ import groovy.lang.MissingPropertyException;
 import org.codehaus.groovy.ast.*;
 import org.codehaus.groovy.ast.expr.*;
 import org.codehaus.groovy.ast.stmt.Statement;
+import org.codehaus.groovy.ast.tools.ClosureUtils;
 import org.codehaus.groovy.control.CompilePhase;
 import org.codehaus.groovy.control.SourceUnit;
 import org.codehaus.groovy.control.io.ReaderSource;
@@ -285,37 +289,12 @@ public class AstBuilderTransformation implements ASTTransformation {
          * @return the source the closure was created from
          */
         private String convertClosureToSource(ClosureExpression expression) {
-            if (expression == null) throw new IllegalArgumentException("Null: expression");
-
-            StringBuilder result = new StringBuilder();
-            for (int x = expression.getLineNumber(); x <= expression.getLastLineNumber(); x++) {
-                String line = source.getLine(x, null);
-                if (line == null) {
-                    addError(
-                            "Error calculating source code for expression. Trying to read line " + x + " from " + source.getClass(),
-                            expression
-                    );
-                }
-                if (x == expression.getLastLineNumber()) {
-                    line = line.substring(0, expression.getLastColumnNumber() - 1);
-                }
-                if (x == expression.getLineNumber()) {
-                    line = line.substring(expression.getColumnNumber() - 1);
-                }
-                //restoring line breaks is important b/c of lack of semicolons
-                result.append(line).append('\n');
+            try {
+                return ClosureUtils.convertClosureToSource(source, expression);
+            } catch(Exception e) {
+                addError(e.getMessage(), expression);
             }
-
-
-            String source = result.toString().trim();
-            if (!source.startsWith("{")) {
-                addError(
-                        "Error converting ClosureExpression into source code. Closures must start with {. Found: " + source,
-                        expression
-                );
-            }
-
-            return source;
+            return null;
         }
     }
 }

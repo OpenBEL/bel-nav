@@ -1,19 +1,21 @@
-/*
- * Copyright 2003-2012 the original author or authors.
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
-
 package groovy.util.slurpersupport;
 
 import groovy.lang.Buildable;
@@ -48,7 +50,7 @@ import java.util.Stack;
  *
  * @author John Wilson
  */
-public abstract class GPathResult extends GroovyObjectSupport implements Writable, Buildable {
+public abstract class GPathResult extends GroovyObjectSupport implements Writable, Buildable, Iterable {
     protected final GPathResult parent;
     protected final String name;
     protected final String namespacePrefix;
@@ -122,14 +124,14 @@ public abstract class GPathResult extends GroovyObjectSupport implements Writabl
         } else if ("**".equals(property)) {
             return depthFirst();
         } else if (property.startsWith("@")) {
-            if (property.indexOf(":") != -1) {
+            if (property.contains(":") && !this.namespaceTagHints.isEmpty()) {
                 final int i = property.indexOf(":");
                 return new Attributes(this, "@" + property.substring(i + 1), property.substring(1, i), this.namespaceTagHints);
             } else {
                 return new Attributes(this, property, this.namespaceTagHints);
             }
         } else {
-            if (property.indexOf(":") != -1) {
+            if (property.contains(":") && !this.namespaceTagHints.isEmpty()) {
                 final int i = property.indexOf(":");
                 return new NodeChildren(this, property.substring(i + 1), property.substring(0, i), this.namespaceTagHints);
             } else {
@@ -222,11 +224,24 @@ public abstract class GPathResult extends GroovyObjectSupport implements Writabl
 
     /**
      * Returns the parent of this GPathResult. If this GPathResult has no parent the GPathResult itself is returned.
+     * This is no navigation in the XML tree. It is backtracking on the GPath expression chain.
+     * It is the behavior of parent() prior to 2.2.0.
+     * Backtracking on '..' actually goes down one level in the tree again.
+     * find() and findAll() are popped along with the level they have been applied to.
      *
      * @return the parent or <code>this</code>
      */
-    public GPathResult parent() {
+    public GPathResult pop() {
         return this.parent;
+    }
+
+    /**
+     * Returns as GPathResult with the parent nodes of the current GPathResult
+     *
+     * @return the parents GPathResult or <code>this</code> for the root
+     */
+    public GPathResult parent() {
+        return new NodeParents(this, this.namespaceTagHints);
     }
 
     /**
@@ -245,7 +260,7 @@ public abstract class GPathResult extends GroovyObjectSupport implements Writabl
      * @return the namespace of the prefix
      */
     public String lookupNamespace(final String prefix) {
-        return this.namespaceTagHints.get(prefix);
+        return this.namespaceTagHints.isEmpty() ? prefix : this.namespaceTagHints.get(prefix);
     }
 
     /**
@@ -572,7 +587,7 @@ public abstract class GPathResult extends GroovyObjectSupport implements Writabl
      * @return the body of this GPathResult, converted to a <code>Closure</code>
      */
     public Closure getBody() {
-        return new Closure(this.parent(),this) {
+        return new Closure(this.parent,this) {
             public void doCall(Object[] args) {
                 final GroovyObject delegate = (GroovyObject)getDelegate();
                 final GPathResult thisObject = (GPathResult)getThisObject();

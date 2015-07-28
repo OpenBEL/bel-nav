@@ -1,17 +1,20 @@
-/*
- * Copyright 2003-2007 the original author or authors.
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package org.codehaus.groovy.runtime.dgmimpl;
 
@@ -107,8 +110,8 @@ public final class NumberNumberMinus extends NumberNumberMetaMethod {
 
         public final Object call(Object receiver, Object arg) throws Throwable {
             try {
-                if (checkCall(receiver)) {
-                    return new Double(((Double) receiver).doubleValue() - ((Double) arg).doubleValue());
+                if (checkCall(receiver, arg)) {
+                    return (Double) receiver - (Double) arg;
                 }
             }
             catch (ClassCastException e) {//
@@ -124,8 +127,8 @@ public final class NumberNumberMinus extends NumberNumberMetaMethod {
 
         public final Object call(Object receiver, Object arg) throws Throwable {
             try {
-                if (checkCall(receiver)) {
-                    return new Double(((Double) receiver).doubleValue() - ((Float) arg).doubleValue());
+                if (checkCall(receiver, arg)) {
+                    return (Double) receiver - ((Float) arg).doubleValue();
                 }
             }
             catch (ClassCastException e) {//
@@ -141,8 +144,8 @@ public final class NumberNumberMinus extends NumberNumberMetaMethod {
 
         public final Object call(Object receiver, Object arg) throws Throwable {
             try {
-                if (checkCall(receiver)) {
-                    return new Double(((Double) receiver).doubleValue() - ((Long) arg).doubleValue());
+                if (checkCall(receiver, arg)) {
+                    return (Double) receiver - ((Long) arg).doubleValue();
                 }
             }
             catch (ClassCastException e) {//
@@ -158,8 +161,8 @@ public final class NumberNumberMinus extends NumberNumberMetaMethod {
 
         public final Object call(Object receiver, Object arg) throws Throwable {
             try {
-                if (checkCall(receiver)) {
-                    return new Double(((Double) receiver).doubleValue() - ((Integer) arg).intValue());
+                if (checkCall(receiver, arg)) {
+                    return (Double) receiver - (Integer) arg;
                 }
             }
             catch (ClassCastException e) {//
@@ -175,8 +178,8 @@ public final class NumberNumberMinus extends NumberNumberMetaMethod {
 
         public final Object call(Object receiver, Object arg) throws Throwable {
             try {
-                if (checkCall(receiver)) {
-                    return new Double(((Float) receiver).doubleValue() - ((Double) arg).doubleValue());
+                if (checkCall(receiver, arg)) {
+                    return ((Float) receiver).doubleValue() - (Double) arg;
                 }
             }
             catch (ClassCastException e) {//
@@ -192,8 +195,8 @@ public final class NumberNumberMinus extends NumberNumberMetaMethod {
 
         public final Object call(Object receiver, Object arg) throws Throwable {
             try {
-                if (checkCall(receiver)) {
-                    return new Double(((Float) receiver).doubleValue() - ((Float) arg).doubleValue());
+                if (checkCall(receiver, arg)) {
+                    return ((Float) receiver).doubleValue() - ((Float) arg).doubleValue();
                 }
             }
             catch (ClassCastException e) {//
@@ -209,8 +212,8 @@ public final class NumberNumberMinus extends NumberNumberMetaMethod {
 
         public final Object call(Object receiver, Object arg) throws Throwable {
             try {
-                if (checkCall(receiver)) {
-                    return new Double(((Float) receiver).doubleValue() - ((Long) arg).doubleValue());
+                if (checkCall(receiver, arg)) {
+                    return ((Float) receiver).doubleValue() - ((Long) arg).doubleValue();
                 }
             }
             catch (ClassCastException e) {//
@@ -226,8 +229,8 @@ public final class NumberNumberMinus extends NumberNumberMetaMethod {
 
         public final Object call(Object receiver, Object arg) throws Throwable {
             try {
-                if (checkCall(receiver)) {
-                    return new Double(((Float) receiver).doubleValue() - ((Integer) arg).doubleValue());
+                if (checkCall(receiver, arg)) {
+                    return ((Float) receiver).doubleValue() - ((Integer) arg).doubleValue();
                 }
             }
             catch (ClassCastException e) {//
@@ -243,8 +246,8 @@ public final class NumberNumberMinus extends NumberNumberMetaMethod {
 
         public final Object call(Object receiver, Object arg) throws Throwable {
             try {
-                if (checkCall(receiver)) {
-                    return new Double(((Long) receiver).doubleValue() - ((Double) arg).doubleValue());
+                if (checkCall(receiver, arg)) {
+                    return ((Long) receiver).doubleValue() - (Double) arg;
                 }
             }
             catch (ClassCastException e) {//
@@ -260,8 +263,8 @@ public final class NumberNumberMinus extends NumberNumberMetaMethod {
 
         public final Object call(Object receiver, Object arg) throws Throwable {
             try {
-                if (checkCall(receiver)) {
-                    return new Double(((Long) receiver).doubleValue() - ((Float) arg).doubleValue());
+                if (checkCall(receiver, arg)) {
+                    return ((Long) receiver).doubleValue() - ((Float) arg).doubleValue();
                 }
             }
             catch (ClassCastException e) {//
@@ -277,8 +280,8 @@ public final class NumberNumberMinus extends NumberNumberMetaMethod {
 
         public final Object call(Object receiver, Object arg) throws Throwable {
             try {
-                if (checkCall(receiver)) {
-                    return new Long(((Long) receiver).longValue() - ((Long) arg).longValue());
+                if (checkCall(receiver, arg)) {
+                    return (Long) receiver - (Long) arg;
                 }
             }
             catch (ClassCastException e) {//
@@ -294,8 +297,8 @@ public final class NumberNumberMinus extends NumberNumberMetaMethod {
 
         public final Object call(Object receiver, Object arg) throws Throwable {
             try {
-                if (checkCall(receiver)) {
-                    return new Long(((Long) receiver).longValue() - ((Integer) arg).longValue());
+                if (checkCall(receiver, arg)) {
+                    return (Long) receiver - ((Integer) arg).longValue();
                 }
             }
             catch (ClassCastException e) {//
@@ -311,8 +314,8 @@ public final class NumberNumberMinus extends NumberNumberMetaMethod {
 
         public final Object call(Object receiver, Object arg) throws Throwable {
             try {
-                if (checkCall(receiver)) {
-                    return new Double(((Integer) receiver).doubleValue() - ((Double) arg).doubleValue());
+                if (checkCall(receiver, arg)) {
+                    return ((Integer) receiver).doubleValue() - (Double) arg;
                 }
             }
             catch (ClassCastException e) {//
@@ -328,8 +331,8 @@ public final class NumberNumberMinus extends NumberNumberMetaMethod {
 
         public final Object call(Object receiver, Object arg) throws Throwable {
             try {
-                if (checkCall(receiver)) {
-                    return new Double(((Integer) receiver).doubleValue() - ((Float) arg).doubleValue());
+                if (checkCall(receiver, arg)) {
+                    return ((Integer) receiver).doubleValue() - ((Float) arg).doubleValue();
                 }
             }
             catch (ClassCastException e) {//
@@ -345,8 +348,8 @@ public final class NumberNumberMinus extends NumberNumberMetaMethod {
 
         public final Object call(Object receiver, Object arg) throws Throwable {
             try {
-                if (checkCall(receiver)) {
-                    return new Long(((Integer) receiver).longValue() - ((Long) arg).longValue());
+                if (checkCall(receiver, arg)) {
+                    return ((Integer) receiver).longValue() - (Long) arg;
                 }
             }
             catch (ClassCastException e) {//
@@ -362,8 +365,8 @@ public final class NumberNumberMinus extends NumberNumberMetaMethod {
 
         public final Object call(Object receiver, Object arg) throws Throwable {
             try {
-                if (checkCall(receiver)) {
-                  return new Integer(((Integer) receiver).intValue() - ((Integer) arg).intValue());
+                if (checkCall(receiver, arg)) {
+                  return (Integer) receiver - (Integer) arg;
                 }
             }
             catch (ClassCastException e) {//

@@ -1,19 +1,21 @@
-/*
- * Copyright 2003-2013 the original author or authors.
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
-
 package org.codehaus.groovy.vmplugin.v5;
 
 import org.codehaus.groovy.GroovyBugError;
@@ -146,7 +148,7 @@ public class Java5 implements VMPlugin {
         ClassNode[] lowers = configureTypes(wildcardType.getLowerBounds());
         ClassNode lower = null;
         // TODO: is it safe to remove this? What was the original intention?
-        if (lower != null) lower = lowers[0];
+        if (lowers != null) lower = lowers[0];
 
         ClassNode[] upper = configureTypes(wildcardType.getUpperBounds());
         GenericsType t = new GenericsType(base, upper, lower);
@@ -224,6 +226,7 @@ public class Java5 implements VMPlugin {
             ListExpression le = (ListExpression) exp;
             int bitmap = 0;
             for (Expression e : le.getExpressions()) {
+                if (!(e instanceof PropertyExpression)) return;
                 PropertyExpression element = (PropertyExpression) e;
                 String name = element.getPropertyAsString();
                 ElementType value = ElementType.valueOf(name);
@@ -260,9 +263,13 @@ public class Java5 implements VMPlugin {
                         new ClassExpression(ClassHelper.ELEMENT_TYPE_TYPE), element.name()));
             }
             node.setMember("value", elementExprs);
-        }
-        else {
-            Method[] declaredMethods = type.getDeclaredMethods();
+        } else {
+            Method[] declaredMethods;
+            try {
+                declaredMethods = type.getDeclaredMethods();
+            } catch (SecurityException se) {
+                declaredMethods = new Method[0];
+            }
             for (Method declaredMethod : declaredMethods) {
                 try {
                     Object value = declaredMethod.invoke(annotation);
@@ -343,41 +350,45 @@ public class Java5 implements VMPlugin {
     }
 
     public void configureClassNode(CompileUnit compileUnit, ClassNode classNode) {
-        Class clazz = classNode.getTypeClass();
-        Field[] fields = clazz.getDeclaredFields();
-        for (Field f : fields) {
-            ClassNode ret = makeClassNode(compileUnit, f.getGenericType(), f.getType());
-            FieldNode fn = new FieldNode(f.getName(), f.getModifiers(), ret, classNode, null);
-            setAnnotationMetaData(f.getAnnotations(), fn);
-            classNode.addField(fn);
-        }
-        Method[] methods = clazz.getDeclaredMethods();
-        for (Method m : methods) {
-            ClassNode ret = makeClassNode(compileUnit, m.getGenericReturnType(), m.getReturnType());
-            Parameter[] params = makeParameters(compileUnit, m.getGenericParameterTypes(), m.getParameterTypes(), m.getParameterAnnotations());
-            ClassNode[] exceptions = makeClassNodes(compileUnit, m.getGenericExceptionTypes(), m.getExceptionTypes());
-            MethodNode mn = new MethodNode(m.getName(), m.getModifiers(), ret, params, exceptions, null);
-            mn.setSynthetic(m.isSynthetic());
-            setMethodDefaultValue(mn, m);
-            setAnnotationMetaData(m.getAnnotations(), mn);
-            mn.setGenericsTypes(configureTypeVariable(m.getTypeParameters()));
-            classNode.addMethod(mn);
-        }
-        Constructor[] constructors = clazz.getDeclaredConstructors();
-        for (Constructor ctor : constructors) {
-            Parameter[] params = makeParameters(compileUnit, ctor.getGenericParameterTypes(), ctor.getParameterTypes(), ctor.getParameterAnnotations());
-            ClassNode[] exceptions = makeClassNodes(compileUnit, ctor.getGenericExceptionTypes(), ctor.getExceptionTypes());
-            classNode.addConstructor(ctor.getModifiers(), params, exceptions, null);
-        }
+        try {
+            Class clazz = classNode.getTypeClass();
+            Field[] fields = clazz.getDeclaredFields();
+            for (Field f : fields) {
+                ClassNode ret = makeClassNode(compileUnit, f.getGenericType(), f.getType());
+                FieldNode fn = new FieldNode(f.getName(), f.getModifiers(), ret, classNode, null);
+                setAnnotationMetaData(f.getAnnotations(), fn);
+                classNode.addField(fn);
+            }
+            Method[] methods = clazz.getDeclaredMethods();
+            for (Method m : methods) {
+                ClassNode ret = makeClassNode(compileUnit, m.getGenericReturnType(), m.getReturnType());
+                Parameter[] params = makeParameters(compileUnit, m.getGenericParameterTypes(), m.getParameterTypes(), m.getParameterAnnotations());
+                ClassNode[] exceptions = makeClassNodes(compileUnit, m.getGenericExceptionTypes(), m.getExceptionTypes());
+                MethodNode mn = new MethodNode(m.getName(), m.getModifiers(), ret, params, exceptions, null);
+                mn.setSynthetic(m.isSynthetic());
+                setMethodDefaultValue(mn, m);
+                setAnnotationMetaData(m.getAnnotations(), mn);
+                mn.setGenericsTypes(configureTypeVariable(m.getTypeParameters()));
+                classNode.addMethod(mn);
+            }
+            Constructor[] constructors = clazz.getDeclaredConstructors();
+            for (Constructor ctor : constructors) {
+                Parameter[] params = makeParameters(compileUnit, ctor.getGenericParameterTypes(), ctor.getParameterTypes(), ctor.getParameterAnnotations());
+                ClassNode[] exceptions = makeClassNodes(compileUnit, ctor.getGenericExceptionTypes(), ctor.getExceptionTypes());
+                classNode.addConstructor(ctor.getModifiers(), params, exceptions, null);
+            }
 
-        Class sc = clazz.getSuperclass();
-        if (sc != null) classNode.setUnresolvedSuperClass(makeClassNode(compileUnit, clazz.getGenericSuperclass(), sc));
-        makeInterfaceTypes(compileUnit, classNode, clazz);
-        setAnnotationMetaData(classNode.getTypeClass().getAnnotations(), classNode);
+            Class sc = clazz.getSuperclass();
+            if (sc != null) classNode.setUnresolvedSuperClass(makeClassNode(compileUnit, clazz.getGenericSuperclass(), sc));
+            makeInterfaceTypes(compileUnit, classNode, clazz);
+            setAnnotationMetaData(classNode.getTypeClass().getAnnotations(), classNode);
 
-        PackageNode packageNode = classNode.getPackage();
-        if (packageNode != null) {
-            setAnnotationMetaData(classNode.getTypeClass().getPackage().getAnnotations(), packageNode);
+            PackageNode packageNode = classNode.getPackage();
+            if (packageNode != null) {
+                setAnnotationMetaData(classNode.getTypeClass().getPackage().getAnnotations(), packageNode);
+            }
+        } catch (NoClassDefFoundError e) {
+            throw new NoClassDefFoundError("Unable to load class "+classNode.toString(false)+" due to missing dependency "+e.getMessage());
         }
     }
 
@@ -386,10 +397,19 @@ public class Java5 implements VMPlugin {
         if (interfaceTypes.length == 0) {
             classNode.setInterfaces(ClassNode.EMPTY_ARRAY);
         } else {
-            Class[] interfaceClasses = clazz.getInterfaces();
             ClassNode[] ret = new ClassNode[interfaceTypes.length];
             for (int i = 0; i < interfaceTypes.length; i++) {
-                ret[i] = makeClassNode(cu, interfaceTypes[i], interfaceClasses[i]);
+                Type type = interfaceTypes[i];
+                while (!(type instanceof Class)) {
+                    ParameterizedType pt = (ParameterizedType) type;
+                    Type t2 = pt.getRawType();
+                    if (t2==type) {
+                        throw new GroovyBugError("Cannot transform generic signature of "+clazz+
+                                " with generic interface "+interfaceTypes[i]+" to a class.");
+                    }
+                    type = t2;
+                }
+                ret[i] = makeClassNode(cu, interfaceTypes[i], (Class) type);
             }
             classNode.setInterfaces(ret);
         }
@@ -434,5 +454,20 @@ public class Java5 implements VMPlugin {
     }
 
     public void invalidateCallSites() {}
+
+    @Override
+    public Object getInvokeSpecialHandle(Method m, Object receiver){
+        throw new GroovyBugError("getInvokeSpecialHandle requires at least JDK 7 wot private access to Lookup");
+    }
+
+    @Override
+    public int getVersion() {
+        return 5;
+    }
+
+    @Override
+    public Object invokeHandle(Object handle, Object[] args) throws Throwable {
+        throw new GroovyBugError("invokeHandle requires at least JDK 7");
+    }
 }
 

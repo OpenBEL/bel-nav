@@ -1,17 +1,20 @@
 /*
- * Copyright 2003-2013 the original author or authors.
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package groovy.transform.stc
 
@@ -46,7 +49,7 @@ class GenericsSTCTest extends StaticTypeCheckingTestCase {
         shouldFailWithMessages '''
             List<String> list = []
             list.add(1)
-        ''', "Cannot find matching method java.util.List#add(int)"
+        ''', "Cannot call java.util.List <String>#add(java.lang.String) with arguments [int]"
     }
 
     void testAddOnList2() {
@@ -72,7 +75,7 @@ class GenericsSTCTest extends StaticTypeCheckingTestCase {
         shouldFailWithMessages '''
             List<String> list = []
             list << 1
-        ''', 'Cannot find matching method java.util.List#leftShift(int)'
+        ''', 'Cannot call <T> java.util.List <String>#leftShift(T) with arguments [int]'
     }
 
     void testAddOnList2UsingLeftShift() {
@@ -112,14 +115,14 @@ class GenericsSTCTest extends StaticTypeCheckingTestCase {
         shouldFailWithMessages '''
             List<Integer> list = new LinkedList<>()
             list.add 'Hello'
-        ''', 'Cannot find matching method java.util.LinkedList#add(java.lang.String)'
+        ''', 'Cannot call java.util.LinkedList <java.lang.Integer>#add(java.lang.Integer) with arguments [java.lang.String]'
     }
 
     void testAddOnListWithDiamondAndWrongTypeUsingLeftShift() {
         shouldFailWithMessages '''
             List<Integer> list = new LinkedList<>()
             list << 'Hello'
-        ''', 'Cannot find matching method java.util.LinkedList#leftShift(java.lang.String)'
+        ''', 'Cannot call <T> java.util.LinkedList <java.lang.Integer>#leftShift(T) with arguments [java.lang.String]'
     }
 
     void testAddOnListWithDiamondAndNullUsingLeftShift() {
@@ -195,7 +198,7 @@ class GenericsSTCTest extends StaticTypeCheckingTestCase {
     void testLinkedListWithListArgumentAndWrongElementTypes() {
         shouldFailWithMessages '''
             List<String> list = new LinkedList<String>([1,2,3])
-        ''', 'Cannot find matching method java.util.LinkedList#<init>(java.util.List <java.lang.Integer>)'
+        ''', 'Cannot call java.util.LinkedList <String>#<init>(java.util.Collection <java.lang.Object extends java.lang.String>) with arguments [java.util.List <java.lang.Integer>]'
     }
 
     void testCompatibleGenericAssignmentWithInferrence() {
@@ -333,6 +336,36 @@ class GenericsSTCTest extends StaticTypeCheckingTestCase {
         '''
     }
 
+    // GROOVY-6126
+    void testChoosesCorrectMethodOfParameterizedReturnType() {
+        assertScript '''
+            class Loader {
+                public <T> T load(Class<T> entityClass, Serializable id) {entityClass.newInstance()}
+                public void load(final Object entity, final Serializable id) {}
+            }
+
+            class MyClass<D> {
+                Class<D> persistentClass
+                Loader hibernateTemplate = new Loader()
+                MyClass(Class<D> c) {
+                    this.persistentClass = c
+                }
+
+                D load(Serializable id) {
+                    id = convertIdentifier(id)
+                    if (id != null) {
+                        return hibernateTemplate.load(persistentClass, id)
+                    }
+                }
+
+                Serializable convertIdentifier(Serializable s) {"1"}
+            }
+            class Foo{}
+
+            MyClass<Foo> mc = new MyClass(Foo)
+            Foo foo = mc.load("2")'''
+    }
+
     void testMethodCallWithClassParameterUsingClassLiteralArg() {
         assertScript '''
             class A {}
@@ -390,7 +423,7 @@ class GenericsSTCTest extends StaticTypeCheckingTestCase {
         shouldFailWithMessages '''
             Map<String, Integer> map = new HashMap<String,Integer>()
             map.put('hello', new Object())
-        ''', 'Cannot find matching method java.util.HashMap#put(java.lang.String, java.lang.Object)'
+        ''', 'Cannot call java.util.HashMap <String, Integer>#put(java.lang.String, java.lang.Integer) with arguments [java.lang.String, java.lang.Object]'
     }
 
     void testPutMethodWithPrimitiveValueAndArrayPut() {
@@ -422,7 +455,7 @@ class GenericsSTCTest extends StaticTypeCheckingTestCase {
                 }
             }
             new Test()
-        ''', 'Cannot find matching method java.io.Serializable#toInteger()'
+        ''', 'Cannot find matching method java.lang.Object#getAt(int)'
     }
 
     void testAssignmentOfNewInstance() {
@@ -461,7 +494,7 @@ class GenericsSTCTest extends StaticTypeCheckingTestCase {
             }
         }
         new ClassB()
-        ''', 'Cannot find matching method groovy.transform.stc.GenericsSTCTest$ClassA#bar'
+        ''', 'Cannot call <X> groovy.transform.stc.GenericsSTCTest$ClassA <Long>#bar(java.lang.Class <Long>) with arguments [java.lang.Class <java.lang.Object extends java.lang.Object>]'
     }
 
     // GROOVY-5516
@@ -484,7 +517,7 @@ class GenericsSTCTest extends StaticTypeCheckingTestCase {
             List<String> list = ['a','b','c']
             Collection<Integer> e = (Collection<Integer>) [1,2,3]
             boolean r = list.addAll(e)
-        ''', 'Cannot call org.codehaus.groovy.runtime.DefaultGroovyMethods#addAll(java.util.Collection <java.lang.String>, java.lang.String[]) with arguments [java.util.List <java.lang.String>, java.util.Collection <Integer>]'
+        ''', 'Cannot call java.util.List <java.lang.String>#addAll(java.util.Collection <java.lang.Object extends java.lang.String>) with arguments [java.util.Collection <Integer>]'
     }
 
     // GROOVY-5528
@@ -706,7 +739,7 @@ class GenericsSTCTest extends StaticTypeCheckingTestCase {
             })
             Map<Date, Date> map = new HashMap<>()
             map.put('foo', new Date())
-        ''', 'Cannot find matching method java.util.HashMap#put(java.lang.String, java.util.Date)'
+        ''', 'Cannot call java.util.HashMap <java.util.Date, java.util.Date>#put(java.util.Date, java.util.Date) with arguments [java.lang.String, java.util.Date]'
     }
     void testInferDiamondForAssignmentWithDatesAndIllegalKeyUsingSquareBracket() {
         shouldFailWithMessages '''
@@ -725,7 +758,7 @@ class GenericsSTCTest extends StaticTypeCheckingTestCase {
             })
             Map<Date, Date> map = new HashMap<>()
             map['foo'] = new Date()
-        ''', 'Cannot call org.codehaus.groovy.runtime.DefaultGroovyMethods#putAt(java.util.Map <java.util.Date, java.util.Date>, java.util.Date, java.util.Date) with arguments [java.util.HashMap <java.util.Date, java.util.Date>, java.lang.String, java.util.Date]'
+        ''', 'Cannot call <K,V> java.util.HashMap <java.util.Date, java.util.Date>#putAt(java.util.Date, java.util.Date) with arguments [java.lang.String, java.util.Date]'
     }
     void testInferDiamondForAssignmentWithDatesAndIllegalValueUsingPut() {
         shouldFailWithMessages '''
@@ -744,7 +777,7 @@ class GenericsSTCTest extends StaticTypeCheckingTestCase {
             })
             Map<Date, Date> map = new HashMap<>()
             map.put(new Date(), 'foo')
-        ''', 'Cannot find matching method java.util.HashMap#put(java.util.Date, java.lang.String)'
+        ''', 'Cannot call java.util.HashMap <java.util.Date, java.util.Date>#put(java.util.Date, java.util.Date) with arguments [java.util.Date, java.lang.String]'
     }
     void testInferDiamondForAssignmentWithDatesAndIllegalValueUsingSquareBracket() {
         shouldFailWithMessages '''
@@ -763,7 +796,7 @@ class GenericsSTCTest extends StaticTypeCheckingTestCase {
             })
             Map<Date, Date> map = new HashMap<>()
             map[new Date()] = 'foo'
-        ''', 'Cannot assign value of type java.lang.String to variable of type java.util.Date'
+        ''', 'Cannot call <K,V> java.util.HashMap <java.util.Date, java.util.Date>#putAt(java.util.Date, java.util.Date) with arguments [java.util.Date, java.lang.String]'
     }
 
     void testCallMethodWithParameterizedArrayList() {
@@ -861,7 +894,7 @@ class GenericsSTCTest extends StaticTypeCheckingTestCase {
                 println arg1 == arg2
             }
             printEqual(1, 'foo')
-        ''', '#printEqual(java.lang.Object <T>, java.lang.Object <T>) with arguments [int, java.lang.String]'
+        ''', '#printEqual(T, T) with arguments [int, java.lang.String]'
     }
     void testIncompatibleGenericsForTwoArgumentsUsingEmbeddedPlaceholder() {
         shouldFailWithMessages '''
@@ -869,7 +902,7 @@ class GenericsSTCTest extends StaticTypeCheckingTestCase {
                 println arg1 == arg2
             }
             printEqual(1, ['foo'])
-        ''', '#printEqual(java.lang.Object <T>, java.util.List <T>) with arguments [int, java.util.List <java.lang.String>]'
+        ''', '#printEqual(T, java.util.List <T>) with arguments [int, java.util.List <java.lang.String>]'
     }
 
     void testGroovy5748() {
@@ -1153,7 +1186,7 @@ class GenericsSTCTest extends StaticTypeCheckingTestCase {
                 Foo<Map> f = new Foo<Map>("a",1)
             }
             bar()
-        ''', '[Static type checking] - Cannot find matching method Foo#<init>(java.lang.String, int)'
+        ''', '[Static type checking] - Cannot call Foo <Map>#<init>(java.util.Map, java.util.Map) with arguments [java.lang.String, int]'
     }
     
     // Groovy-5742
@@ -1210,7 +1243,7 @@ class GenericsSTCTest extends StaticTypeCheckingTestCase {
             List<Object> l = new ArrayList<>()
             assert foo(l) == 1
         ''',
-        'Cannot find matching method'
+        '#foo(java.util.List <A extends A>) with arguments [java.util.ArrayList <java.lang.Object>]'
     }
     
     void testMethodLevelGenericsForMethodCall() {
@@ -1264,7 +1297,7 @@ class GenericsSTCTest extends StaticTypeCheckingTestCase {
             }
             GoodCodeRed.foo()
         ''',
-        "Cannot find matching method"
+        "Cannot call <T> GoodCodeRed <Long>#attach(GoodCodeRed <Long>) with arguments [GoodCodeRed <Integer>]"
     }
     
     void testHiddenGenerics() {
@@ -1278,8 +1311,7 @@ class GenericsSTCTest extends StaticTypeCheckingTestCase {
             class Blah {}
             class MyList extends LinkedList<Object> {}
             List<Blah> o = new MyList()
-        ''',
-        'Incompatible generic argument types. Cannot assign MyList to: java.util.List <Blah>'
+        ''','Incompatible generic argument types. Cannot assign MyList to: java.util.List <Blah>'
         
         // Groovy-5873
         assertScript """
@@ -1314,7 +1346,305 @@ class GenericsSTCTest extends StaticTypeCheckingTestCase {
             Runner.main(null);
         """
     }
+
+    void testReturnTypeInferenceRemovalWithGenerics() {
+        assertScript '''
+            class SynchronousPromise<T> {
+                Closure<T> callable
+                Object value
+
+                SynchronousPromise(Closure<T> callable) {
+                    this.callable = callable
+                }
+
+                T get() throws Throwable {
+                    @ASTTest(phase=INSTRUCTION_SELECTION,value={
+                        assert node.getNodeMetaData(INFERRED_TYPE) == OBJECT_TYPE
+                    })
+                    value=callable.call()
+                    return value
+                }
+            }
+
+            def promise = new SynchronousPromise({ "Hello" })
+            promise.get()
+        '''
+    }
     
+    // GROOVY-6455
+    void testDelegateWithGenerics() {
+        assertScript '''
+            @groovy.transform.CompileStatic
+            class IntList {
+                @Delegate List<Integer> delegate = new ArrayList<Integer>()
+            }
+            def l = new IntList()
+            assert l == []
+        '''
+    }
+
+    // GROOVY-6504
+    void testInjectMethodWithInitialValueChoosesTheCollectionVersion() {
+        assertScript '''import org.codehaus.groovy.transform.stc.ExtensionMethodNode
+            @ASTTest(phase=INSTRUCTION_SELECTION, value={
+                def method = node.rightExpression.getNodeMetaData(DIRECT_METHOD_CALL_TARGET)
+                assert method.name == 'inject'
+                assert method instanceof ExtensionMethodNode
+                method = method.extensionMethodNode
+                assert method.parameters[0].type == make(Collection)
+            })
+            def result = ['a','bb','ccc'].inject(0) { int acc, String str -> acc += str.length(); acc }
+            assert  result == 6
+        '''
+    }
+
+    // GROOVY-6504
+    void testInjectMethodWithInitialValueChoosesTheCollectionVersionUsingDGM() {
+        assertScript '''import org.codehaus.groovy.runtime.DefaultGroovyMethods
+            @ASTTest(phase=INSTRUCTION_SELECTION, value={
+                def method = node.rightExpression.getNodeMetaData(DIRECT_METHOD_CALL_TARGET)
+                assert method.name == 'inject'
+                assert method.parameters[0].type == make(Collection)
+            })
+            def result = DefaultGroovyMethods.inject(['a','bb','ccc'],0, { int acc, String str -> acc += str.length(); acc })
+            assert  result == 6
+        '''
+    }
+
+    // GROOVY-6760
+    void testGenericsAtMethodLevelWithGenericsInTypeOfGenericType() {
+        assertScript '''
+            @Grab(group='com.netflix.rxjava', module='rxjava-core', version='0.18.1') 
+            import rx.Observable
+            import java.util.concurrent.Callable
+
+            static <T> Observable<T> observe(Callable<Iterable<T>> callable) {
+                Observable.from(callable.call())
+            }
+            observe({ ["foo"] }) map {
+                it.toUpperCase() // <- compiler doesn't know 'it' is a string
+            } subscribe {
+                assert it == "FOO"
+            }
+        '''
+    }
+
+    // GROOVY-6135
+    void testGenericField() {
+        assertScript '''
+            import javax.xml.ws.Holder
+
+            Holder<Integer> holder = new Holder<Integer>()
+            holder.value = 5
+            assert holder.value > 4
+        '''
+    }
+
+    //GROOVY-6723, GROOVY-6415
+    void testIndirectMethodLevelGenerics() {
+        assertScript '''
+            class C1<A> {
+                def void m1(A a) {C1.m2(a)}
+                static <B> void m2(B b) {}
+            }
+            new C1().m1(null) // the call does not really matter
+        '''
+        assertScript '''
+            class Test1 {
+                static <A, B> void pair1(A a, B b) {}
+                static <A, B> void pair2(A a, B b) {pair1(a, a)}
+                static <A> List<A> list1(A a) {[a]}
+                static <B> List<B> list2(B b) {list1(b)}
+                static <A> List<A> list3(A a) {list1(a)}
+            }
+            Test1.pair2(1,2) // the call does not really matter
+        '''
+        
+        assertScript '''
+            class Foo {
+                String method() {
+                    return callT('abc')
+                }
+            
+                private <T> T callT(T t) {
+                    return callV(t)
+                }
+            
+                private <V> V callV(V v) {
+                    return v
+                }
+            }
+            
+            println new Foo().method()
+        '''
+    }
+
+    // GROOVY-6358
+    void testGenericsReturnedFromStaticMethodWithInnerClosureAndAsType() {
+        assertScript '''
+            import java.lang.reflect.Method
+
+            interface Ifc {
+               void method()
+            }
+            class Generator {
+                static <T> T create (Class<T> clazz ){
+                    return clazz.methods.collectEntries { Method method ->
+                            [ (method.name) : { println "${method.name} called"} ]
+                        }.asType(clazz)
+                }
+            }
+            class User {
+                static void main() {
+                    Ifc ifc = Generator.create(Ifc)
+                    ifc.method()
+                }
+            }
+
+            User.main()
+        '''
+    }
+    
+    void testConcreteTypeInsteadOfGenerifiedInterface() {
+        assertScript '''
+            import groovy.transform.ASTTest
+            import static org.codehaus.groovy.transform.stc.StaticTypesMarker.*
+            import static org.codehaus.groovy.ast.ClassHelper.*
+
+            interface Converter<F, T> {
+            T convertC(F from)
+            }
+            class Holder<T> {
+               T thing
+               Holder(T thing) {
+                this.thing = thing
+               }
+               def <R> Holder<R> convertH(Converter<? super T, ? extends R> func1) {
+                  new Holder(func1.convertC(thing))
+               }
+            }
+            class IntToFloatConverter implements Converter<Integer,Float> {
+                public Float convertC(Integer from) { from.floatValue() } 
+            }
+            void foo() {
+                @ASTTest(phase=INSTRUCTION_SELECTION,value={
+                    def holderType = node.getNodeMetaData(INFERRED_TYPE)
+                    assert holderType.genericsTypes[0].type == Float_TYPE
+                })
+                def h1 = new Holder<Integer>(2).convertH(new IntToFloatConverter())
+            }
+            foo()
+        '''
+    }
+    
+    // GROOVY-6748
+    void testCleanGenerics() {
+        assertScript '''
+            class Class1 {
+                static <A, B> void method1(A a, B b) {
+                    method2(a, b)
+                }
+                static <A, B> void method2(A a, B b) {}
+                static <A, B> void method3(List<A> list1, List<B> list2) {
+                    method1(list1.get(0), list2.get(0))
+                }
+            }
+            new Class1().method3(["a"],["b"])
+        '''
+    }
+    
+    // GROOVY-6761
+    void testInVariantAndContraVariantGenerics() {
+        assertScript '''
+            class Thing {
+              public <O> void contravariant(Class<? super O> type, O object) {}
+              public <O> void invariant(Class<O> type, O object) {}
+              void m() {
+                invariant(String, "foo")
+                contravariant(String, "foo") // fails, can't find method
+              }
+            }
+            new Thing().m()
+        '''
+    }
+
+    // GROOVY-6731
+    void testContravariantMethodResolution() {
+        assertScript '''interface Function<T, R> {
+
+    R apply(T t)
+
+}
+public <I, O> void transform(Function<? super I, ? extends O> function) { function.apply('')}
+
+String result = null
+transform(new Function<String, String>() {
+
+    String apply(String input) {
+        result = "ok"
+    }
+})
+
+assert result == 'ok\''''
+    }
+    void testContravariantMethodResolutionWithImplicitCoercion() {
+        assertScript '''interface Function<T, R> {
+
+    R apply(T t)
+
+}
+public <I, O> void transform(Function<? super I, ? extends O> function) { function.apply('')}
+
+String result = null
+transform {
+        result = "ok"
+}
+
+
+assert result == 'ok'
+'''
+    }
+
+    void testGROOVY5981(){
+        assertScript '''
+            import javax.swing.*
+            import java.awt.*
+
+            class ComponentFixture<T extends Component> {}
+            class JButtonFixture extends ComponentFixture<JButton> {}
+            class ContainerFixture<T extends Container> extends ComponentFixture<T> {}
+            abstract class ComponentAdapter<Fixture extends ComponentFixture> {
+                Fixture getFixture() {
+                    return fixture
+                }
+            }
+            abstract class ContainerAdapter<Fixture extends ContainerFixture> extends ComponentAdapter<Fixture> {}
+
+            class ButtonComponent extends ComponentAdapter<JButtonFixture> {
+                void setFixtureResolver(final ContainerAdapter<? extends ContainerFixture> containerAdapter) {
+                    final ContainerFixture containerFixture = containerAdapter.getFixture()
+                }
+            }
+
+            new ButtonComponent()
+        '''
+    }
+
+    // GROOVY-6856
+    void testReturnTypeFitsInferredTypeWithBound() {
+        assertScript '''
+            class Wrapper {}
+
+            class Foo<W extends Wrapper> {
+                W doIt (List<W> l) {
+                    l.iterator().next()
+                }
+            }
+            Wrapper w = new Wrapper()
+            assert new Foo<Wrapper>().doIt([w]) == w
+        '''
+    }
+
     static class MyList extends LinkedList<String> {}
 
     public static class ClassA<T> {

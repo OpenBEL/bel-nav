@@ -1,19 +1,24 @@
 /*
- * Copyright 2003-2011 the original author or authors.
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package groovy
+
+import org.codehaus.groovy.control.MultipleCompilationErrorsException
 
 import static groovy.lang.Closure.IDENTITY
 
@@ -390,9 +395,152 @@ class ClosureTest extends GroovyTestCase {
             '''
         }
     }
+
+    // GROOVY-5875
+    void testStaticInnerClassDelegateFirstAccess() {
+        assertScript '''
+             class Owner {
+                 Object delegate
+                 String ownerProp = "owner"
+
+                 void run() {
+                     def c = {
+                         delegateProp = ownerProp
+                     }
+                     c.delegate = delegate
+                     c.resolveStrategy = Closure.DELEGATE_FIRST
+                     c()
+                     assert c.delegate.delegateProp == ownerProp
+                 }
+             }
+
+             class Container {
+                 static class Delegate {
+                      String delegateProp = "delegate"
+                 }
+             }
+
+             def owner = new Owner()
+             owner.delegate = new Container.Delegate()
+             owner.run()
+        '''
+    }
+
+    void testStaticInnerClassOwnerFirstAccess() {
+        assertScript '''
+             class Owner {
+                 Object delegate
+                 String ownerProp = "owner"
+
+                 void run() {
+                     def c = {
+                         delegateProp = ownerProp
+                     }
+                     c.delegate = delegate
+                     c.resolveStrategy = Closure.OWNER_FIRST
+                     c()
+                     assert c.delegate.delegateProp == ownerProp
+                 }
+             }
+
+             class Container {
+                 static class Delegate {
+                      String delegateProp = "delegate"
+                 }
+             }
+
+             def owner = new Owner()
+             owner.delegate = new Container.Delegate()
+             owner.run()
+        '''
+    }
+
+    void testStaticInnerClassOwnerWithPropertyMissingImplementation() {
+        def gcl = new GroovyClassLoader()
+        def msg = shouldFail MultipleCompilationErrorsException, {
+            gcl.parseClass('''
+                public class ClosureTestA {
+                    static class ClosureTestB {
+                        def propertyMissing(String myName, Object myValue) {
+                            return myValue
+                        }
+
+                        def propertyMissing(String myName) {
+                            return 42
+                        }
+
+                        def methodMissing(String myName, Object myArgs) {
+                            return 42
+                        }
+                    }
+                }
+            ''')
+        }
+
+        assert msg.contains('"methodMissing" implementations are not supported on static inner classes as a synthetic version of "methodMissing" is added during compilation for the purpose of outer class delegation.')
+        assert msg.contains('"propertyMissing" implementations are not supported on static inner classes as a synthetic version of "propertyMissing" is added during compilation for the purpose of outer class delegation.')
+    }
+
+    void testInnerClassOwnerWithPropertyMissingImplementation() {
+        def gcl = new GroovyClassLoader()
+        gcl.parseClass('''
+                public class ClosureTestA {
+                    class ClosureTestB {
+                        def propertyMissing(String myName, Object myValue) {
+                            return myValue
+                        }
+
+                        def propertyMissing(String myName) {
+                            return 42
+                        }
+
+                        def methodMissing(String myName, Object myArgs) {
+                            return 42
+                        }
+                    }
+                }
+        ''')
+    }
+
+    void testStaticInnerClassHierarchyWithMethodMissing() {
+        def gcl = new GroovyClassLoader()
+        def msg = shouldFail MultipleCompilationErrorsException, {
+            gcl.parseClass('''
+                    public class ClosureTestA {
+                        static class ClosureTestB {
+                            def methodMissing(String myName, Object myArgs) {
+                                return 42
+                            }
+                        }
+
+                        static class ClosureTestB1 extends ClosureTestB {
+
+                        }
+                    }
+            ''')
+        }
+        assert msg.contains('"methodMissing" implementations are not supported on static inner classes as a synthetic version of "methodMissing" is added during compilation for the purpose of outer class delegation.')
+    }
+
+    // GROOVY-6989
+    void testEachCall() {
+        assertScript '''
+            Object[] arr = new Object[1]
+            arr[0] = "1"
+            List list = new ArrayList()
+            list.add(arr)
+
+            list.each { def obj ->
+                assert obj[0] == "1"
+            }
+
+            list.each { Object[] obj ->
+                assert obj[0] == "1"
+            }
+        '''
+    }
 }
 
 public class TinyAgent {
     int x
 }
-

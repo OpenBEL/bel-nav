@@ -1,31 +1,37 @@
 /*
- * Copyright 2008-2012 the original author or authors.
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
-
 package groovy.beans
 
 import org.codehaus.groovy.control.CompilationFailedException
+
+import java.beans.PropertyChangeListener
+
+import static java.lang.reflect.Modifier.isPublic
+import static java.lang.reflect.Modifier.isSynthetic
 
 /**
  * @author Danno Ferrin (shemnon)
  */
 class BindableTest extends GroovyTestCase {
 
-    public void testSimpleBindableProperty() {
-        GroovyShell shell = new GroovyShell()
-        shell.evaluate("""
+    void testSimpleBindableProperty() {
+        assertScript """
             import groovy.beans.Bindable
 
             class BindableTestBean1 {
@@ -38,12 +44,11 @@ class BindableTest extends GroovyTestCase {
             sb.propertyChange = {changed = true}
             sb.name = "foo"
             assert changed
-        """)
+        """
     }
 
-    public void testMultipleBindableProperty() {
-        GroovyShell shell = new GroovyShell()
-        shell.evaluate("""
+    void testMultipleBindableProperty() {
+        assertScript """
             import groovy.beans.Bindable
 
             class BindableTestBean2 {
@@ -57,12 +62,11 @@ class BindableTest extends GroovyTestCase {
             sb.name = "baz"
             sb.value = "biff"
             assert changed == 2
-        """)
+        """
     }
 
-    public void testMutatingSetter() {
-        GroovyShell shell = new GroovyShell()
-        shell.evaluate("""
+    void testMutatingSetter() {
+        assertScript """
             class BindableTestBean3 {
                 @groovy.beans.Bindable String name
                 void setName(String newName) {
@@ -77,10 +81,10 @@ class BindableTest extends GroovyTestCase {
             }
             sb.name = "baz"
             assert changed == 1
-        """)
+        """
     }
 
-    public void testWithSettersAndGetters() {
+    void testWithSettersAndGetters() {
         for (int i = 0; i < 16; i++) {
             boolean bindClass = i & 1
             boolean field = i & 2
@@ -118,7 +122,7 @@ class BindableTest extends GroovyTestCase {
         }
     }
 
-    public void testOnField() {
+    void testOnField() {
         GroovyShell shell = new GroovyShell()
         shouldFail(CompilationFailedException) {
             shell.evaluate("""
@@ -129,7 +133,7 @@ class BindableTest extends GroovyTestCase {
         }
     }
 
-    public void testOnStaticField() {
+    void testOnStaticField() {
         GroovyShell shell = new GroovyShell()
         shouldFail(CompilationFailedException) {
             shell.evaluate("""
@@ -140,7 +144,7 @@ class BindableTest extends GroovyTestCase {
         }
     }
 
-    public void testClassMarkers() {
+    void testClassMarkers() {
         for (int i = 0; i < 7; i++) {
             boolean bindField  = i & 1
             boolean bindClass  = i & 2
@@ -176,9 +180,8 @@ class BindableTest extends GroovyTestCase {
         }
     }
 
-    public void testPrimitiveTypes() {
-        GroovyShell shell = new GroovyShell()
-        shell.evaluate("""
+    void testPrimitiveTypes() {
+        assertScript """
             import groovy.beans.Bindable
 
             class BindableTestBean7 {
@@ -205,10 +208,10 @@ class BindableTest extends GroovyTestCase {
             sb.testFloat = 1
             sb.testDouble = 1
             assert changed == 8
-        """)
+        """
     }
 
-    public void testBadInheritance() {
+    void testBadInheritance() {
         shouldFail(CompilationFailedException) {
             GroovyShell shell = new GroovyShell()
             shell.evaluate("""
@@ -239,9 +242,8 @@ class BindableTest extends GroovyTestCase {
         }
     }
 
-    public void testBindableParent() {
-        GroovyShell shell = new GroovyShell()
-        shell.evaluate("""
+    void testBindableParent() {
+        assertScript """
             import groovy.beans.Bindable
             import java.beans.PropertyChangeEvent
             import java.beans.PropertyChangeListener
@@ -265,10 +267,10 @@ class BindableTest extends GroovyTestCase {
             }
 
             new BindableTestBeanChild()
-        """)
+        """
     }
 
-    public void testFinalProperty() {
+    void testFinalProperty() {
         shouldFail(CompilationFailedException) {
             GroovyShell shell = new GroovyShell()
             shell.evaluate("""
@@ -282,7 +284,7 @@ class BindableTest extends GroovyTestCase {
         }
     }
 
-    public void testOnClassFinalProperty() {
+    void testOnClassFinalProperty() {
         shouldFail(ReadOnlyPropertyException) {
             GroovyShell shell = new GroovyShell()
             shell.evaluate("""
@@ -304,7 +306,7 @@ class BindableTest extends GroovyTestCase {
         }
     }
 
-    public void testFinalClass() {
+    void testFinalClass() {
         shouldFail(ReadOnlyPropertyException) {
             GroovyShell shell = new GroovyShell()
             shell.evaluate("""
@@ -326,9 +328,8 @@ class BindableTest extends GroovyTestCase {
         }
     }
 
-    public void testGetPropertyChangeListeners() {
-        GroovyShell shell = new GroovyShell()
-        shell.evaluate("""
+    void testGetPropertyChangeListeners() {
+        assertScript """
             import groovy.beans.Bindable
             import java.beans.PropertyChangeListener
             import java.beans.PropertyChangeEvent
@@ -349,6 +350,26 @@ class BindableTest extends GroovyTestCase {
             assert !sb.getPropertyChangeListeners("bar")
             assert sb.getPropertyChangeListeners("foo") == [listener]
             assert sb.propertyChangeListeners.size() == 1
-        """)
+        """
+    }
+
+    void testPropertyChangeMethodsNotSynthetic() {
+        def clazz = new GroovyClassLoader().parseClass('class MyBean { @groovy.beans.Bindable String dummy }', 'dummyName')
+        def modifiers = clazz.getMethod('addPropertyChangeListener', PropertyChangeListener).modifiers
+        assert isPublic(modifiers)
+        assert !isSynthetic(modifiers)
+    }
+
+    void testPropertyChangeMethodWithCompileStatic() {
+        assertScript """
+            import groovy.beans.Bindable
+            import groovy.transform.CompileStatic
+
+            @CompileStatic
+            class MyBean {
+              @Bindable String test = "a test"
+            }
+            assert new MyBean()
+        """
     }
 }

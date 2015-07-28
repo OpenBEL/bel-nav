@@ -1,9 +1,27 @@
+/*
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
+ */
 package groovy.util.logging
 
-import java.lang.reflect.*
+import java.lang.reflect.Field
+import java.lang.reflect.Modifier
 import java.util.logging.*
 import groovy.mock.interceptor.MockFor
-import org.junit.Assert
 import org.codehaus.groovy.control.MultipleCompilationErrorsException
 
 /**
@@ -261,6 +279,45 @@ class LogTest extends GroovyTestCase {
         }
     }
 
+    public void testDefaultCategory() {
+        Class clazz = new GroovyClassLoader().parseClass("""
+            @groovy.util.logging.Log
+            class MyClass {
+                static loggingMethod() {
+                  log.info("info called")
+                }
+            }""")
+        LogFormatterSpy logFormatterSpy = registerLogFormatterSpy('MyClass')
+
+        clazz.newInstance().loggingMethod()
+
+        assert logFormatterSpy.messageReceived
+    }
+
+    public void testCustomCategory() {
+        String categoryName = 'customCategory'
+        Class clazz = new GroovyClassLoader().parseClass("""
+            @groovy.util.logging.Log(category='$categoryName')
+            class MyClass {
+                static loggingMethod() {
+                  log.info("info called")
+                }
+            }""")
+        LogFormatterSpy logFormatterSpy = registerLogFormatterSpy(categoryName)
+
+        clazz.newInstance().loggingMethod()
+
+        assert logFormatterSpy.messageReceived
+    }
+
+    private LogFormatterSpy registerLogFormatterSpy(String loggerName) {
+        Logger logger = Logger.getLogger(loggerName)
+        ConsoleHandler handler = new ConsoleHandler()
+        LogFormatterSpy loggerNameSpy = new LogFormatterSpy()
+        handler.setFormatter(loggerNameSpy)
+        logger.addHandler(handler)
+        return loggerNameSpy
+    }
 }
 
 @groovy.transform.PackageScope class LoggerSpy extends Logger {
@@ -310,5 +367,16 @@ class LogTest extends GroovyTestCase {
     void finest(String s) {
         if (finestParameter) throw new AssertionError("Finest already called once with parameter $finestParameter")
         finestParameter = s
+    }
+}
+
+class LogFormatterSpy extends Formatter {
+
+    boolean messageReceived = false
+
+    @Override
+    public String format(LogRecord record) {
+        messageReceived = true
+        return record.message
     }
 }

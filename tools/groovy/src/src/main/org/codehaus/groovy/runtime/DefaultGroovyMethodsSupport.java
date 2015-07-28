@@ -1,21 +1,25 @@
-/*
- * Copyright 2003-2008 the original author or authors.
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package org.codehaus.groovy.runtime;
 
 import groovy.lang.EmptyRange;
+import groovy.lang.IntRange;
 import groovy.lang.Range;
 import org.codehaus.groovy.runtime.typehandling.DefaultTypeTransformation;
 
@@ -31,9 +35,13 @@ import java.util.logging.Logger;
 public class DefaultGroovyMethodsSupport {
 
     private static final Logger LOG = Logger.getLogger(DefaultGroovyMethodsSupport.class.getName());
+    private static final Object[] EMPTY_OBJECT_ARRAY = new Object[0];
 
     // helper method for getAt and putAt
     protected static RangeInfo subListBorders(int size, Range range) {
+        if (range instanceof IntRange) {
+            return ((IntRange)range).subListBorders(size);
+        }
         int from = normaliseIndex(DefaultTypeTransformation.intUnbox(range.getFrom()), size);
         int to = normaliseIndex(DefaultTypeTransformation.intUnbox(range.getTo()), size);
         boolean reverse = range.isReverse();
@@ -56,7 +64,7 @@ public class DefaultGroovyMethodsSupport {
     /**
      * This converts a possibly negative index to a real index into the array.
      *
-     * @param i    the unnormalised index
+     * @param i    the unnormalized index
      * @param size the array size
      * @return the normalised index
      */
@@ -101,18 +109,6 @@ public class DefaultGroovyMethodsSupport {
         }
     }
 
-    protected static class RangeInfo {
-        public final int from;
-        public final int to;
-        public final boolean reverse;
-
-        public RangeInfo(int from, int to, boolean reverse) {
-            this.from = from;
-            this.to = to;
-            this.reverse = reverse;
-        }
-    }
-
     @SuppressWarnings("unchecked")
     protected static <T> Collection<T> cloneSimilarCollection(Collection<T> orig, int newCapacity) {
         Collection<T> answer = (Collection<T>) cloneObject(orig);
@@ -127,7 +123,7 @@ public class DefaultGroovyMethodsSupport {
     private static Object cloneObject(Object orig) {
         if (orig instanceof Cloneable) {
             try {
-                return InvokerHelper.invokeMethod(orig, "clone", new Object[0]);
+                return InvokerHelper.invokeMethod(orig, "clone", EMPTY_OBJECT_ARRAY);
             } catch (Exception ex) {
                 // ignore
             }
@@ -140,6 +136,14 @@ public class DefaultGroovyMethodsSupport {
             return createSimilarCollection((Collection<?>) object);
         }
         return new ArrayList();
+    }
+
+    protected static <T> Collection<T> createSimilarCollection(Iterable<T> iterable) {
+        if (iterable instanceof Collection) {
+            return createSimilarCollection((Collection<T>) iterable);
+        } else {
+            return new ArrayList<T>();
+        }
     }
 
     protected static <T> Collection<T> createSimilarCollection(Collection<T> collection) {

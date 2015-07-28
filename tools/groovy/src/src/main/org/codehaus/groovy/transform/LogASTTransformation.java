@@ -1,34 +1,48 @@
-/*
- * Copyright 2003-2012 the original author or authors.
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package org.codehaus.groovy.transform;
 
 import groovy.lang.GroovyClassLoader;
 import groovy.lang.GroovyRuntimeException;
+import groovy.transform.CompilationUnitAware;
 import org.codehaus.groovy.GroovyBugError;
-import org.codehaus.groovy.ast.*;
-import org.codehaus.groovy.ast.expr.*;
+import org.codehaus.groovy.ast.ASTNode;
+import org.codehaus.groovy.ast.AnnotatedNode;
+import org.codehaus.groovy.ast.AnnotationNode;
+import org.codehaus.groovy.ast.ClassCodeExpressionTransformer;
+import org.codehaus.groovy.ast.ClassHelper;
+import org.codehaus.groovy.ast.ClassNode;
+import org.codehaus.groovy.ast.DynamicVariable;
+import org.codehaus.groovy.ast.FieldNode;
+import org.codehaus.groovy.ast.expr.ConstantExpression;
+import org.codehaus.groovy.ast.expr.Expression;
+import org.codehaus.groovy.ast.expr.MethodCallExpression;
+import org.codehaus.groovy.ast.expr.TupleExpression;
+import org.codehaus.groovy.ast.expr.VariableExpression;
+import org.codehaus.groovy.classgen.VariableScopeVisitor;
+import org.codehaus.groovy.control.CompilationUnit;
 import org.codehaus.groovy.control.CompilePhase;
 import org.codehaus.groovy.control.SourceUnit;
-import org.codehaus.groovy.control.messages.SyntaxErrorMessage;
 import org.codehaus.groovy.runtime.DefaultGroovyMethods;
-import org.codehaus.groovy.syntax.SyntaxException;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
-import java.util.Arrays;
 
 /**
  * This class provides an AST Transformation to add a log field to a class.
@@ -44,20 +58,28 @@ import java.util.Arrays;
  * @author Matthias Cullmann
  */
 @GroovyASTTransformation(phase = CompilePhase.SEMANTIC_ANALYSIS)
-public class LogASTTransformation implements ASTTransformation {
+public class LogASTTransformation extends AbstractASTTransformation implements CompilationUnitAware {
+
+    /**
+     * This is just a dummy value used because String annotations values can not be null.
+     * It will be replaced by the fully qualified class name of the annotated class.
+     */
+    public static final String DEFAULT_CATEGORY_NAME = "##default-category-name##";
+
+    private CompilationUnit compilationUnit;
 
     public void visit(ASTNode[] nodes, final SourceUnit source) {
-        if (nodes.length != 2 || !(nodes[0] instanceof AnnotationNode) || !(nodes[1] instanceof AnnotatedNode)) {
-            addError("Internal error: expecting [AnnotationNode, AnnotatedNode] but got: " + Arrays.asList(nodes), nodes[0], source);
-        }
-
+        init(nodes, source);
         AnnotatedNode targetClass = (AnnotatedNode) nodes[1];
         AnnotationNode logAnnotation = (AnnotationNode) nodes[0];
 
-        final LoggingStrategy loggingStrategy = createLoggingStrategy(logAnnotation, source.getClassLoader());
+        final GroovyClassLoader classLoader = compilationUnit != null ? compilationUnit.getTransformLoader() : source.getClassLoader();
+        final LoggingStrategy loggingStrategy = createLoggingStrategy(logAnnotation, classLoader);
         if (loggingStrategy == null) return;
 
         final String logFieldName = lookupLogFieldName(logAnnotation);
+
+        final String categoryName = lookupCategoryName(logAnnotation);
 
         if (!(targetClass instanceof ClassNode))
             throw new GroovyBugError("Class annotation " + logAnnotation.getClassNode().getName() + " annotated no Class, this must not happen.");
@@ -88,7 +110,7 @@ public class LogASTTransformation implements ASTTransformation {
                 } else if (logField != null && !Modifier.isPrivate(logField.getModifiers())) {
                     addError("Class annotated with Log annotation cannot have log field declared because the field exists in the parent class: " + logField.getOwner().getName(), logField);
                 } else {
-                    logNode = loggingStrategy.addLoggerFieldToClass(node, logFieldName);
+                    logNode = loggingStrategy.addLoggerFieldToClass(node, logFieldName, categoryName);
                 }
                 super.visitClass(node);
             }
@@ -135,6 +157,8 @@ public class LogASTTransformation implements ASTTransformation {
         };
         transformer.visitClass(classNode);
 
+        // GROOVY-6373: references to 'log' field are normally already FieldNodes by now, so revisit scoping
+        new VariableScopeVisitor(sourceUnit, true).visitClass(classNode);
     }
 
     private String lookupLogFieldName(AnnotationNode logAnnotation) {
@@ -146,11 +170,12 @@ public class LogASTTransformation implements ASTTransformation {
         }
     }
 
-    public void addError(String msg, ASTNode expr, SourceUnit source) {
-        source.getErrorCollector().addErrorAndContinue(
-                new SyntaxErrorMessage(new SyntaxException(msg + '\n', expr.getLineNumber(), expr.getColumnNumber(),
-                        expr.getLastLineNumber(), expr.getLastColumnNumber()), source)
-        );
+    private String lookupCategoryName(AnnotationNode logAnnotation) {
+        Expression member = logAnnotation.getMember("category");
+        if (member != null && member.getText() != null) {
+            return member.getText();
+        }
+        return DEFAULT_CATEGORY_NAME;
     }
 
     private LoggingStrategy createLoggingStrategy(AnnotationNode logAnnotation, GroovyClassLoader loader) {
@@ -159,7 +184,7 @@ public class LogASTTransformation implements ASTTransformation {
 
         Class annotationClass;
         try {
-            annotationClass = Class.forName(annotationName);
+            annotationClass = Class.forName(annotationName, false, loader);
         } catch (Throwable e) {
             throw new RuntimeException("Could not resolve class named " + annotationName);
         }
@@ -202,16 +227,19 @@ public class LogASTTransformation implements ASTTransformation {
      */
     public interface LoggingStrategy {
         /**
-         * In this method, you are given a ClassNode and a field name, and you must add a new Field
+         * In this method, you are given a ClassNode, a field name and a category name, and you must add a new Field
          * onto the class. Return the result of the ClassNode.addField operations.
          *
-         * @param classNode the class that was originally annotated with the Log transformation.
-         * @param fieldName the name of the logger field
+         * @param classNode    the class that was originally annotated with the Log transformation.
+         * @param fieldName    the name of the logger field
+         * @param categoryName the name of the logging category
          * @return the FieldNode instance that was created and added to the class
          */
-        FieldNode addLoggerFieldToClass(ClassNode classNode, String fieldName);
+        FieldNode addLoggerFieldToClass(ClassNode classNode, String fieldName, String categoryName);
 
         boolean isLoggingMethod(String methodName);
+
+        String getCategoryName(ClassNode classNode, String categoryName);
 
         Expression wrapLoggingMethodCall(Expression logVariable, String methodName, Expression originalExpression);
     }
@@ -227,13 +255,24 @@ public class LogASTTransformation implements ASTTransformation {
             this(null);
         }
 
+        public String getCategoryName(ClassNode classNode, String categoryName) {
+            if (categoryName.equals(DEFAULT_CATEGORY_NAME)) {
+                return classNode.getName();
+            }
+            return categoryName;
+        }
+
         protected ClassNode classNode(String name) {
-            ClassLoader cl = loader==null?this.getClass().getClassLoader():loader;
+            ClassLoader cl = loader == null ? this.getClass().getClassLoader() : loader;
             try {
                 return ClassHelper.make(Class.forName(name, false, cl));
             } catch (ClassNotFoundException e) {
-                throw new GroovyRuntimeException(e);
+                throw new GroovyRuntimeException("Unable to load logging class", e);
             }
         }
+    }
+
+    public void setCompilationUnit(final CompilationUnit unit) {
+        this.compilationUnit = unit;
     }
 }

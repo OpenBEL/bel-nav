@@ -1,17 +1,20 @@
-/*
- * Copyright 2008-2013 the original author or authors.
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package groovy.transform;
 
@@ -23,8 +26,6 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Note: This annotation is currently experimental! Use at your own risk!
- * <p>
  * Class annotation used to assist in the creation of {@code Cloneable} classes.
  * The {@code @AutoClone} annotation instructs the compiler to execute an
  * AST transformation which adds a public {@code clone()} method and adds
@@ -45,14 +46,14 @@ import java.lang.annotation.Target;
  *   Date since
  * }
  * </pre>
- * Which will create a class of the following form:
+ * Which will create a class equivalent to the following:
  * <pre>
  * class Person implements Cloneable {
  *   ...
- *   public Object clone() throws CloneNotSupportedException {
- *     Object result = super.clone()
- *     result.favItems = favItems.clone()
- *     result.since = since.clone()
+ *   public Person clone() throws CloneNotSupportedException {
+ *     Person result = (Person) super.clone()
+ *     result.favItems = favItems instanceof Cloneable ? (List) favItems.clone() : favItems
+ *     result.since = (Date) since.clone()
  *     return result
  *   }
  *   ...
@@ -107,16 +108,16 @@ import java.lang.annotation.Target;
  *   final List favItems
  * }
  * </pre>
- * Which will create classes of the following form:
+ * Which will create classes equivalent to the following:
  * <pre>
  * class Person implements Cloneable {
  *   ...
  *   protected Person(Person other) throws CloneNotSupportedException {
  *     first = other.first
  *     last = other.last
- *     birthday = other.birthday.clone()
+ *     birthday = (Date) other.birthday.clone()
  *   }
- *   public Object clone() throws CloneNotSupportedException {
+ *   public Person clone() throws CloneNotSupportedException {
  *     return new Person(this)
  *   }
  *   ...
@@ -126,9 +127,9 @@ import java.lang.annotation.Target;
  *   protected Customer(Customer other) throws CloneNotSupportedException {
  *     super(other)
  *     numPurchases = other.numPurchases
- *     favItems = other.favItems.clone()
+ *     favItems = other.favItems instanceof Cloneable ? (List) other.favItems.clone() : other.favItems
  *   }
- *   public Object clone() throws CloneNotSupportedException {
+ *   public Customer clone() throws CloneNotSupportedException {
  *     return new Customer(this)
  *   }
  *   ...
@@ -137,7 +138,9 @@ import java.lang.annotation.Target;
  * If you use this style on a child class, the parent class must
  * also have a copy constructor (created using this annotation or by hand).
  * This approach can be slightly slower than the traditional cloning approach
- * but the {@code Cloneable} fields of your class can be final.
+ * but the {@code Cloneable} fields of your class can be final. When using the copy constructor style,
+ * you can provide your own custom constructor by hand if you wish. If you do so, it is up to you to
+ * correctly copy, clone or deep clone the properties of your class.
  * <p>
  * As a variation of the last two styles, if you set {@code style=SIMPLE}
  * then the no-arg constructor will be called followed by setting the
@@ -156,32 +159,32 @@ import java.lang.annotation.Target;
  *   final List favItems
  * }
  * </pre>
- * Which will create classes as follows:
+ * Which will create classes equivalent to the following:
  * <pre>
  * class Person implements Cloneable {
  *   ...
- *   public Object clone() throws CloneNotSupportedException {
+ *   public Person clone() throws CloneNotSupportedException {
  *     def result = new Person()
  *     copyOrCloneMembers(result)
  *     return result
  *   }
- *   protected void copyOrCloneMembers(other) {
+ *   protected void copyOrCloneMembers(Person other) {
  *     other.first = first
  *     other.last = last
- *     other.birthday = birthday.clone()
+ *     other.birthday = (Date) birthday.clone()
  *   }
  *   ...
  * }
  * class Customer extends Person {
  *   ...
- *   public Object clone() throws CloneNotSupportedException {
+ *   public Customer clone() throws CloneNotSupportedException {
  *     def result = new Customer()
  *     copyOrCloneMembers(result)
  *     return result
  *   }
- *   protected void copyOrCloneMembers(other) {
+ *   protected void copyOrCloneMembers(Customer other) {
  *     super.copyOrCloneMembers(other)
- *     other.favItems = favItems.clone()
+ *     other.favItems = favItems instanceof Cloneable ? (List) favItems.clone() : favItems
  *   }
  *   ...
  * }
@@ -203,11 +206,11 @@ import java.lang.annotation.Target;
  * <pre>
  * class Person implements Cloneable, Serializable {
  *   ...
- *   Object clone() throws CloneNotSupportedException {
+ *   Person clone() throws CloneNotSupportedException {
  *     def baos = new ByteArrayOutputStream()
  *     baos.withObjectOutputStream{ it.writeObject(this) }
  *     def bais = new ByteArrayInputStream(baos.toByteArray())
- *     bais.withObjectInputStream(getClass().classLoader){ it.readObject() }
+ *     bais.withObjectInputStream(getClass().classLoader){ (Person) it.readObject() }
  *   }
  *   ...
  * }
@@ -228,8 +231,8 @@ import java.lang.annotation.Target;
  * </ul>
  *
  * @author Paul King
- * @see groovy.transform.AutoCloneStyle
- * @see groovy.transform.AutoExternalize
+ * @see AutoCloneStyle
+ * @see ExternalizeMethods
  * @since 1.8.0
  */
 @java.lang.annotation.Documented
@@ -274,5 +277,5 @@ public @interface AutoClone {
     /**
      * Style to use when cloning.
      */
-    groovy.transform.AutoCloneStyle style() default AutoCloneStyle.CLONE;
+    AutoCloneStyle style() default AutoCloneStyle.CLONE;
 }

@@ -1,17 +1,20 @@
-/*
- * Copyright 2003-2013 the original author or authors.
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package groovy.servlet;
 
@@ -45,7 +48,7 @@ import javax.servlet.http.HttpServletRequest;
  * {@link java.util.regex.Matcher} for details.
  * The servlet init parameter names are:
  * <pre>
- * resource.name.regex = empty - defaults to null
+ * {@value #INIT_PARAM_RESOURCE_NAME_REGEX} = empty - defaults to null
  * resource.name.replacement = empty - defaults to null
  * resource.name.replace.all = true (default) | false means replaceFirst()
  * </pre>
@@ -62,7 +65,7 @@ import javax.servlet.http.HttpServletRequest;
  * <p>
  * In order to support class-loading-troubles-debugging with Tomcat 4 or
  * higher, you can log the class loader responsible for loading some classes.
- * See <a href="http://jira.codehaus.org/browse/GROOVY-861">GROOVY-861</a> for details.
+ * See <a href="https://issues.apache.org/jira/browse/GROOVY-861">GROOVY-861</a> for details.
  * The servlet init parameter name is:
  * <pre>
  * log.GROOVY861 = false(default) | true
@@ -81,6 +84,10 @@ import javax.servlet.http.HttpServletRequest;
  * @author Roshan Dawrani (roshandawrani)
  */
 public abstract class AbstractHttpServlet extends HttpServlet implements ResourceConnector {
+
+    public static final String INIT_PARAM_RESOURCE_NAME_REGEX = "resource.name.regex";
+
+    public static final String INIT_PARAM_RESOURCE_NAME_REGEX_FLAGS = "resource.name.regex.flags";
 
     /**
      * Content type of the HTTP response.
@@ -108,10 +115,10 @@ public abstract class AbstractHttpServlet extends HttpServlet implements Resourc
     protected ServletContext servletContext;
 
     /**
-     * Either <code>null</code> or a compiled pattern matcher read from "{@code resource.name.regex}"
+     * Either <code>null</code> or a compiled pattern read from "{@value #INIT_PARAM_RESOURCE_NAME_REGEX}"
      * and used in {@link AbstractHttpServlet#getScriptUri(HttpServletRequest)}.
      */
-    protected Matcher resourceNameMatcher;
+    protected Pattern resourceNamePattern;
 
     /**
      * The replacement used by the resource name matcher.
@@ -148,12 +155,14 @@ public abstract class AbstractHttpServlet extends HttpServlet implements Resourc
      */
     private boolean logGROOVY861;
 
+    /** a.fink: it was in {@link #removeNamePrefix}, but was extracted to var for optimization*/
+    protected String namePrefix;
+
     /**
      * Initializes all fields with default values.
      */
-    public AbstractHttpServlet() {
+    public AbstractHttpServlet () {
         this.servletContext = null;
-        this.resourceNameMatcher = null;
         this.resourceNameReplacement = null;
         this.resourceNameReplaceAll = true;
         this.verbose = false;
@@ -161,53 +170,60 @@ public abstract class AbstractHttpServlet extends HttpServlet implements Resourc
         this.logGROOVY861 = false;
     }
 
-    private String removeNamePrefix(String name) throws ResourceException {
-        URI uri = new File(servletContext.getRealPath("/")).toURI();
+    protected void generateNamePrefixOnce () {
+        URI uri = null;
+
+        String realPath = servletContext.getRealPath("/");
+        if (realPath != null) { uri = new File(realPath).toURI();}//prevent NPE if in .war
+
         try {
-            String basePath = uri.toURL().toExternalForm();
-            if (name.startsWith(basePath)) return name.substring(basePath.length());
-        } catch (MalformedURLException e) {
-            throw new ResourceException("Malformed URL for base path '"+ uri + "'", e);
-        }
-        
-        try {
-            URL res = servletContext.getResource("/"); 
-            if (res!=null) uri = res.toURI();
-        } catch (MalformedURLException e) {
-            // ignore
-        } catch (URISyntaxException e) {
-            // ignore
+            URL res = servletContext.getResource("/");
+            if (res != null) { uri = res.toURI(); }
+        } catch (MalformedURLException ignore) {
+        } catch (URISyntaxException ignore) {
         }
 
-        if (uri!=null) {
+        if (uri != null) {
             try {
-                String basePath = uri.toURL().toExternalForm();
-                if (name.startsWith(basePath)) return name.substring(basePath.length());
+                namePrefix = uri.toURL().toExternalForm();
+                return;
             } catch (MalformedURLException e) {
-                throw new ResourceException("Malformed URL for base path '"+ uri + "'", e);
+                log("generateNamePrefixOnce [ERROR] Malformed URL for base path / == '"+ uri +'\'', e);
             }
+        }
+
+        namePrefix = "";
+    }
+
+    protected String removeNamePrefix(String name) throws ResourceException {
+        if (namePrefix == null) {
+            generateNamePrefixOnce();
+        }
+        if (name.startsWith(namePrefix)) {//usualy name has text
+            return name.substring(namePrefix.length());
         }
         return name;
     }
-    
+
     /**
      * Interface method for ResourceContainer. This is used by the GroovyScriptEngine.
      */
-    public URLConnection getResourceConnection(String name) throws ResourceException {
-        name = removeNamePrefix(name);
-        name = name.replaceAll("\\\\", "/");
+    public URLConnection getResourceConnection (String name) throws ResourceException {
+        name = removeNamePrefix(name).replace('\\', '/');
 
         //remove the leading / as we are trying with a leading / now
-        if (name.startsWith("/")) name = name.substring(1);
+        if (name.startsWith("WEB-INF/groovy/")) {
+            name = name.substring(15);//just for uniformity
+        } else if (name.startsWith("/")) {
+            name = name.substring(1);
+        }
 
         /*
         * Try to locate the resource and return an opened connection to it.
         */
         try {
-            String tryScriptName = "/" + name;
-            URL url = servletContext.getResource(tryScriptName);
+            URL url = servletContext.getResource('/' + name);
             if (url == null) {
-                tryScriptName = "/WEB-INF/groovy/" + name;
                 url = servletContext.getResource("/WEB-INF/groovy/" + name);
             }
             if (url == null) {
@@ -228,7 +244,7 @@ public abstract class AbstractHttpServlet extends HttpServlet implements Resourc
      */
     protected String getScriptUri(HttpServletRequest request) {
         /*
-         * Log some debug information for http://jira.codehaus.org/browse/GROOVY-861
+         * Log some debug information for https://issues.apache.org/jira/browse/GROOVY-861
          */
         if (logGROOVY861) {
             log("Logging request class and its class loader:");
@@ -284,20 +300,16 @@ public abstract class AbstractHttpServlet extends HttpServlet implements Resourc
 
         /*
          * TODO : Enable auto ".groovy" extension replacing here!
-         * http://cvs.groovy.codehaus.org/viewrep/groovy/groovy/groovy-core/src/main/groovy/servlet/GroovyServlet.java?r=1.10#l259 
+         * http://cvs.groovy.codehaus.org/viewrep/groovy/groovy/groovy-core/src/main/groovy/servlet/GroovyServlet.java?r=1.10#l259
          */
 
         return applyResourceNameMatcher(uri);
     }
 
-    private String applyResourceNameMatcher(final String aUri) {
-        /*
-         * mangle resource name with the compiled pattern.
-         */
-        String uri = aUri;
-        Matcher matcher = resourceNameMatcher;
-        if (matcher != null) {
-            matcher.reset(uri);
+    protected String applyResourceNameMatcher (String uri) {
+        if (resourceNamePattern != null) {// mangle resource name with the compiled pattern.
+            Matcher matcher = resourceNamePattern.matcher(uri);
+
             String replaced;
             if (resourceNameReplaceAll) {
                 replaced = matcher.replaceAll(resourceNameReplacement);
@@ -308,7 +320,7 @@ public abstract class AbstractHttpServlet extends HttpServlet implements Resourc
                 if (verbose) {
                     log("Replaced resource name \"" + uri + "\" with \"" + replaced + "\".");
                 }
-                uri = replaced;
+                return replaced;
             }
         }
         return uri;
@@ -368,7 +380,7 @@ public abstract class AbstractHttpServlet extends HttpServlet implements Resourc
             log("Parsing init parameters...");
         }
 
-        String regex = config.getInitParameter("resource.name.regex");
+        String regex = config.getInitParameter(INIT_PARAM_RESOURCE_NAME_REGEX);
         if (regex != null) {
             String replacement = config.getInitParameter("resource.name.replacement");
             if (replacement == null) {
@@ -376,13 +388,19 @@ public abstract class AbstractHttpServlet extends HttpServlet implements Resourc
                 String message = "Init-param 'resource.name.replacement' not specified!";
                 log(message, npex);
                 throw new ServletException(message, npex);
+            } else if ("EMPTY_STRING".equals(replacement)) {//<param-value></param-value> is prohibited
+                replacement = "";
             }
-            int flags = 0; // TODO : Parse pattern compile flags.
-            this.resourceNameMatcher = Pattern.compile(regex, flags).matcher("");
+            int flags = 0; // TODO : Parse pattern compile flags (literal names).
+            String flagsStr = config.getInitParameter(INIT_PARAM_RESOURCE_NAME_REGEX_FLAGS);
+            if (flagsStr != null && flagsStr.length() > 0) {
+              flags = Integer.decode(flagsStr.trim());//throws NumberFormatException
+            }
+            resourceNamePattern = Pattern.compile(regex, flags);
             this.resourceNameReplacement = replacement;
             String all = config.getInitParameter("resource.name.replace.all");
             if (all != null) {
-                this.resourceNameReplaceAll = Boolean.valueOf(all);
+                this.resourceNameReplaceAll = Boolean.valueOf(all.trim());
             }
         }
 
@@ -400,11 +418,7 @@ public abstract class AbstractHttpServlet extends HttpServlet implements Resourc
             log("verbose = " + verbose); // this *is* verbose! ;)
             log("reflection = " + reflection);
             log("logGROOVY861 = " + logGROOVY861);
-            if (resourceNameMatcher != null) {
-                log("resource.name.regex = " + resourceNameMatcher.pattern().pattern());
-            } else {
-                log("resource.name.regex = null");
-            }
+            log(INIT_PARAM_RESOURCE_NAME_REGEX + " = " + resourceNamePattern);//toString == pattern
             log("resource.name.replacement = " + resourceNameReplacement);
         }
     }

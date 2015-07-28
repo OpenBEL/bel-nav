@@ -1,23 +1,27 @@
 /*
- * Copyright 2003-2010 the original author or authors.
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package groovy.jmx.builder
 
 import javax.management.ObjectName
 
 class JmxBuilderToolsTest extends GroovyTestCase {
+
     void testCapitalize() {
         assert JmxBuilderTools.capitalize("test") == "Test"
     }
@@ -81,12 +85,12 @@ class JmxBuilderToolsTest extends GroovyTestCase {
     void testIsClassMBean() {
         def object = new MockManagedObject()
         assert !JmxBuilderTools.isClassMBean(object.getClass())
-        assert !JmxBuilderTools.isClassMBean(MockManagedGroovyObject.class)
-        assert JmxBuilderTools.isClassMBean(MockJmxListener.class)
-        assert JmxBuilderTools.isClassMBean(JmxBuilderModelMBean.class)
+        assert !JmxBuilderTools.isClassMBean(MockManagedGroovyObject)
+        assert JmxBuilderTools.isClassMBean(MockJmxListener)
+        assert JmxBuilderTools.isClassMBean(JmxBuilderModelMBean)
 
         shouldFail {
-            assert JmxBuilderTools.isClassMBean(Class.class)
+            assert JmxBuilderTools.isClassMBean(Class)
         }
     }
 
@@ -123,6 +127,5 @@ class JmxBuilderToolsTest extends GroovyTestCase {
         assert bean.info().getOperation("doTwoThings")
         assert bean.info().getOperation("doThreeThings")
         assert bean.info().getOperation("doThreeThings").signature.size() == 3
-
     }
 }

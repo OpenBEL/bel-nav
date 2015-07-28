@@ -1,19 +1,21 @@
-/*
- * Copyright 2008-2013 the original author or authors.
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
-
 package org.codehaus.groovy.transform;
 
 import groovy.transform.CompilationUnitAware;
@@ -201,7 +203,7 @@ public final class ASTTransformationVisitor extends ClassCodeVisitorSupport {
                 String className;
                 BufferedReader svcIn = null;
                 try {
-                    svcIn = new BufferedReader(new InputStreamReader(service.openStream()));
+                    svcIn = new BufferedReader(new InputStreamReader(service.openStream(), "UTF-8"));
                     try {
                         className = svcIn.readLine();
                     } catch (IOException ioe) {
@@ -258,7 +260,7 @@ public final class ASTTransformationVisitor extends ClassCodeVisitorSupport {
             Class.forName("java.lang.annotation.Annotation"); // test for 1.5 JVM
         } catch (Exception e) {
             // we failed, notify the user
-            StringBuffer sb = new StringBuffer();
+            StringBuilder sb = new StringBuilder();
             sb.append("Global ASTTransformations are not enabled in retro builds of groovy.\n");
             sb.append("The following transformations will be ignored:");
             for (Map.Entry<String, URL> entry : transformNames.entrySet()) {

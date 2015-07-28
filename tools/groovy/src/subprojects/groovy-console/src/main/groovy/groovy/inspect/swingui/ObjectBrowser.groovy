@@ -1,19 +1,21 @@
 /*
- * Copyright 2003-2010 the original author or authors.
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
-
 package groovy.inspect.swingui
 
 import java.awt.*
@@ -38,7 +40,7 @@ class ObjectBrowser {
     def swing, frame, fieldTable, methodTable, itemTable, mapTable
 
     static void main(args) {
-        inspect("some String")
+        inspect('some String')
     }
     static void inspect(objectUnderInspection){
         def browser = new ObjectBrowser()
@@ -56,12 +58,12 @@ class ObjectBrowser {
                 
             menuBar {
                 menu(text:'Help') {
-                    menuItem() {action(name:'About', closure: this.&showAbout)}
+                    menuItem {action(name:'About', closure: this.&showAbout)}
                 }
             }
-            panel() {
+            panel {
                 borderLayout()
-                panel(  name:"Class Info",
+                panel(  name:'Class Info',
                         border: emptyBorder([5,10,5,10]),
                         constraints:NORTH) {
                     flowLayout(alignment:FlowLayout.LEFT)
@@ -72,7 +74,7 @@ class ObjectBrowser {
                 tabbedPane(constraints:CENTER){
                     if (inspector.object instanceof Collection) {
                         scrollPane(name: ' Collection data ') {
-                            itemTable = table() {
+                            itemTable = table {
                                 int i = 0
                                 def data = inspector.object.collect { val -> [i++, val] }
                                 tableModel(list:data) {
@@ -84,7 +86,7 @@ class ObjectBrowser {
                     }
                     if (inspector.object instanceof Map) {
                         scrollPane(name: ' Map data ') {
-                            itemTable = table() {
+                            itemTable = table {
                                 int i = 0
                                 def data = inspector.object.collect { key, val -> [i++, key, val] }
                                 tableModel(list:data) {
@@ -96,7 +98,7 @@ class ObjectBrowser {
                         }
                     }
                     scrollPane(name: ' Public Fields and Properties ') {
-                        fieldTable = table() {
+                        fieldTable = table {
                             def data = Inspector.sort(inspector.publicFields.toList())
                             data.addAll(Inspector.sort(inspector.propertyInfo.toList()))
                             tableModel(list:data) {
@@ -110,7 +112,7 @@ class ObjectBrowser {
                         }
                     }
                     scrollPane(name:' (Meta) Methods ' ) {
-                        methodTable = table() {
+                        methodTable = table {
                             def data = Inspector.sort(inspector.methods.toList())
                             data.addAll(Inspector.sort(inspector.metaMethods.toList()))
 

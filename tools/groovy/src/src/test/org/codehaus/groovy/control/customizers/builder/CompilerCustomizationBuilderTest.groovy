@@ -1,22 +1,26 @@
 /*
- * Copyright 2003-2012 the original author or authors.
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
-
 package org.codehaus.groovy.control.customizers.builder
 
+import groovy.mock.interceptor.StubFor
 import groovy.transform.ToString
+import org.codehaus.groovy.ast.ClassNode
 import org.codehaus.groovy.control.customizers.ASTTransformationCustomizer
 import org.codehaus.groovy.transform.ToStringASTTransformation
 import org.codehaus.groovy.control.customizers.SecureASTCustomizer
@@ -87,7 +91,7 @@ class CompilerCustomizationBuilderTest extends GroovyTestCase {
         assert cz.imports[0].classNode.name == 'java.util.concurrent.atomic.AtomicInteger'
         assert cz.imports[1].classNode.name == 'java.util.concurrent.atomic.AtomicLong'
 
-        // regular imports using classes (not recommanded for classloading, but people like it)
+        // regular imports using classes (not recommended for classloading, but people like it)
         cz = builder.imports(AtomicInteger)
         assert cz instanceof ImportCustomizer
         assert cz.imports.size() == 1
@@ -181,6 +185,7 @@ class CompilerCustomizationBuilderTest extends GroovyTestCase {
         assert cz.baseNameValidator == null
         assert cz.extensionValidator == null
         assert cz.sourceUnitValidator == null
+        assert cz.classValidator == null
 
         cz = builder.source(extension: 'gx') {
             ast(ToString)
@@ -191,6 +196,7 @@ class CompilerCustomizationBuilderTest extends GroovyTestCase {
         assert cz.baseNameValidator == null
         assert cz.sourceUnitValidator == null
         assert cz.extensionValidator != null
+        assert cz.classValidator == null
         assert cz.extensionValidator.call('gx') == true
         assert cz.extensionValidator.call('foo') == false
 
@@ -203,6 +209,7 @@ class CompilerCustomizationBuilderTest extends GroovyTestCase {
         assert cz.baseNameValidator == null
         assert cz.sourceUnitValidator == null
         assert cz.extensionValidator != null
+        assert cz.classValidator == null
         assert cz.extensionValidator.call('gx') == true
         assert cz.extensionValidator.call('foo') == true
 
@@ -215,6 +222,7 @@ class CompilerCustomizationBuilderTest extends GroovyTestCase {
         assert cz.baseNameValidator == null
         assert cz.sourceUnitValidator == null
         assert cz.extensionValidator != null
+        assert cz.classValidator == null
         assert cz.extensionValidator.call('gx') == true
         assert cz.extensionValidator.call('foo') == true
 
@@ -227,6 +235,7 @@ class CompilerCustomizationBuilderTest extends GroovyTestCase {
         assert cz.extensionValidator == null
         assert cz.sourceUnitValidator == null
         assert cz.baseNameValidator != null
+        assert cz.classValidator == null
         assert cz.baseNameValidator.call('gx') == true
         assert cz.baseNameValidator.call('foo') == false
 
@@ -238,6 +247,7 @@ class CompilerCustomizationBuilderTest extends GroovyTestCase {
         assert cz.phase == cz.delegate.phase
         assert cz.extensionValidator == null
         assert cz.sourceUnitValidator == null
+        assert cz.classValidator == null
         assert cz.baseNameValidator != null
         assert cz.baseNameValidator.call('gx') == true
         assert cz.baseNameValidator.call('foo') == true
@@ -262,9 +272,32 @@ class CompilerCustomizationBuilderTest extends GroovyTestCase {
         assert cz.phase == cz.delegate.phase
         assert cz.extensionValidator == null
         assert cz.baseNameValidator == null
+        assert cz.classValidator == null
         assert cz.sourceUnitValidator != null
         assert cz.sourceUnitValidator.call(new SourceUnit(name:'gx')) == false
         assert cz.sourceUnitValidator.call(new SourceUnit(name:'barfoo')) == true
+
+        cz = builder.source(classValidator: { ClassNode cn -> cn.getName().contains 'Foo' }) {
+            ast(ToString)
+        }
+        def valid = new StubFor(ClassNode)
+        def invalid = new StubFor(ClassNode)
+        valid.demand.getName { 'ClassWithFooInName' }
+        invalid.demand.getName { 'ClassWithBarInName' }
+
+        assert cz instanceof SourceAwareCustomizer
+        assert cz.delegate instanceof ASTTransformationCustomizer
+        assert cz.phase == cz.delegate.phase
+        assert cz.extensionValidator == null
+        assert cz.baseNameValidator == null
+        assert cz.sourceUnitValidator == null
+        assert cz.classValidator != null
+        valid.use {
+            assert cz.classValidator.call(new ClassNode(String)) == true
+        }
+        invalid.use {
+            assert cz.classValidator.call(new ClassNode(String)) == false
+        }
 
     }
 

@@ -1,17 +1,20 @@
-/*
- * Copyright 2003-2012 the original author or authors.
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package org.codehaus.groovy.runtime;
 
@@ -30,6 +33,7 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.StringWriter;
 import java.io.Writer;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
@@ -50,7 +54,6 @@ import java.util.regex.Pattern;
  * A static helper class to make bytecode generation easier and act as a facade over the Invoker
  *
  * @author <a href="mailto:james@coredevelopers.net">James Strachan</a>
- * @version $Revision$
  */
 public class InvokerHelper {
     private static final Object[] EMPTY_MAIN_ARGS = new Object[]{new String[0]};
@@ -271,7 +274,7 @@ public class InvokerHelper {
             return Byte.valueOf((byte) -number.byteValue());
         }
         if (value instanceof ArrayList) {
-            // value is an list.
+            // value is a list.
             List newlist = new ArrayList();
             Iterator it = ((ArrayList) value).iterator();
             for (; it.hasNext();) {
@@ -407,37 +410,55 @@ public class InvokerHelper {
         return invokeMethod(script, "run", EMPTY_ARGS);
     }
 
+    static class NullScript extends Script {
+        public NullScript() { this(new Binding()); }
+        public NullScript(Binding context) { super(context); }
+        public Object run() { return null; }
+    }
+
     public static Script createScript(Class scriptClass, Binding context) {
-        Script script = null;
-        // for empty scripts
+        Script script;
+
         if (scriptClass == null) {
-            script = new Script() {
-                public Object run() {
-                    return null;
-                }
-            };
+            script = new NullScript(context);
         } else {
             try {
-                final GroovyObject object = (GroovyObject) scriptClass
-                        .newInstance();
-                if (object instanceof Script) {
-                    script = (Script) object;
+                if (Script.class.isAssignableFrom(scriptClass)) {
+                    try {
+                        Constructor constructor = scriptClass.getConstructor(Binding.class);
+                        script = (Script) constructor.newInstance(context);
+                    } catch (NoSuchMethodException e) {
+                        // Fallback for non-standard "Script" classes.
+                        script = (Script) scriptClass.newInstance();
+                        script.setBinding(context);
+                    }
                 } else {
-                    // it could just be a class, so lets wrap it in a Script
-                    // wrapper
-                    // though the bindings will be ignored
-                    script = new Script() {
+                    final GroovyObject object = (GroovyObject) scriptClass.newInstance();
+                    // it could just be a class, so let's wrap it in a Script
+                    // wrapper; though the bindings will be ignored
+                    script = new Script(context) {
                         public Object run() {
-                            Object args = getBinding().getVariables().get("args");
                             Object argsToPass = EMPTY_MAIN_ARGS;
-                            if (args != null && args instanceof String[]) {
-                                argsToPass = args;
+                            try {
+                                Object args = getProperty("args");
+                                if (args instanceof String[]) {
+                                    argsToPass = args;
+                                }
+                            } catch (MissingPropertyException e) {
+                                // They'll get empty args since none exist in the context.
                             }
                             object.invokeMethod("main", argsToPass);
                             return null;
                         }
                     };
-                    setProperties(object, context.getVariables());
+                    Map variables = context.getVariables();
+                    MetaClass mc = getMetaClass(object);
+                    for (Object o : variables.entrySet()) {
+                        Map.Entry entry = (Map.Entry) o;
+                        String key = entry.getKey().toString();
+                        // assume underscore variables are for the wrapper script
+                        setPropertySafe(key.startsWith("_") ? script : object, mc, key, entry.getValue());
+                    }
                 }
             } catch (Exception e) {
                 throw new GroovyRuntimeException(
@@ -445,7 +466,6 @@ public class InvokerHelper {
                                 + scriptClass + ". Reason: " + e, e);
             }
         }
-        script.setBinding(context);
         return script;
     }
 
@@ -457,13 +477,20 @@ public class InvokerHelper {
         for (Object o : map.entrySet()) {
             Map.Entry entry = (Map.Entry) o;
             String key = entry.getKey().toString();
-
             Object value = entry.getValue();
-            try {
-                mc.setProperty(object, key, value);
-            } catch (MissingPropertyException mpe) {
-                // Ignore
-            }
+            setPropertySafe(object, mc, key, value);
+        }
+    }
+
+    private static void setPropertySafe(Object object, MetaClass mc, String key, Object value) {
+        try {
+            mc.setProperty(object, key, value);
+        } catch (MissingPropertyException mpe) {
+            // Ignore
+        } catch (InvokerInvocationException iie) {
+            // GROOVY-5802 IAE for missing properties with classes that extend List
+            Throwable cause = iie.getCause();
+            if (cause == null || !(cause instanceof IllegalArgumentException)) throw iie;
         }
     }
 
@@ -639,6 +666,10 @@ public class InvokerHelper {
     }
 
     private static String formatList(Collection collection, boolean verbose, int maxSize) {
+        return formatList(collection, verbose, maxSize, false);
+    }
+
+    private static String formatList(Collection collection, boolean verbose, int maxSize, boolean safe) {
         StringBuilder buffer = new StringBuilder("[");
         boolean first = true;
         for (Object item : collection) {
@@ -654,7 +685,20 @@ public class InvokerHelper {
             if (item == collection) {
                 buffer.append("(this Collection)");
             } else {
-                buffer.append(format(item, verbose, sizeLeft(maxSize, buffer)));
+                String str;
+                try {
+                    str = format(item, verbose, sizeLeft(maxSize, buffer));
+                } catch (Exception ex) {
+                    if (!safe) throw new GroovyRuntimeException(ex);
+                    String hash;
+                    try {
+                        hash = Integer.toHexString(item.hashCode());
+                    } catch (Exception ignored) {
+                        hash = "????";
+                    }
+                    str = "<" + item.getClass().getName() + "@" + hash + ">";
+                }
+                buffer.append(str);
             }
         }
         buffer.append("]");
@@ -720,12 +764,24 @@ public class InvokerHelper {
      * @return the string representation of the collection
      */
     public static String toListString(Collection arg, int maxSize) {
-        return formatList(arg, false, maxSize);
+        return toListString(arg, maxSize, false);
+    }
+
+    /**
+     * A helper method to return the string representation of a list with bracket boundaries "[" and "]".
+     *
+     * @param arg     the collection to process
+     * @param maxSize stop after approximately this many characters and append '...'
+     * @param safe    whether to use a default object representation for any item in the collection if an exception occurs when generating its toString
+     * @return the string representation of the collection
+     */
+    public static String toListString(Collection arg, int maxSize, boolean safe) {
+        return formatList(arg, false, maxSize, safe);
     }
 
     /**
      * A helper method to return the string representation of an array of objects
-     * with brace boundaries "{" and "}".
+     * with brace boundaries "[" and "]".
      *
      * @param arguments the array to process
      * @return the string representation of the array
@@ -745,6 +801,19 @@ public class InvokerHelper {
         }
         argBuf.append(ebdry);
         return argBuf.toString();
+    }
+
+    /**
+     * A helper method to return the string representation of an array of objects
+     * with brace boundaries "[" and "]".
+     *
+     * @param arguments the array to process
+     * @param maxSize stop after approximately this many characters and append '...'
+     * @param safe    whether to use a default object representation for any item in the array if an exception occurs when generating its toString
+     * @return the string representation of the array
+     */
+    public static String toArrayString(Object[] arguments, int maxSize, boolean safe) {
+        return toListString(DefaultTypeTransformation.asCollection(arguments), maxSize, safe);
     }
 
     public static List createRange(Object from, Object to, boolean inclusive) {
@@ -780,7 +849,7 @@ public class InvokerHelper {
             return StringGroovyMethods.bitwiseNegate(value.toString());
         }
         if (value instanceof ArrayList) {
-            // value is an list.
+            // value is a list.
             List newlist = new ArrayList();
             Iterator it = ((ArrayList) value).iterator();
             for (; it.hasNext();) {

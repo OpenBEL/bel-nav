@@ -1,17 +1,20 @@
-/*
- * Copyright 2003-2010 the original author or authors.
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package org.codehaus.groovy.classgen.asm;
 
@@ -110,7 +113,7 @@ public class StatementWriter {
         MethodVisitor mv = controller.getMethodVisitor();
         OperandStack operandStack = controller.getOperandStack();
 
-        compileStack.pushLoop(loop.getVariableScope(), loop.getStatementLabel());
+        compileStack.pushLoop(loop.getVariableScope(), loop.getStatementLabels());
 
         // Declare the loop counter.
         BytecodeVariable variable = compileStack.defineVariable(loop.getVariable(), false);
@@ -150,7 +153,7 @@ public class StatementWriter {
         writeStatementLabel(loop);
 
         MethodVisitor mv = controller.getMethodVisitor();
-        controller.getCompileStack().pushLoop(loop.getVariableScope(), loop.getStatementLabel());
+        controller.getCompileStack().pushLoop(loop.getVariableScope(), loop.getStatementLabels());
 
         ClosureListExpression clExpr = (ClosureListExpression) loop.getCollectionExpression();
         controller.getCompileStack().pushVariableScope(clExpr.getVariableScope());
@@ -219,7 +222,7 @@ public class StatementWriter {
 
         MethodVisitor mv = controller.getMethodVisitor();
 
-        controller.getCompileStack().pushLoop(loop.getStatementLabel());
+        controller.getCompileStack().pushLoop(loop.getStatementLabels());
         Label continueLabel = controller.getCompileStack().getContinueLabel();
         Label breakLabel = controller.getCompileStack().getBreakLabel();
 
@@ -256,7 +259,7 @@ public class StatementWriter {
 
         MethodVisitor mv = controller.getMethodVisitor();
 
-        controller.getCompileStack().pushLoop(loop.getStatementLabel());
+        controller.getCompileStack().pushLoop(loop.getStatementLabels());
         Label breakLabel = controller.getCompileStack().getBreakLabel();
         Label continueLabel = controller.getCompileStack().getContinueLabel();
         mv.visitLabel(continueLabel);

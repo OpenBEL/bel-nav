@@ -1,3 +1,21 @@
+/*
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
+ */
 package gls.innerClass
 
 import gls.CompilableTestSupport
@@ -6,17 +24,19 @@ class InnerClassTest extends CompilableTestSupport {
 
     void testTimerAIC() {
         assertScript """
-            boolean called = false
+            import java.util.concurrent.CountDownLatch
+            import java.util.concurrent.TimeUnit
+
+            CountDownLatch called = new CountDownLatch(1)
 
             Timer timer = new Timer()
             timer.schedule(new TimerTask() {
                 void run() {
-                    called = true
+                    called.countDown()
                 }
             }, 0)
-            sleep 100
 
-            assert called
+            assert called.await(10, TimeUnit.SECONDS)
         """
     }
 
@@ -71,7 +91,7 @@ class InnerClassTest extends CompilableTestSupport {
         """
     }
 
-    void testUsageOfInitializerBlockWithinAnAIC () {
+    void testUsageOfInitializerBlockWithinAnAIC() {
         assertScript """
             Object makeObj2(String name) {
                  new Object() {
@@ -104,7 +124,7 @@ class InnerClassTest extends CompilableTestSupport {
             def mods = A.B.modifiers
             assert Modifier.isPublic(mods)
         """
-        
+
         assertScript """
             class A {
                 static class B{}
@@ -200,6 +220,55 @@ class InnerClassTest extends CompilableTestSupport {
             Foo.x(2)
             assert Foo.foo() == 2
         """
+
+        assertScript """
+            interface X {
+                def m()
+            }
+
+            class A {
+                def pm = "pm"
+
+                def bar(x) {x().m()}
+                def foo() {
+                    bar { ->
+                        return new X() {
+                            def m() { pm }
+                        }
+                    }
+                }
+            }
+            def a = new A()
+            assert "pm" == a.foo()
+        """
+
+        //GROOVY-6141
+        assertScript '''
+            class A {
+                def x = 1
+                def b = new B()
+                class B {
+                    def y = 2
+                    def c = new C()
+                    def f () {
+                        assert y==2
+                        assert x==1
+                    }
+                    class C {
+                        def z = 3
+                        def f() {
+                            assert z==3
+                            assert y==2
+                            assert x==1
+                        }
+                    }
+                }
+            }
+
+            def a = new A()
+            a.b.f()
+            a.b.c.f()
+        '''
     }
 
     void testUsageOfOuterFieldOverriden_FAILS() {
@@ -230,7 +299,7 @@ class InnerClassTest extends CompilableTestSupport {
             assert bar.foo() == 2
         """
 
-    //TODO: static part
+        //TODO: static part
 
     }
 
@@ -313,7 +382,7 @@ class InnerClassTest extends CompilableTestSupport {
             assert bar.foo() == 1
         """
     }
-    
+
     void testClassOutputOrdering() {
         // this does actually not do much, but before this
         // change the inner class was tried to be executed
@@ -329,7 +398,7 @@ class InnerClassTest extends CompilableTestSupport {
             }
         """
     }
-    
+
     void testInnerClassDotThisUsage() {
         assertScript """
             class A{
@@ -351,14 +420,34 @@ class InnerClassTest extends CompilableTestSupport {
             assert a.x == 1
             assert b.y == 4
         """
+
+        assertScript """
+            interface X {
+                def m()
+            }
+
+            class A {
+                def foo() {
+                    def c = {
+                        return new X(){def m(){
+                            A.this
+                         } }
+                    }
+                    return c().m()
+                }
+            }
+            class B extends A {}
+            def b = new B()
+            assert b.foo() instanceof B
+        """
     }
-    
+
     void testImplicitThisPassingWithNamedArguments() {
         def oc = new MyOuterClass4028()
         assert oc.foo().propMap.size() == 2
     }
 
-    void testThis0 () {
+    void testThis0() {
         assertScript """
 class A {
    static def field = 10
@@ -380,7 +469,7 @@ class A {
      def u (i) { println i + s + field }
    }}"""
     }
-    
+
     void testReferencedVariableInAIC() {
         assertScript """
             interface X{}
@@ -407,6 +496,19 @@ class A {
                 }
             }
         """
+    }
+
+    // GROOVY-5989
+    void testReferenceToOuterClassNestedInterface() {
+        assertScript '''
+            interface Koo { class Inner { } }
+
+            class Usage implements Koo {
+                static class MyInner extends Inner { }
+            }
+
+            assert new Usage() != null
+        '''
     }
 
     // GROOVY-5679
@@ -456,7 +558,123 @@ import org.codehaus.groovy.classgen.Verifier
         assert a.x == 123
         '''
     }
-} 
+
+    void testThisReferenceForAICInOpenBlock() {
+        // GROOVY-6810
+        assertScript '''
+            import java.security.AccessController
+            import java.security.PrivilegedAction
+
+            static void injectVariables(final def instance, def variables) {
+                instance.class.declaredFields.each { field ->
+                    if (variables[field.name]) {
+                        AccessController.doPrivileged(new PrivilegedAction() {
+                            @Override
+                            public Object run() {
+                                boolean wasAccessible = field.isAccessible()
+                                try {
+                                    field.accessible = true
+                                    field.set(instance, variables[field.name])
+                                    return null; // return nothing...
+                                } catch (IllegalArgumentException | IllegalAccessException ex) {
+                                    throw new IllegalStateException("Cannot set field: " + field, ex)
+                                } finally {
+                                    field.accessible = wasAccessible
+                                }
+                            }
+                        })
+                    }
+                }
+            }
+
+            class Test {def p}
+            def t = new Test()
+            injectVariables(t, ['p': 'q'])
+        '''
+
+        //GROOVY-4896
+        assertScript '''
+            def doSomethingUsingLocal(){
+                logExceptions {
+                    String s1 = "Ok"
+                    Runnable ifA = new Runnable(){
+                        void run(){
+                            s1.toString()
+                        }
+                    }
+                    ifA.run()
+                }
+            }
+
+            def doSomethingUsingParamWorkaround(final String s2){
+                logExceptions {
+                    String s1=s2
+                    Runnable ifA = new Runnable(){
+                        void run(){
+                            s1.toString()
+                        }
+                    }
+                    ifA.run()
+                }
+            }
+
+            def doSomethingUsingParam(final String s1){ // This always fails
+                logExceptions {
+                    Runnable ifA = new Runnable(){
+                        void run(){
+                            s1.toString()
+                        }
+                    }
+                    ifA.run()
+                }
+            }
+
+            def doSomethingEmptyRunnable(final String s1){
+                logExceptions {
+                    Runnable ifA = new Runnable(){
+                        void run(){
+                        }
+                    }
+                    ifA.run()
+                }
+            }
+
+
+            def logExceptions(Closure c){
+                try{
+                    c.call()
+                } catch (Throwable e){
+                    return false
+                }
+                return true
+            }
+
+            assert doSomethingUsingLocal()
+            assert doSomethingEmptyRunnable("")
+            assert doSomethingUsingParamWorkaround("Workaround")
+            assert doSomethingUsingParam("anyString")
+        '''
+    }
+
+    void testAICextendingAbstractInnerClass() {
+        //GROOVY-5582
+        assertScript '''
+            class Outer {
+                int outer() { 1 }
+                abstract class Inner {
+                    abstract int inner()
+                }
+                int test() {
+                    Inner inner = new Inner() {
+                        int inner() { outer() }
+                    }
+                    inner.inner()
+                }
+            }
+            assert new Outer().test() == 1
+        '''
+    }
+}
 
 class MyOuterClass4028 {
     def foo() {

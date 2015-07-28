@@ -1,17 +1,20 @@
-/*
- * Copyright 2003-2012 the original author or authors.
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package org.codehaus.groovy.control;
 
@@ -32,7 +35,7 @@ import org.codehaus.groovy.classgen.Verifier;
 import org.objectweb.asm.Opcodes;
 
 /**
- * This class is used as a plugable way to resolve class names.
+ * This class is used as a pluggable way to resolve class names.
  * An instance of this class has to be added to {@link CompilationUnit} using 
  * {@link CompilationUnit#setClassNodeResolver(ClassNodeResolver)}. The 
  * CompilationUnit will then set the resolver on the {@link ResolveVisitor} each 
@@ -120,7 +123,6 @@ public class ClassNodeResolver {
         ClassNode res = getFromClassCache(name);
         if (res==NO_CLASS) return null;
         if (res!=null) return new LookupResult(null,res);
-        
         LookupResult lr = findClassNode(name, compilationUnit);
         if (lr != null) {
             if (lr.isClassNode()) cacheClass(name, lr.getClassNode());
@@ -185,7 +187,7 @@ public class ClassNodeResolver {
             LookupResult lr = tryAsScript(name, compilationUnit, null);
             return lr;
         } catch (CompilationFailedException cfe) {
-            throw new GroovyBugError("The lookup for "+name+" caused a failed compilaton. There should not have been any compilation from this call.");
+            throw new GroovyBugError("The lookup for "+name+" caused a failed compilaton. There should not have been any compilation from this call.", cfe);
         }
         //TODO: the case of a NoClassDefFoundError needs a bit more research
         // a simple recompilation is not possible it seems. The current class

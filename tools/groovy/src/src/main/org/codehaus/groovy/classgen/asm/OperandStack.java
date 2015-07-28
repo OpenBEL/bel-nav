@@ -1,17 +1,20 @@
-/*
- * Copyright 2003-2009 the original author or authors.
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package org.codehaus.groovy.classgen.asm;
 
@@ -22,25 +25,19 @@ import java.util.ArrayList;
 import org.codehaus.groovy.GroovyBugError;
 import org.codehaus.groovy.ast.*;
 import org.codehaus.groovy.ast.expr.CastExpression;
-import org.codehaus.groovy.ast.expr.ClassExpression;
 import org.codehaus.groovy.ast.expr.ConstantExpression;
 import org.codehaus.groovy.ast.expr.Expression;
 import org.codehaus.groovy.ast.tools.WideningCategories;
 import org.codehaus.groovy.classgen.ClassGeneratorException;
-import org.codehaus.groovy.runtime.ScriptBytecodeAdapter;
 import org.objectweb.asm.Label;
 import org.objectweb.asm.MethodVisitor;
 
 import static org.objectweb.asm.Opcodes.*;
 
 public class OperandStack {
-    
-    // type conversions
-    private static final MethodCaller asTypeMethod = MethodCaller.newStatic(ScriptBytecodeAdapter.class, "asType");
-    private static final MethodCaller castToTypeMethod = MethodCaller.newStatic(ScriptBytecodeAdapter.class, "castToType");
 
     private WriterController controller;
-    private ArrayList<ClassNode> stack = new ArrayList();
+    private ArrayList<ClassNode> stack = new ArrayList<ClassNode>();
 
     public OperandStack(WriterController wc) {
         this.controller = wc;        
@@ -68,15 +65,11 @@ public class OperandStack {
         try {
             return stack.remove(last);
         } catch (ArrayIndexOutOfBoundsException ai) {
-            String method = "";
-            if (controller.getMethodNode()!=null) {
-                method = controller.getMethodNode().getTypeDescriptor();
-            } else {
-                method = controller.getConstructorNode().getTypeDescriptor();
-            }
-            throw new GroovyBugError(
-                    "Error while poping argument from operand stack tracker in"+
-                    " class "+controller.getClassName()+" method "+method+".");
+            String method = controller.getMethodNode() == null ?
+                    controller.getConstructorNode().getTypeDescriptor() :
+                    controller.getMethodNode().getTypeDescriptor();
+            throw new GroovyBugError("Error while popping argument from operand stack tracker in class " +
+                    controller.getClassName() + " method " + method + ".");
         }
     }
 
@@ -112,7 +105,7 @@ public class OperandStack {
             if (last == ClassHelper.boolean_TYPE) return;
             // not a primitive type, so call booleanUnbox
             if (!ClassHelper.isPrimitiveType(last)) {
-                BytecodeHelper.unbox(mv,ClassHelper.boolean_TYPE);
+                controller.getInvocationWriter().castNonPrimitiveToBool(last);
             } else {
                 primitive2b(mv,last);
             }            
@@ -199,12 +192,7 @@ public class OperandStack {
             ClassNode wrapper = ClassHelper.getWrapper(type);
             BytecodeHelper.doCastToWrappedType(mv, type, wrapper);
             type = wrapper;
-        } else {
-            if (BytecodeHelper.box(mv, type)) {
-                type = ClassHelper.getWrapper(type);
-                BytecodeHelper.doCast(mv, type);
-            }
-        }
+        } // else nothing to box
         stack.set(size-1, type);
         return type;
     }
@@ -302,54 +290,46 @@ public class OperandStack {
     public void doAsType(ClassNode targetType) {
         doConvertAndCast(targetType,true);
     }
-    
+
+    private void throwExceptionForNoStackElement(int size, ClassNode targetType, boolean coerce) {
+        if (size>0) return;
+        StringBuilder sb = new StringBuilder();
+        sb.append("Internal compiler error while compiling ").append(controller.getSourceUnit().getName()).append("\n");
+        MethodNode methodNode = controller.getMethodNode();
+        if (methodNode!=null) {
+            sb.append("Method: ");
+            sb.append(methodNode);
+            sb.append("\n");
+        }
+        ConstructorNode constructorNode = controller.getConstructorNode();
+        if (constructorNode!=null) {
+            sb.append("Constructor: ");
+            sb.append(methodNode);
+            sb.append("\n");
+        }
+        sb.append("Line ").append(controller.getLineNumber()).append(",");
+        sb.append(" expecting ").append(coerce ? "coercion" : "casting").append(" to ").append(targetType.toString(false));
+        sb.append(" but operand stack is empty");
+        throw new ArrayIndexOutOfBoundsException(sb.toString());
+    }
+
     private void doConvertAndCast(ClassNode targetType, boolean coerce) {
         int size = stack.size();
-        try {
-            if (size==0) {
-                StringBuilder sb = new StringBuilder();
-                sb.append("Internal compiler error while compiling ").append(controller.getSourceUnit().getName()).append("\n");
-                MethodNode methodNode = controller.getMethodNode();
-                if (methodNode!=null) {
-                    sb.append("Method: ");
-                    sb.append(methodNode);
-                    sb.append("\n");
-                }
-                ConstructorNode constructorNode = controller.getConstructorNode();
-                if (constructorNode!=null) {
-                    sb.append("Constructor: ");
-                    sb.append(methodNode);
-                    sb.append("\n");
-                }
-                sb.append("Line ").append(controller.getLineNumber()).append(",");
-                sb.append(" expecting ").append(coerce ? "coercion" : "casting").append(" to ").append(targetType.toString(false));
-                sb.append(" but operand stack is empty");
-                throw new ArrayIndexOutOfBoundsException(sb.toString());
-            }
-        } catch (ArrayIndexOutOfBoundsException ai) {
-            throw ai;
-        }
+        throwExceptionForNoStackElement(size, targetType, coerce);
+
         ClassNode top = stack.get(size-1);
         targetType = targetType.redirect();
         if (targetType == top) return;
-        
-        MethodVisitor mv = controller.getMethodVisitor();
+
         if (coerce) {
-            if (top.isDerivedFrom(targetType)) return;
-            box();
-            (new ClassExpression(targetType)).visit(controller.getAcg());
-            remove(1);
-            asTypeMethod.call(mv);
-            BytecodeHelper.doCast(mv,targetType);
-            replace(targetType);
+            controller.getInvocationWriter().coerce(top,targetType);
             return;
         }
-        
+
         boolean primTarget = ClassHelper.isPrimitiveType(targetType);
         boolean primTop = ClassHelper.isPrimitiveType(top);
 
         if (primTop && primTarget) {
-            //TODO: use jvm primitive conversions
             // here we box and unbox to get the goal type
             if (convertPrimitive(top, targetType)) {
                 replace(targetType);
@@ -359,56 +339,28 @@ public class OperandStack {
         } else if (primTop) {
             // top is primitive, target is not
             // so box and do groovy cast
-            ClassNode boxedType = box();
-            castToTypeIfNecessary(boxedType, targetType);
+            controller.getInvocationWriter().castToNonPrimitiveIfNecessary(top, targetType);
         } else if (primTarget) {
             // top is not primitive so unbox
             // leave that BH#doCast later
         } else {
-            castToTypeIfNecessary(top, targetType);
+            controller.getInvocationWriter().castToNonPrimitiveIfNecessary(top, targetType);
         }
-        if (ClassHelper.isNumberType(top) && primTarget && ClassHelper.isNumberType(targetType)) {
+
+        MethodVisitor mv = controller.getMethodVisitor();
+        if (primTarget && !ClassHelper.boolean_TYPE.equals(targetType) && !primTop && ClassHelper.getWrapper(targetType).equals(top)) {
             BytecodeHelper.doCastToPrimitive(mv, top, targetType);
         } else {
             top = stack.get(size-1);
-            if (!implementsInterfaceOrSubclassOf(top, targetType)) {
+            if (!WideningCategories.implementsInterfaceOrSubclassOf(top, targetType)) {
                 BytecodeHelper.doCast(mv,targetType);
             }
         }
         replace(targetType);
     }
 
-    private void castToTypeIfNecessary(final ClassNode sourceType, final ClassNode targetType) {
-        if (!implementsInterfaceOrSubclassOf(sourceType, targetType)) {
-            MethodVisitor mv = controller.getMethodVisitor();
-            (new ClassExpression(targetType)).visit(controller.getAcg());
-            remove(1);
-            castToTypeMethod.call(mv);
-        }
-    }
-
-    /**
-     * Determines if the source class implements an interface or subclasses the target type.
-     * This method takes the {@link org.codehaus.groovy.ast.tools.WideningCategories.LowestUpperBoundClassNode lowest
-     * upper bound class node} type into account, allowing to remove unnecessary casts.
-     * @param source
-     * @param targetType
-     * @return
-     */
-    private static boolean implementsInterfaceOrSubclassOf(final ClassNode source, final ClassNode targetType) {
-        if (source.isDerivedFrom(targetType) || source.implementsInterface(targetType)) return true;
-        if (targetType instanceof WideningCategories.LowestUpperBoundClassNode) {
-            WideningCategories.LowestUpperBoundClassNode lub = (WideningCategories.LowestUpperBoundClassNode) targetType;
-            if (implementsInterfaceOrSubclassOf(source, lub.getSuperClass())) return true;
-            for (ClassNode classNode : lub.getInterfaces()) {
-                if (source.implementsInterface(classNode)) return true;
-            }
-        }
-        return false;
-    }
-
     private boolean convertFromInt(ClassNode target) {
-        int convertCode = 0;
+        int convertCode;
         if (target==ClassHelper.char_TYPE){
             convertCode = I2C;
         } else if (target==ClassHelper.byte_TYPE){
@@ -499,8 +451,7 @@ public class OperandStack {
                     top==ClassHelper.byte_TYPE ||
                     top==ClassHelper.short_TYPE)
         {
-            if (target==ClassHelper.int_TYPE) return true;
-            return convertFromInt(target);
+            return target == ClassHelper.int_TYPE || convertFromInt(target);
         } else if ( top==ClassHelper.float_TYPE) {
             return convertFromFloat(target);
         } else if ( top==ClassHelper.double_TYPE) {
@@ -517,48 +468,34 @@ public class OperandStack {
     public void pushConstant(ConstantExpression expression) {
         MethodVisitor mv = controller.getMethodVisitor();
         Object value = expression.getValue();
-        ClassNode type = expression.getType().redirect();
-        boolean asPrimitive = ClassHelper.isPrimitiveType(type);
-        
+        ClassNode origType = expression.getType().redirect();
+        ClassNode type = ClassHelper.getUnwrapper(origType);
+        boolean boxing = origType!=type;
+        boolean asPrimitive = boxing || ClassHelper.isPrimitiveType(type);
+
         if (value == null) {
             mv.visitInsn(ACONST_NULL);
+        } else if (boxing && value instanceof Boolean) {
+            // special path for boxed boolean
+            Boolean bool = (Boolean) value;
+            String text = bool ? "TRUE" : "FALSE";
+            mv.visitFieldInsn(GETSTATIC, "java/lang/Boolean", text, "Ljava/lang/Boolean;");
+            boxing = false;
+            type = origType;
         } else if (asPrimitive) {
             pushPrimitiveConstant(mv, value, type);
-        } else if (value instanceof Character) {
-            mv.visitLdcInsn(value);
-            BytecodeHelper.box(mv, type); // does not change this.stack field contents
-        } else if (value instanceof Number) {
-            if (value instanceof BigDecimal) {
-                String className = BytecodeHelper.getClassInternalName(value.getClass().getName());
-                mv.visitTypeInsn(NEW, className);
-                mv.visitInsn(DUP);
-                mv.visitLdcInsn(value.toString());
-                mv.visitMethodInsn(INVOKESPECIAL, className, "<init>", "(Ljava/lang/String;)V");
-            } else if (value instanceof BigInteger) {
-                String className = BytecodeHelper.getClassInternalName(value.getClass().getName());
-                mv.visitTypeInsn(NEW, className);
-                mv.visitInsn(DUP);
-                mv.visitLdcInsn(value.toString());
-                mv.visitMethodInsn(INVOKESPECIAL, className, "<init>", "(Ljava/lang/String;)V");
-            } else if (value instanceof Integer
-                    || value instanceof Byte
-                    || value instanceof Short
-                    || value instanceof Long
-                    || value instanceof Float
-                    || value instanceof Double
-                    ) {
-                ClassNode primType = ClassHelper.getUnwrapper(type);
-                pushPrimitiveConstant(mv, value, primType);
-                type = primType;
-            } else {
-                mv.visitLdcInsn(value);
-                BytecodeHelper.box(mv, ClassHelper.getUnwrapper(type)); // does not change this.stack field contents
-                BytecodeHelper.doCast(mv, type);
-            }
-        } else if (value instanceof Boolean) {
-            Boolean bool = (Boolean) value;
-            String text = (bool.booleanValue()) ? "TRUE" : "FALSE";
-            mv.visitFieldInsn(GETSTATIC, "java/lang/Boolean", text, "Ljava/lang/Boolean;");
+        } else if (value instanceof BigDecimal) {
+            String className = BytecodeHelper.getClassInternalName(value.getClass().getName());
+            mv.visitTypeInsn(NEW, className);
+            mv.visitInsn(DUP);
+            mv.visitLdcInsn(value.toString());
+            mv.visitMethodInsn(INVOKESPECIAL, className, "<init>", "(Ljava/lang/String;)V", false);
+        } else if (value instanceof BigInteger) {
+            String className = BytecodeHelper.getClassInternalName(value.getClass().getName());
+            mv.visitTypeInsn(NEW, className);
+            mv.visitInsn(DUP);
+            mv.visitLdcInsn(value.toString());
+            mv.visitMethodInsn(INVOKESPECIAL, className, "<init>", "(Ljava/lang/String;)V", false);
         } else if (value instanceof String) {
             mv.visitLdcInsn(value);
         } else {
@@ -567,14 +504,16 @@ public class OperandStack {
         }
         
         push(type);
+        if (boxing) box(); 
     }
 
     private void pushPrimitiveConstant(final MethodVisitor mv, final Object value, final ClassNode type) {
         boolean isInt = ClassHelper.int_TYPE.equals(type);
         boolean isShort = ClassHelper.short_TYPE.equals(type);
         boolean isByte = ClassHelper.byte_TYPE.equals(type);
-        if (isInt || isShort || isByte) {
-            int val = isInt?(Integer)value:isShort?(Short)value:(Byte)value;
+        boolean isChar = ClassHelper.char_TYPE.equals(type);
+        if (isInt || isShort || isByte || isChar) {
+            int val = isInt?(Integer)value:isShort?(Short)value:isChar?(Character)value:(Byte)value;
             switch (val) {
                 case 0:
                     mv.visitInsn(ICONST_0);
@@ -666,7 +605,7 @@ public class OperandStack {
             if (variable.isHolder()) {
                 mv.visitVarInsn(ALOAD, idx);
                 if (!useReferenceDirectly) {
-                    mv.visitMethodInsn(INVOKEVIRTUAL, "groovy/lang/Reference", "get", "()Ljava/lang/Object;");
+                    mv.visitMethodInsn(INVOKEVIRTUAL, "groovy/lang/Reference", "get", "()Ljava/lang/Object;", false);
                     BytecodeHelper.doCast(mv, type);
                     push(type);
                 } else {
@@ -689,7 +628,7 @@ public class OperandStack {
             mv.visitVarInsn(ALOAD, idx);
             mv.visitTypeInsn(CHECKCAST, "groovy/lang/Reference");
             mv.visitInsn(SWAP);
-            mv.visitMethodInsn(INVOKEVIRTUAL, "groovy/lang/Reference", "set", "(Ljava/lang/Object;)V");
+            mv.visitMethodInsn(INVOKEVIRTUAL, "groovy/lang/Reference", "set", "(Ljava/lang/Object;)V", false);
         } else {
             doGroovyCast(type);
             if (type == ClassHelper.double_TYPE) {
@@ -721,7 +660,7 @@ public class OperandStack {
 
     public void pushBool(boolean inclusive) {
         MethodVisitor mv = controller.getMethodVisitor();
-        mv.visitLdcInsn(new Boolean(inclusive));
+        mv.visitLdcInsn(inclusive);
         push(ClassHelper.boolean_TYPE);
     }
     

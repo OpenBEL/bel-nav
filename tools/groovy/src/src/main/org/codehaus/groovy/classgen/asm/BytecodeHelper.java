@@ -1,17 +1,20 @@
-/*
- * Copyright 2003-2007 the original author or authors.
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package org.codehaus.groovy.classgen.asm;
 
@@ -30,7 +33,6 @@ import java.lang.reflect.Modifier;
  * @author <a href="mailto:james@coredevelopers.net">James Strachan</a>
  * @author <a href="mailto:b55r@sina.com">Bing Ran</a>
  * @author <a href="mailto:blackdrag@gmx.org">Jochen Theodorou</a>
- * @version $Revision$
  */
 public class BytecodeHelper implements Opcodes {
     
@@ -56,7 +58,7 @@ public class BytecodeHelper implements Opcodes {
     }
 
     public static String getMethodDescriptor(ClassNode returnType, Parameter[] parameters) {
-        StringBuffer buffer = new StringBuffer("(");
+        StringBuilder buffer = new StringBuilder("(");
         for (int i = 0; i < parameters.length; i++) {
             buffer.append(getTypeDescription(parameters[i].getType()));
         }
@@ -80,7 +82,7 @@ public class BytecodeHelper implements Opcodes {
      */
     public static String getMethodDescriptor(Class returnType, Class[] paramTypes) {
         // lets avoid class loading
-        StringBuffer buffer = new StringBuffer("(");
+        StringBuilder buffer = new StringBuilder("(");
         for (int i = 0; i < paramTypes.length; i++) {
             buffer.append(getTypeDescription(paramTypes[i]));
         }
@@ -105,7 +107,7 @@ public class BytecodeHelper implements Opcodes {
      * @return the ASM type description for class loading
      */
     public static String getClassLoadingTypeDescription(ClassNode c) {
-        StringBuffer buf = new StringBuffer();
+        StringBuilder buf = new StringBuilder();
         boolean array = false;
         while (true) {
             if (c.isArray()) {
@@ -144,10 +146,11 @@ public class BytecodeHelper implements Opcodes {
      * @return the ASM type description
      */
     private static String getTypeDescription(ClassNode c, boolean end) {
-        StringBuffer buf = new StringBuffer();
+        StringBuilder buf = new StringBuilder();
         ClassNode d = c;
         while (true) {
-            if (ClassHelper.isPrimitiveType(d)) {
+            if (ClassHelper.isPrimitiveType(d.redirect())) {
+                d = d.redirect();
                 char car;
                 if (d == ClassHelper.int_TYPE) {
                     car = 'I';
@@ -367,7 +370,7 @@ public class BytecodeHelper implements Opcodes {
 
         if (generics == null && !hasGenerics(param) && !hasGenerics(returnType)) return null;
 
-        StringBuffer ret = new StringBuffer(100);
+        StringBuilder ret = new StringBuilder(100);
         getGenericsTypeSpec(ret, generics);
 
         GenericsType[] paramTypes = new GenericsType[param.length];
@@ -402,7 +405,7 @@ public class BytecodeHelper implements Opcodes {
     public static String getGenericsSignature(ClassNode node) {
         if (!usesGenericsInClassSignature(node)) return null;
         GenericsType[] genericsTypes = node.getGenericsTypes();
-        StringBuffer ret = new StringBuffer(100);
+        StringBuilder ret = new StringBuilder(100);
         getGenericsTypeSpec(ret, genericsTypes);
         GenericsType extendsPart = new GenericsType(node.getUnresolvedSuperClass(false));
         writeGenericsBounds(ret, extendsPart, true);
@@ -414,7 +417,7 @@ public class BytecodeHelper implements Opcodes {
         return ret.toString();
     }
 
-    private static void getGenericsTypeSpec(StringBuffer ret, GenericsType[] genericsTypes) {
+    private static void getGenericsTypeSpec(StringBuilder ret, GenericsType[] genericsTypes) {
         if (genericsTypes == null) return;
         ret.append('<');
         for (int i = 0; i < genericsTypes.length; i++) {
@@ -429,7 +432,7 @@ public class BytecodeHelper implements Opcodes {
     public static String getGenericsBounds(ClassNode type) {
         GenericsType[] genericsTypes = type.getGenericsTypes();
         if (genericsTypes == null) return null;
-        StringBuffer ret = new StringBuffer(100);
+        StringBuilder ret = new StringBuilder(100);
         if (type.isGenericsPlaceHolder()) {
             addSubTypes(ret, type.getGenericsTypes(), "", "");
         } else {
@@ -440,9 +443,9 @@ public class BytecodeHelper implements Opcodes {
         return ret.toString();
     }
 
-    private static void writeGenericsBoundType(StringBuffer ret, ClassNode printType, boolean writeInterfaceMarker) {
+    private static void writeGenericsBoundType(StringBuilder ret, ClassNode printType, boolean writeInterfaceMarker) {
         if (writeInterfaceMarker && printType.isInterface()) ret.append(":");
-        if (printType.equals(ClassHelper.OBJECT_TYPE) && printType.getGenericsTypes() != null) {
+        if (printType.isGenericsPlaceHolder() && printType.getGenericsTypes()!=null) {
             ret.append("T");
             ret.append(printType.getGenericsTypes()[0].getName());
             ret.append(";");
@@ -454,7 +457,7 @@ public class BytecodeHelper implements Opcodes {
         }
     }
 
-    private static void writeGenericsBounds(StringBuffer ret, GenericsType type, boolean writeInterfaceMarker) {
+    private static void writeGenericsBounds(StringBuilder ret, GenericsType type, boolean writeInterfaceMarker) {
         if (type.getUpperBounds() != null) {
             ClassNode[] bounds = type.getUpperBounds();
             for (int i = 0; i < bounds.length; i++) {
@@ -467,7 +470,7 @@ public class BytecodeHelper implements Opcodes {
         }
     }
 
-    private static void addSubTypes(StringBuffer ret, GenericsType[] types, String start, String end) {
+    private static void addSubTypes(StringBuilder ret, GenericsType[] types, String start, String end) {
         if (types == null) return;
         ret.append(start);
         for (int i = 0; i < types.length; i++) {
@@ -541,12 +544,7 @@ public class BytecodeHelper implements Opcodes {
      * @param targetType the primitive target type
      */
     public static void doCastToPrimitive(MethodVisitor mv, ClassNode sourceType, ClassNode targetType) {
-        mv.visitMethodInsn(
-                INVOKEVIRTUAL,
-                BytecodeHelper.getClassInternalName(sourceType),
-                targetType.getName()+"Value",
-                "()"+BytecodeHelper.getTypeDescription(targetType)
-        );
+        mv.visitMethodInsn(INVOKEVIRTUAL, BytecodeHelper.getClassInternalName(sourceType), targetType.getName() + "Value", "()" + BytecodeHelper.getTypeDescription(targetType), false);
     }
 
     /**
@@ -558,12 +556,7 @@ public class BytecodeHelper implements Opcodes {
      * @param targetType the wrapped target type
      */
     public static void doCastToWrappedType(MethodVisitor mv, ClassNode sourceType, ClassNode targetType) {
-        mv.visitMethodInsn(
-                INVOKESTATIC,
-                getClassInternalName(targetType),
-                "valueOf",
-                "("+getTypeDescription(sourceType)+")"+getTypeDescription(targetType)
-        );
+        mv.visitMethodInsn(INVOKESTATIC, getClassInternalName(targetType), "valueOf", "(" + getTypeDescription(sourceType) + ")" + getTypeDescription(targetType), false);
     }
 
     public static void doCast(MethodVisitor mv, Class type) {
@@ -585,11 +578,7 @@ public class BytecodeHelper implements Opcodes {
     public static void unbox(MethodVisitor mv, Class type) {
         if (type.isPrimitive() && type != Void.TYPE) {
             String returnString = "(Ljava/lang/Object;)" + BytecodeHelper.getTypeDescription(type);
-            mv.visitMethodInsn(
-                    INVOKESTATIC,
-                    DTT_CLASSNAME,
-                    type.getName() + "Unbox",
-                    returnString);
+            mv.visitMethodInsn(INVOKESTATIC, DTT_CLASSNAME, type.getName() + "Unbox", returnString, false);
         }
     }
 
@@ -601,6 +590,7 @@ public class BytecodeHelper implements Opcodes {
     /**
      * box top level operand
      */
+    @Deprecated
     public static boolean box(MethodVisitor mv, ClassNode type) {
         if (type.isPrimaryClassNode()) return false;
         return box(mv, type.getTypeClass());
@@ -610,10 +600,11 @@ public class BytecodeHelper implements Opcodes {
     /**
      * Generates the bytecode to autobox the current value on the stack
      */
+    @Deprecated
     public static boolean box(MethodVisitor mv, Class type) {
         if (ReflectionCache.getCachedClass(type).isPrimitive && type != void.class) {
             String returnString = "(" + BytecodeHelper.getTypeDescription(type) + ")Ljava/lang/Object;";
-            mv.visitMethodInsn(INVOKESTATIC, DTT_CLASSNAME, "box", returnString);
+            mv.visitMethodInsn(INVOKESTATIC, DTT_CLASSNAME, "box", returnString, false);
             return true;
         }
         return false;
@@ -661,5 +652,20 @@ public class BytecodeHelper implements Opcodes {
         CompileUnit cu1 = a.getCompileUnit();
         CompileUnit cu2 = b.getCompileUnit();
         return cu1 !=null && cu2 !=null && cu1==cu2;
+    }
+
+    /**
+     * Computes a hash code for a string. The purpose of this hashcode is to be constant independently of
+     * the JDK being used.
+     * @param str the string for which to compute the hashcode
+     * @return hashcode of the string
+     */
+    public static int hashCode(String str) {
+        final char[] chars = str.toCharArray();
+        int h = 0;
+        for (int i = 0; i < chars.length; i++) {
+            h = 31 * h + chars[i];
+        }
+        return h;
     }
 }

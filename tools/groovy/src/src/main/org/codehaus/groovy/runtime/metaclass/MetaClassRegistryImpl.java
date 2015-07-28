@@ -1,17 +1,20 @@
-/*
- * Copyright 2003-2012 the original author or authors.
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package org.codehaus.groovy.runtime.metaclass;
 
@@ -44,23 +47,22 @@ import java.util.*;
  * @author Graeme Rocher
  * @author Alex Tkachman
  *
- * @version $Revision$
  */
 public class MetaClassRegistryImpl implements MetaClassRegistry{
     /**
      * @deprecated Use {@link ExtensionModuleScanner#MODULE_META_INF_FILE instead}
      */
-    public final static String MODULE_META_INF_FILE = "META-INF/services/org.codehaus.groovy.runtime.ExtensionModule";
+    public static final String MODULE_META_INF_FILE = "META-INF/services/org.codehaus.groovy.runtime.ExtensionModule";
 
-    private boolean useAccessible;
+    private final boolean useAccessible;
 
-    private FastArray instanceMethods = new FastArray();
-    private FastArray staticMethods = new FastArray();
+    private final FastArray instanceMethods = new FastArray();
+    private final FastArray staticMethods = new FastArray();
 
-    private LinkedList<MetaClassRegistryChangeEventListener> changeListenerList = new LinkedList();
-    private LinkedList<MetaClassRegistryChangeEventListener> nonRemoveableChangeListenerList = new LinkedList();
-    private ManagedLinkedList metaClassInfo = new ManagedLinkedList<MetaClass>(ReferenceBundle.getWeakBundle());
-    private ExtensionModuleRegistry moduleRegistry = new ExtensionModuleRegistry();
+    private final LinkedList<MetaClassRegistryChangeEventListener> changeListenerList = new LinkedList<MetaClassRegistryChangeEventListener>();
+    private final LinkedList<MetaClassRegistryChangeEventListener> nonRemoveableChangeListenerList = new LinkedList<MetaClassRegistryChangeEventListener>();
+    private final ManagedLinkedList metaClassInfo = new ManagedLinkedList<MetaClass>(ReferenceBundle.getWeakBundle());
+    private final ExtensionModuleRegistry moduleRegistry = new ExtensionModuleRegistry();
 
     public static final int LOAD_DEFAULT = 0;
     public static final int DONT_LOAD_DEFAULT = 1;

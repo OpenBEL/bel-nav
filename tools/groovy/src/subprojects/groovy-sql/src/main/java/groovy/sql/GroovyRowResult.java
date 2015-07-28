@@ -1,17 +1,20 @@
-/*
- * Copyright 2003-2012 the original author or authors.
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package groovy.sql;
 
@@ -25,10 +28,9 @@ import java.util.Set;
 
 /**
  * Represents an extent of objects.
- * It's used in the oneRow method to be able to access the result
- * of a SQL query by the name of the column, or by the column number.
+ * It's primarily used by methods of Groovy's {@link groovy.sql.Sql} class to return {@code ResultSet} data in map
+ * form; allowing access to the result of a SQL query by the name of the column, or by the column number.
  *
- * @version $Revision$
  * @author Jean-Louis Berliet
  */
 public class GroovyRowResult extends GroovyObjectSupport implements Map {
@@ -40,7 +42,7 @@ public class GroovyRowResult extends GroovyObjectSupport implements Map {
     }
 
     /**
-     * Retrieve the value of the property by its name
+     * Retrieve the value of the property by its (case-insensitive) name.
      *
      * @param property is the name of the property to look at
      * @return the value of the property
@@ -116,6 +118,12 @@ public class GroovyRowResult extends GroovyObjectSupport implements Map {
         result.clear();
     }
 
+    /**
+     * Checks if the result contains (ignoring case) the given key.
+     *
+     * @param key the property name to look for
+     * @return true if the result contains this property name
+     */
     public boolean containsKey(Object key) {
         return lookupKeyIgnoringCase(key) != null;
     }
@@ -132,6 +140,12 @@ public class GroovyRowResult extends GroovyObjectSupport implements Map {
         return result.equals(o);
     }
 
+    /**
+     * Find the property value for the given name (ignoring case).
+     *
+     * @param property the name of the property to get
+     * @return the property value
+     */
     public Object get(Object property) {
         if (property instanceof String)
             return getProperty((String)property);
@@ -150,14 +164,38 @@ public class GroovyRowResult extends GroovyObjectSupport implements Map {
         return result.keySet();
     }
 
+    /**
+     * Associates the specified value with the specified property name in this result.
+     *
+     * @param key the property name for the result
+     * @param value the property value for the result
+     * @return the previous value associated with <tt>key</tt>, or
+     *         <tt>null</tt> if there was no mapping for <tt>key</tt>.
+     *         (A <tt>null</tt> return can also indicate that the map
+     *         previously associated <tt>null</tt> with <tt>key</tt>.)
+     */
     @SuppressWarnings("unchecked")
     public Object put(Object key, Object value) {
-        return result.put(key, value);
+        // avoid different case keys being added by explicit remove
+        Object orig = remove(key);
+        result.put(key, value);
+        return orig;
     }
 
+    /**
+     * Copies all of the mappings from the specified map to this result.
+     * If the map contains different case versions of the same (case-insensitive) key
+     * only the last (according to the natural ordering of the supplied map) will remain
+     * after the {@code putAll} method has returned.
+     *
+     * @param t the mappings to store in this result
+     */
     @SuppressWarnings("unchecked")
     public void putAll(Map t) {
-        result.putAll(t);
+        // don't delegate to putAll since we want case handling from put
+        for (Entry next : (Set<Entry>) t.entrySet()) {
+            put(next.getKey(), next.getValue());
+        }
     }
 
     public Object remove(Object rawKey) {

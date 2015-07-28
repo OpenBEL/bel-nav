@@ -1,19 +1,21 @@
 /*
- * Copyright 2008 the original author or authors.
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
-
 package groovy.jmx.builder
 
 import javax.management.remote.JMXConnector
@@ -37,13 +39,13 @@ import javax.management.remote.JMXServiceURL
  * @see <a href="http://java.sun.com/j2se/1.5.0/docs/api/javax/management/remote/JMXConnector.html">JMXConnector</a>
  */
 class JmxClientConnectorFactory extends AbstractFactory {
-    private static List SUPPORTED_PROTOCOLS = ["rmi", "jrmp", "iiop", "jmxmp"]
+
+    private static final List SUPPORTED_PROTOCOLS = ["rmi", "jrmp", "iiop", "jmxmp"]
 
     public Object newInstance(FactoryBuilderSupport builder, Object nodeName, Object nodeArgs, Map nodeAttribs) {
         if (nodeArgs) {
             throw new JmxBuilderException("Node '${nodeName}' only supports named attributes.")
         }
-        JmxBuilder fsb = (JmxBuilder) builder
         def protocol = nodeAttribs?.remove("protocol") ?: nodeAttribs?.remove("transport") ?: "rmi"
         def port = nodeAttribs?.remove("port")
         def host = nodeAttribs?.remove("host") ?: nodeAttribs?.remove("address") ?: "localhost"
@@ -62,7 +64,6 @@ class JmxClientConnectorFactory extends AbstractFactory {
         JMXConnector connector = JMXConnectorFactory.newJMXConnector(serviceUrl, props);
 
         return connector
-
     }
 
     private JMXServiceURL generateServiceUrl(def protocol, def host, def port) {

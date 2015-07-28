@@ -1,30 +1,27 @@
 /*
- * Copyright 2003-2009 the original author or authors.
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package org.codehaus.groovy.classgen.asm.sc;
 
 import groovy.transform.stc.MethodCallsSTCTest
 import org.codehaus.groovy.control.MultipleCompilationErrorsException
 
-@Mixin(StaticCompilationTestSupport)
-public class MethodCallsStaticCompilationTest extends MethodCallsSTCTest {
-    @Override
-    protected void setUp() {
-        super.setUp()
-        extraSetup()
-    }
+public class MethodCallsStaticCompilationTest extends MethodCallsSTCTest implements StaticCompilationTestSupport {
 
     void testCallToSuper() {
         assertScript '''
@@ -117,7 +114,7 @@ public class MethodCallsStaticCompilationTest extends MethodCallsSTCTest {
 
     void testPlusStaticMethodCall() {
         assertScript '''
-            static foo() { 1 }
+            static int foo() { 1 }
             assert 1+foo() == 2
         '''
     }
@@ -170,4 +167,65 @@ import groovy.transform.TypeCheckingMode//import org.codehaus.groovy.classgen.as
         }
     }
 
+    // GROOVY-6647
+    void testInaccessibleConstructor() {
+        shouldFailWithMessages '''
+            class Foo {
+                private Foo(){}
+            }
+
+            class Bar {
+                def foo() {new Foo()}
+            }
+        ''', 'Cannot call private constructor'
+    }
+
+    // GROOVY-7063
+    void testCallToProtectedMethodFromClosureInSubclassAndDifferentPackage() {
+        assertScript ''' import org.codehaus.groovy.classgen.asm.sc.MethodCallsStaticCompilationTest.Base
+
+        class Ext extends Base {
+
+            int doSomething() {
+                def c = {
+                    foo()
+                }
+                c.call()
+            }
+        }
+        def ext = new Ext()
+        assert ext.doSomething() == 123
+        '''
+    }
+
+    // GROOVY-7264
+    void testCallProtectedMethodWithGenericTypes() {
+        assertScript '''
+            import org.codehaus.groovy.classgen.asm.sc.MethodCallsStaticCompilationTest.BaseGeneric
+
+            class Ext extends BaseGeneric<Integer> {
+
+                int doSomething() {
+                    def c = {
+                        foo(123)
+                    }
+                    c.call()?1:0
+                }
+            }
+            def ext = new Ext()
+            assert ext.doSomething() == 1
+        '''
+    }
+
+    public static class Base {
+        protected int foo() {
+            123
+        }
+    }
+
+    public static class BaseGeneric<T> {
+        protected boolean foo(T t) {
+            true
+        }
+    }
 }

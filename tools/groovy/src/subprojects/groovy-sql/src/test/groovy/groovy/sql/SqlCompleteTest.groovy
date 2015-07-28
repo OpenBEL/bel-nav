@@ -1,17 +1,20 @@
 /*
- * Copyright 2003-2012 the original author or authors.
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package groovy.sql
 
@@ -126,10 +129,6 @@ class SqlCompleteTest extends SqlHelperTestCase {
             results.put(it.firstname, it['lastname'])
         }
         assert results == ["Bob": "Mcwhirter"]
-    }
-
-    void testCastingNotConfusedWithNamedParameters_5111() {
-        assert !sql.preCheckForNamedParams("select * from TABLE where TEXTFIELD::integer = 3")
     }
 
     void testEachRowWithNamedOrdinalParams() {
@@ -512,6 +511,16 @@ class SqlCompleteTest extends SqlHelperTestCase {
         def args2 = [url: url2, driver: driver, properties: props]
         Sql.newInstance(args2)
         assert args2 == [url: url2, driver:  driver, properties: [user: user, password:  password]]
+    }
+
+    void testWithQuoteEmbeddedInInlineComment_Groovy5898() {
+        def query = """select *
+from FOOD
+-- An ' apostrophe
+where type=:foo
+"""
+        def rows = sql.rows(query, foo: 'drink')
+        assert rows.size() == 2
     }
 
 }

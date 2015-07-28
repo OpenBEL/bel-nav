@@ -1,35 +1,35 @@
-/*
- * Copyright 2003-2007 the original author or authors.
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package groovy.util;
-
 
 import org.codehaus.groovy.runtime.InvokerHelper;
 
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 /**
  * A helper class for creating nested trees of data
- * 
+ *
  * @author <a href="mailto:james@coredevelopers.net">James Strachan</a>
  * @author Christian Stein
- * @version $Revision$
  */
 public class NodePrinter {
 
@@ -64,14 +64,12 @@ public class NodePrinter {
                 out.print("()");
             }
             printList((List) value);
-        }
-        else {
+        } else {
             if (value instanceof String) {
                 out.print("('");
                 out.print((String) value);
                 out.println("')");
-            }
-            else {
+            } else {
                 out.println("()");
             }
         }
@@ -82,8 +80,7 @@ public class NodePrinter {
         Object name = node.name();
         if (name != null) {
             out.print(name.toString());
-        }
-        else {
+        } else {
             out.print("null");
         }
     }
@@ -91,20 +88,15 @@ public class NodePrinter {
     protected void printList(List list) {
         if (list.isEmpty()) {
             out.println("");
-        }
-        else {
+        } else {
             out.println(" {");
             out.incrementIndent();
-            for (Iterator iter = list.iterator(); iter.hasNext();) {
-                Object value = iter.next();
+            for (Object value : list) {
                 if (value instanceof Node) {
                     print((Node) value);
-                }
-                else {
+                } else {
                     out.printIndent();
-                    out.print("builder.append(");
-                    out.print(InvokerHelper.toString(value));
-                    out.println(")");
+                    out.println(InvokerHelper.toString(value));
                 }
             }
             out.decrementIndent();
@@ -117,20 +109,18 @@ public class NodePrinter {
     protected void printAttributes(Map attributes) {
         out.print("(");
         boolean first = true;
-        for (Iterator iter = attributes.entrySet().iterator(); iter.hasNext();) {
-            Map.Entry entry = (Map.Entry) iter.next();
+        for (Object o : attributes.entrySet()) {
+            Map.Entry entry = (Map.Entry) o;
             if (first) {
                 first = false;
-            }
-            else {
+            } else {
                 out.print(", ");
             }
             out.print(entry.getKey().toString());
             out.print(":");
             if (entry.getValue() instanceof String) {
                 out.print("'" + entry.getValue() + "'");
-            }
-            else {
+            } else {
                 out.print(InvokerHelper.toString(entry.getValue()));
             }
         }

@@ -1,42 +1,46 @@
-/*
- * Copyright 2003-2007 the original author or authors.
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
-
 package groovy.xml;
 
 import groovy.util.BuilderSupport;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.StringReader;
 import java.util.Iterator;
 import java.util.Map;
 
+import javax.xml.XMLConstants;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
+
 /**
  * A helper class for creating a W3C DOM tree
  *
  * @author <a href="mailto:james@coredevelopers.net">James Strachan</a>
- * @version $Revision$
  */
 public class DOMBuilder extends BuilderSupport {
 
@@ -56,7 +60,7 @@ public class DOMBuilder extends BuilderSupport {
 
     /**
      * Creates a DocumentBuilder and uses it to parse the XML text read from the given reader.
-     * A non-validating, namespace aware parser is used.
+     * A non-validating, namespace aware parser which does not allow DOCTYPE declarations is used.
      *
      * @param reader the reader to read the XML text from
      * @return the root node of the parsed tree of Nodes
@@ -73,7 +77,8 @@ public class DOMBuilder extends BuilderSupport {
 
     /**
      * Creates a DocumentBuilder and uses it to parse the XML text read from the given reader, allowing
-     * parser validation and namespace awareness to be controlled.
+     * parser validation and namespace awareness to be controlled. Documents are not allowed to contain 
+     * DOCYTYPE declarations.
      *
      * @param reader         the reader to read the XML text from
      * @param validating     whether to validate the XML
@@ -87,11 +92,40 @@ public class DOMBuilder extends BuilderSupport {
      */
     public static Document parse(Reader reader, boolean validating, boolean namespaceAware)
             throws SAXException, IOException, ParserConfigurationException {
+        return parse(reader, validating, namespaceAware, false);
+    }
+    
+    /**
+     * Creates a DocumentBuilder and uses it to parse the XML text read from the given reader, allowing
+     * parser validation, namespace awareness and permission of DOCTYPE declarations to be controlled.
+     *
+     * @param reader                  the reader to read the XML text from
+     * @param validating              whether to validate the XML
+     * @param namespaceAware          whether the parser should be namespace aware
+     * @param allowDocTypeDeclaration whether the parser should allow DOCTYPE declarations
+     * @return the root node of the parsed tree of Nodes
+     * @throws SAXException                 Any SAX exception, possibly wrapping another exception.
+     * @throws IOException                  An IO exception from the parser, possibly from a byte
+     *                                      stream or character stream supplied by the application.
+     * @throws ParserConfigurationException if a DocumentBuilder cannot be created which satisfies
+     *                                      the configuration requested.
+     */
+    public static Document parse(Reader reader, boolean validating, boolean namespaceAware, boolean allowDocTypeDeclaration)
+            throws SAXException, IOException, ParserConfigurationException {
         DocumentBuilderFactory factory = FactorySupport.createDocumentBuilderFactory();
         factory.setNamespaceAware(namespaceAware);
         factory.setValidating(validating);
+        setQuietly(factory, XMLConstants.FEATURE_SECURE_PROCESSING, true);
+        setQuietly(factory, "http://apache.org/xml/features/disallow-doctype-decl", !allowDocTypeDeclaration);
         DocumentBuilder documentBuilder = factory.newDocumentBuilder();
         return documentBuilder.parse(new InputSource(reader));
+    }
+    
+    private static void setQuietly(DocumentBuilderFactory factory, String feature, boolean value) {
+        try {
+            factory.setFeature(feature, value);
+        }
+        catch (ParserConfigurationException ignored) { }
     }
 
     /**

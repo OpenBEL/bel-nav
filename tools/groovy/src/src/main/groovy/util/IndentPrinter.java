@@ -1,17 +1,20 @@
-/*
- * Copyright 2003-2013 the original author or authors.
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package groovy.util;
 
@@ -63,6 +66,7 @@ public class IndentPrinter {
     private String indent;
     private Writer out;
     private final boolean addNewlines;
+    private boolean autoIndent;
 
     /**
      * Creates an IndentPrinter backed by a PrintWriter pointing to System.out, with an indent of two spaces.
@@ -104,12 +108,24 @@ public class IndentPrinter {
      * @param addNewlines set to false to gobble all new lines (default true)
      */
     public IndentPrinter(Writer out, String indent, boolean addNewlines) {
+       this(out, indent, addNewlines, false);
+    }
+
+    /**
+     * Create an IndentPrinter to the given PrintWriter
+     * @param out Writer to output to
+     * @param indent character(s) used to indent each line
+     * @param addNewlines set to false to gobble all new lines (default true)
+     * @param autoIndent set to true to make println() prepend the indent automatically (default false)
+     */
+    public IndentPrinter(Writer out, String indent, boolean addNewlines, boolean autoIndent) {
         this.addNewlines = addNewlines;
         if (out == null) {
             throw new IllegalArgumentException("Must specify a Writer");
         }
         this.out = out;
         this.indent = indent;
+        this.autoIndent = autoIndent;
     }
 
     /**
@@ -119,6 +135,7 @@ public class IndentPrinter {
      */
     public void println(String text) {
         try {
+            if(autoIndent) printIndent();
             out.write(text);
             println();
         } catch(IOException ioe) {
@@ -197,6 +214,14 @@ public class IndentPrinter {
 
     public void setIndentLevel(int indentLevel) {
         this.indentLevel = indentLevel;
+    }
+
+    public boolean getAutoIndent(){
+        return this.autoIndent;
+    }
+
+    public void setAutoIndent(boolean autoIndent){
+        this.autoIndent = autoIndent;
     }
 
     public void flush() {

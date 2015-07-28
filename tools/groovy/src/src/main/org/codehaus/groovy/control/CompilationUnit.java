@@ -1,23 +1,27 @@
-/*
- * Copyright 2003-2013 the original author or authors.
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package org.codehaus.groovy.control;
 
 import groovy.lang.GroovyClassLoader;
 import groovy.lang.GroovyRuntimeException;
 
+import groovy.transform.CompilationUnitAware;
 import org.codehaus.groovy.GroovyBugError;
 import org.codehaus.groovy.ast.*;
 import org.codehaus.groovy.classgen.*;
@@ -31,6 +35,7 @@ import org.codehaus.groovy.syntax.SyntaxException;
 import org.codehaus.groovy.tools.GroovyClass;
 import org.codehaus.groovy.transform.ASTTransformationVisitor;
 import org.codehaus.groovy.transform.AnnotationCollectorTransform;
+import org.codehaus.groovy.transform.trait.TraitComposer;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.ClassWriter;
 
@@ -180,6 +185,12 @@ public class CompilationUnit extends ProcessingUnit {
                 iv.visitClass(classNode);
             }
         }, Phases.SEMANTIC_ANALYSIS);
+        addPhaseOperation(new PrimaryClassNodeOperation() {
+            public void call(SourceUnit source, GeneratorContext context,
+                             ClassNode classNode) throws CompilationFailedException {
+                TraitComposer.doExtendTraits(classNode, source, CompilationUnit.this);
+            }
+        }, Phases.CANONICALIZATION);
         addPhaseOperation(compileCompleteCheck, Phases.CANONICALIZATION);
         addPhaseOperation(classgen, Phases.CLASS_GENERATION);
         addPhaseOperation(output);
@@ -221,6 +232,9 @@ public class CompilationUnit extends ProcessingUnit {
         if (configuration != null) {
             final List<CompilationCustomizer> customizers = configuration.getCompilationCustomizers();
             for (CompilationCustomizer customizer : customizers) {
+                if (customizer instanceof CompilationUnitAware) {
+                    ((CompilationUnitAware) customizer).setCompilationUnit(this);
+                }
                 addPhaseOperation(customizer, customizer.getPhase().getPhaseNumber());
             }
         }
@@ -245,6 +259,11 @@ public class CompilationUnit extends ProcessingUnit {
     public void addPhaseOperation(PrimaryClassNodeOperation op, int phase) {
         if (phase < 0 || phase > Phases.ALL) throw new IllegalArgumentException("phase " + phase + " is unknown");
         phaseOperations[phase].add(op);
+    }
+
+    public void addFirstPhaseOperation(PrimaryClassNodeOperation op, int phase) {
+        if (phase < 0 || phase > Phases.ALL) throw new IllegalArgumentException("phase " + phase + " is unknown");
+        phaseOperations[phase].add(0, op);
     }
 
     public void addPhaseOperation(GroovyClassOperation op) {
@@ -702,7 +721,7 @@ public class CompilationUnit extends ProcessingUnit {
                     String name = (String) iter.next();
                     SourceUnit su = ast.getScriptSourceLocation(name);
                     List<ClassNode> classesInSourceUnit = su.ast.getClasses();
-                    StringBuffer message = new StringBuffer();
+                    StringBuilder message = new StringBuilder();
                     message
                             .append("Compilation incomplete: expected to find the class ")
                             .append(name)
@@ -1038,29 +1057,40 @@ public class CompilationUnit extends ProcessingUnit {
             } catch (CompilationFailedException e) {
                 // fall through, getErrorReporter().failIfErrors() will trigger
             } catch (NullPointerException npe) {
-                throw npe;
+                GroovyBugError gbe = new GroovyBugError("unexpected NullpointerException", npe);
+                changeBugText(gbe, context);
+                throw gbe;
             } catch (GroovyBugError e) {
                 changeBugText(e, context);
                 throw e;
+            } catch (NoClassDefFoundError e) {
+                // effort to get more logging in case a dependency of a class is loaded
+                // although it shouldn't have
+                convertUncaughtExceptionToCompilationError(e);
             } catch (Exception e) {
-                // check the exception for a nested compilation exception
-                ErrorCollector nestedCollector = null;
-                for (Throwable next = e.getCause(); next != e && next != null; next = next.getCause()) {
-                    if (!(next instanceof MultipleCompilationErrorsException)) continue;
-                    MultipleCompilationErrorsException mcee = (MultipleCompilationErrorsException) next;
-                    nestedCollector = mcee.collector;
-                    break;
-                }
-
-                if (nestedCollector != null) {
-                    getErrorCollector().addCollectorContents(nestedCollector);
-                } else {
-                    getErrorCollector().addError(new ExceptionMessage(e, configuration.getDebug(), this));
-                }
+                convertUncaughtExceptionToCompilationError(e);
             }
         }
 
         getErrorCollector().failIfErrors();
+    }
+
+    private void convertUncaughtExceptionToCompilationError(final Throwable e) {
+        // check the exception for a nested compilation exception
+        ErrorCollector nestedCollector = null;
+        for (Throwable next = e.getCause(); next != e && next != null; next = next.getCause()) {
+            if (!(next instanceof MultipleCompilationErrorsException)) continue;
+            MultipleCompilationErrorsException mcee = (MultipleCompilationErrorsException) next;
+            nestedCollector = mcee.collector;
+            break;
+        }
+
+        if (nestedCollector != null) {
+            getErrorCollector().addCollectorContents(nestedCollector);
+        } else {
+            Exception err = e instanceof Exception?((Exception)e):new RuntimeException(e);
+            getErrorCollector().addError(new ExceptionMessage(err, configuration.getDebug(), this));
+        }
     }
 
     public void applyToGeneratedGroovyClasses(GroovyClassOperation body) throws CompilationFailedException {

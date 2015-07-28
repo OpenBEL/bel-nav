@@ -1,3 +1,21 @@
+/*
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
+ */
 package groovy.transform.stc
 
 /**
@@ -74,7 +92,7 @@ class BugsSTCTest extends StaticTypeCheckingTestCase {
 
                 5.times {
                     @ASTTest(phase=INSTRUCTION_SELECTION, value= {
-                        assert node.getNodeMetaData(DECLARATION_INFERRED_TYPE) == long_TYPE
+                        assert node.getNodeMetaData(INFERRED_TYPE) == Long_TYPE
                     })
                     def t0 = curr()
                     100000.times {
@@ -88,7 +106,7 @@ class BugsSTCTest extends StaticTypeCheckingTestCase {
     void testGroovy5487ReturnNull() {
         assertScript '''
         @ASTTest(phase=INSTRUCTION_SELECTION, value= {
-            assert node.getNodeMetaData(INFERRED_RETURN_TYPE) == make(List)
+            assert node.getNodeMetaData(INFERRED_RETURN_TYPE) == null // null since 2.1.9
         })
         List getList() {
             null
@@ -99,7 +117,7 @@ class BugsSTCTest extends StaticTypeCheckingTestCase {
     void testGroovy5487ReturnNullWithExplicitReturn() {
         assertScript '''
         @ASTTest(phase=INSTRUCTION_SELECTION, value= {
-            assert node.getNodeMetaData(INFERRED_RETURN_TYPE) == make(List)
+            assert node.getNodeMetaData(INFERRED_RETURN_TYPE) == null // null since 2.1.9
         })
         List getList() {
             return null
@@ -110,10 +128,21 @@ class BugsSTCTest extends StaticTypeCheckingTestCase {
     void testGroovy5487ReturnNullWithEmptyBody() {
         assertScript '''
         @ASTTest(phase=INSTRUCTION_SELECTION, value= {
-            assert node.getNodeMetaData(INFERRED_RETURN_TYPE) == make(List)
+            assert node.getNodeMetaData(INFERRED_RETURN_TYPE) == null // null since 2.1.9
         })
         List getList() {
         }
+        '''
+    }
+
+    void testGroovy7477NullGenericsType() {
+        assertScript '''
+        class L<E> extends ArrayList<E> {
+            boolean removeIf(Comparator<? super E> filter) { }
+        }
+        L<String> items = ['foo', 'bar'] as L<String>
+        items.removeIf({a, b -> 1} as Comparator<?>)
+        assert items
         '''
     }
 
@@ -488,4 +517,180 @@ class BugsSTCTest extends StaticTypeCheckingTestCase {
         '''
     }
 
+    void testListToSet() {
+        assertScript '''
+            Set foo(List<Map.Entry> set) {
+                set.collect { Map.Entry entry -> entry.key }.toSet()
+            }
+        '''
+    }
+
+    void testConstructorNewInstance() {
+        assertScript '''import java.lang.reflect.Constructor
+
+class Person {
+    String name
+    Person(String name) { this.name = name }
+}
+
+Constructor<Person> ctor = Person.getConstructor(String)
+def p = ctor.newInstance('Bob')
+assert p.name == 'Bob'
+'''
+    }
+
+    void testOuterDotThisNotation() {
+        assertScript '''
+class Outer {
+    int x
+    class Inner {
+        int foo() { 2*Outer.this.x }
+    }
+    int bar() {
+        new Inner().foo()
+    }
+}
+def o = new Outer(x:123)
+assert o.bar() == 2*o.x
+'''
+    }
+
+    // GROOVY-6965
+    void testShouldNotFailWithClassCastExceptionDuringCompilation() {
+        assertScript '''
+interface Job {
+  Runnable getRunnable()
+}
+
+
+class Printer implements Job{
+
+  protected void execute() {
+    println "Printing"
+  }
+
+  public void acceptsRunnable(Runnable r){
+    r.run()
+  }
+
+  public Runnable getRunnable(){
+     acceptsRunnable(this.&execute) // OK
+     return this.&execute           // compile error
+  }
+}
+
+Printer
+'''
+    }
+
+    // GROOVY-6970
+    void testShouldBeAbleToChooseBetweenTwoEquivalentInterfaceMethods() {
+        assertScript '''
+            interface A { void m() }
+            interface B { void m() }
+            interface C extends A, B {}
+
+            class D {
+             D(C c) {
+               c.m()
+             }
+            }
+            class CImpl implements C {
+                void m() { }
+            }
+
+            new D(new CImpl())
+        '''
+    }
+    void testShouldBeAbleToChooseBetweenTwoEquivalentInterfaceMethodsVariant() {
+        assertScript '''
+            interface A { void m() }
+            interface B { void m() }
+            class C implements A,B {
+                void m() {}
+            }
+            class D {
+             D(C c) {
+               c.m()
+             }
+            }
+
+            new D(new C())
+        '''
+    }
+
+    void testShouldBeAbleToChooseBetweenTwoEquivalentInterfaceMethodsVariant2() {
+        assertScript '''
+            interface A { void m() }
+            interface B { void m() }
+            interface C extends A,B {}
+            class CImpl implements C, A,B {
+                void m() {}
+            }
+            class D {
+             D(C c) {
+               c.m()
+             }
+            }
+
+            new D(new CImpl())
+        '''
+    }
+
+    void testAmbiguousMethodResolutionGroovy6849() {
+        assertScript '''
+            interface ObservableList<E> extends List<E> {
+                public boolean addAll(E... elements)
+            }
+            public <E> ObservableList<E> wrap(List<E> list) { list as ObservableList }
+            ObservableList<String> tags = wrap(['groovy','programming'])
+            tags.addAll('bug')
+        '''
+    }
+
+    // GROOVY-6911
+    void testShouldNotThrowArrayIndexOfOutBoundsException() {
+        assertScript '''
+            class MyMap<T> extends LinkedHashMap<String, Object> { }
+
+            class C {
+                MyMap bar() { new MyMap() }
+            }
+
+            Map<String, Object> m = new C().bar()
+            List tmp = (List) m.get("some_key_here")
+        '''
+    }
+
+    // GROOVY-7416
+    void testMethodsFromInterfacesOfSuperClassesShouldBeVisible() {
+        assertScript '''
+            interface SomeInterface {
+                void someInterfaceMethod()
+            }
+
+            abstract class AbstractSuperClass implements SomeInterface {}
+
+            abstract class AbstractSubClass extends AbstractSuperClass {
+                void someMethod() {
+                    someInterfaceMethod()
+                }
+            }
+
+            assert AbstractSubClass.name == 'AbstractSubClass'
+        '''
+        assertScript '''
+            interface SomeInterface { void foo() }
+            interface SomeOtherInterface { void bar() }
+            interface AnotherInterface extends SomeInterface, SomeOtherInterface {}
+
+            abstract class Parent implements AnotherInterface {}
+
+            abstract class Child extends Parent {
+                void baz() { foo(); bar() }
+            }
+
+            assert Child.name == 'Child'
+        '''
+    }
 }

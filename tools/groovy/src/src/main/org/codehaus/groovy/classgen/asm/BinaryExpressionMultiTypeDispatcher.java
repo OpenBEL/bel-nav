@@ -1,17 +1,20 @@
-/*
- * Copyright 2003-2010 the original author or authors.
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package org.codehaus.groovy.classgen.asm;
 
@@ -101,7 +104,7 @@ public class BinaryExpressionMultiTypeDispatcher extends BinaryExpressionHelper 
         typeMap.put(byte_TYPE,      5); typeMap.put(short_TYPE,         6);
         typeMap.put(float_TYPE,     7); typeMap.put(boolean_TYPE,       8);
     }
-    public final static String[] typeMapKeyNames = {"dummy", "int", "long", "double", "char", "byte", "short", "float", "boolean"};
+    public static final String[] typeMapKeyNames = {"dummy", "int", "long", "double", "char", "byte", "short", "float", "boolean"};
 
     public BinaryExpressionMultiTypeDispatcher(WriterController wc) {
         super(wc);
@@ -120,8 +123,13 @@ public class BinaryExpressionMultiTypeDispatcher extends BinaryExpressionHelper 
         if (ret==null) return 0;
         return ret;
     }
-    
+
+    @Deprecated
     protected boolean doPrimtiveCompare(ClassNode leftType, ClassNode rightType, BinaryExpression binExp) {
+        return doPrimitiveCompare(leftType, rightType, binExp);
+    }
+
+    protected boolean doPrimitiveCompare(ClassNode leftType, ClassNode rightType, BinaryExpression binExp) {
         Expression leftExp = binExp.getLeftExpression();
         Expression rightExp = binExp.getRightExpression();
         int operation = binExp.getOperation().getType();
@@ -153,7 +161,7 @@ public class BinaryExpressionMultiTypeDispatcher extends BinaryExpressionHelper 
         Expression rightExp = binExp.getRightExpression();
         ClassNode rightType = typeChooser.resolveType(rightExp, current);
         
-        if (!doPrimtiveCompare(leftType, rightType, binExp)) {
+        if (!doPrimitiveCompare(leftType, rightType, binExp)) {
             super.evaluateCompareExpression(compareMethod, binExp);
         }
     }
@@ -188,6 +196,18 @@ public class BinaryExpressionMultiTypeDispatcher extends BinaryExpressionHelper 
             } else {
                 super.evaluateBinaryExpression(message, binExp);
             }
+        } else if (operation == DIVIDE) { 
+            int operationType = getOperandType(getController().getTypeChooser().resolveType(binExp, current));
+            BinaryExpressionWriter bew = binExpWriter[operationType];
+            if (bew.writeDivision(true)) {
+                leftExp.visit(acg);
+                os.doGroovyCast(bew.getDevisionOpResultType());
+                rightExp.visit(acg);
+                os.doGroovyCast(bew.getDevisionOpResultType());
+                bew.writeDivision(false);
+            } else {
+                super.evaluateBinaryExpression(message, binExp);
+            }
         } else {
             int operationType = getOperandConversionType(leftType,rightType);
             BinaryExpressionWriter bew = binExpWriter[operationType];
@@ -200,12 +220,6 @@ public class BinaryExpressionMultiTypeDispatcher extends BinaryExpressionHelper 
                 rightExp.visit(acg);
                 os.doGroovyCast(int_TYPE);
                 bew.write(operation, false);
-            } else if (operation==DIVIDE && bew.writeDivision(true)) {
-                leftExp.visit(acg);
-                os.doGroovyCast(bew.getDevisionOpResultType());
-                rightExp.visit(acg);
-                os.doGroovyCast(bew.getDevisionOpResultType());
-                bew.writeDivision(false);
             } else if (bew.write(operation, true)) {
                 leftExp.visit(acg);
                 os.doGroovyCast(bew.getNormalOpResultType());

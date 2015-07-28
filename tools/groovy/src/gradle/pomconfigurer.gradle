@@ -1,3 +1,22 @@
+/*
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
+ */
+
 group = 'org.codehaus.groovy'
 
 project.ext.optionalDeps = []
@@ -6,16 +25,15 @@ project.ext.providedDeps = []
 project.ext.optional = { project.ext.optionalDeps << it }
 project.ext.provided = { project.ext.providedDeps << it }
 
-project.ext.pomConfigureClosure = {
-    scopeMappings.addMapping(10, configurations.groovy, 'compile')
+project.ext.pomConfigureClosureWithoutTweaks = {
     project {
-        name 'Groovy'
+        name 'Apache Groovy'
         description 'Groovy: A powerful, dynamic language for the JVM'
-        url 'http://groovy.codehaus.org/'
+        url 'http://groovy-lang.org'
         inceptionYear '2003'
         organization {
-            name 'The Codehaus'
-            url 'http://codehaus.org'
+            name 'Apache Software Foundation'
+            url 'http://groovy-lang.org'
         }
         developers {
             developer {
@@ -74,6 +92,20 @@ project.ext.pomConfigureClosure = {
                 id 'mattf'
                 name 'Matt Foemmel'
                 organization 'ThoughtWorks'
+                roles {
+                    role 'Developer Emeritus'
+                }
+            }
+            developer {
+                id 'alextkachman'
+                name 'Alex Tkachman'
+                roles {
+                    role 'Developer Emeritus'
+                }
+            }
+            developer {
+                id 'roshandawrani'
+                name 'Roshan Dawrani'
                 roles {
                     role 'Developer Emeritus'
                 }
@@ -157,7 +189,7 @@ project.ext.pomConfigureClosure = {
                 email 'jeremy.rayner@gmail.com'
                 organization 'javanicus'
                 roles {
-                    role 'Developer'
+                    role 'Developer Emeritus'
                 }
             }
             developer {
@@ -228,7 +260,7 @@ project.ext.pomConfigureClosure = {
                 name 'Guillaume Alleon'
                 email 'guillaume.alleon@gmail.com'
                 roles {
-                    role 'Developer'
+                    role 'Developer Emeritus'
                 }
             }
             developer {
@@ -236,19 +268,26 @@ project.ext.pomConfigureClosure = {
                 name 'Jason Dillon'
                 email 'jason@planet57.com'
                 roles {
-                    role 'Developer'
+                    role 'Developer Emeritus'
                 }
             }
             developer {
                 id 'shemnon'
                 name 'Danno Ferrin'
                 roles {
-                    role 'Developer'
+                    role 'Developer Emeritus'
                 }
             }
             developer {
                 id 'jwill'
                 name 'James Williams'
+                roles {
+                    role 'Developer Emeritus'
+                }
+            }
+            developer {
+                id 'timyates'
+                name 'Tim Yates'
                 roles {
                     role 'Developer'
                 }
@@ -266,7 +305,7 @@ project.ext.pomConfigureClosure = {
                 name 'Marc Guillemot'
                 email 'mguillemot@yahoo.fr'
                 roles {
-                    role 'Developer'
+                    role 'Developer Emeritus'
                 }
             }
             developer {
@@ -283,6 +322,13 @@ project.ext.pomConfigureClosure = {
                 name 'Peter Niederwieser'
                 email 'pniederw@gmail.com'
                 roles {
+                    role 'Developer Emeritus'
+                }
+            }
+            developer {
+                id 'andresteingress'
+                name 'Andre Steingress'
+                roles {
                     role 'Developer'
                 }
             }
@@ -291,13 +337,21 @@ project.ext.pomConfigureClosure = {
                 name 'Hamlet D\'Arcy'
                 email 'hamletdrc@gmail.com'
                 roles {
-                    role 'Developer'
+                    role 'Developer Emeritus'
                 }
             }
             developer {
                 id 'melix'
                 name 'Cedric Champeau'
                 email 'cedric.champeau@gmail.com'
+                roles {
+                    role 'Developer'
+                    role 'Despot'
+                }
+            }
+            developer {
+                id 'pascalschumacher'
+                name 'Pascal Schumacher'
                 roles {
                     role 'Developer'
                 }
@@ -406,6 +460,9 @@ project.ext.pomConfigureClosure = {
                 name 'Jim Jagielski'
             }
             contributor {
+                name 'Rodolfo Velasco'
+            }
+            contributor {
                 name 'John Hurst'
             }
             contributor {
@@ -468,19 +525,51 @@ project.ext.pomConfigureClosure = {
             contributor {
                 name 'David Lee'
             }
+            contributor {
+                name 'Sergei Egorov'
+            }
+            contributor {
+                name 'Hein Meling'
+            }
+            contributor {
+                name 'Michael Baehr'
+            }
+            contributor {
+                name 'Craig Andrews'
+            }
+            contributor {
+                name 'Peter Ledbrook'
+            }
+            contributor {
+                name 'Thibault Kruse'
+            }
+            contributor {
+                name 'Paolo Di Tommaso'
+            }
+            contributor {
+                name 'Rene Scheibe'
+            }
+            contributor {
+                name 'Matias Bjarland'
+            }
+            contributor {
+                name 'Richard Hightower'
+            }
+            contributor {
+                name 'Andrey Bloschetsov'
+            }
+            contributor {
+                name 'Yu Kobayashi'
+            }
         }
         mailingLists {
             mailingList {
-                name 'Groovy JSR Discussion List'
-                archive 'http://dir.gmane.org/gmane.comp.lang.groovy.jsr'
-            }
-            mailingList {
                 name 'Groovy Developer List'
-                archive 'http://dir.gmane.org/gmane.comp.lang.groovy.devel'
+                archive 'http://mail-archives.apache.org/mod_mbox/groovy-dev/'
             }
             mailingList {
                 name 'Groovy User List'
-                archive 'http://dir.gmane.org/gmane.comp.lang.groovy.user'
+                archive 'http://mail-archives.apache.org/mod_mbox/groovy-users/'
             }
         }
         licenses {
@@ -490,14 +579,21 @@ project.ext.pomConfigureClosure = {
                 distribution 'repo'
             }
         }
+        issueManagement {
+            system 'jira'
+            url 'http://issues.apache.org/jira/browse/GROOVY'
+        }
         scm {
-            connection 'scm:git:git@github.com:groovy/groovy-core.git'
-            developerConnection 'scm:git:git@github.com:groovy/groovy-core.git'
-            url 'git@github.com:groovy/groovy-core.git'
+            connection 'scm:git:https://github.com/apache/incubator-groovy.git'
+            developerConnection 'scm:git:https://github.com/apache/incubator-groovy.git'
+            url 'https://github.com/apache/incubator-groovy.git'
         }
     }
+}
 
-    // general pom tweaks
+project.ext.pomConfigureClosure = {
+    with pomConfigureClosureWithoutTweaks
+
     whenConfigured { pom ->
         project.ext.optionalDeps.each { dep ->
             pom.dependencies.find { it.artifactId == dep.name }?.optional = true
@@ -513,9 +609,7 @@ project.ext.pomConfigureClosure = {
 
         if (project == rootProject) {
             // make dependencies optional
-            def groovyConfDeps =
-                project.configurations.groovy.dependencies.collect { dep -> dep.name } - project.configurations.compile.dependencies.collect { dep -> dep.name }
-            pom.dependencies.each { dep ->  if (!groovyConfDeps.contains(dep.artifactId)) { dep.optional = true }}
+            pom.dependencies.each { dep ->  dep.optional = true }
         }
 
         // add 'packaging' node

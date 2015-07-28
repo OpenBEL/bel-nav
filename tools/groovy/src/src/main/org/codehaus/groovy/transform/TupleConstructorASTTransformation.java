@@ -1,17 +1,20 @@
-/*
- * Copyright 2008-2013 the original author or authors.
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package org.codehaus.groovy.transform;
 
@@ -25,32 +28,40 @@ import org.codehaus.groovy.ast.ConstructorNode;
 import org.codehaus.groovy.ast.FieldNode;
 import org.codehaus.groovy.ast.Parameter;
 import org.codehaus.groovy.ast.PropertyNode;
-import org.codehaus.groovy.ast.expr.ArgumentListExpression;
-import org.codehaus.groovy.ast.expr.BooleanExpression;
 import org.codehaus.groovy.ast.expr.ConstantExpression;
-import org.codehaus.groovy.ast.expr.ConstructorCallExpression;
 import org.codehaus.groovy.ast.expr.Expression;
-import org.codehaus.groovy.ast.expr.MethodCallExpression;
-import org.codehaus.groovy.ast.expr.PropertyExpression;
-import org.codehaus.groovy.ast.expr.StaticMethodCallExpression;
 import org.codehaus.groovy.ast.expr.VariableExpression;
 import org.codehaus.groovy.ast.stmt.BlockStatement;
-import org.codehaus.groovy.ast.stmt.EmptyStatement;
-import org.codehaus.groovy.ast.stmt.ExpressionStatement;
-import org.codehaus.groovy.ast.stmt.IfStatement;
 import org.codehaus.groovy.ast.stmt.Statement;
 import org.codehaus.groovy.ast.stmt.ThrowStatement;
 import org.codehaus.groovy.control.CompilePhase;
 import org.codehaus.groovy.control.SourceUnit;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import static org.codehaus.groovy.transform.AbstractASTTransformUtil.*;
+import static org.codehaus.groovy.ast.ClassHelper.make;
+import static org.codehaus.groovy.ast.ClassHelper.makeWithoutCaching;
+import static org.codehaus.groovy.ast.tools.GeneralUtils.args;
+import static org.codehaus.groovy.ast.tools.GeneralUtils.assignS;
+import static org.codehaus.groovy.ast.tools.GeneralUtils.block;
+import static org.codehaus.groovy.ast.tools.GeneralUtils.callX;
+import static org.codehaus.groovy.ast.tools.GeneralUtils.constX;
+import static org.codehaus.groovy.ast.tools.GeneralUtils.ctorX;
+import static org.codehaus.groovy.ast.tools.GeneralUtils.equalsNullX;
+import static org.codehaus.groovy.ast.tools.GeneralUtils.getInstanceNonPropertyFields;
+import static org.codehaus.groovy.ast.tools.GeneralUtils.getInstancePropertyFields;
+import static org.codehaus.groovy.ast.tools.GeneralUtils.getSuperNonPropertyFields;
+import static org.codehaus.groovy.ast.tools.GeneralUtils.getSuperPropertyFields;
+import static org.codehaus.groovy.ast.tools.GeneralUtils.ifElseS;
+import static org.codehaus.groovy.ast.tools.GeneralUtils.ifS;
+import static org.codehaus.groovy.ast.tools.GeneralUtils.params;
+import static org.codehaus.groovy.ast.tools.GeneralUtils.propX;
+import static org.codehaus.groovy.ast.tools.GeneralUtils.stmt;
+import static org.codehaus.groovy.ast.tools.GeneralUtils.varX;
 
 /**
  * Handles generation of code for the @TupleConstructor annotation.
@@ -61,17 +72,16 @@ import static org.codehaus.groovy.transform.AbstractASTTransformUtil.*;
 public class TupleConstructorASTTransformation extends AbstractASTTransformation {
 
     static final Class MY_CLASS = TupleConstructor.class;
-    static final ClassNode MY_TYPE = ClassHelper.make(MY_CLASS);
+    static final ClassNode MY_TYPE = make(MY_CLASS);
     static final String MY_TYPE_NAME = "@" + MY_TYPE.getNameWithoutPackage();
-    private static final ClassNode LHMAP_TYPE = ClassHelper.makeWithoutCaching(LinkedHashMap.class, false);
-    private static final ClassNode HMAP_TYPE = ClassHelper.makeWithoutCaching(HashMap.class, false);
-    private static final ClassNode COLLECTIONS_TYPE = ClassHelper.makeWithoutCaching(Collections.class);
-    private static final ClassNode CHECK_METHOD_TYPE = ClassHelper.make(ImmutableASTTransformation.class);
+    private static final ClassNode LHMAP_TYPE = makeWithoutCaching(LinkedHashMap.class, false);
+    private static final ClassNode HMAP_TYPE = makeWithoutCaching(HashMap.class, false);
+    private static final ClassNode CHECK_METHOD_TYPE = make(ImmutableASTTransformation.class);
     private static Map<Class<?>, Expression> primitivesInitialValues;
 
     static {
-        final ConstantExpression zero = new ConstantExpression(0);
-        final ConstantExpression zeroDecimal = new ConstantExpression(.0);
+        final ConstantExpression zero = constX(0);
+        final ConstantExpression zeroDecimal = constX(.0);
         primitivesInitialValues = new HashMap<Class<?>, Expression>();
         primitivesInitialValues.put(int.class, zero);
         primitivesInitialValues.put(long.class, zero);
@@ -91,7 +101,7 @@ public class TupleConstructorASTTransformation extends AbstractASTTransformation
 
         if (parent instanceof ClassNode) {
             ClassNode cNode = (ClassNode) parent;
-            checkNotInterface(cNode, MY_TYPE_NAME);
+            if (!checkNotInterface(cNode, MY_TYPE_NAME)) return;
             boolean includeFields = memberHasValue(anno, "includeFields", true);
             boolean includeProperties = !memberHasValue(anno, "includeProperties", false);
             boolean includeSuperFields = memberHasValue(anno, "includeSuperFields", true);
@@ -105,9 +115,7 @@ public class TupleConstructorASTTransformation extends AbstractASTTransformation
                 if (excludes == null || excludes.isEmpty()) excludes = getMemberList(canonical, "excludes");
                 if (includes == null || includes.isEmpty()) includes = getMemberList(canonical, "includes");
             }
-            if (includes != null && !includes.isEmpty() && excludes != null && !excludes.isEmpty()) {
-                addError("Error during " + MY_TYPE_NAME + " processing: Only one of 'includes' and 'excludes' should be supplied not both.", anno);
-            }
+            if (!checkIncludeExclude(anno, excludes, includes, MY_TYPE_NAME)) return;
             createConstructor(cNode, includeFields, includeProperties, includeSuperFields, includeSuperProperties, callSuper, force, excludes, includes);
         }
     }
@@ -145,19 +153,20 @@ public class TupleConstructorASTTransformation extends AbstractASTTransformation
             if (shouldSkip(name, excludes, includes)) continue;
             params.add(createParam(fNode, name));
             if (callSuper) {
-                superParams.add(new VariableExpression(name));
+                superParams.add(varX(name));
             } else {
-                body.addStatement(assignStatement(new PropertyExpression(VariableExpression.THIS_EXPRESSION, name), new VariableExpression(name)));
+                body.addStatement(assignS(propX(varX("this"), name), varX(name)));
             }
         }
         if (callSuper) {
-            body.addStatement(new ExpressionStatement(new ConstructorCallExpression(ClassNode.SUPER, new ArgumentListExpression(superParams))));
+            body.addStatement(stmt(ctorX(ClassNode.SUPER, args(superParams))));
         }
         for (FieldNode fNode : list) {
             String name = fNode.getName();
             if (shouldSkip(name, excludes, includes)) continue;
-            params.add(createParam(fNode, name));
-            body.addStatement(assignStatement(new PropertyExpression(VariableExpression.THIS_EXPRESSION, name), new VariableExpression(name)));
+            Parameter nextParam = createParam(fNode, name);
+            params.add(nextParam);
+            body.addStatement(assignS(propX(varX("this"), name), varX(nextParam)));
         }
         cNode.addConstructor(new ConstructorNode(ACC_PUBLIC, params.toArray(new Parameter[params.size()]), ClassNode.EMPTY_ARRAY, body));
         // add map constructor if needed, don't do it for LinkedHashMap for now (would lead to duplicate signature)
@@ -187,10 +196,6 @@ public class TupleConstructorASTTransformation extends AbstractASTTransformation
         return param;
     }
 
-    private static boolean shouldSkip(String name, List<String> excludes, List<String> includes) {
-        return (excludes != null && excludes.contains(name)) || name.contains("$") || (includes != null && !includes.isEmpty() && !includes.contains(name));
-    }
-
     private static Expression providedOrDefaultInitialValue(FieldNode fNode) {
         Expression initialExp = fNode.getInitialExpression() != null ? fNode.getInitialExpression() : ConstantExpression.NULL;
         final ClassNode paramType = fNode.getType();
@@ -201,12 +206,11 @@ public class TupleConstructorASTTransformation extends AbstractASTTransformation
     }
 
     public static void addMapConstructors(ClassNode cNode, boolean hasNoArg, String message) {
-        Parameter[] parameters = new Parameter[1];
-        parameters[0] = new Parameter(LHMAP_TYPE, "__namedArgs");
+        Parameter[] parameters = params(new Parameter(LHMAP_TYPE, "__namedArgs"));
         BlockStatement code = new BlockStatement();
-        VariableExpression namedArgs = new VariableExpression("__namedArgs");
+        VariableExpression namedArgs = varX("__namedArgs");
         namedArgs.setAccessedVariable(parameters[0]);
-        code.addStatement(new IfStatement(equalsNullExpr(namedArgs),
+        code.addStatement(ifElseS(equalsNullX(namedArgs),
                 illegalArgumentBlock(message),
                 processArgsBlock(cNode, namedArgs)));
         ConstructorNode init = new ConstructorNode(ACC_PUBLIC, parameters, ClassNode.EMPTY_ARRAY, code);
@@ -214,17 +218,15 @@ public class TupleConstructorASTTransformation extends AbstractASTTransformation
         // add a no-arg constructor too
         if (!hasNoArg) {
             code = new BlockStatement();
-            code.addStatement(new ExpressionStatement(new ConstructorCallExpression(ClassNode.THIS, new ConstructorCallExpression(LHMAP_TYPE, ArgumentListExpression.EMPTY_ARGUMENTS))));
+            code.addStatement(stmt(ctorX(ClassNode.THIS, ctorX(LHMAP_TYPE))));
             init = new ConstructorNode(ACC_PUBLIC, Parameter.EMPTY_ARRAY, ClassNode.EMPTY_ARRAY, code);
             cNode.addConstructor(init);
         }
     }
 
     private static BlockStatement illegalArgumentBlock(String message) {
-        BlockStatement block = new BlockStatement();
-        block.addStatement(new ThrowStatement(new ConstructorCallExpression(ClassHelper.make(IllegalArgumentException.class),
-                new ArgumentListExpression(new ConstantExpression(message)))));
-        return block;
+        return block(
+                new ThrowStatement(ctorX(make(IllegalArgumentException.class), args(constX(message)))));
     }
 
     private static BlockStatement processArgsBlock(ClassNode cNode, VariableExpression namedArgs) {
@@ -233,14 +235,12 @@ public class TupleConstructorASTTransformation extends AbstractASTTransformation
             if (pNode.isStatic()) continue;
 
             // if namedArgs.containsKey(propertyName) setProperty(propertyName, namedArgs.get(propertyName));
-            BooleanExpression ifTest = new BooleanExpression(new MethodCallExpression(namedArgs, "containsKey", new ConstantExpression(pNode.getName())));
-            Expression pExpr = new VariableExpression(pNode);
-            Statement thenBlock = assignStatement(pExpr, new PropertyExpression(namedArgs, pNode.getName()));
-            IfStatement ifStatement = new IfStatement(ifTest, thenBlock, EmptyStatement.INSTANCE);
+            Statement ifStatement = ifS(
+                    callX(namedArgs, "containsKey", constX(pNode.getName())),
+                    assignS(varX(pNode), propX(namedArgs, pNode.getName())));
             block.addStatement(ifStatement);
         }
-        Expression checkArgs = new ArgumentListExpression(new VariableExpression("this"), namedArgs);
-        block.addStatement(new ExpressionStatement(new StaticMethodCallExpression(CHECK_METHOD_TYPE, "checkPropNames", checkArgs)));
+        block.addStatement(stmt(callX(CHECK_METHOD_TYPE, "checkPropNames", args(varX("this"), namedArgs))));
         return block;
     }
 }

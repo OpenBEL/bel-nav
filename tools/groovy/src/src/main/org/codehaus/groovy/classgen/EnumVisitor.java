@@ -1,23 +1,39 @@
-/*
- * Copyright 2003-2012 the original author or authors.
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package org.codehaus.groovy.classgen;
 
-import org.codehaus.groovy.ast.*;
+import org.codehaus.groovy.ast.AnnotatedNode;
+import org.codehaus.groovy.ast.ClassCodeVisitorSupport;
+import org.codehaus.groovy.ast.ClassHelper;
+import org.codehaus.groovy.ast.ClassNode;
+import org.codehaus.groovy.ast.EnumConstantClassNode;
+import org.codehaus.groovy.ast.FieldNode;
+import org.codehaus.groovy.ast.InnerClassNode;
+import org.codehaus.groovy.ast.MethodNode;
+import org.codehaus.groovy.ast.Parameter;
 import org.codehaus.groovy.ast.expr.*;
-import org.codehaus.groovy.ast.stmt.*;
+import org.codehaus.groovy.ast.stmt.BlockStatement;
+import org.codehaus.groovy.ast.stmt.EmptyStatement;
+import org.codehaus.groovy.ast.stmt.ExpressionStatement;
+import org.codehaus.groovy.ast.stmt.IfStatement;
+import org.codehaus.groovy.ast.stmt.ReturnStatement;
+import org.codehaus.groovy.ast.stmt.Statement;
 import org.codehaus.groovy.control.CompilationUnit;
 import org.codehaus.groovy.control.SourceUnit;
 import org.codehaus.groovy.control.messages.SyntaxErrorMessage;
@@ -30,7 +46,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EnumVisitor extends ClassCodeVisitorSupport {
-
     // some constants for modifiers
     private static final int FS = Opcodes.ACC_FINAL | Opcodes.ACC_STATIC;
     private static final int PS = Opcodes.ACC_PUBLIC | Opcodes.ACC_STATIC;
@@ -101,7 +116,7 @@ public class EnumVisitor extends ClassCodeVisitorSupport {
 
         {
             // create values() method
-            MethodNode valuesMethod = new MethodNode("values", PUBLIC_FS, enumRef.makeArray(), new Parameter[0], ClassNode.EMPTY_ARRAY, null);
+            MethodNode valuesMethod = new MethodNode("values", PUBLIC_FS, enumRef.makeArray(), Parameter.EMPTY_ARRAY, ClassNode.EMPTY_ARRAY, null);
             valuesMethod.setSynthetic(true);
             BlockStatement code = new BlockStatement();
             MethodCallExpression cloneCall = new MethodCallExpression(new FieldExpression(values), "clone", MethodCallExpression.NO_ARGUMENTS);
@@ -120,7 +135,7 @@ public class EnumVisitor extends ClassCodeVisitorSupport {
             //     }
             Token assign = Token.newSymbol(Types.ASSIGN, -1, -1);
             Token ge = Token.newSymbol(Types.COMPARE_GREATER_THAN_EQUAL, -1, -1);
-            MethodNode nextMethod = new MethodNode("next", Opcodes.ACC_PUBLIC | Opcodes.ACC_SYNTHETIC, enumRef, new Parameter[0], ClassNode.EMPTY_ARRAY, null);
+            MethodNode nextMethod = new MethodNode("next", Opcodes.ACC_PUBLIC | Opcodes.ACC_SYNTHETIC, enumRef, Parameter.EMPTY_ARRAY, ClassNode.EMPTY_ARRAY, null);
             nextMethod.setSynthetic(true);
             BlockStatement code = new BlockStatement();
             BlockStatement ifStatement = new BlockStatement();
@@ -179,7 +194,7 @@ public class EnumVisitor extends ClassCodeVisitorSupport {
             //    }
             Token assign = Token.newSymbol(Types.ASSIGN, -1, -1);
             Token lt = Token.newSymbol(Types.COMPARE_LESS_THAN, -1, -1);
-            MethodNode nextMethod = new MethodNode("previous", Opcodes.ACC_PUBLIC | Opcodes.ACC_SYNTHETIC, enumRef, new Parameter[0], ClassNode.EMPTY_ARRAY, null);
+            MethodNode nextMethod = new MethodNode("previous", Opcodes.ACC_PUBLIC | Opcodes.ACC_SYNTHETIC, enumRef, Parameter.EMPTY_ARRAY, ClassNode.EMPTY_ARRAY, null);
             nextMethod.setSynthetic(true);
             BlockStatement code = new BlockStatement();
             BlockStatement ifStatement = new BlockStatement();
@@ -309,9 +324,10 @@ public class EnumVisitor extends ClassCodeVisitorSupport {
                 }
             } else {
                 ListExpression oldArgs = (ListExpression) field.getInitialExpression();
+                List<MapEntryExpression> savedMapEntries = new ArrayList<MapEntryExpression>();
                 for (Expression exp : oldArgs.getExpressions()) {
                     if (exp instanceof MapEntryExpression) {
-                        addError(exp, "The usage of a map entry expression to initialize an Enum is currently not supported, please use an explicit map instead.");
+                        savedMapEntries.add((MapEntryExpression) exp);
                         continue;
                     }
 
@@ -344,6 +360,9 @@ public class EnumVisitor extends ClassCodeVisitorSupport {
                         }
                     }
                     args.addExpression(exp);
+                }
+                if (savedMapEntries.size() > 0) {
+                    args.getExpressions().add(2, new MapExpression(savedMapEntries));
                 }
             }
             field.setInitialValueExpression(null);

@@ -1,17 +1,20 @@
-/*
- * Copyright 2003-2007 the original author or authors.
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package org.codehaus.groovy.runtime.callsite;
 
@@ -33,8 +36,12 @@ import java.lang.reflect.Method;
  *   method - cached
 */
 public class PogoMetaMethodSite extends MetaMethodSite {
+    private final int version;
+    private final boolean skipVersionCheck;
     public PogoMetaMethodSite(CallSite site, MetaClassImpl metaClass, MetaMethod metaMethod, Class params[]) {
         super(site, metaClass, metaMethod, params);
+        version = metaClass.getVersion();
+        skipVersionCheck = metaClass.getClass()==MetaClassImpl.class;
     }
 
     public Object invoke(Object receiver, Object[] args) throws Throwable {
@@ -70,117 +77,48 @@ public class PogoMetaMethodSite extends MetaMethodSite {
         }
     }
 
-    protected boolean checkCall(Object receiver, Object[] args) {
+    private boolean nonParamCheck(Object receiver) {
         try {
             return !GroovyCategorySupport.hasCategoryInCurrentThread()
-               && ((GroovyObject)receiver).getMetaClass() == metaClass // metaClass still be valid
-               && MetaClassHelper.sameClasses(params, args);
-        }
-        catch (NullPointerException e) {
-            if (receiver == null)
-              return false;
+                    && ((GroovyObject)receiver).getMetaClass() == metaClass // metaClass still be valid
+                    && (skipVersionCheck || ((MetaClassImpl) metaClass).getVersion() == version);
+        } catch (NullPointerException e) {
+            if (receiver == null) return false;
+            throw e;
+        } catch (ClassCastException e) {
+            if (!(receiver instanceof GroovyObject)) return false;
             throw e;
         }
-        catch (ClassCastException e) {
-            if (!(receiver instanceof GroovyObject))
-              return false;
-            throw e;
-        }
+    }
+
+    protected boolean checkCall(Object receiver, Object[] args) {
+        return nonParamCheck(receiver)
+                && MetaClassHelper.sameClasses(params, args);
     }
 
     protected boolean checkCall(Object receiver) {
-        try {
-            return !GroovyCategorySupport.hasCategoryInCurrentThread()
-               && receiver instanceof GroovyObject
-               && ((GroovyObject)receiver).getMetaClass() == metaClass // metaClass still be valid
-               && MetaClassHelper.sameClasses(params);
-        }
-        catch (NullPointerException e) {
-            if (receiver == null)
-              return false;
-            throw e;
-        }
-        catch (ClassCastException e) {
-            if (!(receiver instanceof GroovyObject))
-              return false;
-            throw e;
-        }
+        return nonParamCheck(receiver)
+                && MetaClassHelper.sameClasses(params);
     }
 
     protected boolean checkCall(Object receiver, Object arg1) {
-        try {
-            return !GroovyCategorySupport.hasCategoryInCurrentThread()
-               && receiver instanceof GroovyObject
-               && ((GroovyObject)receiver).getMetaClass() == metaClass // metaClass still be valid
-               && MetaClassHelper.sameClasses(params, arg1);
-        }
-        catch (NullPointerException e) {
-            if (receiver == null)
-              return false;
-            throw e;
-        }
-        catch (ClassCastException e) {
-            if (!(receiver instanceof GroovyObject))
-              return false;
-            throw e;
-        }
+        return nonParamCheck(receiver)
+                && MetaClassHelper.sameClasses(params, arg1);
     }
 
     protected boolean checkCall(Object receiver, Object arg1, Object arg2) {
-        try {
-            return !GroovyCategorySupport.hasCategoryInCurrentThread()
-               && receiver instanceof GroovyObject
-               && ((GroovyObject)receiver).getMetaClass() == metaClass // metaClass still be valid
-               && MetaClassHelper.sameClasses(params, arg1, arg2);
-        }
-        catch (NullPointerException e) {
-            if (receiver == null)
-              return false;
-            throw e;
-        }
-        catch (ClassCastException e) {
-            if (!(receiver instanceof GroovyObject))
-              return false;
-            throw e;
-        }
+        return nonParamCheck(receiver)
+                && MetaClassHelper.sameClasses(params, arg1, arg2);
     }
 
     protected boolean checkCall(Object receiver, Object arg1, Object arg2, Object arg3) {
-        try {
-            return !GroovyCategorySupport.hasCategoryInCurrentThread()
-               && receiver instanceof GroovyObject
-               && ((GroovyObject)receiver).getMetaClass() == metaClass // metaClass still be valid
-               && MetaClassHelper.sameClasses(params, arg1, arg2, arg3);
-        }
-        catch (NullPointerException e) {
-            if (receiver == null)
-              return false;
-            throw e;
-        }
-        catch (ClassCastException e) {
-            if (!(receiver instanceof GroovyObject))
-              return false;
-            throw e;
-        }
+        return nonParamCheck(receiver)
+                && MetaClassHelper.sameClasses(params, arg1, arg2, arg3);
     }
 
     protected boolean checkCall(Object receiver, Object arg1, Object arg2, Object arg3, Object arg4) {
-        try {
-            return !GroovyCategorySupport.hasCategoryInCurrentThread()
-               && receiver instanceof GroovyObject
-               && ((GroovyObject)receiver).getMetaClass() == metaClass // metaClass still be valid
-               && MetaClassHelper.sameClasses(params, arg1, arg2, arg3, arg4);
-        }
-        catch (NullPointerException e) {
-            if (receiver == null)
-              return false;
-            throw e;
-        }
-        catch (ClassCastException e) {
-            if (!(receiver instanceof GroovyObject))
-              return false;
-            throw e;
-        }
+        return nonParamCheck(receiver)
+                && MetaClassHelper.sameClasses(params, arg1, arg2, arg3, arg4);
     }
 
     public static CallSite createPogoMetaMethodSite(CallSite site, MetaClassImpl metaClass, MetaMethod metaMethod, Class[] params, Object[] args) {

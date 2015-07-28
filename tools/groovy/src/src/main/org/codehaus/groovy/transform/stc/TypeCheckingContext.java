@@ -1,25 +1,28 @@
-/*
- * Copyright 2003-2012 the original author or authors.
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
-
 package org.codehaus.groovy.transform.stc;
 
 import org.codehaus.groovy.ast.ClassNode;
 import org.codehaus.groovy.ast.MethodNode;
 import org.codehaus.groovy.ast.Parameter;
 import org.codehaus.groovy.ast.expr.*;
+import org.codehaus.groovy.control.CompilationUnit;
 import org.codehaus.groovy.control.ErrorCollector;
 import org.codehaus.groovy.control.SourceUnit;
 
@@ -73,11 +76,13 @@ public class TypeCheckingContext {
     // this map is used to ensure that two errors are not reported on the same line/column
     protected final Set<Long> reportedErrors = new TreeSet<Long>();
 
-    // stores the current binary expresssion. This is used when assignments are made with a null object, for type
+    // stores the current binary expression. This is used when assignments are made with a null object, for type
     // inference
     protected final LinkedList<BinaryExpression> enclosingBinaryExpressions = new LinkedList<BinaryExpression>();
 
     protected final StaticTypeCheckingVisitor visitor;
+
+    protected CompilationUnit compilationUnit;
 
     public TypeCheckingContext(final StaticTypeCheckingVisitor staticTypeCheckingVisitor) {
         this.visitor = staticTypeCheckingVisitor;
@@ -294,6 +299,18 @@ public class TypeCheckingContext {
 
     public ErrorCollector popErrorCollector() {
         return errorCollectors.removeFirst();
+    }
+
+    public CompilationUnit getCompilationUnit() {
+        return compilationUnit;
+    }
+
+    public void setCompilationUnit(final CompilationUnit compilationUnit) {
+        this.compilationUnit = compilationUnit;
+    }
+
+    public SourceUnit getSource() {
+        return source;
     }
 
     /**

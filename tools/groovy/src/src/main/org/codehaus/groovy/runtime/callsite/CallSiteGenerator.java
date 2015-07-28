@@ -1,24 +1,29 @@
-/*
- * Copyright 2003-2009 the original author or authors.
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package org.codehaus.groovy.runtime.callsite;
 
 import org.codehaus.groovy.ast.ClassHelper;
+import org.codehaus.groovy.classgen.GeneratorContext;
 import org.codehaus.groovy.classgen.asm.BytecodeHelper;
 import org.codehaus.groovy.reflection.CachedClass;
 import org.codehaus.groovy.reflection.CachedMethod;
+import org.codehaus.groovy.reflection.android.AndroidSupport;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.Label;
 import org.objectweb.asm.MethodVisitor;
@@ -45,7 +50,7 @@ public class CallSiteGenerator {
         
         // call for checking if method is still valid
         for (int i = 0; i < argumentCount; ++i) mv.visitVarInsn(Opcodes.ALOAD, i);
-        mv.visitMethodInsn(Opcodes.INVOKEVIRTUAL, superClass, "checkCall", "(Ljava/lang/Object;" + parameterDescription + ")Z");
+        mv.visitMethodInsn(Opcodes.INVOKEVIRTUAL, superClass, "checkCall", "(Ljava/lang/Object;" + parameterDescription + ")Z", false);
         Label l0 = new Label();
         mv.visitJumpInsn(Opcodes.IFEQ, l0);
         
@@ -86,7 +91,7 @@ public class CallSiteGenerator {
         }        
         
         // make call
-        mv.visitMethodInsn(invokeMethodCode, type, cachedMethod.getName(), descriptor);
+        mv.visitMethodInsn(invokeMethodCode, type, cachedMethod.getName(), descriptor, invokeMethodCode == Opcodes.INVOKEINTERFACE);
 
         // produce result
         BytecodeHelper.box(mv, cachedMethod.getReturnType());
@@ -101,9 +106,9 @@ public class CallSiteGenerator {
         mv.visitLabel(l0);
         for (int i = 0; i < argumentCount; ++i) mv.visitVarInsn(Opcodes.ALOAD, i);
         if (!useArray) {
-            mv.visitMethodInsn(Opcodes.INVOKESTATIC, "org/codehaus/groovy/runtime/ArrayUtil", "createArray", "(" + parameterDescription + ")[Ljava/lang/Object;");
+            mv.visitMethodInsn(Opcodes.INVOKESTATIC, "org/codehaus/groovy/runtime/ArrayUtil", "createArray", "(" + parameterDescription + ")[Ljava/lang/Object;", false);
         }
-        mv.visitMethodInsn(Opcodes.INVOKESTATIC, "org/codehaus/groovy/runtime/callsite/CallSiteArray", "defaultCall" + name, "(Lorg/codehaus/groovy/runtime/callsite/CallSite;L" + receiverType + ";[Ljava/lang/Object;)Ljava/lang/Object;");
+        mv.visitMethodInsn(Opcodes.INVOKESTATIC, "org/codehaus/groovy/runtime/callsite/CallSiteArray", "defaultCall" + name, "(Lorg/codehaus/groovy/runtime/callsite/CallSite;L" + receiverType + ";[Ljava/lang/Object;)Ljava/lang/Object;", false);
         mv.visitInsn(Opcodes.ARETURN);
         
         // exception unwrapping for stackless exceptions
@@ -111,7 +116,7 @@ public class CallSiteGenerator {
         mv.visitLabel(tryEnd);
         final Label catchStart = new Label();
         mv.visitLabel(catchStart);
-        mv.visitMethodInsn(Opcodes.INVOKESTATIC, "org/codehaus/groovy/runtime/ScriptBytecodeAdapter", "unwrap", "(Lgroovy/lang/GroovyRuntimeException;)Ljava/lang/Throwable;");
+        mv.visitMethodInsn(Opcodes.INVOKESTATIC, "org/codehaus/groovy/runtime/ScriptBytecodeAdapter", "unwrap", "(Lgroovy/lang/GroovyRuntimeException;)Ljava/lang/Throwable;", false);
         mv.visitInsn(Opcodes.ATHROW);        
         mv.visitTryCatchBlock(tryStart, tryEnd, catchStart, GRE);
         
@@ -144,7 +149,7 @@ public class CallSiteGenerator {
         mv.visitVarInsn(Opcodes.ALOAD, 2);
         mv.visitVarInsn(Opcodes.ALOAD, 3);
         mv.visitVarInsn(Opcodes.ALOAD, 4);
-        mv.visitMethodInsn(Opcodes.INVOKESPECIAL, superClass, "<init>", "(Lorg/codehaus/groovy/runtime/callsite/CallSite;Lgroovy/lang/MetaClassImpl;Lgroovy/lang/MetaMethod;[Ljava/lang/Class;)V");
+        mv.visitMethodInsn(Opcodes.INVOKESPECIAL, superClass, "<init>", "(Lorg/codehaus/groovy/runtime/callsite/CallSite;Lgroovy/lang/MetaClassImpl;Lgroovy/lang/MetaMethod;[Ljava/lang/Class;)V", false);
 
         mv.visitVarInsn(Opcodes.ALOAD, 5);
         mv.visitFieldInsn(Opcodes.PUTSTATIC, internalName, "__constructor__", "Ljava/lang/reflect/Constructor;");
@@ -242,7 +247,8 @@ public class CallSiteGenerator {
     }
 
     public static boolean isCompilable (CachedMethod method) {
-        return GroovySunClassLoader.sunVM != null || Modifier.isPublic(method.cachedClass.getModifiers()) && method.isPublic() && publicParams(method);
+        return (GroovySunClassLoader.sunVM != null || Modifier.isPublic(method.cachedClass.getModifiers()) && method.isPublic() && publicParams(method))
+                && !AndroidSupport.isRunningAndroid() && containsOnlyValidChars(method.getName());
     }
 
     private static boolean publicParams(CachedMethod method) {
@@ -251,6 +257,13 @@ public class CallSiteGenerator {
                 return false;
         }
         return true;
+    }
+
+    private static boolean containsOnlyValidChars(String name) {
+        // TODO: this might not do enough or too much
+        // But it is a good start without spreading logic everywhere
+        String encoded = GeneratorContext.encodeAsValidClassName(name);
+        return encoded.equals(name);
     }
 
 }

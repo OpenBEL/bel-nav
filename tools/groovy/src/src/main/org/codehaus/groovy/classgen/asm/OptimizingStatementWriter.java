@@ -1,17 +1,20 @@
-/*
- * Copyright 2003-2010 the original author or authors.
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package org.codehaus.groovy.classgen.asm;
 
@@ -21,7 +24,6 @@ import java.util.List;
 import org.codehaus.groovy.ast.*;
 import org.codehaus.groovy.ast.expr.*;
 import org.codehaus.groovy.ast.stmt.*;
-
 import org.codehaus.groovy.GroovyBugError;
 import org.codehaus.groovy.classgen.AsmClassGenerator;
 import org.codehaus.groovy.classgen.Verifier;
@@ -98,6 +100,7 @@ public class OptimizingStatementWriter extends StatementWriter {
     
     private FastPathData writeGuards(StatementMeta meta, Statement statement) {
         if (notEnableFastPath(meta)) return null;
+        controller.getAcg().onLineNumber(statement, null);
         MethodVisitor mv = controller.getMethodVisitor();
         FastPathData fastPathData = new FastPathData();
         Label slowPath = new Label();
@@ -189,7 +192,7 @@ public class OptimizingStatementWriter extends StatementWriter {
     @Override
     protected void writeIteratorHasNext(MethodVisitor mv) {
         if (controller.isFastPath()) {
-            mv.visitMethodInsn(INVOKEINTERFACE, "java/util/Iterator", "hasNext", "()Z");
+            mv.visitMethodInsn(INVOKEINTERFACE, "java/util/Iterator", "hasNext", "()Z", true);
         } else {
             super.writeIteratorHasNext(mv);
         }
@@ -198,7 +201,7 @@ public class OptimizingStatementWriter extends StatementWriter {
     @Override
     protected void writeIteratorNext(MethodVisitor mv) {
         if (controller.isFastPath()) {
-            mv.visitMethodInsn(INVOKEINTERFACE, "java/util/Iterator", "next", "()Ljava/lang/Object;");
+            mv.visitMethodInsn(INVOKEINTERFACE, "java/util/Iterator", "next", "()Ljava/lang/Object;", true);
         } else {
             super.writeIteratorNext(mv);
         }
@@ -499,7 +502,7 @@ public class OptimizingStatementWriter extends StatementWriter {
         private OptimizeFlagsCollector opt = new OptimizeFlagsCollector();
         private boolean optimizeMethodCall = true;
         private VariableScope scope;
-        private final static VariableScope nonStaticScope = new VariableScope(); 
+        private static final VariableScope nonStaticScope = new VariableScope();
         
         @Override
         public void visitClass(ClassNode node) {
@@ -584,7 +587,9 @@ public class OptimizingStatementWriter extends StatementWriter {
             right.visit(this);
             
             ClassNode leftType = typeChooser.resolveType(expression.getLeftExpression(), node);
-            ClassNode rightType = typeChooser.resolveType(expression.getRightExpression(), node);
+            Expression rightExpression = expression.getRightExpression();
+            ClassNode rightType = optimizeDivWithIntOrLongTarget(rightExpression, leftType);
+            if (rightType==null) rightType = typeChooser.resolveType(expression.getRightExpression(), node);
             if (isPrimitiveType(leftType) && isPrimitiveType(rightType)) {
                 // if right is a constant, then we optimize only if it makes
                 // a block complete, so we set a maybe
@@ -622,35 +627,59 @@ public class OptimizingStatementWriter extends StatementWriter {
                     case Types.COMPARE_GREATER_THAN:
                     case Types.COMPARE_GREATER_THAN_EQUAL:
                     case Types.COMPARE_NOT_EQUAL:
+                        if (isIntCategory(leftType) && isIntCategory(rightType)) {
+                            opt.chainShouldOptimize(true);
+                        } else if (isLongCategory(leftType) && isLongCategory(rightType)) {
+                            opt.chainShouldOptimize(true);
+                        } else if (isDoubleCategory(leftType) && isDoubleCategory(rightType)) {
+                            opt.chainShouldOptimize(true);
+                        } else {
+                            opt.chainCanOptimize(true);
+                        }
+                        resultType = boolean_TYPE;
+                        break;
                     case Types.LOGICAL_AND: case Types.LOGICAL_AND_EQUAL:
                     case Types.LOGICAL_OR: case Types.LOGICAL_OR_EQUAL:
+                        if (boolean_TYPE.equals(leftType) && boolean_TYPE.equals(rightType)) {
+                            opt.chainShouldOptimize(true);
+                        } else {
+                            opt.chainCanOptimize(true);
+                        }
                         expression.setType(boolean_TYPE);
                         resultType = boolean_TYPE;
                         break;
                     case Types.DIVIDE: case Types.DIVIDE_EQUAL:
                         if (isLongCategory(leftType) && isLongCategory(rightType)) {
                             resultType = BigDecimal_TYPE;
+                            opt.chainShouldOptimize(true);
                         } else if (isBigDecCategory(leftType) && isBigDecCategory(rightType)) {
-                            resultType = BigDecimal_TYPE;
+                            // no optimization for BigDecimal yet
+                            //resultType = BigDecimal_TYPE;
                         } else if (isDoubleCategory(leftType) && isDoubleCategory(rightType)) {
                             resultType = double_TYPE;
+                            opt.chainShouldOptimize(true);
                         }
                         break;
                     case Types.POWER: case Types.POWER_EQUAL:
                         //TODO: implement
                         break;
                     case Types.ASSIGN:
+                        resultType = optimizeDivWithIntOrLongTarget(expression.getRightExpression(), leftType);
                         opt.chainCanOptimize(true);
                         break;
                     default:
                         if (isIntCategory(leftType) && isIntCategory(rightType)) {
                             resultType = int_TYPE;
+                            opt.chainShouldOptimize(true);
                         } else if (isLongCategory(leftType) && isLongCategory(rightType)) {
                             resultType = long_TYPE;
+                            opt.chainShouldOptimize(true);
                         } else if (isBigDecCategory(leftType) && isBigDecCategory(rightType)) {
-                            resultType = BigDecimal_TYPE;
+                            // no optimization for BigDecimal yet
+                            //resultType = BigDecimal_TYPE;
                         } else if (isDoubleCategory(leftType) && isDoubleCategory(rightType)) {
                             resultType = double_TYPE;
+                            opt.chainShouldOptimize(true);
                         }
                 }
             }
@@ -658,11 +687,49 @@ public class OptimizingStatementWriter extends StatementWriter {
             if (resultType!=null) {
                 StatementMeta meta = addMeta(expression);
                 meta.type = resultType;
-                opt.chainShouldOptimize(true);
                 opt.chainInvolvedType(resultType);
                 opt.chainInvolvedType(leftType);
                 opt.chainInvolvedType(rightType);
             }
+        }
+
+        /**
+         * method to optimize Z = X/Y with Z being int or long style
+         * @returns null if the optimization cannot be applied, otherwise it
+         * will return the new target type
+         */
+        private ClassNode optimizeDivWithIntOrLongTarget(Expression rhs, ClassNode assignmentTartgetType) {
+            if (!(rhs instanceof BinaryExpression)) return null;
+            BinaryExpression binExp = (BinaryExpression) rhs;
+            int op = binExp.getOperation().getType();
+            if (op!=Types.DIVIDE && op!=Types.DIVIDE_EQUAL) return null;
+
+            ClassNode originalResultType = typeChooser.resolveType(binExp, node);
+            if (    !originalResultType.equals(BigDecimal_TYPE) ||
+                    !(isLongCategory(assignmentTartgetType) || isFloatingCategory(assignmentTartgetType)) 
+            ) {
+                return null;
+            }
+
+            ClassNode leftType = typeChooser.resolveType(binExp.getLeftExpression(), node);
+            if (!isLongCategory(leftType)) return null;
+            ClassNode rightType = typeChooser.resolveType(binExp.getRightExpression(), node);
+            if (!isLongCategory(rightType)) return null;
+
+            ClassNode target;
+            if (isIntCategory(leftType) && isIntCategory(rightType)) {
+                target = int_TYPE;
+            } else if (isLongCategory(leftType) && isLongCategory(rightType)) {
+                target = long_TYPE;
+            } else if (isDoubleCategory(leftType) && isDoubleCategory(rightType)) {
+                target = double_TYPE;
+            } else {
+                return null;
+            }
+            StatementMeta meta = addMeta(rhs);
+            meta.type = target;
+            opt.chainInvolvedType(target);
+            return target;
         }
 
         @Override

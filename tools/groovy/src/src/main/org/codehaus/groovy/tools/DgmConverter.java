@@ -1,17 +1,20 @@
-/*
- * Copyright 2003-2011 the original author or authors.
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
 package org.codehaus.groovy.tools;
 
@@ -109,7 +112,7 @@ public class DgmConverter implements Opcodes {
         mv.visitVarInsn(ALOAD, 2);
         mv.visitVarInsn(ALOAD, 3);
         mv.visitVarInsn(ALOAD, 4);
-        mv.visitMethodInsn(INVOKESPECIAL, "org/codehaus/groovy/reflection/GeneratedMetaMethod", "<init>", "(Ljava/lang/String;Lorg/codehaus/groovy/reflection/CachedClass;Ljava/lang/Class;[Ljava/lang/Class;)V");
+        mv.visitMethodInsn(INVOKESPECIAL, "org/codehaus/groovy/reflection/GeneratedMetaMethod", "<init>", "(Ljava/lang/String;Lorg/codehaus/groovy/reflection/CachedClass;Ljava/lang/Class;[Ljava/lang/Class;)V", false);
         mv.visitInsn(RETURN);
         mv.visitMaxs(0, 0);
         mv.visitEnd();
@@ -125,13 +128,13 @@ public class DgmConverter implements Opcodes {
             Label l0 = new Label();
             mv.visitJumpInsn(IFNULL, l0);
             mv.visitVarInsn(ALOAD, 0);
-            mv.visitMethodInsn(INVOKEVIRTUAL, className, "getParameterTypes", "()[Lorg/codehaus/groovy/reflection/CachedClass;");
+            mv.visitMethodInsn(INVOKEVIRTUAL, className, "getParameterTypes", "()[Lorg/codehaus/groovy/reflection/CachedClass;", false);
             mv.visitInsn(ICONST_0);
             mv.visitInsn(AALOAD);
             mv.visitVarInsn(ALOAD, 1);
             mv.visitInsn(ICONST_0);
             mv.visitInsn(AALOAD);
-            mv.visitMethodInsn(INVOKEVIRTUAL, "org/codehaus/groovy/reflection/CachedClass", "isAssignableFrom", "(Ljava/lang/Class;)Z");
+            mv.visitMethodInsn(INVOKEVIRTUAL, "org/codehaus/groovy/reflection/CachedClass", "isAssignableFrom", "(Ljava/lang/Class;)Z", false);
             Label l1 = new Label();
             mv.visitJumpInsn(IFEQ, l1);
             mv.visitLabel(l0);
@@ -156,13 +159,13 @@ public class DgmConverter implements Opcodes {
             BytecodeHelper.doCast(mv, method.getParameterTypes()[0].getTheClass());
 
             mv.visitVarInsn(ALOAD, 0);
-            mv.visitMethodInsn(INVOKEVIRTUAL, className, "getParameterTypes", "()[Lorg/codehaus/groovy/reflection/CachedClass;");
+            mv.visitMethodInsn(INVOKEVIRTUAL, className, "getParameterTypes", "()[Lorg/codehaus/groovy/reflection/CachedClass;", false);
             mv.visitInsn(ICONST_0);
             mv.visitInsn(AALOAD);
             mv.visitVarInsn(ALOAD, 2);
             mv.visitInsn(ICONST_0);
             mv.visitInsn(AALOAD);
-            mv.visitMethodInsn(INVOKEVIRTUAL, "org/codehaus/groovy/reflection/CachedClass", "coerceArgument", "(Ljava/lang/Object;)Ljava/lang/Object;");
+            mv.visitMethodInsn(INVOKEVIRTUAL, "org/codehaus/groovy/reflection/CachedClass", "coerceArgument", "(Ljava/lang/Object;)Ljava/lang/Object;", false);
 
             // cast argument to parameter class, inclusive unboxing
             // for methods with primitive types
@@ -171,13 +174,13 @@ public class DgmConverter implements Opcodes {
         } else {
             mv.visitVarInsn(ALOAD, 0);
             mv.visitVarInsn(ALOAD, 2);
-            mv.visitMethodInsn(INVOKEVIRTUAL, className, "coerceArgumentsToClasses", "([Ljava/lang/Object;)[Ljava/lang/Object;");
+            mv.visitMethodInsn(INVOKEVIRTUAL, className, "coerceArgumentsToClasses", "([Ljava/lang/Object;)[Ljava/lang/Object;", false);
             mv.visitVarInsn(ASTORE, 2);
             mv.visitVarInsn(ALOAD, 1);
             BytecodeHelper.doCast(mv, method.getParameterTypes()[0].getTheClass());
             loadParameters(method, 2, mv);
         }
-        mv.visitMethodInsn(INVOKESTATIC, BytecodeHelper.getClassInternalName(method.getDeclaringClass().getTheClass()), method.getName(), methodDescriptor);
+        mv.visitMethodInsn(INVOKESTATIC, BytecodeHelper.getClassInternalName(method.getDeclaringClass().getTheClass()), method.getName(), methodDescriptor, false);
         BytecodeHelper.box(mv, returnType);
         if (method.getReturnType() == void.class) {
             mv.visitInsn(ACONST_NULL);
@@ -194,7 +197,7 @@ public class DgmConverter implements Opcodes {
         mv.visitVarInsn(ALOAD, 1);
         BytecodeHelper.doCast(mv, method.getParameterTypes()[0].getTheClass());
         loadParameters(method, 2, mv);
-        mv.visitMethodInsn(INVOKESTATIC, BytecodeHelper.getClassInternalName(method.getDeclaringClass().getTheClass()), method.getName(), methodDescriptor);
+        mv.visitMethodInsn(INVOKESTATIC, BytecodeHelper.getClassInternalName(method.getDeclaringClass().getTheClass()), method.getName(), methodDescriptor, false);
         BytecodeHelper.box(mv, returnType);
         if (method.getReturnType() == void.class) {
             mv.visitInsn(ACONST_NULL);

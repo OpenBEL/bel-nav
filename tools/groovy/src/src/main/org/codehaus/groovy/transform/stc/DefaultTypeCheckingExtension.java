@@ -1,25 +1,31 @@
-/*
- * Copyright 2003-2012 the original author or authors.
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one
+ *  or more contributor license agreements.  See the NOTICE file
+ *  distributed with this work for additional information
+ *  regarding copyright ownership.  The ASF licenses this file
+ *  to you under the Apache License, Version 2.0 (the
+ *  "License"); you may not use this file except in compliance
+ *  with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
  */
-
 package org.codehaus.groovy.transform.stc;
 
+import org.codehaus.groovy.ast.ClassHelper;
 import org.codehaus.groovy.ast.ClassNode;
 import org.codehaus.groovy.ast.MethodNode;
 import org.codehaus.groovy.ast.expr.*;
+import org.codehaus.groovy.ast.stmt.ReturnStatement;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -80,10 +86,34 @@ public class DefaultTypeCheckingExtension extends TypeCheckingExtension {
         return false;
     }
 
+    @Override
+    public boolean handleIncompatibleReturnType(ReturnStatement returnStatement, ClassNode inferredReturnType) {
+        for (TypeCheckingExtension handler : handlers) {
+            if (handler.handleIncompatibleReturnType(returnStatement, inferredReturnType)) return true;
+        }
+        return false;
+    }
+
+    @Override
+    public List<MethodNode> handleAmbiguousMethods(final List<MethodNode> nodes, final Expression origin) {
+        List<MethodNode> result = nodes;
+        Iterator<TypeCheckingExtension> it = handlers.iterator();
+        while (result.size()>1 && it.hasNext()) {
+            result = it.next().handleAmbiguousMethods(result, origin);
+        }
+        return result;
+    }
+
     public List<MethodNode> handleMissingMethod(final ClassNode receiver, final String name, final ArgumentListExpression argumentList, final ClassNode[] argumentTypes, final MethodCall call) {
         List<MethodNode> result = new LinkedList<MethodNode>();
         for (TypeCheckingExtension handler : handlers) {
-            result.addAll(handler.handleMissingMethod(receiver, name, argumentList, argumentTypes, call));
+            List<MethodNode> handlerResult = handler.handleMissingMethod(receiver, name, argumentList, argumentTypes, call);
+            for (MethodNode mn : handlerResult) {
+                if (mn.getDeclaringClass()==null) {
+                    mn.setDeclaringClass(ClassHelper.OBJECT_TYPE);
+                }
+            }
+            result.addAll(handlerResult);
         }
         return result;
     }
@@ -143,7 +173,9 @@ public class DefaultTypeCheckingExtension extends TypeCheckingExtension {
 
     @Override
     public void setup() {
-        for (TypeCheckingExtension handler : handlers) {
+        ArrayList<TypeCheckingExtension> copy = new ArrayList<TypeCheckingExtension>(handlers);
+        // we're using a copy here because new extensions can be added during the "setup" phase
+        for (TypeCheckingExtension handler : copy) {
             handler.setup();
         }
     }
