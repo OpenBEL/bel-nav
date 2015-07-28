@@ -44,13 +44,13 @@
     </developers>
 
     <scm>
-        <connection>scm:git:git://github.com/OpenBEL/kam-nav.git</connection>
-        <developerConnection>scm:git:git://github.com/OpenBEL/kam-nav.git</developerConnection>
-        <url>https://github.com/OpenBEL/kam-nav/</url>
+        <connection>scm:git:git://github.com/OpenBEL/bel-nav.git</connection>
+        <developerConnection>scm:git:git://github.com/OpenBEL/bel-nav.git</developerConnection>
+        <url>https://github.com/OpenBEL/bel-nav/</url>
     </scm>
 
     <issueManagement>
-      <url>https://github.com/OpenBEL/kam-nav/issues/</url>
+      <url>https://github.com/OpenBEL/bel-nav/issues/</url>
     </issueManagement>
 
     <build>
