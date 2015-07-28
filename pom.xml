@@ -12,7 +12,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.openbel</groupId>
     <artifactId>belnav</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
     <name>BEL Navigator</name>
     <description>A Cytoscape app that connects to the OpenBEL Framework to explore knowledge networks.</description>
     <packaging>bundle</packaging>

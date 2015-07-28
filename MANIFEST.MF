@@ -2,4 +2,4 @@ Manifest-Version: 1.0
 Cytoscape-API-Compatibility: 3.0
 Cytoscape-App: BEL Navigator
 Cytoscape-App-Name: BEL Navigator
-Cytoscape-App-Version: 1.0.0
+Cytoscape-App-Version: 1.1.0
