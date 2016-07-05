@@ -3,7 +3,7 @@ BEL Navigator
 
 Explore OpenBEL knowledge networks within Cytoscape 3.
 
-*Capabilities*
+### Capabilities
 
 - Configure multiple connections to OpenBEL Web API.
 - Search for nodes within a knowledge network.
@@ -17,11 +17,11 @@ Explore OpenBEL knowledge networks within Cytoscape 3.
 - Validate BEL syntax for network nodes and edges.
 - Knowledge network visual styles.
 
-*Requirements*
+### Requirements
 
 - Cytoscape 3.x
 
-*Installation*
+### Installation
 
 **Note**: The *BEL Navigator* plugin must be installed manually (see [enhancement issue #34](https://github.com/OpenBEL/bel-nav/issues/34)).
 
@@ -30,7 +30,7 @@ Explore OpenBEL knowledge networks within Cytoscape 3.
 3. Go to Apps ➡ App Manager ➡ Install from File...
 4. Select the downloaded JAR and click *Install*.
 
-*Development*
+### Development
 
 The *BEL Navigator* plugin is built with Groovy and uses a maven build system.
 
@@ -66,3 +66,20 @@ go:
 ./go.sh 1 2 4 10
 ```
 
+### Releases
+
+To create a release of *BEL Navigator* follow these steps:
+
+1. Build a single OSGi bundle jar.
+
+  `mvn clean package -DskipTests`
+
+2. Got to the [Cytoscape App Store][Cytoscape App Store] and [submit][submit] a 3.0 application.
+
+3. Locate *target/belnav-VERSION.jar* and upload the file.
+4. Receive confirmation from Cytoscape.
+5. Update details on the [project page][project page].
+
+[Cytoscape App Store]: http://apps.cytoscape.org/
+[submit]:              http://apps.cytoscape.org/submit_app/
+[project page]:        http://apps.cytoscape.org/apps/belnavigator
